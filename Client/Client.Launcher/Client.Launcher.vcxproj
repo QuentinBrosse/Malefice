@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{12B106A3-652E-45F8-91AD-DD60E76D9583}</ProjectGuid>
+    <ProjectGuid>{321C4780-FD43-4181-ACAA-3BA4C41704DB}</ProjectGuid>
     <RootNamespace>ClientLauncher</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

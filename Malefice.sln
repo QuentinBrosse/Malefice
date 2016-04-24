@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client.Core", "Client\Client.vcxproj", "{9136C374-8594-4720-9E5C-5FFE5EEC720A}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcxproj", "{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{3A1CD5F8-C09E-4ADB-8850-4E5865540831}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client.Launcher", "Client.Launcher\Client.Launcher.vcxproj", "{12B106A3-652E-45F8-91AD-DD60E76D9583}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{191A2C50-A480-4D6E-A03A-11952C0A261C}"
 EndProject
@@ -17,36 +11,42 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RakNetStatic", "Libraries\RakNet\Projects\RakNetStatic.vcxproj", "{19E06AC6-35E8-47E2-BF29-9C897DFFC37C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client.Core", "Client\Client.Core\Client.Core.vcxproj", "{F340DDED-C270-42B0-9C4A-57AEA463C455}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client.Launcher", "Client\Client.Launcher\Client.Launcher.vcxproj", "{321C4780-FD43-4181-ACAA-3BA4C41704DB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server.Core", "Server\Server.Core\Server.Core.vcxproj", "{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9136C374-8594-4720-9E5C-5FFE5EEC720A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9136C374-8594-4720-9E5C-5FFE5EEC720A}.Debug|Win32.Build.0 = Debug|Win32
-		{9136C374-8594-4720-9E5C-5FFE5EEC720A}.Release|Win32.ActiveCfg = Release|Win32
-		{9136C374-8594-4720-9E5C-5FFE5EEC720A}.Release|Win32.Build.0 = Release|Win32
-		{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E}.Debug|Win32.Build.0 = Debug|Win32
-		{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E}.Release|Win32.ActiveCfg = Release|Win32
-		{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E}.Release|Win32.Build.0 = Release|Win32
-		{12B106A3-652E-45F8-91AD-DD60E76D9583}.Debug|Win32.ActiveCfg = Debug|Win32
-		{12B106A3-652E-45F8-91AD-DD60E76D9583}.Debug|Win32.Build.0 = Debug|Win32
-		{12B106A3-652E-45F8-91AD-DD60E76D9583}.Release|Win32.ActiveCfg = Release|Win32
-		{12B106A3-652E-45F8-91AD-DD60E76D9583}.Release|Win32.Build.0 = Release|Win32
 		{19E06AC6-35E8-47E2-BF29-9C897DFFC37C}.Debug|Win32.ActiveCfg = Debug|Win32
 		{19E06AC6-35E8-47E2-BF29-9C897DFFC37C}.Debug|Win32.Build.0 = Debug|Win32
 		{19E06AC6-35E8-47E2-BF29-9C897DFFC37C}.Release|Win32.ActiveCfg = Release|Win32
 		{19E06AC6-35E8-47E2-BF29-9C897DFFC37C}.Release|Win32.Build.0 = Release|Win32
+		{F340DDED-C270-42B0-9C4A-57AEA463C455}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F340DDED-C270-42B0-9C4A-57AEA463C455}.Debug|Win32.Build.0 = Debug|Win32
+		{F340DDED-C270-42B0-9C4A-57AEA463C455}.Release|Win32.ActiveCfg = Release|Win32
+		{F340DDED-C270-42B0-9C4A-57AEA463C455}.Release|Win32.Build.0 = Release|Win32
+		{321C4780-FD43-4181-ACAA-3BA4C41704DB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{321C4780-FD43-4181-ACAA-3BA4C41704DB}.Debug|Win32.Build.0 = Debug|Win32
+		{321C4780-FD43-4181-ACAA-3BA4C41704DB}.Release|Win32.ActiveCfg = Release|Win32
+		{321C4780-FD43-4181-ACAA-3BA4C41704DB}.Release|Win32.Build.0 = Release|Win32
+		{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}.Debug|Win32.Build.0 = Debug|Win32
+		{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}.Release|Win32.ActiveCfg = Release|Win32
+		{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9136C374-8594-4720-9E5C-5FFE5EEC720A} = {3A1CD5F8-C09E-4ADB-8850-4E5865540831}
-		{05D1CB5F-35B2-4FCE-AA45-A6F6271EDD5E} = {191A2C50-A480-4D6E-A03A-11952C0A261C}
-		{12B106A3-652E-45F8-91AD-DD60E76D9583} = {3A1CD5F8-C09E-4ADB-8850-4E5865540831}
 		{19E06AC6-35E8-47E2-BF29-9C897DFFC37C} = {B404ABE5-CF31-49E0-9243-05B01CB6AB1D}
+		{F340DDED-C270-42B0-9C4A-57AEA463C455} = {3A1CD5F8-C09E-4ADB-8850-4E5865540831}
+		{321C4780-FD43-4181-ACAA-3BA4C41704DB} = {3A1CD5F8-C09E-4ADB-8850-4E5865540831}
+		{01A9BF38-EB29-42DB-A221-B9003A6AAD7F} = {191A2C50-A480-4D6E-A03A-11952C0A261C}
 	EndGlobalSection
 EndGlobal
