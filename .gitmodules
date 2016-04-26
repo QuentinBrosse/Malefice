@@ -4,3 +4,9 @@
 [submodule "Libraries/irrlicht"]
 	path = Libraries/irrlicht
 	url = git@github.com:GuiTeK/irrlicht.git
+[submodule "Libraries/cegui"]
+	path = Libraries/cegui
+	url = git@github.com:GuiTeK/cegui.git
+[submodule "Libraries/cegui-dependencies"]
+	path = Libraries/cegui-dependencies
+	url = git@github.com:GuiTeK/cegui-dependencies.git

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DA0C0991-536A-41F7-94DB-B5972B80DB46}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; (IF NOT EXIST dependencies\bin\freetype_d.dll (msbuild CEGUI-DEPS.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform))) &amp;&amp; (copy dependencies\bin\freetype_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\glew_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\glfw_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\jpeg_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\libexpat_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\libpng_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\pcre_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\SILLY_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\zlib_d.dll ..\..\..\Binaries\Debug)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; msbuild CEGUI-DEPS.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy dependencies\bin\freetype_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\glew_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\glfw_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\jpeg_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\libexpat_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\libpng_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\pcre_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\SILLY_d.dll ..\..\..\Binaries\Debug &amp; copy dependencies\bin\zlib_d.dll ..\..\..\Binaries\Debug)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; msbuild CEGUI-DEPS.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (del ..\..\..\Binaries\Debug\freetype_d.dll &amp; del ..\..\..\Binaries\Debug\glew_d.dll &amp; del ..\..\..\Binaries\Debug\glfw_d.dll &amp; del ..\..\..\Binaries\Debug\jpeg_d.dll &amp; del ..\..\..\Binaries\Debug\libexpat_d.dll &amp; del ..\..\..\Binaries\Debug\libpng_d.dll &amp; del ..\..\..\Binaries\Debug\pcre_d.dll &amp; del ..\..\..\Binaries\Debug\SILLY_d.dll &amp; del ..\..\..\Binaries\Debug\zlib_d.dll)</NMakeCleanCommandLine>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; (IF NOT EXIST dependencies\bin\freetype.dll (msbuild CEGUI-DEPS.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform))) &amp;&amp; (copy dependencies\bin\freetype.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\glew.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\glfw.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\jpeg.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\libexpat.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\libpng.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\pcre.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\SILLY.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\zlib.dll ..\..\..\Binaries\Release)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; msbuild CEGUI-DEPS.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy dependencies\bin\freetype.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\glew.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\glfw.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\jpeg.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\libexpat.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\libpng.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\pcre.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\SILLY.dll ..\..\..\Binaries\Release &amp; copy dependencies\bin\zlib.dll ..\..\..\Binaries\Release)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Libraries\cegui-dependencies\build (mkdir ..\..\Libraries\cegui-dependencies\build)) &amp; cd ..\..\Libraries\cegui-dependencies\build &amp;&amp; (IF NOT EXIST CEGUI-DEPS.sln (git checkout v0-8 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CEGUI_BUILD_EFFECTS11:BOOL=FALSE ..)) &amp;&amp; msbuild CEGUI-DEPS.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (del ..\..\..\Binaries\Release\freetype.dll &amp; del ..\..\..\Binaries\Release\glew.dll &amp; del ..\..\..\Binaries\Release\glfw.dll &amp; del ..\..\..\Binaries\Release\jpeg.dll &amp; del ..\..\..\Binaries\Release\libexpat.dll &amp; del ..\..\..\Binaries\Release\libpng.dll &amp; del ..\..\..\Binaries\Release\pcre.dll &amp; del ..\..\..\Binaries\Release\SILLY.dll &amp; del ..\..\..\Binaries\Release\zlib.dll)</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

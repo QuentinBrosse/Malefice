@@ -15,7 +15,7 @@ git submodule update --init --recursive
 ```
 
 Les projets sont déjà configurés pour compiler avec :
-* **Client.Core** : RakNet et Irrlicht
+* **Client.Core** : RakNet, Irrlicht et CEGUI
 * **Client.Launcher** : /
 * **Server.Core** : RakNet
 

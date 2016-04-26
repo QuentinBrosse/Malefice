@@ -40,11 +40,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
+    <IncludePath>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
+    <IncludePath>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -55,8 +55,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/cegui/build/lib;../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -75,8 +75,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/cegui/build/lib;../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
