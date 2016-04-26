@@ -39,10 +39,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;$(IncludePath)</IncludePath>
+    <IncludePath>../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;$(IncludePath)</IncludePath>
+    <IncludePath>../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -52,11 +52,12 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\Libraries\RakNet\build\Lib\DLL\Debug\RakNetDLL.dll ..\..\Debug</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,15 +72,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/irrlicht/lib/Win32-visualstudio</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\Libraries\RakNet\build\Lib\DLL\Release\RakNetDLL.dll ..\..\Release</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

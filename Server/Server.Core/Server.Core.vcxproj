@@ -56,7 +56,8 @@
       <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\Libraries\RakNet\build\Lib\DLL\Debug\RakNetDLL.dll ..\..\Debug</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,7 +76,8 @@
       <AdditionalDependencies>RakNetDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\..\Libraries\RakNet\build\Lib\DLL\Release\RakNetDLL.dll ..\..\Release</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

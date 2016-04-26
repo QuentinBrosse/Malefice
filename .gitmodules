@@ -1,3 +1,6 @@
 [submodule "Libraries/RakNet"]
 	path = Libraries/RakNet
 	url = git@github.com:GuiTeK/RakNet.git
+[submodule "Libraries/irrlicht"]
+	path = Libraries/irrlicht
+	url = git@github.com:GuiTeK/irrlicht.git

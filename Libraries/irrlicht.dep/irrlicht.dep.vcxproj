@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0C51EF97-CDF8-40EC-9574-C9506447CD9F}</ProjectGuid>
+    <ProjectGuid>{F57D4D49-6C97-4C4B-BB1E-9039B06FCE91}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -62,16 +62,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Lib\DLL\Debug\RakNetDLL.dll ..\..\..\Debug</NMakeBuildCommandLine>
-    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; del ..\..\..\Debug\RakNetDLL.dll</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Lib\DLL\Debug\RakNetDLL.dll ..\..\..\Debug</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Debug</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; del ..\..\..\..\Debug\Irrlicht.dll</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Lib\DLL\Release\RakNetDLL.dll ..\..\..\Release</NMakeBuildCommandLine>
-    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; del ..\..\..\Release\RakNetDLL.dll</NMakeCleanCommandLine>
-    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Libraries\RakNet\build (mkdir ..\..\Libraries\RakNet\build)) &amp; cd ..\..\Libraries\RakNet\build &amp;&amp; (IF NOT EXIST RakNet.sln (cmake -G "Visual Studio 14 2015" ..)) &amp;&amp; msbuild RakNet.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Lib\DLL\Release\RakNetDLL.dll ..\..\..\Release</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Release</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cd ..\..\Libraries\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; del ..\..\..\..\Release\Irrlicht.dll</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
