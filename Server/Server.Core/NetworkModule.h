@@ -15,7 +15,7 @@ public:
 	NetworkModule();
 	~NetworkModule();
 
-	bool						Init(std::string, std::string);
+	bool						Init(std::string, std::string, std::string);
 
 	RakNet::RakPeerInterface	*GetRakPeer(void) { return m_pRakPeer; }
 	RakNet::RPC4				*GetRPC(void) { return m_pRPC; }

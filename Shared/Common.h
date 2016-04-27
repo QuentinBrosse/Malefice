@@ -1,5 +1,8 @@
 #pragma once
 
+#define GAME_NAME					"Malefice"
+#define GAME_VERSION				"0.1"
+
 #define FILE_SETTINGS				"settings.xml"
 #define FILE_SETTINGS_D_NAME		"Default Server"
 #define FILE_SETTINGS_D_PORT		"1234"
