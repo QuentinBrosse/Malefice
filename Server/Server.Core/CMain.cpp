@@ -27,6 +27,7 @@ bool	CMain::Init(void)
 
 	this->m_sName = CParser->Get("name");
 	this->m_sPort = CParser->Get("port");
+	this->m_sAddress = CParser->Get("address");
 	this->m_sPassword = CParser->Get("password");
 
 	if (this->m_sName.length() <= 0)
@@ -35,8 +36,9 @@ bool	CMain::Init(void)
 	if (this->m_sPort.length() <= 0)
 		return (false);
 
-	/* Raknet init */
-
+	/* Network init */
+	NModule = new NetworkModule;
+	NModule->Init(this->m_sPort, this->m_sAddress);
 	return (true);
 }
 

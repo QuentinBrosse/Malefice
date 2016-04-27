@@ -11,6 +11,7 @@ private:
 	std::string		m_sName;
 	std::string		m_sPort;
 	std::string		m_sPassword;
+	std::string		m_sAddress;
 	bool			m_bActive;
 
 	ConfigParser	*CParser;
