@@ -6,7 +6,7 @@
 Installer :
 * [Visual Studio 2015](https://intra-bocal.epitech.eu/index.php?pgid=msdnaa)
 * [Git](https://git-scm.com/download/win)
-* [CMake](https://cmake.org/download/)
+* [CMake *version 3.x*](https://cmake.org/download/)
 * [DirectX SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
 
 Se rendre à la racine du dépôt avec **Git Bash** et lancer la commande :
@@ -20,3 +20,9 @@ Les projets sont déjà configurés pour compiler avec :
 * **Server.Core** : RakNet
 
 Les projets sont générés dans Debug/ et dans Release/ (à la racine du dépôt).
+
+### Résolution des problèmes de génération
+
+***Attention :***
+* **Il ne doit pas y avoir d'espace dans les chemins !** Les espaces font échouer la génération de certaines parties du projet (*cegui-dependencies* entre autres).
+* **Il faut que `git` et `cmake` soient dans le PATH Windows !** En cas d'erreur de génération, vérifier en ouvrant l'invite de commandes Windows et en tapant `git --version` et `cmake --version`.
