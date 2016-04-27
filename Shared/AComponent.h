@@ -13,7 +13,7 @@ namespace ecs
 
 		virtual void dump() const = 0;
 
-	private:
+	public:
 		const std::string	NAME;
 		const ComponentType	TYPE;
 	};
