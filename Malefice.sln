@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cegui.dep", "Libraries\cegu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cegui-dependencies.dep", "Libraries\cegui-dependencies.dep\cegui-dependencies.dep.vcxproj", "{DA0C0991-536A-41F7-94DB-B5972B80DB46}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyxml", "Libraries\ticpp\tinyxml.vcxproj", "{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -93,6 +95,12 @@ Global
 		{DA0C0991-536A-41F7-94DB-B5972B80DB46}.Release|Win32.Build.0 = Release|Win32
 		{DA0C0991-536A-41F7-94DB-B5972B80DB46}.Release|x64.ActiveCfg = Release|x64
 		{DA0C0991-536A-41F7-94DB-B5972B80DB46}.Release|x64.Build.0 = Release|x64
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Debug|Win32.Build.0 = Debug|Win32
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Debug|x64.ActiveCfg = Debug|Win32
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Release|Win32.ActiveCfg = Release|Win32
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Release|Win32.Build.0 = Release|Win32
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,5 +113,6 @@ Global
 		{F57D4D49-6C97-4C4B-BB1E-9039B06FCE91} = {B404ABE5-CF31-49E0-9243-05B01CB6AB1D}
 		{2F70F8D9-FD8B-41E4-9B5A-6F81E13C40AB} = {B404ABE5-CF31-49E0-9243-05B01CB6AB1D}
 		{DA0C0991-536A-41F7-94DB-B5972B80DB46} = {B404ABE5-CF31-49E0-9243-05B01CB6AB1D}
+		{7D9BFC11-AEAF-435F-9B1F-EC24747BC4EF} = {B404ABE5-CF31-49E0-9243-05B01CB6AB1D}
 	EndGlobalSection
 EndGlobal
