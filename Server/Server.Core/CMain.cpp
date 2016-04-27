@@ -19,7 +19,7 @@ Return false if fail
 */
 bool	CMain::Init(void)
 {
-	CConfigParser *CParser = new CConfigParser(FILE_SETTINGS);
+	ConfigParser *CParser = new ConfigParser(FILE_SETTINGS);
 
 	if (CParser->Init() == false)
 		return (false);

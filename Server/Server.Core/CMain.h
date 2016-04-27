@@ -2,7 +2,7 @@
 
 #include "../../Shared/StdInc.h"
 
-#include "CConfigParser.h"
+#include "ConfigParser.h"
 
 class CMain : public ExplicitSingleton<CMain>
 {

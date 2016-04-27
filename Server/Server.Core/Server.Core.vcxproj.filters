@@ -42,17 +42,17 @@
     <ClInclude Include="..\..\Shared\StdInc.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\CEplicitSingleton.h">
+    <ClInclude Include="ConfigParser.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Common.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ExplicitSingleton.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
     <ClInclude Include="CMain.h">
       <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="CConfigParser.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\CCommon.h">
-      <Filter>Header Files\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +62,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CConfigParser.cpp">
+    <ClCompile Include="ConfigParser.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>

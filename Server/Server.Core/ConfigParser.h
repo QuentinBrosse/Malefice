@@ -2,13 +2,13 @@
 
 #include "../../Shared/StdInc.h"
 
-class CConfigParser
+class ConfigParser
 {
 private:
 	std::string		m_sFileName;
 public:
-	CConfigParser(std::string);
-	~CConfigParser();
+	ConfigParser(std::string);
+	~ConfigParser();
 
 	bool			Init(void);
 
