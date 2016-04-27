@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="WindowsLook/Static" name="Static" >
+        <Property name="Area" value="{{0,2},{0,3},{0,802},{0,603}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Property name="BackgroundColours" value="tl:32DFDFDF tr:32DFDFDF bl:32DFDFDF br:32DFDFDF" />
+        <Window type="WindowsLook/Button" name="Button" >
+            <Property name="Area" value="{{0,332},{0,266},{0,483},{0,310}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Quitter" />
+        </Window>
+    </Window>
+</GUILayout>
