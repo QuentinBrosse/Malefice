@@ -12,8 +12,10 @@
 
 #include <functional>
 
+#include <exception>
+
 // Singleton
-#include "CEplicitSingleton.h"
+#include "ExplicitSingleton.h"
 
 // OS Dependant includes
 #ifdef _WIN32
@@ -21,3 +23,5 @@
 #include	<windowsx.h>
 #else
 #endif
+
+#include "Common.h"

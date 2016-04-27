@@ -2,15 +2,18 @@
 
 #include "../../Shared/StdInc.h"
 
+#include "ConfigParser.h"
+
 class CMain : public ExplicitSingleton<CMain>
 {
 private:
 	std::string		m_sName;
-	int				m_iPort;
+	std::string		m_sPort;
+	std::string		m_sPassword;
 	bool			m_bActive;
 
 public:
-	CMain(std::string, int);
+	CMain();
 	~CMain();
 
 	bool			Init(void);

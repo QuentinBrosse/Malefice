@@ -11,13 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\CEplicitSingleton.h" />
+    <ClInclude Include="..\..\Shared\Common.h" />
+    <ClInclude Include="..\..\Shared\ExplicitSingleton.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
-    <ClInclude Include="CConfigParser.h" />
+    <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="CMain.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CConfigParser.cpp" />
+    <ClCompile Include="ConfigParser.cpp" />
     <ClCompile Include="CMain.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
