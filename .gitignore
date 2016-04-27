@@ -282,4 +282,6 @@ paket-files/
 *.sln.iml
 
 # irrKlang
-!Libraries/irrKlang/bin
+!Libraries/irrKlang/bin/linux-gcc/*.so
+!Libraries/irrKlang/bin/macosx-gcc/*.dylib
+!Libraries/irrKlang/bin/win32-visualStudio/*.dll
