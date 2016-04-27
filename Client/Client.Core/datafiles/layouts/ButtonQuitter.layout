@@ -2,13 +2,26 @@
 
 <GUILayout version="4" >
     <Window type="WindowsLook/Static" name="Static" >
-        <Property name="Area" value="{{0,2},{0,3},{0,802},{0,603}}" />
+        <Property name="ID" value="42" />
+        <Property name="Area" value="{{0,-1},{0,-1},{0,801},{0,605}}" />
         <Property name="MaxSize" value="{{1,0},{1,0}}" />
-        <Property name="BackgroundColours" value="tl:32DFDFDF tr:32DFDFDF bl:32DFDFDF br:32DFDFDF" />
+        <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
         <Window type="WindowsLook/Button" name="Button" >
+            <Property name="ID" value="1" />
             <Property name="Area" value="{{0,332},{0,266},{0,483},{0,310}}" />
             <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Options" />
+        </Window>
+        <Window type="WindowsLook/Button" name="Button2" >
+            <Property name="Area" value="{{0,330},{0,344},{0,481},{0,388}}" />
+            <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="Quitter" />
+        </Window>
+        <Window type="WindowsLook/Button" name="Button3" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0,330},{0,184},{0,481},{0,228}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="Jouer" />
         </Window>
     </Window>
 </GUILayout>

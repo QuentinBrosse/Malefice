@@ -76,11 +76,39 @@ private:
 	irr::SEvent::SJoystickEvent JoystickState;
 };
 
-class Actions
+class MenuActions
 {
+private:
+	irr::SKeyMap *keyMap;
+	irr::IrrlichtDevice *device;
+	irr::video::IVideoDriver *driver;
+	irr::scene::ISceneManager *sceneManager;
+	CEGUI::System &systemd;
+
 public:
-	Actions() = default;
-	~Actions() = default;
+	MenuActions(irr::SKeyMap *keyMap, irr::IrrlichtDevice *device, irr::video::IVideoDriver *driver, irr::scene::ISceneManager *sceneManager, CEGUI::System &systemd)
+			: keyMap(keyMap), device(device), driver(driver), sceneManager(sceneManager), systemd(systemd)
+	{
+
+	};
+	~MenuActions() = default;
+	bool jouer(const CEGUI::EventArgs& e)
+	{
+		std::cout << "Hiding CEGI GUI..." << std::endl;
+		systemd.getDefaultGUIContext().setRootWindow(0);
+		std::cout << "Unload current GUI..." << std::endl;
+		std::cout << "Success ! Atl + F4 to quit for now ;)" << std::endl;
+		sceneManager->getActiveCamera()->remove();
+		sceneManager->addCameraSceneNodeFPS(       // ajout de la camera FPS
+		0,                                     // pas de noeud parent
+		100.0f,                                // vitesse de rotation
+		0.06f,                                  // vitesse de deplacement
+		-1,                                    // pas de numero d'ID
+		keyMap,                                // on change la keymap
+		5);
+		device->getCursorControl()->setVisible(false);
+		return (true);
+	};
 	bool quit(const CEGUI::EventArgs& e)
 	{
 		std::cout << "Exiting..." << std::endl;
@@ -88,7 +116,7 @@ public:
 	};
 };
 
-void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, MyEventReceiver *receiver)
+void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, MyEventReceiver *receiver, irr::SKeyMap *&keyMap)
 {
 	device = irr::createDevice(  // creation du device
 		irr::video::EDT_DIRECT3D9,                       // API = OpenGL
@@ -113,7 +141,7 @@ void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&drive
 	cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
 
 
-	irr::SKeyMap *keyMap = new irr::SKeyMap[5];                    // re-assigne les commandes
+	keyMap = new irr::SKeyMap[5];                    // re-assigne les commandes
 	keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
 	keyMap[0].KeyCode = irr::KEY_KEY_Z;        // w
 	keyMap[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
@@ -132,21 +160,6 @@ void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&drive
 		irr::core::vector3df(0, 0, 0),
 		irr::core::vector3df(0, 0, 0),
 		-1);
-
-	//Mode jeu
-	/*
-	sceneManager->getActiveCamera()->remove();
-
-	sceneManager->addCameraSceneNodeFPS(       // ajout de la camera FPS
-	0,                                     // pas de noeud parent
-	100.0f,                                // vitesse de rotation
-	0.06f,                                  // vitesse de deplacement
-	-1,                                    // pas de numero d'ID
-	keyMap,                                // on change la keymap
-	5);
-
-	device->getCursorControl()->setVisible(false);
-	*/
 }
 
 void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
@@ -194,11 +207,12 @@ void cegui_event_injector(CEGUI::System &systemd, MyEventReceiver &receiver, irr
 
 int main(void) {
 	//Init Irrlicht Engine
+	irr::SKeyMap *keyMap;
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver *driver;
 	irr::scene::ISceneManager *sceneManager;
 	MyEventReceiver receiver;
-	initIrrlicht(device, driver, sceneManager, &receiver);
+	initIrrlicht(device, driver, sceneManager, &receiver, keyMap);
 
 	//Hook Irrlicht renderer and Init and configure CEGUI
 	CEGUI::IrrlichtRenderer &renderer = CEGUI::IrrlichtRenderer::create(*device);
@@ -215,8 +229,9 @@ int main(void) {
 	CEGUI::System &systemd = CEGUI::System::getSingleton();
 
 	//CEGUI Event handling and callbacks
-	Actions test;
-	windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&Actions::quit, &test));
+	MenuActions test(keyMap, device, driver, sceneManager, systemd);
+	windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuActions::quit, &test));
+	windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuActions::jouer, &test));
 	while (device->run())
 	{
 		if (device->isWindowActive()) // draw only if the window is active
