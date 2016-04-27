@@ -7,4 +7,9 @@ namespace ecs
 	{
 
 	}
+
+	void PlayerID::dump() const
+	{
+		std::cout << "[PlayerID " << ID << "]" << std::endl;
+	}
 }
