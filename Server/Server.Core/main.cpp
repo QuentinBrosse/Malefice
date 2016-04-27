@@ -4,7 +4,7 @@ CMain	*pMain = NULL;
 
 int main(int argc, char * argv[])
 {
-	pMain = new CMain("Test", 1234);
+	pMain = new CMain();
 
 	if (pMain->Init() == false)
 	{

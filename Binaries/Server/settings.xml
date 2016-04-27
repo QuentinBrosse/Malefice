@@ -1,0 +1,6 @@
+<server>
+	<name>Server Test</name>
+	<address>127.0.0.1</address>
+	<port>1234</port>
+	<password></password>
+</server>

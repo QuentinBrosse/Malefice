@@ -12,6 +12,8 @@
 
 #include <functional>
 
+#include <exception>
+
 // Singleton
 #include "CEplicitSingleton.h"
 
@@ -21,3 +23,5 @@
 #include	<windowsx.h>
 #else
 #endif
+
+#include "CCommon.h"

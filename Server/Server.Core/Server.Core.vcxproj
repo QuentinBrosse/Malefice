@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Shared\CCommon.h" />
     <ClInclude Include="..\..\Shared\CEplicitSingleton.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
     <ClInclude Include="CConfigParser.h" />

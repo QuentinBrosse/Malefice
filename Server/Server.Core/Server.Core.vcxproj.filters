@@ -51,6 +51,9 @@
     <ClInclude Include="CConfigParser.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\CCommon.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMain.cpp">
