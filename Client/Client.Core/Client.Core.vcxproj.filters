@@ -19,6 +19,36 @@
     <Filter Include="Source Files\Shared">
       <UniqueIdentifier>{00d0292e-4305-40ff-9328-f7af09d90ace}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphic">
+      <UniqueIdentifier>{b493e11b-1743-47b7-911c-14d88bcc2ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{40fd0650-8a42-42d6-8a80-b8e3c646850d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{343e7c1d-bbb5-41b9-8248-8f8a415c2f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS">
+      <UniqueIdentifier>{68216aca-cd07-4f72-aaba-4cb58bad38d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphic">
+      <UniqueIdentifier>{9aa196da-ce72-4c6a-b1e2-b035e8ceb634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{d9195bdf-fb38-4ea6-b044-7b0b1aefd086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{b476199d-0a92-403f-a429-9d94fe03d4e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared\ECS">
+      <UniqueIdentifier>{7723209c-69ad-42fb-b536-2264fed2a712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\General">
+      <UniqueIdentifier>{8ec10e01-3cd4-439d-b70d-86f43c432621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General">
+      <UniqueIdentifier>{cc5201e9-6775-475e-b459-d41716000a18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">

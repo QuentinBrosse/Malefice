@@ -19,6 +19,24 @@
     <Filter Include="Header Files\Shared">
       <UniqueIdentifier>{199ba187-536d-480f-9dac-137a2407818b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{b50d76a6-71cf-4d7f-89aa-32dcba7b75cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS">
+      <UniqueIdentifier>{b971baa4-79f3-4b51-9964-6d42e2457f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared\ECS">
+      <UniqueIdentifier>{c01cf41e-d307-4c78-b20d-bbbd2cbfa7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{e755762c-b187-4d6d-9010-2f152d1f6e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\General">
+      <UniqueIdentifier>{4a11c988-7a6f-49e6-a121-caa60d06511a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General">
+      <UniqueIdentifier>{1f4f9786-2f16-4bcb-b179-1bf31021568f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">
