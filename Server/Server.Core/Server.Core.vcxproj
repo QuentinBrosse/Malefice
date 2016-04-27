@@ -11,7 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Shared\CEplicitSingleton.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
+    <ClInclude Include="CMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CMain.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}</ProjectGuid>
