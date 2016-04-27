@@ -26,4 +26,7 @@ public:
 
 	bool			IsActive(void) { return m_bActive; }
 	void			SetActive(bool active) { m_bActive = active; }
+
+	ConfigParser	*GetConfigParser(void) { return CParser;  }
+	NetworkModule	*GetNetworkModule(void) { return NModule;  }
 };

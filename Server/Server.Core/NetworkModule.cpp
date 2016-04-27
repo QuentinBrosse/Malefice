@@ -45,3 +45,40 @@ bool	NetworkModule::Init(std::string address, std::string port, std::string pass
 
 	return (true);
 }
+
+void	NetworkModule::Pulse()
+{
+	RakNet::Packet *pPacket = NULL;
+
+	while (pPacket = m_pRakPeer->Receive())
+	{
+		switch (pPacket->data[0])
+		{
+			case ID_NEW_INCOMING_CONNECTION:
+			{
+				std::cout << "[network] : Incoming connection from " << pPacket->systemAddress.ToString(true, ':') << std::endl;
+				break;
+			}
+			
+			case ID_DISCONNECTION_NOTIFICATION:
+			{
+				std::cout << "[network] : PlayerId " << pPacket->systemAddress.systemIndex << " disconnected" << std::endl;
+				break;
+			}
+
+			case ID_CONNECTION_LOST:
+			{
+				std::cout << "[network] : PlayerId" << pPacket->systemAddress.systemIndex << " lost" << std::endl;
+				break;
+			}
+		}
+		
+		m_pRakPeer->DeallocatePacket(pPacket);
+	}
+}
+
+void	NetworkModule::CallRPC(std::string RPC, RakNet::BitStream *pBitstream, PacketPriority priority, PacketReliability reliatbility, int playerId, bool broadcast)
+{
+	if (m_pRPC)
+		m_pRPC->Call(RPC.c_str(), pBitstream, priority, reliatbility, 0, (playerId != INVALID_PLAYER_ID ? m_pRakPeer->GetSystemAddressFromIndex(playerId) : RakNet::UNASSIGNED_SYSTEM_ADDRESS), broadcast);
+}

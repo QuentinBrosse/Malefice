@@ -11,3 +11,4 @@
 
 #define TEAM_SIZE 7
 #define MAX_PLAYERS (TEAM_SIZE * 2) + 1
+#define INVALID_PLAYER_ID (MAX_PLAYERS + 1)

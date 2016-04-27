@@ -66,5 +66,6 @@ Program main loop
 */
 void	CMain::Pulse(void)
 {
-
+	if (NModule)
+		NModule->Pulse();
 }
