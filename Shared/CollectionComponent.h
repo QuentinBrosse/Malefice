@@ -6,5 +6,7 @@ namespace ecs
 	{
 		DEFAULT,
 		PLAYER_ID,
+		LIFE,
+		POSITION,
 	} ComponentType;
 }

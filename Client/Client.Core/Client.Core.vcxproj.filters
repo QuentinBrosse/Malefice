@@ -72,6 +72,12 @@
     <ClInclude Include="..\..\Shared\PlayerID.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\Life.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Position.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -80,11 +86,17 @@
     <ClCompile Include="..\..\Shared\AComponent.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="mainClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Life.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Shared\PlayerID.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="mainClient.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\Shared\Position.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
