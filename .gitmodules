@@ -10,3 +10,6 @@
 [submodule "Libraries/cegui-dependencies"]
 	path = Libraries/cegui-dependencies
 	url = git@github.com:GuiTeK/cegui-dependencies.git
+[submodule "Libraries/ticpp"]
+	path = Libraries/ticpp
+	url = https://github.com/rjpcomputing/ticpp.git
