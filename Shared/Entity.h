@@ -21,5 +21,7 @@ namespace ecs
 
 		AComponent*&	operator[](ComponentType type);
 		bool			has(ComponentType type);
+
+		void	dump() const;
 	};
 }

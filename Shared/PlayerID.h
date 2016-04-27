@@ -10,6 +10,8 @@ namespace ecs
 		PlayerID(int id);
 		~PlayerID() = default;
 
+		void dump() const;
+
 	public:
 		const int ID;
 	};

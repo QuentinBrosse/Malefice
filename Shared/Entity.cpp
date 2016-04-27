@@ -32,4 +32,14 @@ namespace ecs
 		}
 	}
 
+	void Entity::dump() const
+	{
+		std::cout << "{ Entity " << ID << std::endl;
+		for (auto component : m_mComponents)
+		{
+			component.second->dump();
+		}
+		std::cout << "}" << std::endl;
+	}
+
 }

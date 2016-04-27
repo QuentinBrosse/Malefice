@@ -11,6 +11,8 @@ namespace ecs
 		AComponent(const std::string& name, ComponentType type);
 		~AComponent() = default;
 
+		virtual void dump() const = 0;
+
 	private:
 		const std::string	NAME;
 		const ComponentType	TYPE;
