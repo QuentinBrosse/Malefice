@@ -11,12 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Libraries\ticpp\tests\mocks\TicppMock.hh" />
-    <ClInclude Include="..\..\Libraries\ticpp\ticpp.h" />
-    <ClInclude Include="..\..\Libraries\ticpp\ticppapi.h" />
-    <ClInclude Include="..\..\Libraries\ticpp\ticpprc.h" />
-    <ClInclude Include="..\..\Libraries\ticpp\tinystr.h" />
-    <ClInclude Include="..\..\Libraries\ticpp\tinyxml.h" />
     <ClInclude Include="..\..\Shared\Common.h" />
     <ClInclude Include="..\..\Shared\ExplicitSingleton.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
@@ -26,11 +20,6 @@
     <ClInclude Include="NetworkModule.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Libraries\ticpp\ticpp.cpp" />
-    <ClCompile Include="..\..\Libraries\ticpp\tinystr.cpp" />
-    <ClCompile Include="..\..\Libraries\ticpp\tinyxml.cpp" />
-    <ClCompile Include="..\..\Libraries\ticpp\tinyxmlerror.cpp" />
-    <ClCompile Include="..\..\Libraries\ticpp\tinyxmlparser.cpp" />
     <ClCompile Include="..\..\Shared\XML.cpp" />
     <ClCompile Include="ConfigParser.cpp" />
     <ClCompile Include="CMain.cpp" />
@@ -67,11 +56,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../Libraries/RakNet/Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -80,11 +69,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>RakNetDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/tinyxml2/build/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -98,13 +88,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/tinyxml2/build/Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
