@@ -3,6 +3,7 @@
 #include "../../Shared/StdInc.h"
 
 #include "ConfigParser.h"
+#include "NetworkModule.h"
 
 class CMain : public ExplicitSingleton<CMain>
 {
@@ -11,6 +12,9 @@ private:
 	std::string		m_sPort;
 	std::string		m_sPassword;
 	bool			m_bActive;
+
+	ConfigParser	*CParser;
+	NetworkModule	*NModule;
 
 public:
 	CMain();

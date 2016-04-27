@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\Shared\XML.h" />
     <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="CMain.h" />
+    <ClInclude Include="NetworkModule.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Libraries\ticpp\ticpp.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="ConfigParser.cpp" />
     <ClCompile Include="CMain.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NetworkModule.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}</ProjectGuid>

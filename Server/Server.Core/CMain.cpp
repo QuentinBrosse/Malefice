@@ -19,7 +19,8 @@ Return false if fail
 */
 bool	CMain::Init(void)
 {
-	ConfigParser *CParser = new ConfigParser(FILE_SETTINGS);
+	/* Configuration parsing */
+	CParser = new ConfigParser(FILE_SETTINGS);
 
 	if (CParser->Init() == false)
 		return (false);
@@ -33,6 +34,8 @@ bool	CMain::Init(void)
 
 	if (this->m_sPort.length() <= 0)
 		return (false);
+
+	/* Raknet init */
 
 	return (true);
 }

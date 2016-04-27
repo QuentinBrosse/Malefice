@@ -1,5 +1,5 @@
 <server>
-    <name>Server Test caca</name>
+    <name>Server Test</name>
     <address>127.0.0.1</address>
     <port>1234</port>
     <password />
