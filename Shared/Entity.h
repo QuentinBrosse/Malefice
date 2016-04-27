@@ -7,8 +7,9 @@ namespace ecs
 {
 	class Entity
 	{
-	private:
+	public:
 		const int								ID;
+	private:
 		std::map<ComponentType, AComponent*>	m_mComponents;
 
 	public:
