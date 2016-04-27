@@ -11,7 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\CollectionComponent.h" />
+    <ClInclude Include="..\..\Shared\Entity.h" />
+    <ClInclude Include="..\..\Shared\PlayerID.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\Entity.cpp" />
+    <ClCompile Include="..\..\Shared\PlayerID.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>

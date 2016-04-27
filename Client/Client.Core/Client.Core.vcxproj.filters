@@ -49,10 +49,39 @@
     <Filter Include="Source Files\General">
       <UniqueIdentifier>{cc5201e9-6775-475e-b459-d41716000a18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Shared\ECS\Component">
+      <UniqueIdentifier>{bead102f-f60d-41b8-ac01-4c7566a34636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS\Component">
+      <UniqueIdentifier>{05ba5a67-ac12-4511-b258-61187b309df8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\Entity.h">
+      <Filter>Header Files\Shared\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\AComponent.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\CollectionComponent.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerID.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Shared\Entity.cpp">
+      <Filter>Source Files\Shared\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\AComponent.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerID.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
