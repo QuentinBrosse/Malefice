@@ -24,9 +24,16 @@ bool	CMain::Init(void)
 	if (CParser->Init() == false)
 		return (false);
 
-	this->m_sName = CParser->GetValue("name");
-	this->m_sPort = CParser->GetValue("port");
-	this->m_sPassword = CParser->GetValue("password");
+	this->m_sName = CParser->Get("name");
+	this->m_sPort = CParser->Get("port");
+	this->m_sPassword = CParser->Get("password");
+
+	if (this->m_sName.length() <= 0)
+		return (false);
+
+	if (this->m_sPort.length() <= 0)
+		return (false);
+
 	return (true);
 }
 

@@ -37,6 +37,18 @@
     <Filter Include="Source Files\General">
       <UniqueIdentifier>{1f4f9786-2f16-4bcb-b179-1bf31021568f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Libraries">
+      <UniqueIdentifier>{0aef4eca-14b7-4043-ac9c-f4846daa1640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Libraries\tinyxml">
+      <UniqueIdentifier>{0b501393-f09c-41df-8d68-e45508948fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Libraries">
+      <UniqueIdentifier>{32c2af58-d77c-4df3-896f-2923f7cd81b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Libraries\tinyxml">
+      <UniqueIdentifier>{ad29b2a6-a2eb-4eac-9741-ab427a4058ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">
@@ -54,6 +66,27 @@
     <ClInclude Include="CMain.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\XML.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\tinyxml.h">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\tinystr.h">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\ticppapi.h">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\ticpprc.h">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\ticpp.h">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libraries\ticpp\tests\mocks\TicppMock.hh">
+      <Filter>Header Files\Libraries\tinyxml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMain.cpp">
@@ -64,6 +97,24 @@
     </ClCompile>
     <ClCompile Include="ConfigParser.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\XML.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\ticpp\tinyxmlerror.cpp">
+      <Filter>Source Files\Libraries\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\ticpp\tinyxmlparser.cpp">
+      <Filter>Source Files\Libraries\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\ticpp\tinyxml.cpp">
+      <Filter>Source Files\Libraries\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\ticpp\tinystr.cpp">
+      <Filter>Source Files\Libraries\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libraries\ticpp\ticpp.cpp">
+      <Filter>Source Files\Libraries\tinyxml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
