@@ -12,7 +12,19 @@ CMain::~CMain()
 {
 }
 
+/*
+Init of RakNet and other libraries
+Return false if fail
+*/
 bool	CMain::Init(void)
 {
 	return (true);
+}
+
+/*
+Program main loop
+*/
+void	CMain::Pulse(void)
+{
+
 }

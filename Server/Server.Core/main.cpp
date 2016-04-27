@@ -17,7 +17,7 @@ int main(int argc, char * argv[])
 
 	while (pMain->IsActive())
 	{
-		std::cout << "Je suis actif lol" << std::endl;
+		pMain->Pulse();
 	}
 
 	return (0);

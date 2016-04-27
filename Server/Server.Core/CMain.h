@@ -14,6 +14,7 @@ public:
 	~CMain();
 
 	bool			Init(void);
+	void			Pulse(void);
 
 	bool			IsActive(void) { return m_bActive; }
 	void			SetActive(bool active) { m_bActive = active; }
