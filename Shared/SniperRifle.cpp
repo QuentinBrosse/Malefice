@@ -2,7 +2,7 @@
 
 namespace weapon
 {
-	SniperRifle::SniperRifle() : AWeapon("Sniper Rifle", 10, 5, 30, 50, true)
+	SniperRifle::SniperRifle() : AWeapon("SniperRifle", 10, 5, 30, 50, true)
 	{
 	}
 

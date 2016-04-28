@@ -4,7 +4,7 @@
 
 namespace weapon
 {
-	class SniperRifle : public ecs::AWeapon
+	class SniperRifle : public AWeapon
 	{
 	public:
 		SniperRifle();

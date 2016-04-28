@@ -1,10 +1,10 @@
 #pragma once
 
-#include "AComponent.h"
+#include "StdInc.h"
 
-namespace ecs
+namespace weapon
 {
-	class AWeapon: public AComponent
+	class AWeapon
 	{
 	public:
 		AWeapon(const std::string &name, int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, bool isGun);

@@ -1,8 +1,8 @@
 #include "AWeapon.h"
 
-namespace ecs
+namespace weapon
 {
-	AWeapon::AWeapon(const std::string &name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, bool isGun) : AComponent("Weapon", WEAPON),
+	AWeapon::AWeapon(const std::string &name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, bool isGun) :
 		NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive)
 	{
 		m_iCurrentAmmunition = MAX_AMMUNITION;
