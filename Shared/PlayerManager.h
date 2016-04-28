@@ -13,5 +13,5 @@ public:
 	void	removePlayer(const networkID netID);
 private:
 	std::map<networkID, ecs::Entity*>	m_mPlayers;
-	ecs::Entity*				m_cCurrentPlayer;
+	ecs::Entity*						m_cCurrentPlayer;
 };

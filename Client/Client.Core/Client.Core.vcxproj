@@ -19,6 +19,7 @@
     <ClInclude Include="..\..\Shared\ObjectFactory.h" />
     <ClInclude Include="..\..\Shared\PlayerFactory.h" />
     <ClInclude Include="..\..\Shared\NetworkID.h" />
+    <ClInclude Include="..\..\Shared\PlayerManager.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
@@ -31,6 +32,7 @@
     <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\NetworkID.cpp" />
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp" />
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
     <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />

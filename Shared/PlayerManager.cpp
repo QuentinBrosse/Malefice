@@ -4,17 +4,17 @@ void PlayerManager::addPlayer(ecs::Entity *newPlayer)
 {
 	ecs::NetworkID*	componentNetworkID;
 
-	if ((componentNetworkID = (*newPlayer)[ecs::NETWORK_ID]) != NULL)
-		m_mPlayers[componentNetworkID] = newPlayer->ID;
+	if ((componentNetworkID = reinterpret_cast<ecs::NetworkID*>((*newPlayer)[ecs::NETWORK_ID])) != NULL)
+		m_mPlayers[componentNetworkID->ID] = newPlayer;
 }
 
 void PlayerManager::removePlayer(const networkID netID)
 {
-	ecs::NetworkID*	componentNetworkID = (*m_mPlayers[netID])[ecs::NETWORK_ID];
+	ecs::NetworkID*	componentNetworkID = reinterpret_cast<ecs::NetworkID*>((*m_mPlayers[netID])[ecs::NETWORK_ID]);
 
 	if (componentNetworkID)
 	{
-		m_mPlayers.erase(netID)
+		m_mPlayers.erase(netID);
 		delete (componentNetworkID);
 	}
 }

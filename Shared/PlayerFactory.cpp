@@ -19,7 +19,7 @@ namespace factory
 		object(entity);
 		entity[ecs::LIFE] = new ecs::Life(1000);
 		entity[ecs::NETWORK_ID] = new ecs::NetworkID(network_id);
-		// TEAM NUMBER WHILE BE 0
+		// TEAM NUMBER WILL BE 0
 		return entity;
 	}
 }
