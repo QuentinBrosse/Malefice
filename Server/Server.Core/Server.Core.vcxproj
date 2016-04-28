@@ -13,10 +13,12 @@
   <ItemGroup>
     <ClInclude Include="..\..\Shared\Common.h" />
     <ClInclude Include="..\..\Shared\ExplicitSingleton.h" />
+    <ClInclude Include="..\..\Shared\NetworkRPC.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
     <ClInclude Include="..\..\Shared\XML.h" />
     <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="CMain.h" />
+    <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerRPC.h" />
   </ItemGroup>
@@ -24,6 +26,7 @@
     <ClCompile Include="..\..\Shared\XML.cpp" />
     <ClCompile Include="ConfigParser.cpp" />
     <ClCompile Include="CMain.cpp" />
+    <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />

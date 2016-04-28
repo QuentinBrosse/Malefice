@@ -7,6 +7,7 @@ NetworkModule::NetworkModule()
 
 	m_pRPC = RakNet::RPC4::GetInstance();
 
+	GeneralRPC::Register(m_pRPC);
 	PlayerRPC::Register(m_pRPC);
 
 	m_pRakPeer->AttachPlugin(m_pRPC);
@@ -16,6 +17,7 @@ NetworkModule::~NetworkModule()
 {
 	m_pRakPeer->Shutdown(500);
 
+	GeneralRPC::Unregister(m_pRPC);
 	PlayerRPC::Unregister(m_pRPC);
 
 	m_pRakPeer->DetachPlugin(m_pRPC);

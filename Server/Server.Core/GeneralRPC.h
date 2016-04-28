@@ -5,7 +5,7 @@
 #include "../../Shared/NetworkRPC.h"
 #include "../../Shared/StdInc.h"
 
-class PlayerRPC
+class GeneralRPC
 {
 private:
 	static bool		m_bRegistered;
