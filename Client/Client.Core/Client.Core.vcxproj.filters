@@ -102,6 +102,9 @@
     <ClInclude Include="..\..\Shared\ObjectFactory.h">
       <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\Team.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
       <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Team.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

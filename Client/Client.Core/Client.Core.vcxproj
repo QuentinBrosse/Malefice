@@ -22,6 +22,7 @@
     <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
+    <ClInclude Include="..\..\Shared\Team.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
     <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
+    <ClCompile Include="..\..\Shared\Team.cpp" />
     <ClCompile Include="mainClient.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

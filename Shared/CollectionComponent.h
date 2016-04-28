@@ -9,5 +9,6 @@ namespace ecs
 		LIFE,
 		POSITION,
 		WEAPON,
+		TEAM,
 	} ComponentType;
 }
