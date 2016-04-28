@@ -18,6 +18,7 @@
     <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\PlayerID.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
+    <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +28,7 @@
     <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\PlayerID.cpp" />
     <ClCompile Include="..\..\Shared\Position.cpp" />
+    <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
     <ClCompile Include="mainClient.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
