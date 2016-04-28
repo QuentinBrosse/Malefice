@@ -1,15 +1,12 @@
 
-#include "CMain.h"
+#include "ServerCore.h"
 
-CMain::CMain() :
+ServerCore::ServerCore() :
 	m_sName(""),
 	m_sPort(""),
 	m_sPassword(""),
-	m_bActive(true)
-{
-}
-
-CMain::~CMain()
+	m_bActive(true),
+	m_cConfigParser(FILE_SETTINGS)
 {
 }
 
@@ -17,28 +14,25 @@ CMain::~CMain()
 Init of RakNet and other libraries
 Return false if fail
 */
-bool	CMain::Init(void)
+bool	ServerCore::Init(void)
 {
-	/* Configuration parsing */
-	CParser = new ConfigParser(FILE_SETTINGS);
-
-	if (CParser->Init() == false)
+	if (m_cConfigParser.init() == false)
 		return (false);
 
-	this->m_sName = CParser->Get("name");
-	this->m_sPort = CParser->Get("port");
-	this->m_sAddress = CParser->Get("address");
-	this->m_sPassword = CParser->Get("password");
+	this->m_sName = m_cConfigParser.get("name");
+	this->m_sPort = m_cConfigParser.get("port");
+	this->m_sAddress = m_cConfigParser.get("address");
+	this->m_sPassword = m_cConfigParser.get("password");
 
 	if (this->m_sName.length() <= 0)
-		return (false);
+		return false;
 
 	if (this->m_sPort.length() <= 0)
-		return (false);
+		return false;
 
 	/* Network init */
-	NModule = new NetworkModule;
-	if (NModule->Init(this->m_sPort, this->m_sAddress, this->m_sPassword) == false)
+	m_pNModule = new NetworkModule;
+	if (m_pNModule->Init(this->m_sPort, this->m_sAddress, this->m_sPassword) == false)
 		std::cerr << "Failed to start RakNet" << std::endl;
 
 	/* Server Title */
@@ -64,8 +58,8 @@ bool	CMain::Init(void)
 /*
 Program main loop
 */
-void	CMain::Pulse(void)
+void	ServerCore::Pulse(void)
 {
-	if (NModule)
-		NModule->Pulse();
+	if (m_pNModule)
+		m_pNModule->Pulse();
 }

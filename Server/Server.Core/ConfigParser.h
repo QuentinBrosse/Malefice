@@ -1,28 +1,27 @@
 #pragma once
 
+#include <tinyxml2.h>
 #include "../../Shared/StdInc.h"
-
-#include "../../Shared/XML.h"
-
-#define DEFAULT(__x,__y)	if(!Exists(__x)) Set(__x, __y)
 
 class ConfigParser
 {
-private:
-	std::string			m_sFileName;
-
-	static	XML			* m_pXML;
-	static	XMLNode		* m_pRootNode;
-
-	static	bool		m_bOpen;
 public:
-	ConfigParser(std::string);
-	~ConfigParser();
+	ConfigParser(const std::string& fileName);
+	~ConfigParser() = default;
 
-	bool			Init(void);
-	bool			Save(void);
-	void			LoadDefaults(void);
-	bool			Exists(std::string);
-	void			Set(std::string, std::string);
-	std::string		Get(std::string);
+	bool		init();
+	bool		save();
+	void		loadDefault(const std::string& name, const std::string& value);
+	void		loadDefaults();
+	bool		exists(const std::string& name);
+	void		set(const std::string& name, const std::string& value);
+	std::string	get(const std::string& name);
+
+
+private:
+	tinyxml2::XMLNode* findNode(tinyxml2::XMLNode* node, const std::string& name);
+
+	std::string				m_sFileName;
+	tinyxml2::XMLDocument	m_xml;
+	tinyxml2::XMLNode*		m_pRootElement;
 };

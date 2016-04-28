@@ -1,24 +1,15 @@
-#include "CMain.h"
-
-CMain	*pMain = NULL;
+#include "ServerCore.h"
 
 int main(int argc, char * argv[])
 {
-	pMain = new CMain();
+	ServerCore& serverCore = ServerCore::getInstance();
 
-	if (pMain->Init() == false)
+	if (serverCore.Init() == false)
+		return EXIT_FAILURE;
+
+	while (serverCore.IsActive())
 	{
-#ifdef _WIN32
-		TerminateProcess(GetCurrentProcess(), 0);
-#else
-		_exit(42);
-#endif
+		serverCore.Pulse();
 	}
-
-	while (pMain->IsActive())
-	{
-		pMain->Pulse();
-	}
-
-	return (0);
+	return EXIT_SUCCESS;
 }
