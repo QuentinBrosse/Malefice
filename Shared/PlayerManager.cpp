@@ -1,16 +1,16 @@
 #include "PlayerManager.h"
 
-void PlayerManager::addPlayer(const ecs::Entity *newPlayer)
+void PlayerManager::addPlayer(ecs::Entity *newPlayer)
 {
-	NetworkID*	componentNetworkID;
+	ecs::NetworkID*	componentNetworkID;
 
-	if ((componentNetworkID = newPlayer[NETWORK_ID]) != NULL)
-		m_mPlayers.insert(std::pair<networkID, ecs::Entity*>(componentNetworkID.ID, newPlayer));
+	if ((componentNetworkID = (*newPlayer)[ecs::NETWORK_ID]) != NULL)
+		m_mPlayers[componentNetworkID] = newPlayer->ID;
 }
 
-void PlayerManager::removePlayer(const networkID netId)
+void PlayerManager::removePlayer(const networkID netID)
 {
-	NetworkID*	componentNetworkID = m_mPlayers[netID];
+	ecs::NetworkID*	componentNetworkID = (*m_mPlayers[netID])[ecs::NETWORK_ID];
 
 	if (componentNetworkID)
 	{
