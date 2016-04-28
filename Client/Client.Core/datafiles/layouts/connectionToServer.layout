@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="WindowsLook/Static" name="Static" >
+        <Property name="Area" value="{{0,0},{0,0},{0,808},{0,610}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
+        <Window type="WindowsLook/FrameWindow" name="FrameWindow" >
+            <Property name="Area" value="{{0,190},{0,180},{0.3,407},{0.3,266}}" />
+            <Window type="WindowsLook/ProgressBar" name="ProgressBar" >
+                <Property name="Area" value="{{0,17},{0,47},{0,399},{0,79}}" />
+                <Property name="StepSize" value="0.01" />
+            </Window>
+            <Window type="WindowsLook/Label" name="Label" >
+                <Property name="Area" value="{{0,16},{0,6},{0,398},{0,38}}" />
+                <Property name="Text" value="Chargement en cours..." />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            </Window>
+            <Window type="WindowsLook/ItemListbox" name="ItemListbox" >
+                <Property name="Area" value="{{0,19},{0,96},{0,400},{0,222}}" />
+                <AutoWindow namePath="__auto_content_pane__" >
+                    <Property name="MouseInputPropagationEnabled" value="true" />
+                </AutoWindow>
+                <AutoWindow namePath="__auto_vscrollbar__" >
+                    <Property name="AlwaysOnTop" value="true" />
+                </AutoWindow>
+                <AutoWindow namePath="__auto_hscrollbar__" >
+                    <Property name="AlwaysOnTop" value="true" />
+                </AutoWindow>
+            </Window>
+            <Window type="WindowsLook/Label" name="Label2" >
+                <Property name="Area" value="{{0,405},{0,48},{0,444},{0,80}}" />
+                <Property name="Text" value="0%" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>
