@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Shared\ECS\Component\Weapon">
       <UniqueIdentifier>{71524e41-db58-4071-ba6e-01708fd35464}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Shared\ECS\Factory">
+      <UniqueIdentifier>{510ae9a1-910f-4f95-9064-147c980f9549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS\Factory">
+      <UniqueIdentifier>{9a84db89-5af5-4fbe-8afb-8121ae7578be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">
@@ -90,6 +96,12 @@
     <ClInclude Include="..\..\Shared\SniperRifle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ObjectFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -115,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\SniperRifle.cpp">
       <Filter>Source Files\Shared\ECS\Component\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

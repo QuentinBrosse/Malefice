@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	Position::Position(int x, int y, int z): AComponent("Position", POSITION),
+	Position::Position(float x, float y, float z): AComponent("Position", POSITION),
 		m_iX(x), m_iY(y), m_iZ(z)
 	{
 
@@ -22,7 +22,7 @@ namespace ecs
 		return *this;
 	}
 
-	void Position::set(int x, int y, int z)
+	void Position::set(float x, float y, float z)
 	{
 		m_iX = x;
 		m_iY = y;
@@ -36,7 +36,7 @@ namespace ecs
 		m_iZ = pos.m_iZ;
 	}
 
-	void Position::add(int x, int y, int z)
+	void Position::add(float x, float y, float z)
 	{
 		m_iX += x;
 		m_iY += y;
@@ -50,7 +50,7 @@ namespace ecs
 		m_iZ += pos.m_iZ;
 	}
 
-	void Position::sub(int x, int y, int z)
+	void Position::sub(float x, float y, float z)
 	{
 		m_iX -= x;
 		m_iY -= y;
@@ -70,17 +70,17 @@ namespace ecs
 			<< m_iZ << ")]" << std::endl;
 	}
 
-	int Position::getX() const
+	float Position::getX() const
 	{
 		return m_iX;
 	}
 
-	int Position::getY() const
+	float Position::getY() const
 	{
 		return m_iY;
 	}
 
-	int Position::getZ() const
+	float Position::getZ() const
 	{
 		return m_iZ;
 	}

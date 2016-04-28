@@ -14,6 +14,7 @@ namespace ecs
 
 	public:
 		Entity();
+		~Entity();
 		Entity(const Entity&) = delete;
 		Entity(Entity &&) = default;
 		

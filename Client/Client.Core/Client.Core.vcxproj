@@ -16,6 +16,8 @@
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Entity.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
+    <ClInclude Include="..\..\Shared\ObjectFactory.h" />
+    <ClInclude Include="..\..\Shared\PlayerFactory.h" />
     <ClInclude Include="..\..\Shared\PlayerID.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\SniperRifle.h" />
@@ -26,9 +28,11 @@
     <ClCompile Include="..\..\Shared\AWeapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />
     <ClCompile Include="..\..\Shared\Life.cpp" />
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
     <ClCompile Include="..\..\Shared\PlayerID.cpp" />
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
     <ClCompile Include="mainClient.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
