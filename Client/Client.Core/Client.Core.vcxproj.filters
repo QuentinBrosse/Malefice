@@ -103,7 +103,7 @@
       <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\NetworkID.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

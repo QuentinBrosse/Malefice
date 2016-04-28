@@ -10,7 +10,6 @@ namespace ecs
 
 	int Life::get() const
 	{
-		return m_iCurrent;
 	}
 
 	void Life::set(int life)
