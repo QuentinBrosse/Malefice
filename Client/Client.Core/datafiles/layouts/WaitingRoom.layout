@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
+        <Property name="Area" value="{{0,62},{0,41},{0.3,527},{0.3,346}}" />
+        <Property name="RollUpEnabled" value="false" />
+        <AutoWindow namePath="__auto_titlebar__" >
+            <Property name="AlwaysOnTop" value="false" />
+        </AutoWindow>
+        <Window type="WindowsLook/Label" name="Label" >
+            <Property name="Area" value="{{0,207},{0,10},{0,508},{0,52}}" />
+            <Property name="Text" value="En attente de joueurs..." />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label2" >
+            <Property name="Area" value="{{0,17},{0,389},{0,238},{0,431}}" />
+            <Property name="Text" value="Temps écoulé: ?? m ?? s" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="OgreTray/ListboxItem" name="ListboxItem" >
+            <Property name="ID" value="10" />
+            <Property name="Area" value="{{0,63},{0,126},{0,244},{0,330}}" />
+            <Property name="Selectable" value="false" />
+        </Window>
+        <Window type="OgreTray/ListboxItem" name="ListboxItem2" >
+            <Property name="ID" value="20" />
+            <Property name="Area" value="{{0,399},{0,125},{0,580},{0,329}}" />
+            <Property name="Selectable" value="false" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label3" >
+            <Property name="Area" value="{{0,87},{0,73},{0,215},{0,105}}" />
+            <Property name="Text" value="Equipe 1" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label32" >
+            <Property name="Area" value="{{0,422},{0,72},{0,550},{0,104}}" />
+            <Property name="Text" value="Equipe 2" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+    </Window>
+</GUILayout>

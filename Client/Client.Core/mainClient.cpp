@@ -224,6 +224,9 @@ int main(void) {
 	//Configuration du GUI
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
 	CEGUI::Window *windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("ButtonQuitter.layout");
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(windows);
 	CEGUI::System &systemd = CEGUI::System::getSingleton();

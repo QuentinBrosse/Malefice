@@ -14,6 +14,14 @@ namespace ecs
 
 	}
 
+	Entity::~Entity()
+	{
+		for (auto component : m_mComponents)
+		{
+			delete component.second;
+		}
+	}
+
 	AComponent*& Entity::operator[](ComponentType type)
 	{
 		return m_mComponents[type];
