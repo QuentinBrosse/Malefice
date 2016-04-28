@@ -3,8 +3,8 @@
 
 XML::XML(const char * szFileName)
 {
-	m_pRootNode = NULL;
-	m_pNode = NULL;
+	m_pRootNode = nullptr;
+	m_pNode = nullptr;
 
 	SetFileName(szFileName);
 
@@ -16,8 +16,7 @@ XML::~XML(void)
 	if (m_pNode)
 	{
 		delete m_pNode;
-
-		m_pNode = NULL;
+		m_pNode = nullptr;
 	}
 }
 
@@ -28,7 +27,7 @@ bool XML::Load(void)
 
 	m_pRootNode = m_document.RootElement();
 
-	m_pNode = new XMLNode(m_pRootNode, NULL);
+	m_pNode = new XMLNode(&m_document, m_pRootNode, NULL);
 
 	BuildChildren(m_pNode);
 
@@ -37,21 +36,21 @@ bool XML::Load(void)
 
 bool XML::Save(void)
 {
-	return m_document.SaveFile();
+	return m_document.SaveFile(m_szFileName);
 }
 
 void XML::BuildChildren(XMLNode * pNode)
 {
-	TiXmlElement * pXmlNode = pNode->GetNode();
+	tinyxml2::XMLElement* pXmlNode = pNode->GetNode();
 
 	if (pXmlNode)
 	{
-		for (TiXmlNode * pCurNode = pXmlNode->FirstChildElement(); pCurNode; pCurNode = pCurNode->NextSibling())
+		for (tinyxml2::XMLNode* pCurNode = pXmlNode->FirstChildElement(); pCurNode; pCurNode = pCurNode->NextSibling())
 		{
-			if (pCurNode->Type() != TiXmlElement::ELEMENT)
+			if (pCurNode->ToElement() == nullptr)
 				continue;
 
-			XMLNode * pNewNode = new XMLNode(pCurNode->ToElement(), pNode);
+			XMLNode * pNewNode = new XMLNode(&m_document, pCurNode->ToElement(), pNode);
 
 			BuildChildren(pNewNode);
 		}
@@ -64,19 +63,20 @@ XMLNode * XML::CreateRootNode(const char * szName)
 	{
 		if (!m_pRootNode)
 		{
-			m_pRootNode = new TiXmlElement(szName);
-
+			m_pRootNode = m_document.NewElement(szName);
 			m_document.LinkEndChild(m_pRootNode);
 		}
 
-		m_pNode = new XMLNode(m_pRootNode, NULL);
+		m_pNode = new XMLNode(&m_document, m_pRootNode, NULL);
 	}
 
 	m_pNode->SetName(szName);
 	return m_pNode;
 }
 
-XMLNode::XMLNode(TiXmlElement * pNode, XMLNode * pParent) : m_pNode(pNode)
+XMLNode::XMLNode(tinyxml2::XMLDocument* doc, tinyxml2::XMLElement * pNode, XMLNode * pParent) :
+	m_doc(doc),
+	m_pNode(pNode)
 {
 	m_pParent = pParent;
 
@@ -100,31 +100,27 @@ XMLNode::~XMLNode(void)
 
 	if (m_pNode)
 	{
-		TiXmlNode* pParent = m_pNode->Parent();
+		tinyxml2::XMLNode* pParent = m_pNode->Parent();
 
 		if (pParent)
-			pParent->RemoveChild(m_pNode);
-		else
-			delete m_pNode;
+			pParent->DeleteChild(m_pNode);
 	}
 }
 
-void XMLNode::SetValue(const char * szValue)
+void XMLNode::SetValue(const char* szValue)
 {
-	m_pNode->Clear();
-
-	TiXmlText * pText = new TiXmlText(szValue);
+	tinyxml2::XMLText * pText = m_doc->NewText(szValue);
 
 	m_pNode->LinkEndChild(pText);
 }
 
 XMLNode * XMLNode::CreateSubNode(const char * szName)
 {
-	TiXmlElement * pNewNode = new TiXmlElement(szName);
+	tinyxml2::XMLElement* pNewNode = m_doc->NewElement(szName);
 
 	m_pNode->LinkEndChild(pNewNode);
 
-	return new XMLNode(pNewNode, this);
+	return new XMLNode(m_doc, pNewNode, this);
 }
 
 XMLNode * XMLNode::FindNode(const char * szName)

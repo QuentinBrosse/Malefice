@@ -17,9 +17,9 @@ git submodule update --init --recursive
 Les projets sont déjà configurés pour compiler avec :
 * **Client.Core** : RakNet, Irrlicht et CEGUI
 * **Client.Launcher** : /
-* **Server.Core** : RakNet
+* **Server.Core** : RakNet et TinyXML2
 
-Les projets sont générés dans Debug/ et dans Release/ (à la racine du dépôt).
+Les projets sont générés dans Binaries/Debug/ et dans Binaries/Release/.
 
 ### Résolution des problèmes de génération
 

@@ -1,12 +1,12 @@
 
 #include "CMain.h"
 
-CMain::CMain()
+CMain::CMain() :
+	m_sName(""),
+	m_sPort(""),
+	m_sPassword(""),
+	m_bActive(true)
 {
-	this->m_sName = "";
-	this->m_sPort = "";
-	this->m_sPassword = "";
-	this->m_bActive = true;
 }
 
 CMain::~CMain()
@@ -38,7 +38,26 @@ bool	CMain::Init(void)
 
 	/* Network init */
 	NModule = new NetworkModule;
-	NModule->Init(this->m_sPort, this->m_sAddress);
+	if (NModule->Init(this->m_sPort, this->m_sAddress, this->m_sPassword) == false)
+		std::cerr << "Failed to start RakNet" << std::endl;
+
+	/* Server Title */
+	std::string title = std::string(GAME_NAME).append(" v").append(GAME_VERSION);
+
+#ifdef WIN32
+	SetConsoleTitle(title.c_str());
+#endif
+
+	/* Finished init, dump informations */
+	std::cout << "==============================================================" << std::endl;
+	std::cout << "                         " << title << std::endl;
+	std::cout << "==============================================================" << std::endl;
+	std::cout << "=Server Name	: " << this->m_sName << std::endl;
+	std::cout << "=Server Port	: " << this->m_sPort << std::endl;
+	std::cout << "=Max Players	: " << MAX_PLAYERS << std::endl;
+	if (this->m_sPassword.length() > 0)
+		std::cout << "=Password	: " << this->m_sPassword << std::endl;
+	std::cout << "==============================================================" << std::endl;
 	return (true);
 }
 
@@ -47,5 +66,6 @@ Program main loop
 */
 void	CMain::Pulse(void)
 {
-
+	if (NModule)
+		NModule->Pulse();
 }
