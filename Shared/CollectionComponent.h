@@ -8,6 +8,7 @@ namespace ecs
 		NETWORK_ID,
 		LIFE,
 		POSITION,
-		WEAPON,
+		TEAM,
+		WEAPON_MANAGER,
 	} ComponentType;
 }
