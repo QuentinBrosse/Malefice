@@ -14,6 +14,8 @@
 
 #include <exception>
 
+// Type redefinition
+typedef unsigned int networkID;
 
 // Singleton
 #include "ExplicitSingleton.h"

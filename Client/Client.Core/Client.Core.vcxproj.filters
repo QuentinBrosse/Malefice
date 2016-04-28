@@ -81,9 +81,6 @@
     <ClInclude Include="..\..\Shared\CollectionComponent.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerID.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Life.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
@@ -102,6 +99,9 @@
     <ClInclude Include="..\..\Shared\ObjectFactory.h">
       <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\NetworkID.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -114,9 +114,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Life.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerID.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Position.cpp">
@@ -133,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
       <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\NetworkID.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
