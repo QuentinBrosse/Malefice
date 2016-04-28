@@ -3,6 +3,7 @@
 #include "CollectionComponent.h"
 #include "Life.h"
 #include "NetworkID.h"
+#include "Team.h"
 
 namespace factory
 {
@@ -11,6 +12,7 @@ namespace factory
 		object(entity);
 		entity[ecs::LIFE] = new ecs::Life(100);
 		entity[ecs::NETWORK_ID] = new ecs::NetworkID(network_id);
+		entity[ecs::COMPONENT_TEAM] = new ecs::Team(team);
 		return entity;
 	}
 
@@ -19,7 +21,7 @@ namespace factory
 		object(entity);
 		entity[ecs::LIFE] = new ecs::Life(1000);
 		entity[ecs::NETWORK_ID] = new ecs::NetworkID(network_id);
-		// TEAM NUMBER WILL BE 0
+		entity[ecs::COMPONENT_TEAM] = new ecs::Team(0);
 		return entity;
 	}
 }

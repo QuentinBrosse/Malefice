@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	Team::Team(int team) : AComponent("Team", TEAM), 
+	Team::Team(int team) : AComponent("Team", COMPONENT_TEAM), 
 		TEAM(team), m_iDeath(0), m_iKill(0)
 	{
 
