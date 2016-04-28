@@ -18,6 +18,7 @@
     <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="CMain.h" />
     <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerRPC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\XML.cpp" />
@@ -25,6 +26,7 @@
     <ClCompile Include="CMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerRPC.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}</ProjectGuid>
