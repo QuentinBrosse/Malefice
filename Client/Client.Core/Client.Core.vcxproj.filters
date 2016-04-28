@@ -55,11 +55,17 @@
     <Filter Include="Source Files\Shared\ECS\Component">
       <UniqueIdentifier>{05ba5a67-ac12-4511-b258-61187b309df8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shared\ECS\Component\Weapon">
+    <Filter Include="Header Files\Shared\Weapon">
       <UniqueIdentifier>{a5c38825-33a6-4646-ac5b-60e6fc8b5d8e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shared\ECS\Component\Weapon">
+    <Filter Include="Source Files\Shared\Weapon">
       <UniqueIdentifier>{71524e41-db58-4071-ba6e-01708fd35464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared\ECS\Factory">
+      <UniqueIdentifier>{510ae9a1-910f-4f95-9064-147c980f9549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS\Factory">
+      <UniqueIdentifier>{9a84db89-5af5-4fbe-8afb-8121ae7578be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +81,6 @@
     <ClInclude Include="..\..\Shared\CollectionComponent.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerID.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Life.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
@@ -85,10 +88,28 @@
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\AWeapon.h">
-      <Filter>Header Files\Shared\ECS\Component\Weapon</Filter>
+      <Filter>Header Files\Shared\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\SniperRifle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponManager.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ObjectFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\NetworkID.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerManager.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Team.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="mainMenu.h">
       <Filter>Header Files\GUI</Filter>
@@ -110,17 +131,32 @@
     <ClCompile Include="..\..\Shared\Life.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerID.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\Position.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\AWeapon.cpp">
-      <Filter>Source Files\Shared\ECS\Component\Weapon</Filter>
+      <Filter>Source Files\Shared\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\SniperRifle.cpp">
-      <Filter>Source Files\Shared\ECS\Component\Weapon</Filter>
+      <Filter>Source Files\Shared\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\WeaponManager.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\NetworkID.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Team.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="mainMenu.cpp">
       <Filter>Source Files\GUI</Filter>

@@ -6,6 +6,8 @@
 #include <RPC4Plugin.h>
 #include <MessageIdentifiers.h>
 
+#include "PlayerRPC.h"
+
 class NetworkModule
 {
 private:

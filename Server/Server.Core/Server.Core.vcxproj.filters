@@ -60,6 +60,9 @@
     <ClInclude Include="NetworkModule.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerRPC.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMain.cpp">
@@ -75,6 +78,9 @@
       <Filter>Source Files\Shared</Filter>
     </ClCompile>
     <ClCompile Include="NetworkModule.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRPC.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
