@@ -12,15 +12,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\AWeapon.h" />
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Entity.h" />
+    <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\PlayerID.h" />
+    <ClInclude Include="..\..\Shared\Position.h" />
+    <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\AWeapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />
+    <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\PlayerID.cpp" />
+    <ClCompile Include="..\..\Shared\Position.cpp" />
+    <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
     <ClCompile Include="mainClient.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

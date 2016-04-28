@@ -9,7 +9,8 @@ namespace ecs
 	{
 	public:
 		AComponent(const std::string& name, ComponentType type);
-		~AComponent() = default;
+		AComponent(const AComponent& component) = delete;
+		virtual ~AComponent() = default;
 
 		virtual void dump() const = 0;
 

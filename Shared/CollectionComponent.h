@@ -6,5 +6,8 @@ namespace ecs
 	{
 		DEFAULT,
 		PLAYER_ID,
+		LIFE,
+		POSITION,
+		WEAPON,
 	} ComponentType;
 }

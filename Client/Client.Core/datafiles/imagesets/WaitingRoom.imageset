@@ -1,0 +1,3 @@
+<Imageset autoScaled="false" imagefile="..\ressources\waitingRoom.jpg" name="Malefice" nativeHorzRes="800" nativeVertRes="600" version="2">
+    <Image height="454" name="Background" width="802" xPos="1" yPos="0" />
+</Imageset>
