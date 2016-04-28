@@ -16,7 +16,7 @@ namespace ecs
 		weapon::AWeapon	*getCurrentWeapon() const;
 		void			dump() const;
 	private:
-		std::vector<weapon::AWeapon *>	m_vWeapons;
+		std::vector<weapon::AWeapon*>	m_vWeapons;
 		int								m_iCurrentWeapon;
 	};
 }

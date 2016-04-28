@@ -105,6 +105,9 @@
     <ClInclude Include="..\..\Shared\ObjectFactory.h">
       <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerManager.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
       <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
+      <Filter>Source Files\Shared</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
