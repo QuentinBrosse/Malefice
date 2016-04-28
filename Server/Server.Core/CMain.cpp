@@ -1,12 +1,12 @@
 
 #include "CMain.h"
 
-CMain::CMain()
+CMain::CMain() :
+	m_sName(""),
+	m_sPort(""),
+	m_sPassword(""),
+	m_bActive(true)
 {
-	this->m_sName = "";
-	this->m_sPort = "";
-	this->m_sPassword = "";
-	this->m_bActive = true;
 }
 
 CMain::~CMain()

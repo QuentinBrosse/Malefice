@@ -2,22 +2,21 @@
 
 #include "StdInc.h"
 
-#include "../Libraries/ticpp/tinyxml.h"
-#include "../Libraries/ticpp/ticpprc.h"
-#include "../Libraries/ticpp/ticpp.h"
+#include <tinyxml2.h>
 
 
 class XMLNode;
+
 class XML
 {
 
 private:
 
-	TiXmlDocument				m_document;
-	TiXmlElement				* m_pRootNode;
-	XMLNode						* m_pNode;
+	tinyxml2::XMLDocument	m_document;
+	tinyxml2::XMLElement*	m_pRootNode;
+	XMLNode*				m_pNode;
 
-	const char					* m_szFileName;
+	const char*				m_szFileName;
 
 	void						BuildChildren(XMLNode * pNode);
 
@@ -32,11 +31,11 @@ public:
 	bool						Load(void);
 	bool						Save(void);
 
-	XMLNode						* CreateRootNode(const char * szName);
-	XMLNode						* GetRootNode(void) { return m_pNode; }
+	XMLNode*					CreateRootNode(const char * szName);
+	XMLNode*					GetRootNode(void) { return m_pNode; }
 
-	TiXmlDocument				GetXMLDocument(void) { return m_document; }
-	TiXmlElement				* GetXMLRootNode(void) { return m_pRootNode; }
+	tinyxml2::XMLDocument&				GetXMLDocument(void) { return m_document; }
+	tinyxml2::XMLElement*				GetXMLRootNode(void) { return m_pRootNode; }
 
 };
 
@@ -44,15 +43,15 @@ class XMLNode
 {
 
 private:
-
-	TiXmlElement				* m_pNode;
-	XMLNode						* m_pParent;
+	tinyxml2::XMLDocument*	m_doc;
+	tinyxml2::XMLElement*	m_pNode;
+	XMLNode*				m_pParent;
 
 	std::list< XMLNode* >		m_Children;
 
 public:
 
-	XMLNode(TiXmlElement * pNode, XMLNode * pParent = NULL);
+	XMLNode(tinyxml2::XMLDocument* doc, tinyxml2::XMLElement* pNode, XMLNode* pParent = NULL);
 	~XMLNode(void);
 
 	void						SetName(const char * szName) { m_pNode->SetValue(szName); }
@@ -73,7 +72,7 @@ public:
 	unsigned int				GetChildCount(void) { return m_Children.size(); }
 	std::list< XMLNode* >		GetChildren(void) { return m_Children; }
 
-	TiXmlElement				* GetNode(void) { return m_pNode; }
+	tinyxml2::XMLElement				* GetNode(void) { return m_pNode; }
 	XMLNode						* GetParent(void) { return m_pParent; }
 
 };
