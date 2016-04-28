@@ -52,7 +52,7 @@ void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 }
 
-void debug_display_mouse_pos(irr::IrrlichtDevice *device)
+void debugDisplayMousePos(irr::IrrlichtDevice *device)
 {
 	std::wstring text(L"Irrlicht - cursor position = X->");
 	text += std::to_wstring(device->getCursorControl()->getPosition().X);
@@ -61,13 +61,13 @@ void debug_display_mouse_pos(irr::IrrlichtDevice *device)
 	device->setWindowCaption(text.c_str());
 }
 
-void cegui_event_injector(CEGUI::System &systemd, eventReceiver &receiver, irr::IrrlichtDevice *device)
+void ceguiEventInjector(CEGUI::System &systemd, eventReceiver &receiver, irr::IrrlichtDevice *device)
 {
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
 	systemd.getDefaultGUIContext().injectMouseButtonClick(CEGUI::MouseButton::LeftButton);
-	if (receiver.GetMouseState().LeftButtonDown == true)
+	if (receiver.getMouseState().leftButtonDown == true)
 		systemd.getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
-	if (receiver.GetMouseState().LeftButtonDown == false)
+	if (receiver.getMouseState().leftButtonDown == false)
 		systemd.getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
 }
 
@@ -103,8 +103,8 @@ int main(void) {
 			driver->beginScene(true, true, irr::video::SColor(255, 150, 255, 255));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
-			debug_display_mouse_pos(device); //Display mouse position on instead of windows title for debug purpose
-			cegui_event_injector(CEGUI::System::getSingleton(), receiver, device);
+			debugDisplayMousePos(device); //Display mouse position on instead of windows title for debug purpose
+			ceguiEventInjector(CEGUI::System::getSingleton(), receiver, device);
 			driver->endScene();
 		}
 	}
