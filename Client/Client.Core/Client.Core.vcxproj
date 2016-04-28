@@ -20,6 +20,8 @@
     <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
+    <ClInclude Include="eventReceiver.h" />
+    <ClInclude Include="mainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
@@ -30,6 +32,8 @@
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
     <ClCompile Include="mainClient.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
+    <ClCompile Include="eventReceiver.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>
