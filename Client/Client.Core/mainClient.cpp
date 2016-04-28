@@ -1,36 +1,19 @@
 #include <iostream>
+
 #include "mainMenu.h"
 #include "eventReceiver.h"
 
 #define WIN_SIZE_X 800
 #define WIN_SIZE_Y 600
 
-void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, eventReceiver *receiver, irr::SKeyMap *&keyMap)
+void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, eventReceiver *receiver, irr::SKeyMap *keyMap)
 {
-	device = irr::createDevice(  // creation du device
-		irr::video::EDT_DIRECT3D9,                       // API = OpenGL
-		irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),    // taille fenetre 640x480p
-		32, false, false, false, receiver);           // 32 bits par pixel
-
-	driver =                // video driver
-		device->getVideoDriver();
-	sceneManager =         // scene manager
-		device->getSceneManager();
-
-	irr::scene::IMeshSceneNode* cube =         // pointeur vers le node
-		sceneManager->addCubeSceneNode(        // la creation du cube
-			10.0f,                             // cote de 10 unites
-			0,                                 // parent = racine
-			-1,                                // pas d'ID
-			irr::core::vector3df(              // le vecteur de position
-				0.0f,                          // origine en X
-				0.0f,                          // origine en Y
-				20.0f));                       // +20 unites en Z
-
+	device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
+	driver = device->getVideoDriver();
+	sceneManager = device->getSceneManager();
+	irr::scene::IMeshSceneNode* cube = sceneManager->addCubeSceneNode(10.0f, 0,	-1, irr::core::vector3df(0.0f, 0.0f, 20.0f));
 	cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
 
-
-	keyMap = new irr::SKeyMap[5];                    // re-assigne les commandes
 	keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
 	keyMap[0].KeyCode = irr::KEY_KEY_Z;        // w
 	keyMap[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
@@ -42,13 +25,7 @@ void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&drive
 	keyMap[4].Action = irr::EKA_JUMP_UP;       // saut
 	keyMap[4].KeyCode = irr::KEY_SPACE;        // barre espace
 
-											   //Mode gui
-
-	sceneManager->addCameraSceneNode(       // ajout de la camera FPS
-		0,                                     // pas de noeud parent
-		irr::core::vector3df(0, 0, 0),
-		irr::core::vector3df(0, 0, 0),
-		-1);
+	sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
 }
 
 void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
@@ -96,7 +73,7 @@ void cegui_event_injector(CEGUI::System &systemd, eventReceiver &receiver, irr::
 
 int main(void) {
 	//Init Irrlicht Engine
-	irr::SKeyMap *keyMap;
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver *driver;
 	irr::scene::ISceneManager *sceneManager;
