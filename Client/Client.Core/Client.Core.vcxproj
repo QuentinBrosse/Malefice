@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\AWeapon.h" />
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Entity.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
@@ -21,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\AWeapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />
     <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\PlayerID.cpp" />

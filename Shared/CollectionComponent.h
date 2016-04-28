@@ -8,5 +8,6 @@ namespace ecs
 		PLAYER_ID,
 		LIFE,
 		POSITION,
+		WEAPON,
 	} ComponentType;
 }
