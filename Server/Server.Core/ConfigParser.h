@@ -1,7 +1,8 @@
 #pragma once
 
 #include <tinyxml2.h>
-#include "../../Shared/StdInc.h"
+
+#include "StdInc.h"
 
 class ConfigParser
 {

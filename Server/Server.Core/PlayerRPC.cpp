@@ -8,13 +8,13 @@ bool	PlayerRPC::m_isRegistered = false;
 */
 static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
-	RakNet::RakString sName;
-	RakNet::RakString sSerial;
+	RakNet::RakString	name;
+	RakNet::RakString	serial;
 
-	bitStream->Read(sName);
-	bitStream->Read(sSerial);
+	bitStream->Read(name);
+	bitStream->Read(serial);
 
-	std::cout << "Received player name " << sName.C_String() << " Serial(" << sSerial.C_String() << ")" << std::endl;
+	std::cout << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")" << std::endl;
 }
 
 /*

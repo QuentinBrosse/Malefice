@@ -1,4 +1,5 @@
 #include "ConfigParser.h"
+#include "ProjectGlobals.h"
 
 ConfigParser::ConfigParser(const std::string& fileName) :
 	m_sFileName(fileName),
@@ -32,10 +33,10 @@ void ConfigParser::loadDefault(const std::string& name, const std::string& value
 
 void ConfigParser::loadDefaults()
 {
-	this->loadDefault("name", FILE_SETTINGS_D_NAME);
-	this->loadDefault("address", FILE_SETTINGS_D_ADDRESS);
-	this->loadDefault("port", FILE_SETTINGS_D_PORT);
-	this->loadDefault("password", FILE_SETTINGS_D_PASSWORD);
+	this->loadDefault("name", ProjectGlobals::GAME_SERVER_DEFAULT_NAME);
+	this->loadDefault("address", ProjectGlobals::GAME_SERVER_DEFAULT_ADDRESS);
+	this->loadDefault("port", std::to_string(ProjectGlobals::GAME_SERVER_DEFAULT_PORT));
+	this->loadDefault("password", ProjectGlobals::GAME_SERVER_DEFAULT_PASSWORD);
 }
 
 bool ConfigParser::exists(const std::string& name)

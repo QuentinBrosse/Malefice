@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
     <ClInclude Include="..\..\Shared\ClientCore.h" />
+    <ClInclude Include="..\..\Shared\Logger.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\Spell.h" />
     <ClInclude Include="..\..\Shared\SpellCreator.h" />
@@ -89,11 +90,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Tookie\Documents\Malefice\Shared;../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -101,6 +102,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp;../../Shared</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -119,6 +123,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
+      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp;../../Shared</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

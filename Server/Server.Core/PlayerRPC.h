@@ -3,6 +3,7 @@
 #include <RPC4Plugin.h>
 
 #include "StdInc.h"
+
 #include "NetworkRPC.h"
 
 class PlayerRPC

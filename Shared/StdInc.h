@@ -23,5 +23,3 @@ typedef unsigned int networkID;
 #include	<windowsx.h>
 #else
 #endif
-
-#include "Common.h"

@@ -22,12 +22,6 @@
     <Filter Include="Source Files\Network">
       <UniqueIdentifier>{b50d76a6-71cf-4d7f-89aa-32dcba7b75cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shared\ECS">
-      <UniqueIdentifier>{b971baa4-79f3-4b51-9964-6d42e2457f43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shared\ECS">
-      <UniqueIdentifier>{c01cf41e-d307-4c78-b20d-bbbd2cbfa7af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Network">
       <UniqueIdentifier>{e755762c-b187-4d6d-9010-2f152d1f6e34}</UniqueIdentifier>
     </Filter>
@@ -45,9 +39,6 @@
     <ClInclude Include="ConfigParser.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Common.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkModule.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
@@ -64,6 +55,12 @@
       <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\Singleton.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ProjectGlobals.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Logger.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="ServerCore.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ProjectGlobals.cpp">
+      <Filter>Source Files\Shared</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
