@@ -87,13 +87,25 @@
     <ClInclude Include="eventReceiver.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Weapon.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\WeaponManager.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponCreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\NetworkID.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ObjectFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerFactory.h">
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Team.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
@@ -123,6 +135,21 @@
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\WeaponManager.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\WeaponCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\NetworkID.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Team.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>

@@ -10,9 +10,10 @@ namespace ecs
 		Life(int max_life);
 		~Life() = default;
 
-		int get() const;
-		void set(int life);
-		void takeDamage(int damage);
+		int		get() const;
+		void	set(int iLife);
+		void	takeDamage(int iDamage);
+		void	restore(int iQuantity);
 
 		virtual void onDeath();
 		// why virtual ?-> 
@@ -28,9 +29,9 @@ namespace ecs
 		void dump() const;
 
 	private:
-		int m_iCurrent;
+		int m_iCurrentLife;
 	public:
-		const int MAX;
+		const int MAX_LIFE;
 	};
 
 }

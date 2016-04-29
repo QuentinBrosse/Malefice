@@ -2,8 +2,8 @@
 
 namespace ecs
 {
-	Team::Team(int team) : AComponent("Team", COMPONENT_TEAM), 
-		TEAM(team), m_iDeath(0), m_iKill(0)
+	Team::Team(int iTeamNumber) : AComponent("Team", COMPONENT_TEAM), 
+		TEAM_NUMBER(iTeamNumber), m_iDeath(0), m_iKill(0)
 	{
 
 	}
@@ -15,7 +15,7 @@ namespace ecs
 
 	void Team::dump() const
 	{
-		std::cout << "[Team : " << TEAM << "]" << std::endl;
+		std::cout << "[Team : " << TEAM_NUMBER << "]" << std::endl;
 		std::cout << "[Kill : " << m_iKill << "]" << std::endl;
 		std::cout << "[Death : " << m_iDeath << "]" << std::endl;
 	}
@@ -30,14 +30,14 @@ namespace ecs
 		return (m_iKill);
 	}
 
-	void Team::setDeath(int death)
+	void Team::setDeath(int iDeath)
 	{
-		m_iDeath = death;
+		m_iDeath = iDeath;
 	}
 
-	void Team::setKill(int kill)
+	void Team::setKill(int iKill)
 	{
-		m_iKill = kill;
+		m_iKill = iKill;
 	}
 
 	void Team::addDeath()
