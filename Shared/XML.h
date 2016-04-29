@@ -4,7 +4,6 @@
 
 #include <tinyxml2.h>
 
-
 class XMLNode;
 
 class XML
