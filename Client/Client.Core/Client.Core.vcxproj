@@ -47,6 +47,7 @@
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\WeaponCreator.cpp" />
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
+    <ClCompile Include="loadingWindows.cpp" />
     <ClCompile Include="mainClient.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="eventReceiver.cpp" />
