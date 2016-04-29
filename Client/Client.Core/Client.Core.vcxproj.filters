@@ -102,6 +102,12 @@
     <ClInclude Include="..\..\Shared\PlayerID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="loadingWindows.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="waitingRoom.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -130,6 +136,12 @@
     </ClCompile>
     <ClCompile Include="eventReceiver.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="loadingWindows.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="waitingRoom.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

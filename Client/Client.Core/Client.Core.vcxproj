@@ -21,7 +21,9 @@
     <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
     <ClInclude Include="eventReceiver.h" />
+    <ClInclude Include="loadingWindows.h" />
     <ClInclude Include="mainMenu.h" />
+    <ClInclude Include="waitingRoom.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
@@ -30,9 +32,11 @@
     <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
+    <ClCompile Include="loadingWindows.cpp" />
     <ClCompile Include="mainClient.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="eventReceiver.cpp" />
+    <ClCompile Include="waitingRoom.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>

@@ -2,6 +2,8 @@
 
 #include "mainMenu.h"
 #include "eventReceiver.h"
+#include "loadingWindows.h"
+#include "waitingRoom.h"
 
 #define WIN_SIZE_X 800
 #define WIN_SIZE_Y 600
@@ -98,12 +100,36 @@ int main(void) {
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
 
-	mainMenu menu(keyMap, sceneManager, device);
+	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
+
+	WaitingRoom salon(keyMap, sceneManager, device);
+	salon.display();
+
+	LoadingWindows loading(keyMap, sceneManager, device);
+	loading.display();
+	loading.setProgress(20);
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Another test succesfull !"));
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']And another one !"));
+	loading.listAddText(std::string("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !"));
+	loading.listAddText("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !");
+	
+
+	salon.addRightTeamMember("Brendan");
+	salon.addRightTeamMember("Guillaume");
+	salon.addRightTeamMember("OKLM man");
+	salon.addRightTeamMember("SUPER man");
+
+	salon.addLeftTeamMember("Super Méchant");
+	salon.addLeftTeamMember("Big BOSS");
+	salon.addLeftTeamMember("Solid fail");
+
 	while (device->run())
 	{
 		if (device->isWindowActive()) //draw only if the window is active
 		{
+			salon.refreshTime();
 			driver->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui

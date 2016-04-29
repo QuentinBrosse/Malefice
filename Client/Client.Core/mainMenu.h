@@ -6,11 +6,11 @@
 #include <CEGUI/RendererModules/Irrlicht/Renderer.h>
 #include <iostream>
 
-class mainMenu
+class MainMenu
 {
 public:
-	mainMenu(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device);
-	~mainMenu() = default;
+	MainMenu(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device);
+	~MainMenu() = default;
 	void display();
 	void hide();
 	bool onPlayButtonClicked(const CEGUI::EventArgs& e);
