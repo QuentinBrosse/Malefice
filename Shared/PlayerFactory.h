@@ -16,7 +16,7 @@ namespace factory
 	public:
 		PlayerFactory() = delete;
 		~PlayerFactory() = delete;
-		ecs::Entity createPlayer(float x, float y, float z, networkID network_id, int team, int life);
-		ecs::Entity createPredator(float x, float y, float z, networkID network_id);
+		static ecs::Entity createPlayer(float x, float y, float z, networkID network_id, int team, int life);
+		static ecs::Entity createPredator(float x, float y, float z, networkID network_id);
 	};
 }

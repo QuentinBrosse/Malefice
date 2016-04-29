@@ -89,7 +89,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Tookie\Documents\Malefice\Shared;../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

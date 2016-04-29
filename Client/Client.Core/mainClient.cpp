@@ -5,6 +5,9 @@
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
 
+#include <ClientCore.h>
+#include <PlayerFactory.h>
+
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
@@ -79,7 +82,7 @@ void ceguiEventInjector(CEGUI::System& systemd, eventReceiver& receiver, irr::Ir
 
 int main(void) {
 	//Init Irrlicht Engine
-	irr::SKeyMap keyMap[5];
+	/*irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -138,6 +141,21 @@ int main(void) {
 			driver->endScene();
 		}
 	}
-	device->drop();
+	device->drop();*/
+
+	//Client core test
+	ClientCore	core;
+
+	ecs::Entity	player = factory::PlayerFactory::createPlayer(1.0, 2.1, 0.0, 1, 1, 100);
+	ecs::Entity predator = factory::PlayerFactory::createPredator(1.0, 4.2, 0.0, 2);
+	ecs::Entity object = factory::ObjectFactory::createObject(2.0, 3.3, 0.0);
+
+	core.addEntity(player);
+	core.addEntity(predator);
+	core.addEntity(object);
+
+	core.dump();
+
+	getchar();
 	return (0);
 }

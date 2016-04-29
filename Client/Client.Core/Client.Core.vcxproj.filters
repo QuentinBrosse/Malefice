@@ -55,12 +55,6 @@
     <Filter Include="Source Files\Shared\ECS\Component">
       <UniqueIdentifier>{05ba5a67-ac12-4511-b258-61187b309df8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shared\Weapon">
-      <UniqueIdentifier>{a5c38825-33a6-4646-ac5b-60e6fc8b5d8e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shared\Weapon">
-      <UniqueIdentifier>{71524e41-db58-4071-ba6e-01708fd35464}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Shared\ECS\Factory">
       <UniqueIdentifier>{510ae9a1-910f-4f95-9064-147c980f9549}</UniqueIdentifier>
     </Filter>
@@ -87,8 +81,8 @@
     <ClInclude Include="..\..\Shared\Position.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Spell.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="mainMenu.h">
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="eventReceiver.h">
       <Filter>Header Files\General</Filter>
@@ -100,40 +94,22 @@
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\NetworkID.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\ObjectFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\PlayerFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\ECS\Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\Team.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Weapon.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Shared\Spell.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponCreator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventReceiver.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadingWindows.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="WaitingRoom.h">
-      <Filter>Header Files\GUI</Filter>
+    <ClInclude Include="..\..\Shared\SpellManager.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\WeaponCreator.h">
       <Filter>Header Files\Shared</Filter>
@@ -150,6 +126,12 @@
     <ClInclude Include="..\..\Shared\ClientCore.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
+    <ClInclude Include="LoadingWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitingRoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -158,35 +140,20 @@
     <ClCompile Include="..\..\Shared\AComponent.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="mainClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Shared\Life.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Position.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Shared\Spell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\SpellManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\NetworkID.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Team.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Weapon.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\WeaponManager.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
@@ -194,14 +161,14 @@
     <ClCompile Include="..\..\Shared\NetworkID.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="WaitingRoom.cpp">
-      <Filter>Source Files\GUI</Filter>
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\GUI</Filter>
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
+      <Filter>Source Files\Shared\ECS\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="LoadingWindows.cpp">
-      <Filter>Source Files\GUI</Filter>
+    <ClCompile Include="..\..\Shared\Team.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Spell.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
@@ -226,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\ClientCore.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingWindows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitingRoom.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
