@@ -1,94 +1,104 @@
-
 #include "ConfigParser.h"
 
-XML								* ConfigParser::m_pXML = NULL;
-XMLNode							* ConfigParser::m_pRootNode = NULL;
-bool							ConfigParser::m_bOpen = false;
-
-ConfigParser::ConfigParser(std::string fileName)
-{
-	this->m_sFileName = fileName;
-	this->m_bOpen = false;
-}
-
-ConfigParser::~ConfigParser()
+ConfigParser::ConfigParser(const std::string& fileName) :
+	m_sFileName(fileName),
+	m_xml(),
+	m_pRootElement(nullptr)
 {
 }
 
-bool			ConfigParser::Init(void)
+bool ConfigParser::init()
 {
-	m_pXML = new XML(this->m_sFileName.c_str());
+	tinyxml2::XMLError loadResult = m_xml.LoadFile(this->m_sFileName.c_str());
 
-	if (m_pXML == false)
-		return (false);
-
-	m_bOpen = true;
-
-	m_pRootNode = m_pXML->GetRootNode();
-
-	if (m_pRootNode == false)
-		m_pRootNode = m_pXML->CreateRootNode("server");
-
-	LoadDefaults();
-
-	this->Save();
-
-	return (true);
-}
-
-void			ConfigParser::LoadDefaults(void)
-{
-	DEFAULT("name", FILE_SETTINGS_D_NAME);
-	DEFAULT("address", FILE_SETTINGS_D_ADDRESS);
-	DEFAULT("port", FILE_SETTINGS_D_PORT);
-	DEFAULT("password", FILE_SETTINGS_D_PASSWORD);
-}
-
-bool ConfigParser::Exists(std::string szName)
-{
-	if (!m_pRootNode)
-		return (false);
-
-	return (m_pRootNode->FindNode(szName.c_str()) != NULL);
-}
-
-void ConfigParser::Set(std::string szName, std::string szValue)
-{
-	XMLNode * pRootNode = m_pXML->GetRootNode();
-
-	if (pRootNode)
+	if (loadResult == tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND || loadResult == tinyxml2::XMLError::XML_ERROR_FILE_COULD_NOT_BE_OPENED)
+		return false;
+	m_pRootElement = m_xml.RootElement();
+	if (m_pRootElement == nullptr)
 	{
-		XMLNode * pSubNode = pRootNode->FindNode(szName.c_str());
-
-		if (!pSubNode)
-			pSubNode = pRootNode->CreateSubNode(szName.c_str());
-
-		pSubNode->SetValue(szValue.c_str());
+		m_pRootElement = m_xml.NewElement("server");
+		m_xml.InsertFirstChild(m_pRootElement);
 	}
-
-	Save();
+	this->loadDefaults();
+	this->save();
+	return true;
 }
 
-std::string ConfigParser::Get(std::string szName)
+void ConfigParser::loadDefault(const std::string& name, const std::string& value)
 {
-	XMLNode * pRootNode = m_pXML->GetRootNode();
+	if (!this->exists(name))
+		this->set(name, value);
+}
 
-	if (pRootNode)
+void ConfigParser::loadDefaults()
+{
+	this->loadDefault("name", FILE_SETTINGS_D_NAME);
+	this->loadDefault("address", FILE_SETTINGS_D_ADDRESS);
+	this->loadDefault("port", FILE_SETTINGS_D_PORT);
+	this->loadDefault("password", FILE_SETTINGS_D_PASSWORD);
+}
+
+bool ConfigParser::exists(const std::string& name)
+{
+	if (!m_pRootElement)
+		return false;
+	return (this->findNode(m_pRootElement, name.c_str()) != nullptr);
+}
+
+void ConfigParser::set(const std::string &name, const std::string& value)
+{
+	tinyxml2::XMLNode* rootNode = m_xml.RootElement();
+
+	if (rootNode != nullptr)
 	{
-		XMLNode * pSubNode = pRootNode->FindNode(szName.c_str());
+		tinyxml2::XMLNode* subNode = this->findNode(rootNode, name);
 
-		if (pSubNode && pSubNode->GetValue() != NULL)
+		if (subNode == nullptr)
 		{
-			return (pSubNode->GetValue());
+			subNode = m_xml.NewElement(name.c_str());
+			rootNode->InsertEndChild(subNode);
 		}
+
+		subNode->ToElement()->SetText(value.c_str());
 	}
-	return ("");
+
+	this->save();
 }
 
-bool			ConfigParser::Save(void)
+std::string ConfigParser::get(const std::string& name)
 {
-	if (m_pXML == false)
-		return (false);
+	tinyxml2::XMLNode* pRootNode = m_xml.RootElement();
 
-	return (m_pXML->Save());
+	if (pRootNode)
+	{
+		tinyxml2::XMLNode* pSubNode = this->findNode(pRootNode, name);
+
+		if (pSubNode != nullptr && pSubNode->ToElement() != nullptr && pSubNode->ToElement()->GetText() != nullptr)
+			return (pSubNode->ToElement()->GetText());
+	}
+
+	return "";
+}
+
+bool ConfigParser::save(void)
+{
+	return m_xml.SaveFile(m_sFileName.c_str()) == tinyxml2::XMLError::XML_SUCCESS;
+}
+
+tinyxml2::XMLNode* ConfigParser::findNode(tinyxml2::XMLNode* node, const std::string& name)
+{
+	if (node == nullptr)
+		return nullptr;
+	if (node->Value() == name)
+		return node;
+	for (auto currentNode = node->FirstChildElement(); currentNode != nullptr; currentNode = currentNode->NextSiblingElement())
+	{
+		if (currentNode->Value() == name)
+			return currentNode;
+		tinyxml2::XMLNode* ret = this->findNode(currentNode->FirstChildElement(), name);
+
+		if (ret != nullptr)
+			return ret;
+	}
+	return nullptr;
 }

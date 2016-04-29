@@ -8,7 +8,7 @@
 
 void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, eventReceiver *receiver, irr::SKeyMap *keyMap)
 {
-	device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
+	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
 	driver = device->getVideoDriver();
 	sceneManager = device->getSceneManager();
 	irr::scene::IMeshSceneNode* cube = sceneManager->addCubeSceneNode(10.0f, 0,	-1, irr::core::vector3df(0.0f, 0.0f, 20.0f));
@@ -30,8 +30,12 @@ void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&drive
 
 void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
 {
-	rp = static_cast<CEGUI::DefaultResourceProvider*>
-		(CEGUI::System::getSingleton().getResourceProvider());
+	rp = dynamic_cast<CEGUI::DefaultResourceProvider *>(CEGUI::System::getSingleton().getResourceProvider());
+	if (rp == nullptr)
+	{
+		std::cout << "Problem during ressource provider instanciation process..." << std::endl;
+		exit(0);
+	}
 	rp->setResourceGroupDirectory("schemes", "./datafiles/schemes/");
 	rp->setResourceGroupDirectory("imagesets", "./datafiles/imagesets/");
 	rp->setResourceGroupDirectory("fonts", "./datafiles/fonts/");
@@ -100,7 +104,7 @@ int main(void) {
 	{
 		if (device->isWindowActive()) //draw only if the window is active
 		{
-			driver->beginScene(true, true, irr::video::SColor(255, 150, 255, 255));
+			driver->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 			debugDisplayMousePos(device); //Display mouse position on instead of windows title for debug purpose

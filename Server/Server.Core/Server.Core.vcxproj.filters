@@ -48,15 +48,6 @@
     <ClInclude Include="..\..\Shared\Common.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\ExplicitSingleton.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="CMain.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\XML.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkModule.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
@@ -69,19 +60,19 @@
     <ClInclude Include="GeneralRPC.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="ServerCore.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Singleton.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CMain.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConfigParser.cpp">
       <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\XML.cpp">
-      <Filter>Source Files\Shared</Filter>
     </ClCompile>
     <ClCompile Include="NetworkModule.cpp">
       <Filter>Source Files\Network</Filter>
@@ -91,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="GeneralRPC.cpp">
       <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerCore.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
