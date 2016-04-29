@@ -1,60 +1,57 @@
-
 #include "PlayerRPC.h"
 
-bool	PlayerRPC::m_bRegistered = false;
+bool	PlayerRPC::m_isRegistered = false;
 
 /*
-A la connexion d'un player
-Ajoute le joueur au pool du serveur et envoie l'info aux autres clients
+** A la connexion d'un player
+** Ajoute le joueur au pool du serveur et envoie l'info aux autres clients
 */
-void PlayerConnect(RakNet::BitStream *pBitstream, RakNet::Packet *pPacket)
+static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
 	RakNet::RakString sName;
 	RakNet::RakString sSerial;
 
-	pBitstream->Read(sName);
-	pBitstream->Read(sSerial);
+	bitStream->Read(sName);
+	bitStream->Read(sSerial);
 
 	std::cout << "Received player name " << sName.C_String() << " Serial(" << sSerial.C_String() << ")" << std::endl;
 }
 
 /*
-A la déconnexion normale d'un player (Pas de crash)
-Retire le joueur du pool du serveur et envoie l'info aux autres clients
+** A la déconnexion normale d'un player (pas de crash)
+** Retire le joueur du pool du serveur et envoie l'info aux autres clients
 */
-void PlayerDisconnect(RakNet::BitStream *pBitstream, RakNet::Packet *pPacket)
+static void	playerDisconnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
 
 }
 
 /*
-Quand on reçoit les infos de synchronisation d'UN joueur
-Reçoit les infos, met à jour sur le serveur et envoie à tout le monde
+** Quand on reçoit les infos de synchronisation d'UN joueur
+** Reçoit les infos, met à jour sur le serveur et envoie à tout le monde
 */
-void PlayerSync(RakNet::BitStream *pBitstream, RakNet::Packet *pPacket)
+static void	playerSync(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
 
 }
 
-void	PlayerRPC::Register(RakNet::RPC4 * pRPC)
+
+void	PlayerRPC::registerRPC(RakNet::RPC4* rpc)
 {
-	if (m_bRegistered)
+	if (m_isRegistered)
 		return;
-
-	pRPC->RegisterFunction(RPC_CONNECT, PlayerConnect);
-	pRPC->RegisterFunction(RPC_DISCONNECT, PlayerDisconnect);
-	pRPC->RegisterFunction(RPC_SYNC, PlayerSync);
-
-	m_bRegistered = true;
+	rpc->RegisterFunction(RPC_CONNECT, &playerConnect);
+	rpc->RegisterFunction(RPC_DISCONNECT, &playerDisconnect);
+	rpc->RegisterFunction(RPC_SYNC, &playerSync);
+	m_isRegistered = true;
 }
 
-void	PlayerRPC::Unregister(RakNet::RPC4 * pRPC)
+void	PlayerRPC::unregisterRPC(RakNet::RPC4* rpc)
 {
-	if (!m_bRegistered)
+	if (!m_isRegistered)
 		return;
-
-	pRPC->UnregisterFunction(RPC_CONNECT);
-	pRPC->UnregisterFunction(RPC_DISCONNECT);
-	pRPC->UnregisterFunction(RPC_SYNC);
-	m_bRegistered = false;
+	rpc->UnregisterFunction(RPC_CONNECT);
+	rpc->UnregisterFunction(RPC_DISCONNECT);
+	rpc->UnregisterFunction(RPC_SYNC);
+	m_isRegistered = false;
 }

@@ -1,20 +1,17 @@
-
 #include "GeneralRPC.h"
 
-bool	GeneralRPC::m_bRegistered = false;
+bool	GeneralRPC::m_isRegistered = false;
 
-void	GeneralRPC::Register(RakNet::RPC4 * pRPC)
+void	GeneralRPC::registerRPC(RakNet::RPC4 * pRPC)
 {
-	if (m_bRegistered)
+	if (m_isRegistered)
 		return;
-
-	m_bRegistered = true;
+	m_isRegistered = true;
 }
 
-void	GeneralRPC::Unregister(RakNet::RPC4 * pRPC)
+void	GeneralRPC::unregisterRPC(RakNet::RPC4 * pRPC)
 {
-	if (!m_bRegistered)
+	if (!m_isRegistered)
 		return;
-
-	m_bRegistered = false;
+	m_isRegistered = false;
 }
