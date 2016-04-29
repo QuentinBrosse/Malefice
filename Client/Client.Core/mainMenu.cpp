@@ -1,6 +1,6 @@
-#include "mainMenu.h"
+#include "MainMenu.h"
 
-MainMenu::MainMenu(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device) : m_systemd(CEGUI::System::getSingleton()), m_keyMap(keyMap), m_sceneManager(sceneManager), m_device(device)
+MainMenu::MainMenu(irr::SKeyMap* keyMap, irr::scene::ISceneManager* sceneManager, irr::IrrlichtDevice* device) : m_systemd(CEGUI::System::getSingleton()), m_keyMap(keyMap), m_sceneManager(sceneManager), m_device(device)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
 	m_windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onQuitButtonClicked, this));

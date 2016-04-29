@@ -1,4 +1,4 @@
-#include "waitingRoom.h"
+#include "WaitingRoom.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)

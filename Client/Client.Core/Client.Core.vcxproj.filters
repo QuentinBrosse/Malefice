@@ -87,18 +87,6 @@
     <ClInclude Include="..\..\Shared\Position.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="mainMenu.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="eventReceiver.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="loadingWindows.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="waitingRoom.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Spell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +117,18 @@
     <ClInclude Include="..\..\Shared\WeaponManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EventReceiver.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingWindows.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitingRoom.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -137,23 +137,11 @@
     <ClCompile Include="..\..\Shared\AComponent.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="mainClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\Life.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Position.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="mainMenu.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="eventReceiver.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="waitingRoom.cpp">
-      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Spell.cpp">
       <Filter>Source Files</Filter>
@@ -185,8 +173,20 @@
     <ClCompile Include="..\..\Shared\WeaponManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="loadingWindows.cpp">
+    <ClCompile Include="WaitingRoom.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingWindows.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventReceiver.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

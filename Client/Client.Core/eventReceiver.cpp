@@ -1,8 +1,8 @@
-#include "eventReceiver.h"
+#include "EventReceiver.h"
 
 eventReceiver::eventReceiver()
 {
-	for (eventReceiver::keyStatesENUM &e : m_keyState)
+	for (eventReceiver::keyStatesENUM& e : m_keyState)
 	{
 		e = UP;
 	}
@@ -31,7 +31,7 @@ bool eventReceiver::OnEvent(const irr::SEvent& event)
 			break;
 		}
 	}
-	if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT && event.JoystickEvent.Joystick == 0)
+	if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT&& event.JoystickEvent.Joystick == 0)
 		m_joystickState = event.JoystickEvent;
 	if (event.EventType == irr::EET_KEY_INPUT_EVENT)
 	{
@@ -47,12 +47,12 @@ bool eventReceiver::OnEvent(const irr::SEvent& event)
 	return false;
 }
 
-const irr::SEvent::SJoystickEvent &eventReceiver::getJoystickState(void) const
+const irr::SEvent::SJoystickEvent& eventReceiver::getJoystickState(void) const
 {
 	return m_joystickState;
 }
 
-const eventReceiver::MouseState &eventReceiver::getMouseState(void) const
+const eventReceiver::MouseState& eventReceiver::getMouseState(void) const
 {
 	return m_state;
 }
