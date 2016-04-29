@@ -16,7 +16,7 @@ namespace ecs
 
 	Entity::~Entity()
 	{
-		for (auto component : m_mComponents)
+		for (auto component : m_components)
 		{
 			delete component.second;
 		}
@@ -24,14 +24,14 @@ namespace ecs
 
 	AComponent*& Entity::operator[](ComponentType type)
 	{
-		return m_mComponents[type];
+		return m_components[type];
 	}
 
 	bool Entity::has(ComponentType type)
 	{
 		try
 		{
-			m_mComponents.at(type);
+			m_components.at(type);
 			return true;
 		}
 		catch (const std::exception&)
@@ -43,7 +43,7 @@ namespace ecs
 	void Entity::dump() const
 	{
 		std::cout << "{ Entity " << ID << std::endl;
-		for (auto component : m_mComponents)
+		for (auto component : m_components)
 		{
 			component.second->dump();
 		}

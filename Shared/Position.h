@@ -33,8 +33,8 @@ namespace ecs
 		void dump() const;
 
 	private:
-		float m_iX;
-		float m_iY;
-		float m_iZ;
+		float m_x;
+		float m_y;
+		float m_z;
 	};
 }

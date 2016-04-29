@@ -108,6 +108,15 @@
     <ClInclude Include="..\..\Shared\Team.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Spell.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\SpellManager.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -150,6 +159,15 @@
       <Filter>Source Files\Shared\ECS\Factory</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Team.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Spell.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\SpellManager.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
