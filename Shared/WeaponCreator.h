@@ -5,12 +5,12 @@
 class WeaponCreator
 {
 public:
-	WeaponCreator(const std::string& sXMLFilename);
+	WeaponCreator(const std::string& XMLFilename);
 	~WeaponCreator() = default;
-	ecs::Weapon		create(const ecs::Weapon::WeaponType eWeaponType);
+	ecs::Weapon		create(const ecs::Weapon::WeaponType weaponType);
 	void			loadWeapons();
 
 private:
-	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	m_lWeapons;
+	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	m_weapons;
 	const std::string								XML_FILENAME;
 };

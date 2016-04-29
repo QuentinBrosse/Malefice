@@ -11,5 +11,7 @@ namespace ecs
 		COMPONENT_TEAM,
 		WEAPON,
 		WEAPON_MANAGER,
+		SPELL,
+		SPELL_MANAGER,
 	} ComponentType;
 }

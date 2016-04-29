@@ -2,53 +2,53 @@
 
 namespace ecs
 {
-	Life::Life(int iMaxLife) : AComponent("Life", LIFE),
-		m_iCurrentLife(iMaxLife), MAX_LIFE(iMaxLife)
+	Life::Life(int maxLife) : AComponent("Life", LIFE),
+		m_currentLife(maxLife), MAX_LIFE(maxLife)
 	{
 
 	}
 
 	int Life::get() const
 	{
-		return m_iCurrentLife;
+		return m_currentLife;
 	}
 
-	void Life::set(int iLife)
+	void Life::set(int life)
 	{
-		if (iLife < 0)
+		if (life < 0)
 		{
 			// Error can't have negative life.
 		}
-		if (iLife > MAX_LIFE)
+		if (life > MAX_LIFE)
 		{
 			// Set to max Life ? Or throw exception ?
 		}
-		m_iCurrentLife = iLife;
-		if (m_iCurrentLife == 0)
+		m_currentLife = life;
+		if (m_currentLife == 0)
 		{
 			onDeath();
 		}
 	}
 
-	void Life::takeDamage(int iDamage)
+	void Life::takeDamage(int damage)
 	{
-		if (iDamage < 0)
+		if (damage < 0)
 		{
 			// Heal ? Or throw exception ?
 		}
-		m_iCurrentLife -= iDamage;
-		if (m_iCurrentLife <= 0)
+		m_currentLife -= damage;
+		if (m_currentLife <= 0)
 		{
-			m_iCurrentLife = 0;
+			m_currentLife = 0;
 			onDeath();
 		}
 	}
 
-	void Life::restore(int iQuantity)
+	void Life::restore(int quantity)
 	{
-		m_iCurrentLife += iQuantity;
-		if (m_iCurrentLife > MAX_LIFE)
-			m_iCurrentLife = MAX_LIFE;
+		m_currentLife += quantity;
+		if (m_currentLife > MAX_LIFE)
+			m_currentLife = MAX_LIFE;
 	}
 
 	void Life::onDeath()
@@ -58,6 +58,6 @@ namespace ecs
 
 	void Life::dump() const
 	{
-		std::cout << "[Life " << m_iCurrentLife << "/" << MAX_LIFE<< "]" << std::endl;
+		std::cout << "[Life " << m_currentLife << "/" << MAX_LIFE<< "]" << std::endl;
 	}
 }

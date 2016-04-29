@@ -12,9 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\Spell.h" />
+    <ClInclude Include="..\..\Shared\SpellManager.h" />
     <ClInclude Include="..\..\Shared\NetworkID.h" />
     <ClInclude Include="..\..\Shared\ObjectFactory.h" />
     <ClInclude Include="..\..\Shared\PlayerFactory.h" />
+    <ClInclude Include="..\..\Shared\PlayerManager.h" />
     <ClInclude Include="..\..\Shared\Team.h" />
     <ClInclude Include="..\..\Shared\Weapon.h" />
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
@@ -29,9 +32,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\Spell.cpp" />
+    <ClCompile Include="..\..\Shared\SpellManager.cpp" />
     <ClCompile Include="..\..\Shared\NetworkID.cpp" />
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
     <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp" />
     <ClCompile Include="..\..\Shared\Team.cpp" />
     <ClCompile Include="..\..\Shared\Weapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />

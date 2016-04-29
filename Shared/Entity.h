@@ -10,7 +10,7 @@ namespace ecs
 	public:
 		const int								ID;
 	private:
-		std::map<ComponentType, AComponent*>	m_mComponents;
+		std::map<ComponentType, AComponent*>	m_components;
 
 	public:
 		Entity();
@@ -19,7 +19,7 @@ namespace ecs
 		Entity(Entity &&) = default;
 		
 		Entity& operator=(const Entity&) = delete;
-		Entity& operator=(Entity &&) = default;
+		Entity& operator=(Entity&&) = default;
 
 		AComponent*&	operator[](ComponentType type);
 		bool			has(ComponentType type);

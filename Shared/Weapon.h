@@ -23,15 +23,16 @@ namespace ecs
 
 	public:
 		Weapon();
-		Weapon(const std::string& sName, int iMaxAmmunition, const int iMaxAmmunitionExplosive, const int iDamage, const int iDamageExplosive, const WeaponType eWeaponType, const bool bIsGun);
-		Weapon(const Weapon& cCpy);
+		Weapon(const std::string& name, int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const WeaponType weaponType, const bool isGun);
+		Weapon(const Weapon& cpy);
 		~Weapon() = default;
-		Weapon&				operator=(const Weapon&);
+		Weapon&				operator=(const Weapon& other);
 		void				dump() const;
 		int					getDamage() const;
 		int					getDamageExplosive() const;
 		int					getAmmunition() const;
 		int					getAmmunitionExplosive() const;
+		const WeaponType	getWeaponType() const;
 		const bool			isGun() const;
 		const std::string&	getName() const;
 	private:
@@ -42,8 +43,8 @@ namespace ecs
 		const int			DAMAGE_EXPLOSIVE;
 		const WeaponType	WEAPON_TYPE;
 		const bool			IS_GUN;
-		int					m_iCurrentAmmunition;
-		int					m_iCurrentAmmunitionExplosive;
+		int					m_currentAmmunition;
+		int					m_currentAmmunitionExplosive;
 	};
 
 
