@@ -2,41 +2,42 @@
 
 namespace ecs
 {
-	WeaponManager::WeaponManager(weapon::AWeapon* defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
+	WeaponManager::WeaponManager(const Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
 	{
-		m_vWeapons.push_back(defaultWeapon);
-		m_iCurrentWeapon = 0;
+		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon> (defaultWeapon.getWeaponType(), defaultWeapon));
+		m_currentWeapon = m_weapons.begin();
 	}
 
-	void	WeaponManager::addWeapon(weapon::AWeapon* newWeapon)
+	void	WeaponManager::addWeapon(const Weapon& newWeapon)
 	{
-		m_vWeapons.push_back(newWeapon);
+		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
+			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon> (newWeapon.getWeaponType(), newWeapon));
 	}
 
+	
 	void WeaponManager::changeToNextWeapon()
 	{
-		m_iCurrentWeapon++;
-		if (m_iCurrentWeapon == m_vWeapons.size())
-			m_iCurrentWeapon = 0;
+		++m_currentWeapon;
+		if (m_currentWeapon == m_weapons.end())
+			m_currentWeapon = m_weapons.begin();
 	}
 
 	void WeaponManager::changeToPrecWeapon()
 	{
-		m_iCurrentWeapon--;
-		if (m_iCurrentWeapon == -1)
-			m_iCurrentWeapon = m_vWeapons.size() - 1;
+		if (m_currentWeapon == m_weapons.begin())
+			m_currentWeapon = --(m_weapons.end());
+		else
+			--m_currentWeapon;
 	}
 
-	weapon::AWeapon* WeaponManager::getCurrentWeapon() const
+	Weapon&	WeaponManager::getCurrentWeapon() const
 	{
-		return m_vWeapons[m_iCurrentWeapon];
+		return m_currentWeapon->second;
 	}
 
 	void WeaponManager::dump() const
 	{
-		for (auto it = m_vWeapons.begin(); it != m_vWeapons.end(); --it)
-		{
-			(*it)->dump();
-		}
+		for (auto& weapon : m_weapons)
+			weapon.second.dump();
 	}
 };

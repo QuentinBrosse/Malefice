@@ -7,12 +7,13 @@ namespace ecs
 	class Life: public AComponent
 	{
 	public:
-		Life(int max_life);
+		Life(int maxLife);
 		~Life() = default;
 
-		int get() const;
-		void set(int life);
-		void takeDamage(int damage);
+		int		get() const;
+		void	set(int life);
+		void	takeDamage(int damage);
+		void	restore(int quantity);
 
 		virtual void onDeath();
 		// why virtual ?-> 
@@ -28,9 +29,9 @@ namespace ecs
 		void dump() const;
 
 	private:
-		int m_iCurrent;
+		int m_currentLife;
 	public:
-		const int MAX;
+		const int MAX_LIFE;
 	};
 
 }

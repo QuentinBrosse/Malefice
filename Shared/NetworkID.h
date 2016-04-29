@@ -18,7 +18,7 @@ namespace ecs
 	public:
 		const networkID ID;
 	private:
-		bool m_bIsCurrentPlayer;
+		bool m_isCurrentPlayer;
 	};
 
 }

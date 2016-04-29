@@ -1,31 +1,31 @@
 #pragma once
 
-#include "../../Shared/StdInc.h"
+#include "StdInc.h"
 
 #include <RakPeerInterface.h>
 #include <RPC4Plugin.h>
 #include <MessageIdentifiers.h>
 
-#include "../../Shared/NetworkRPC.h"
-
+#include "NetworkRPC.h"
 #include "GeneralRPC.h"
 #include "PlayerRPC.h"
 
 class NetworkModule
 {
-private:
-	RakNet::RakPeerInterface	*m_pRakPeer;
-	RakNet::RPC4				*m_pRPC;
-
 public:
 	NetworkModule();
 	~NetworkModule();
 
-	bool						Init(std::string, std::string, std::string);
-	void						Pulse();
+	bool	init(const std::string& address, short port, const std::string& password);
+	void	pulse();
 
-	void						CallRPC(std::string, RakNet::BitStream *, PacketPriority, PacketReliability, int, bool);
+	void	callRPC(const std::string& rpc, RakNet::BitStream *bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast);
 
-	RakNet::RakPeerInterface	*GetRakPeer(void) { return m_pRakPeer; }
-	RakNet::RPC4				*GetRPC(void) { return m_pRPC; }
+	RakNet::RakPeerInterface*	getRakPeer();
+	RakNet::RPC4*				getRPC();
+
+
+private:
+	RakNet::RakPeerInterface*	m_rakPeer;
+	RakNet::RPC4*				m_rpc;
 };

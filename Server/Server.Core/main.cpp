@@ -1,24 +1,17 @@
-#include "CMain.h"
+#include "ServerCore.h"
 
-CMain	*pMain = NULL;
-
-int main(int argc, char * argv[])
+int main(int argc, char* argv[])
 {
-	pMain = new CMain();
+	ServerCore& serverCore = ServerCore::getInstance();
 
-	if (pMain->Init() == false)
+	if (serverCore.init() == false)
 	{
-#ifdef _WIN32
-		TerminateProcess(GetCurrentProcess(), 0);
-#else
-		_exit(42);
-#endif
+		std::cerr << "Server initialization failed. Exiting." << std::endl;
+		return EXIT_FAILURE;
 	}
-
-	while (pMain->IsActive())
+	while (serverCore.isActive())
 	{
-		pMain->Pulse();
+		serverCore.pulse();
 	}
-
-	return (0);
+	return EXIT_SUCCESS;
 }

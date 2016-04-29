@@ -1,86 +1,84 @@
-
 #include "NetworkModule.h"
 
-NetworkModule::NetworkModule()
+NetworkModule::NetworkModule() :
+	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance())
 {
-	m_pRakPeer = RakNet::RakPeerInterface::GetInstance();
-
-	m_pRPC = RakNet::RPC4::GetInstance();
-
-	GeneralRPC::Register(m_pRPC);
-	PlayerRPC::Register(m_pRPC);
-
-	m_pRakPeer->AttachPlugin(m_pRPC);
+	GeneralRPC::registerRPC(m_rpc);
+	PlayerRPC::registerRPC(m_rpc);
+	m_rakPeer->AttachPlugin(m_rpc);
 }
 
 NetworkModule::~NetworkModule()
 {
-	m_pRakPeer->Shutdown(500);
+	m_rakPeer->Shutdown(500);
 
-	GeneralRPC::Unregister(m_pRPC);
-	PlayerRPC::Unregister(m_pRPC);
+	GeneralRPC::unregisterRPC(m_rpc);
+	PlayerRPC::unregisterRPC(m_rpc);
 
-	m_pRakPeer->DetachPlugin(m_pRPC);
+	m_rakPeer->DetachPlugin(m_rpc);
 
-	RakNet::RPC4::DestroyInstance(m_pRPC);
+	RakNet::RPC4::DestroyInstance(m_rpc);
 
-	RakNet::RakPeerInterface::DestroyInstance(m_pRakPeer);
+	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
-bool	NetworkModule::Init(std::string address, std::string port, std::string password)
+bool	NetworkModule::init(const std::string& address, short port, const std::string& password)
 {
-	RakNet::SocketDescriptor descriptor(std::stoi(port), port.c_str());
+	RakNet::SocketDescriptor descriptor(port, address.c_str());
 
-	if (m_pRakPeer->Startup(MAX_PLAYERS, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
+	if (m_rakPeer->Startup(MAX_PLAYERS, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
 	{
-		m_pRakPeer->SetMaximumIncomingConnections(MAX_PLAYERS);
-
-		m_pRakPeer->SetTimeoutTime(10000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
+		m_rakPeer->SetMaximumIncomingConnections(MAX_PLAYERS);
+		m_rakPeer->SetTimeoutTime(10000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 
 		if (password.length() > 0)
-		{
-			m_pRakPeer->SetIncomingPassword(password.c_str(), password.length());
-		}
+			m_rakPeer->SetIncomingPassword(password.c_str(), password.length());
 	}
 	else
-		return (false);
-
-	return (true);
+	{
+		return false;
+	}
+	return true;
 }
 
-void	NetworkModule::Pulse()
+void	NetworkModule::pulse()
 {
-	RakNet::Packet *pPacket = NULL;
+	RakNet::Packet *packet = nullptr;
 
-	while (pPacket = m_pRakPeer->Receive())
+	while (packet = m_rakPeer->Receive())
 	{
-		switch (pPacket->data[0])
+		switch (packet->data[0])
 		{
 			case ID_NEW_INCOMING_CONNECTION:
-			{
-				std::cout << "[network] : Incoming connection from " << pPacket->systemAddress.ToString(true, ':') << std::endl;
+				std::cout << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':') << std::endl;
 				break;
-			}
-			
 			case ID_DISCONNECTION_NOTIFICATION:
-			{
-				std::cout << "[network] : PlayerId " << pPacket->systemAddress.systemIndex << " disconnected" << std::endl;
+				std::cout << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected" << std::endl;
 				break;
-			}
-
 			case ID_CONNECTION_LOST:
-			{
-				std::cout << "[network] : PlayerId" << pPacket->systemAddress.systemIndex << " lost" << std::endl;
+				std::cout << "[network] : PlayerId" << packet->systemAddress.systemIndex << " lost" << std::endl;
 				break;
-			}
 		}
-		
-		m_pRakPeer->DeallocatePacket(pPacket);
+		m_rakPeer->DeallocatePacket(packet);
 	}
 }
 
-void	NetworkModule::CallRPC(std::string RPC, RakNet::BitStream *pBitstream, PacketPriority priority, PacketReliability reliatbility, int playerId, bool broadcast)
+void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream *bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
 {
-	if (m_pRPC)
-		m_pRPC->Call(RPC.c_str(), pBitstream, priority, reliatbility, 0, (playerId != INVALID_PLAYER_ID ? m_pRakPeer->GetSystemAddressFromIndex(playerId) : RakNet::UNASSIGNED_SYSTEM_ADDRESS), broadcast);
+	RakNet::SystemAddress	rpcAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
+
+	if (playerId != INVALID_PLAYER_ID)
+		rpcAddress = m_rakPeer->GetSystemAddressFromIndex(playerId);
+	if (m_rpc != nullptr)
+		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, rpcAddress, broadcast);
+}
+
+RakNet::RakPeerInterface*	NetworkModule::getRakPeer()
+{
+	return m_rakPeer;
+}
+
+RakNet::RPC4*	NetworkModule::getRPC()
+{
+	return m_rpc;
 }

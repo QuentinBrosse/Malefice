@@ -3,22 +3,22 @@
 namespace ecs
 {
 	NetworkID::NetworkID(networkID id) : AComponent("NetworkID", ComponentType::NETWORK_ID),
-		ID(id), m_bIsCurrentPlayer(false)
+		ID(id), m_isCurrentPlayer(false)
 	{
 
 	}
 
 	void NetworkID::dump() const
 	{
-		std::cout << "[NetworkID " << ID << " " << m_bIsCurrentPlayer << "]" << std::endl;
+		std::cout << "[NetworkID " << ID << " " << m_isCurrentPlayer << "]" << std::endl;
 	}
 
 	void NetworkID::setCurrentPlayer(bool value)
 	{
-		m_bIsCurrentPlayer = value;
+		m_isCurrentPlayer = value;
 	}
 	bool NetworkID::isCurrentPlayer() const
 	{
-		return m_bIsCurrentPlayer;
+		return m_isCurrentPlayer;
 	}
 }

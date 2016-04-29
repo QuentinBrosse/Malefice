@@ -17,9 +17,6 @@
 // Type redefinition
 typedef unsigned int networkID;
 
-// Singleton
-#include "ExplicitSingleton.h"
-
 // OS Dependant includes
 #ifdef _WIN32
 #include	"../Libraries/RakNet/Source/WindowsIncludes.h"

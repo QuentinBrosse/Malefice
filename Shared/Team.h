@@ -7,7 +7,7 @@ namespace ecs
 	class Team : public AComponent
 	{
 	public:
-		Team(int team);
+		Team(int teamNumber);
 		~Team();
 
 	public:
@@ -24,10 +24,10 @@ namespace ecs
 		void addKill();
 
 	public:
-		const int TEAM;
+		const int TEAM_NUMBER;
 
 	private:
-		int m_iKill;
-		int m_iDeath;
+		int m_kill;
+		int m_death;
 	};
 }
