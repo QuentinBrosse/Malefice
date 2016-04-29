@@ -9,6 +9,7 @@ namespace ecs
 		LIFE,
 		POSITION,
 		COMPONENT_TEAM,
+		WEAPON,
 		WEAPON_MANAGER,
 	} ComponentType;
 }

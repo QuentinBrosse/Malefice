@@ -1,22 +1,21 @@
 #pragma once
 
-#include "AComponent.h"
-#include "AWeapon.h"
+#include "Weapon.h"
 
 namespace ecs
 {
 	class WeaponManager : public AComponent
 	{
 	public:
-		WeaponManager(weapon::AWeapon *);
+		WeaponManager(const Weapon &);
 		~WeaponManager() = default;
-		void			addWeapon(weapon::AWeapon * newWeapon);
+		void			addWeapon(const Weapon &newWeapon);
 		void			changeToNextWeapon();
 		void			changeToPrecWeapon();
-		weapon::AWeapon	*getCurrentWeapon() const;
+		const Weapon&	getCurrentWeapon() const;
 		void			dump() const;
 	private:
-		std::vector<weapon::AWeapon*>	m_vWeapons;
-		int								m_iCurrentWeapon;
+		std::vector<Weapon>		m_vWeapons;
+		int						m_iCurrentWeapon;
 	};
 }

@@ -2,13 +2,13 @@
 
 namespace ecs
 {
-	WeaponManager::WeaponManager(weapon::AWeapon* defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
+	WeaponManager::WeaponManager(const Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
 	{
 		m_vWeapons.push_back(defaultWeapon);
 		m_iCurrentWeapon = 0;
 	}
 
-	void	WeaponManager::addWeapon(weapon::AWeapon* newWeapon)
+	void	WeaponManager::addWeapon(const Weapon& newWeapon)
 	{
 		m_vWeapons.push_back(newWeapon);
 	}
@@ -27,7 +27,7 @@ namespace ecs
 			m_iCurrentWeapon = m_vWeapons.size() - 1;
 	}
 
-	weapon::AWeapon* WeaponManager::getCurrentWeapon() const
+	const Weapon&	WeaponManager::getCurrentWeapon() const
 	{
 		return m_vWeapons[m_iCurrentWeapon];
 	}
@@ -36,7 +36,7 @@ namespace ecs
 	{
 		for (auto it = m_vWeapons.begin(); it != m_vWeapons.end(); --it)
 		{
-			(*it)->dump();
+			(*it).dump();
 		}
 	}
 };

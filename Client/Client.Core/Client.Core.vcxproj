@@ -12,24 +12,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
-    <ClInclude Include="..\..\Shared\AWeapon.h" />
+    <ClInclude Include="..\..\Shared\Weapon.h" />
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Entity.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\PlayerID.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
-    <ClInclude Include="..\..\Shared\SniperRifle.h" />
     <ClInclude Include="..\..\Shared\StdInc.h" />
+    <ClInclude Include="..\..\Shared\WeaponManager.h" />
     <ClInclude Include="eventReceiver.h" />
     <ClInclude Include="mainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
-    <ClCompile Include="..\..\Shared\AWeapon.cpp" />
+    <ClCompile Include="..\..\Shared\Weapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />
     <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\Position.cpp" />
-    <ClCompile Include="..\..\Shared\SniperRifle.cpp" />
+    <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
     <ClCompile Include="mainClient.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="eventReceiver.cpp" />
