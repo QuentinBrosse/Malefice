@@ -1,8 +1,19 @@
 #pragma once
 
 #include "Entity.h"
+#include "CollectionComponent.h"
+#include "Position.h"
 
 namespace factory
 {
-	ecs::Entity& object(ecs::Entity& entity);
+	class ObjectFactory
+	{
+	public:
+		ObjectFactory() = delete;
+		~ObjectFactory() = delete;
+
+		static ecs::Entity createObject(float x, float y, float z);
+	private:
+
+	};
 }

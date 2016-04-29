@@ -14,6 +14,13 @@ namespace ecs
 
 	}
 
+	Entity::Entity(const Entity & cpy) :
+		ID(cpy.ID)
+	{
+		for (auto component : cpy.m_components)
+			m_components.insert(component);
+	}
+
 	Entity::~Entity()
 	{
 		for (auto component : m_components)

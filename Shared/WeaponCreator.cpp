@@ -3,7 +3,6 @@
 WeaponCreator::WeaponCreator(const std::string& XMLFilename):
 	XML_FILENAME(XMLFilename)
 {
-
 }
 
 ecs::Weapon WeaponCreator::create(const ecs::Weapon::WeaponType weaponType)

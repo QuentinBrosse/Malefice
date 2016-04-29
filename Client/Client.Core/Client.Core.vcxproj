@@ -12,7 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\ClientCore.h" />
+    <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\Spell.h" />
+    <ClInclude Include="..\..\Shared\SpellCreator.h" />
     <ClInclude Include="..\..\Shared\SpellManager.h" />
     <ClInclude Include="..\..\Shared\NetworkID.h" />
     <ClInclude Include="..\..\Shared\ObjectFactory.h" />
@@ -32,7 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\ClientCore.cpp" />
+    <ClCompile Include="..\..\Shared\Movement.cpp" />
     <ClCompile Include="..\..\Shared\Spell.cpp" />
+    <ClCompile Include="..\..\Shared\SpellCreator.cpp" />
     <ClCompile Include="..\..\Shared\SpellManager.cpp" />
     <ClCompile Include="..\..\Shared\NetworkID.cpp" />
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />

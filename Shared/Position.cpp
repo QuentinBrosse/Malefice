@@ -95,6 +95,16 @@ namespace ecs
 		return Position(m_x - pos.m_x, m_y - pos.m_y, m_z - pos.m_z);
 	}
 
+	bool Position::operator==(const Position& pos) const
+	{
+		return m_x == pos.m_x && m_y == pos.m_y && m_z == pos.m_z;
+	}
+
+	bool Position::operator!=(const Position& pos) const
+	{
+		return m_x != pos.m_x || m_y != pos.m_y || m_z != pos.m_z;
+	}
+
 	Position& Position::operator+=(const Position& pos)
 	{
 		m_x += pos.m_x;

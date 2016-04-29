@@ -93,9 +93,6 @@
     <ClInclude Include="..\..\Shared\WeaponManager.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponCreator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\NetworkID.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
@@ -108,14 +105,26 @@
     <ClInclude Include="..\..\Shared\Team.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Spell.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\SpellManager.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponCreator.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\PlayerManager.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\SpellCreator.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Movement.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\ClientCore.h">
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,17 +146,11 @@
     <ClCompile Include="mainMenu.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="eventReceiver.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\Weapon.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\WeaponManager.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\WeaponCreator.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\NetworkID.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
@@ -161,14 +164,29 @@
     <ClCompile Include="..\..\Shared\Team.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\Spell.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\SpellManager.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\WeaponCreator.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\SpellCreator.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\PlayerManager.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="eventReceiver.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Movement.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ClientCore.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

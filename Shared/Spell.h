@@ -19,7 +19,7 @@ namespace ecs
 		} SpellType;
 
 	public:
-		Spell() = default;
+		Spell();
 		Spell(const SpellType spellType);
 		Spell(const Spell& cpy);
 		~Spell() = default;

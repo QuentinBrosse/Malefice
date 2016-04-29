@@ -2,6 +2,11 @@
 
 namespace ecs
 {
+	Spell::Spell() : AComponent("Spell", SPELL),
+		SPELL_TYPE(Spell::NOTHING)
+	{
+
+	}
 
 	Spell::Spell(const Spell::SpellType spellType) : AComponent("Spell", SPELL),
 		SPELL_TYPE(spellType)
