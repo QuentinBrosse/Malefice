@@ -1,15 +1,17 @@
 #include "ServerCore.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char* argv[])
 {
 	ServerCore& serverCore = ServerCore::getInstance();
 
-	if (serverCore.Init() == false)
-		return EXIT_FAILURE;
-
-	while (serverCore.IsActive())
+	if (serverCore.init() == false)
 	{
-		serverCore.Pulse();
+		std::cerr << "Server initialization failed. Exiting." << std::endl;
+		return EXIT_FAILURE;
+	}
+	while (serverCore.isActive())
+	{
+		serverCore.pulse();
 	}
 	return EXIT_SUCCESS;
 }

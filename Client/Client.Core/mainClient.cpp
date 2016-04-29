@@ -1,12 +1,14 @@
 #include <iostream>
 
-#include "mainMenu.h"
-#include "eventReceiver.h"
+#include "MainMenu.h"
+#include "EventReceiver.h"
+#include "LoadingWindows.h"
+#include "WaitingRoom.h"
 
-#define WIN_SIZE_X 800
-#define WIN_SIZE_Y 600
+#define WIN_SIZE_X 1280
+#define WIN_SIZE_Y 720
 
-void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&driver, irr::scene::ISceneManager *&sceneManager, eventReceiver *receiver, irr::SKeyMap *keyMap)
+void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, eventReceiver* receiver, irr::SKeyMap* keyMap)
 {
 	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
 	driver = device->getVideoDriver();
@@ -28,7 +30,7 @@ void initIrrlicht(irr::IrrlichtDevice *&device, irr::video::IVideoDriver *&drive
 	sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
 }
 
-void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
+void initCEGUI(CEGUI::DefaultResourceProvider*& rp, CEGUI::XMLParser*& parser)
 {
 	rp = dynamic_cast<CEGUI::DefaultResourceProvider *>(CEGUI::System::getSingleton().getResourceProvider());
 	if (rp == nullptr)
@@ -56,7 +58,7 @@ void initCEGUI(CEGUI::DefaultResourceProvider *&rp, CEGUI::XMLParser *&parser)
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 }
 
-void debugDisplayMousePos(irr::IrrlichtDevice *device)
+void debugDisplayMousePos(irr::IrrlichtDevice* device)
 {
 	std::wstring text(L"Irrlicht - cursor position = X->");
 	text += std::to_wstring(device->getCursorControl()->getPosition().X);
@@ -65,7 +67,7 @@ void debugDisplayMousePos(irr::IrrlichtDevice *device)
 	device->setWindowCaption(text.c_str());
 }
 
-void ceguiEventInjector(CEGUI::System &systemd, eventReceiver &receiver, irr::IrrlichtDevice *device)
+void ceguiEventInjector(CEGUI::System& systemd, eventReceiver& receiver, irr::IrrlichtDevice* device)
 {
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
 	systemd.getDefaultGUIContext().injectMouseButtonClick(CEGUI::MouseButton::LeftButton);
@@ -79,15 +81,15 @@ int main(void) {
 	//Init Irrlicht Engine
 	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
-	irr::video::IVideoDriver *driver;
-	irr::scene::ISceneManager *sceneManager;
+	irr::video::IVideoDriver* driver;
+	irr::scene::ISceneManager* sceneManager;
 	eventReceiver receiver;
 	initIrrlicht(device, driver, sceneManager, &receiver, keyMap);
 
 	//Hook Irrlicht renderer and Init and configure CEGUI
-	CEGUI::IrrlichtRenderer &renderer = CEGUI::IrrlichtRenderer::create(*device);
-	CEGUI::System &system = CEGUI::System::create(renderer);
-	CEGUI::XMLParser *parser;
+	CEGUI::IrrlichtRenderer& renderer = CEGUI::IrrlichtRenderer::create(*device);
+	CEGUI::System& system = CEGUI::System::create(renderer);
+	CEGUI::XMLParser* parser;
 	CEGUI::DefaultResourceProvider* rp;
 	initCEGUI(rp, parser);
 
@@ -98,12 +100,36 @@ int main(void) {
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
 
-	mainMenu menu(keyMap, sceneManager, device);
+	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
+
+	WaitingRoom salon(keyMap, sceneManager, device);
+	salon.display();
+
+	LoadingWindows loading(keyMap, sceneManager, device);
+	loading.display();
+	loading.setProgress(20);
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Another test succesfull !"));
+	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']And another one !"));
+	loading.listAddText(std::string("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !"));
+	loading.listAddText("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !");
+	loading.hide();
+
+	salon.addRightTeamMember("Brendan");
+	salon.addRightTeamMember("Guillaume");
+	salon.addRightTeamMember("OKLM man");
+	salon.addRightTeamMember("SUPER man");
+
+	salon.addLeftTeamMember("Super Méchant");
+	salon.addLeftTeamMember("Big BOSS");
+	salon.addLeftTeamMember("Solid fail");
+
 	while (device->run())
 	{
 		if (device->isWindowActive()) //draw only if the window is active
 		{
+			salon.refreshTime();
 			driver->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui

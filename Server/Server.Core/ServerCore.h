@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../../Shared/StdInc.h"
-
+#include "StdInc.h"
 #include "ConfigParser.h"
 #include "NetworkModule.h"
 #include "Singleton.h"
@@ -11,25 +10,27 @@ class ServerCore : public Singleton<ServerCore>
 	friend class Singleton<ServerCore>;
 
 public:
-	bool			Init(void);
-	void			Pulse(void);
+	bool	init();
+	void	pulse();
 
-	bool			IsActive(void) { return m_bActive; }
-	void			SetActive(bool active) { m_bActive = active; }
+	bool			isActive()			const;
+	NetworkModule*	getNetworkModule()	const;
 
-	NetworkModule	*GetNetworkModule(void) { return m_pNModule;  }
+	void	setIsActive(bool isActive);
+
 
 protected:
 	ServerCore();
 	~ServerCore() = default;
 
-private:
-	std::string		m_sName;
-	std::string		m_sPort;
-	std::string		m_sPassword;
-	std::string		m_sAddress;
-	bool			m_bActive;
 
-	ConfigParser	m_cConfigParser;
-	NetworkModule	*m_pNModule;
+private:
+	std::string	m_name;
+	std::string	m_password;
+	std::string	m_address;
+	short		m_port;
+	bool		m_isActive;
+
+	ConfigParser	m_configParser;
+	NetworkModule	*m_networkModule;
 };

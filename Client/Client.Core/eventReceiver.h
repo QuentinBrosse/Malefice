@@ -20,8 +20,8 @@ public:
 
 public:
 	virtual bool OnEvent(const irr::SEvent& event); //Irrlicht callback norme exception here
-	const irr::SEvent::SJoystickEvent & getJoystickState(void) const;
-	const MouseState &getMouseState(void) const;
+	const irr::SEvent::SJoystickEvent& getJoystickState(void) const;
+	const MouseState& getMouseState(void) const;
 	eventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
 	eventReceiver();
 

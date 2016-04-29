@@ -1,16 +1,18 @@
 #pragma once
 
+#include "StdInc.h"
+
 #include <RPC4Plugin.h>
 
-#include "../../Shared/NetworkRPC.h"
-#include "../../Shared/StdInc.h"
+#include "NetworkRPC.h"
 
 class GeneralRPC
 {
-private:
-	static bool		m_bRegistered;
-
 public:
-	static void		Register(RakNet::RPC4 * pRPC);
-	static void		Unregister(RakNet::RPC4 * pRPC);
+	static void	registerRPC(RakNet::RPC4* rpc);
+	static void	unregisterRPC(RakNet::RPC4* rpc);
+
+
+private:
+	static bool	m_isRegistered;
 };

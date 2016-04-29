@@ -1,65 +1,61 @@
-
 #include "ServerCore.h"
 
 ServerCore::ServerCore() :
-	m_sName(""),
-	m_sPort(""),
-	m_sPassword(""),
-	m_bActive(true),
-	m_cConfigParser(FILE_SETTINGS)
+	m_name(""), m_password(""), m_address(""), m_port(0), m_isActive(true), m_configParser(FILE_SETTINGS), m_networkModule(nullptr)
 {
 }
 
-/*
-Init of RakNet and other libraries
-Return false if fail
-*/
-bool	ServerCore::Init(void)
+bool	ServerCore::init(void)
 {
-	if (m_cConfigParser.init() == false)
-		return (false);
-
-	this->m_sName = m_cConfigParser.get("name");
-	this->m_sPort = m_cConfigParser.get("port");
-	this->m_sAddress = m_cConfigParser.get("address");
-	this->m_sPassword = m_cConfigParser.get("password");
-
-	if (this->m_sName.length() <= 0)
+	if (m_configParser.init() == false)
 		return false;
-
-	if (this->m_sPort.length() <= 0)
+	m_name = m_configParser.get("name");
+	m_password = m_configParser.get("password");
+	m_address = m_configParser.get("address");
+	m_port = std::stoi(m_configParser.get("port"));
+	if (this->m_name.length() == 0 || m_address.length() == 0 || m_port == 0 || m_port > 65535)
 		return false;
-
-	/* Network init */
-	m_pNModule = new NetworkModule;
-	if (m_pNModule->Init(this->m_sPort, this->m_sAddress, this->m_sPassword) == false)
+	m_networkModule = new NetworkModule();
+	if (m_networkModule->init(m_address, m_port, m_password) == false)
 		std::cerr << "Failed to start RakNet" << std::endl;
 
-	/* Server Title */
 	std::string title = std::string(GAME_NAME).append(" v").append(GAME_VERSION);
 
 #ifdef WIN32
 	SetConsoleTitle(title.c_str());
 #endif
 
-	/* Finished init, dump informations */
 	std::cout << "==============================================================" << std::endl;
 	std::cout << "                         " << title << std::endl;
 	std::cout << "==============================================================" << std::endl;
-	std::cout << "=Server Name	: " << this->m_sName << std::endl;
-	std::cout << "=Server Port	: " << this->m_sPort << std::endl;
+	std::cout << "=Server Name	: " << this->m_name << std::endl;
+	std::cout << "=Server Port	: " << this->m_port << std::endl;
 	std::cout << "=Max Players	: " << MAX_PLAYERS << std::endl;
-	if (this->m_sPassword.length() > 0)
-		std::cout << "=Password	: " << this->m_sPassword << std::endl;
+	if (this->m_password.length() > 0)
+		std::cout << "=Password	: " << this->m_password << std::endl;
 	std::cout << "==============================================================" << std::endl;
 	return (true);
 }
 
-/*
-Program main loop
-*/
-void	ServerCore::Pulse(void)
+
+void	ServerCore::pulse(void)
 {
-	if (m_pNModule)
-		m_pNModule->Pulse();
+	if (m_networkModule != nullptr)
+		m_networkModule->pulse();
+}
+
+bool	ServerCore::isActive()	const
+{
+	return m_isActive;
+}
+
+NetworkModule	*ServerCore::getNetworkModule()	const
+{
+	return m_networkModule;
+}
+
+
+void	ServerCore::setIsActive(bool isActive)
+{
+	m_isActive = isActive;
 }
