@@ -61,6 +61,12 @@
     <Filter Include="Source Files\Shared\ECS\Factory">
       <UniqueIdentifier>{9a84db89-5af5-4fbe-8afb-8121ae7578be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Shared\ECS\System">
+      <UniqueIdentifier>{34f67b55-ce18-47e6-bcd6-8ada96a7ac3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared\ECS\System">
+      <UniqueIdentifier>{86c5d675-ff88-4463-be60-c947172d21d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\StdInc.h">
@@ -132,6 +138,12 @@
     <ClInclude Include="WaitingRoom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\MovementSystem.h">
+      <Filter>Header Files\Shared\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponSystem.h">
+      <Filter>Header Files\Shared\ECS\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -199,6 +211,12 @@
     </ClCompile>
     <ClCompile Include="WaitingRoom.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\MovementSystem.cpp">
+      <Filter>Source Files\Shared\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\WeaponSystem.cpp">
+      <Filter>Source Files\Shared\ECS\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

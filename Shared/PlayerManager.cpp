@@ -4,7 +4,7 @@ void PlayerManager::addPlayer(ecs::Entity *newPlayer)
 {
 	ecs::NetworkID*	componentNetworkID;
 
-	if ((componentNetworkID = dynamic_cast<ecs::NetworkID*>((*newPlayer)[ecs::NETWORK_ID])) != NULL)
+	if ((componentNetworkID = dynamic_cast<ecs::NetworkID*>((*newPlayer)[ecs::NETWORK_ID])) != nullptr)
 		m_mPlayers[componentNetworkID->ID] = newPlayer;
 }
 

@@ -13,7 +13,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
     <ClInclude Include="..\..\Shared\ClientCore.h" />
+    <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
+    <ClInclude Include="..\..\Shared\MovementSystem.h" />
     <ClInclude Include="..\..\Shared\Spell.h" />
     <ClInclude Include="..\..\Shared\SpellCreator.h" />
     <ClInclude Include="..\..\Shared\SpellManager.h" />
@@ -39,6 +41,7 @@
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
     <ClCompile Include="..\..\Shared\ClientCore.cpp" />
     <ClCompile Include="..\..\Shared\Movement.cpp" />
+    <ClCompile Include="..\..\Shared\MovementSystem.cpp" />
     <ClCompile Include="..\..\Shared\Spell.cpp" />
     <ClCompile Include="..\..\Shared\SpellCreator.cpp" />
     <ClCompile Include="..\..\Shared\SpellManager.cpp" />
@@ -53,6 +56,7 @@
     <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\WeaponCreator.cpp" />
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
+    <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
     <ClCompile Include="LoadingWindows.cpp" />
     <ClCompile Include="MainClient.cpp" />
     <ClCompile Include="MainMenu.cpp" />

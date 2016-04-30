@@ -28,13 +28,20 @@ namespace ecs
 		~Weapon() = default;
 		Weapon&				operator=(const Weapon& other);
 		void				dump() const;
-		int					getDamage() const;
-		int					getDamageExplosive() const;
-		int					getAmmunition() const;
-		int					getAmmunitionExplosive() const;
+		
+		const int			getDamage() const;
+		const int			getDamageExplosive() const;
 		const WeaponType	getWeaponType() const;
 		const bool			isGun() const;
 		const std::string&	getName() const;
+		int					getAmmunition() const;
+		int					getAmmunitionExplosive() const;
+
+		void				decAmmunition(int nbFired);
+		void				decAmmunitionExplosive(int nbFired);
+		void				incAmmunition(int nbAmmuition);
+		void				incAmmunitionExplosive(int nbAmmunition);
+
 	private:
 		const std::string	WEAPON_NAME;
 		const int			MAX_AMMUNITION;
