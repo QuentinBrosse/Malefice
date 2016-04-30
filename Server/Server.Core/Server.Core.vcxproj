@@ -15,7 +15,6 @@
     <ClInclude Include="..\..\Shared\NetworkRPC.h" />
     <ClInclude Include="..\..\Shared\ProjectGlobals.h" />
     <ClInclude Include="..\..\Shared\Singleton.h" />
-    <ClInclude Include="..\..\Shared\StdInc.h" />
     <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />

@@ -1,10 +1,7 @@
 #pragma once
 
-#include <irrlicht.h>
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/System.h>
-#include <CEGUI/RendererModules/Irrlicht/Renderer.h>
 #include <iostream>
+#include <irrlicht.h>
 
 class eventReceiver : public irr::IEventReceiver
 {

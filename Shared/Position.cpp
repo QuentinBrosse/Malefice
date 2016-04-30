@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Position.h"
 
 namespace ecs

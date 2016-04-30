@@ -17,6 +17,8 @@ namespace ecs
 		void			move(Position& startPosition) const;
 
 		void			dump() const;
+
+
 	private:
 		Position	m_destination;
 	};

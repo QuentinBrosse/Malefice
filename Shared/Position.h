@@ -23,17 +23,18 @@ namespace ecs
 		Position& operator+=(const Position& pos);
 		Position& operator-=(const Position& pos);
 
-		Position operator+(const Position& pos) const;
-		Position operator-(const Position& pos) const;
+		Position operator+(const Position& pos)	const;
+		Position operator-(const Position& pos)	const;
 
-		bool	operator==(const Position& pos) const;
-		bool	operator!=(const Position& pos) const;
+		bool	operator==(const Position& pos)	const;
+		bool	operator!=(const Position& pos)	const;
 
-		float getX() const;
-		float getY() const;
-		float getZ() const;
+		float getX()	const;
+		float getY()	const;
+		float getZ()	const;
 
-		void dump() const;
+		void dump()	const;
+
 
 	private:
 		float m_x;

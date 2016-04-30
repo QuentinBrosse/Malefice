@@ -1,10 +1,9 @@
 #pragma once
 
+#include <iostream>
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
-#include <CEGUI/RendererModules/Irrlicht/Renderer.h>
-#include <iostream>
 
 class MainMenu
 {

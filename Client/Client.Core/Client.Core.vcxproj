@@ -28,7 +28,6 @@
     <ClInclude Include="..\..\Shared\Entity.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
-    <ClInclude Include="..\..\Shared\StdInc.h" />
     <ClInclude Include="..\..\Shared\WeaponCreator.h" />
     <ClInclude Include="..\..\Shared\WeaponManager.h" />
     <ClInclude Include="EventReceiver.h" />

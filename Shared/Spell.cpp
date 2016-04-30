@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Spell.h"
 
 namespace ecs

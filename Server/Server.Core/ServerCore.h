@@ -1,7 +1,6 @@
 #pragma once
 
-#include "StdInc.h"
-
+#include <string>
 #include "Singleton.h"
 #include "ConfigParser.h"
 #include "NetworkModule.h"

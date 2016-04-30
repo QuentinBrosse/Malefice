@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StdInc.h"
+#include <map>
 #include "AComponent.h"
 
 namespace ecs
@@ -8,22 +8,23 @@ namespace ecs
 	class Entity
 	{
 	public:
-		const int								ID;
-	private:
-		std::map<ComponentType, AComponent*>	m_components;
+		const int	ID;
 
-	public:
 		Entity();
 		~Entity();
 		Entity(const Entity& cpy);
 		Entity(Entity &&) = default;
 		
-		Entity& operator=(const Entity&) = delete;
-		Entity& operator=(Entity&&) = default;
+		Entity&	operator=(const Entity&) = delete;
+		Entity&	operator=(Entity&&) = default;
 
 		AComponent*&	operator[](ComponentType type);
 		bool			has(ComponentType type);
 
 		void	dump() const;
+
+
+	private:
+		std::map<ComponentType, AComponent*>	m_components;
 	};
 }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 

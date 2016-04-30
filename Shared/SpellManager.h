@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include "Spell.h"
 
 namespace ecs
@@ -8,15 +9,15 @@ namespace ecs
 	{
 	public:
 		SpellManager(const Spell& defaultSpell);
-		~SpellManager() = default;
+		~SpellManager()	= default;
 
-		Spell&	getCurrentSpell() const;
+		Spell&	getCurrentSpell()	const;
 
 		void	addSpell(const Spell& newSpell);
 		void	changeToNextSpell();
 		void	changeToPrecSpell();
 
-		void	dump() const;
+		void	dump()	const;
 
 	private:
 		std::map<Spell::SpellType, Spell>				m_spells;

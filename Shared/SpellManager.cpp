@@ -1,5 +1,5 @@
-#include "SpellManager.h"
 #include <utility>
+#include "SpellManager.h"
 
 namespace ecs
 {

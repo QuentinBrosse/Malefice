@@ -1,10 +1,6 @@
 #pragma once
 
-#include "StdInc.h"
-
 #include <RPC4Plugin.h>
-
-#include "NetworkRPC.h"
 
 class GeneralRPC
 {

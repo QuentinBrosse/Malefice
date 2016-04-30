@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Weapon.h"
 
 namespace ecs

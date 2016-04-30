@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	typedef enum
+	enum ComponentType
 	{
 		DEFAULT,
 		NETWORK_ID,
@@ -14,5 +14,5 @@ namespace ecs
 		WEAPON_MANAGER,
 		SPELL,
 		SPELL_MANAGER,
-	} ComponentType;
+	};
 }

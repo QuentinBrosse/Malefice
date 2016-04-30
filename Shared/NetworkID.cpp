@@ -1,8 +1,9 @@
+#include <iostream>
 #include "NetworkID.h"
 
 namespace ecs
 {
-	NetworkID::NetworkID(networkID id) : AComponent("NetworkID", ComponentType::NETWORK_ID),
+	NetworkID::NetworkID(unsigned int id) : AComponent("NetworkID", ComponentType::NETWORK_ID),
 		ID(id), m_isCurrentPlayer(false)
 	{
 

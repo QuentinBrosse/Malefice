@@ -1,4 +1,8 @@
+#include <iostream>
+#include <MessageIdentifiers.h>
 #include "NetworkModule.h"
+#include "GeneralRPC.h"
+#include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
 NetworkModule::NetworkModule() :

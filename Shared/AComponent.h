@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StdInc.h"
+#include <string>
 #include "CollectionComponent.h"
 
 namespace ecs

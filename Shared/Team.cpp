@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Team.h"
 
 namespace ecs

@@ -1,18 +1,19 @@
+#include <iostream>
 #include "ClientCore.h"
 
 void ClientCore::addEntity(const ecs::Entity& newEntity)
 {
-	m_entityes.insert(std::pair<const int, ecs::Entity> (newEntity.ID, newEntity));
+	m_entities.insert(std::pair<const int, ecs::Entity> (newEntity.ID, newEntity));
 }
 
-void ClientCore::deleteEntity(const int id)
+void ClientCore::deleteEntity(int id)
 {
-	m_entityes.erase(id);
+	m_entities.erase(id);
 }
 
-void ClientCore::dump() const
+void ClientCore::dump()	const
 {
-	for (auto pair : m_entityes)
+	for (auto pair : m_entities)
 	{
 		pair.second.dump();
 		std::cout << std::endl;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include "Entity.h"
 
 class ClientCore
@@ -9,9 +10,9 @@ public:
 	~ClientCore() = default;
 
 	void	addEntity(const ecs::Entity& newEntity);
-	void	deleteEntity(const int id);
-	void	dump() const;
+	void	deleteEntity(int id);
+	void	dump()	const;
 
 private:
-	std::map<const int, ecs::Entity>	m_entityes;
+	std::map<int, ecs::Entity>	m_entities;
 };

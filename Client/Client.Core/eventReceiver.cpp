@@ -47,12 +47,12 @@ bool eventReceiver::OnEvent(const irr::SEvent& event)
 	return false;
 }
 
-const irr::SEvent::SJoystickEvent& eventReceiver::getJoystickState(void) const
+const irr::SEvent::SJoystickEvent& eventReceiver::getJoystickState() const
 {
 	return m_joystickState;
 }
 
-const eventReceiver::MouseState& eventReceiver::getMouseState(void) const
+const eventReceiver::MouseState& eventReceiver::getMouseState() const
 {
 	return m_state;
 }

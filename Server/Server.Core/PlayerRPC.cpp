@@ -1,4 +1,6 @@
+#include <iostream>
 #include "PlayerRPC.h"
+#include "NetworkRPC.h"
 
 bool	PlayerRPC::m_isRegistered = false;
 

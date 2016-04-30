@@ -1,4 +1,5 @@
 #include "ObjectFactory.h"
+#include "Position.h"
 
 namespace factory
 {

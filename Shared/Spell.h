@@ -7,7 +7,7 @@ namespace ecs
 	class Spell : public AComponent
 	{
 	public:
-		typedef enum
+		enum SpellType
 		{
 			NOTHING,
 			BLIND,
@@ -16,7 +16,7 @@ namespace ecs
 			DEAF,
 			PARKINSON,
 			SLOW,
-		} SpellType;
+		};
 
 	public:
 		Spell();
@@ -24,9 +24,10 @@ namespace ecs
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
-		const Spell::SpellType getSpellType() const;
+		const Spell::SpellType getSpellType()	const;
 
-		void	dump() const;
+		void	dump()	const;
+
 
 	private:
 		const SpellType SPELL_TYPE;

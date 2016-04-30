@@ -1,12 +1,10 @@
 #include <iostream>
-
 #include "MainMenu.h"
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
-
-#include <ClientCore.h>
-#include <PlayerFactory.h>
+#include "ClientCore.h"
+#include "PlayerFactory.h"
 
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720

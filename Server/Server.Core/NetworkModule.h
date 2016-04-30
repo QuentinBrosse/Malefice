@@ -1,14 +1,8 @@
 #pragma once
 
-#include "StdInc.h"
-
+#include <string>
 #include <RakPeerInterface.h>
 #include <RPC4Plugin.h>
-#include <MessageIdentifiers.h>
-
-#include "NetworkRPC.h"
-#include "GeneralRPC.h"
-#include "PlayerRPC.h"
 
 class NetworkModule
 {

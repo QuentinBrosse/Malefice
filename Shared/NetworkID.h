@@ -4,19 +4,20 @@
 
 namespace ecs
 {
-	class NetworkID: public AComponent
+	class NetworkID : public AComponent
 	{
 	public:
-		NetworkID(networkID id);
-		~NetworkID() = default;
+		const unsigned int	ID;
 
-		void dump() const;
+		NetworkID(unsigned int id);
+		~NetworkID()	= default;
+
+		void dump()	const;
 
 		void setCurrentPlayer(bool value);
-		bool isCurrentPlayer() const;
+		bool isCurrentPlayer()	const;
 
-	public:
-		const networkID ID;
+
 	private:
 		bool m_isCurrentPlayer;
 	};

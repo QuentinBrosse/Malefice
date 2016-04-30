@@ -7,6 +7,8 @@ namespace ecs
 	class Life: public AComponent
 	{
 	public:
+		const int MAX_LIFE;
+
 		Life(int maxLife);
 		~Life() = default;
 
@@ -26,12 +28,9 @@ namespace ecs
 		// death system to simplify game management without take
 		// care of Life implementation. 
 
-		void dump() const;
+		void dump()	const;
 
 	private:
-		int m_currentLife;
-	public:
-		const int MAX_LIFE;
+		int m_currentLife;		
 	};
-
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "AComponent.h"
 
 namespace ecs
@@ -7,7 +8,7 @@ namespace ecs
 	class Weapon : public AComponent
 	{
 	public:
-		typedef enum
+		enum WeaponType
 		{
 			DEFAULT,
 			SNIPER_RIFLE,
@@ -19,22 +20,25 @@ namespace ecs
 			SABER,
 			CHAIN_SAW,
 			KNIFE,
-		} WeaponType;
+		};
 
-	public:
 		Weapon();
-		Weapon(const std::string& name, int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const WeaponType weaponType, const bool isGun);
+		Weapon(const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, WeaponType weaponType, bool isGun);
 		Weapon(const Weapon& cpy);
-		~Weapon() = default;
+		~Weapon()	= default;
+
 		Weapon&				operator=(const Weapon& other);
-		void				dump() const;
-		int					getDamage() const;
-		int					getDamageExplosive() const;
-		int					getAmmunition() const;
-		int					getAmmunitionExplosive() const;
-		const WeaponType	getWeaponType() const;
-		const bool			isGun() const;
-		const std::string&	getName() const;
+
+		void				dump()						const;
+		int					getDamage()					const;
+		int					getDamageExplosive()		const;
+		int					getAmmunition()				const;
+		int					getAmmunitionExplosive()	const;
+		const WeaponType	getWeaponType()				const;
+		const bool			isGun()						const;
+		const std::string&	getName()					const;
+
+
 	private:
 		const std::string	WEAPON_NAME;
 		const int			MAX_AMMUNITION;

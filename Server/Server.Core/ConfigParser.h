@@ -1,14 +1,13 @@
 #pragma once
 
+#include <string>
 #include <tinyxml2.h>
-
-#include "StdInc.h"
 
 class ConfigParser
 {
 public:
 	ConfigParser(const std::string& fileName);
-	~ConfigParser() = default;
+	~ConfigParser()	= default;
 
 	bool		init();
 	bool		save();
