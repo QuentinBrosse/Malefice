@@ -144,6 +144,9 @@
     <ClInclude Include="..\..\Shared\WeaponSystem.h">
       <Filter>Header Files\Shared\ECS\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\Logger.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">

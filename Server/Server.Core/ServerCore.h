@@ -1,9 +1,10 @@
 #pragma once
 
 #include "StdInc.h"
+
+#include "Singleton.h"
 #include "ConfigParser.h"
 #include "NetworkModule.h"
-#include "Singleton.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -25,10 +26,13 @@ protected:
 
 
 private:
+	void	displayHeader()	const;
+
+
 	std::string	m_name;
 	std::string	m_password;
 	std::string	m_address;
-	short		m_port;
+	int			m_port;
 	bool		m_isActive;
 
 	ConfigParser	m_configParser;

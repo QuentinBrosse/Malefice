@@ -1,4 +1,5 @@
 #include "NetworkModule.h"
+#include "ProjectGlobals.h"
 
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance())
@@ -18,19 +19,17 @@ NetworkModule::~NetworkModule()
 	m_rakPeer->DetachPlugin(m_rpc);
 
 	RakNet::RPC4::DestroyInstance(m_rpc);
-
 	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
 bool	NetworkModule::init(const std::string& address, short port, const std::string& password)
 {
-	RakNet::SocketDescriptor descriptor(port, address.c_str());
+	RakNet::SocketDescriptor	descriptor(port, address.c_str());
 
-	if (m_rakPeer->Startup(MAX_PLAYERS, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
+	if (m_rakPeer->Startup(ProjectGlobals::MAX_PLAYERS_NB, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
 	{
-		m_rakPeer->SetMaximumIncomingConnections(MAX_PLAYERS);
+		m_rakPeer->SetMaximumIncomingConnections(ProjectGlobals::MAX_PLAYERS_NB);
 		m_rakPeer->SetTimeoutTime(10000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
-
 		if (password.length() > 0)
 			m_rakPeer->SetIncomingPassword(password.c_str(), password.length());
 	}
@@ -43,7 +42,7 @@ bool	NetworkModule::init(const std::string& address, short port, const std::stri
 
 void	NetworkModule::pulse()
 {
-	RakNet::Packet *packet = nullptr;
+	RakNet::Packet*	packet = nullptr;
 
 	while (packet = m_rakPeer->Receive())
 	{
@@ -63,11 +62,11 @@ void	NetworkModule::pulse()
 	}
 }
 
-void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream *bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
+void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
 {
 	RakNet::SystemAddress	rpcAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
-	if (playerId != INVALID_PLAYER_ID)
+	if (playerId > ProjectGlobals::MAX_PLAYERS_NB)
 		rpcAddress = m_rakPeer->GetSystemAddressFromIndex(playerId);
 	if (m_rpc != nullptr)
 		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, rpcAddress, broadcast);
