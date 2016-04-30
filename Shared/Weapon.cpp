@@ -36,12 +36,12 @@ namespace ecs
 		std::cout << "[" << NAME << "/" << m_currentAmmunition << "/" << MAX_AMMUNITION << "/" << m_currentAmmunitionExplosive << "/" << MAX_AMMUNITION_EXPLOSIVE << "/" << DAMAGE << "/" << DAMAGE_EXPLOSIVE <<"]" << std::endl;
 	}
 
-	int		Weapon::getDamage() const
+	const int		Weapon::getDamage() const
 	{
 		return DAMAGE;
 	}
 
-	int		Weapon::getDamageExplosive() const
+	const int		Weapon::getDamageExplosive() const
 	{
 		return DAMAGE_EXPLOSIVE;
 	}
@@ -68,5 +68,33 @@ namespace ecs
 	const std::string & Weapon::getName() const
 	{
 		return WEAPON_NAME;
+	}
+
+	void Weapon::decAmmunition(int nbFired)
+	{
+		m_currentAmmunition -= nbFired;
+		if (m_currentAmmunition < 0)
+			m_currentAmmunition = 0;
+	}
+
+	void Weapon::decAmmunitionExplosive(int nbFired)
+	{
+		m_currentAmmunitionExplosive -= nbFired;
+		if (m_currentAmmunitionExplosive < 0)
+			m_currentAmmunitionExplosive = 0;
+	}
+
+	void Weapon::incAmmunition(int nbAmmuition)
+	{
+		m_currentAmmunition += nbAmmuition;
+		if (m_currentAmmunition > MAX_AMMUNITION)
+			m_currentAmmunition = MAX_AMMUNITION;
+	}
+
+	void Weapon::incAmmunitionExplosive(int nbAmmunition)
+	{
+		m_currentAmmunitionExplosive += nbAmmunition;
+		if (m_currentAmmunitionExplosive > MAX_AMMUNITION_EXPLOSIVE)
+			m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
 	}
 };
