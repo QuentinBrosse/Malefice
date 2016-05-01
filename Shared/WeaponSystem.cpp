@@ -2,44 +2,47 @@
 
 namespace ecs
 {
-	void WeaponSystem::shoot(Entity& entity, int nbAmmunition, bool isExplosive)
+	void				WeaponSystem::shoot(Entity& entity, int nbAmmunition, bool isExplosive)
 	{
-		Weapon*	weapon;
+		WeaponManager*	weaponManager;
 
-		if ((weapon = dynamic_cast<Weapon*>(entity[WEAPON])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
 		{
+			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			if (isExplosive)
-				weapon->decAmmunitionExplosive(nbAmmunition);
+				weapon.decAmmunitionExplosive(nbAmmunition);
 			else
-				weapon->decAmmunition(nbAmmunition);
+				weapon.decAmmunition(nbAmmunition);
 		}
 	}
 
-	void WeaponSystem::shootOnTarget(Entity & shooter, int nbAmmunition, bool isExplosive, Entity & target)
+	void				WeaponSystem::shootOnTarget(Entity& shooter, int nbAmmunition, bool isExplosive, Entity& target)
 	{
-		Weapon	*weaponOfShooter;
-		Life	*lifeOfTarget;
+		WeaponManager*	weaponManager;
+		Life*			lifeOfTarget;
 
-		if ((weaponOfShooter = dynamic_cast<Weapon*>(shooter[WEAPON])) != nullptr && (lifeOfTarget = dynamic_cast<Life*>(target[LIFE])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(shooter[WEAPON_MANAGER])) != nullptr && (lifeOfTarget = dynamic_cast<Life*>(target[LIFE])) != nullptr)
 		{
+			Weapon&	weaponOfShooter = weaponManager->getCurrentWeapon();
 			if (isExplosive)
 			{
-				lifeOfTarget->takeDamage(weaponOfShooter->getDamageExplosive());
-				weaponOfShooter->decAmmunitionExplosive(nbAmmunition);
+				lifeOfTarget->takeDamage(weaponOfShooter.getDamageExplosive());
+				weaponOfShooter.decAmmunitionExplosive(nbAmmunition);
 			}
 			else
 			{
-				lifeOfTarget->takeDamage(weaponOfShooter->getDamage());
-				weaponOfShooter->decAmmunition(nbAmmunition);
+				lifeOfTarget->takeDamage(weaponOfShooter.getDamage());
+				weaponOfShooter.decAmmunition(nbAmmunition);
 			}
 
 		}
-		else if (weaponOfShooter)
+		else if (weaponManager)
 		{
+			Weapon&	weaponOfShooter = weaponManager->getCurrentWeapon();
 			if (isExplosive)
-				weaponOfShooter->decAmmunitionExplosive(nbAmmunition);
+				weaponOfShooter.decAmmunitionExplosive(nbAmmunition);
 			else
-				weaponOfShooter->decAmmunition(nbAmmunition);
+				weaponOfShooter.decAmmunition(nbAmmunition);
 		}
 	}
 

@@ -24,12 +24,17 @@ namespace ecs
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
-		const Spell::SpellType getSpellType()	const;
+		const Spell::SpellType	getSpellType()	const;
+		void					setSpellType(const SpellType newSpellType);
+		bool					isLock() const;
+		void					lock();
+		void					unlock();
 
-		void	dump()	const;
+		void					dump()	const;
 
 
 	private:
-		const SpellType SPELL_TYPE;
+		SpellType				m_spellType;
+		bool					m_isLock;
 	};
 }

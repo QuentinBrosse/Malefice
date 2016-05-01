@@ -144,6 +144,9 @@
     <ClInclude Include="..\..\Shared\Logger.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\SpellSystem.h">
+      <Filter>Header Files\Shared\ECS\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -216,6 +219,9 @@
       <Filter>Source Files\Shared\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\WeaponSystem.cpp">
+      <Filter>Source Files\Shared\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\SpellSystem.cpp">
       <Filter>Source Files\Shared\ECS\System</Filter>
     </ClCompile>
   </ItemGroup>

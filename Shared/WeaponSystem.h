@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "Weapon.h"
+#include "WeaponManager.h"
 #include "Life.h"
 
 namespace ecs

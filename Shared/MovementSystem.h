@@ -12,7 +12,6 @@ namespace ecs
 		MovementSystem() = delete;
 		~MovementSystem() = delete;
 
-	private:
 		static void	move(Entity& entity);
 	};
 

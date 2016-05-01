@@ -4,29 +4,49 @@
 namespace ecs
 {
 	Spell::Spell() : AComponent("Spell", SPELL),
-		SPELL_TYPE(Spell::NOTHING)
+		m_spellType(Spell::NOTHING)
 	{
 
 	}
 
 	Spell::Spell(const Spell::SpellType spellType) : AComponent("Spell", SPELL),
-		SPELL_TYPE(spellType)
+		m_spellType(spellType)
 	{
 
 	}
 
-	Spell::Spell(const Spell & cpy): AComponent("Spell", SPELL),
-		SPELL_TYPE(cpy.SPELL_TYPE)
+	Spell::Spell(const Spell& cpy): AComponent("Spell", SPELL),
+		m_spellType(cpy.m_spellType)
 	{
 	}
 
 	const Spell::SpellType	Spell::getSpellType() const
 	{
-		return SPELL_TYPE;
+		return m_spellType;
+	}
+
+	void Spell::setSpellType(const SpellType newSpellType)
+	{
+		m_spellType = newSpellType;
+	}
+
+	bool Spell::isLock() const
+	{
+		return m_isLock;
+	}
+
+	void Spell::lock()
+	{
+		m_isLock = true;
+	}
+
+	void Spell::unlock()
+	{
+		m_isLock = false;
 	}
 
 	void Spell::dump() const
 	{
-		std::cout << "[" << NAME << ": " << SPELL_TYPE << "]" << std::endl;
+		std::cout << "[" << NAME << ": " << m_spellType << "]" << std::endl;
 	}
 }

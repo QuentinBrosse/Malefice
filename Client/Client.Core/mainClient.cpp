@@ -3,8 +3,14 @@
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
+
 #include "ClientCore.h"
 #include "PlayerFactory.h"
+#include "CollectionComponent.h"
+#include "Movement.h"
+#include "MovementSystem.h"
+#include "SpellSystem.h"
+#include "WeaponSystem.h"
 
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
@@ -153,7 +159,15 @@ int main(void) {
 	core.addEntity(object);
 
 	core.dump();
+	
+	player[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(2.0, 3.1, 0.0));
 
+	ecs::MovementSystem::move(player);
+	ecs::SpellSystem::launchSpell(predator, player);
+	ecs::WeaponSystem::shootOnTarget(player, 5, true, predator);
+
+	core.dump();
 	getchar();
+
 	return (0);
 }
