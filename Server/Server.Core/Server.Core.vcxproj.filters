@@ -57,7 +57,7 @@
     <ClInclude Include="..\..\Shared\ProjectGlobals.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Logger.h">
+    <ClInclude Include="..\..\Shared\LoggerSetup.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
   </ItemGroup>
@@ -81,6 +81,9 @@
       <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\LoggerSetup.cpp">
       <Filter>Source Files\Shared</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,8 +13,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\Shared\AComponent.h" />
     <ClInclude Include="..\..\Shared\ClientCore.h" />
+    <ClInclude Include="..\..\Shared\LoggerSetup.h" />
     <ClInclude Include="..\..\Shared\WeaponSystem.h" />
-    <ClInclude Include="..\..\Shared\Logger.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\MovementSystem.h" />
     <ClInclude Include="..\..\Shared\Spell.h" />
@@ -40,8 +40,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\Shared\AComponent.cpp" />
     <ClCompile Include="..\..\Shared\ClientCore.cpp" />
+    <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
     <ClCompile Include="..\..\Shared\Movement.cpp" />
     <ClCompile Include="..\..\Shared\MovementSystem.cpp" />
+    <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
     <ClCompile Include="..\..\Shared\Spell.cpp" />
     <ClCompile Include="..\..\Shared\SpellCreator.cpp" />
     <ClCompile Include="..\..\Shared\SpellManager.cpp" />
@@ -58,7 +60,7 @@
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
     <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
     <ClCompile Include="LoadingWindows.cpp" />
-    <ClCompile Include="MainClient.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
@@ -107,7 +109,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp/src;../../Shared</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -128,7 +131,8 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/irrlicht/include;../../Libraries/easyloggingpp/src;../../Shared</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

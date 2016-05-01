@@ -10,8 +10,7 @@ class ServerCore : public Singleton<ServerCore>
 	friend class Singleton<ServerCore>;
 
 public:
-	bool	init();
-	void	pulse();
+	void	run();
 
 	bool			isActive()			const;
 	NetworkModule*	getNetworkModule()	const;
@@ -25,7 +24,9 @@ protected:
 
 
 private:
+	bool	init();
 	void	displayHeader()	const;
+	void	pulse();
 
 
 	std::string	m_name;

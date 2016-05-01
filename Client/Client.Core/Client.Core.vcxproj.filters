@@ -141,7 +141,7 @@
     <ClInclude Include="..\..\Shared\WeaponSystem.h">
       <Filter>Header Files\Shared\ECS\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Logger.h">
+    <ClInclude Include="..\..\Shared\LoggerSetup.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
   </ItemGroup>
@@ -151,9 +151,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\AComponent.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="mainClient.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Life.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
@@ -217,6 +214,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\WeaponSystem.cpp">
       <Filter>Source Files\Shared\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\LoggerSetup.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\ProjectGlobals.cpp">
+      <Filter>Source Files\Shared</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,10 +1,12 @@
 #include <iostream>
+#include "LoggerSetup.h"
 #include "MainMenu.h"
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
 #include "ClientCore.h"
 #include "PlayerFactory.h"
+#include "ProjectGlobals.h"
 
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
@@ -78,7 +80,9 @@ void ceguiEventInjector(CEGUI::System& systemd, eventReceiver& receiver, irr::Ir
 		systemd.getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
 }
 
-int main(void) {
+int main(int argc, char* argv[])
+{
+	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	//Init Irrlicht Engine
 	/*irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;

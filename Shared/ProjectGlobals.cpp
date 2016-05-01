@@ -17,3 +17,7 @@ const std::string	ProjectGlobals::GAME_SERVER_DEFAULT_NAME				= ProjectGlobals::
 const std::string	ProjectGlobals::GAME_SERVER_DEFAULT_PASSWORD			= "";
 const std::string	ProjectGlobals::GAME_SERVER_DEFAULT_ADDRESS				= "127.0.0.1";
 const short			ProjectGlobals::GAME_SERVER_DEFAULT_PORT				= 2504;
+
+const std::string	ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH		= "logs/Client.Core.log";
+const std::string	ProjectGlobals::GAME_CLIENT_LAUNCHER_LOG_FILEPATH	= "logs/Client.Launcher.log";
+const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= "logs/Server.Core.Log";

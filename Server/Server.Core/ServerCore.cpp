@@ -1,4 +1,5 @@
 #include <iostream>
+#include <easylogging++.h>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 
@@ -6,6 +7,23 @@ ServerCore::ServerCore() :
 	m_name(""), m_password(""), m_address(""), m_port(0), m_isActive(true), m_configParser(ProjectGlobals::GAME_SERVER_DEFAULT_SETTINGS_FILENAME), m_networkModule(nullptr)
 {
 }
+
+
+void	ServerCore::run()
+{
+	LOG(INFO) << "Server started";
+	if (this->init() == false)
+	{
+		LOG(FATAL) << "Server initialization failed. Abortring." << std::endl;
+		return;
+	}
+	while (this->isActive())
+	{
+		this->pulse();
+	}
+	LOG(INFO) << "Server stopped";
+}
+
 
 bool	ServerCore::init(void)
 {
@@ -27,29 +45,6 @@ bool	ServerCore::init(void)
 	return true;
 }
 
-
-void	ServerCore::pulse(void)
-{
-	if (m_networkModule != nullptr)
-		m_networkModule->pulse();
-}
-
-bool	ServerCore::isActive()	const
-{
-	return m_isActive;
-}
-
-NetworkModule	*ServerCore::getNetworkModule()	const
-{
-	return m_networkModule;
-}
-
-
-void	ServerCore::setIsActive(bool isActive)
-{
-	m_isActive = isActive;
-}
-
 void	ServerCore::displayHeader()	const
 {
 	std::string	title = ProjectGlobals::GAME_NAME + " v." + ProjectGlobals::GAME_SERVER_VERSION;
@@ -67,4 +62,28 @@ void	ServerCore::displayHeader()	const
 	std::cout << "=Password	: " << this->m_password << std::endl;
 	std::cout << "==============================================================" << std::endl;
 
+}
+
+void	ServerCore::pulse(void)
+{
+	if (m_networkModule != nullptr)
+		m_networkModule->pulse();
+}
+
+
+
+bool	ServerCore::isActive()	const
+{
+	return m_isActive;
+}
+
+NetworkModule	*ServerCore::getNetworkModule()	const
+{
+	return m_networkModule;
+}
+
+
+void	ServerCore::setIsActive(bool isActive)
+{
+	m_isActive = isActive;
 }

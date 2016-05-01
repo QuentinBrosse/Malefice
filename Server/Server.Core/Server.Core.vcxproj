@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\Logger.h" />
+    <ClInclude Include="..\..\Shared\LoggerSetup.h" />
     <ClInclude Include="..\..\Shared\NetworkRPC.h" />
     <ClInclude Include="..\..\Shared\ProjectGlobals.h" />
     <ClInclude Include="..\..\Shared\Singleton.h" />
@@ -22,6 +22,7 @@
     <ClInclude Include="PlayerRPC.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
     <ClCompile Include="ConfigParser.cpp" />
     <ClCompile Include="ServerCore.cpp" />
@@ -72,7 +73,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/easyloggingpp/src;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -93,6 +94,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/easyloggingpp/src;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
