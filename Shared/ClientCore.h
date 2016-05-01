@@ -9,10 +9,10 @@ public:
 	ClientCore() = default;
 	~ClientCore() = default;
 
-	void	addEntity(const ecs::Entity& newEntity);
+	void	addEntity(ecs::Entity& newEntity);
 	void	deleteEntity(int id);
 	void	dump()	const;
 
 private:
-	std::map<int, ecs::Entity>	m_entities;
+	std::map<int, ecs::Entity&>	m_entities;
 };

@@ -25,6 +25,8 @@ namespace ecs
 
 	void Movement::dump() const
 	{
+		std::cout << "[ MOVEMENT ";
 		m_destination.dump();
+		std::cout << " ]" << std::endl;
 	}
 }

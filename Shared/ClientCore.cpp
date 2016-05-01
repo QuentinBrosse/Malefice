@@ -1,9 +1,9 @@
 #include <iostream>
 #include "ClientCore.h"
 
-void ClientCore::addEntity(const ecs::Entity& newEntity)
+void ClientCore::addEntity(ecs::Entity& newEntity)
 {
-	m_entities.insert(std::pair<const int, ecs::Entity> (newEntity.ID, newEntity));
+	m_entities.insert(std::pair<const int, ecs::Entity&> (newEntity.ID, newEntity));
 }
 
 void ClientCore::deleteEntity(int id)

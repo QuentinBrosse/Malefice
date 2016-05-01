@@ -14,6 +14,7 @@
     <ClInclude Include="..\..\Shared\AComponent.h" />
     <ClInclude Include="..\..\Shared\ClientCore.h" />
     <ClInclude Include="..\..\Shared\LoggerSetup.h" />
+    <ClInclude Include="..\..\Shared\SpellSystem.h" />
     <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\MovementSystem.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
     <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
     <ClCompile Include="..\..\Shared\PlayerManager.cpp" />
+    <ClCompile Include="..\..\Shared\SpellSystem.cpp" />
     <ClCompile Include="..\..\Shared\Team.cpp" />
     <ClCompile Include="..\..\Shared\Weapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />

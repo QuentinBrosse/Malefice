@@ -22,6 +22,7 @@ namespace ecs
 			m_components.insert(component);
 	}
 
+
 	Entity::~Entity()
 	{
 /*		for (auto component : m_components)
