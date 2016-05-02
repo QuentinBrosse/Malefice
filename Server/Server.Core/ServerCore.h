@@ -2,7 +2,7 @@
 
 #include <string>
 #include "Singleton.h"
-#include "ConfigParser.h"
+#include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
 
 class ServerCore : public Singleton<ServerCore>
@@ -35,6 +35,6 @@ private:
 	int			m_port;
 	bool		m_isActive;
 
-	ConfigParser	m_configParser;
-	NetworkModule	*m_networkModule;
+	ServerCoreConfiguration	m_configuration;
+	NetworkModule*			m_networkModule;
 };

@@ -15,16 +15,16 @@
     <ClInclude Include="..\..\Shared\NetworkRPC.h" />
     <ClInclude Include="..\..\Shared\ProjectGlobals.h" />
     <ClInclude Include="..\..\Shared\Singleton.h" />
-    <ClInclude Include="ConfigParser.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerRPC.h" />
+    <ClInclude Include="ServerCoreConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
-    <ClCompile Include="ConfigParser.cpp" />
+    <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="main.cpp" />

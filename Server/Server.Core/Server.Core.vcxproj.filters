@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConfigParser.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkModule.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
@@ -60,13 +57,13 @@
     <ClInclude Include="..\..\Shared\LoggerSetup.h">
       <Filter>Header Files\Shared</Filter>
     </ClInclude>
+    <ClInclude Include="ServerCoreConfiguration.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfigParser.cpp">
-      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="NetworkModule.cpp">
       <Filter>Source Files\Network</Filter>
@@ -85,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\LoggerSetup.cpp">
       <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerCoreConfiguration.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

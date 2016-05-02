@@ -2,9 +2,10 @@
 #include <easylogging++.h>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
+#include "ServerCoreConfiguration.h"
 
 ServerCore::ServerCore() :
-	m_name(""), m_password(""), m_address(""), m_port(0), m_isActive(true), m_configParser(ProjectGlobals::GAME_SERVER_DEFAULT_SETTINGS_FILENAME), m_networkModule(nullptr)
+	m_name(""), m_password(""), m_address(""), m_port(0), m_isActive(true), m_configuration(), m_networkModule(nullptr)
 {
 }
 
@@ -27,21 +28,19 @@ void	ServerCore::run()
 
 bool	ServerCore::init(void)
 {
-	if (m_configParser.init() == false)
-	{
+	if (m_configuration.loadFromFile(ServerCoreConfiguration::DEFAULT_SETTINGS_FILENAME) == false)
 		return false;
-	}
-	m_name = m_configParser.get("name");
-	m_password = m_configParser.get("password");
-	m_address = m_configParser.get("address");
-	m_port = std::stoi(m_configParser.get("port"));
-	if (this->m_name.length() == 0 || m_address.length() == 0 || m_port == 0 || m_port > 65535)
-	{
-		return false;
-	}
+	m_name = m_configuration.getName();
+	m_password = m_configuration.getPassword();
+	m_address = m_configuration.getAddress();
+	m_port = m_configuration.getPort();
 	m_networkModule = new NetworkModule();
 	if (m_networkModule->init(m_address, m_port, m_password) == false)
-		std::cerr << "Failed to start RakNet" << std::endl;
+	{
+		LOG(FATAL) << "Failed to start Network Module.";
+		return false;
+	}
+	this->displayHeader();
 	return true;
 }
 

@@ -18,12 +18,6 @@ public:
 
 	static const std::string	GAME_SERVER_VERSION;
 
-	static const std::string	GAME_SERVER_DEFAULT_SETTINGS_FILENAME;
-	static const std::string	GAME_SERVER_DEFAULT_NAME;
-	static const std::string	GAME_SERVER_DEFAULT_PASSWORD;
-	static const std::string	GAME_SERVER_DEFAULT_ADDRESS;
-	static const short			GAME_SERVER_DEFAULT_PORT;
-
 	static const std::string	GAME_CLIENT_CORE_LOG_FILEPATH;
 	static const std::string	GAME_CLIENT_LAUNCHER_LOG_FILEPATH;
 	static const std::string	GAME_SERVER_LOG_FILEPATH;
