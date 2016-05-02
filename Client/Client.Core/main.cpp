@@ -1,4 +1,7 @@
 #include <iostream>
+#include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include "LoggerSetup.h"
 #include "MainMenu.h"
 #include "EventReceiver.h"
@@ -89,9 +92,7 @@ void ceguiEventInjector(eventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
-	//Init Irrlicht Engine
-	/*irr::SKeyMap keyMap[5];
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -115,10 +116,10 @@ int main(int argc, char* argv[])
 	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
 
-	WaitingRoom salon();
+	WaitingRoom salon;
 	salon.display();
 
-	LoadingWindows loading();
+	LoadingWindows loading;
 	loading.display();
 	loading.setProgress(20);
 	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
@@ -150,9 +151,10 @@ int main(int argc, char* argv[])
 			driver->endScene();
 		}
 	}
-	device->drop();*/
+	device->drop();
 
-	//Client core test
+	/*
+	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore	core;
 
 	ecs::Entity	player = factory::PlayerFactory::createPlayer(1.0, 2.1, 0.0, 1, 1, 100);
@@ -173,6 +175,6 @@ int main(int argc, char* argv[])
 
 	core.dump();
 	getchar();
-
+	*/
 	return (0);
 }
