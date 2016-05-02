@@ -104,7 +104,7 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 		LOG(WARNING) << "Port must be an integer between 0 and 65535. Default port (" << ServerCoreConfiguration::DEFAULT_PORT << ") will be used.";
 		m_port = ServerCoreConfiguration::DEFAULT_PORT;
 	}
-	this->saveToFile(filepath);
+	this->saveToFile(filepath); // TODO: save only if XML changed
 	return true;
 }
 

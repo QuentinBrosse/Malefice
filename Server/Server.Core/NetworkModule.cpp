@@ -26,6 +26,7 @@ NetworkModule::~NetworkModule()
 	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
+
 bool	NetworkModule::init(const std::string& address, short port, const std::string& password)
 {
 	RakNet::SocketDescriptor	descriptor(port, address.c_str());
@@ -66,6 +67,7 @@ void	NetworkModule::pulse()
 	}
 }
 
+
 void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
 {
 	RakNet::SystemAddress	rpcAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
@@ -75,6 +77,7 @@ void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream
 	if (m_rpc != nullptr)
 		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, rpcAddress, broadcast);
 }
+
 
 RakNet::RakPeerInterface*	NetworkModule::getRakPeer()
 {

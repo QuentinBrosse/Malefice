@@ -5,37 +5,34 @@
 #include "ServerCoreConfiguration.h"
 
 ServerCore::ServerCore() :
-	m_name(""), m_password(""), m_address(""), m_port(0), m_isActive(true), m_configuration(), m_networkModule(nullptr)
+	m_configuration(), m_networkModule(nullptr), m_isActive(true)
 {
 }
 
 
 void	ServerCore::run()
 {
-	LOG(INFO) << "Server started";
+	LOG(INFO) << "Server started.";
 	if (this->init() == false)
 	{
 		LOG(FATAL) << "Server initialization failed. Abortring." << std::endl;
 		return;
 	}
+	LOG(INFO) << "Server initialized.";
 	while (this->isActive())
 	{
 		this->pulse();
 	}
-	LOG(INFO) << "Server stopped";
+	LOG(INFO) << "Server stopped.";
 }
 
 
-bool	ServerCore::init(void)
+bool	ServerCore::init()
 {
 	if (m_configuration.loadFromFile(ServerCoreConfiguration::DEFAULT_SETTINGS_FILENAME) == false)
 		return false;
-	m_name = m_configuration.getName();
-	m_password = m_configuration.getPassword();
-	m_address = m_configuration.getAddress();
-	m_port = m_configuration.getPort();
 	m_networkModule = new NetworkModule();
-	if (m_networkModule->init(m_address, m_port, m_password) == false)
+	if (m_networkModule->init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
 	{
 		LOG(FATAL) << "Failed to start Network Module.";
 		return false;
@@ -44,29 +41,29 @@ bool	ServerCore::init(void)
 	return true;
 }
 
+void	ServerCore::pulse()
+{
+	if (m_networkModule != nullptr)
+		m_networkModule->pulse();
+}
+
 void	ServerCore::displayHeader()	const
 {
 	std::string	title = ProjectGlobals::GAME_NAME + " v." + ProjectGlobals::GAME_SERVER_VERSION;
 
 #ifdef WIN32
-	SetConsoleTitle((ProjectGlobals::GAME_NAME + " v." + ProjectGlobals::GAME_SERVER_VERSION).c_str());
+	SetConsoleTitle(title.c_str());
 #endif
 
 	std::cout << "==============================================================" << std::endl;
 	std::cout << "                         " << title << std::endl;
 	std::cout << "==============================================================" << std::endl;
-	std::cout << "=Server Name	: " << m_name << std::endl;
-	std::cout << "=Server Port	: " << m_port << std::endl;
+	std::cout << "=Server Name	: " << m_configuration.getName() << std::endl;
+	std::cout << "=Server Port	: " << m_configuration.getPort() << std::endl;
 	std::cout << "=Max Players	: " << ProjectGlobals::MAX_PLAYERS_NB << std::endl;
-	std::cout << "=Password	: " << this->m_password << std::endl;
+	std::cout << "=Password	: " << m_configuration.getPassword() << std::endl;
 	std::cout << "==============================================================" << std::endl;
 
-}
-
-void	ServerCore::pulse(void)
-{
-	if (m_networkModule != nullptr)
-		m_networkModule->pulse();
 }
 
 

@@ -25,16 +25,12 @@ protected:
 
 private:
 	bool	init();
-	void	displayHeader()	const;
 	void	pulse();
+	void	displayHeader()	const;
 
-
-	std::string	m_name;
-	std::string	m_password;
-	std::string	m_address;
-	int			m_port;
-	bool		m_isActive;
 
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule*			m_networkModule;
+
+	bool		m_isActive;
 };
