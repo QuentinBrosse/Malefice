@@ -12,6 +12,12 @@ const std::string	ProjectGlobals::GAME_CLIENT_VERSION	= "0.1";
 
 const std::string	ProjectGlobals::GAME_SERVER_VERSION = "0.1";
 
-const std::string	ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH		= "Client.Core.log";
-const std::string	ProjectGlobals::GAME_CLIENT_LAUNCHER_LOG_FILEPATH	= "Client.Launcher.log";
-const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= "Server.Core.Log";
+#ifdef _WIN32
+const std::string	ProjectGlobals::LOGS_DIRECTORY	= "logs\\";
+#else
+const std::string	ProjectGlobals::LOGS_DIRECTORY	= "logs/";
+#endif
+
+const std::string	ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH		= ProjectGlobals::LOGS_DIRECTORY + "Client.Core.log";
+const std::string	ProjectGlobals::GAME_CLIENT_LAUNCHER_LOG_FILEPATH	= ProjectGlobals::LOGS_DIRECTORY + "Client.Launcher.log";
+const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= ProjectGlobals::LOGS_DIRECTORY + "Server.Core.Log";

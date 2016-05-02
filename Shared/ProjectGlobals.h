@@ -18,6 +18,7 @@ public:
 
 	static const std::string	GAME_SERVER_VERSION;
 
+	static const std::string	LOGS_DIRECTORY;
 	static const std::string	GAME_CLIENT_CORE_LOG_FILEPATH;
 	static const std::string	GAME_CLIENT_LAUNCHER_LOG_FILEPATH;
 	static const std::string	GAME_SERVER_LOG_FILEPATH;
