@@ -76,8 +76,9 @@ void debugDisplayMousePos(irr::IrrlichtDevice* device)
 	device->setWindowCaption(text.c_str());
 }
 
-void ceguiEventInjector(CEGUI::System& systemd, eventReceiver& receiver, irr::IrrlichtDevice* device)
+void ceguiEventInjector(eventReceiver& receiver, irr::IrrlichtDevice* device)
 {
+	CEGUI::System& systemd = CEGUI::System::getSingleton();
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
 	systemd.getDefaultGUIContext().injectMouseButtonClick(CEGUI::MouseButton::LeftButton);
 	if (receiver.getMouseState().leftButtonDown == true)
@@ -145,7 +146,7 @@ int main(int argc, char* argv[])
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 			debugDisplayMousePos(device); //Display mouse position on instead of windows title for debug purpose
-			ceguiEventInjector(CEGUI::System::getSingleton(), receiver, device);
+			ceguiEventInjector(receiver, device);
 			driver->endScene();
 		}
 	}
