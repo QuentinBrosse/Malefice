@@ -8,7 +8,7 @@
 class LoadingWindows
 {
 public:
-	LoadingWindows(irr::SKeyMap* keyMap, irr::scene::ISceneManager* sceneManager, irr::IrrlichtDevice* device);
+	LoadingWindows();
 	~LoadingWindows()	= default;
 
 	void display();
@@ -23,10 +23,6 @@ private:
 	CEGUI::Window* m_progressText;
 	CEGUI::Listbox* m_outputList;
 	CEGUI::FrameWindow* m_frameWindows;
-	CEGUI::System& m_systemd;
-	irr::SKeyMap* m_keyMap;
-	irr::IrrlichtDevice* m_device;
-	irr::video::IVideoDriver* m_driver;
-	irr::scene::ISceneManager* m_sceneManager;
+	CEGUI::System& m_systemd = CEGUI::System::getSingleton();
 	CEGUI::ProgressBar* m_progressBar;
 };

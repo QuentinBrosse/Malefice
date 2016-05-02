@@ -115,10 +115,10 @@ int main(int argc, char* argv[])
 	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
 
-	WaitingRoom salon(keyMap, sceneManager, device);
+	WaitingRoom salon();
 	salon.display();
 
-	LoadingWindows loading(keyMap, sceneManager, device);
+	LoadingWindows loading();
 	loading.display();
 	loading.setProgress(20);
 	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
