@@ -1,7 +1,7 @@
 #include <iostream>
 #include "LoadingWindows.h"
 
-LoadingWindows::LoadingWindows(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device) : m_systemd(CEGUI::System::getSingleton()), m_keyMap(keyMap), m_sceneManager(sceneManager), m_device(device)
+LoadingWindows::LoadingWindows()
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectionToServer.layout");
 	try

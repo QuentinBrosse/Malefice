@@ -5,7 +5,7 @@
 	#pragma warning(disable:4996)
 #endif
 
-WaitingRoom::WaitingRoom(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device) : m_systemd(CEGUI::System::getSingleton()), m_keyMap(keyMap), m_sceneManager(sceneManager), m_device(device)
+WaitingRoom::WaitingRoom()
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("WaitingRoom.layout");
 	try

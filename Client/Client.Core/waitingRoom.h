@@ -9,7 +9,7 @@
 class WaitingRoom
 {
 public:
-	WaitingRoom(irr::SKeyMap* keyMap, irr::scene::ISceneManager* sceneManager, irr::IrrlichtDevice* device);
+	WaitingRoom();
 	~WaitingRoom()	= default;
 
 	void display();
@@ -22,11 +22,7 @@ public:
 
 private:
 	CEGUI::Window*				m_windows;
-	irr::SKeyMap*				m_keyMap;
-	irr::IrrlichtDevice*		m_device;
-	irr::video::IVideoDriver*	m_driver;
-	irr::scene::ISceneManager*	m_sceneManager;
-	CEGUI::System&				m_systemd;
+	CEGUI::System&				m_systemd = CEGUI::System::getSingleton();
 	CEGUI::FrameWindow*			m_frameWindows;
 	std::time_t					m_timestamp;
 	bool						m_stopTimer = false;
