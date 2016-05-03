@@ -1,0 +1,6 @@
+<Imageset autoScaled="true" imagefile="spells.png" name="Spells" nativeHorzRes="800" nativeVertRes="600" version="2">
+    <Image height="24" name="FireBall" width="24" xPos="80" yPos="54" />
+    <Image height="24" name="Vulcan" width="24" xPos="132" yPos="28" />
+    <Image height="24" name="FlowerPower" width="24" xPos="54" yPos="158" />
+    <Image height="24" name="Ice" width="24" xPos="288" yPos="184" />
+</Imageset>

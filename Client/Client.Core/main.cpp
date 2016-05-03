@@ -7,6 +7,7 @@
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
+#include "InGameGUI.h"
 
 #include "ClientCore.h"
 #include "PlayerFactory.h"
@@ -68,6 +69,17 @@ void initCEGUI(CEGUI::DefaultResourceProvider*& rp, CEGUI::XMLParser*& parser)
 	parser = CEGUI::System::getSingleton().getXMLParser();
 	if (parser->isPropertyPresent("SchemaDefaultResourceGroup"))
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
+
+	//Chargement des fichiers de police et de configuration de CEGUI
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
+	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("VanillaSkin.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("spells.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
 }
 
 void debugDisplayMousePos(irr::IrrlichtDevice* device)
@@ -106,44 +118,23 @@ int main(int argc, char* argv[])
 	CEGUI::DefaultResourceProvider* rp;
 	initCEGUI(rp, parser);
 
-	//Chargement des fichiers de police et de configuration de CEGUI
-	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
-	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
-	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
-	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
-	CEGUI::SchemeManager::getSingleton().createFromFile("OgreTray.scheme");
-
 	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
 
-	WaitingRoom salon;
-	salon.display();
-
-	LoadingWindows loading;
-	loading.display();
-	loading.setProgress(20);
-	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
-	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Another test succesfull !"));
-	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']And another one !"));
-	loading.listAddText(std::string("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !"));
-	loading.listAddText("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !");
-
-
-	salon.addRightTeamMember("Brendan");
-	salon.addRightTeamMember("Guillaume");
-	salon.addRightTeamMember("OKLM man");
-	salon.addRightTeamMember("SUPER man");
-
-	salon.addLeftTeamMember("Super Méchant");
-	salon.addLeftTeamMember("Big BOSS");
-	salon.addLeftTeamMember("Solid fail");
+	InGameGUI gameGUI;
+	gameGUI.display();
+	gameGUI.setHealthPoint(20);
+	gameGUI.addHealthPoint(0);
+	gameGUI.setEnergyPoint(100);
+	gameGUI.timerStart();
 
 	while (device->run())
 	{
 		if (device->isWindowActive()) //draw only if the window is active
 		{
-			salon.refreshTime();
-			driver->beginScene(true, true, irr::video::SColor(255, 255, 255, 255));
+			gameGUI.refreshTime();
+
+			driver->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 			debugDisplayMousePos(device); //Display mouse position on instead of windows title for debug purpose

@@ -34,6 +34,7 @@
     <ClInclude Include="..\..\Shared\WeaponCreator.h" />
     <ClInclude Include="..\..\Shared\WeaponManager.h" />
     <ClInclude Include="EventReceiver.h" />
+    <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="WaitingRoom.h" />
@@ -61,6 +62,7 @@
     <ClCompile Include="..\..\Shared\WeaponCreator.cpp" />
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
     <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
+    <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="LoadingWindows.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
