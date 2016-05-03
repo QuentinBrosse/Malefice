@@ -11,10 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Shared\AComponent.h" />
+    <ClInclude Include="..\..\Shared\AConfiguration.h" />
+    <ClInclude Include="..\..\Shared\CollectionComponent.h" />
+    <ClInclude Include="..\..\Shared\Entity.h" />
+    <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\LoggerSetup.h" />
+    <ClInclude Include="..\..\Shared\Movement.h" />
+    <ClInclude Include="..\..\Shared\MovementSystem.h" />
+    <ClInclude Include="..\..\Shared\NetworkID.h" />
     <ClInclude Include="..\..\Shared\NetworkRPC.h" />
+    <ClInclude Include="..\..\Shared\ObjectFactory.h" />
+    <ClInclude Include="..\..\Shared\PlayerFactory.h" />
+    <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\ProjectGlobals.h" />
     <ClInclude Include="..\..\Shared\Singleton.h" />
+    <ClInclude Include="..\..\Shared\Spell.h" />
+    <ClInclude Include="..\..\Shared\SpellManager.h" />
+    <ClInclude Include="..\..\Shared\SpellSystem.h" />
+    <ClInclude Include="..\..\Shared\Team.h" />
+    <ClInclude Include="..\..\Shared\Weapon.h" />
+    <ClInclude Include="..\..\Shared\WeaponManager.h" />
+    <ClInclude Include="..\..\Shared\WeaponsConfiguration.h" />
+    <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
@@ -22,8 +41,26 @@
     <ClInclude Include="ServerCoreConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Shared\AComponent.cpp" />
+    <ClCompile Include="..\..\Shared\AConfiguration.cpp" />
+    <ClCompile Include="..\..\Shared\Entity.cpp" />
+    <ClCompile Include="..\..\Shared\Life.cpp" />
     <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
+    <ClCompile Include="..\..\Shared\Movement.cpp" />
+    <ClCompile Include="..\..\Shared\MovementSystem.cpp" />
+    <ClCompile Include="..\..\Shared\NetworkID.cpp" />
+    <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
+    <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
+    <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
+    <ClCompile Include="..\..\Shared\Spell.cpp" />
+    <ClCompile Include="..\..\Shared\SpellManager.cpp" />
+    <ClCompile Include="..\..\Shared\SpellSystem.cpp" />
+    <ClCompile Include="..\..\Shared\Team.cpp" />
+    <ClCompile Include="..\..\Shared\Weapon.cpp" />
+    <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
+    <ClCompile Include="..\..\Shared\WeaponsConfiguration.cpp" />
+    <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />

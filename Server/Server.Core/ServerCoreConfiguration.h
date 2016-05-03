@@ -3,8 +3,9 @@
 #include <string>
 #include <tinyxml2.h>
 #include <easylogging++.h>
+#include "AConfiguration.h"
 
-class ServerCoreConfiguration
+class ServerCoreConfiguration : public AConfiguration
 {
 public:
 	static const std::string	DEFAULT_SETTINGS_FILENAME;
@@ -15,7 +16,11 @@ public:
 	static const short			DEFAULT_PORT;
 
 	ServerCoreConfiguration();
-	~ServerCoreConfiguration()	= default;
+	virtual ~ServerCoreConfiguration()	= default;
+
+
+	virtual bool	loadFromFile(const std::string& filepath);
+	virtual bool	saveToFile(const std::string& filepath)	const;
 
 
 	const std::string&	getName()		const;
@@ -28,14 +33,8 @@ public:
 	void	setAddress(const std::string& address);
 	void	setPort(short port);
 
-	bool	loadFromFile(const std::string& filepath);
-	bool	saveToFile(const std::string& filepath)	const;
-
 
 private:
-	tinyxml2::XMLElement*	getOrCreateElement(tinyxml2::XMLDocument& doc, tinyxml2::XMLNode& parentNode, const std::string& elementName)											const;
-	std::string				getOrCreateElementString(tinyxml2::XMLDocument& doc, tinyxml2::XMLNode& parentNode, const std::string& elementName, const std::string& defaultValue)	const;
-
 	std::string	m_name;
 	std::string	m_password;
 	std::string	m_address;

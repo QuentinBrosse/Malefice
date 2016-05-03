@@ -20,10 +20,11 @@ namespace ecs
 			SABER,
 			CHAIN_SAW,
 			KNIFE,
+			WEAPON_COUNT
 		};
 
 		Weapon();
-		Weapon(const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, WeaponType weaponType, bool isGun);
+		Weapon(int id, const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, WeaponType weaponType, bool handToHand);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
@@ -31,10 +32,11 @@ namespace ecs
 
 		void				dump()	const;
 		
+		const int			getId()						const;
 		const int			getDamage()					const;
 		const int			getDamageExplosive()		const;
 		const WeaponType	getWeaponType()				const;
-		const bool			isGun()						const;
+		const bool			isHandToHand()				const;
 		const std::string&	getName()					const;
 		int					getAmmunition()				const;
 		int					getAmmunitionExplosive()	const;
@@ -46,16 +48,15 @@ namespace ecs
 
 
 	private:
+		const int			ID;
 		const std::string	WEAPON_NAME;
 		const int			MAX_AMMUNITION;
 		const int			MAX_AMMUNITION_EXPLOSIVE;
 		const int			DAMAGE;
 		const int			DAMAGE_EXPLOSIVE;
 		const WeaponType	WEAPON_TYPE;
-		const bool			IS_GUN;
+		const bool			HAND_TO_HAND;
 		int					m_currentAmmunition;
 		int					m_currentAmmunitionExplosive;
 	};
-
-
 }

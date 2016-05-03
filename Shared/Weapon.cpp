@@ -4,21 +4,21 @@
 namespace ecs
 {
 	Weapon::Weapon() : AComponent("Weapon", WEAPON),
-		WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), WEAPON_TYPE(DEFAULT), IS_GUN(false)
+		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), WEAPON_TYPE(DEFAULT), HAND_TO_HAND(false)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
 		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
 	}
 
-	Weapon::Weapon(const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const WeaponType weaponType, const bool isGun) : AComponent("Weapon", WEAPON),
-		WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), WEAPON_TYPE(weaponType), IS_GUN(isGun)
+	Weapon::Weapon(const int id, const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const WeaponType weaponType, const bool handToHand) : AComponent("Weapon", WEAPON),
+		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), WEAPON_TYPE(weaponType), HAND_TO_HAND(handToHand)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
 		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", WEAPON),
-		WEAPON_NAME(cpy.NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), WEAPON_TYPE(cpy.WEAPON_TYPE), IS_GUN(cpy.IS_GUN)
+		ID(cpy.ID), WEAPON_NAME(cpy.NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND)
 	{
 		m_currentAmmunition = cpy.m_currentAmmunition;
 		m_currentAmmunitionExplosive = cpy.m_currentAmmunitionExplosive;
@@ -61,9 +61,9 @@ namespace ecs
 		return WEAPON_TYPE;
 	}
 
-	const bool		Weapon::isGun() const
+	const bool		Weapon::isHandToHand() const
 	{
-		return IS_GUN;
+		return HAND_TO_HAND;
 	}
 	const std::string & Weapon::getName() const
 	{
