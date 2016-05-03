@@ -25,6 +25,8 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				name;
 		int						maxAmmunition;
 		int						maxAmmunitionExplosive;
+		int						maxAmmunitionLoader;
+		int						maxAmmunitionExplosiveLoader;
 		int						damage;
 		int						damageExplosive;
 		std::string				handToHandStr;
@@ -39,6 +41,8 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		type = this->parseWeaponType(this->getOrCreateElementString(doc, *currentWeapon, "type", ""));
 		maxAmmunition = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "maxAmmunition", "-1"));
 		maxAmmunitionExplosive = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "maxAmmunitionExplosive", "-1"));
+		maxAmmunitionLoader = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "maxAmmunitionLoader", "-1"));
+		maxAmmunitionExplosiveLoader = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "maxAmmunitionExplosiveLoader", "-1"));
 		damage = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "damage", "-1"));
 		damageExplosive = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "damageExplosive", "-1"));
 		handToHandStr = this->getOrCreateElementString(doc, *currentWeapon, "handToHand", "");
@@ -51,12 +55,12 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		{
 			handToHand = (handToHandStr == "TRUE" ? true : false);
 		}
-		if (name == "" || type == ecs::Weapon::WEAPON_COUNT || maxAmmunition <= -1 || maxAmmunitionExplosive <= -1 || damage <= -1 || damageExplosive <= -1)
+		if (name == "" || type == ecs::Weapon::WEAPON_COUNT || maxAmmunition <= -1 || maxAmmunitionExplosive <= -1 || maxAmmunitionLoader <= -1 || maxAmmunitionExplosiveLoader <= -1 || damage <= -1 || damageExplosive <= -1)
 		{
 			LOG(ERROR) << "Bad weapon element value, skipping element.";
 			continue;
 		}
-		m_weapons.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, 0, 0, type, handToHand)); // TODO: add maxAmmunitionLoader and maxAmmunitionExplosiveLoader
+		m_weapons.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, maxAmmunitionLoader, maxAmmunitionExplosiveLoader, type, handToHand)); // TODO: add maxAmmunitionLoader and maxAmmunitionExplosiveLoader
 	}
 	return true;
 }
