@@ -16,9 +16,8 @@ public:
 	void hide();
 	bool onCloseButtonClicked(const CEGUI::EventArgs& e);
 	void refreshTime();
-	void addRightTeamMember(const std::string &);
-	void addLeftTeamMember(const std::string& txt);
-
+	void addRightTeamMember(const std::string& name);
+	void addLeftTeamMember(const std::string& name);
 
 private:
 	CEGUI::Window*				m_windows;

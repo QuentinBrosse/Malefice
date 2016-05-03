@@ -1,4 +1,7 @@
 #include <iostream>
+#include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include "LoggerSetup.h"
 #include "MainMenu.h"
 #include "EventReceiver.h"
@@ -17,7 +20,7 @@
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
-void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, eventReceiver* receiver, irr::SKeyMap* keyMap)
+void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, EventReceiver* receiver, irr::SKeyMap* keyMap)
 {
 	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
 	driver = device->getVideoDriver();
@@ -76,7 +79,7 @@ void debugDisplayMousePos(irr::IrrlichtDevice* device)
 	device->setWindowCaption(text.c_str());
 }
 
-void ceguiEventInjector(eventReceiver& receiver, irr::IrrlichtDevice* device)
+void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 {
 	CEGUI::System& systemd = CEGUI::System::getSingleton();
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
@@ -89,13 +92,11 @@ void ceguiEventInjector(eventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
-	//Init Irrlicht Engine
-	/*irr::SKeyMap keyMap[5];
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
-	eventReceiver receiver;
+	EventReceiver receiver;
 	initIrrlicht(device, driver, sceneManager, &receiver, keyMap);
 
 	//Hook Irrlicht renderer and Init and configure CEGUI
@@ -115,10 +116,10 @@ int main(int argc, char* argv[])
 	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
 
-	WaitingRoom salon();
+	WaitingRoom salon;
 	salon.display();
 
-	LoadingWindows loading();
+	LoadingWindows loading;
 	loading.display();
 	loading.setProgress(20);
 	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']Test succesfull !"));
@@ -126,7 +127,7 @@ int main(int argc, char* argv[])
 	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']And another one !"));
 	loading.listAddText(std::string("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !"));
 	loading.listAddText("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !");
-	loading.hide();
+
 
 	salon.addRightTeamMember("Brendan");
 	salon.addRightTeamMember("Guillaume");
@@ -150,9 +151,10 @@ int main(int argc, char* argv[])
 			driver->endScene();
 		}
 	}
-	device->drop();*/
+	device->drop();
 
-	//Client core test
+	/*
+	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore	core;
 
 	ecs::Entity	player = factory::PlayerFactory::createPlayer(1.0, 2.1, 0.0, 1, 1, 100);
@@ -173,6 +175,6 @@ int main(int argc, char* argv[])
 
 	core.dump();
 	getchar();
-
+	*/
 	return (0);
 }
