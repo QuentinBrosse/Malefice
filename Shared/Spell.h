@@ -20,7 +20,7 @@ namespace ecs
 
 	public:
 		Spell();
-		Spell(const SpellType spellType);
+		Spell(const SpellType spellType, const int coolDown);
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
@@ -36,5 +36,6 @@ namespace ecs
 	private:
 		SpellType				m_spellType;
 		bool					m_isLock;
+		const int				COOLDOWN;
 	};
 }
