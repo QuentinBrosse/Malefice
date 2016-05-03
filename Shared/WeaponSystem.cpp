@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	void				WeaponSystem::shoot(Entity& entity, int nbAmmunition, bool isExplosive)
+	void				WeaponSystem::shoot(Entity& entity, bool isExplosive)
 	{
 		WeaponManager*	weaponManager;
 
@@ -10,39 +10,19 @@ namespace ecs
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			if (isExplosive)
-				weapon.decAmmunitionExplosive(nbAmmunition);
-			else
-				weapon.decAmmunition(nbAmmunition);
-		}
-	}
-
-	void				WeaponSystem::shootOnTarget(Entity& shooter, int nbAmmunition, bool isExplosive, Entity& target)
-	{
-		WeaponManager*	weaponManager;
-		Life*			lifeOfTarget;
-
-		if ((weaponManager = dynamic_cast<WeaponManager*>(shooter[WEAPON_MANAGER])) != nullptr && (lifeOfTarget = dynamic_cast<Life*>(target[LIFE])) != nullptr)
-		{
-			Weapon&	weaponOfShooter = weaponManager->getCurrentWeapon();
-			if (isExplosive)
 			{
-				lifeOfTarget->takeDamage(weaponOfShooter.getDamageExplosive());
-				weaponOfShooter.decAmmunitionExplosive(nbAmmunition);
+				if (weapon.getAmmunitionExplosiveLoader() > 0)
+					weapon.firedExplosive();
+				else
+					weapon.reloadExplosive();
 			}
 			else
 			{
-				lifeOfTarget->takeDamage(weaponOfShooter.getDamage());
-				weaponOfShooter.decAmmunition(nbAmmunition);
+				if (weapon.getAmmunitionLoader() > 0)
+					weapon.fired();
+				else
+					weapon.reload();
 			}
-
-		}
-		else if (weaponManager)
-		{
-			Weapon&	weaponOfShooter = weaponManager->getCurrentWeapon();
-			if (isExplosive)
-				weaponOfShooter.decAmmunitionExplosive(nbAmmunition);
-			else
-				weaponOfShooter.decAmmunition(nbAmmunition);
 		}
 	}
 
