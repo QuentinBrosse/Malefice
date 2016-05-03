@@ -1,13 +1,11 @@
 #include "ObjectFactory.h"
 #include "Position.h"
 
-namespace factory
+ecs::Entity* ObjectFactory::createObject(float x, float y, float z)
 {
-	ecs::Entity ObjectFactory::createObject(float x, float y, float z)
-	{
-		ecs::Entity	entity;
+	ecs::Entity* entity = new ecs::Entity();
 
-		entity[ecs::POSITION] = new ecs::Position(x, y, z);
-		return entity;
-	}
+	(*entity)[ecs::POSITION] = new ecs::Position(x, y, z);
+
+	return entity;
 }

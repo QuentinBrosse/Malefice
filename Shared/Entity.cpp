@@ -25,10 +25,10 @@ namespace ecs
 
 	Entity::~Entity()
 	{
-/*		for (auto component : m_components)
+		for (auto component : m_components)
 		{
 			delete component.second;
-		}*/
+		}
 	}
 
 	AComponent*& Entity::operator[](ComponentType type)

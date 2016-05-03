@@ -3,15 +3,12 @@
 #include "ObjectFactory.h"
 #include "Entity.h"
 
-namespace factory
+class PlayerFactory
 {
-	class PlayerFactory
-	{
-	public:
-		PlayerFactory()		= delete;
-		~PlayerFactory()	= delete;
+public:
+	PlayerFactory()		= delete;
+	~PlayerFactory()	= delete;
 
-		static ecs::Entity createPlayer(float x, float y, float z, unsigned int networkId, int team, int life);
-		static ecs::Entity createPredator(float x, float y, float z, unsigned int networkId);
-	};
-}
+	static ecs::Entity *createPlayer(float x, float y, float z, unsigned int networkId, int team, int life);
+	static ecs::Entity *createPredator(float x, float y, float z, unsigned int networkId);
+};
