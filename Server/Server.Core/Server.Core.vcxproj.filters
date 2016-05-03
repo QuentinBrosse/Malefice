@@ -9,16 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Shared">
-      <UniqueIdentifier>{394f13c7-53b4-440a-adec-9f9954222772}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shared">
-      <UniqueIdentifier>{199ba187-536d-480f-9dac-137a2407818b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Network">
       <UniqueIdentifier>{b50d76a6-71cf-4d7f-89aa-32dcba7b75cd}</UniqueIdentifier>
     </Filter>
@@ -31,29 +21,9 @@
     <Filter Include="Source Files\General">
       <UniqueIdentifier>{1f4f9786-2f16-4bcb-b179-1bf31021568f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shared\ECS">
-      <UniqueIdentifier>{5fce6c28-b7ab-46ea-9386-7f05c53e91a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shared\ECS\Component">
-      <UniqueIdentifier>{0dc61ff9-f093-45d2-aa70-85f1d411d94a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shared\ECS\Factory">
-      <UniqueIdentifier>{65f2f55a-0be5-4444-bf02-df035350131a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shared\ECS\System">
-      <UniqueIdentifier>{70fbe440-d94a-45ef-aef9-85f8af100ead}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shared\ECS">
-      <UniqueIdentifier>{08d793c1-219f-4b9b-96b1-7d0e19f6e886}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shared\ECS\Component">
-      <UniqueIdentifier>{23b5dab3-a39c-453d-8617-3df427bf7738}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shared\ECS\Factory">
-      <UniqueIdentifier>{8b754d2b-61d9-43d9-aa71-88d9db25a131}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shared\ECS\System">
-      <UniqueIdentifier>{e9872a1d-ab27-4f7d-9787-c822233de03b}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,83 +33,14 @@
     <ClInclude Include="PlayerRPC.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\NetworkRPC.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="GeneralRPC.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
     <ClInclude Include="ServerCore.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Singleton.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\ProjectGlobals.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\LoggerSetup.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="ServerCoreConfiguration.h">
       <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\AConfiguration.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponsConfiguration.h">
-      <Filter>Header Files\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Entity.h">
-      <Filter>Header Files\Shared\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\AComponent.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\CollectionComponent.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Life.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Movement.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\NetworkID.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Position.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Spell.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\SpellManager.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Team.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\Weapon.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponManager.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\ObjectFactory.h">
-      <Filter>Header Files\Shared\ECS\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\PlayerFactory.h">
-      <Filter>Header Files\Shared\ECS\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\SpellSystem.h">
-      <Filter>Header Files\Shared\ECS\System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponSystem.h">
-      <Filter>Header Files\Shared\ECS\System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\MovementSystem.h">
-      <Filter>Header Files\Shared\ECS\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,68 +59,8 @@
     <ClCompile Include="ServerCore.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Shared\ProjectGlobals.cpp">
-      <Filter>Source Files\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\LoggerSetup.cpp">
-      <Filter>Source Files\Shared</Filter>
-    </ClCompile>
     <ClCompile Include="ServerCoreConfiguration.cpp">
       <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\AConfiguration.cpp">
-      <Filter>Source Files\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\WeaponsConfiguration.cpp">
-      <Filter>Source Files\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Entity.cpp">
-      <Filter>Source Files\Shared\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\AComponent.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Movement.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Spell.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\SpellManager.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\NetworkID.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Team.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Weapon.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Life.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Position.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\WeaponManager.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\ObjectFactory.cpp">
-      <Filter>Source Files\Shared\ECS\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\PlayerFactory.cpp">
-      <Filter>Source Files\Shared\ECS\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\MovementSystem.cpp">
-      <Filter>Source Files\Shared\ECS\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\SpellSystem.cpp">
-      <Filter>Source Files\Shared\ECS\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\WeaponSystem.cpp">
-      <Filter>Source Files\Shared\ECS\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

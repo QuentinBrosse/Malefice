@@ -1,10 +1,11 @@
 #pragma once
 
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Team : public AComponent
+	class MALEFICE_DLL_EXPORT Team : public AComponent
 	{
 	public:
 		const int TEAM_NUMBER;

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <easylogging++.h>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 #include "ServerCoreConfiguration.h"
@@ -12,18 +11,18 @@ ServerCore::ServerCore() :
 
 void	ServerCore::run()
 {
-	LOG(INFO) << "Server started.";
+	//LOG(INFO) << "Server started.";
 	if (this->init() == false)
 	{
-		LOG(FATAL) << "Server initialization failed. Abortring." << std::endl;
+		//LOG(FATAL) << "Server initialization failed. Abortring." << std::endl;
 		return;
 	}
-	LOG(INFO) << "Server initialized.";
+	//LOG(INFO) << "Server initialized.";
 	while (this->isActive())
 	{
 		this->pulse();
 	}
-	LOG(INFO) << "Server stopped.";
+	//LOG(INFO) << "Server stopped.";
 }
 
 
@@ -34,7 +33,7 @@ bool	ServerCore::init()
 	m_networkModule = new NetworkModule();
 	if (m_networkModule->init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
 	{
-		LOG(FATAL) << "Failed to start Network Module.";
+		//LOG(FATAL) << "Failed to start Network Module.";
 		return false;
 	}
 	this->displayHeader();

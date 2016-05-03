@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Position.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Movement : public AComponent
+	class MALEFICE_DLL_EXPORT Movement : public AComponent
 	{
 	public:
 		Movement() = default;

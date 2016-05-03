@@ -1,10 +1,11 @@
 #pragma once
 
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Life: public AComponent
+	class MALEFICE_DLL_EXPORT Life : public AComponent
 	{
 	public:
 		const int MAX_LIFE;

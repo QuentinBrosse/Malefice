@@ -13,6 +13,3 @@
 [submodule "Libraries/tinyxml2"]
 	path = Libraries/tinyxml2
 	url = git@github.com:leethomason/tinyxml2.git
-[submodule "Libraries/easyloggingpp"]
-	path = Libraries/easyloggingpp
-	url = git@github.com:easylogging/easyloggingpp.git

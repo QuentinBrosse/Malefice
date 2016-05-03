@@ -2,10 +2,11 @@
 
 #include <string>
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Weapon : public AComponent
+	class MALEFICE_DLL_EXPORT Weapon : public AComponent
 	{
 	public:
 		enum WeaponType

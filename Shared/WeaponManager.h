@@ -2,10 +2,11 @@
 
 #include <map>
 #include "Weapon.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class WeaponManager : public AComponent
+	class MALEFICE_DLL_EXPORT WeaponManager : public AComponent
 	{
 	public:
 		WeaponManager(const Weapon& defaultWeapon);

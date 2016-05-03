@@ -2,10 +2,11 @@
 
 #include "AComponent.h"
 #include <irrlicht.h>
+#include "Export.h"
 
 namespace ecs
 {
-	class Position: public AComponent
+	class MALEFICE_DLL_EXPORT Position: public AComponent
 	{
 	public:
 		Position(float xPosition, float yPosition, float zPosition, float xTarget, float yTarget, float zTarget);

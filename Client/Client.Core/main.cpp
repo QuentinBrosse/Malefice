@@ -2,7 +2,6 @@
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
-#include "LoggerSetup.h"
 #include "MainMenu.h"
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
@@ -145,7 +144,6 @@ int main(int argc, char* argv[])
 	device->drop();
 
 	/*
-	Logger::setup(argc, argv, ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore	core;
 
 	ecs::Entity	player = factory::PlayerFactory::createPlayer(1.0, 2.1, 0.0, 1, 1, 100);

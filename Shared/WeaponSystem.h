@@ -3,16 +3,15 @@
 #include "Entity.h"
 #include "WeaponManager.h"
 #include "Life.h"
+#include "Export.h"
 
 namespace ecs
 {
-
-	class WeaponSystem
+	class MALEFICE_DLL_EXPORT WeaponSystem
 	{
 	public:
 		WeaponSystem() = delete;
 		~WeaponSystem() = delete;
 		static void	shoot(Entity& entity, bool isExplosive);
 	};
-
 }

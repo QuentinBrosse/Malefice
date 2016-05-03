@@ -11,29 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\AComponent.h" />
-    <ClInclude Include="..\..\Shared\AConfiguration.h" />
-    <ClInclude Include="..\..\Shared\CollectionComponent.h" />
-    <ClInclude Include="..\..\Shared\Entity.h" />
-    <ClInclude Include="..\..\Shared\Life.h" />
-    <ClInclude Include="..\..\Shared\LoggerSetup.h" />
-    <ClInclude Include="..\..\Shared\Movement.h" />
-    <ClInclude Include="..\..\Shared\MovementSystem.h" />
-    <ClInclude Include="..\..\Shared\NetworkID.h" />
-    <ClInclude Include="..\..\Shared\NetworkRPC.h" />
-    <ClInclude Include="..\..\Shared\ObjectFactory.h" />
-    <ClInclude Include="..\..\Shared\PlayerFactory.h" />
-    <ClInclude Include="..\..\Shared\Position.h" />
-    <ClInclude Include="..\..\Shared\ProjectGlobals.h" />
-    <ClInclude Include="..\..\Shared\Singleton.h" />
-    <ClInclude Include="..\..\Shared\Spell.h" />
-    <ClInclude Include="..\..\Shared\SpellManager.h" />
-    <ClInclude Include="..\..\Shared\SpellSystem.h" />
-    <ClInclude Include="..\..\Shared\Team.h" />
-    <ClInclude Include="..\..\Shared\Weapon.h" />
-    <ClInclude Include="..\..\Shared\WeaponManager.h" />
-    <ClInclude Include="..\..\Shared\WeaponsConfiguration.h" />
-    <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
@@ -41,26 +18,6 @@
     <ClInclude Include="ServerCoreConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Shared\AComponent.cpp" />
-    <ClCompile Include="..\..\Shared\AConfiguration.cpp" />
-    <ClCompile Include="..\..\Shared\Entity.cpp" />
-    <ClCompile Include="..\..\Shared\Life.cpp" />
-    <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
-    <ClCompile Include="..\..\Shared\Movement.cpp" />
-    <ClCompile Include="..\..\Shared\MovementSystem.cpp" />
-    <ClCompile Include="..\..\Shared\NetworkID.cpp" />
-    <ClCompile Include="..\..\Shared\ObjectFactory.cpp" />
-    <ClCompile Include="..\..\Shared\PlayerFactory.cpp" />
-    <ClCompile Include="..\..\Shared\Position.cpp" />
-    <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
-    <ClCompile Include="..\..\Shared\Spell.cpp" />
-    <ClCompile Include="..\..\Shared\SpellManager.cpp" />
-    <ClCompile Include="..\..\Shared\SpellSystem.cpp" />
-    <ClCompile Include="..\..\Shared\Team.cpp" />
-    <ClCompile Include="..\..\Shared\Weapon.cpp" />
-    <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
-    <ClCompile Include="..\..\Shared\WeaponsConfiguration.cpp" />
-    <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
@@ -110,13 +67,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/easyloggingpp/src;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/tinyxml2/build/Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -130,15 +87,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/easyloggingpp/src;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/tinyxml2/build/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

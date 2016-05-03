@@ -2,10 +2,11 @@
 
 #include <map>
 #include "Spell.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class SpellManager : public AComponent
+	class MALEFICE_DLL_EXPORT SpellManager : public AComponent
 	{
 	public:
 		SpellManager(const Spell& defaultSpell);

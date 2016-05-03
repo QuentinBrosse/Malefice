@@ -1,10 +1,11 @@
 #pragma once
 
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class NetworkID : public AComponent
+	class MALEFICE_DLL_EXPORT NetworkID : public AComponent
 	{
 	public:
 		const unsigned int	ID;

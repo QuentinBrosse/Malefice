@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Export.h"
+
 namespace ecs
 {
-	enum ComponentType
+	enum MALEFICE_DLL_EXPORT ComponentType
 	{
 		DEFAULT,
 		NETWORK_ID,

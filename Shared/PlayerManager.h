@@ -2,8 +2,9 @@
 
 #include <map>
 #include "Entity.h"
+#include "Export.h"
 
-class PlayerManager
+class MALEFICE_DLL_EXPORT PlayerManager
 {
 public:
 	PlayerManager()						= default;

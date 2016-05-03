@@ -2,11 +2,11 @@
 
 #include "Movement.h"
 #include "Entity.h"
+#include "Export.h"
 
 namespace ecs
 {
-
-	class MovementSystem
+	class MALEFICE_DLL_EXPORT MovementSystem
 	{
 	public:
 		MovementSystem() = delete;
@@ -14,5 +14,4 @@ namespace ecs
 
 		static void	move(Entity& entity);
 	};
-
 }

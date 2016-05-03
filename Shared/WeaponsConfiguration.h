@@ -3,11 +3,11 @@
 #include <string>
 #include <map>
 #include <tinyxml2.h>
-#include <easylogging++.h>
 #include "AConfiguration.h"
 #include "Weapon.h"
+#include "Export.h"
 
-class WeaponsConfiguration : public AConfiguration
+class MALEFICE_DLL_EXPORT WeaponsConfiguration : public AConfiguration
 {
 public:
 	static const std::string	WEAPONS_FILENAME;
@@ -27,5 +27,3 @@ private:
 
 	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	m_weapons;
 };
-
-el::base::Writer&	operator<<(el::base::Writer& logger, const WeaponsConfiguration& rhs);

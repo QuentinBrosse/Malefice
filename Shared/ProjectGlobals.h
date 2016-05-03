@@ -2,8 +2,9 @@
 
 #include <cstddef>
 #include <string>
+#include "Export.h"
 
-class ProjectGlobals
+class MALEFICE_DLL_EXPORT ProjectGlobals
 {
 public:
 	static const std::string	GAME_NAME;

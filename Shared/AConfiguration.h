@@ -2,8 +2,9 @@
 
 #include <string>
 #include <tinyxml2.h>
+#include "Export.h"
 
-class AConfiguration
+class MALEFICE_DLL_EXPORT AConfiguration
 {
 public:
 	AConfiguration()			= default;

@@ -3,8 +3,9 @@
 #include <string>
 #include <map>
 #include "Spell.h"
+#include "Export.h"
 
-class SpellCreator
+class MALEFICE_DLL_EXPORT SpellCreator
 {
 public:
 	SpellCreator(const std::string& XMLFilename);

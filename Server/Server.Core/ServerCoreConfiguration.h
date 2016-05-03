@@ -2,7 +2,6 @@
 
 #include <string>
 #include <tinyxml2.h>
-#include <easylogging++.h>
 #include "AConfiguration.h"
 
 class ServerCoreConfiguration : public AConfiguration
@@ -40,5 +39,3 @@ private:
 	std::string	m_address;
 	int			m_port;
 };
-
-el::base::Writer&	operator<<(el::base::Writer& logger, const ServerCoreConfiguration& rhs);

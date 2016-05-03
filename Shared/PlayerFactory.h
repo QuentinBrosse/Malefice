@@ -2,8 +2,9 @@
 
 #include "ObjectFactory.h"
 #include "Entity.h"
+#include "Export.h"
 
-class PlayerFactory
+class MALEFICE_DLL_EXPORT PlayerFactory
 {
 public:
 	PlayerFactory()		= delete;

@@ -2,10 +2,11 @@
 
 #include "Entity.h"
 #include "SpellManager.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class SpellSystem
+	class MALEFICE_DLL_EXPORT SpellSystem
 	{
 	public:
 		SpellSystem() = delete;

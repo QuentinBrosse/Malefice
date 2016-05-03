@@ -3,8 +3,9 @@
 #include <string>
 #include <map>
 #include "Weapon.h"
+#include "Export.h"
 
-class WeaponCreator
+class MALEFICE_DLL_EXPORT WeaponCreator
 {
 public:
 	WeaponCreator(const std::string& XMLFilename);

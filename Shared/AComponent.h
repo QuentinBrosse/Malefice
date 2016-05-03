@@ -3,10 +3,11 @@
 #include <string>
 #include <iostream>
 #include "CollectionComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class AComponent
+	class MALEFICE_DLL_EXPORT AComponent
 	{
 	public:
 		AComponent(const std::string& name, ComponentType type);

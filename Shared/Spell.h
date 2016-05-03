@@ -1,10 +1,11 @@
 #pragma once
 
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Spell : public AComponent
+	class MALEFICE_DLL_EXPORT Spell : public AComponent
 	{
 	public:
 		enum SpellType

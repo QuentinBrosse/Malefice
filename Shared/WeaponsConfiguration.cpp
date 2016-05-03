@@ -9,13 +9,13 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG(FATAL) << "Weapons configuration file could not be read properly (error code: " << loadResult << ", error message: " << doc.GetErrorStr2() << ").";
+		//LOG(FATAL) << "Weapons configuration file could not be read properly (error code: " << loadResult << ", error message: " << doc.GetErrorStr2() << ").";
 		return false;
 	}
 	weaponsElement = doc.RootElement();
 	if (weaponsElement == nullptr)
 	{
-		LOG(FATAL) << "Weapons configuration file could not be read properly (error code: " << doc.ErrorID() << ", error message: " << doc.GetErrorStr2() << ").";
+		//LOG(FATAL) << "Weapons configuration file could not be read properly (error code: " << doc.ErrorID() << ", error message: " << doc.GetErrorStr2() << ").";
 		return false;
 	}
 	for (tinyxml2::XMLElement* currentWeapon = weaponsElement->FirstChildElement(); currentWeapon != nullptr; currentWeapon = currentWeapon->NextSiblingElement())
@@ -34,7 +34,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 		if (currentWeapon->QueryIntAttribute("id", &id) != tinyxml2::XMLError::XML_NO_ERROR || id <= 0)
 		{
-			LOG(ERROR) << "Bad weapon ID \"" << id << "\", skipping element.";
+			//LOG(ERROR) << "Bad weapon ID \"" << id << "\", skipping element.";
 			continue;
 		}
 		name = this->getOrCreateElementString(doc, *currentWeapon, "name", "");
@@ -48,7 +48,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		handToHandStr = this->getOrCreateElementString(doc, *currentWeapon, "handToHand", "");
 		if (handToHandStr != "TRUE" && handToHandStr != "FALSE")
 		{
-			LOG(ERROR) << "Bad weapon \"handToHand\" value \"" << handToHandStr << "\", skipping element.";
+			//LOG(ERROR) << "Bad weapon \"handToHand\" value \"" << handToHandStr << "\", skipping element.";
 			continue;
 		}
 		else
@@ -57,7 +57,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		}
 		if (name == "" || type == ecs::Weapon::WEAPON_COUNT || maxAmmunition <= -1 || maxAmmunitionExplosive <= -1 || maxAmmunitionLoader <= -1 || maxAmmunitionExplosiveLoader <= -1 || damage <= -1 || damageExplosive <= -1)
 		{
-			LOG(ERROR) << "Bad weapon element value, skipping element.";
+			//LOG(ERROR) << "Bad weapon element value, skipping element.";
 			continue;
 		}
 		m_weapons.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, maxAmmunitionLoader, maxAmmunitionExplosiveLoader, type, handToHand)); // TODO: add maxAmmunitionLoader and maxAmmunitionExplosiveLoader
@@ -96,11 +96,4 @@ ecs::Weapon::WeaponType	WeaponsConfiguration::parseWeaponType(const std::string&
 		return weaponType->second;
 	else
 		return ecs::Weapon::WeaponType::WEAPON_COUNT;
-}
-
-
-el::base::Writer&	operator<<(el::base::Writer& logger, const WeaponsConfiguration& rhs)
-{
-	// TODO: write operator<< for WeaponsConfiguration
-	return logger;
 }

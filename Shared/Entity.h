@@ -2,10 +2,11 @@
 
 #include <map>
 #include "AComponent.h"
+#include "Export.h"
 
 namespace ecs
 {
-	class Entity
+	class MALEFICE_DLL_EXPORT Entity
 	{
 	public:
 		const int	ID;
