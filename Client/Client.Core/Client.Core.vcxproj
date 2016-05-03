@@ -17,11 +17,11 @@
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\LoggerSetup.h" />
+    <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\SpellSystem.h" />
     <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\NetworkID.h" />
-    <ClInclude Include="..\..\Shared\Position.h" />
     <ClInclude Include="..\..\Shared\Spell.h" />
     <ClInclude Include="..\..\Shared\SpellManager.h" />
     <ClInclude Include="..\..\Shared\SpellSystem.h" />
@@ -50,6 +50,7 @@
     <ClCompile Include="..\..\Shared\LoggerSetup.cpp" />
     <ClCompile Include="..\..\Shared\Movement.cpp" />
     <ClCompile Include="..\..\Shared\MovementSystem.cpp" />
+    <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp" />
     <ClCompile Include="..\..\Shared\Spell.cpp" />
     <ClCompile Include="..\..\Shared\SpellCreator.cpp" />
@@ -63,7 +64,6 @@
     <ClCompile Include="..\..\Shared\Weapon.cpp" />
     <ClCompile Include="..\..\Shared\Entity.cpp" />
     <ClCompile Include="..\..\Shared\Life.cpp" />
-    <ClCompile Include="..\..\Shared\Position.cpp" />
     <ClCompile Include="..\..\Shared\WeaponCreator.cpp" />
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
     <ClCompile Include="..\..\Shared\WeaponsConfiguration.cpp" />

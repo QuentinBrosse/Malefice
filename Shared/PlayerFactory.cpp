@@ -17,7 +17,7 @@ ecs::Entity* PlayerFactory::createPlayer(float x, float y, float z, unsigned int
 		(*entity)[ecs::NETWORK_ID] = new ecs::NetworkID(networkId);
 		(*entity)[ecs::TEAM] = new ecs::Team(team);
 		(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager(ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true));
-		(*entity)[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(x, y, z));
+		(*entity)[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(x, y, z, 0, 0, 0));
 		(*entity)[ecs::SPELL] = new ecs::Spell(ecs::Spell::SpellType::NOTHING, 60);
 
 		return entity;

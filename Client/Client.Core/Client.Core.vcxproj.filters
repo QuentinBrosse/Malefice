@@ -132,9 +132,6 @@
     <ClInclude Include="..\..\Shared\NetworkID.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\Position.h">
-      <Filter>Header Files\Shared\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\Spell.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
@@ -156,6 +153,15 @@
     <ClInclude Include="InGameGUI.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\SpellSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\Position.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -165,9 +171,6 @@
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\Life.cpp">
-      <Filter>Source Files\Shared\ECS\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\Position.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="mainMenu.cpp">
@@ -247,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="InGameGUI.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\Position.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

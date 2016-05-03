@@ -1,44 +1,32 @@
 #pragma once
 
 #include "AComponent.h"
+#include <irrlicht.h>
 
 namespace ecs
 {
 	class Position: public AComponent
 	{
 	public:
-		Position(float x, float y, float z);
+		Position(float xPosition, float yPosition, float zPosition, float xTarget, float yTarget, float zTarget);
 		Position(const Position& pos);
 		Position& operator=(const Position& pos);
 		~Position() = default;
 
-		void set(float x, float y, float z);
-		void set(const Position& pos);
+		void					setVectorPosition(float x, float y, float z);
+		void					setVectorTarget(float x, float y, float z);
+		void					set(const Position& pos);
 
-		void add(float x, float y, float z);
-		void add(const Position& pos);
-		void sub(float x, float y, float z);
-		void sub(const Position& pos);
+		irr::core::vector3df	getVectorPosition()					const;
+		irr::core::vector3df	getVectorTarget()					const;
 
-		Position& operator+=(const Position& pos);
-		Position& operator-=(const Position& pos);
+		void					dump()								const;
 
-		Position operator+(const Position& pos)	const;
-		Position operator-(const Position& pos)	const;
-
-		bool	operator==(const Position& pos)	const;
-		bool	operator!=(const Position& pos)	const;
-
-		float getX()	const;
-		float getY()	const;
-		float getZ()	const;
-
-		void dump()	const;
-
+		bool					operator!=(const Position& other)	const;
+		bool					operator==(const Position& other)	const;
 
 	private:
-		float m_x;
-		float m_y;
-		float m_z;
+		irr::core::vector3df	m_vectorPosition;
+		irr::core::vector3df	m_vectorTarget;
 	};
 }

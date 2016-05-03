@@ -3,123 +3,63 @@
 
 namespace ecs
 {
-	Position::Position(float x, float y, float z): AComponent("Position", POSITION),
-		m_x(x), m_y(y), m_z(z)
+	Position::Position(float xPosition, float yPosition, float zPosition, float xTarget, float yTarget, float zTarget) : AComponent("Position", POSITION),
+		m_vectorPosition(irr::core::vector3df(xPosition, yPosition, zPosition)), m_vectorTarget(irr::core::vector3df(xTarget, yTarget, zTarget))
 	{
-
 	}
 
 	Position::Position(const Position& pos) : AComponent("Position", POSITION),
-		m_x(pos.m_x), m_y(pos.m_y), m_z(pos.m_z)
+		m_vectorPosition(irr::core::vector3df(pos.m_vectorPosition)), m_vectorTarget(irr::core::vector3df(pos.m_vectorTarget))
 	{
 		
 	}
 
 	Position& Position::operator=(const Position& pos)
 	{
-		m_x = pos.m_x;
-		m_y = pos.m_y;
-		m_z = pos.m_z;
+		m_vectorPosition = pos.m_vectorPosition;
+		m_vectorTarget = pos.m_vectorTarget;
+
 		return *this;
 	}
 
-	void Position::set(float x, float y, float z)
+	void Position::setVectorPosition(float x, float y, float z)
 	{
-		m_x = x;
-		m_y = y;
-		m_z = z;
+		m_vectorPosition.set(x, y, z);
 	}
-	
+
+	void Position::setVectorTarget(float x, float y, float z)
+	{
+		m_vectorTarget.set(x, y, z);
+	}
+
 	void Position::set(const Position& pos)
 	{
-		m_x = pos.m_x;
-		m_y = pos.m_y;
-		m_z = pos.m_z;
+		m_vectorPosition = pos.m_vectorPosition;
+		m_vectorTarget = pos.m_vectorTarget;
 	}
 
-	void Position::add(float x, float y, float z)
+	irr::core::vector3df Position::getVectorPosition() const
 	{
-		m_x += x;
-		m_y += y;
-		m_z += z;
+		return m_vectorPosition;
 	}
 
-	void Position::add(const Position& pos)
+	irr::core::vector3df Position::getVectorTarget() const
 	{
-		m_x += pos.m_x;
-		m_y += pos.m_y;
-		m_z += pos.m_z;
-	}
-
-	void Position::sub(float x, float y, float z)
-	{
-		m_x -= x;
-		m_y -= y;
-		m_z -= z;
-	}
-
-	void Position::sub(const Position& pos)
-	{
-		m_x -= pos.m_x;
-		m_y -= pos.m_y;
-		m_z -= pos.m_z;
+		return m_vectorTarget;
 	}
 
 	void Position::dump() const
 	{
-		std::cout << "[Position (" << m_x << ", " << m_y << ", "
-			<< m_z << ")]" << std::endl;
+		std::cout << "[" << NAME << ": {" << m_vectorPosition.X << ", " << m_vectorPosition.Y << ", " << m_vectorPosition.Z << "} \ {" << m_vectorTarget.X << ", " << m_vectorTarget.Y << ", " << m_vectorTarget.Z << "} ]" << std::endl;
 	}
 
-	float Position::getX() const
+	bool Position::operator!=(const Position& other) const
 	{
-		return m_x;
+		return m_vectorPosition != other.m_vectorPosition || m_vectorTarget != other.m_vectorTarget;
 	}
 
-	float Position::getY() const
+	bool Position::operator==(const Position& other) const
 	{
-		return m_y;
+		return m_vectorPosition == other.m_vectorPosition && m_vectorTarget == other.m_vectorTarget;
 	}
-
-	float Position::getZ() const
-	{
-		return m_z;
-	}
-
-	Position Position::operator+(const Position& pos) const
-	{
-		return Position(m_x + pos.m_x, m_y + pos.m_y, m_z + pos.m_z);
-	}
-
-	Position Position::operator-(const Position& pos) const
-	{
-		return Position(m_x - pos.m_x, m_y - pos.m_y, m_z - pos.m_z);
-	}
-
-	bool Position::operator==(const Position& pos) const
-	{
-		return m_x == pos.m_x && m_y == pos.m_y && m_z == pos.m_z;
-	}
-
-	bool Position::operator!=(const Position& pos) const
-	{
-		return m_x != pos.m_x || m_y != pos.m_y || m_z != pos.m_z;
-	}
-
-	Position& Position::operator+=(const Position& pos)
-	{
-		m_x += pos.m_x;
-		m_y += pos.m_y;
-		m_z += pos.m_z;
-		return *this;
-	}
-
-	Position& Position::operator-=(const Position& pos)
-	{
-		m_x -= pos.m_x;
-		m_y -= pos.m_y;
-		m_z -= pos.m_z;
-		return *this;
-	}
-
 }
