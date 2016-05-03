@@ -162,6 +162,15 @@
     <ClInclude Include="..\..\Shared\Position.h">
       <Filter>Header Files\Shared\ECS\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\SpellSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\WeaponSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Shared\ECS\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Entity.cpp">
@@ -218,9 +227,6 @@
     <ClCompile Include="..\..\Shared\ClientCore.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="LoadingWindows.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WaitingRoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -253,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\Position.cpp">
       <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Shared\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingWindows.cpp">
+      <Filter>Source Files\Shared</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

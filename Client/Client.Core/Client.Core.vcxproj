@@ -37,6 +37,7 @@
     <ClInclude Include="..\..\Shared\PlayerManager.h" />
     <ClInclude Include="..\..\Shared\Entity.h" />
     <ClInclude Include="..\..\Shared\WeaponCreator.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="..\..\Shared\WeaponManager.cpp" />
     <ClCompile Include="..\..\Shared\WeaponsConfiguration.cpp" />
     <ClCompile Include="..\..\Shared\WeaponSystem.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="LoadingWindows.cpp" />
     <ClCompile Include="main.cpp" />

@@ -14,5 +14,6 @@ namespace ecs
 		WEAPON_MANAGER,
 		SPELL,
 		SPELL_MANAGER,
+		CAMERA,
 	};
 }
