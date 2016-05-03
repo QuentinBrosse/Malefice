@@ -1,14 +1,14 @@
 #include "EventReceiver.h"
 
-eventReceiver::eventReceiver()
+EventReceiver::EventReceiver()
 {
-	for (eventReceiver::keyStatesENUM& e : m_keyState)
+	for (EventReceiver::keyStatesENUM& e : m_keyState)
 	{
 		e = UP;
 	}
 }
 
-bool eventReceiver::OnEvent(const irr::SEvent& event)
+bool EventReceiver::OnEvent(const irr::SEvent& event)
 {
 	if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
 	{
@@ -47,17 +47,17 @@ bool eventReceiver::OnEvent(const irr::SEvent& event)
 	return false;
 }
 
-const irr::SEvent::SJoystickEvent& eventReceiver::getJoystickState() const
+const irr::SEvent::SJoystickEvent& EventReceiver::getJoystickState() const
 {
 	return m_joystickState;
 }
 
-const eventReceiver::MouseState& eventReceiver::getMouseState() const
+const EventReceiver::MouseState& EventReceiver::getMouseState() const
 {
 	return m_state;
 }
 
-eventReceiver::keyStatesENUM eventReceiver::getKeyState(irr::EKEY_CODE keyCode)
+EventReceiver::keyStatesENUM EventReceiver::getKeyState(irr::EKEY_CODE keyCode)
 {
 	return m_keyState[keyCode];
 }

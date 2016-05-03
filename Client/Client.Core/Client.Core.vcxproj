@@ -17,6 +17,8 @@
     <ClInclude Include="..\..\Shared\CollectionComponent.h" />
     <ClInclude Include="..\..\Shared\Life.h" />
     <ClInclude Include="..\..\Shared\LoggerSetup.h" />
+    <ClInclude Include="..\..\Shared\SpellSystem.h" />
+    <ClInclude Include="..\..\Shared\WeaponSystem.h" />
     <ClInclude Include="..\..\Shared\Movement.h" />
     <ClInclude Include="..\..\Shared\NetworkID.h" />
     <ClInclude Include="..\..\Shared\Position.h" />
@@ -70,6 +72,10 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>

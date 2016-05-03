@@ -3,7 +3,7 @@
 #include <iostream>
 #include <irrlicht.h>
 
-class eventReceiver : public irr::IEventReceiver
+class EventReceiver : public irr::IEventReceiver
 {
 public:
 	class MouseState
@@ -19,8 +19,8 @@ public:
 	virtual bool OnEvent(const irr::SEvent& event); //Irrlicht callback norme exception here
 	const irr::SEvent::SJoystickEvent& getJoystickState(void) const;
 	const MouseState& getMouseState(void) const;
-	eventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
-	eventReceiver();
+	EventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
+	EventReceiver();
 
 private:
 	irr::SEvent::SJoystickEvent m_joystickState;

@@ -20,7 +20,7 @@
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
-void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, eventReceiver* receiver, irr::SKeyMap* keyMap)
+void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, EventReceiver* receiver, irr::SKeyMap* keyMap)
 {
 	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
 	driver = device->getVideoDriver();
@@ -79,7 +79,7 @@ void debugDisplayMousePos(irr::IrrlichtDevice* device)
 	device->setWindowCaption(text.c_str());
 }
 
-void ceguiEventInjector(eventReceiver& receiver, irr::IrrlichtDevice* device)
+void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 {
 	CEGUI::System& systemd = CEGUI::System::getSingleton();
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
-	eventReceiver receiver;
+	EventReceiver receiver;
 	initIrrlicht(device, driver, sceneManager, &receiver, keyMap);
 
 	//Hook Irrlicht renderer and Init and configure CEGUI
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
 	loading.listAddText(std::string("[colour='FFFF0000'] Information: [colour='FF000000']And another one !"));
 	loading.listAddText(std::string("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !"));
 	loading.listAddText("[colour='FF0000FF'] Log: [colour='FF000000']Log me that !");
-	loading.hide();
+
 
 	salon.addRightTeamMember("Brendan");
 	salon.addRightTeamMember("Guillaume");

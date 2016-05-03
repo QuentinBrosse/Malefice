@@ -56,7 +56,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			LOG(ERROR) << "Bad weapon element value, skipping element.";
 			continue;
 		}
-		m_weapons.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, type, handToHand));
+		m_weapons.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, 0, 0, type, handToHand)); // TODO: add maxAmmunitionLoader and maxAmmunitionExplosiveLoader
 	}
 	return true;
 }

@@ -19,3 +19,12 @@ void ClientCore::dump()	const
 		std::cout << std::endl;
 	}
 }
+
+void ClientCore::run()
+{
+	for (auto pair : m_entities)
+	{
+		ecs::MovementSystem::move(pair.second);
+	}
+	dump();
+}
