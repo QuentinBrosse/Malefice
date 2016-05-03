@@ -226,9 +226,13 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\ProjectGlobals.cpp">
       <Filter>Source Files\Shared</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\..\Shared\SpellSystem.cpp">
       <Filter>Source Files\Shared\ECS\System</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

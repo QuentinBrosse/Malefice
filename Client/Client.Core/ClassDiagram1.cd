@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LoadingWindows" Collapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAIAAAACAAAAQIABAAEABAAAAEIAAAAAAAAAAAAAiA=</HashCode>
+      <FileName>LoadingWindows.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WaitingRoom" Collapsed="true">
+    <Position X="21" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAEAESAACAIAAQIABAAIABAAAAEIAAAAAAAAQAAAAAI=</HashCode>
+      <FileName>WaitingRoom.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logger" Collapsed="true">
+    <Position X="21" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\LoggerSetup.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpellCreator" Collapsed="true">
+    <Position X="24.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAACAABBAAAAAAAAAIAABAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\SpellCreator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerManager" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEBAAAAAAAAAAAAAEIAAAAAAACAAAABAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\PlayerManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponCreator" Collapsed="true">
+    <Position X="22.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIIAAAAAAAAACAAAAAAAAAAAAABAABAAQAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\WeaponCreator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu" Collapsed="true">
+    <Position X="22.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgAAgAAQBACAQAAAAgAABAQAAEAAQAAAAAACAAAAAA=</HashCode>
+      <FileName>MainMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClientCore" Collapsed="true">
+    <Position X="21" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAgAAAAAACAAAAAAAAAAAAAAAAAECAAAACAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\ClientCore.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="eventReceiver" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAABAEEAAAEAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventReceiver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Entity" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAIAAAAAgACAAAAAAAAAACGAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Entity.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::AComponent">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAACAAAAAAAAAAAAAAAAAAFAAAAAAAEA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\AComponent.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Movement" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAEAAAAAACABAAAAAAAAAAAAAAAEAAAAAAAgAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Movement.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Spell" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAEAAAABCAAQAAAAAAAAAAAIAAAASAAAEAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Spell.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::SpellManager" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAACAAAAgAAAyAAAAAAAgABAAAAAEAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\SpellManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::NetworkID" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAgACAAAAAIAAQQAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\NetworkID.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Team" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAIAQCAAEQACAAAAAAACAAAAAAAAEEAAgAAAAAQA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Team.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Weapon" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAAACAAAAAAAIACAAAAEEQggQFCCAAgEAAI0AADAAgA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Weapon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Life" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAABAAAAAAAKAAAQAQAAAAACAAACAAAAAAAABAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Life.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::Position" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAACgAAQAAQAAQAABAAAAAAAgAGADAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\Position.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::WeaponManager" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAIAAQAAgCAAAAACAAAAAAACAAAAAAACAAAAAg=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\WeaponManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::SpellSystem" Collapsed="true">
+    <Position X="26.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\SpellSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::WeaponSystem">
+    <Position X="24.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEABAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\WeaponSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ecs::MovementSystem" Collapsed="true">
+    <Position X="24.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\MovementSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="factory::ObjectFactory" Collapsed="true">
+    <Position X="26.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\ObjectFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="factory::PlayerFactory" Collapsed="true">
+    <Position X="21" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAQQAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\PlayerFactory.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ecs::ComponentType">
+    <Position X="21" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAIAAAAACIAAAwIAAEAAAAQAAAAAAAAACA=</HashCode>
+      <FileName>C:\Users\Tookie\Documents\Malefice\Shared\CollectionComponent.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
