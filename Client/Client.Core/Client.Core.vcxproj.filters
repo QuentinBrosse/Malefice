@@ -66,12 +66,6 @@
     <ClInclude Include="..\..\Shared\WeaponSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\SpellSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\WeaponSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ClientCore.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>

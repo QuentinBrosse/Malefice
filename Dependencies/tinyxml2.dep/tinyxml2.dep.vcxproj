@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{272AC6A3-71F0-405B-83AE-DB8DB0FFBC74}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Debug\tinyxml2.dll ..\..\..\Binaries\Debug</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Debug\tinyxml2.dll ..\..\..\Binaries\Debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; del ..\..\..\Binaries\Debug\tinyxml2.dll</NMakeCleanCommandLine>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Release\tinyxml2.dll ..\..\..\Binaries\Release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; copy Release\tinyxml2.dll ..\..\..\Binaries\Release</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Dependencies\tinyxml2\build (mkdir ..\..\Dependencies\tinyxml2\build)) &amp; cd ..\..\Dependencies\tinyxml2\build &amp;&amp; (IF NOT EXIST tinyxml2.sln (git checkout 3.0.0 &amp;&amp; cmake -G "Visual Studio 14 2015" -D RAKNET_ENABLE_SAMPLES:BOOL=FALSE ..)) &amp;&amp; msbuild tinyxml2.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; del ..\..\..\Binaries\Release\tinyxml2.dll</NMakeCleanCommandLine>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

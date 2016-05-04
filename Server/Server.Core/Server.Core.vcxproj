@@ -68,12 +68,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/RakNet/Source;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Dependencies/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -87,14 +87,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/RakNet/Source;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
       <AdditionalDependencies>RakNetDLL.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
