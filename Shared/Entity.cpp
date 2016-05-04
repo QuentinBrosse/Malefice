@@ -9,16 +9,14 @@ namespace ecs
 		return id++;
 	}
 
-	Entity::Entity() :
-		ID(nextID())
+	Entity::Entity(NetworkID netID) :
+		ID(nextID()), m_networkID(netID)
 	{
-		m_networkID = -1;
 	}
 
 	Entity::Entity(const Entity& cpy) :
-		ID(cpy.ID)
+		ID(cpy.ID), m_networkID(cpy.m_networkID)
 	{
-		m_networkID = cpy.m_networkID;
 		for (auto component : cpy.m_components)
 			m_components.insert(component);
 	}

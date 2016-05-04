@@ -12,7 +12,7 @@ namespace ecs
 	public:
 		const int	ID;
 
-		Entity();
+		Entity(NetworkID netID);
 		~Entity();
 		Entity(const Entity& cpy);
 		Entity(Entity &&) = default;

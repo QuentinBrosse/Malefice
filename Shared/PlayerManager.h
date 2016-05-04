@@ -3,6 +3,7 @@
 #include <map>
 #include "Entity.h"
 #include "Export.h"
+#include "NetworkID.h"
 
 class MALEFICE_DLL_EXPORT PlayerManager
 {
@@ -12,10 +13,10 @@ public:
 	~PlayerManager()					= default;
 
 	void	addPlayer(ecs::Entity* newPlayer);
-	void	removePlayer(unsigned int netID);
+	void	removePlayer(ecs::NetworkID netID);
 
 
 private:
-	std::map<unsigned int, ecs::Entity*>	m_players;
+	std::map<ecs::NetworkID, ecs::Entity*>	m_players;
 	ecs::Entity*							m_currentPlayer;
 };

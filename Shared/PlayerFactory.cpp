@@ -11,7 +11,7 @@
 
 ecs::Entity* PlayerFactory::createPlayer(const float xPosition, const float yPosition, const float zPosition, const float xTarget, const float yTarget, const float zTarget, const unsigned int networkId, const int team, const int life)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(xPosition, yPosition, zPosition, xTarget, yTarget, zTarget);
+	ecs::Entity* entity = ObjectFactory::createObject(xPosition, yPosition, zPosition, xTarget, yTarget, zTarget, networkId);
 
 		(*entity)[ecs::LIFE] = new ecs::Life(life);
 		(*entity)[ecs::TEAM] = new ecs::Team(team);
