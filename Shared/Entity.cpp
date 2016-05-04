@@ -12,12 +12,13 @@ namespace ecs
 	Entity::Entity() :
 		ID(nextID())
 	{
-
+		m_networkID = -1;
 	}
 
-	Entity::Entity(const Entity & cpy) :
+	Entity::Entity(const Entity& cpy) :
 		ID(cpy.ID)
 	{
+		m_networkID = cpy.m_networkID;
 		for (auto component : cpy.m_components)
 			m_components.insert(component);
 	}
@@ -57,6 +58,16 @@ namespace ecs
 			component.second->dump();
 		}
 		std::cout << "}" << std::endl;
+	}
+
+	NetworkID Entity::getNetworkID() const
+	{
+		return m_networkID;
+	}
+
+	void Entity::setNetworkID(const NetworkID networkId)
+	{
+		m_networkID = networkId;
 	}
 
 }

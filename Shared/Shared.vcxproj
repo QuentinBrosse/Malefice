@@ -156,7 +156,6 @@
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
-    <ClCompile Include="NetworkID.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="PlayerManager.cpp" />

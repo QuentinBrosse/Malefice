@@ -14,7 +14,6 @@ ecs::Entity* PlayerFactory::createPlayer(const float xPosition, const float yPos
 	ecs::Entity* entity = ObjectFactory::createObject(xPosition, yPosition, zPosition, xTarget, yTarget, zTarget);
 
 		(*entity)[ecs::LIFE] = new ecs::Life(life);
-		(*entity)[ecs::NETWORK_ID] = new ecs::NetworkID(networkId);
 		(*entity)[ecs::TEAM] = new ecs::Team(team);
 		(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager(ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true));
 		(*entity)[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(xPosition, yPosition, zPosition, xTarget, yTarget, zTarget));

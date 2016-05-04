@@ -7,7 +7,6 @@ namespace ecs
 	enum MALEFICE_DLL_EXPORT ComponentType
 	{
 		DEFAULT,
-		NETWORK_ID,
 		LIFE,
 		POSITION,
 		MOVEMENT,

@@ -3,6 +3,7 @@
 #include <map>
 #include "AComponent.h"
 #include "Export.h"
+#include "NetworkID.h"
 
 namespace ecs
 {
@@ -22,10 +23,12 @@ namespace ecs
 		AComponent*&	operator[](ComponentType type);
 		bool			has(ComponentType type);
 
-		void	dump() const;
+		void			dump()			const;
 
-
+		NetworkID		getNetworkID()	const;
+		void			setNetworkID(const NetworkID networkId);
 	private:
+		NetworkID								m_networkID;
 		std::map<ComponentType, AComponent*>	m_components;
 	};
 }

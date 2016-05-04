@@ -51,9 +51,6 @@
     <ClCompile Include="Movement.cpp">
       <Filter>Fichiers sources\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkID.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
       <Filter>Fichiers sources\ECS</Filter>
     </ClCompile>
