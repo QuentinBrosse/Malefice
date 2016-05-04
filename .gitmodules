@@ -1,15 +1,15 @@
-[submodule "Libraries/RakNet"]
-	path = Libraries/RakNet
+[submodule "Dependencies/RakNet"]
+	path = Dependencies/RakNet
 	url = git@github.com:GuiTeK/RakNet.git
-[submodule "Libraries/irrlicht"]
-	path = Libraries/irrlicht
+[submodule "Dependencies/irrlicht"]
+	path = Dependencies/irrlicht
 	url = git@github.com:GuiTeK/irrlicht.git
-[submodule "Libraries/cegui"]
-	path = Libraries/cegui
+[submodule "Dependencies/cegui"]
+	path = Dependencies/cegui
 	url = git@github.com:GuiTeK/cegui.git
-[submodule "Libraries/cegui-dependencies"]
-	path = Libraries/cegui-dependencies
+[submodule "Dependencies/cegui-dependencies"]
+	path = Dependencies/cegui-dependencies
 	url = git@github.com:GuiTeK/cegui-dependencies.git
-[submodule "Libraries/tinyxml2"]
-	path = Libraries/tinyxml2
+[submodule "Dependencies/tinyxml2"]
+	path = Dependencies/tinyxml2
 	url = git@github.com:leethomason/tinyxml2.git

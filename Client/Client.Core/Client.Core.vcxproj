@@ -70,13 +70,13 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/irrlicht/include;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Libraries/cegui/build/lib;../../Libraries/RakNet/build/Lib/DLL/Debug;../../Libraries/irrlicht/lib/Win32-visualstudio;../../Libraries/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;RakNetDLL.lib;Irrlicht.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;Irrlicht.lib;RakNetDLL.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -92,15 +92,15 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Libraries/cegui/cegui/include;../../Libraries/RakNet/Source;../../Libraries/tinyxml2;../../Libraries/irrlicht/include;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Libraries/cegui/build/lib;../../Libraries/RakNet/build/Lib/DLL/Release;../../Libraries/irrlicht/lib/Win32-visualstudio;../../Libraries/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;RakNetDLL.lib;Irrlicht.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Binaries/Release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

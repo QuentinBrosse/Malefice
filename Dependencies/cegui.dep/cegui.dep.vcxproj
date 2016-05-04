@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2F70F8D9-FD8B-41E4-9B5A-6F81E13C40AB}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy bin\CEGUIBase-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUICommonDialogs-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUICoreWindowRendererSet_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIDirect3D9Renderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIDirect3D10Renderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIExpatParser_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIIrrlichtRenderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIOpenGLRenderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUISILLYImageCodec_d.dll ..\..\..\Binaries\Debug &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy bin\CEGUIBase-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUICommonDialogs-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUICoreWindowRendererSet_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIDirect3D9Renderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIDirect3D10Renderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIExpatParser_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIIrrlichtRenderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUIOpenGLRenderer-0_d.dll ..\..\..\Binaries\Debug &amp; copy bin\CEGUISILLYImageCodec_d.dll ..\..\..\Binaries\Debug &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (del ..\..\..\Binaries\Debug\CEGUIBase-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUICommonDialogs-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUICoreWindowRendererSet_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUIDirect3D9Renderer-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUIDirect3D10Renderer-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUIExpatParser_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUIIrrlichtRenderer-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUIOpenGLRenderer-0_d.dll &amp; del ..\..\..\Binaries\Debug\CEGUISILLYImageCodec_d.dll &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+    <NMakeBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy bin\CEGUIBase-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUICommonDialogs-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUICoreWindowRendererSet.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIDirect3D9Renderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIDirect3D10Renderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIExpatParser.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIIrrlichtRenderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIOpenGLRenderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUISILLYImageCodec.dll ..\..\..\Binaries\Release &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (copy bin\CEGUIBase-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUICommonDialogs-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUICoreWindowRendererSet.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIDirect3D9Renderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIDirect3D10Renderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIExpatParser.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIIrrlichtRenderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUIOpenGLRenderer-0.dll ..\..\..\Binaries\Release &amp; copy bin\CEGUISILLYImageCodec.dll ..\..\..\Binaries\Release &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>(IF NOT EXIST ..\..\Dependencies\cegui\build (mkdir ..\..\Dependencies\cegui\build)) &amp; cd ..\..\Dependencies\cegui\build &amp;&amp; (IF NOT EXIST cegui.sln (git checkout v0-8-6 &amp;&amp; cmake -G "Visual Studio 14 2015" -D CMAKE_PREFIX_PATH:PATH="$(SolutionDir)\Dependencies\cegui-dependencies\build\dependencies" -D CEGUI_BUILD_XMLPARSER_EXPAT:BOOL=TRUE -D CEGUI_BUILD_IMAGECODEC_SILLY:BOOL=TRUE -D CEGUI_BUILD_RENDERER_IRRLICHT:BOOL=TRUE -D IRRLICHT_LIB:FILEPATH="$(SolutionDir)\Dependencies\irrlicht\lib\Win32-visualstudio\Irrlicht.lib" -D IRRLICHT_H_PATH:PATH="$(SolutionDir)\Dependencies\irrlicht\include" -D CEGUI_SAMPLES_ENABLED:BOOL=FALSE ..)) &amp;&amp; msbuild cegui.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) &amp;&amp; (del ..\..\..\Binaries\Release\CEGUIBase-0.dll &amp; del ..\..\..\Binaries\Release\CEGUICommonDialogs-0.dll &amp; del ..\..\..\Binaries\Release\CEGUICoreWindowRendererSet.dll &amp; del ..\..\..\Binaries\Release\CEGUIDirect3D9Renderer-0.dll &amp; del ..\..\..\Binaries\Release\CEGUIDirect3D10Renderer-0.dll &amp; del ..\..\..\Binaries\Release\CEGUIExpatParser.dll &amp; del ..\..\..\Binaries\Release\CEGUIIrrlichtRenderer-0.dll &amp; del ..\..\..\Binaries\Release\CEGUIOpenGLRenderer-0.dll &amp; del ..\..\..\Binaries\Release\CEGUISILLYImageCodec.dll &amp; copy cegui\include\CEGUI\*.h ..\cegui\include\CEGUI)</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
