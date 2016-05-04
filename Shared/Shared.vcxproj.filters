@@ -1,168 +1,168 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Fichiers de ressources">
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\ECS">
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ECS">
       <UniqueIdentifier>{d29bc948-e6c2-417d-a96d-f33cc53b1671}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\ECS">
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ECS">
       <UniqueIdentifier>{aca95a6b-a40e-4aa4-a619-e2ed7ab547d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WeaponsConfiguration.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProjectGlobals.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpellCreator.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WeaponCreator.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AConfiguration.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AComponent.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Life.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Movement.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="ObjectFactory.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFactory.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Position.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Spell.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="SpellManager.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="SpellSystem.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Team.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="WeaponManager.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
     <ClCompile Include="WeaponSystem.cpp">
-      <Filter>Fichiers sources\ECS</Filter>
+      <Filter>Source Files\ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WeaponsConfiguration.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProjectGlobals.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AConfiguration.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AComponent.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="CollectionComponent.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Life.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Movement.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="MovementSystem.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="NetworkID.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="NetworkRPC.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="ObjectFactory.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFactory.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Position.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Spell.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="SpellManager.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="SpellSystem.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="WeaponSystem.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="WeaponManager.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Team.h">
-      <Filter>Fichiers d%27en-tête\ECS</Filter>
+      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpellCreator.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WeaponCreator.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Export.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
