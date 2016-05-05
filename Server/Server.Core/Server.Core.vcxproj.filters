@@ -25,15 +25,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Network\RPC">
+      <UniqueIdentifier>{9f0f593b-5c68-45a1-b798-48dd5f49f054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network\RPC">
+      <UniqueIdentifier>{a57be2a5-9d78-4326-a46c-351f89a55cf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetworkModule.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerRPC.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneralRPC.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
     <ClInclude Include="ServerCore.h">
@@ -41,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="ServerCoreConfiguration.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralRPC.h">
+      <Filter>Header Files\Network\RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRPC.h">
+      <Filter>Header Files\Network\RPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,17 +56,17 @@
     <ClCompile Include="NetworkModule.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerRPC.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneralRPC.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
     <ClCompile Include="ServerCore.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="ServerCoreConfiguration.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneralRPC.cpp">
+      <Filter>Source Files\Network\RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRPC.cpp">
+      <Filter>Source Files\Network\RPC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
