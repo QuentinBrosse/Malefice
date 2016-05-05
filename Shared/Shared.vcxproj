@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,6 +154,7 @@
     <ClCompile Include="AConfiguration.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Life.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="Life.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkID.h" />

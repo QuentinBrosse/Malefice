@@ -13,3 +13,6 @@
 [submodule "Dependencies/tinyxml2"]
 	path = Dependencies/tinyxml2
 	url = git@github.com:leethomason/tinyxml2.git
+[submodule "Dependencies/spdlog"]
+	path = Dependencies/spdlog
+	url = git@github.com:gabime/spdlog.git
