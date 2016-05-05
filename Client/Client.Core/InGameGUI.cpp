@@ -9,6 +9,18 @@ InGameGUI::InGameGUI()
 	m_hpBarText->setText(std::to_string(0) + "/" + std::to_string(this->max_hp));
 	m_mpBarText = m_hud->getChild(10)->getChild(11);
 	m_timerText = m_hud->getChild(100);
+
+	m_power1 = m_hud->getChild(200)->getChild(201);
+	m_power2 = m_hud->getChild(300)->getChild(301);
+	m_power3 = m_hud->getChild(400)->getChild(401);
+	m_power4 = m_hud->getChild(500)->getChild(501);
+	m_powerList.push_back(m_power1);
+	m_powerList.push_back(m_power2);
+	m_powerList.push_back(m_power3);
+	m_powerList.push_back(m_power4);
+
+	m_team1_score = m_hud->getChild(50);
+	m_team2_score = m_hud->getChild(51);
 }
 
 void InGameGUI::display()
@@ -128,4 +140,30 @@ void InGameGUI::refreshTime()
 		std::string seconde = std::to_string((result - m_timestamp) % 60);
 		m_timerText->setText((minute.size() < 2 ? "0" + minute : minute) + ":" + (seconde.size() < 2 ? "0" + seconde : seconde));
 	}
+}
+
+void InGameGUI::enablePower(int nbr)
+{
+	if (nbr >= 0 && nbr <= m_maxPowerNbr)
+		m_powerList[nbr]->setProperty("Image", "Circles/GreenCircle");
+	else
+		std::cerr << "Given power number not exist" << std::endl;
+}
+
+void InGameGUI::disablePower(int nbr)
+{
+	if (nbr >= 0 && nbr <= m_maxPowerNbr)
+		m_powerList[nbr]->setProperty("Image", "Circles/RedCircle");
+	else
+		std::cerr << "Given power number not exist" << std::endl;
+}
+
+void InGameGUI::setTeam1Score(int nbr)
+{
+	m_team1_score->setText(std::to_string(nbr));
+}
+
+void InGameGUI::setTeam2Score(int nbr)
+{
+	m_team2_score->setText(std::to_string(nbr));
 }
