@@ -125,7 +125,9 @@ int main(int argc, char* argv[])
 	gameGUI.setHealthPoint(90);
 	gameGUI.setEnergyPoint(42);
 	gameGUI.timerStart();
-
+	gameGUI.enablePower(3);
+	gameGUI.setTeam1Score(42);
+	gameGUI.setTeam2Score(0);
 	while (device->run())
 	{
 		if (device->isWindowActive()) //draw only if the window is active
