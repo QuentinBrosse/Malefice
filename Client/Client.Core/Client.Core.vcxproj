@@ -109,8 +109,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Binaries/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
