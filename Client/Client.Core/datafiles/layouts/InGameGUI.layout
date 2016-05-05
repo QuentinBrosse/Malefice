@@ -22,7 +22,7 @@
             <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
         <Window type="WindowsLook/Static" name="Static34" >
-            <Property name="Area" value="{{0,275},{0,587},{0,390},{0,626}}" />
+            <Property name="Area" value="{{0,400},{0,583},{0,515},{0,622}}" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
             <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
@@ -49,7 +49,7 @@
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
         <Window type="WindowsLook/Static" name="Static342" >
-            <Property name="Area" value="{{0,412},{0,586},{0,527},{0,625}}" />
+            <Property name="Area" value="{{0,529},{0,584},{0,644},{0,623}}" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
             <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
@@ -69,7 +69,7 @@
             </Window>
         </Window>
         <Window type="WindowsLook/Static" name="Static3422" >
-            <Property name="Area" value="{{0,546},{0,585},{0,661},{0,624}}" />
+            <Property name="Area" value="{{0,661},{0,583},{0,776},{0,622}}" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
             <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
@@ -89,7 +89,7 @@
             </Window>
         </Window>
         <Window type="WindowsLook/Static" name="Static3423" >
-            <Property name="Area" value="{{0,681},{0,584},{0,796},{0,623}}" />
+            <Property name="Area" value="{{0,790},{0,583},{0,905},{0,622}}" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
             <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
@@ -110,7 +110,7 @@
         </Window>
         <Window type="WindowsLook/Static" name="Static2" >
             <Property name="ID" value="10" />
-            <Property name="Area" value="{{0,803},{0,582},{0,921},{0,621}}" />
+            <Property name="Area" value="{{0,919},{0,582},{0,1037},{0,621}}" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
             <Property name="BackgroundColours" value="tl:FF1E9EE1 tr:FF1E9EE1 bl:FF1E9EE1 br:FF1E9EE1" />
@@ -193,6 +193,32 @@
             <Property name="Text" value="77" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Static" name="Static343" >
+            <Property name="Area" value="{{0,272},{0,582},{0,387},{0,621}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:9600FFFF tr:9600FFFF bl:9600FFFF br:9600FFFF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Static" name="Static3432" >
+            <Property name="Area" value="{{0,143},{0,582},{0,258},{0,621}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96FFFFFF tr:96FFFFFF bl:96FFFFFF br:96FFFFFF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
         </Window>
     </Window>
 </GUILayout>

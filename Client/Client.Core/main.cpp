@@ -122,9 +122,8 @@ int main(int argc, char* argv[])
 
 	InGameGUI gameGUI;
 	gameGUI.display();
-	gameGUI.setHealthPoint(20);
-	gameGUI.addHealthPoint(0);
-	gameGUI.setEnergyPoint(100);
+	gameGUI.setHealthPoint(90);
+	gameGUI.setEnergyPoint(42);
 	gameGUI.timerStart();
 
 	while (device->run())
