@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ostream>
 #include <string>
 #include <tinyxml2.h>
 #include "AConfiguration.h"
@@ -39,3 +40,5 @@ private:
 	std::string	m_address;
 	int			m_port;
 };
+
+std::ostream&	operator<<(std::ostream& os, const ServerCoreConfiguration& rhs);

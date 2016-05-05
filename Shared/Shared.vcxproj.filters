@@ -19,6 +19,12 @@
     <Filter Include="Source Files\ECS">
       <UniqueIdentifier>{aca95a6b-a40e-4aa4-a619-e2ed7ab547d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Logger">
+      <UniqueIdentifier>{13b758e1-0c24-4f80-8522-12d042565f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logger">
+      <UniqueIdentifier>{d1fa23cf-84ca-4249-86cc-646dcc330384}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WeaponsConfiguration.cpp">
@@ -83,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="WeaponSystem.cpp">
       <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\Logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Export.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files\Logger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

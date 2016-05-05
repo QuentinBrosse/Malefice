@@ -2,6 +2,7 @@
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 #include "ServerCoreConfiguration.h"
+#include "Logger.h"
 
 ServerCore::ServerCore() :
 	m_configuration(), m_networkModule(nullptr), m_isActive(true)
@@ -11,18 +12,18 @@ ServerCore::ServerCore() :
 
 void	ServerCore::run()
 {
-	//LOG(INFO) << "Server started.";
+	LOG_INFO << "Server started.";
 	if (this->init() == false)
 	{
-		//LOG(FATAL) << "Server initialization failed. Abortring." << std::endl;
+		LOG_CRITICAL << "Server initialization failed. Abortring.";
 		return;
 	}
-	//LOG(INFO) << "Server initialized.";
+	LOG_INFO << "Server initialized.";
 	while (this->isActive())
 	{
 		this->pulse();
 	}
-	//LOG(INFO) << "Server stopped.";
+	LOG_INFO << "Server stopped.";
 }
 
 
@@ -33,7 +34,7 @@ bool	ServerCore::init()
 	m_networkModule = new NetworkModule();
 	if (m_networkModule->init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
 	{
-		//LOG(FATAL) << "Failed to start Network Module.";
+		LOG_CRITICAL << "Failed to start Network Module.";
 		return false;
 	}
 	this->displayHeader();
