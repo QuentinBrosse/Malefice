@@ -1,6 +1,8 @@
 #pragma once
 
 #include <map>
+#include <utility>
+
 #include "Spell.h"
 #include "Export.h"
 

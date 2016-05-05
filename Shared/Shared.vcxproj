@@ -164,6 +164,7 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
+    <ClCompile Include="SpellsConfiguration.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Team.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />
     <ClInclude Include="SpellManager.h" />
+    <ClInclude Include="SpellsConfiguration.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Team.h" />
     <ClInclude Include="Weapon.h" />

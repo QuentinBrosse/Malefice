@@ -1,17 +1,17 @@
 #include "WeaponCreator.h"
 
-WeaponCreator::WeaponCreator(const std::string& XMLFilename):
-	XML_FILENAME(XMLFilename)
+
+WeaponCreator::WeaponCreator():
+	m_weaponConfigurator()
 {
+	
 }
 
 ecs::Weapon WeaponCreator::create(const ecs::Weapon::WeaponType weaponType)
 {
-	return m_weapons[weaponType];
+	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;
+
+	weapons = m_weaponConfigurator.getWeapons();
+
+	return weapons[weaponType];
 }
-
-void WeaponCreator::loadWeapons()
-{
-
-}
-

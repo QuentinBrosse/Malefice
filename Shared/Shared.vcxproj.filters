@@ -19,6 +19,30 @@
     <Filter Include="Source Files\ECS">
       <UniqueIdentifier>{aca95a6b-a40e-4aa4-a619-e2ed7ab547d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ECS\Component">
+      <UniqueIdentifier>{468f72e2-61f7-41bc-b234-ce1f16ffecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Factory">
+      <UniqueIdentifier>{5f192d97-7f4b-4764-8adc-bfdf28edd003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\Entity">
+      <UniqueIdentifier>{561b0288-7518-45ea-8b7f-fb25fad5609f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ECS\System">
+      <UniqueIdentifier>{0edd1008-e7a3-44c9-9cc2-d1b18cf52a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Component">
+      <UniqueIdentifier>{731de77b-75b4-40fb-88e5-4ed2fdc558d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Entity">
+      <UniqueIdentifier>{250762ba-3741-499f-9f07-2c361fc01cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\Factory">
+      <UniqueIdentifier>{9621ae2b-e270-4a38-91f2-b818c0de61c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ECS\System">
+      <UniqueIdentifier>{9933b829-4c61-4f68-84fd-63db1441d77c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WeaponsConfiguration.cpp">
@@ -40,49 +64,52 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AComponent.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="Life.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Movement.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Life.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="MovementSystem.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="ObjectFactory.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Factory</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFactory.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Factory</Filter>
     </ClCompile>
     <ClCompile Include="Position.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="Spell.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="SpellManager.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="SpellSystem.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
     <ClCompile Include="Team.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="WeaponManager.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
     <ClCompile Include="WeaponSystem.cpp">
-      <Filter>Source Files\ECS</Filter>
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="SpellsConfiguration.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,60 +125,6 @@
     <ClInclude Include="AConfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AComponent.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="CollectionComponent.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Life.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkID.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkRPC.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectFactory.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerFactory.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Position.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Spell.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="SpellManager.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="SpellSystem.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponSystem.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponManager.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Team.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -162,6 +135,63 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Export.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AComponent.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionComponent.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\ECS\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Life.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkRPC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Spell.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellManager.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponManager.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellsConfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

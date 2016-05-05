@@ -1,6 +1,8 @@
 #pragma once
 
+#include <iostream>
 #include <string>
+
 #include "AComponent.h"
 #include "Export.h"
 

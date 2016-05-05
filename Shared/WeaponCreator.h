@@ -4,18 +4,17 @@
 #include <map>
 #include "Weapon.h"
 #include "Export.h"
+#include "WeaponsConfiguration.h"
+#include "Singleton.h"
 
-class MALEFICE_DLL_EXPORT WeaponCreator
+class MALEFICE_DLL_EXPORT WeaponCreator :  public Singleton<WeaponCreator>
 {
+
 public:
-	WeaponCreator(const std::string& XMLFilename);
-	~WeaponCreator()	= default;
-
 	ecs::Weapon		create(const ecs::Weapon::WeaponType weaponType);
-	void			loadWeapons();
-
+	~WeaponCreator() = default;
+	WeaponCreator();
 
 private:
-	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	m_weapons;
-	const std::string								XML_FILENAME;
+	WeaponsConfiguration	m_weaponConfigurator;
 };
