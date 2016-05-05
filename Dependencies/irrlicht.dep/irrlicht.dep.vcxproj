@@ -67,6 +67,7 @@
     <NMakeReBuildCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Binaries\Debug</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; del ..\..\..\..\Binaries\Debug\Irrlicht.dll</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

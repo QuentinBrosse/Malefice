@@ -1,22 +1,35 @@
 #include <iostream>
 #include "PlayerRPC.h"
 #include "NetworkRPC.h"
+#include "NetworkID.h"
+
+#include "ServerCore.h"
 
 bool	PlayerRPC::m_isRegistered = false;
 
 /*
 ** A la connexion d'un player
 ** Ajoute le joueur au pool du serveur et envoie l'info aux autres clients
+** Renvoie au client son playerId affecté
 */
 static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
 	RakNet::RakString	name;
 	RakNet::RakString	serial;
+	ecs::NetworkID		playerId;
+	RakNet::BitStream	bits;
 
 	bitStream->Read(name);
 	bitStream->Read(serial);
+	playerId = (ecs::NetworkID)packet->guid.systemIndex;
 
-	std::cout << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")" << std::endl;
+	std::cout << "[network] : Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")" << std::endl;
+
+	//Todo : Add to player's pool and send information to other clients
+
+	bits.WriteCompressed(playerId);
+	
+	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE, packet->guid.systemIndex, false);
 }
 
 /*

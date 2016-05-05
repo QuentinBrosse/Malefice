@@ -1,20 +1,6 @@
 <server>
     <name>Default Server</name>
-    <address>127.0.0.1</address>
-    <port>1234</port>
-    <password/>
-</server>
-
-<server>
-    <name>Default Server</name>
-    <address>127.0.0.1</address>
-    <port>1234</port>
-    <password/>
-</server>
-
-<server>
-    <name>Default Server</name>
-    <address>127.0.0.1</address>
-    <port>1234</port>
     <password></password>
+    <address>127.0.0.1</address>
+    <port>1234</port>
 </server>

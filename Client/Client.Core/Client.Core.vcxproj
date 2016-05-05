@@ -13,17 +13,23 @@
   <ItemGroup>
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="EventReceiver.h" />
+    <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientCore.cpp" />
+    <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
+    <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
