@@ -5,6 +5,8 @@
 
 #include "ServerCore.h"
 
+#include "Logger.h"
+
 bool	PlayerRPC::m_isRegistered = false;
 
 /*
@@ -23,7 +25,7 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	bitStream->Read(serial);
 	playerId = (ecs::NetworkID)packet->guid.systemIndex;
 
-	std::cout << "[network] : Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")" << std::endl;
+	LOG_INFO << "[network] : Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
 
 	//Todo : Add to player's pool and send information to other clients
 

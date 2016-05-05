@@ -5,6 +5,8 @@
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
+#include "Logger.h"
+
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance())
 {
@@ -55,13 +57,13 @@ void	NetworkModule::pulse()
 		switch (packet->data[0])
 		{
 			case ID_NEW_INCOMING_CONNECTION:
-				std::cout << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':') << std::endl;
+				LOG_INFO << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':');
 				break;
 			case ID_DISCONNECTION_NOTIFICATION:
-				std::cout << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected" << std::endl;
+				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected";
 				break;
 			case ID_CONNECTION_LOST:
-				std::cout << "[network] : PlayerId " << packet->systemAddress.systemIndex << " lost" << std::endl;
+				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " lost";
 				break;
 		}
 		m_rakPeer->DeallocatePacket(packet);

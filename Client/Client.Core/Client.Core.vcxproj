@@ -11,17 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
@@ -76,7 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -106,7 +109,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Binaries/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

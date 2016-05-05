@@ -72,6 +72,12 @@
     <ClInclude Include="PlayerRPC.h">
       <Filter>Header Files\Network\RPC</Filter>
     </ClInclude>
+    <ClInclude Include="Chat.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -100,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="PlayerRPC.cpp">
       <Filter>Source Files\Network\RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Chat.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

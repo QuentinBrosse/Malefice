@@ -20,7 +20,7 @@ static void playerChat(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 
 	bitStream->Read(input);
 
-	std::cout << "(" << playerId << ") : " << input.C_String() << std::endl;
+	LOG_INFO << "[chat](" << playerId << ") : " << input.C_String();
 
 	RakNet::BitStream toSend;
 	toSend.WriteCompressed(playerId);
