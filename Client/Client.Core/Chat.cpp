@@ -1,18 +1,9 @@
 #include "Chat.h"
-
 #include "ClientCore.h"
+#include "NetworkRPC.h"
+#include "BitStream.h"
 
-Chat::Chat()
-{
-
-}
-
-Chat::~Chat()
-{
-
-}
-
-void	Chat::sendNetworkMessage(ecs::NetworkID playerId, std::string& message)
+void	Chat::sendNetworkMessage(ecs::NetworkID playerId, const std::string& message)
 {
 	RakNet::BitStream bits;
 	RakNet::RakString input;
