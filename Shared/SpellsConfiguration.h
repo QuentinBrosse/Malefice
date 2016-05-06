@@ -5,6 +5,9 @@
 #include <string>
 #include <map>
 #include <tinyxml2.h>
+#include "Logger.h"
+#include <exception>
+
 #include "AConfiguration.h"
 #include "Spell.h"
 #include "Export.h"
