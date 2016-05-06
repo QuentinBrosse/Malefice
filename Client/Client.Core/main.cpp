@@ -16,6 +16,7 @@
 #include "MovementSystem.h"
 #include "SpellSystem.h"
 #include "WeaponSystem.h"
+#include "Logger.h"
 
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
@@ -103,7 +104,10 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	irr::SKeyMap keyMap[5];
+	Logger::getInstance().setup(ProjectGlobals::GAME_SERVER_LOG_FILEPATH);
+	ClientCore::getInstance().run();
+	return EXIT_SUCCESS;
+	/*irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;

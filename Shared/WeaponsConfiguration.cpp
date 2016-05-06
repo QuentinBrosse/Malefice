@@ -10,13 +10,13 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_CRITICAL << "Weapons configuration file could not be read properly (error code: " << loadResult << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_CRITICAL << "Weapons configuration file could not be read properly (error code: " << loadResult << ").";
 		return false;
 	}
 	weaponsElement = doc.RootElement();
 	if (weaponsElement == nullptr)
 	{
-		LOG_CRITICAL << "Weapons configuration file could not be read properly (error code: " << doc.ErrorID() << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_CRITICAL << "Weapons configuration file could not be read properly (error code: " << doc.ErrorID() << ").";
 		return false;
 	}
 	for (tinyxml2::XMLElement* currentWeapon = weaponsElement->FirstChildElement(); currentWeapon != nullptr; currentWeapon = currentWeapon->NextSiblingElement())

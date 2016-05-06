@@ -101,7 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
