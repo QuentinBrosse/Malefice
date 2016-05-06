@@ -7,6 +7,8 @@
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
+#include "Utilities.h"
+
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance()), m_connected(false), m_netState(NETSTATE_NONE)
 {
@@ -99,8 +101,9 @@ void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 	m_netState = NETSTATE_CONNECTED;
 
 	//Todo: Dynamize this function
+	std::string serial = Utilities::GetSerialHash();
 	bits.Write(RakNet::RakString("Enguerrand"));
-	bits.Write(RakNet::RakString("CACA123"));
+	bits.Write(RakNet::RakString(serial.c_str()));
 
 	callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE_ORDERED, true);
 }
