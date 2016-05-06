@@ -36,7 +36,7 @@ bool	ClientCore::init()
 		LOG_CRITICAL << "Failed to start Network Module.";
 		return false;
 	}
-	if (m_networkModule->connect("127.0.0.1", 1234, ""))
+	if (m_networkModule->connect("10.37.152.144", 1234, ""))
 		LOG_INFO << "Connected !";
 	else
 		LOG_INFO << "Unable to connect !";

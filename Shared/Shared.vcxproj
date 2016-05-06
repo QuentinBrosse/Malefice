@@ -121,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;ELPP_AS_DLL;ELPP_EXPORT_SYMBOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -1,6 +1,9 @@
+#include <string>
 #include <exception>
 #include "WeaponsConfiguration.h"
 #include "Logger.h"
+
+const std::string	WeaponsConfiguration::WEAPONS_FILENAME = "weapons.xml";
 
 bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 {
