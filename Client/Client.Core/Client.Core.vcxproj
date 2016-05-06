@@ -11,19 +11,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="EventReceiver.h" />
+    <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
+    <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
+    <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -70,7 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

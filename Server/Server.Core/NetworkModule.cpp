@@ -5,12 +5,15 @@
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
+#include "Logger.h"
+
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance())
 {
+	m_rakPeer->AttachPlugin(m_rpc);
+
 	GeneralRPC::registerRPC(m_rpc);
 	PlayerRPC::registerRPC(m_rpc);
-	m_rakPeer->AttachPlugin(m_rpc);
 }
 
 NetworkModule::~NetworkModule()
@@ -54,13 +57,13 @@ void	NetworkModule::pulse()
 		switch (packet->data[0])
 		{
 			case ID_NEW_INCOMING_CONNECTION:
-				std::cout << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':') << std::endl;
+				LOG_INFO << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':');
 				break;
 			case ID_DISCONNECTION_NOTIFICATION:
-				std::cout << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected" << std::endl;
+				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected";
 				break;
 			case ID_CONNECTION_LOST:
-				std::cout << "[network] : PlayerId" << packet->systemAddress.systemIndex << " lost" << std::endl;
+				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " lost";
 				break;
 		}
 		m_rakPeer->DeallocatePacket(packet);
@@ -70,12 +73,8 @@ void	NetworkModule::pulse()
 
 void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
 {
-	RakNet::SystemAddress	rpcAddress = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
-
-	if (playerId > ProjectGlobals::MAX_PLAYERS_NB)
-		rpcAddress = m_rakPeer->GetSystemAddressFromIndex(playerId);
 	if (m_rpc != nullptr)
-		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, rpcAddress, broadcast);
+		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, m_rakPeer->GetSystemAddressFromIndex(playerId), broadcast);
 }
 
 

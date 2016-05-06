@@ -1,30 +1,65 @@
-#include <iostream>
 #include "ClientCore.h"
+#include "Logger.h"
 
-void ClientCore::addEntity(ecs::Entity& newEntity)
+ClientCore::ClientCore() :
+	m_networkModule(nullptr), m_isActive(true)
 {
-	m_entities.insert(std::pair<const int, ecs::Entity&> (newEntity.ID, newEntity));
 }
 
-void ClientCore::deleteEntity(int id)
+ClientCore::~ClientCore()
 {
-	m_entities.erase(id);
+	if (m_networkModule->isConnected())
+		m_networkModule->disconnect();
 }
 
-void ClientCore::dump()	const
+void	ClientCore::run()
 {
-	for (auto pair : m_entities)
+	LOG_INFO << "Client started.";
+	if (this->init() == false)
 	{
-		pair.second.dump();
-		std::cout << std::endl;
+		LOG_CRITICAL << "Client initialization failed. Abortring.";
+		return;
 	}
+	LOG_INFO << "Client initialized.";
+	while (this->isActive())
+	{
+		this->pulse();
+	}
+	LOG_INFO << "Client stopped.";
 }
 
-void ClientCore::run()
+bool	ClientCore::init()
 {
-	for (auto pair : m_entities)
+	m_networkModule = new NetworkModule();
+	if (m_networkModule->init() == false)
 	{
-		ecs::MovementSystem::move(pair.second);
+		LOG_CRITICAL << "Failed to start Network Module.";
+		return false;
 	}
-	dump();
+	if (m_networkModule->connect("127.0.0.1", 1234, ""))
+		LOG_INFO << "Connected !";
+	else
+		LOG_INFO << "Unable to connect !";
+}
+
+void	ClientCore::pulse()
+{
+	if (m_networkModule != nullptr && m_networkModule->isConnected())
+		m_networkModule->pulse();
+}
+
+bool	ClientCore::isActive()	const
+{
+	return m_isActive;
+}
+
+NetworkModule	*ClientCore::getNetworkModule()	const
+{
+	return m_networkModule;
+}
+
+
+void	ClientCore::setIsActive(bool isActive)
+{
+	m_isActive = isActive;
 }

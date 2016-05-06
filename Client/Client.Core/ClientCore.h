@@ -1,21 +1,30 @@
 #pragma once
 
-#include <map>
-#include "Entity.h"
-#include "MovementSystem.h"
-#include "WeaponSystem.h"
-#include "SpellSystem.h"
+#include "Singleton.h"
 
-class ClientCore
+#include "NetworkModule.h"
+
+class ClientCore : public Singleton<ClientCore>
 {
-public:
-	ClientCore() = default;
-	~ClientCore() = default;
+	friend class Singleton<ClientCore>;
 
-	void	addEntity(ecs::Entity& newEntity);
-	void	deleteEntity(int id);
-	void	dump()	const;
-	void	run();
+public:
+	void			run();
+
+	bool			isActive()			const;
+	NetworkModule*	getNetworkModule()	const;
+
+	void			setIsActive(bool isActive);
+
+protected:
+	ClientCore();
+	~ClientCore();
+
 private:
-	std::map<int, ecs::Entity&>	m_entities;
+	bool	init();
+	void	pulse();
+
+	NetworkModule*	m_networkModule;
+
+	bool			m_isActive;
 };
