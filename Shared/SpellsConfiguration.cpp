@@ -10,13 +10,13 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_CRITICAL << "Spells configuration file could not be read properly (error code: " << loadResult << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_CRITICAL(GENERAL) << "Spells configuration file could not be read properly (error code: " << loadResult << ").";
 		return false;
 	}
 	SpellsElement = doc.RootElement();
 	if (SpellsElement == nullptr)
 	{
-		LOG_CRITICAL << "Spells configuration file could not be read properly (error code: " << doc.ErrorID() << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_CRITICAL(GENERAL) << "Spells configuration file could not be read properly (error code: " << doc.ErrorID() << ").";
 		return false;
 	}
 	for (tinyxml2::XMLElement* currentSpell = SpellsElement->FirstChildElement(); currentSpell != nullptr; currentSpell = currentSpell->NextSiblingElement())
@@ -28,7 +28,7 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 
 		if (currentSpell->QueryIntAttribute("id", &id) != tinyxml2::XMLError::XML_NO_ERROR || id <= 0)
 		{
-			LOG_ERROR << "Bad Spell ID \"" << id << "\", skipping element.";
+			LOG_ERROR(GENERAL) << "Bad Spell ID \"" << id << "\", skipping element.";
 			continue;
 		}
 		name = this->getOrCreateElementString(doc, *currentSpell, "name", "");
@@ -36,7 +36,7 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		cooldown = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "cooldown", "-1"));
 		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1)
 		{
-			LOG_ERROR << "Bad Spell element value, skipping element.";
+			LOG_ERROR(GENERAL) << "Bad Spell element value, skipping element.";
 			continue;
 		}
 		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown));

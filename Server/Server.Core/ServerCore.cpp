@@ -12,18 +12,18 @@ ServerCore::ServerCore() :
 
 void	ServerCore::run()
 {
-	LOG_INFO << "Server started.";
+	LOG_INFO(GENERAL) << "Server started.";
 	if (this->init() == false)
 	{
-		LOG_CRITICAL << "Server initialization failed. Abortring.";
+		LOG_CRITICAL(GENERAL) << "Server initialization failed. Abortring.";
 		return;
 	}
-	LOG_INFO << "Server initialized.";
+	LOG_INFO(GENERAL) << "Server initialized.";
 	while (this->isActive())
 	{
 		this->pulse();
 	}
-	LOG_INFO << "Server stopped.";
+	LOG_INFO(GENERAL) << "Server stopped.";
 }
 
 
@@ -34,7 +34,7 @@ bool	ServerCore::init()
 	m_networkModule = new NetworkModule();
 	if (m_networkModule->init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
 	{
-		LOG_CRITICAL << "Failed to start Network Module.";
+		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
 	this->displayHeader();

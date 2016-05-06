@@ -57,13 +57,13 @@ void	NetworkModule::pulse()
 		switch (packet->data[0])
 		{
 			case ID_NEW_INCOMING_CONNECTION:
-				LOG_INFO << "[network] : Incoming connection from " << packet->systemAddress.ToString(true, ':');
+				LOG_INFO(NETWORK) << "Incoming connection from " << packet->systemAddress.ToString(true, ':');
 				break;
 			case ID_DISCONNECTION_NOTIFICATION:
-				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " disconnected";
+				LOG_INFO(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected";
 				break;
 			case ID_CONNECTION_LOST:
-				LOG_INFO << "[network] : PlayerId " << packet->systemAddress.systemIndex << " lost";
+				LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)";
 				break;
 		}
 		m_rakPeer->DeallocatePacket(packet);

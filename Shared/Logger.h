@@ -7,12 +7,12 @@
 #include "Singleton.h"
 #include "Export.h"
 
-#define LOG_TRACE		Logger::getInstance().log(Logger::LogLevel::Trace)
-#define LOG_DEBUG		Logger::getInstance().log(Logger::LogLevel::Debug)
-#define LOG_INFO		Logger::getInstance().log(Logger::LogLevel::Info)
-#define LOG_WARNING		Logger::getInstance().log(Logger::LogLevel::Warning)
-#define LOG_ERROR		Logger::getInstance().log(Logger::LogLevel::Error)
-#define LOG_CRITICAL	Logger::getInstance().log(Logger::LogLevel::Critical)
+#define LOG_TRACE(logCategory)		Logger::getInstance().log(Logger::LogLevel::Trace, Logger::LogCategory::logCategory)
+#define LOG_DEBUG(logCategory)		Logger::getInstance().log(Logger::LogLevel::Debug, Logger::LogCategory::logCategory)
+#define LOG_INFO(logCategory)		Logger::getInstance().log(Logger::LogLevel::Info, Logger::LogCategory::logCategory)
+#define LOG_WARNING(logCategory)	Logger::getInstance().log(Logger::LogLevel::Warning, Logger::LogCategory::logCategory)
+#define LOG_ERROR(logCategory)		Logger::getInstance().log(Logger::LogLevel::Error, Logger::LogCategory::logCategory)
+#define LOG_CRITICAL(logCategory)	Logger::getInstance().log(Logger::LogLevel::Critical, Logger::LogCategory::logCategory)
 
 class MALEFICE_DLL_EXPORT Logger : public Singleton<Logger>
 {
@@ -30,8 +30,17 @@ public:
 		LevelCount
 	};
 
+	enum class LogCategory : int
+	{
+		GENERAL,
+		NETWORK,
+		CHAT,
+		PLAYER,
+		CategoryCount
+	};
+
 	void							setup(const std::string& filePath);
-	spdlog::details::line_logger	log(LogLevel logLevel);
+	spdlog::details::line_logger	log(LogLevel logLevel, LogCategory logCategory);
 
 
 protected:

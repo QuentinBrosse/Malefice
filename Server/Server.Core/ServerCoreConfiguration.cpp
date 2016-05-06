@@ -29,7 +29,7 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_ERROR << "Server configuration file could not be read properly (error code: " << loadResult << ").";
+		LOG_ERROR(GENERAL) << "Server configuration file could not be read properly (error code: " << loadResult << ").";
 
 		if (loadResult != tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND)
 		{
@@ -38,7 +38,7 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 
 			if (!currentFile.is_open() || !backupFile.is_open())
 			{
-				LOG_CRITICAL << "Could not create server configuration backup. Giving up.";
+				LOG_CRITICAL(GENERAL) << "Could not create server configuration backup. Giving up.";
 				return false;
 			}
 			backupFile << currentFile.rdbuf();
@@ -47,8 +47,8 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 		}
 		if (this->saveToFile(filepath) == true)
 		{
-			LOG_INFO << "Server configuration file was reset to default settings (backup is in " << (filepath + ServerCoreConfiguration::DEFAULT_SETTINGS_BACKUP_EXT) << ").";
-			LOG_WARNING << "Server will be running with default settings (" << *this << ").";
+			LOG_INFO(GENERAL) << "Server configuration file was reset to default settings (backup is in " << (filepath + ServerCoreConfiguration::DEFAULT_SETTINGS_BACKUP_EXT) << ").";
+			LOG_WARNING(GENERAL) << "Server will be running with default settings (" << *this << ").";
 		}
 		return true;
 	}
@@ -59,7 +59,7 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 	m_port = std::stoi(this->getOrCreateElementString(doc, *serverElement, "port", std::to_string(ServerCoreConfiguration::DEFAULT_PORT)));
 	if (m_port < 0 || m_port > 65535)
 	{
-		LOG_WARNING << "Port must be an integer between 0 and 65535. Default port (" << ServerCoreConfiguration::DEFAULT_PORT << ") will be used.";
+		LOG_WARNING(GENERAL) << "Port must be an integer between 0 and 65535. Default port (" << ServerCoreConfiguration::DEFAULT_PORT << ") will be used.";
 		m_port = ServerCoreConfiguration::DEFAULT_PORT;
 	}
 	this->saveToFile(filepath); // TODO: save only if XML changed
@@ -79,10 +79,10 @@ bool	ServerCoreConfiguration::saveToFile(const std::string& filepath)	const
 	saveResult = doc.SaveFile(filepath.c_str());
 	if (saveResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_ERROR << "Server configuration file could not be saved (error code: " << saveResult << ").";
+		LOG_ERROR(GENERAL) << "Server configuration file could not be saved (error code: " << saveResult << ").";
 		return false;
 	}
-	LOG_INFO << "Configuration file was saved to " << filepath << ".";
+	LOG_INFO(GENERAL) << "Configuration file was saved to " << filepath << ".";
 	return true;
 }
 

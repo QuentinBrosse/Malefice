@@ -14,18 +14,18 @@ ClientCore::~ClientCore()
 
 void	ClientCore::run()
 {
-	LOG_INFO << "Client started.";
+	LOG_INFO(GENERAL) << "Client started.";
 	if (this->init() == false)
 	{
-		LOG_CRITICAL << "Client initialization failed. Abortring.";
+		LOG_CRITICAL(GENERAL) << "Client initialization failed. Abortring.";
 		return;
 	}
-	LOG_INFO << "Client initialized.";
+	LOG_INFO(GENERAL) << "Client initialized.";
 	while (this->isActive())
 	{
 		this->pulse();
 	}
-	LOG_INFO << "Client stopped.";
+	LOG_INFO(GENERAL) << "Client stopped.";
 }
 
 bool	ClientCore::init()
@@ -33,13 +33,13 @@ bool	ClientCore::init()
 	m_networkModule = new NetworkModule();
 	if (m_networkModule->init() == false)
 	{
-		LOG_CRITICAL << "Failed to start Network Module.";
+		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
 	if (m_networkModule->connect("10.37.152.144", 1234, ""))
-		LOG_INFO << "Connected !";
+		LOG_INFO(NETWORK) << "Connected !";
 	else
-		LOG_INFO << "Unable to connect !";
+		LOG_ERROR(NETWORK) << "Unable to connect !";
 }
 
 void	ClientCore::pulse()

@@ -20,10 +20,10 @@ void	Logger::setup(const std::string& filePath)
 	m_logger = std::make_shared<spdlog::logger>(Logger::LOGGER_NAME, begin(sinks), end(sinks));
 
 	spdlog::register_logger(m_logger);
-	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S] %l -- %v");
+	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S] %l %v");
 }
 
-spdlog::details::line_logger	Logger::log(LogLevel logLevel)
+spdlog::details::line_logger	Logger::log(LogLevel logLevel, LogCategory logCategory)
 {
 	switch (logLevel)
 	{
