@@ -27,7 +27,7 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(int id, const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, WeaponType weaponType, bool handToHand);
+		Weapon(const int id, const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, WeaponType weaponType, bool handToHand);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 

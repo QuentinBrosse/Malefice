@@ -21,7 +21,7 @@ namespace ecs
 
 	public:
 		Spell();
-		Spell(const SpellType spellType, const int coolDown);
+		Spell(const int id, const std::string& name, const SpellType spellType, const int coolDown);
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
@@ -35,8 +35,10 @@ namespace ecs
 
 
 	private:
+		const int				ID;
+		const std::string		SPELL_NAME;
+		const int				COOLDOWN;
 		SpellType				m_spellType;
 		bool					m_isLock;
-		const int				COOLDOWN;
 	};
 }
