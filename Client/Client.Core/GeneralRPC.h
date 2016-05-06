@@ -12,4 +12,3 @@ public:
 private:
 	static bool	m_isRegistered;
 };
-#pragma once
