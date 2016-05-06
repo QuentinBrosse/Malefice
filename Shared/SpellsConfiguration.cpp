@@ -24,14 +24,7 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		int						id = 0;
 		ecs::Spell::SpellType	type;
 		std::string				name;
-		int						maxAmmunition;
-		int						maxAmmunitionExplosive;
-		int						maxAmmunitionLoader;
-		int						maxAmmunitionExplosiveLoader;
-		int						damage;
-		int						damageExplosive;
-		std::string				handToHandStr;
-		bool					handToHand;
+		int						cooldown;
 
 		if (currentSpell->QueryIntAttribute("id", &id) != tinyxml2::XMLError::XML_NO_ERROR || id <= 0)
 		{
@@ -40,28 +33,13 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		}
 		name = this->getOrCreateElementString(doc, *currentSpell, "name", "");
 		type = this->parseSpellType(this->getOrCreateElementString(doc, *currentSpell, "type", ""));
-		maxAmmunition = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "maxAmmunition", "-1"));
-		maxAmmunitionExplosive = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "maxAmmunitionExplosive", "-1"));
-		maxAmmunitionLoader = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "maxAmmunitionLoader", "-1"));
-		maxAmmunitionExplosiveLoader = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "maxAmmunitionExplosiveLoader", "-1"));
-		damage = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "damage", "-1"));
-		damageExplosive = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "damageExplosive", "-1"));
-		handToHandStr = this->getOrCreateElementString(doc, *currentSpell, "handToHand", "");
-		if (handToHandStr != "TRUE" && handToHandStr != "FALSE")
-		{
-			LOG_ERROR << "Bad Spell \"handToHand\" value \"" << handToHandStr << "\", skipping element.";
-			continue;
-		}
-		else
-		{
-			handToHand = (handToHandStr == "TRUE" ? true : false);
-		}
-		if (name == "" || type == ecs::Spell::Spell_COUNT || maxAmmunition <= -1 || maxAmmunitionExplosive <= -1 || maxAmmunitionLoader <= -1 || maxAmmunitionExplosiveLoader <= -1 || damage <= -1 || damageExplosive <= -1)
+		cooldown = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "cooldown", "-1"));
+		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1)
 		{
 			LOG_ERROR << "Bad Spell element value, skipping element.";
 			continue;
 		}
-		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, maxAmmunition, maxAmmunitionExplosive, damage, damageExplosive, maxAmmunitionLoader, maxAmmunitionExplosiveLoader, type, handToHand)); // TODO: add maxAmmunitionLoader and maxAmmunitionExplosiveLoader
+		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown));
 	}
 	return true;
 }
@@ -83,18 +61,16 @@ ecs::Spell::SpellType	SpellsConfiguration::parseSpellType(const std::string& Spe
 	std::map<std::string, ecs::Spell::SpellType>	SpellTypes;
 	auto											SpellType = SpellTypes.end();
 
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SNIPER_RIFLE", ecs::Spell::SpellType::SNIPER_RIFLE));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("RAIL_GUN", ecs::Spell::SpellType::RAIL_GUN));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SHOTGUN", ecs::Spell::SpellType::SHOTGUN));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("MACHINE_GUN", ecs::Spell::SpellType::MACHINE_GUN));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("REVOLVER", ecs::Spell::SpellType::REVOLVER));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("DOUBLE_GUN", ecs::Spell::SpellType::DOUBLE_GUN));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SABER", ecs::Spell::SpellType::SABER));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("CHAIN_SAW", ecs::Spell::SpellType::CHAIN_SAW));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("KNIFE", ecs::Spell::SpellType::KNIFE));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SNIPER_RIFLE", ecs::Spell::SpellType::SLOW));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("RAIL_GUN", ecs::Spell::SpellType::BLIND));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SHOTGUN", ecs::Spell::SpellType::CONFUSION));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("MACHINE_GUN", ecs::Spell::SpellType::DEAF));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("REVOLVER", ecs::Spell::SpellType::NOTHING));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("DOUBLE_GUN", ecs::Spell::SpellType::PARANOIA));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SABER", ecs::Spell::SpellType::PARKINSON));
 	SpellType = SpellTypes.find(SpellTypeStr);
 	if (SpellType != SpellTypes.end())
 		return SpellType->second;
 	else
-		return ecs::Spell::SpellType::Spell_COUNT;
+		return ecs::Spell::SpellType::SPELL_COUNT;
 }

@@ -17,6 +17,7 @@ namespace ecs
 			DEAF,
 			PARKINSON,
 			SLOW,
+			SPELL_COUNT,
 		};
 
 	public:
