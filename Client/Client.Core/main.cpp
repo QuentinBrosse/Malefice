@@ -18,6 +18,10 @@
 #include "WeaponSystem.h"
 #include "Logger.h"
 
+#include "NetworkModule.h"
+#include "Logger.h"
+#include "main.h"
+
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
@@ -104,10 +108,7 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	Logger::getInstance().setup(ProjectGlobals::GAME_SERVER_LOG_FILEPATH);
-	ClientCore::getInstance().run();
-	return EXIT_SUCCESS;
-	/*irr::SKeyMap keyMap[5];
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -148,8 +149,7 @@ int main(int argc, char* argv[])
 	}
 	device->drop();
 
-	/*
-	ClientCore	core;
+	/*ClientCore	core;
 
 	ecs::Entity	player = factory::PlayerFactory::createPlayer(1.0, 2.1, 0.0, 1, 1, 100);
 	ecs::Entity predator = factory::PlayerFactory::createPredator(1.0, 4.2, 0.0, 2);
@@ -170,5 +170,7 @@ int main(int argc, char* argv[])
 	core.dump();
 	getchar();
 	*/
+	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
+	ClientCore::getInstance().run();
 	return (0);
 }

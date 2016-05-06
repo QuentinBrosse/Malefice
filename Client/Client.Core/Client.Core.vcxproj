@@ -84,7 +84,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../Shared/;../../Dependencies/cegui/build/lib;../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;Irrlicht.lib;RakNetDLL.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
