@@ -1,6 +1,6 @@
-#include <exception>
 #include "SpellsConfiguration.h"
-#include "Logger.h"
+
+const std::string	SpellsConfiguration::SPELLS_FILENAME = "spells.xml";
 
 bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 {
