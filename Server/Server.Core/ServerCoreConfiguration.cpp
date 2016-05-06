@@ -29,7 +29,7 @@ bool	ServerCoreConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_ERROR << "Server configuration file could not be read properly (error code: " << loadResult << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_ERROR << "Server configuration file could not be read properly (error code: " << loadResult << ").";
 
 		if (loadResult != tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND)
 		{
@@ -79,7 +79,7 @@ bool	ServerCoreConfiguration::saveToFile(const std::string& filepath)	const
 	saveResult = doc.SaveFile(filepath.c_str());
 	if (saveResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_ERROR << "Server configuration file could not be saved (error code: " << saveResult << ", error message: " << doc.GetErrorStr2() << ").";
+		LOG_ERROR << "Server configuration file could not be saved (error code: " << saveResult << ").";
 		return false;
 	}
 	LOG_INFO << "Configuration file was saved to " << filepath << ".";

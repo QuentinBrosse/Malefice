@@ -1,11 +1,7 @@
 #include "GeneralRPC.h"
-
 #include "NetworkRPC.h"
-
 #include "NetworkID.h"
-
 #include "Logger.h"
-
 #include "ServerCore.h"
 
 bool	GeneralRPC::m_isRegistered = false;

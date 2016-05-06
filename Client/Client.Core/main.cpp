@@ -16,6 +16,7 @@
 #include "MovementSystem.h"
 #include "SpellSystem.h"
 #include "WeaponSystem.h"
+#include "Logger.h"
 
 #include "NetworkModule.h"
 #include "Logger.h"
@@ -107,7 +108,7 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	/*irr::SKeyMap keyMap[5];
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
