@@ -25,6 +25,7 @@ protected:
 
 private:
 	bool	init();
+	void	stop();
 	void	pulse();
 	void	displayHeader()	const;
 

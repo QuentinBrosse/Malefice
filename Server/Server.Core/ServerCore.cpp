@@ -1,8 +1,63 @@
 #include <iostream>
+#include <queue>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 #include "ServerCoreConfiguration.h"
 #include "Logger.h"
+
+#include "Thread.h"
+#include "Mutex.h"
+#include "Utilities.h"
+
+Thread					inputThread;
+Mutex					consoleInputQueueMutex;
+std::queue<std::string>	consoleInputQueue;
+unsigned long			startTime;
+
+void InputThread(Thread * creator)
+{
+	char		inputBuffer[512];
+	std::string input;
+
+	while (creator->getUserData<bool>())
+	{
+		fgets(inputBuffer, sizeof(inputBuffer), stdin);
+		if (inputBuffer[0] != '\n')
+		{
+			input.append(inputBuffer);
+			size_t sLength = input.length();
+
+			if (input[sLength - 1] == '\n')
+			{
+				// Check for CRLF
+				if (input[sLength - 2] == '\r')
+					input.erase(sLength - 2, std::string::npos);
+				else
+					input.erase(sLength - 1, std::string::npos);
+
+				consoleInputQueueMutex.lock();
+				consoleInputQueue.push(input);
+				consoleInputQueueMutex.unlock();
+
+				input.clear();
+			}
+		}
+		Sleep(10);
+	}
+}
+
+void ConsoleInput(std::string input)
+{
+	if (input.empty())
+		return;
+
+	size_t s = input.find(" ", 0);
+	std::string strCommand = input.substr(0, s++);
+	std::string strParams = input.substr(s, (input.length() - s));
+
+	std::cout << "Commande : [" << strCommand << "] Params : [" << strParams << "]" << std::endl;
+}
+
 
 ServerCore::ServerCore() :
 	m_configuration(), m_networkModule(nullptr), m_isActive(true)
@@ -22,10 +77,19 @@ void	ServerCore::run()
 	while (this->isActive())
 	{
 		this->pulse();
+		if (consoleInputQueueMutex.tryLock(0))
+		{
+			while (!consoleInputQueue.empty())
+			{
+				ConsoleInput(consoleInputQueue.back().c_str());
+				consoleInputQueue.pop();
+			}
+			consoleInputQueueMutex.unlock();
+		}
 	}
+	this->stop();
 	LOG_INFO(GENERAL) << "Server stopped.";
 }
-
 
 bool	ServerCore::init()
 {
@@ -37,8 +101,19 @@ bool	ServerCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
+
+	inputThread.setUserData<bool>(true);
+	inputThread.start(InputThread);
+	startTime = Utilities::GetTime();
+
 	this->displayHeader();
 	return true;
+}
+
+void	ServerCore::stop()
+{
+	inputThread.setUserData<bool>(false);
+	inputThread.stop(false, true);
 }
 
 void	ServerCore::pulse()
@@ -66,8 +141,6 @@ void	ServerCore::displayHeader()	const
 	std::cout << "==============================================================" << std::endl;
 
 }
-
-
 
 bool	ServerCore::isActive()	const
 {

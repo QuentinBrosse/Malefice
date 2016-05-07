@@ -96,7 +96,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../Dependencies/irrlicht/lib/Win32-visualstudio;../Dependencies/tinyxml2/build/Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Irrlicht.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Irrlicht.lib;tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,6 +157,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="Mutex.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="SpellsConfiguration.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Team.cpp" />
+    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponCreator.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="Mutex.h" />
     <ClInclude Include="NetworkID.h" />
     <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="ObjectFactory.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="SpellsConfiguration.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Team.h" />
+    <ClInclude Include="Thread.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponCreator.h" />
