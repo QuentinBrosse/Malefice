@@ -17,7 +17,7 @@ public:
 
 	void	setIsActive(bool isActive);
 
-
+	void	processCommand(const std::string & command, const std::string & params);
 protected:
 	ServerCore();
 	~ServerCore() = default;

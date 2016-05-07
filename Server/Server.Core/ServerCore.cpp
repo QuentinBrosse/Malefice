@@ -55,7 +55,7 @@ void ConsoleInput(std::string input)
 	std::string strCommand = input.substr(0, s++);
 	std::string strParams = input.substr(s, (input.length() - s));
 
-	std::cout << "Commande : [" << strCommand << "] Params : [" << strParams << "]" << std::endl;
+	ServerCore::getInstance().processCommand(strCommand, strParams);
 }
 
 
@@ -140,6 +140,18 @@ void	ServerCore::displayHeader()	const
 		std::cout << "=Password	: " << m_configuration.getPassword() << std::endl;
 	std::cout << "==============================================================" << std::endl;
 
+}
+
+void	ServerCore::processCommand(const std::string& command, const std::string& params)
+{
+	if (command == "exit" || command == "quit" || command == "shutdown")
+	{
+		this->setIsActive(false);
+	}
+	else if (command == "uptime")
+	{
+		LOG_INFO(GENERAL) << "Current uptime : " << Utilities::GetTimePassedFromTime(startTime);
+	}
 }
 
 bool	ServerCore::isActive()	const
