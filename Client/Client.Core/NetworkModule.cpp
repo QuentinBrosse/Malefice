@@ -101,7 +101,7 @@ void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 	m_netState = NETSTATE_CONNECTED;
 
 	//Todo: Dynamize this function
-	std::string serial = Utilities::GetSerialHash();
+	std::string serial = Utilities::getSerialHash();
 	bits.Write(RakNet::RakString("Enguerrand"));
 	bits.Write(RakNet::RakString(serial.c_str()));
 

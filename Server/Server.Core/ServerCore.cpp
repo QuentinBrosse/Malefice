@@ -41,7 +41,7 @@ bool	ServerCore::init()
 	m_isActive = true;
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
-	m_startTime = Utilities::GetTime();
+	m_startTime = Utilities::getMsTime();
 	this->displayHeader();
 	return true;
 }
@@ -125,7 +125,7 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 	}
 	else if (command == "uptime")
 	{
-		LOG_INFO(GENERAL) << "Current uptime: " << Utilities::GetTimePassedFromTime(m_startTime);
+		LOG_INFO(GENERAL) << "Current uptime: " << Utilities::getElapsedTimeSince(m_startTime);
 	}
 }
 

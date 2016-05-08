@@ -35,8 +35,8 @@ private:
 	void	processCommand(const std::string& command, const std::string& params);
 
 
-	unsigned long	m_startTime;
-	bool			m_isActive;
+	long long	m_startTime;
+	bool		m_isActive;
 
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule*			m_networkModule;

@@ -1,26 +1,17 @@
 #pragma once
 
-#ifdef _WIN32
-#include	<windows.h>
-#include	<mmsystem.h>
-#include	<direct.h>
-#include	<tlhelp32.h>
-#include	<time.h>
-#endif
-#include	<tchar.h>
+#include <string>
+#include "Export.h"
 
-#include	<string>
-#include	<stdarg.h>
-#include	<memory>
-
-#include	"Export.h"
 typedef unsigned long DWORD;
 
 namespace Utilities
 {
-	MALEFICE_DLL_EXPORT DWORD			GetSerial();
-	MALEFICE_DLL_EXPORT std::string		GetSerialHash();
-	MALEFICE_DLL_EXPORT	unsigned long	GetTime();
-	MALEFICE_DLL_EXPORT	std::string		FormatString(const std::string fmt_str, ...);
-	MALEFICE_DLL_EXPORT std::string		GetTimePassedFromTime(unsigned long time);
+	MALEFICE_DLL_EXPORT DWORD		getSerial();
+	MALEFICE_DLL_EXPORT std::string	getSerialHash();
+	MALEFICE_DLL_EXPORT	long long	getMsTime();
+	MALEFICE_DLL_EXPORT std::string	getElapsedTimeSince(long long msTime);
+
+	template<class T>
+	MALEFICE_DLL_EXPORT	std::string	pluralize(const std::string& word, const T& nb);
 };
