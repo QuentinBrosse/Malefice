@@ -49,12 +49,6 @@
     <Filter Include="Source Files\Logger">
       <UniqueIdentifier>{c0f0b324-b7c7-4daa-ad07-bd2af12bab66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Threading">
-      <UniqueIdentifier>{574e0b75-47dc-4732-b09c-5adca1ff571b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Threading">
-      <UniqueIdentifier>{35059cd8-d0b3-4598-ba56-4300cd9e2843}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WeaponsConfiguration.cpp">
@@ -128,12 +122,6 @@
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Logger</Filter>
-    </ClCompile>
-    <ClCompile Include="Thread.cpp">
-      <Filter>Source Files\Threading</Filter>
-    </ClCompile>
-    <ClCompile Include="Mutex.cpp">
-      <Filter>Source Files\Threading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,12 +211,6 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Header Files\Logger</Filter>
-    </ClInclude>
-    <ClInclude Include="Thread.h">
-      <Filter>Header Files\Threading</Filter>
-    </ClInclude>
-    <ClInclude Include="Mutex.h">
-      <Filter>Header Files\Threading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

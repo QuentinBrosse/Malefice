@@ -1,4 +1,5 @@
 #include "ClientCore.h"
+#include "ProjectGlobals.h"
 #include "Logger.h"
 
 ClientCore::ClientCore() :
@@ -36,10 +37,10 @@ bool	ClientCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	if (m_networkModule->connect("10.37.152.144", 1234, ""))
-		LOG_INFO(NETWORK) << "Connected !";
+	if (m_networkModule->connect("127.0.0.1", 2504, ""))
+		LOG_INFO(NETWORK) << "Connected!";
 	else
-		LOG_ERROR(NETWORK) << "Unable to connect !";
+		LOG_ERROR(NETWORK) << "Unable to connect!";
 }
 
 void	ClientCore::pulse()

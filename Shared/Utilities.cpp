@@ -41,7 +41,8 @@ unsigned long Utilities::GetTime()
 #endif
 }
 
-std::string Utilities::FormatString(const std::string fmt_str, ...) {
+std::string Utilities::FormatString(const std::string fmt_str, ...)
+{
 	int final_n, n = ((int)fmt_str.size()) * 2;
 	std::string str;
 	std::unique_ptr<char[]> formatted;
@@ -60,7 +61,7 @@ std::string Utilities::FormatString(const std::string fmt_str, ...) {
 	return std::string(formatted.get());
 }
 
-std::string Utilities::GetTimePassedFromTime(unsigned long time)
+std::string	Utilities::GetTimePassedFromTime(unsigned long time)
 {
 	int secondsPassed = ((GetTime() - time) / 1000);
 	int seconds = (secondsPassed % 60);

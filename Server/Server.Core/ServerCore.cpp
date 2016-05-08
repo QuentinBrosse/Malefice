@@ -1,66 +1,11 @@
 #include <iostream>
-#include <queue>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
-#include "ServerCoreConfiguration.h"
 #include "Logger.h"
-
-#include "Thread.h"
-#include "Mutex.h"
 #include "Utilities.h"
 
-Thread					inputThread;
-Mutex					consoleInputQueueMutex;
-std::queue<std::string>	consoleInputQueue;
-unsigned long			startTime;
-
-void InputThread(Thread * creator)
-{
-	char		inputBuffer[512];
-	std::string input;
-
-	while (creator->getUserData<bool>())
-	{
-		fgets(inputBuffer, sizeof(inputBuffer), stdin);
-		if (inputBuffer[0] != '\n')
-		{
-			input.append(inputBuffer);
-			size_t sLength = input.length();
-
-			if (input[sLength - 1] == '\n')
-			{
-				// Check for CRLF
-				if (input[sLength - 2] == '\r')
-					input.erase(sLength - 2, std::string::npos);
-				else
-					input.erase(sLength - 1, std::string::npos);
-
-				consoleInputQueueMutex.lock();
-				consoleInputQueue.push(input);
-				consoleInputQueueMutex.unlock();
-
-				input.clear();
-			}
-		}
-		Sleep(10);
-	}
-}
-
-void ConsoleInput(std::string input)
-{
-	if (input.empty())
-		return;
-
-	size_t s = input.find(" ", 0);
-	std::string strCommand = input.substr(0, s++);
-	std::string strParams = input.substr(s, (input.length() - s));
-
-	ServerCore::getInstance().processCommand(strCommand, strParams);
-}
-
-
 ServerCore::ServerCore() :
-	m_configuration(), m_networkModule(nullptr), m_isActive(true)
+	m_startTime(0), m_isActive(false), m_configuration(), m_networkModule(nullptr), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -74,18 +19,10 @@ void	ServerCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Server initialized.";
-	while (this->isActive())
+	while (m_isActive)
 	{
 		this->pulse();
-		if (consoleInputQueueMutex.tryLock(0))
-		{
-			while (!consoleInputQueue.empty())
-			{
-				ConsoleInput(consoleInputQueue.back().c_str());
-				consoleInputQueue.pop();
-			}
-			consoleInputQueueMutex.unlock();
-		}
+		this->handleInput();
 	}
 	this->stop();
 	LOG_INFO(GENERAL) << "Server stopped.";
@@ -101,25 +38,18 @@ bool	ServerCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-
-	inputThread.setUserData<bool>(true);
-	inputThread.start(InputThread);
-	startTime = Utilities::GetTime();
-
+	m_isActive = true;
+	m_readInput = true;
+	m_inputThread = std::thread(&ServerCore::readInput, this);
+	m_startTime = Utilities::GetTime();
 	this->displayHeader();
 	return true;
 }
 
 void	ServerCore::stop()
 {
-	inputThread.setUserData<bool>(false);
-	inputThread.stop(false, true);
-}
-
-void	ServerCore::pulse()
-{
-	if (m_networkModule != nullptr)
-		m_networkModule->pulse();
+	m_readInput = false;
+	m_inputThread.join();
 }
 
 void	ServerCore::displayHeader()	const
@@ -136,36 +66,72 @@ void	ServerCore::displayHeader()	const
 	std::cout << "=Server Name	: " << m_configuration.getName() << std::endl;
 	std::cout << "=Server Port	: " << m_configuration.getPort() << std::endl;
 	std::cout << "=Max Players	: " << ProjectGlobals::MAX_PLAYERS_NB << std::endl;
-	if(m_configuration.getPassword().length() > 0)
+	if (m_configuration.getPassword().length() > 0)
 		std::cout << "=Password	: " << m_configuration.getPassword() << std::endl;
 	std::cout << "==============================================================" << std::endl;
 
+}
+
+
+void	ServerCore::pulse()
+{
+	if (m_networkModule != nullptr)
+		m_networkModule->pulse();
+}
+
+
+void	ServerCore::readInput()
+{
+	while (m_readInput)
+	{
+		std::string	input;
+
+		std::getline(std::cin, input);
+		m_inputMutex.lock();
+		m_inputQueue.push(input);
+		m_inputMutex.unlock();
+	}
+}
+
+void	ServerCore::handleInput()
+{
+	if (m_inputMutex.try_lock())
+	{
+		while (!m_inputQueue.empty())
+		{
+			std::string	input = m_inputQueue.back();
+			std::size_t	paramsOffset = input.find(" ") + 1;
+			std::string	command = input.substr(0, paramsOffset - 1);
+			std::string	params = input.substr(paramsOffset);
+
+			if (input.empty())
+			{
+				m_inputMutex.unlock();
+				return;
+			}
+			this->processCommand(command, params);
+			m_inputQueue.pop();
+		}
+		m_inputMutex.unlock();
+	}
 }
 
 void	ServerCore::processCommand(const std::string& command, const std::string& params)
 {
 	if (command == "exit" || command == "quit" || command == "shutdown")
 	{
-		this->setIsActive(false);
+		m_isActive = false;
+		std::cout << "Press RETURN to close this window..." << std::endl;
 	}
 	else if (command == "uptime")
 	{
-		LOG_INFO(GENERAL) << "Current uptime : " << Utilities::GetTimePassedFromTime(startTime);
+		LOG_INFO(GENERAL) << "Current uptime: " << Utilities::GetTimePassedFromTime(m_startTime);
 	}
 }
 
-bool	ServerCore::isActive()	const
-{
-	return m_isActive;
-}
+
 
 NetworkModule	*ServerCore::getNetworkModule()	const
 {
 	return m_networkModule;
-}
-
-
-void	ServerCore::setIsActive(bool isActive)
-{
-	m_isActive = isActive;
 }

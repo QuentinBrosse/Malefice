@@ -1,6 +1,10 @@
 #pragma once
 
 #include <string>
+#include <queue>
+#include <mutex>
+#include <atomic>
+#include <thread>
 #include "Singleton.h"
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
@@ -12,15 +16,13 @@ class ServerCore : public Singleton<ServerCore>
 public:
 	void	run();
 
-	bool			isActive()			const;
+
 	NetworkModule*	getNetworkModule()	const;
 
-	void	setIsActive(bool isActive);
 
-	void	processCommand(const std::string & command, const std::string & params);
 protected:
 	ServerCore();
-	~ServerCore() = default;
+	~ServerCore()	= default;
 
 
 private:
@@ -28,10 +30,19 @@ private:
 	void	stop();
 	void	pulse();
 	void	displayHeader()	const;
+	void	readInput();
+	void	handleInput();
+	void	processCommand(const std::string& command, const std::string& params);
 
+
+	unsigned long	m_startTime;
+	bool			m_isActive;
 
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule*			m_networkModule;
 
-	bool		m_isActive;
+	std::queue<std::string>	m_inputQueue;
+	std::mutex				m_inputMutex;
+	std::atomic<bool>		m_readInput;
+	std::thread				m_inputThread;
 };
