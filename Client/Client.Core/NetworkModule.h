@@ -34,7 +34,7 @@ public:
 
 	void	connectionAccepted(RakNet::Packet * packet);
 
-	void	callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, bool broadcast);
+	void	callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, RakNet::AddressOrGUID to);
 
 	RakNet::RakPeerInterface*	getRakPeer();
 	RakNet::RPC4*				getRPC();

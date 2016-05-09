@@ -8,6 +8,7 @@
 #include "ProjectGlobals.h"
 
 #include "Utility.h"
+#include "Logger.h"
 
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance()), m_connected(false), m_netState(NETSTATE_NONE)
@@ -95,24 +96,22 @@ void	NetworkModule::pulse()
 
 void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 {
-	std::cout << "Appel connection accepted" << std::endl;
 	RakNet::BitStream	bits;
+	RakNet::RakString	username = "MALEFICE_PLAYER";
+	RakNet::RakString	serial = utility::getSerialHash().c_str();
 
 	m_netState = NETSTATE_CONNECTED;
-
-	//Todo: Dynamize this function
-	std::string serial = utility::getSerialHash();
-	bits.Write(RakNet::RakString("Enguerrand"));
-	bits.Write(RakNet::RakString(serial.c_str()));
-
-	callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE_ORDERED, true);
+	bits.Write(username);
+	bits.Write(serial);
+	this->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE_ORDERED, packet->systemAddress);
+	LOG_DEBUG(NETWORK) << "Server accepted connection, sending username: \"" << username << "\", serial: \"" << serial << "\"";
 }
 
 
-void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, bool broadcast)
+void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, RakNet::AddressOrGUID to)
 {
 	if (m_rpc != nullptr)
-		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, broadcast);
+		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, to, false);
 }
 
 

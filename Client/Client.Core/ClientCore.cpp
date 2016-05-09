@@ -38,9 +38,10 @@ bool	ClientCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), ecs::Position(0, 0, 0, 0, 0, 0));
+	m_networkModule->connect("127.0.0.1", 2504, "");
+	/*m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), ecs::Position(0, 0, 0, 0, 0, 0));
 	if (m_graphicModule != nullptr)
-		m_graphicModule->initGraphics();
+		m_graphicModule->initGraphics();*/
 }
 
 void	ClientCore::pulse()

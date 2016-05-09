@@ -11,17 +11,17 @@ bool	GeneralRPC::m_isRegistered = false;
 */
 static void	playerChat(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 {
-	ecs::NetworkID		playerId = (ecs::NetworkID)packet->guid.systemIndex;
+	ecs::NetworkID		playerId = static_cast<ecs::NetworkID>(packet->guid.systemIndex);
 	RakNet::RakString	input;
 
 	bitStream->Read(input);
 
 	LOG_INFO(CHAT) << "Player " << playerId << " : " << input.C_String();
 
-	/*RakNet::BitStream toSend;
+	RakNet::BitStream toSend;
 	toSend.WriteCompressed(playerId);
 	toSend.Write(input);
-	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &toSend, HIGH_PRIORITY, RELIABLE_ORDERED, playerId, true);*/
+	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_PLAYER_INDEX, true);
 }
 
 void	GeneralRPC::registerRPC(RakNet::RPC4* rpc)

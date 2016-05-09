@@ -14,11 +14,11 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	ecs::NetworkID playerId;
 
 	bitStream->ReadCompressed(playerId);
-	LOG_DEBUG(NETWORK) << "Player ID (assigned by server): " << playerId;
+	LOG_INFO(NETWORK) << "Player ID (assigned by server): " << playerId;
 
 	RakNet::BitStream	bs;
-	bs.Write("Hello, World!");
-	ClientCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, false);
+	bs.Write(RakNet::RakString("Hello, World!"));
+	ClientCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, packet->systemAddress);
 }
 
 void PlayerRPC::registerRPC(RakNet::RPC4* rpc)
