@@ -7,6 +7,7 @@
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
+#include <json.hpp>
 
 #include "ClientCore.h"
 #include "PlayerFactory.h"
@@ -173,17 +174,14 @@ int main(int argc, char* argv[])
 	core.dump();
 	getchar();
 	*/
-/*	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
-	ClientCore::getInstance().run();*/
-
-	// TEST Weapons and Spells configuration
+	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
+	ClientCore::getInstance().run();
 
 	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	WeaponsConfiguration	weaponsConfig;
 	SpellsConfiguration		spellsConfig;
 	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;
 	std::map<ecs::Spell::SpellType, ecs::Spell>	spells;
-
 
 	weaponsConfig.loadFromFile(WeaponsConfiguration::WEAPONS_FILENAME);
 	spellsConfig.loadFromFile(SpellsConfiguration::SPELLS_FILENAME);

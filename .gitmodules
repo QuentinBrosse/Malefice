@@ -16,3 +16,6 @@
 [submodule "Dependencies/spdlog"]
 	path = Dependencies/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "Dependencies/json"]
+	path = Dependencies/json
+	url = git@github.com:nlohmann/json.git
