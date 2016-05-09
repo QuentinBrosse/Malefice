@@ -22,6 +22,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
@@ -36,6 +37,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
   </ItemGroup>

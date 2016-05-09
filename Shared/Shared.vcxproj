@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/RakNet/Source;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -161,7 +161,6 @@
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
-    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ProjectGlobals.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -195,7 +194,6 @@
     <ClInclude Include="NodePickable.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="PlayerFactory.h" />
-    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectGlobals.h" />
     <ClInclude Include="Scene.h" />
