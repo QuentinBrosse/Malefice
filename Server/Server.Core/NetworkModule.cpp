@@ -4,10 +4,8 @@
 #include "GeneralRPC.h"
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
-
 #include "ServerCore.h"
 #include "PlayerManager.h"
-
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :

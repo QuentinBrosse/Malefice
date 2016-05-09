@@ -19,14 +19,15 @@ DWORD	utility::SystemUtility::getSerial()
 
 std::string	utility::SystemUtility::getSerialHash()
 {
-	DWORD dwSerial = utility::SystemUtility::getSerial();
-	char szSerialMask[] = "0000-0000";
-	int i = 8;
+	DWORD	dwSerial = utility::SystemUtility::getSerial();
+	char	szSerialMask[] = "0000-0000";
+	int		i = 8;
 
 	while (dwSerial > 0 && i >= 0)
 	{
-		int v = (dwSerial & 0xF);
-		char ch = (v < 10) ? '0' + v : 'A' + (v + 10);
+		int		v = (dwSerial & 0xF);
+		char	ch = (v < 10) ? '0' + v : 'A' + (v + 10);
+
 		szSerialMask[i--] = ch;
 		if (i == 4)
 			i--;

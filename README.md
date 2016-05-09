@@ -13,12 +13,16 @@ Se rendre à la racine du dépôt avec **Git Bash** et lancer la commande :
 ```
 git submodule update --init --recursive
 ```
+Pour éviter de devoir taper cette commande après avoir `git clone`, cloner de cette manière :
+```
+git clone --recursive git@github.com:QuentinBross/Malefice.git
+```
 
 Les projets sont déjà configurés pour compiler avec :
 * **Client.Core** : CEGUI, Irrlicht, RakNet et Shared
 * **Client.Launcher** : /
-* **Server.Core** : RakNet, TinyXML2 et Shared
-* **Shared** : Irrlicht et TinyXML2
+* **Server.Core** : Irrlicht, RakNet, TinyXML2 et Shared
+* **Shared** : Irrlicht, RakNet et TinyXML2
 
 Les projets sont générés dans Binaries/Debug/ et dans Binaries/Release/.
 

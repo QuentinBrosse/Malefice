@@ -1,9 +1,9 @@
 #pragma once
 
-#include "AComponent.h"
+#include <RakNetTypes.h>
 #include "Export.h"
 
 namespace ecs
 {
-	typedef int		NetworkID;
+	typedef RakNet::SystemIndex	NetworkID;
 }
