@@ -171,8 +171,10 @@
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellsConfiguration.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
+    <ClCompile Include="StringUtility.cpp" />
+    <ClCompile Include="SystemUtility.cpp" />
     <ClCompile Include="Team.cpp" />
-    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="TimeUtility.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponCreator.cpp" />
     <ClCompile Include="WeaponManager.cpp" />
@@ -208,8 +210,10 @@
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellsConfiguration.h" />
     <ClInclude Include="SpellSystem.h" />
+    <ClInclude Include="StringUtility.h" />
+    <ClInclude Include="SystemUtility.h" />
     <ClInclude Include="Team.h" />
-    <ClInclude Include="Utility.h" />
+    <ClInclude Include="TimeUtility.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponCreator.h" />
     <ClInclude Include="WeaponManager.h" />

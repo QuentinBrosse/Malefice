@@ -2,7 +2,7 @@
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 #include "Logger.h"
-#include "Utility.h"
+#include "TimeUtility.h"
 
 ServerCore::ServerCore() :
 	m_startTime(0), m_isActive(false), m_configuration(), m_networkModule(nullptr), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
@@ -42,7 +42,7 @@ bool	ServerCore::init()
 	m_isActive = true;
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
-	m_startTime = utility::getMsTime();
+	m_startTime = utility::TimeUtility::getMsTime();
 	this->displayHeader();
 	return true;
 }
@@ -126,7 +126,7 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 	}
 	else if (command == "uptime")
 	{
-		LOG_INFO(GENERAL) << "Current uptime: " << utility::getElapsedTimeSince(m_startTime);
+		LOG_INFO(GENERAL) << "Current uptime: " << utility::TimeUtility::getElapsedTimeSince(m_startTime);
 	}
 }
 

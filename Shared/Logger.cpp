@@ -6,7 +6,7 @@
 #include <spdlog/spdlog.h>
 #include "Logger.h"
 #include "ProjectGlobals.h"
-#include "Utility.h"
+#include "SystemUtility.h"
 
 const std::string	Logger::LOGGER_NAME		= ProjectGlobals::GAME_NAME + "Logger";
 const std::size_t	Logger::MAX_FILE_SIZE	= 1024 * 1024 * 10;
@@ -18,7 +18,7 @@ void	Logger::setup(const std::string& filePath)
 	std::size_t						extPos = filePath.find_last_of('.');
 	std::string						filePathPid = filePath;
 
-	filePathPid.insert(extPos, "." + std::to_string(utility::getPid()));
+	filePathPid.insert(extPos, "." + std::to_string(utility::SystemUtility::getPid()));
 	extPos = filePathPid.find_last_of('.');
 	sinks.push_back(std::make_shared<spdlog::sinks::stderr_sink_st>());
 	sinks.push_back(std::make_shared<spdlog::sinks::rotating_file_sink_st>(filePathPid.substr(0, extPos), filePathPid.substr(extPos + 1), Logger::MAX_FILE_SIZE, Logger::MAX_FILE_NB, true));

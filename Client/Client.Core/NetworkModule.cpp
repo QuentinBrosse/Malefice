@@ -7,7 +7,7 @@
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
-#include "Utility.h"
+#include "SystemUtility.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
@@ -98,7 +98,7 @@ void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 {
 	RakNet::BitStream	bits;
 	RakNet::RakString	username = "MALEFICE_PLAYER";
-	RakNet::RakString	serial = utility::getSerialHash().c_str();
+	RakNet::RakString	serial = utility::SystemUtility::getSerialHash().c_str();
 
 	m_netState = NETSTATE_CONNECTED;
 	bits.Write(username);

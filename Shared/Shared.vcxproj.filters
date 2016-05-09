@@ -49,21 +49,30 @@
     <Filter Include="Source Files\Logger">
       <UniqueIdentifier>{c0f0b324-b7c7-4daa-ad07-bd2af12bab66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Configuration">
+      <UniqueIdentifier>{99095faf-6f4b-4366-b568-c1860df98d96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Configuration">
+      <UniqueIdentifier>{556a2de2-d234-4d3c-8127-633812922a8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Creator">
+      <UniqueIdentifier>{705b1293-2b92-461c-a832-2cb6a597d052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Creator">
+      <UniqueIdentifier>{ff1d3a42-8b8a-4dfc-a541-8a8ad1803e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{4bb2506d-dbee-4c39-b616-9cd22fd81bed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{bcaad0b0-ada2-493b-b558-46de8d6641ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{4dcd1891-ae1c-4e9b-bc09-cd61e70b12e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WeaponsConfiguration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProjectGlobals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpellCreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WeaponCreator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AConfiguration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AComponent.cpp">
@@ -111,17 +120,8 @@
     <ClCompile Include="WeaponSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
-    <ClCompile Include="SpellsConfiguration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Logger</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameEventReceiver.cpp">
       <Filter>Source Files\ECS\Component</Filter>
@@ -138,24 +138,39 @@
     <ClCompile Include="SpellManagerSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
+    <ClCompile Include="AConfiguration.cpp">
+      <Filter>Source Files\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="SpellsConfiguration.cpp">
+      <Filter>Source Files\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponsConfiguration.cpp">
+      <Filter>Source Files\Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponCreator.cpp">
+      <Filter>Source Files\Creator</Filter>
+    </ClCompile>
+    <ClCompile Include="SpellCreator.cpp">
+      <Filter>Source Files\Creator</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WeaponsConfiguration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProjectGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AConfiguration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpellCreator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WeaponCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Export.h">
@@ -178,12 +193,6 @@
     </ClInclude>
     <ClInclude Include="MovementSystem.h">
       <Filter>Header Files\ECS\System</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkRPC.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFactory.h">
       <Filter>Header Files\ECS\Factory</Filter>
@@ -215,17 +224,8 @@
     <ClInclude Include="WeaponSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
-    <ClInclude Include="SpellsConfiguration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Header Files\Logger</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtility.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NodePickable.h">
       <Filter>Header Files</Filter>
@@ -244,6 +244,39 @@
     </ClInclude>
     <ClInclude Include="SpellManagerSystem.h">
       <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="AConfiguration.h">
+      <Filter>Header Files\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponsConfiguration.h">
+      <Filter>Header Files\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellsConfiguration.h">
+      <Filter>Header Files\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponCreator.h">
+      <Filter>Header Files\Creator</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellCreator.h">
+      <Filter>Header Files\Creator</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkID.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkRPC.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemUtility.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtility.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeUtility.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtility.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

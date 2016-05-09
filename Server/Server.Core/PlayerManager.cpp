@@ -1,10 +1,8 @@
 #include "PlayerManager.h"
 #include "NetworkID.h"
 #include "NetworkRPC.h"
-
 #include "BitStream.h"
-
-#include "../Server/Server.Core/ServerCore.h"
+#include "ServerCore.h"
 
 PlayerManager::PlayerManager(ecs::Entity* currentPlayer)
 {
