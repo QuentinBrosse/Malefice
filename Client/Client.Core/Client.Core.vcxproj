@@ -14,14 +14,15 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
+    <ClInclude Include="ConnectWindow.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
@@ -29,13 +30,16 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
+    <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
+    <ClCompile Include="loadingWindows.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
   </ItemGroup>

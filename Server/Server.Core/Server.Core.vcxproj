@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
@@ -18,6 +19,7 @@
     <ClInclude Include="ServerCoreConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
@@ -67,7 +69,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
