@@ -75,9 +75,6 @@
     <ClInclude Include="Chat.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>

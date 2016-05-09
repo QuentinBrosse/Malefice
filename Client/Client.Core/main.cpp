@@ -20,7 +20,6 @@
 
 #include "NetworkModule.h"
 #include "Logger.h"
-#include "main.h"
 
 #include "WeaponsConfiguration.h"
 #include "SpellsConfiguration.h"
