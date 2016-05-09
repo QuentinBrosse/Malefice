@@ -1,7 +1,12 @@
 #include <sstream>
 #include <chrono>
-#include <Windows.h>
+
+#ifdef _WIN32
 #include <tchar.h>
+#else
+#include <unistd.h>
+#endif
+
 #include "utility.h"
 
 DWORD	utility::getSerial()
@@ -61,4 +66,13 @@ std::string	utility::pluralize(const std::string& word, const T& nb)
 	if (nb > -2 && nb < 2)
 		return word;
 	return word + "s";
+}
+
+MALEFICE_DLL_EXPORT	pid_t	utility::getPid()
+{
+#ifdef _WIN32
+	return GetCurrentProcessId();
+#else
+	return getpid();
+#endif
 }

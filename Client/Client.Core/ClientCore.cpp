@@ -49,7 +49,7 @@ bool	ClientCore::init()
 	}
 	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), ecs::Position(0, 0, 0, 0, 0, 0));
 	if (m_graphicModule != nullptr)
-		m_graphicModule->initGraphics();
+		m_graphicModule->initGraphics();*/
 }
 
 void	ClientCore::pulse()

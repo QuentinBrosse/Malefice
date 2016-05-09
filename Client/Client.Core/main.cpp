@@ -84,5 +84,8 @@ int main(int argc, char* argv[])
 	getchar();
 	*/
 
+	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
+	ClientCore::getInstance().run();
+
 	return (0);
 }

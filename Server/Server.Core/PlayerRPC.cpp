@@ -31,8 +31,8 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 
 	LOG_INFO(NETWORK) << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
 
-	ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
-	ServerCore::getInstance().getPlayerManager()->addPlayer(player);
+	/*ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
+	ServerCore::getInstance().getPlayerManager()->addPlayer(player);*/
 
 	bits.WriteCompressed(playerId);
 	
