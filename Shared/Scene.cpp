@@ -70,14 +70,16 @@ namespace ecs
 	{
 		return m_material;
 	}
-}
-void Scene::setNode(irr::scene::IAnimatedMeshSceneNode* newNode)
-{
-	m_node = newNode;
-}
+
+	void Scene::setNode(irr::scene::IAnimatedMeshSceneNode* newNode)
+	{
+		m_node = newNode;
+	}
 
 
-void Scene::setMaterial(irr::video::SMaterial* newMaterial)
-{
-	m_material = newMaterial;
+	void Scene::setMaterial(irr::video::SMaterial* newMaterial)
+	{
+		m_material = newMaterial;
+	}
+
 }
