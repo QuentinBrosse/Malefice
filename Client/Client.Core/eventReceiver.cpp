@@ -61,3 +61,8 @@ EventReceiver::keyStatesENUM EventReceiver::getKeyState(irr::EKEY_CODE keyCode)
 {
 	return m_keyState[keyCode];
 }
+
+EventReceiver::keyStatesENUM* EventReceiver::getKeyStateList()
+{
+	return m_keyState;
+}

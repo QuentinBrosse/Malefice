@@ -14,6 +14,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
+    <ClInclude Include="ConnectWindow.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="GraphicUtil.h" />
@@ -29,9 +30,11 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
+    <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
+    <ClCompile Include="loadingWindows.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />

@@ -21,7 +21,7 @@ public:
 	const MouseState& getMouseState(void) const;
 	EventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
 	EventReceiver();
-
+	EventReceiver::keyStatesENUM* getKeyStateList();
 private:
 	irr::SEvent::SJoystickEvent m_joystickState;
 	MouseState m_state;

@@ -84,6 +84,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
+    <ClInclude Include="ConnectWindow.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -121,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectWindow.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="loadingWindows.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
