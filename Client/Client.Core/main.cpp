@@ -111,6 +111,7 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
+	/*irr::SKeyMap keyMap[5];
 /*	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;

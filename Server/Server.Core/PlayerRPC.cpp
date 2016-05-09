@@ -25,7 +25,7 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	bitStream->Read(serial);
 	playerId = (ecs::NetworkID)packet->guid.systemIndex;
 
-	LOG_INFO << "[network] : Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
+	LOG_INFO(NETWORK) << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
 
 	//Todo : Add to player's pool and send information to other clients
 

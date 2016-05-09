@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <exception>
 #include <spdlog/spdlog.h>
 #include "Logger.h"
 #include "ProjectGlobals.h"
@@ -20,31 +21,58 @@ void	Logger::setup(const std::string& filePath)
 	m_logger = std::make_shared<spdlog::logger>(Logger::LOGGER_NAME, begin(sinks), end(sinks));
 
 	spdlog::register_logger(m_logger);
-	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S] %l -- %v");
+	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S][%l]%v");
 }
 
-spdlog::details::line_logger	Logger::log(LogLevel logLevel)
+std::string	Logger::logCategoryToString(Logger::LogCategory logCategory)
+{
+	switch (logCategory)
+	{
+	case LogCategory::GENERAL:
+		return "general";
+		break;
+	case LogCategory::NETWORK:
+		return "network";
+		break;
+	case LogCategory::CHAT:
+		return "chat";
+		break;
+	default:
+		throw std::invalid_argument("Unknown Logger::LogCategory " + std::to_string(static_cast<int>(logCategory)));
+		break;
+	}
+}
+
+
+Logger::LogLine::LogLine(Logger::LogLevel logLevel, Logger::LogCategory logCategory) :
+	m_lineLogger(LogLine::getLogger(logLevel))
+{
+	m_lineLogger << "[" << Logger::logCategoryToString(logCategory) << "] ";
+}
+
+spdlog::details::line_logger	Logger::LogLine::getLogger(Logger::LogLevel logLevel)
 {
 	switch (logLevel)
 	{
 	case LogLevel::Trace:
-		return m_logger->trace();
+		return Logger::getInstance().m_logger->trace();
 		break;
 	case LogLevel::Debug:
-		return m_logger->debug();
+		return Logger::getInstance().m_logger->debug();
 		break;
 	case LogLevel::Info:
-		return m_logger->info();
+		return Logger::getInstance().m_logger->info();
 		break;
 	case LogLevel::Warning:
-		return m_logger->warn();
+		return Logger::getInstance().m_logger->warn();
 		break;
 	case LogLevel::Error:
-		return m_logger->error();
+		return Logger::getInstance().m_logger->error();
 		break;
 	case LogLevel::Critical:
-	default:
-		return m_logger->critical();
+		return Logger::getInstance().m_logger->critical();
 		break;
+	default:
+		throw std::invalid_argument("Unknown Logger::LogLevel " + std::to_string(static_cast<int>(logLevel)));
 	}
 }
