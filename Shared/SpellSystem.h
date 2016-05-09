@@ -12,7 +12,7 @@ namespace ecs
 		SpellSystem() = delete;
 		~SpellSystem() = delete;
 
-		static void	launchSpell(Entity& predator, Entity& target);
+		static void	launchSpell(Entity& predator);
 	};
 
 }

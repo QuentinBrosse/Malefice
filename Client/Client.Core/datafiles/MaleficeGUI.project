@@ -5,6 +5,7 @@
         <Item path="imagesets/Eclair.imageset" type="file" />
         <Item path="layouts/InGameGUI.layout" type="file" />
         <Item path="layouts/WaitingRoom.layout" type="file" />
+        <Item path="layouts/connectWindows.layout" type="file" />
         <Item path="layouts/connectionToServer.layout" type="file" />
         <Item path="layouts/mainMenu.layout" type="file" />
         <Item path="imagesets/spells.imageset" type="file" />
