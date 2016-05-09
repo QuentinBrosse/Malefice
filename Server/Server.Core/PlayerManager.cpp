@@ -17,20 +17,16 @@ PlayerManager::PlayerManager()
 	m_currentPlayer = nullptr;
 }
 
-void PlayerManager::addPlayer(ecs::Entity *newPlayer)
+void PlayerManager::addPlayer(ecs::Entity* newPlayer)
 {
-	// A voir si il faut tester avant de l'ajouter
 	m_players[newPlayer->getNetworkID()] = newPlayer;
-
 	for (auto it = m_players.begin(); it != m_players.end(); it++)
 	{
-		RakNet::BitStream bits;
+		RakNet::BitStream	bits;
 
 		bits.WriteCompressed(newPlayer->getNetworkID());
-		bits.Write(RakNet::RakString("Test"));
-		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE, it->first, false);
+		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
-	std::cout << "Added player with propagation" << std::endl;
 }
 
 bool PlayerManager::hasPlayer(ecs::NetworkID netID)

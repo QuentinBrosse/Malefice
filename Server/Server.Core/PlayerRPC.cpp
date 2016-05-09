@@ -23,20 +23,15 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	RakNet::RakString	name;
 	RakNet::RakString	serial;
 	ecs::NetworkID		playerId;
-	RakNet::BitStream	bits;
 
 	bitStream->Read(name);
 	bitStream->Read(serial);
-	playerId = (ecs::NetworkID)packet->guid.systemIndex;
+	playerId = static_cast<ecs::NetworkID>(packet->guid.systemIndex);
 
 	LOG_INFO(NETWORK) << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
 
-	/*ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
-	ServerCore::getInstance().getPlayerManager()->addPlayer(player);*/
-
-	bits.WriteCompressed(playerId);
-	
-	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE, packet->guid.systemIndex, false);
+	ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
+	ServerCore::getInstance().getPlayerManager()->addPlayer(player);
 }
 
 /*
