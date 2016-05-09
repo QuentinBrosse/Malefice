@@ -15,7 +15,8 @@ GraphicUtil::GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr:
 
 GraphicUtil::~GraphicUtil()
 {
-	delete (m_camera);
+	if(m_camera)
+		delete (m_camera);
 	// Delete all?
 }
 

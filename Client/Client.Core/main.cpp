@@ -22,7 +22,6 @@
 
 #include "NetworkModule.h"
 #include "Logger.h"
-#include "main.h"
 
 #include "WeaponsConfiguration.h"
 #include "SpellsConfiguration.h"
@@ -372,7 +371,6 @@ int main(int argc, char* argv[])
 	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore::getInstance().run();
 
-	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	WeaponsConfiguration	weaponsConfig;
 	SpellsConfiguration		spellsConfig;
 	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;

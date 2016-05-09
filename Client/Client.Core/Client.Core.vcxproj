@@ -20,9 +20,9 @@
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NetworkModule.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="WaitingRoom.h" />
   </ItemGroup>
@@ -39,6 +39,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
   </ItemGroup>
@@ -86,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Dependencies/json/src;../../Dependencies/tinyxml2;../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/tinyxml2;../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -108,7 +109,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>../../Dependencies/json/src;../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../Dependencies/tinyxml2;../../Dependencies/cegui/cegui/include;../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
