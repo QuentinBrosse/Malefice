@@ -153,8 +153,10 @@
     <ClCompile Include="AComponent.cpp" />
     <ClCompile Include="AConfiguration.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
@@ -168,7 +170,7 @@
     <ClCompile Include="SpellsConfiguration.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Team.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponCreator.cpp" />
     <ClCompile Include="WeaponManager.cpp" />
@@ -181,12 +183,15 @@
     <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Export.h" />
+    <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MathUtility.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkID.h" />
     <ClInclude Include="NetworkRPC.h" />
+    <ClInclude Include="NodePickable.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="PlayerFactory.h" />
     <ClInclude Include="PlayerManager.h" />
@@ -199,7 +204,7 @@
     <ClInclude Include="SpellsConfiguration.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Team.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponCreator.h" />
     <ClInclude Include="WeaponManager.h" />

@@ -1,0 +1,56 @@
+#include "GameEventReceiver.h"
+
+namespace ecs
+{
+
+	GameEventReceiver::GameEventReceiver() : AComponent("GameEventReceiver", GAME_EVENT_RECEIVER)
+	{
+		
+	}
+
+	bool GameEventReceiver::OnEvent(const irr::SEvent& event)
+	{
+		if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
+		{
+			switch (event.MouseInput.Event)
+			{
+			case irr::EMIE_LMOUSE_PRESSED_DOWN:
+				m_events.push(GameEventReceiver::GameEventType::LEFT_CLICK_ATTACK);
+				break;
+
+			case irr::EMIE_RMOUSE_PRESSED_DOWN:
+				m_events.push(GameEventReceiver::GameEventType::RIGHT_CLICK_ATTACK);
+				break;
+
+			case irr::EMIE_MMOUSE_PRESSED_DOWN:
+				m_events.push(GameEventReceiver::GameEventType::ZOOM);
+				break;
+
+			case irr::EMIE_MOUSE_WHEEL:
+				if (event.MouseInput.Wheel < 0)
+					m_events.push(GameEventReceiver::GameEventType::PREC_WEAPON);
+				else
+					m_events.push(GameEventReceiver::GameEventType::NEXT_WEAPON);
+				break;
+
+			default:
+				break;
+			}
+		}
+		else if (event.EventType == irr::EET_KEY_INPUT_EVENT)
+		{
+			
+		}
+		return false;
+	}
+
+	GameEventReceiver::GameEventType		GameEventReceiver::getEvent()
+	{
+		GameEventReceiver::GameEventType	event;
+
+		event = m_events.front();
+		m_events.pop();
+		return (event);
+	}
+
+};

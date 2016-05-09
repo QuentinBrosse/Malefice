@@ -4,6 +4,8 @@
 		<type>SNIPER_RIFLE</type>
 		<maxAmmunition>10</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>150</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>FALSE</handToHand>
@@ -13,6 +15,8 @@
 		<type>REVOLVER</type>
 		<maxAmmunition>8</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>100</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>FALSE</handToHand>
@@ -20,7 +24,9 @@
 		<weapon id="3">
 		<name>RailGun</name>
 		<type>RAIL_GUN</type>
-		<maxAmmunition>10</maxAmmunition>
+		<maxAmmunition>100</maxAmmunition>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
 		<damage>200</damage>
 		<damageExplosive>0</damageExplosive>
@@ -31,6 +37,8 @@
 		<type>MACHINE_GUN</type>
 		<maxAmmunition>5</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>150</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>FALSE</handToHand>
@@ -40,6 +48,8 @@
 		<type>DOUBLE_GUN</type>
 		<maxAmmunition>10</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>100</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>FALSE</handToHand>
@@ -49,6 +59,8 @@
 		<type>MACHINE_GUN</type>
 		<maxAmmunition>5</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>10</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>150</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>FALSE</handToHand>
@@ -58,6 +70,8 @@
 		<type>SABER</type>
 		<maxAmmunition>0</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>0</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>50</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>TRUE</handToHand>
@@ -67,6 +81,8 @@
 		<type>CHAIN_SAW</type>
 		<maxAmmunition>0</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>0</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>100</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>TRUE</handToHand>
@@ -76,6 +92,8 @@
 		<type>KNIFE</type>
 		<maxAmmunition>0</maxAmmunition>
 		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<maxAmmunitionLoader>0</maxAmmunitionLoader>
+		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
 		<damage>35</damage>
 		<damageExplosive>0</damageExplosive>
 		<handToHand>TRUE</handToHand>

@@ -4,19 +4,19 @@
 
 #include "AComponent.h"
 #include "Position.h"
+#include "NodePickable.h"
 
-namespace ecs
+class Camera
 {
+public:
+	Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneManager);
+	Camera(const Camera&) = delete;
+	~Camera();
 
-	class Camera : public AComponent
-	{
-	public:
-		Camera(const Position& position, irr::scene::ISceneManager*	sceneManager);
-		Camera(const Camera&) = delete;
-		~Camera();
+	ecs::Position			getPosition()	const;
+	irr::core::vector3df	getTarget()		const;
+	void							init();
 
-		Position	getPosition()	const;
-	private:
-		irr::scene::ICameraSceneNode*	m_camera;
-	};
-}
+private:
+	irr::scene::ICameraSceneNode*	m_camera;
+};

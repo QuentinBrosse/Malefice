@@ -111,7 +111,7 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	irr::SKeyMap keyMap[5];
+/*	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -178,6 +178,7 @@ int main(int argc, char* argv[])
 
 	// TEST Weapons and Spells configuration
 
+	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	WeaponsConfiguration	weaponsConfig;
 	SpellsConfiguration		spellsConfig;
 	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;

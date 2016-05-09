@@ -2,9 +2,9 @@
 #include <chrono>
 #include <Windows.h>
 #include <tchar.h>
-#include "Utilities.h"
+#include "utility.h"
 
-DWORD	Utilities::getSerial()
+DWORD	utility::getSerial()
 {
 #ifdef _WIN32
 	DWORD dwSerial;
@@ -12,13 +12,13 @@ DWORD	Utilities::getSerial()
 
 	return dwSerial;
 #else
-	throw std::logic_error("Utilities::getSerial() not implemented");
+	throw std::logic_error("utility::getSerial() not implemented");
 #endif
 }
 
-std::string	Utilities::getSerialHash()
+std::string	utility::getSerialHash()
 {
-	DWORD dwSerial = Utilities::getSerial();
+	DWORD dwSerial = utility::getSerial();
 	char szSerialMask[] = "0000-0000";
 	int i = 8;
 
@@ -34,15 +34,15 @@ std::string	Utilities::getSerialHash()
 	return std::string(szSerialMask);
 }
 
-long long	Utilities::getMsTime()
+long long	utility::getMsTime()
 {
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 }
 
-std::string	Utilities::getElapsedTimeSince(long long msTime)
+std::string	utility::getElapsedTimeSince(long long msTime)
 {
 	std::ostringstream	oss;
-	long long			elapsedSeconds = ((Utilities::getMsTime() - msTime) / 1000ll);
+	long long			elapsedSeconds = ((utility::getMsTime() - msTime) / 1000ll);
 	long long			seconds = (elapsedSeconds % 60ll);
 	long long			elapsedMinutes = (elapsedSeconds / 60ll);
 	long long			minutes = (elapsedMinutes % 60ll);
@@ -56,7 +56,7 @@ std::string	Utilities::getElapsedTimeSince(long long msTime)
 }
 
 template<class T>
-std::string	Utilities::pluralize(const std::string& word, const T& nb)
+std::string	utility::pluralize(const std::string& word, const T& nb)
 {
 	if (nb > -2 && nb < 2)
 		return word;

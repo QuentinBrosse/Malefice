@@ -5,7 +5,7 @@
 
 typedef unsigned long DWORD;
 
-namespace Utilities
+namespace utility
 {
 	MALEFICE_DLL_EXPORT DWORD		getSerial();
 	MALEFICE_DLL_EXPORT std::string	getSerialHash();

@@ -7,7 +7,7 @@
 #include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 
-#include "Utilities.h"
+#include "Utility.h"
 
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance()), m_connected(false), m_netState(NETSTATE_NONE)
@@ -101,7 +101,7 @@ void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 	m_netState = NETSTATE_CONNECTED;
 
 	//Todo: Dynamize this function
-	std::string serial = Utilities::getSerialHash();
+	std::string serial = utility::getSerialHash();
 	bits.Write(RakNet::RakString("Enguerrand"));
 	bits.Write(RakNet::RakString(serial.c_str()));
 

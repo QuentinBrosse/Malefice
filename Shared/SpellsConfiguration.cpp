@@ -61,13 +61,13 @@ ecs::Spell::SpellType	SpellsConfiguration::parseSpellType(const std::string& Spe
 	std::map<std::string, ecs::Spell::SpellType>	SpellTypes;
 	auto											SpellType = SpellTypes.end();
 
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SNIPER_RIFLE", ecs::Spell::SpellType::SLOW));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("RAIL_GUN", ecs::Spell::SpellType::BLIND));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SHOTGUN", ecs::Spell::SpellType::CONFUSION));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("MACHINE_GUN", ecs::Spell::SpellType::DEAF));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("REVOLVER", ecs::Spell::SpellType::NOTHING));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("DOUBLE_GUN", ecs::Spell::SpellType::PARANOIA));
-	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SABER", ecs::Spell::SpellType::PARKINSON));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("SLOW", ecs::Spell::SpellType::SLOW));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("BLIND", ecs::Spell::SpellType::BLIND));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("CONFUSION", ecs::Spell::SpellType::CONFUSION));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("DEAF", ecs::Spell::SpellType::DEAF));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("NOTHING", ecs::Spell::SpellType::NOTHING));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("PARANOIA", ecs::Spell::SpellType::PARANOIA));
+	SpellTypes.insert(std::make_pair<std::string, ecs::Spell::SpellType>("PARKINSON", ecs::Spell::SpellType::PARKINSON));
 	SpellType = SpellTypes.find(SpellTypeStr);
 	if (SpellType != SpellTypes.end())
 		return SpellType->second;

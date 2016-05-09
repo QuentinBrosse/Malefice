@@ -14,7 +14,7 @@ namespace ecs
 
 		Entity(NetworkID netID);
 		~Entity();
-		Entity(const Entity& cpy);
+		Entity(const Entity& cpy) = delete;
 		Entity(Entity &&) = default;
 		
 		Entity&	operator=(const Entity&) = delete;

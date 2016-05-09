@@ -9,9 +9,12 @@
 
 class MALEFICE_DLL_EXPORT WeaponCreator :  public Singleton<WeaponCreator>
 {
+	friend class Singleton<WeaponCreator>;
 
 public:
 	ecs::Weapon		create(const ecs::Weapon::WeaponType weaponType);
+
+protected:
 	~WeaponCreator() = default;
 	WeaponCreator();
 

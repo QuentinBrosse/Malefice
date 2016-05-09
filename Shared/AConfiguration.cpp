@@ -13,7 +13,7 @@ tinyxml2::XMLElement*	AConfiguration::getOrCreateElement(tinyxml2::XMLDocument& 
 std::string	AConfiguration::getOrCreateElementString(tinyxml2::XMLDocument& doc, tinyxml2::XMLNode& parentNode, const std::string& elementName, const std::string& defaultValue)	const
 {
 	if (this->getOrCreateElement(doc, parentNode, elementName)->GetText() == nullptr)
-		this->getOrCreateElement(doc, parentNode, "name")->SetText(defaultValue.c_str());
+		this->getOrCreateElement(doc, parentNode, elementName)->SetText(defaultValue.c_str());
 	if (this->getOrCreateElement(doc, parentNode, elementName)->GetText() != nullptr)
 		return this->getOrCreateElement(doc, parentNode, elementName)->GetText();
 	return "";
