@@ -123,6 +123,9 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Logger</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WeaponsConfiguration.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Header Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

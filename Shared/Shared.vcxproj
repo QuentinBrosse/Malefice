@@ -162,6 +162,7 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ProjectGlobals.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectGlobals.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />

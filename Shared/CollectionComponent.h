@@ -16,5 +16,6 @@ namespace ecs
 		SPELL,
 		SPELL_MANAGER,
 		CAMERA,
+		SCENE,
 	};
 }
