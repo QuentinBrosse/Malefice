@@ -15,7 +15,9 @@ ConnectWindow::ConnectWindow()
 		std::cout << e.what() << std::endl;
 	}
 	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&ConnectWindow::onCloseButtonClicked, this));
-
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&ConnectWindow::onConnectButtonClicked, this));
+	m_ip = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(1));
+	m_port = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(2));
 }
 
 void ConnectWindow::display()
@@ -45,4 +47,21 @@ bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
 	return (true);
+}
+
+bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
+{
+	std::cout << "IP = " << this->getIPEditBox() << std::endl;
+	std::cout << "Port = " << this->getPortEditBox() << std::endl;
+	return (true);
+}
+
+std::string ConnectWindow::getIPEditBox()
+{
+	return (m_ip->getText().c_str());
+}
+
+std::string ConnectWindow::getPortEditBox()
+{
+	return (m_port->getText().c_str());
 }
