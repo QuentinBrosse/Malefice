@@ -36,8 +36,6 @@ public:
 
 	void	callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, RakNet::AddressOrGUID to);
 
-	RakNet::RakPeerInterface*	getRakPeer();
-	RakNet::RPC4*				getRPC();
 	bool						isConnected()	const;
 
 	void						setNetState(eNetworkState netState);

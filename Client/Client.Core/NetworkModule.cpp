@@ -115,16 +115,6 @@ void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream
 }
 
 
-RakNet::RakPeerInterface*	NetworkModule::getRakPeer()
-{
-	return m_rakPeer;
-}
-
-RakNet::RPC4*	NetworkModule::getRPC()
-{
-	return m_rpc;
-}
-
 bool	NetworkModule::isConnected()	const
 {
 	return m_connected;

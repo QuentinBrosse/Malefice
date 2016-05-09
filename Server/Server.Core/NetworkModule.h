@@ -10,13 +10,10 @@ public:
 	NetworkModule();
 	~NetworkModule();
 
-	bool	init(const std::string& address, short port, const std::string& password);
+	bool	init(const std::string& address, unsigned short port, const std::string& password);
 	void	pulse();
 
 	void	callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast);
-
-	RakNet::RakPeerInterface*	getRakPeer();
-	RakNet::RPC4*				getRPC();
 
 
 private:
