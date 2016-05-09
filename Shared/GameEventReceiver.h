@@ -29,7 +29,8 @@ namespace ecs
 
 		virtual bool	OnEvent(const irr::SEvent& event); //Irrlicht callback norme exception here	
 
-		GameEventType	getEvent();
+		GameEventType				getEvent();
+		std::queue<GameEventType>	getEvents()	const;
 
 	private:
 		std::queue<GameEventType>	m_events;

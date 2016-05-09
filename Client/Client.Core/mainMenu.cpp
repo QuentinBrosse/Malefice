@@ -1,5 +1,6 @@
 #include "MainMenu.h"
 
+
 MainMenu::MainMenu(irr::SKeyMap* keyMap, irr::scene::ISceneManager* sceneManager, irr::IrrlichtDevice* device) : m_systemd(CEGUI::System::getSingleton()), m_keyMap(keyMap), m_sceneManager(sceneManager), m_device(device)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
@@ -20,7 +21,9 @@ void MainMenu::hide()
 
 bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 {
-	std::cout << "Hiding CEGI GUI..." << std::endl;
+	m_connectWindow.display();
+
+	/*std::cout << "Hiding CEGI GUI..." << std::endl;
 	m_systemd.getDefaultGUIContext().setRootWindow(0);
 	std::cout << "Unload current GUI..." << std::endl;
 	std::cout << "Loading camera and keymaping..." << std::endl;
@@ -33,7 +36,7 @@ bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 		-1,                                    // pas de numero d'ID
 		m_keyMap,                                // on change la keymap
 		5);
-	m_device->getCursorControl()->setVisible(false);
+	m_device->getCursorControl()->setVisible(false);*/
 	return (true);
 }
 

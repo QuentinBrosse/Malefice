@@ -23,6 +23,7 @@ namespace ecs
 				else
 					weapon.reload();
 			}
+			//TODO: sens to msg to server
 		}
 	}
 

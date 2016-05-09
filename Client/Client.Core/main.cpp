@@ -1,12 +1,14 @@
-#include <iostream>
+﻿#include <iostream>
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
+#include <chrono>
 #include "MainMenu.h"
 #include "EventReceiver.h"
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
+#include "ConnectWindow.h"
 
 #include "ClientCore.h"
 #include "PlayerFactory.h"
@@ -99,18 +101,57 @@ void debugDisplayMousePos(irr::IrrlichtDevice* device)
 
 void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 {
+	static bool lock;
+
 	CEGUI::System& systemd = CEGUI::System::getSingleton();
 	systemd.getDefaultGUIContext().injectMousePosition(device->getCursorControl()->getPosition().X, device->getCursorControl()->getPosition().Y);
-	systemd.getDefaultGUIContext().injectMouseButtonClick(CEGUI::MouseButton::LeftButton);
 	if (receiver.getMouseState().leftButtonDown == true)
 		systemd.getDefaultGUIContext().injectMouseButtonDown(CEGUI::MouseButton::LeftButton);
 	if (receiver.getMouseState().leftButtonDown == false)
 		systemd.getDefaultGUIContext().injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
+
+	EventReceiver::keyStatesENUM *keyList = receiver.getKeyStateList();
+
+	for (unsigned char i = 0; i < irr::KEY_KEY_CODES_COUNT; i++)
+	{
+		if (lock)
+			break;
+		if (keyList[i] == EventReceiver::keyStatesENUM::DOWN)
+		{
+			systemd.getDefaultGUIContext().injectKeyDown(static_cast<CEGUI::Key::Scan>(EventReceiver::irrlichtKeyToCEGUIKey((static_cast<irr::EKEY_CODE>(i)))));
+			if ((static_cast<char>(i) >= 'a' && static_cast<char>(i) <= 'Z') || (static_cast<char>(i) >= 'A' && static_cast<char>(i) <= 'Z') || (static_cast<char>(i) >= '0' && static_cast<char>(i) <= '9') || (((keyList[irr::KEY_LSHIFT] == EventReceiver::keyStatesENUM::DOWN || keyList[irr::KEY_RSHIFT] == EventReceiver::keyStatesENUM::DOWN) && keyList[i] == EventReceiver::keyStatesENUM::DOWN && i == irr::KEY_PERIOD)))
+			{
+				if (((keyList[irr::KEY_LSHIFT] == EventReceiver::keyStatesENUM::DOWN || keyList[irr::KEY_RSHIFT] == EventReceiver::keyStatesENUM::DOWN) && keyList[i] == EventReceiver::keyStatesENUM::DOWN && i == irr::KEY_PERIOD))
+				{
+					systemd.getDefaultGUIContext().injectChar('.');
+					continue;
+				}
+				else
+					systemd.getDefaultGUIContext().injectChar(static_cast<char>(i));
+			}
+		}
+		if (keyList[i] == EventReceiver::keyStatesENUM::UP)
+			systemd.getDefaultGUIContext().injectKeyUp(static_cast<CEGUI::Key::Scan>(EventReceiver::irrlichtKeyToCEGUIKey(static_cast<irr::EKEY_CODE>(i))));
+	}
+
+	for (unsigned char i = 0; i < irr::KEY_KEY_CODES_COUNT; i++)
+	{
+		if (keyList[i] == EventReceiver::keyStatesENUM::DOWN && i != irr::KEY_LSHIFT && i != irr::KEY_RSHIFT && i != irr::KEY_BACK)
+		{
+			lock = true;
+			break;
+		}
+		else if (keyList[i] == EventReceiver::keyStatesENUM::DOWN && i == irr::KEY_BACK)
+			Sleep(70);
+		else
+			lock = false;
+	}
+
 }
 
 int main(int argc, char* argv[])
 {
-/*	irr::SKeyMap keyMap[5];
+	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -127,20 +168,16 @@ int main(int argc, char* argv[])
 	MainMenu menu(keyMap, sceneManager, device);
 	menu.display();
 
-	InGameGUI gameGUI;
-	gameGUI.display();
-	gameGUI.setHealthPoint(90);
-	gameGUI.setEnergyPoint(42);
-	gameGUI.timerStart();
-	gameGUI.enablePower(3);
-	gameGUI.setTeam1Score(42);
-	gameGUI.setTeam2Score(0);
+	typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
+	std::chrono::high_resolution_clock::time_point last_time = std::chrono::high_resolution_clock::now();
 	while (device->run())
 	{
 		if (device->isWindowActive()) //draw only if the window is active
 		{
-			gameGUI.refreshTime();
-
+			auto begin = std::chrono::high_resolution_clock::now();
+			float elapsed = fpTime(begin - last_time).count();
+			CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed * 10);
+			last_time = begin;
 			driver->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 			sceneManager->drawAll(); //draw scene
 			CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
@@ -149,7 +186,7 @@ int main(int argc, char* argv[])
 			driver->endScene();
 		}
 	}
-	device->drop();*/
+	device->drop();
 
 	/*ClientCore	core;
 
@@ -172,6 +209,8 @@ int main(int argc, char* argv[])
 	core.dump();
 	getchar();
 	*/
+
+	/*
 	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore::getInstance().run();
 
@@ -195,7 +234,8 @@ int main(int argc, char* argv[])
 	{
 		pair.second.dump();
 	}
-
 	getchar();
+	*/
+
 	return (0);
 }

@@ -153,6 +153,7 @@
     <ClCompile Include="AComponent.cpp" />
     <ClCompile Include="AConfiguration.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
+    <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellsConfiguration.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Team.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponCreator.cpp" />
     <ClCompile Include="WeaponManager.cpp" />
+    <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponsConfiguration.cpp" />
     <ClCompile Include="WeaponSystem.cpp" />
   </ItemGroup>
@@ -182,6 +185,7 @@
     <ClInclude Include="AConfiguration.h" />
     <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="Life.h" />
@@ -201,6 +205,7 @@
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />
     <ClInclude Include="SpellManager.h" />
+    <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellsConfiguration.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Team.h" />
@@ -208,6 +213,7 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponCreator.h" />
     <ClInclude Include="WeaponManager.h" />
+    <ClInclude Include="WeaponManagerSystem.h" />
     <ClInclude Include="WeaponsConfiguration.h" />
     <ClInclude Include="WeaponSystem.h" />
   </ItemGroup>

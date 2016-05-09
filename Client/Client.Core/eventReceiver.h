@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
 
 class EventReceiver : public irr::IEventReceiver
 {
@@ -21,7 +22,8 @@ public:
 	const MouseState& getMouseState(void) const;
 	EventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
 	EventReceiver();
-
+	EventReceiver::keyStatesENUM* getKeyStateList();
+	static unsigned char EventReceiver::irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc);
 private:
 	irr::SEvent::SJoystickEvent m_joystickState;
 	MouseState m_state;

@@ -4,6 +4,7 @@
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
+#include "ConnectWindow.h"
 
 class MainMenu
 {
@@ -22,4 +23,5 @@ private:
 	irr::IrrlichtDevice *m_device;
 	irr::video::IVideoDriver *m_driver;
 	irr::scene::ISceneManager *m_sceneManager;
+	ConnectWindow m_connectWindow;
 };
