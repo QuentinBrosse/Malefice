@@ -67,8 +67,8 @@ void	NetworkModule::pulse()
 				if (ServerCore::getInstance().getPlayerManager()->hasPlayer((ecs::NetworkID)packet->systemAddress.systemIndex))
 				{
 					ServerCore::getInstance().getPlayerManager()->removePlayer((ecs::NetworkID)packet->systemAddress.systemIndex);
+					LOG_INFO(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected";
 				}
-				LOG_INFO(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected";
 				break;
 			}
 			case ID_CONNECTION_LOST:
@@ -76,8 +76,8 @@ void	NetworkModule::pulse()
 				if (ServerCore::getInstance().getPlayerManager()->hasPlayer((ecs::NetworkID)packet->systemAddress.systemIndex))
 				{
 					ServerCore::getInstance().getPlayerManager()->removePlayer((ecs::NetworkID)packet->systemAddress.systemIndex);
+					LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)";
 				}
-				LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)";
 				break;
 			}
 		}
@@ -90,6 +90,8 @@ void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream
 {
 	if (m_rpc != nullptr)
 		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, m_rakPeer->GetSystemAddressFromIndex(playerId), broadcast);
+	else
+		LOG_ERROR(NETWORK) << "RPC null pointer";
 }
 
 
