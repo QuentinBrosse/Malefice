@@ -1,5 +1,6 @@
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
+#include "GraphicUtil.h"
 #include "Logger.h"
 
 ClientCore::ClientCore() :
@@ -37,16 +38,16 @@ bool	ClientCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	if (m_networkModule->connect("127.0.0.1", 2504, ""))
-		LOG_INFO(NETWORK) << "Connected!";
-	else
-		LOG_ERROR(NETWORK) << "Unable to connect!";
+	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), ecs::Position(0, 0, 0, 0, 0, 0));
+	if (m_graphicModule != nullptr)
+		m_graphicModule->initGraphics();
 }
 
 void	ClientCore::pulse()
 {
 	if (m_networkModule != nullptr && m_networkModule->isConnected())
 		m_networkModule->pulse();
+	//Todo : add rendering main loop
 }
 
 bool	ClientCore::isActive()	const
@@ -57,6 +58,11 @@ bool	ClientCore::isActive()	const
 NetworkModule	*ClientCore::getNetworkModule()	const
 {
 	return m_networkModule;
+}
+
+GraphicUtil		*ClientCore::getGraphicModule() const
+{
+	return m_graphicModule;
 }
 
 
