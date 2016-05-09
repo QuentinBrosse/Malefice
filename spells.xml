@@ -1,0 +1,32 @@
+<spells>
+	<spell id = "1">
+		<name>Blind</name>
+		<type>BLIND</type>
+		<cooldown>5</cooldown>
+	</spell>
+	<spell id = "2">
+		<name>Paranoia</name>
+		<type>PARANOIA</type>
+		<cooldown>5</cooldown>
+	</spell>
+	<spell id = "3">
+		<name>Confusion</name>
+		<type>CONFUSION</type>
+		<cooldown>5</cooldown>
+	</spell>
+	<spell id = "4">
+		<name>Deaf</name>
+		<type>DEAF</type>
+		<cooldown>5</cooldown>
+	</spell>
+	<spell id = "5">
+		<name>Parkinson</name>
+		<type>PARKINSON</type>
+		<cooldown>5</cooldown>
+	</spell>
+	<spell id = "6">
+		<name>Slow</name>
+		<type>SLOW</type>
+		<cooldown>5</cooldown>
+	</spell>	
+</spells>

@@ -1,0 +1,83 @@
+<weapons>
+	<weapon id="1">
+		<name>AWP</name>
+		<type>SNIPER_RIFLE</type>
+		<maxAmmunition>10</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>150</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+	<weapon id="2">
+		<name>R8</name>
+		<type>REVOLVER</type>
+		<maxAmmunition>8</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>100</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+		<weapon id="3">
+		<name>RailGun</name>
+		<type>RAIL_GUN</type>
+		<maxAmmunition>10</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>200</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+	<weapon id="4">
+		<name>MachineGun</name>
+		<type>MACHINE_GUN</type>
+		<maxAmmunition>5</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>150</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+	<weapon id="5">
+		<name>DoubleGun</name>
+		<type>DOUBLE_GUN</type>
+		<maxAmmunition>10</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>100</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+	<weapon id="6">
+		<name>MachineGun</name>
+		<type>MACHINE_GUN</type>
+		<maxAmmunition>5</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>150</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>FALSE</handToHand>
+	</weapon>
+	<weapon id="7">
+		<name>Saber</name>
+		<type>SABER</type>
+		<maxAmmunition>0</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>50</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>TRUE</handToHand>
+	</weapon>
+	<weapon id="8">
+		<name>ChainSaw</name>
+		<type>CHAIN_SAW</type>
+		<maxAmmunition>0</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>100</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>TRUE</handToHand>
+	</weapon>
+	<weapon id="9">
+		<name>Knife</name>
+		<type>KNIFE</type>
+		<maxAmmunition>0</maxAmmunition>
+		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
+		<damage>35</damage>
+		<damageExplosive>0</damageExplosive>
+		<handToHand>TRUE</handToHand>
+	</weapon>
+</weapons>

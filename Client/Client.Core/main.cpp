@@ -22,6 +22,9 @@
 #include "Logger.h"
 #include "main.h"
 
+#include "WeaponsConfiguration.h"
+#include "SpellsConfiguration.h"
+
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
@@ -108,7 +111,7 @@ void ceguiEventInjector(EventReceiver& receiver, irr::IrrlichtDevice* device)
 
 int main(int argc, char* argv[])
 {
-	irr::SKeyMap keyMap[5];
+/*	irr::SKeyMap keyMap[5];
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::scene::ISceneManager* sceneManager;
@@ -147,7 +150,7 @@ int main(int argc, char* argv[])
 			driver->endScene();
 		}
 	}
-	device->drop();
+	device->drop();*/
 
 	/*ClientCore	core;
 
@@ -170,7 +173,33 @@ int main(int argc, char* argv[])
 	core.dump();
 	getchar();
 	*/
-	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
-	ClientCore::getInstance().run();
+/*	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
+	ClientCore::getInstance().run();*/
+
+	// TEST Weapons and Spells configuration
+
+	WeaponsConfiguration	weaponsConfig;
+	SpellsConfiguration		spellsConfig;
+	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;
+	std::map<ecs::Spell::SpellType, ecs::Spell>	spells;
+
+
+	weaponsConfig.loadFromFile(WeaponsConfiguration::WEAPONS_FILENAME);
+	spellsConfig.loadFromFile(SpellsConfiguration::SPELLS_FILENAME);
+
+	spells = spellsConfig.getSpells();
+	weapons = weaponsConfig.getWeapons();
+
+	for (auto pair : spells)
+	{
+		pair.second.dump();
+	}
+
+	for (auto pair : weapons)
+	{
+		pair.second.dump();
+	}
+
+	getchar();
 	return (0);
 }

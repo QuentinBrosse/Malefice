@@ -48,6 +48,6 @@ namespace ecs
 
 	void Spell::dump() const
 	{
-		std::cout << "[" << NAME << ": " << m_spellType << "]" << std::endl;
+		std::cout << "[" << NAME << ": " << m_spellType << "/" << COOLDOWN << "]" << std::endl;
 	}
 }
