@@ -5,11 +5,12 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
 #include "ConnectWindow.h"
+#include "NetworkModule.h"
 
 class MainMenu
 {
 public:
-	MainMenu(irr::SKeyMap *keyMap, irr::scene::ISceneManager *sceneManager, irr::IrrlichtDevice *device);
+	MainMenu(NetworkModule& networkModule);
 	~MainMenu() = default;
 	void display();
 	void hide();
@@ -23,5 +24,6 @@ private:
 	irr::IrrlichtDevice *m_device;
 	irr::video::IVideoDriver *m_driver;
 	irr::scene::ISceneManager *m_sceneManager;
+	NetworkModule& m_networkModule;
 	ConnectWindow m_connectWindow;
 };

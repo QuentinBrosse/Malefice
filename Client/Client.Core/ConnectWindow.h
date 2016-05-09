@@ -5,6 +5,7 @@
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
+#include "NetworkModule.h"
 
 class ConnectWindow
 {
@@ -16,8 +17,9 @@ private:
 	CEGUI::FrameWindow* m_frameWindows;
 	std::string m_ipStr;
 	std::string m_portStr;
+	NetworkModule& m_networkModule;
 public:
-	ConnectWindow();
+	ConnectWindow(NetworkModule& networkModule);
 	~ConnectWindow() = default;
 	void display();
 	void hide();

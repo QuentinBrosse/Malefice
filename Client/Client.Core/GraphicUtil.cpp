@@ -4,7 +4,7 @@
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include <Windows.h>
 
-GraphicUtil::GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr::core::dimension2d<irr::u32>& windowSize, const ecs::Position& startPosition)
+GraphicUtil::GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr::core::dimension2d<irr::u32>& windowSize, const ecs::Position& startPosition, NetworkModule& networkModule) : m_networkModule(networkModule)
 {
 	m_device = irr::createDevice(driverType, windowSize, 16, false);
 	if (!m_device)
@@ -84,7 +84,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
 	
-	m_menu = new MainMenu(m_keyMap, m_sceneManager, m_device);
+	m_menu = new MainMenu(m_networkModule);
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
