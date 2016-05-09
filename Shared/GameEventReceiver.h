@@ -14,8 +14,8 @@ namespace ecs
 		enum GameEventType
 		{
 			NOTHING,
-			LEFT_CLICK_ATTACK,
-			RIGHT_CLICK_ATTACK,
+			LEFT_ATTACK,
+			RIGHT_ATTACK,
 			NEXT_WEAPON,
 			PREC_WEAPON,
 			NEXT_SPELL,

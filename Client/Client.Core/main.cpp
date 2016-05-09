@@ -7,7 +7,6 @@
 #include "LoadingWindows.h"
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
-#include <json.hpp>
 
 #include "ClientCore.h"
 #include "PlayerFactory.h"
