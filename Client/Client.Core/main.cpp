@@ -28,6 +28,8 @@
 #define WIN_SIZE_X 1280
 #define WIN_SIZE_Y 720
 
+#define _CLIENT // Required for shared libraries
+
 void initIrrlicht(irr::IrrlichtDevice*& device, irr::video::IVideoDriver*& driver, irr::scene::ISceneManager*& sceneManager, EventReceiver* receiver, irr::SKeyMap* keyMap)
 {
 	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(WIN_SIZE_X, WIN_SIZE_Y),	32, false, false, false, receiver);
@@ -176,7 +178,6 @@ int main(int argc, char* argv[])
 	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	ClientCore::getInstance().run();
 
-	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
 	WeaponsConfiguration	weaponsConfig;
 	SpellsConfiguration		spellsConfig;
 	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;

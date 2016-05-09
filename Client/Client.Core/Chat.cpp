@@ -15,5 +15,5 @@ void	Chat::sendNetworkMessage(ecs::NetworkID playerId, const std::string& messag
 	bits.Write(input);
 	bits.WriteCompressed(playerId);
 
-	ClientCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT_RECEIVE, &bits, HIGH_PRIORITY, RELIABLE, false);
+	ClientCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &bits, HIGH_PRIORITY, RELIABLE, false);
 }

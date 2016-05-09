@@ -8,6 +8,7 @@
 #include "Singleton.h"
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
+#include "PlayerManager.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -18,6 +19,7 @@ public:
 
 
 	NetworkModule*	getNetworkModule()	const;
+	PlayerManager*	getPlayerManager()	const;
 
 
 protected:
@@ -40,6 +42,7 @@ private:
 
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule*			m_networkModule;
+	PlayerManager*			m_playerManager;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;

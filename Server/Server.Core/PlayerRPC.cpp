@@ -7,6 +7,10 @@
 
 #include "Logger.h"
 
+#include "PlayerFactory.h"
+#include "Entity.h"
+#include "PlayerManager.h"
+
 bool	PlayerRPC::m_isRegistered = false;
 
 /*
@@ -27,20 +31,12 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 
 	LOG_INFO(NETWORK) << "Received player name " << name.C_String() << " Serial(" << serial.C_String() << ")";
 
-	//Todo : Add to player's pool and send information to other clients
+	ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
+	ServerCore::getInstance().getPlayerManager()->addPlayer(player);
 
 	bits.WriteCompressed(playerId);
 	
 	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE, packet->guid.systemIndex, false);
-}
-
-/*
-** A la déconnexion normale d'un player (pas de crash)
-** Retire le joueur du pool du serveur et envoie l'info aux autres clients
-*/
-static void	playerDisconnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
-{
-
 }
 
 /*
@@ -58,7 +54,6 @@ void	PlayerRPC::registerRPC(RakNet::RPC4* rpc)
 	if (m_isRegistered)
 		return;
 	rpc->RegisterFunction(RPC_CONNECT, &playerConnect);
-	rpc->RegisterFunction(RPC_DISCONNECT, &playerDisconnect);
 	rpc->RegisterFunction(RPC_SYNC, &playerSync);
 	m_isRegistered = true;
 }
