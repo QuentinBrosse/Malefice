@@ -38,6 +38,7 @@ bool	ServerCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
+	m_playerManager = new PlayerManager();
 	m_isActive = true;
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
@@ -134,4 +135,9 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 NetworkModule	*ServerCore::getNetworkModule()	const
 {
 	return m_networkModule;
+}
+
+PlayerManager	*ServerCore::getPlayerManager() const
+{
+	return m_playerManager;
 }
