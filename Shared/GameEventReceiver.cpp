@@ -66,4 +66,9 @@ namespace ecs
 		return (event);
 	}
 
+	std::queue<GameEventReceiver::GameEventType> GameEventReceiver::getEvents() const
+	{
+		return m_events;
+	}
+
 };
