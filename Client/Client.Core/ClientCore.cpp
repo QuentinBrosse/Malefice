@@ -3,6 +3,12 @@
 #include "GraphicUtil.h"
 #include "Logger.h"
 
+#include <iostream>
+#include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
+#include <chrono>
+
 ClientCore::ClientCore() :
 	m_networkModule(nullptr), m_isActive(true)
 {
@@ -23,10 +29,13 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	while (this->isActive())
+	m_graphicModule->setGuiCamera();
+	m_graphicModule->getMainMenu()->display();
+	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
 		this->pulse();
 	}
+	m_graphicModule->getDevice()->drop();
 	LOG_INFO(GENERAL) << "Client stopped.";
 }
 
@@ -39,16 +48,28 @@ bool	ClientCore::init()
 		return false;
 	}
 	m_networkModule->connect("127.0.0.1", 2504, "");
-	/*m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), ecs::Position(0, 0, 0, 0, 0, 0));
+	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), ecs::Position(0, 0, 0, 0, 0, 0));
 	if (m_graphicModule != nullptr)
-		m_graphicModule->initGraphics();*/
+		m_graphicModule->initGraphics();
 }
 
 void	ClientCore::pulse()
 {
 	if (m_networkModule != nullptr && m_networkModule->isConnected())
 		m_networkModule->pulse();
-	//Todo : add rendering main loop
+
+	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
+	{
+		auto begin = std::chrono::high_resolution_clock::now();
+		float elapsed = fpTime(begin - m_lastTime).count();
+		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
+		m_lastTime = begin;
+		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
+		m_graphicModule->getSceneManager()->drawAll(); //draw scene
+		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
+		m_graphicModule->CEGUIEventInjector();
+		m_graphicModule->getDriver()->endScene();
+	}
 }
 
 bool	ClientCore::isActive()	const
