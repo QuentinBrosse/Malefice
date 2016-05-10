@@ -17,9 +17,8 @@ private:
 	CEGUI::FrameWindow* m_frameWindows;
 	std::string m_ipStr;
 	std::string m_portStr;
-	NetworkModule& m_networkModule;
 public:
-	ConnectWindow(NetworkModule& networkModule);
+	ConnectWindow();
 	~ConnectWindow() = default;
 	void display();
 	void hide();

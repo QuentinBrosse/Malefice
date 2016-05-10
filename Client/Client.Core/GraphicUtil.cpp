@@ -84,7 +84,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
 	
-	m_menu = new MainMenu(m_networkModule);
+	m_menu = new MainMenu();
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()

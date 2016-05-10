@@ -10,7 +10,7 @@
 class MainMenu
 {
 public:
-	MainMenu(NetworkModule& networkModule);
+	MainMenu();
 	~MainMenu() = default;
 	void display();
 	void hide();
@@ -24,6 +24,5 @@ private:
 	irr::IrrlichtDevice *m_device;
 	irr::video::IVideoDriver *m_driver;
 	irr::scene::ISceneManager *m_sceneManager;
-	NetworkModule& m_networkModule;
 	ConnectWindow m_connectWindow;
 };

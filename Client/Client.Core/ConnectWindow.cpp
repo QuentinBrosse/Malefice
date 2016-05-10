@@ -2,7 +2,7 @@
 
 #include "ClientCore.h"
 
-ConnectWindow::ConnectWindow(NetworkModule& networkModule) : m_networkModule(networkModule)
+ConnectWindow::ConnectWindow()
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try

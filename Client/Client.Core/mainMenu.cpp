@@ -1,7 +1,8 @@
 #include "MainMenu.h"
 
+#include "ClientCore.h"
 
-MainMenu::MainMenu(NetworkModule& networkModule) : m_systemd(CEGUI::System::getSingleton()), m_networkModule(networkModule), m_connectWindow(m_networkModule)
+MainMenu::MainMenu() : m_systemd(CEGUI::System::getSingleton()), m_connectWindow()
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
 	m_windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onQuitButtonClicked, this));
@@ -31,7 +32,6 @@ bool MainMenu::onOptionButtonClicked(const CEGUI::EventArgs& e)
 
 bool MainMenu::onQuitButtonClicked(const CEGUI::EventArgs& e)
 {
-	std::cout << "Exiting..." << std::endl;
-	exit(EXIT_SUCCESS);
+	ClientCore::getInstance().setIsActive(false);
 	return (false);
 }
