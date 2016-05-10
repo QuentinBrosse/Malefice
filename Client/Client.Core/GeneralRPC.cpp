@@ -19,7 +19,7 @@ void GeneralRPC::registerRPC(RakNet::RPC4* rpc)
 {
 	if (m_isRegistered)
 		return;
-	rpc->RegisterFunction(RPC_CHAT, &playerChat);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &playerChat);
 	m_isRegistered = true;
 }
 
@@ -27,6 +27,6 @@ void GeneralRPC::unregisterRPC(RakNet::RPC4* rpc)
 {
 	if (!m_isRegistered)
 		return;
-	rpc->UnregisterFunction(RPC_CHAT);
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
 	m_isRegistered = false;
 }

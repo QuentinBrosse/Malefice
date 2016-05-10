@@ -103,7 +103,7 @@ void	NetworkModule::connectionAccepted(RakNet::Packet* packet)
 	m_netState = NETSTATE_CONNECTED;
 	bits.Write(username);
 	bits.Write(serial);
-	this->callRPC(RPC_CONNECT, &bits, HIGH_PRIORITY, RELIABLE_ORDERED, packet->systemAddress);
+	this->callRPC(NetworkRPC::PLAYER_CONNECT, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, packet->systemAddress);
 	LOG_DEBUG(NETWORK) << "Server accepted connection, sending username: \"" << username << "\", serial: \"" << serial << "\"";
 }
 

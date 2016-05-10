@@ -70,6 +70,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{4dcd1891-ae1c-4e9b-bc09-cd61e70b12e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{c9e7b7e7-c0da-422c-b8ae-dad4a449410f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProjectGlobals.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="StringUtility.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkRPC.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

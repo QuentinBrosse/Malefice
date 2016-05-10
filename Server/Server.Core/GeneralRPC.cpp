@@ -21,14 +21,14 @@ static void	playerChat(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	RakNet::BitStream toSend;
 	toSend.WriteCompressed(playerId);
 	toSend.Write(input);
-	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_PLAYER_INDEX, true);
+	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_PLAYER_INDEX, true);
 }
 
 void	GeneralRPC::registerRPC(RakNet::RPC4* rpc)
 {
 	if (m_isRegistered)
 		return;
-	rpc->RegisterFunction(RPC_CHAT, &playerChat);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &playerChat);
 	m_isRegistered = true;
 }
 
@@ -36,6 +36,6 @@ void	GeneralRPC::unregisterRPC(RakNet::RPC4* rpc)
 {
 	if (!m_isRegistered)
 		return;
-	rpc->UnregisterFunction(RPC_CHAT);
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
 	m_isRegistered = false;
 }

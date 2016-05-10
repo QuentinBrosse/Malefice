@@ -1,13 +1,23 @@
 #pragma once
 
-// Relatif à un joueur local
-#define RPC_CONNECT			"RPC_PlayerConnect"
-#define RPC_DISCONNECT		"RPC_PlayerDisconnect"
-#define RPC_SYNC			"RPC_PlayerSync"
+#include <string>
+#include "Export.h"
 
-// Relatif aux autres joueurs
-#define RPC_NEWPLAYER		"RPC_PlayerNew"
-#define RPC_REMOVEPLAYER	"RPC_PlayerRemove"
+class MALEFICE_DLL_EXPORT NetworkRPC
+{
+public:
+	NetworkRPC()	= delete;
+	~NetworkRPC()	= delete;
 
-// Général
-#define RPC_CHAT	"RPC_PlayerChat"
+	// Local player
+	static const std::string	PLAYER_CONNECT;
+	static const std::string	PLAYER_DISCONNECT;
+	static const std::string	PLAYER_SYNC;
+
+	// Remote players
+	static const std::string	PLAYER_ADD;
+	static const std::string	PLAYER_REMOVE;
+	
+	// General
+	static const std::string	PLAYER_CHAT;
+};
