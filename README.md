@@ -48,3 +48,4 @@ Les projets sont générés dans Binaries/Debug/ et dans Binaries/Release/.
 ***Attention :***
 * **Il ne doit pas y avoir d'espace dans les chemins !** Les espaces font échouer la génération de certaines parties du projet (*cegui-dependencies* entre autres).
 * **Il faut que `git` et `cmake` soient dans le PATH Windows !** En cas d'erreur de génération, vérifier en ouvrant l'invite de commandes Windows et en tapant `git --version` et `cmake --version`.
+* **Les chemins et versions des bibliothèques Boost, Irrlicht et IrrKlang doivent être** ***exactement*** **ceux ci-dessus.**
