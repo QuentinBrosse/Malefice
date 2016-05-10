@@ -6,6 +6,9 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
 #include "NetworkModule.h"
+#include "waitingRoom.h"
+
+class GraphicUtil;
 
 class ConnectWindow
 {
@@ -17,8 +20,10 @@ private:
 	CEGUI::FrameWindow* m_frameWindows;
 	std::string m_ipStr;
 	std::string m_portStr;
+	GraphicUtil& m_graphicUtils;
+	WaitingRoom m_salon;
 public:
-	ConnectWindow();
+	ConnectWindow(GraphicUtil &gu);
 	~ConnectWindow() = default;
 	void display();
 	void hide();

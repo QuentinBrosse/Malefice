@@ -34,7 +34,7 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 	ecs::Entity* player =  PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
 
 	bits.WriteCompressed(playerId);
-	ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, packet->guid.systemIndex, false);
+	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CONNECT, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, packet->guid.systemIndex, false);
 
 	if (!ServerCore::getInstance().getPlayerManager()->hasPlayer(playerId))
 	{
@@ -59,8 +59,8 @@ void	PlayerRPC::registerRPC(RakNet::RPC4* rpc)
 {
 	if (m_isRegistered)
 		return;
-	rpc->RegisterFunction(RPC_CONNECT, &playerConnect);
-	rpc->RegisterFunction(RPC_SYNC, &playerSync);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &playerConnect);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_SYNC.c_str(), &playerSync);
 	m_isRegistered = true;
 }
 
@@ -68,7 +68,7 @@ void	PlayerRPC::unregisterRPC(RakNet::RPC4* rpc)
 {
 	if (!m_isRegistered)
 		return;
-	rpc->UnregisterFunction(RPC_CONNECT);
-	rpc->UnregisterFunction(RPC_SYNC);
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_SYNC.c_str());
 	m_isRegistered = false;
 }

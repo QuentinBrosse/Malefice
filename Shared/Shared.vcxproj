@@ -160,6 +160,7 @@
     <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="Position.cpp" />

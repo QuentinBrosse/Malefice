@@ -21,7 +21,8 @@ public:
 	void CEGUIEventInjector();
 	MainMenu* getMainMenu();
 	irr::video::IVideoDriver* getDriver();
-	void GraphicUtil::setGuiCamera();
+	void setGuiCamera();
+	void setFPSCamera(float moveSpeed = 0.06f, float rotationSpeed = 100.0f);
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;

@@ -5,7 +5,7 @@
 #include "Export.h"
 #include "NetworkID.h"
 
-class MALEFICE_DLL_EXPORT PlayerManager
+class PlayerManager
 {
 public:
 	PlayerManager();
@@ -24,4 +24,3 @@ private:
 	std::map<ecs::NetworkID, ecs::Entity*>	m_players;
 	ecs::Entity*							m_currentPlayer;
 };
-#pragma once

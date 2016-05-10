@@ -87,7 +87,7 @@ GraphicUtil		*ClientCore::getGraphicModule() const
 	return m_graphicModule;
 }
 
-PlayerManager* ClientCore::getPlayerManager() const
+PlayerManager*	ClientCore::getPlayerManager() const
 {
 	return m_playerManager;
 }

@@ -7,10 +7,12 @@
 #include "ConnectWindow.h"
 #include "NetworkModule.h"
 
+class GraphicUtil;
+
 class MainMenu
 {
 public:
-	MainMenu();
+	MainMenu(GraphicUtil &gu);
 	~MainMenu() = default;
 	void display();
 	void hide();
@@ -24,5 +26,6 @@ private:
 	irr::IrrlichtDevice *m_device;
 	irr::video::IVideoDriver *m_driver;
 	irr::scene::ISceneManager *m_sceneManager;
+	GraphicUtil &m_graphicUtils;
 	ConnectWindow m_connectWindow;
 };
