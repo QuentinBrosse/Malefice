@@ -6,10 +6,12 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
 
+class GraphicUtil;
+
 class WaitingRoom
 {
 public:
-	WaitingRoom();
+	WaitingRoom(GraphicUtil &gu);
 	~WaitingRoom()	= default;
 
 	void display();
@@ -28,4 +30,5 @@ private:
 	CEGUI::Window*				m_timerText;
 	CEGUI::Listbox*				m_rightTeam;
 	CEGUI::Listbox*				m_leftTeam;
+	GraphicUtil&				m_graphicalUtil;
 };
