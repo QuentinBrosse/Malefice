@@ -165,6 +165,18 @@
     <ClCompile Include="StringUtility.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="SceneFactory.cpp">
+      <Filter>Source Files\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMesh.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneAnimatedMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBillboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -277,6 +289,18 @@
     </ClInclude>
     <ClInclude Include="MathUtility.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMesh.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAnimatedMesh.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBillboard.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

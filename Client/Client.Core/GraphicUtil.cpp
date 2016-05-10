@@ -4,9 +4,9 @@
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include <Windows.h>
 
-GraphicUtil::GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr::core::dimension2d<irr::u32>& windowSize, const ecs::Position& startPosition, NetworkModule& networkModule) : m_networkModule(networkModule)
+GraphicUtil::GraphicUtil()
 {
-	m_device = irr::createDevice(driverType, windowSize, 16, false);
+	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), 16, false);
 	if (!m_device)
 	{
 		// TODO: Throw exception
@@ -15,7 +15,7 @@ GraphicUtil::GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr:
 
 	m_driver = m_device->getVideoDriver();
 	m_sceneManager = m_device->getSceneManager();
-	m_camera = new Camera(startPosition, m_sceneManager);
+	m_camera = new Camera(ecs::Position(0, 0, 0, 0, 0, 0), m_sceneManager);
 	m_keyMap = new irr::SKeyMap[5];
 	m_keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
 	m_keyMap[0].KeyCode = irr::KEY_KEY_Z;        // w
@@ -168,7 +168,7 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 
 void GraphicUtil::setGuiCamera()
 {
-	if (m_sceneManager->getActiveCamera())
+		if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
 	m_sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
 	m_device->getCursorControl()->setVisible(true);

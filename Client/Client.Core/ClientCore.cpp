@@ -47,7 +47,7 @@ bool	ClientCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), ecs::Position(0, 0, 0, 0, 0, 0), *m_networkModule);
+	m_graphicModule = Singleton<GraphicUtil*>::getInstance();
 	if (m_graphicModule != nullptr)
 		m_graphicModule->initGraphics();
 	m_playerManager = new PlayerManager();
@@ -85,6 +85,11 @@ NetworkModule	*ClientCore::getNetworkModule()	const
 GraphicUtil		*ClientCore::getGraphicModule() const
 {
 	return m_graphicModule;
+}
+
+PlayerManager* ClientCore::getPlayerManager() const
+{
+	return m_playerManager;
 }
 
 

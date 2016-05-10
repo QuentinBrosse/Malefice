@@ -6,12 +6,13 @@
 #include "MainMenu.h"
 #include "NetworkModule.h"
 
-class GraphicUtil
+class GraphicUtil : public Singleton<GraphicUtil>
 {
-public:
-	GraphicUtil(const irr::video::E_DRIVER_TYPE& driverType, const irr::core::dimension2d<irr::u32>& windowSize, const ecs::Position& startPostion, NetworkModule& networkModule);
+protected:
+	GraphicUtil();
 	~GraphicUtil();
 
+public:
 	void	initGraphics();
 	irr::IrrlichtDevice* getDevice();
 	irr::scene::ISceneManager* getSceneManager();
@@ -22,7 +23,6 @@ public:
 	irr::video::IVideoDriver* getDriver();
 	void GraphicUtil::setGuiCamera();
 private:
-	NetworkModule&				m_networkModule;
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;
 	irr::video::IVideoDriver*	m_driver;

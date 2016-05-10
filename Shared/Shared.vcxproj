@@ -165,6 +165,10 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ProjectGlobals.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneAnimatedMesh.cpp" />
+    <ClCompile Include="SceneBillboard.cpp" />
+    <ClCompile Include="SceneFactory.cpp" />
+    <ClCompile Include="SceneMesh.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
@@ -203,6 +207,10 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectGlobals.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneAnimatedMesh.h" />
+    <ClInclude Include="SceneBillboard.h" />
+    <ClInclude Include="SceneFactory.h" />
+    <ClInclude Include="SceneMesh.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />
