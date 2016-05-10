@@ -4,6 +4,7 @@
 #include "GraphicUtil.h"
 #include "NetworkModule.h"
 #include "EventReceiver.h"
+#include "PlayerManager.h"
 #include <chrono>
 
 typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
@@ -18,6 +19,7 @@ public:
 	bool			isActive()			const;
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;
+	PlayerManager*	getPlayerManager()	const;
 
 	void			setIsActive(bool isActive);
 
@@ -31,6 +33,7 @@ private:
 
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;
+	PlayerManager*	m_playerManager;
 	bool			m_isActive;
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();

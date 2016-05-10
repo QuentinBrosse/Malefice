@@ -50,6 +50,7 @@ bool	ClientCore::init()
 	m_graphicModule = new GraphicUtil(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), ecs::Position(0, 0, 0, 0, 0, 0), *m_networkModule);
 	if (m_graphicModule != nullptr)
 		m_graphicModule->initGraphics();
+	m_playerManager = new PlayerManager();
 }
 
 void	ClientCore::pulse()

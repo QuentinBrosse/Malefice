@@ -47,7 +47,7 @@ void PlayerManager::removePlayer(ecs::NetworkID netID)
 			continue;
 
 		bits.Write(netID);
-		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_REMOVEPLAYER, &bits, HIGH_PRIORITY, RELIABLE, it->first, false);
+		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_REMOVEPLAYER, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
 }
 

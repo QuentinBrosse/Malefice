@@ -4,6 +4,9 @@
 #include "ClientCore.h"
 #include "Logger.h"
 
+#include "Entity.h"
+#include "PlayerFactory.h"
+
 bool	PlayerRPC::m_isRegistered = false;
 
 /*
@@ -30,6 +33,12 @@ static void newPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "A new player joined server, his id is : " << playerId;
+
+	if (!ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	{
+		ecs::Entity* player = PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
+		ClientCore::getInstance().getPlayerManager()->addPlayer(player);
+	}
 }
 
 /*
@@ -41,6 +50,11 @@ static void removePlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "Player " << playerId << " disconnected..";
+
+	if (ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	{
+		ClientCore::getInstance().getPlayerManager()->removePlayer(playerId);
+	}
 }
 
 void PlayerRPC::registerRPC(RakNet::RPC4* rpc)
