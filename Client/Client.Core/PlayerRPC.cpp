@@ -35,7 +35,7 @@ static void addPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 
 	if (!ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
 	{
-		ecs::Entity* player = PlayerFactory::createPlayer(0, 0, 0, 0, 0, 0, playerId, 0, 100);
+		ecs::Entity* player = PlayerFactory::createPlayer(irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), playerId, 0, 100);
 		ClientCore::getInstance().getPlayerManager()->addPlayer(player);
 	}
 }

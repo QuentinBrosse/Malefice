@@ -17,6 +17,8 @@ namespace ecs
 		int						getPickableFlags()	const;
 		irr::video::SMaterial*	getMaterial()		const;
 
+		void					dump()				const;
+
 		void					setNameTexture(const std::string& newNameTexture);
 		void					setNameMesh(const std::string& newNameMesh);
 		void					setPickableFlags(int newPickableFlags);
@@ -29,9 +31,9 @@ namespace ecs
 		std::string					m_nameTexture;
 		std::string					m_nameMesh;
 		int							m_pickableFlags;
+		irr::IrrlichtDevice*		m_device;
 		irr::video::SMaterial*		m_material;
 		irr::scene::ISceneManager*	m_smgr;
 		irr::video::IVideoDriver*	m_driver;
-		irr::IrrlichtDevice*		m_device;
 	};
 }

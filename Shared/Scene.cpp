@@ -5,7 +5,7 @@
 namespace ecs
 {
 	Scene::Scene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags) : AComponent("Scene", SCENE),
-		MEDIA_PATH("../Client/Client.Core/media/"), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
+		MEDIA_PATH("media/"), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
 	{
 	
 	}
@@ -47,6 +47,11 @@ namespace ecs
 	irr::video::SMaterial* Scene::getMaterial() const
 	{
 		return m_material;
+	}
+
+	void Scene::dump() const
+	{
+		std::cout << "[" << NAME << "/" << m_nameMesh << "/" << m_nameTexture << "]" << std::endl;
 	}
 
 

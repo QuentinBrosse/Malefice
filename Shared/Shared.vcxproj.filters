@@ -70,9 +70,6 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{4dcd1891-ae1c-4e9b-bc09-cd61e70b12e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Network">
-      <UniqueIdentifier>{c9e7b7e7-c0da-422c-b8ae-dad4a449410f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProjectGlobals.cpp">
@@ -168,9 +165,6 @@
     <ClCompile Include="StringUtility.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SceneFactory.cpp">
-      <Filter>Source Files\ECS\Factory</Filter>
-    </ClCompile>
     <ClCompile Include="SceneMesh.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
@@ -181,7 +175,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NetworkRPC.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFactory.cpp">
+      <Filter>Source Files\ECS\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,9 +293,6 @@
     <ClInclude Include="MathUtility.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="SceneFactory.h">
-      <Filter>Header Files\ECS\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="SceneMesh.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
@@ -307,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="SceneBillboard.h">
       <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
 #include "Logger.h"
+#include "NodePickable.h"
 
 #include <iostream>
 #include <irrlicht.h>
@@ -29,8 +30,15 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	m_graphicModule->setGuiCamera();
-	m_graphicModule->getMainMenu()->display();
+	if (!ProjectGlobals::NO_MENU)
+	{
+		m_graphicModule->setGuiCamera();
+		m_graphicModule->getMainMenu()->display();
+	}
+	else
+	{
+		m_graphicModule->setFPSCamera();
+	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
 		this->pulse();
@@ -47,9 +55,10 @@ bool	ClientCore::init()
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	m_graphicModule = Singleton<GraphicUtil*>::getInstance();
+	m_graphicModule = &(Singleton<GraphicUtil>::getInstance());
 	if (m_graphicModule != nullptr)
 		m_graphicModule->initGraphics();
+	m_map = new ecs::SceneMesh(m_graphicModule->getDevice(), "", "20kdm2.bsp", nodePickable::IS_PICKABLE, "map-20kdm2.pk3");
 	m_playerManager = new PlayerManager();
 }
 

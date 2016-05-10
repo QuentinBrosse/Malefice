@@ -1,5 +1,7 @@
 #pragma once
 
+#include <irrlicht.h>
+
 #include "Entity.h"
 #include "Export.h"
 #include "Position.h"
@@ -10,5 +12,5 @@ public:
 	ObjectFactory() = delete;
 	~ObjectFactory() = delete;
 
-	static ecs::Entity *createObject(const float xPosition, const float yPosition, const float zPosition, const float xTarget, const float yTarget, const float zTarget, const ecs::NetworkID);
+	static ecs::Entity *createObject(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const ecs::NetworkID);
 };

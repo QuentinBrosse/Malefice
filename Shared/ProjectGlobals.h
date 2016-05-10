@@ -8,6 +8,7 @@ class MALEFICE_DLL_EXPORT ProjectGlobals
 {
 public:
 	static const std::string	GAME_NAME;
+	static const bool			NO_MENU;
 
 	static const std::size_t	NORMAL_TEAM_SIZE;
 	static const std::size_t	NORMAL_TEAMS_NB;

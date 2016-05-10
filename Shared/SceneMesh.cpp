@@ -11,6 +11,7 @@ namespace ecs
 		if (namePK3 != "")
 		{
 			m_device->getFileSystem()->addFileArchive((MEDIA_PATH + namePK3).c_str());
+			std::cout << (newNameMesh) << std::endl;
 			mesh = m_smgr->getMesh(newNameMesh.c_str());
 		}
 		else
@@ -20,10 +21,12 @@ namespace ecs
 		}
 		if (mesh)
 			m_node = m_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, newPickableFlags);
-		
+		else
+			std::cerr << "Error constructor SceneMesh : mesh NULL !!" << std::endl;
 		if (m_node)
 			m_node->setTriangleSelector(m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128));
-
+		else
+			std::cerr << "Error constructor SceneMesh : m_node NULL !!" << std::endl;
 	}
 
 	SceneMesh::~SceneMesh()

@@ -8,6 +8,7 @@
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
+	friend class Singleton<GraphicUtil>;
 protected:
 	GraphicUtil();
 	~GraphicUtil();

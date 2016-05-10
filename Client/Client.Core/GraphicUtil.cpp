@@ -6,7 +6,7 @@
 
 GraphicUtil::GraphicUtil()
 {
-	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(640, 480), 16, false);
+	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
 	if (!m_device)
 	{
 		// TODO: Throw exception
@@ -168,7 +168,7 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 
 void GraphicUtil::setGuiCamera()
 {
-		if (m_sceneManager->getActiveCamera())
+	if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
 	m_sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
 	m_device->getCursorControl()->setVisible(true);

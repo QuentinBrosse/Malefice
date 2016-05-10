@@ -5,6 +5,8 @@
 #include "NetworkModule.h"
 #include "EventReceiver.h"
 #include "PlayerManager.h"
+#include "SceneMesh.h"
+
 #include <chrono>
 
 typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
@@ -34,7 +36,9 @@ private:
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;
 	PlayerManager*	m_playerManager;
+	ecs::SceneMesh*	m_map;
 	bool			m_isActive;
+	
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();
 };
