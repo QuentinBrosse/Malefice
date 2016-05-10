@@ -41,7 +41,7 @@
             <Property name="ID" value="2" />
             <Property name="Area" value="{{0.350799,0},{0.316852,0},{0.350799,85},{0.316852,32}}" />
             <Property name="Font" value="DejaVuSans-12" />
-            <Property name="Text" value="4222" />
+            <Property name="Text" value="2504" />
         </Window>
     </Window>
 </GUILayout>

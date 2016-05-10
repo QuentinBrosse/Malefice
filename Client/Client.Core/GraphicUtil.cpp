@@ -173,3 +173,17 @@ void GraphicUtil::setGuiCamera()
 	m_sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
 	m_device->getCursorControl()->setVisible(true);
 }
+
+void GraphicUtil::setFPSCamera(float moveSpeed, float rotationSpeed)
+{
+	if (m_sceneManager->getActiveCamera())
+		m_sceneManager->getActiveCamera()->remove();
+	m_device->getCursorControl()->setVisible(false);
+	m_sceneManager->addCameraSceneNodeFPS(
+		-0,      // pas de noeud parent
+		-100.0f, // vitesse de rotation
+		-0.06f,  // vitesse de deplacement
+		-1.0f,
+		m_keyMap,
+		-5);     //Keymap entries number
+}

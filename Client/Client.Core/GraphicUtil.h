@@ -20,7 +20,8 @@ public:
 	void CEGUIEventInjector();
 	MainMenu* getMainMenu();
 	irr::video::IVideoDriver* getDriver();
-	void GraphicUtil::setGuiCamera();
+	void setGuiCamera();
+	void setFPSCamera(float moveSpeed = -1.f, float rotationSpeed = -0.06f);
 private:
 	NetworkModule&				m_networkModule;
 	irr::IrrlichtDevice*		m_device;
