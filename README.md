@@ -1,14 +1,27 @@
 # Malefice
 > Jetez vous dans l’arène et combattez en équipe afin de marquer le plus de point possible ! Simple à première vue, mais c’est sans compter les maléfices qui s’abattront sur vous et qui modifieront tout au long de la partie votre gameplay, ainsi que le fameux Prédateur qui rôdera dans l’arène !
 
-### Installation de l'environnement de développement
+## Installation de l'environnement de développement
 
-Installer :
+Les dépendances suivantes n'offrent pas de versions précompilées :
+* CEGUI
+* RakNet
+* TinyXML2
+Ces dépendances sont donc compilées depuis les sources lors de la génération du projet.
+Pour les autres dépendances, afin de réduire le temps de compilation, il est préférable d'installer les versions précompilées (C.F. ci-dessous).
+
+### Windows
 * [Visual Studio 2015](https://intra-bocal.epitech.eu/index.php?pgid=msdnaa)
-* [Git](https://git-scm.com/download/win)
-* [CMake *version 3.x*](https://cmake.org/download/)
+* [Git](https://git-scm.com/download/win) **À ajouter au PATH Windows !**
+* [CMake *version 3.x*](https://cmake.org/download/) **À ajouter au PATH Windows !**
 * [DirectX SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
+* [Boost 1.60](https://sourceforge.net/projects/boost/files/boost-binaries/1.60.0/boost_1_60_0-msvc-14.0-32.exe/download) **Laisser le répertoire par défaut !** (C:\local\boost_1_60_0)
 
+### Linux
+*À faire*
+
+
+## Cloner et mettre à jour les submodules
 Se rendre à la racine du dépôt avec **Git Bash** et lancer la commande :
 ```
 git submodule update --init --recursive
@@ -26,7 +39,7 @@ Les projets sont déjà configurés pour compiler avec :
 
 Les projets sont générés dans Binaries/Debug/ et dans Binaries/Release/.
 
-### Résolution des problèmes de génération
+## Résolution des problèmes de génération
 
 ***Attention :***
 * **Il ne doit pas y avoir d'espace dans les chemins !** Les espaces font échouer la génération de certaines parties du projet (*cegui-dependencies* entre autres).
