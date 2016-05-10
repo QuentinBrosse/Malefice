@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F57D4D49-6C97-4C4B-BB1E-9039B06FCE91}</ProjectGuid>
+    <ProjectGuid>{B3557979-C6AD-41EB-B4B4-51BA7DB650B1}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -62,18 +62,17 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Debug</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\..\Binaries\Debug\Irrlicht.dll</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Debug</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Binaries\Debug &amp; @%COMSPEC% /C exit 0 &gt;nul</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Binaries\Debug</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; del ..\..\..\..\Binaries\Debug\Irrlicht.dll</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Release</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\..\Binaries\Release\Irrlicht.dll</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Release</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Binaries\Release</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Rebuild /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; copy ..\..\bin\Win32-VisualStudio\Irrlicht.dll ..\..\..\..\Binaries\Release</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>cd ..\..\Dependencies\irrlicht\source\Irrlicht &amp;&amp; (IF NOT EXIST Backup (git checkout release-1.8 &amp;&amp; devenv Irrlicht11.0.sln /upgrade)) &amp; msbuild Irrlicht11.0.sln /t:Clean /p:Configuration=$(Configuration) /p:Platform=$(Platform) /p:PlatformToolset=v140 &amp;&amp; del ..\..\..\..\Binaries\Release\Irrlicht.dll</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
