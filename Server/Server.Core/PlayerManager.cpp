@@ -22,6 +22,9 @@ void PlayerManager::addPlayer(ecs::Entity* newPlayer)
 	{
 		RakNet::BitStream	bits;
 
+		if (it->first == newPlayer->getNetworkID())
+			continue;
+
 		bits.WriteCompressed(newPlayer->getNetworkID());
 		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_CONNECT, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
@@ -40,10 +43,12 @@ void PlayerManager::removePlayer(ecs::NetworkID netID)
 	{
 		RakNet::BitStream bits;
 
+		if (it->first == netID)
+			continue;
+
 		bits.Write(netID);
 		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_DISCONNECT, &bits, HIGH_PRIORITY, RELIABLE, it->first, false);
 	}
-	std::cout << "Removed player with propagation" << std::endl;
 }
 
 void PlayerManager::setCurrentPlayer(ecs::Entity* newCurrentPlayer)
