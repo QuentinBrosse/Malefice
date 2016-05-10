@@ -87,6 +87,11 @@ GraphicUtil		*ClientCore::getGraphicModule() const
 	return m_graphicModule;
 }
 
+PlayerManager*	ClientCore::getPlayerManager() const
+{
+	return m_playerManager;
+}
+
 
 void	ClientCore::setIsActive(bool isActive)
 {
