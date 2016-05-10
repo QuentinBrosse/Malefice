@@ -70,12 +70,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>TIXML_USE_STL;TIXML_USE_TICPP;WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../../Dependencies/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../../Dependencies/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -89,14 +89,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../Dependencies/irrlicht/include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Dependencies/tinyxml2;../../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;ELPP_NO_DEFAULT_LOG_FILE;ELPP_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../../Dependencies/irrlicht/lib/Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../../Dependencies/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../../Dependencies/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
       <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>

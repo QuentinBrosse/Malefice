@@ -13,10 +13,12 @@ Pour les autres dépendances, afin de réduire le temps de compilation, il est p
 
 ### Windows
 * [Visual Studio 2015](https://intra-bocal.epitech.eu/index.php?pgid=msdnaa)
-* [Git](https://git-scm.com/download/win) **À ajouter au PATH Windows !**
-* [CMake *version 3.x*](https://cmake.org/download/) **À ajouter au PATH Windows !**
+* [Git](https://git-scm.com/download/win) **Ajouter au PATH Windows !**
+* [CMake *version 3.x*](https://cmake.org/download/) **Ajouter au PATH Windows !**
 * [DirectX SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
 * [Boost 1.60](https://sourceforge.net/projects/boost/files/boost-binaries/1.60.0/boost_1_60_0-msvc-14.0-32.exe/download) **Laisser le répertoire par défaut !** (C:\local\boost_1_60_0)
+* [Irrlicht 1.8.3](http://downloads.sourceforge.net/irrlicht/irrlicht-1.8.3.zip) **Décompresser et copier dans C:\local\irrlicht-1.8.3**
+* [IrrKlang 1.5.0](http://www.ambiera.at/downloads/irrKlang-32bit-1.5.0.zip) **Décompresser et copier dans C:\local\irrKlang-1.5.0**
 
 ### Linux
 *À faire*

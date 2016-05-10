@@ -1,9 +1,6 @@
 [submodule "Dependencies/RakNet"]
 	path = Dependencies/RakNet
 	url = git@github.com:GuiTeK/RakNet.git
-[submodule "Dependencies/irrlicht"]
-	path = Dependencies/irrlicht
-	url = git@github.com:GuiTeK/irrlicht.git
 [submodule "Dependencies/cegui"]
 	path = Dependencies/cegui
 	url = git@github.com:GuiTeK/cegui.git

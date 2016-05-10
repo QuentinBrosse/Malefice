@@ -90,12 +90,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../Dependencies/irrlicht/lib/Win32-visualstudio;../Dependencies/RakNet/build/Lib/DLL/Debug;../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../Dependencies/tinyxml2/build/Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../Dependencies/RakNet/build/Lib/DLL/Debug;../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../Dependencies/tinyxml2/build/Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -121,14 +121,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;ELPP_AS_DLL;ELPP_EXPORT_SYMBOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../Dependencies/irrlicht/include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../Dependencies/irrlicht/lib/Win32-visualstudio;../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../Dependencies/tinyxml2/build/Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../Dependencies/tinyxml2/build/Release</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
