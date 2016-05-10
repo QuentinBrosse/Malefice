@@ -6,6 +6,7 @@
 Les dépendances suivantes n'offrent pas de versions précompilées :
 * CEGUI
 * RakNet
+* spdlog
 * TinyXML2
 Ces dépendances sont donc compilées depuis les sources lors de la génération du projet.
 Pour les autres dépendances, afin de réduire le temps de compilation, il est préférable d'installer les versions précompilées (C.F. ci-dessous).
@@ -35,7 +36,7 @@ Les projets sont déjà configurés pour compiler avec :
 * **Client.Core** : CEGUI, Irrlicht, RakNet et Shared
 * **Client.Launcher** : /
 * **Server.Core** : Irrlicht, RakNet, TinyXML2 et Shared
-* **Shared** : Irrlicht, RakNet et TinyXML2
+* **Shared** : Irrlicht, RakNet, spdlog et TinyXML2
 
 Les projets sont générés dans Binaries/Debug/ et dans Binaries/Release/.
 
