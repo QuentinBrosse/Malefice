@@ -1,8 +1,7 @@
 #include "ConnectWindow.h"
-
 #include "ClientCore.h"
 
-ConnectWindow::ConnectWindow()
+ConnectWindow::ConnectWindow(GraphicUtil &gu) : m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try
@@ -55,6 +54,9 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0) {
 		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), "");
+		this->hide();
+		m_systemd.getDefaultGUIContext().setRootWindow(0);
+		m_graphicUtils.setFPSCamera();
 		return true;
 	} else {
 		return false;

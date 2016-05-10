@@ -7,6 +7,8 @@
 #include <CEGUI/System.h>
 #include "NetworkModule.h"
 
+class GraphicUtil;
+
 class ConnectWindow
 {
 private:
@@ -17,8 +19,9 @@ private:
 	CEGUI::FrameWindow* m_frameWindows;
 	std::string m_ipStr;
 	std::string m_portStr;
+	GraphicUtil& m_graphicUtils;
 public:
-	ConnectWindow();
+	ConnectWindow(GraphicUtil &gu);
 	~ConnectWindow() = default;
 	void display();
 	void hide();

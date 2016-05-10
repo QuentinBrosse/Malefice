@@ -84,7 +84,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
 	
-	m_menu = new MainMenu();
+	m_menu = new MainMenu(*this);
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
@@ -180,10 +180,10 @@ void GraphicUtil::setFPSCamera(float moveSpeed, float rotationSpeed)
 		m_sceneManager->getActiveCamera()->remove();
 	m_device->getCursorControl()->setVisible(false);
 	m_sceneManager->addCameraSceneNodeFPS(
-		-0,      // pas de noeud parent
-		-100.0f, // vitesse de rotation
-		-0.06f,  // vitesse de deplacement
-		-1.0f,
+		0,      // pas de noeud parent
+		100.0f, // vitesse de rotation
+		0.06f,  // vitesse de deplacement
+		-1,
 		m_keyMap,
-		-5);     //Keymap entries number
+		5);     //Keymap entries number
 }
