@@ -3,7 +3,6 @@
 #include "NetworkID.h"
 #include "ClientCore.h"
 #include "Logger.h"
-
 #include "Entity.h"
 #include "PlayerFactory.h"
 
@@ -21,18 +20,18 @@ static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
 
 	RakNet::BitStream	bs;
 	bs.Write(RakNet::RakString("Hello, World!"));
-	ClientCore::getInstance().getNetworkModule()->callRPC(RPC_CHAT, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, packet->systemAddress);
+	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, packet->systemAddress);
 }
 
 /*
 ** Lors de la connexion d'un nouveau joueur
 */
-static void newPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
+static void addPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 {
 	ecs::NetworkID	playerId;
 
 	bitStream->Read(playerId);
-	LOG_INFO(NETWORK) << "A new player joined server, his id is : " << playerId;
+	LOG_INFO(NETWORK) << "A new player joined server, his id is: " << playerId;
 
 	if (!ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
 	{
@@ -61,9 +60,9 @@ void PlayerRPC::registerRPC(RakNet::RPC4* rpc)
 {
 	if (m_isRegistered)
 		return;
-	rpc->RegisterFunction(RPC_CONNECT, &playerConnect);
-	rpc->RegisterFunction(RPC_NEWPLAYER, &newPlayer);
-	rpc->RegisterFunction(RPC_REMOVEPLAYER, &removePlayer);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &playerConnect);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_ADD.c_str(), &addPlayer);
+	rpc->RegisterFunction(NetworkRPC::PLAYER_REMOVE.c_str(), &removePlayer);
 	m_isRegistered = true;
 }
 
@@ -71,8 +70,8 @@ void PlayerRPC::unregisterRPC(RakNet::RPC4* rpc)
 {
 	if (!m_isRegistered)
 		return;
-	rpc->UnregisterFunction(RPC_CONNECT);
-	rpc->UnregisterFunction(RPC_NEWPLAYER);
-	rpc->UnregisterFunction(RPC_REMOVEPLAYER);
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_ADD.c_str());
+	rpc->UnregisterFunction(NetworkRPC::PLAYER_REMOVE.c_str());
 	m_isRegistered = false;
 }

@@ -26,7 +26,7 @@ void PlayerManager::addPlayer(ecs::Entity* newPlayer)
 			continue;
 
 		bits.WriteCompressed(newPlayer->getNetworkID());
-		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_NEWPLAYER, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
+		ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_ADD, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
 }
 
@@ -47,7 +47,7 @@ void PlayerManager::removePlayer(ecs::NetworkID netID)
 			continue;
 
 		bits.Write(netID);
-		ServerCore::getInstance().getNetworkModule()->callRPC(RPC_REMOVEPLAYER, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
+		ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_REMOVE, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
 }
 
