@@ -181,8 +181,8 @@ void GraphicUtil::setFPSCamera(float moveSpeed, float rotationSpeed)
 	m_device->getCursorControl()->setVisible(false);
 	m_sceneManager->addCameraSceneNodeFPS(
 		0,      // pas de noeud parent
-		100.0f, // vitesse de rotation
-		0.06f,  // vitesse de deplacement
+		rotationSpeed, // vitesse de rotation
+		moveSpeed,  // vitesse de deplacement
 		-1,
 		m_keyMap,
 		5);     //Keymap entries number
