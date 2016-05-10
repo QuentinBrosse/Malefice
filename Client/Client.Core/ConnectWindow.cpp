@@ -1,5 +1,7 @@
 #include "ConnectWindow.h"
 
+#include "ClientCore.h"
+
 ConnectWindow::ConnectWindow(NetworkModule& networkModule) : m_networkModule(networkModule)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
@@ -51,8 +53,12 @@ bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 
 bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_networkModule.connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), "");
-	return (true);
+	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0) {
+		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), "");
+		return true;
+	} else {
+		return false;
+	}
 }
 
 std::string ConnectWindow::getIPEditBox()
