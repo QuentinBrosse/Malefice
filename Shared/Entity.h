@@ -10,6 +10,15 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Entity
 	{
 	public:
+		enum EntityType
+		{
+			NOTHING,
+			PLAYER,
+			SPAWN,
+			ENTITY_COUNT,
+		};
+
+	public:
 		const int	ID;
 
 		Entity(NetworkID netID);

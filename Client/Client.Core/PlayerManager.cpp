@@ -5,7 +5,12 @@
 PlayerManager::PlayerManager(ecs::Entity* currentPlayer)
 {
 	m_currentPlayer = currentPlayer;
-	m_players.insert(std::pair<ecs::NetworkID, ecs::Entity*>(currentPlayer->getNetworkID(), currentPlayer));
+	m_entities.insert(std::pair<ecs::NetworkID, ecs::Entity*>(currentPlayer->getNetworkID(), currentPlayer));
+}
+
+PlayerManager::~PlayerManager()
+{
+
 }
 
 PlayerManager::PlayerManager()
@@ -13,33 +18,17 @@ PlayerManager::PlayerManager()
 	m_currentPlayer = nullptr;
 }
 
-void PlayerManager::addPlayer(ecs::Entity *newPlayer)
-{
-	// A voir si il faut tester avant de l'ajouter
-	m_players[newPlayer->getNetworkID()] = newPlayer;
-}
-
-bool PlayerManager::hasPlayer(ecs::NetworkID netID)
-{
-	return m_players.find(netID) != m_players.end();
-}
-
-void PlayerManager::removePlayer(ecs::NetworkID netID)
-{
-	m_players.erase(netID);
-}
-
 void PlayerManager::setCurrentPlayer(ecs::Entity* newCurrentPlayer)
 {
-	if (m_players[newCurrentPlayer->getNetworkID()] == nullptr)
+	if (m_entities[newCurrentPlayer->getNetworkID()] == nullptr)
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_players.insert(std::pair<ecs::NetworkID, ecs::Entity*>(newCurrentPlayer->getNetworkID(), newCurrentPlayer));
+		m_entities.insert(std::pair<ecs::NetworkID, ecs::Entity*>(newCurrentPlayer->getNetworkID(), newCurrentPlayer));
 	}
 	else
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_players[newCurrentPlayer->getNetworkID()] = newCurrentPlayer;
+		m_entities[newCurrentPlayer->getNetworkID()] = newCurrentPlayer;
 	}
 }
 

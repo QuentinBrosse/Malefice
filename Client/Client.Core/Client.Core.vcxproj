@@ -15,6 +15,7 @@
     <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="ConnectWindow.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="GraphicUtil.h" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
     <ClCompile Include="ConnectWindow.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />

@@ -61,10 +61,10 @@ void	PlayerRPC::addPlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "A new player joined server, his id is: " << playerId;
 
-	if (!ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	if (!ClientCore::getInstance().getPlayerManager()->hasEntity(playerId))
 	{
 		ecs::Entity* player = PlayerFactory::createPlayer(irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), playerId, 0, 100);
-		ClientCore::getInstance().getPlayerManager()->addPlayer(player);
+		ClientCore::getInstance().getPlayerManager()->addEntity(player);
 	}
 }
 
@@ -78,8 +78,8 @@ void	PlayerRPC::removePlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "Player " << playerId << " disconnected..";
 
-	if (ClientCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	if (ClientCore::getInstance().getPlayerManager()->hasEntity(playerId))
 	{
-		ClientCore::getInstance().getPlayerManager()->removePlayer(playerId);
+		ClientCore::getInstance().getPlayerManager()->removeEntity(playerId);
 	}
 }

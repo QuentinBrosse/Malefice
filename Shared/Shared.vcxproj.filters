@@ -129,9 +129,6 @@
     <ClCompile Include="GameEventReceiver.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="EventSystem.cpp">
       <Filter>Source Files\ECS\System</Filter>
     </ClCompile>
@@ -171,12 +168,6 @@
     <ClCompile Include="SceneMesh.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="SceneAnimatedMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneBillboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapFactory.cpp">
       <Filter>Source Files\ECS\Factory</Filter>
     </ClCompile>
@@ -185,6 +176,21 @@
     </ClCompile>
     <ClCompile Include="RakNetUtility.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnerFactory.cpp">
+      <Filter>Source Files\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionSystem.cpp">
+      <Filter>Source Files\ECS\System</Filter>
+    </ClCompile>
+    <ClCompile Include="AScene.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneAnimatedMesh.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBillboard.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +260,6 @@
     <ClInclude Include="GameEventReceiver.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="EventSystem.h">
       <Filter>Header Files\ECS\System</Filter>
     </ClInclude>
@@ -313,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="RakNetUtility.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnerFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionSystem.h">
+      <Filter>Header Files\ECS\System</Filter>
+    </ClInclude>
+    <ClInclude Include="AScene.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

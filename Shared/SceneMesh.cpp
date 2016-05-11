@@ -3,7 +3,7 @@
 namespace ecs
 {
 
-	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const std::string& namePK3): Scene(device, newNameTexture, newNameMesh, newPickableFlags),
+	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const std::string& namePK3): AScene(device, newNameTexture, newNameMesh, newPickableFlags),
 		m_node(nullptr)
 	{
 		irr::scene::IAnimatedMesh*		mesh;
@@ -31,6 +31,12 @@ namespace ecs
 
 	SceneMesh::~SceneMesh()
 	{
+	}
+
+	void SceneMesh::setPosition(const Position& newPosition)
+	{
+		m_node->setPosition(newPosition.getVectorPosition());
+		m_node->setRotation(newPosition.getVectorRotation());
 	}
 
 }

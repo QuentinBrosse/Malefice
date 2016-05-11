@@ -32,13 +32,16 @@ protected:
 private:
 	bool	init();
 	void	pulse();
+	void	createEntities();
 
-	NetworkModule*	m_networkModule;
-	GraphicUtil*	m_graphicModule;
-	PlayerManager*	m_playerManager;
-	ecs::SceneMesh*	m_map;
-	bool			m_isActive;
+	NetworkModule*				m_networkModule;
+	GraphicUtil*				m_graphicModule;
+	PlayerManager*				m_playerManager;
+	bool						m_isActive;
 	
+	ecs::Entity*				m_map;
+	std::vector<ecs::Entity*>	m_entitiesMouvable;
+	ecs::Entity*				m_predator;
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();
 };

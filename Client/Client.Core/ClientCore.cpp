@@ -3,6 +3,8 @@
 #include "GraphicUtil.h"
 #include "Logger.h"
 #include "NodePickable.h"
+#include "mapFactory.h"
+#include "PlayerFactory.h"
 
 #include <iostream>
 #include <irrlicht.h>
@@ -58,8 +60,8 @@ bool	ClientCore::init()
 	m_graphicModule = &(Singleton<GraphicUtil>::getInstance());
 	if (m_graphicModule != nullptr)
 		m_graphicModule->initGraphics();
-	m_map = new ecs::SceneMesh(m_graphicModule->getDevice(), "", "20kdm2.bsp", nodePickable::IS_PICKABLE, "map-20kdm2.pk3");
 	m_playerManager = new PlayerManager();
+	createEntities();
 }
 
 void	ClientCore::pulse()
@@ -73,12 +75,21 @@ void	ClientCore::pulse()
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
+
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 		m_graphicModule->CEGUIEventInjector();
 		m_graphicModule->getDriver()->endScene();
 	}
+}
+
+
+// DEBUG !
+void ClientCore::createEntities()
+{
+	m_map = MapFactory::createMap(m_graphicModule->getDevice(), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(0.0, 0.0, 0.0), 1, "20kdm2.bsp", "map-20kdm2.pk3");
+	m_predator = PlayerFactory::createPredator(irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(0.0, 0.0, 0.0), 1);
 }
 
 bool	ClientCore::isActive()	const
