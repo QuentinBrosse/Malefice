@@ -1,3 +1,5 @@
+// Client Version
+
 #include "WeaponManagerSystem.h"
 #include "WeaponManager.h"
 
@@ -9,7 +11,10 @@ namespace ecs
 		WeaponManager*	weaponManager;
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[WEAPON_MANAGER])) != nullptr)
+		{
 			weaponManager->changeToNextWeapon();
+			// TODO: send msg to server
+		}
 	}
 
 	void WeaponManagerSystem::changeToPrec(Entity& player)
@@ -17,7 +22,10 @@ namespace ecs
 		WeaponManager*	weaponManager;
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[WEAPON_MANAGER])) != nullptr)
+		{
 			weaponManager->changeToPrecWeapon();
+			// TODO: send msg to server
+		}
 	}
 
 }

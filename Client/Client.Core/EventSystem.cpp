@@ -1,3 +1,5 @@
+//Client version
+
 #include "EventSystem.h"
 #include "WeaponSystem.h"
 #include "SpellSystem.h"

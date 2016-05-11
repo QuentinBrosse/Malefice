@@ -1,5 +1,7 @@
 #pragma once
 
+// Server Version
+
 #include "Entity.h"
 #include "WeaponManager.h"
 #include "Life.h"
@@ -7,7 +9,7 @@
 
 namespace ecs
 {
-	class MALEFICE_DLL_EXPORT WeaponSystem
+	class WeaponSystem
 	{
 	public:
 		WeaponSystem() = delete;

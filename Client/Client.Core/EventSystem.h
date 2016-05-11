@@ -1,10 +1,12 @@
 #pragma once
 
+//Client version
+
 #include "Entity.h"
 
 namespace ecs
 {
-	class MALEFICE_DLL_EXPORT EventSystem
+	class EventSystem
 	{
 	public:
 		EventSystem() = delete;

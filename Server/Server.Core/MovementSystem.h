@@ -1,12 +1,14 @@
 #pragma once
 
+// Server Version
+
 #include "Movement.h"
 #include "Entity.h"
 #include "Export.h"
 
 namespace ecs
 {
-	class MALEFICE_DLL_EXPORT MovementSystem
+	class MovementSystem
 	{
 	public:
 		MovementSystem() = delete;

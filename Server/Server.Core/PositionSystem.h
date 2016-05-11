@@ -1,10 +1,12 @@
 #pragma once
 
+// Server Version
+
 #include "Entity.h"
 
 namespace ecs
 {
-	class MALEFICE_DLL_EXPORT PositionSystem
+	class PositionSystem
 	{
 	public:
 		PositionSystem() = delete;

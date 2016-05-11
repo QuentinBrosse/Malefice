@@ -1,11 +1,13 @@
 #pragma once
 
+// Server Version
+
 #include "Entity.h"
 
 namespace ecs
 {
 
-	class MALEFICE_DLL_EXPORT SpellManagerSystem
+	class SpellManagerSystem
 	{
 	public:
 		SpellManagerSystem() = delete;

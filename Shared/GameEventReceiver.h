@@ -7,7 +7,7 @@
 
 namespace ecs
 {
-	class GameEventReceiver : public irr::IEventReceiver, public AComponent
+	class MALEFICE_DLL_EXPORT GameEventReceiver : public irr::IEventReceiver, public AComponent
 	{
 	public:
 

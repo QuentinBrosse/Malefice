@@ -17,15 +17,22 @@
     <ClInclude Include="ConnectWindow.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventReceiver.h" />
+    <ClInclude Include="EventSystem.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerRPC.h" />
+    <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="SpellManagerSystem.h" />
+    <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="WaitingRoom.h" />
+    <ClInclude Include="WeaponManagerSystem.h" />
+    <ClInclude Include="WeaponSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
@@ -33,6 +40,7 @@
     <ClCompile Include="ClientCore.cpp" />
     <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
@@ -40,10 +48,16 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />
+    <ClCompile Include="PositionSystem.cpp" />
+    <ClCompile Include="SpellManagerSystem.cpp" />
+    <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
+    <ClCompile Include="WeaponManagerSystem.cpp" />
+    <ClCompile Include="WeaponSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>

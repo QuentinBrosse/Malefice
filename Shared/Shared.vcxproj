@@ -154,19 +154,16 @@
     <ClCompile Include="AConfiguration.cpp" />
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="Movement.cpp" />
-    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="Position.cpp" />
-    <ClCompile Include="PositionSystem.cpp" />
     <ClCompile Include="ProjectGlobals.cpp" />
     <ClCompile Include="RakNetUtility.cpp" />
     <ClCompile Include="SceneAnimatedMesh.cpp" />
@@ -176,9 +173,7 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
-    <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellsConfiguration.cpp" />
-    <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="StringUtility.cpp" />
     <ClCompile Include="SystemUtility.cpp" />
     <ClCompile Include="Team.cpp" />
@@ -186,9 +181,7 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponCreator.cpp" />
     <ClCompile Include="WeaponManager.cpp" />
-    <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponsConfiguration.cpp" />
-    <ClCompile Include="WeaponSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AComponent.h" />
@@ -196,7 +189,6 @@
     <ClInclude Include="AScene.h" />
     <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="Life.h" />
@@ -204,14 +196,12 @@
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MathUtility.h" />
     <ClInclude Include="Movement.h" />
-    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkID.h" />
     <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="NodePickable.h" />
     <ClInclude Include="ObjectFactory.h" />
     <ClInclude Include="PlayerFactory.h" />
     <ClInclude Include="Position.h" />
-    <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="ProjectGlobals.h" />
     <ClInclude Include="RakNetUtility.h" />
     <ClInclude Include="SceneAnimatedMesh.h" />
@@ -222,9 +212,7 @@
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />
     <ClInclude Include="SpellManager.h" />
-    <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellsConfiguration.h" />
-    <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="StringUtility.h" />
     <ClInclude Include="SystemUtility.h" />
     <ClInclude Include="Team.h" />
@@ -232,9 +220,7 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponCreator.h" />
     <ClInclude Include="WeaponManager.h" />
-    <ClInclude Include="WeaponManagerSystem.h" />
     <ClInclude Include="WeaponsConfiguration.h" />
-    <ClInclude Include="WeaponSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

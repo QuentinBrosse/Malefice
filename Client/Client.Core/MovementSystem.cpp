@@ -1,3 +1,5 @@
+// Client Version
+
 #include "MovementSystem.h"
 
 namespace ecs
@@ -9,7 +11,10 @@ namespace ecs
 		Position*	position;
 
 		if ((movement = dynamic_cast<Movement*>(entity[MOVEMENT])) != nullptr && (position = dynamic_cast<Position*>(entity[POSITION])) != nullptr)
+		{
 			movement->move(*position);
+			//TODO: send msg to server
+		}
 	}
 
 }

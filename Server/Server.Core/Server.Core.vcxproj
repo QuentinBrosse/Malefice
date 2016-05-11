@@ -11,21 +11,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EventSystem.h" />
+    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="ServerCoreConfiguration.h" />
+    <ClInclude Include="SpellManagerSystem.h" />
+    <ClInclude Include="SpellSystem.h" />
+    <ClInclude Include="WeaponManagerSystem.h" />
+    <ClInclude Include="WeaponSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventSystem.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="PositionSystem.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerRPC.cpp" />
+    <ClCompile Include="SpellManagerSystem.cpp" />
+    <ClCompile Include="SpellSystem.cpp" />
+    <ClCompile Include="WeaponManagerSystem.cpp" />
+    <ClCompile Include="WeaponSystem.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{01A9BF38-EB29-42DB-A221-B9003A6AAD7F}</ProjectGuid>

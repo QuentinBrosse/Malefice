@@ -1,3 +1,5 @@
+// Server Version
+
 #include "SpellSystem.h"
 
 namespace ecs
@@ -10,7 +12,7 @@ namespace ecs
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
 		{
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
-			//TODO: Send msg to server
+			//TODO: Ray Tracing, etc...
 		}
 	}
 }
