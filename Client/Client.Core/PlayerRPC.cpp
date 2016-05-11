@@ -5,30 +5,58 @@
 #include "Logger.h"
 #include "Entity.h"
 #include "PlayerFactory.h"
+#include "SystemUtility.h"
 
-bool	PlayerRPC::m_isRegistered = false;
+PlayerRPC::PlayerRPC()
+{
+	this->SetNetworkIDManager(ClientCore::getInstance().getNetworkModule()->getNetworkIDManager());
+	this->SetNetworkID(NetworkRPC::PLAYER_RPC_ID);
+	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &PlayerRPC::playerConnect);
+	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_ADD.c_str(), &PlayerRPC::addPlayer);
+	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_REMOVE.c_str(), &PlayerRPC::removePlayer);
+}
+
+PlayerRPC::~PlayerRPC()
+{
+	ClientCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
+	ClientCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_ADD.c_str());
+	ClientCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_REMOVE.c_str());
+}
+
+void	PlayerRPC::connectionAccepted()
+{
+	RakNet::BitStream	bits;
+	RakNet::RakString	username = "MALEFICE_PLAYER";
+	RakNet::RakString	serial = utility::SystemUtility::getSerialHash().c_str();
+
+	bits.Write(username);
+	bits.Write(serial);
+	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CONNECT, this, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED);
+	LOG_DEBUG(NETWORK) << "Server accepted connection, sending username: \"" << username << "\", serial: \"" << serial << "\"";
+}
 
 /*
 ** Appelé par le serveur en retour de la demande de connexion
 */
-static void	playerConnect(RakNet::BitStream* bitStream, RakNet::Packet* packet)
+void	PlayerRPC::playerConnect(RakNet::BitStream* bitStream, RakNet::RPC3* remote)
 {
-	ecs::NetworkID playerId;
+	int	playerId;
 
 	bitStream->ReadCompressed(playerId);
 	LOG_INFO(NETWORK) << "Player ID (assigned by server): " << playerId;
 
 	RakNet::BitStream	bs;
+	bs.WriteCompressed(playerId);
 	bs.Write(RakNet::RakString("Hello, World!"));
-	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, packet->systemAddress);
+	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, this, &bs, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED);
 }
 
 /*
 ** Lors de la connexion d'un nouveau joueur
 */
-static void addPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
+void	PlayerRPC::addPlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 {
-	ecs::NetworkID	playerId;
+	int	playerId;
 
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "A new player joined server, his id is: " << playerId;
@@ -43,7 +71,7 @@ static void addPlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 /*
 ** Lors de la déconnexion d'un joueur
 */
-static void removePlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
+void	PlayerRPC::removePlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 {
 	ecs::NetworkID	playerId;
 
@@ -54,24 +82,4 @@ static void removePlayer(RakNet::BitStream *bitStream, RakNet::Packet* packet)
 	{
 		ClientCore::getInstance().getPlayerManager()->removePlayer(playerId);
 	}
-}
-
-void PlayerRPC::registerRPC(RakNet::RPC4* rpc)
-{
-	if (m_isRegistered)
-		return;
-	rpc->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &playerConnect);
-	rpc->RegisterFunction(NetworkRPC::PLAYER_ADD.c_str(), &addPlayer);
-	rpc->RegisterFunction(NetworkRPC::PLAYER_REMOVE.c_str(), &removePlayer);
-	m_isRegistered = true;
-}
-
-void PlayerRPC::unregisterRPC(RakNet::RPC4* rpc)
-{
-	if (!m_isRegistered)
-		return;
-	rpc->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
-	rpc->UnregisterFunction(NetworkRPC::PLAYER_ADD.c_str());
-	rpc->UnregisterFunction(NetworkRPC::PLAYER_REMOVE.c_str());
-	m_isRegistered = false;
 }

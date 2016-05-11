@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SHARED_EXPORTS;MALEFICE_SHARED_DLL;ELPP_AS_DLL;ELPP_EXPORT_SYMBOLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;C:\local\irrlicht-1.8.3\include;../Dependencies/RakNet/Source;../Dependencies/RakNet/DependentExtensions/RPC3;../Dependencies/spdlog/include;../Dependencies/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -166,6 +166,7 @@
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ProjectGlobals.cpp" />
+    <ClCompile Include="RakNetUtility.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneAnimatedMesh.cpp" />
     <ClCompile Include="SceneBillboard.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="PlayerFactory.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ProjectGlobals.h" />
+    <ClInclude Include="RakNetUtility.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneAnimatedMesh.h" />
     <ClInclude Include="SceneBillboard.h" />

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <RakNetTypes.h>
 #include "Export.h"
 
 class MALEFICE_DLL_EXPORT NetworkRPC
@@ -8,6 +9,10 @@ class MALEFICE_DLL_EXPORT NetworkRPC
 public:
 	NetworkRPC()	= delete;
 	~NetworkRPC()	= delete;
+
+	static const RakNet::NetworkID	GENERAL_RPC_ID;
+	static const RakNet::NetworkID	PLAYER_RPC_ID;
+
 
 	// Local player
 	static const std::string	PLAYER_CONNECT;

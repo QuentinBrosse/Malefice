@@ -2,7 +2,12 @@
 
 #include <string>
 #include <RakPeerInterface.h>
-#include <RPC4Plugin.h>
+#include <RakNetTypes.h>
+#include <PacketPriority.h>
+#include <RPC3.h>
+#include <NetworkIDManager.h>
+#include "GeneralRPC.h"
+#include "PlayerRPC.h"
 
 enum eNetworkState
 {
@@ -32,18 +37,21 @@ public:
 	void	disconnect();
 	void	pulse();
 
-	void	connectionAccepted(RakNet::Packet * packet);
+	void	callRPC(const std::string& rpc, RakNet::NetworkIDObject* networkObject, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability);
 
-	void	callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, RakNet::AddressOrGUID to);
 
+	RakNet::RPC3*				getRPC();
+	RakNet::NetworkIDManager*	getNetworkIDManager();
 	bool						isConnected()	const;
-
-	void						setNetState(eNetworkState netState);
-	eNetworkState				getNetState() const;
+	
 
 private:
 	RakNet::RakPeerInterface*	m_rakPeer;
-	RakNet::RPC4*				m_rpc;
+	RakNet::SystemAddress		m_serverAddress;
+	RakNet::RPC3*				m_rpc;
+	RakNet::NetworkIDManager	m_networkIDManager;
+	GeneralRPC*					m_generalRPC;
+	PlayerRPC*					m_playerRPC;
 	bool						m_connected;
 	eNetworkState				m_netState;
 };

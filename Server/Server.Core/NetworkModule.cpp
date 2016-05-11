@@ -1,27 +1,24 @@
 #include <MessageIdentifiers.h>
 #include "NetworkModule.h"
-#include "GeneralRPC.h"
-#include "PlayerRPC.h"
 #include "ProjectGlobals.h"
 #include "ServerCore.h"
-#include "PlayerManager.h"
+#include "RakNetUtility.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
-	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(RakNet::RPC4::GetInstance())
+	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(new RakNet::RPC3()), m_networkIDManager(), m_generalRPC(nullptr), m_playerRPC(nullptr)
 {
+	m_rpc->SetNetworkIDManager(&m_networkIDManager);
 	m_rakPeer->AttachPlugin(m_rpc);
-	GeneralRPC::registerRPC(m_rpc);
-	PlayerRPC::registerRPC(m_rpc);
 }
 
 NetworkModule::~NetworkModule()
 {
-	m_rakPeer->Shutdown(500);
-	GeneralRPC::unregisterRPC(m_rpc);
-	PlayerRPC::unregisterRPC(m_rpc);
+	delete m_generalRPC;
+	delete m_playerRPC;
 	m_rakPeer->DetachPlugin(m_rpc);
-	RakNet::RPC4::DestroyInstance(m_rpc);
+	m_rakPeer->Shutdown(500);
+	delete m_rpc;
 	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
@@ -30,12 +27,15 @@ bool	NetworkModule::init(const std::string& address, unsigned short port, const 
 {
 	RakNet::SocketDescriptor	descriptor(port, address.c_str());
 
+	
 	if (m_rakPeer->Startup(ProjectGlobals::MAX_PLAYERS_NB, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
 	{
 		m_rakPeer->SetMaximumIncomingConnections(ProjectGlobals::MAX_PLAYERS_NB);
 		m_rakPeer->SetTimeoutTime(10000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 		if (password.length() > 0)
 			m_rakPeer->SetIncomingPassword(password.c_str(), password.length());
+		m_generalRPC = new GeneralRPC();
+		m_playerRPC = new PlayerRPC();
 		return true;
 	}
 	else
@@ -69,16 +69,33 @@ void	NetworkModule::pulse()
 					LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)" << ".";
 				}
 				break;
+			case ID_RPC_REMOTE_ERROR:
+				RakNetUtility::logRPCRemoteError(static_cast<RakNet::RPCErrorCodes>(packet->data[1]), std::string(reinterpret_cast<char*>(packet->data) + 2));
+				break;
 		}
 		m_rakPeer->DeallocatePacket(packet);
 	}
 }
 
 
-void	NetworkModule::callRPC(const std::string& rpc, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, int playerId, bool broadcast)
+void	NetworkModule::callRPC(const std::string& rpc, RakNet::NetworkIDObject* object, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability, RakNet::SystemAddress to, bool broadcast)
 {
+	RakNet::RPC3::CallExplicitParameters	callExplicitParameters(object->GetNetworkID(), to, broadcast, 0, packetPriority, packetReliability, 0);
+
 	if (m_rpc != nullptr)
-		m_rpc->Call(rpc.c_str(), bitStream, packetPriority, packetReliability, 0, m_rakPeer->GetSystemAddressFromIndex(playerId), broadcast);
+		m_rpc->CallExplicit(rpc.c_str(), &callExplicitParameters, bitStream, m_rpc);
 	else
 		LOG_ERROR(NETWORK) << "RPC null pointer";
+}
+
+
+
+RakNet::RPC3*	NetworkModule::getRPC()
+{
+	return m_rpc;
+}
+
+RakNet::NetworkIDManager*	NetworkModule::getNetworkIDManager()
+{
+	return &m_networkIDManager;
 }

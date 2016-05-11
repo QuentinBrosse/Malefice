@@ -70,6 +70,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{4dcd1891-ae1c-4e9b-bc09-cd61e70b12e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{f1e902a1-f5cc-40ef-9844-b3e3bd19814b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProjectGlobals.cpp">
@@ -174,11 +177,14 @@
     <ClCompile Include="SceneBillboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkRPC.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MapFactory.cpp">
       <Filter>Source Files\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkRPC.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="RakNetUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="MapFactory.h">
       <Filter>Header Files\ECS\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="RakNetUtility.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

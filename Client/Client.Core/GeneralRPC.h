@@ -1,14 +1,14 @@
 #pragma once
 
-#include <RPC4Plugin.h>
+#include <NetworkIDObject.h>
+#include <RPC3.h>
+#include <BitStream.h>
 
-class GeneralRPC
+class GeneralRPC : public RakNet::NetworkIDObject
 {
 public:
-	static void	registerRPC(RakNet::RPC4* rpc);
-	static void	unregisterRPC(RakNet::RPC4* rpc);
+	GeneralRPC();
+	~GeneralRPC();
 
-
-private:
-	static bool	m_isRegistered;
+	void playerChat(RakNet::BitStream* userData, RakNet::RPC3* remote);
 };

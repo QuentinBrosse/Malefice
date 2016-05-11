@@ -1,41 +1,33 @@
 #include "GeneralRPC.h"
 #include "NetworkRPC.h"
-#include "NetworkID.h"
 #include "Logger.h"
 #include "ServerCore.h"
 
-bool	GeneralRPC::m_isRegistered = false;
+GeneralRPC::GeneralRPC()
+{
+	this->SetNetworkIDManager(ServerCore::getInstance().getNetworkModule()->getNetworkIDManager());
+	this->SetNetworkID(NetworkRPC::GENERAL_RPC_ID);
+	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &GeneralRPC::playerChat);
+}
+
+GeneralRPC::~GeneralRPC()
+{
+	ServerCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
+}
 
 /*
 ** Reçoit un message, l'affiche dans la console et le renvoie aux autres joueurs
 */
-static void	playerChat(RakNet::BitStream* bitStream, RakNet::Packet* packet)
+void	GeneralRPC::playerChat(RakNet::BitStream* bitStream, RakNet::RPC3* remote)
 {
-	ecs::NetworkID		playerId = static_cast<ecs::NetworkID>(packet->guid.systemIndex);
-	RakNet::RakString	input;
+	int						playerId;
+	RakNet::RakString		input;
+	RakNet::BitStream		toSend;
 
+	bitStream->ReadCompressed(playerId);
 	bitStream->Read(input);
-
 	LOG_INFO(CHAT) << "Player " << playerId << " : " << input.C_String();
-
-	RakNet::BitStream toSend;
 	toSend.WriteCompressed(playerId);
 	toSend.Write(input);
-	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_PLAYER_INDEX, true);
-}
-
-void	GeneralRPC::registerRPC(RakNet::RPC4* rpc)
-{
-	if (m_isRegistered)
-		return;
-	rpc->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &playerChat);
-	m_isRegistered = true;
-}
-
-void	GeneralRPC::unregisterRPC(RakNet::RPC4* rpc)
-{
-	if (!m_isRegistered)
-		return;
-	rpc->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
-	m_isRegistered = false;
+	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, this, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }

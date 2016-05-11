@@ -62,14 +62,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Debug</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Debug &amp; @%COMSPEC% /C exit 0 &gt; nul</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>del ..\..\Binaries\Debug\Irrlicht.dll</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Debug</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <OutDir>$(SolutionDir)\Binaries\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Release</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Release &amp; @%COMSPEC% /C exit 0 &gt; nul</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>del ..\..\Binaries\Release\Irrlicht.dll</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>copy C:\local\irrlicht-1.8.3\bin\Win32-VisualStudio\Irrlicht.dll ..\..\Binaries\Release</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
