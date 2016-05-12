@@ -46,8 +46,9 @@ namespace ecs
 		m_isLock = false;
 	}
 
-	void Spell::dump() const
+
+	void	Spell::dump(std::ostream& os)	const
 	{
-		std::cout << "[" << NAME << ": " << m_spellType << "/" << COOLDOWN << "]" << std::endl;
+		os << "[" << NAME << ": " << m_spellType << "/" << COOLDOWN << "]";
 	}
 }

@@ -9,7 +9,7 @@ namespace ecs
 	public:
 		SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~SceneBillboard();
-	private:
-	};
 
+		virtual void	dump(std::ostream& os)	const;
+	};
 }

@@ -9,4 +9,10 @@ namespace ecs
 	SceneBillboard::~SceneBillboard()
 	{
 	}
+
+
+	void	SceneBillboard::dump(std::ostream& os)	const
+	{
+		os << "SceneBillboard {}";
+	}
 }

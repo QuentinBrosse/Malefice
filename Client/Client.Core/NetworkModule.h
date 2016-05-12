@@ -5,7 +5,6 @@
 #include <RakNetTypes.h>
 #include <PacketPriority.h>
 #include <RPC3.h>
-#include <NetworkIDManager.h>
 #include "GeneralRPC.h"
 #include "PlayerRPC.h"
 
@@ -41,7 +40,7 @@ public:
 
 
 	RakNet::RPC3*				getRPC();
-	RakNet::NetworkIDManager*	getNetworkIDManager();
+	RakNet::NetworkIDManager*	getOwnerManager();
 	bool						isConnected()	const;
 	
 
@@ -49,7 +48,6 @@ private:
 	RakNet::RakPeerInterface*	m_rakPeer;
 	RakNet::SystemAddress		m_serverAddress;
 	RakNet::RPC3*				m_rpc;
-	RakNet::NetworkIDManager	m_networkIDManager;
 	GeneralRPC*					m_generalRPC;
 	PlayerRPC*					m_playerRPC;
 	bool						m_connected;

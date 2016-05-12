@@ -5,14 +5,12 @@
 
 GeneralRPC::GeneralRPC()
 {
-	this->SetNetworkIDManager(ServerCore::getInstance().getNetworkModule()->getNetworkIDManager());
-	this->SetNetworkID(NetworkRPC::GENERAL_RPC_ID);
-	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &GeneralRPC::playerChat);
+	ServerCore::getInstance().getNetworkModule().getRPC()->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &GeneralRPC::playerChat);
 }
 
 GeneralRPC::~GeneralRPC()
 {
-	ServerCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
+	ServerCore::getInstance().getNetworkModule().getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CHAT.c_str());
 }
 
 /*
@@ -29,5 +27,5 @@ void	GeneralRPC::playerChat(RakNet::BitStream* bitStream, RakNet::RPC3* remote)
 	LOG_INFO(CHAT) << "Player " << playerId << " : " << input.C_String();
 	toSend.WriteCompressed(playerId);
 	toSend.Write(input);
-	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CHAT, this, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_CHAT, this, &toSend, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }

@@ -5,7 +5,7 @@
 #include "TimeUtility.h"
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_isActive(false), m_configuration(), m_networkModule(nullptr), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_isActive(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -32,13 +32,11 @@ bool	ServerCore::init()
 {
 	if (m_configuration.loadFromFile(ServerCoreConfiguration::DEFAULT_SETTINGS_FILENAME) == false)
 		return false;
-	m_networkModule = new NetworkModule();
-	if (m_networkModule->init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
+	if (m_networkModule.init(m_configuration.getAddress(), m_configuration.getPort(), m_configuration.getPassword()) == false)
 	{
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
 	}
-	m_playerManager = new PlayerManager();
 	m_isActive = true;
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
@@ -76,8 +74,7 @@ void	ServerCore::displayHeader()	const
 
 void	ServerCore::pulse()
 {
-	if (m_networkModule != nullptr)
-		m_networkModule->pulse();
+	m_networkModule.pulse();
 }
 
 
@@ -132,12 +129,12 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 
 
 
-NetworkModule	*ServerCore::getNetworkModule()	const
+NetworkModule&	ServerCore::getNetworkModule()
 {
 	return m_networkModule;
 }
 
-PlayerManager	*ServerCore::getPlayerManager() const
+PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
 }

@@ -19,4 +19,9 @@ namespace ecs
 		m_node->setRotation(newPosition.getVectorRotation());
 	}
 
+
+	void	SceneAnimatedMesh::dump(std::ostream& os)	const
+	{
+		os << "SceneAnimatedMesh {}";
+	}
 }

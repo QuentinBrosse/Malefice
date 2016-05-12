@@ -82,8 +82,9 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("spells.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
-	
+
 	m_menu = new MainMenu(*this);
+	m_menuPause = new MenuPause(*this);
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
@@ -160,6 +161,11 @@ MainMenu* GraphicUtil::getMainMenu()
 	return m_menu;
 }
 
+MenuPause* GraphicUtil::getMenuPause()
+{
+	return m_menuPause;
+}
+
 irr::video::IVideoDriver* GraphicUtil::getDriver()
 {
 	return m_driver;
@@ -167,9 +173,13 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 
 void GraphicUtil::setGuiCamera()
 {
+	irr::core::vector3df position = m_sceneManager->getActiveCamera()->getPosition();
+	irr::core::vector3df rotation = m_sceneManager->getActiveCamera()->getRotation();
+	irr::core::vector3df target =  m_sceneManager->getActiveCamera()->getTarget();
 	if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
-	m_sceneManager->addCameraSceneNode(0, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), -1);
+	m_sceneManager->addCameraSceneNode(0, position, rotation, -1);
+	m_sceneManager->getActiveCamera()->setTarget(target);
 	m_device->getCursorControl()->setVisible(true);
 }
 

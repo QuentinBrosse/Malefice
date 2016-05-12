@@ -13,13 +13,11 @@ namespace ecs
 		if (namePK3 != "")
 		{
 			m_device->getFileSystem()->addFileArchive((MEDIA_PATH + namePK3).c_str());
-			std::cout << (newNameMesh) << std::endl;
 			mesh = m_smgr->getMesh(newNameMesh.c_str());
 		}
 		else
 		{
 			//TODO: constructor without decompression
-			std::cerr << "No Compression !" << std::endl;
 		}
 		if (mesh)
 			m_node = m_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, newPickableFlags);
@@ -49,10 +47,16 @@ namespace ecs
 	{
 	}
 
+
 	void SceneMesh::setPosition(const Position& newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());
 		m_node->setRotation(newPosition.getVectorRotation());
 	}
 
+
+	void	SceneMesh::dump(std::ostream& os)	const
+	{
+		os << "SceneMesh {}";
+	}
 }

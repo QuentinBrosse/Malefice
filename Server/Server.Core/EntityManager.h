@@ -11,12 +11,12 @@ public:
 	~EntityManager();
 
 	virtual void			addEntity(ecs::Entity* newEntity);
-	virtual void			removeEntity(ecs::NetworkID netID);
+	virtual void			removeEntity(ecs::PlayerId owner);
 
-	virtual bool			hasEntity(ecs::NetworkID netID);
+	virtual bool			hasEntity(ecs::PlayerId owner);
 
-	virtual ecs::Entity*	findEntity(ecs::NetworkID netID);
+	virtual ecs::Entity*	findEntity(ecs::PlayerId owner);
 
 protected:
-	std::map<ecs::NetworkID, ecs::Entity*>	m_entities;
+	std::map<ecs::PlayerId, ecs::Entity*>	m_entities;
 };

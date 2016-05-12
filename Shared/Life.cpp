@@ -57,8 +57,10 @@ namespace ecs
 		// Death behavior ...
 	}
 
-	void Life::dump() const
+
+
+	void	Life::dump(std::ostream& os)	const
 	{
-		std::cout << "[Life " << m_currentLife << "/" << MAX_LIFE<< "]" << std::endl;
+		os << "Life {currentLife = " << m_currentLife << ", MAX_LIFE = " << MAX_LIFE << "}";
 	}
 }

@@ -1,7 +1,6 @@
 #include "SpawnerFactory.h"
 #include "Weapon.h"
 #include "Position.h"
-#include "NetworkID.h"
 #include "Life.h"
 #include "Spell.h"
 

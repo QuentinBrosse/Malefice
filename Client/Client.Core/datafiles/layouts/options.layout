@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
+        <Property name="Area" value="{{0,252},{0,96},{0.3,668},{0.3,369}}" />
+        <AutoWindow namePath="__auto_titlebar__" >
+            <Property name="AlwaysOnTop" value="false" />
+        </AutoWindow>
+        <Window type="AlfiskoSkin/Button" name="Button" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0,666},{0,397},{0,762},{0,429}}" />
+            <Property name="Text" value="Annuler" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button2" >
+            <Property name="ID" value="1" />
+            <Property name="Area" value="{{0,536},{0,397},{0,632},{0,429}}" />
+            <Property name="Text" value="Confirmer" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button3" >
+            <Property name="Area" value="{{0,169},{0,26},{0,265},{0,58}}" />
+            <Property name="Text" value="1" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label" >
+            <Property name="Area" value="{{0,22},{0,25},{0,150},{0,57}}" />
+            <Property name="Text" value="Maléfice 1" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button32" >
+            <Property name="Area" value="{{0,171},{0,82},{0,267},{0,114}}" />
+            <Property name="Text" value="2" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label2" >
+            <Property name="Area" value="{{0,24},{0,81},{0,152},{0,113}}" />
+            <Property name="Text" value="Maléfice 2" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button33" >
+            <Property name="Area" value="{{0,171},{0,136},{0,267},{0,168}}" />
+            <Property name="Text" value="3" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label3" >
+            <Property name="Area" value="{{0,24},{0,134},{0,152},{0,166}}" />
+            <Property name="Text" value="Maléfice 3" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button34" >
+            <Property name="Area" value="{{0,171},{0,186},{0,267},{0,218}}" />
+            <Property name="Text" value="4" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label4" >
+            <Property name="Area" value="{{0,24},{0,185},{0,152},{0,217}}" />
+            <Property name="Text" value="Maléfice 4" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label42" >
+            <Property name="Area" value="{{0,412},{0,34},{0,584},{0,66}}" />
+            <Property name="Text" value="Avancer" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button342" >
+            <Property name="Area" value="{{0,603},{0,35},{0,718},{0,67}}" />
+            <Property name="Text" value="Z" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label43" >
+            <Property name="Area" value="{{0,410},{0,85},{0,583},{0,117}}" />
+            <Property name="Text" value="Reculer" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button343" >
+            <Property name="Area" value="{{0,602},{0,86},{0,717},{0,118}}" />
+            <Property name="Text" value="S" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label44" >
+            <Property name="Area" value="{{0,410},{0,136},{0,583},{0,168}}" />
+            <Property name="Text" value="Aller à droite" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button344" >
+            <Property name="Area" value="{{0,602},{0,137},{0,717},{0,169}}" />
+            <Property name="Text" value="D" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label45" >
+            <Property name="Area" value="{{0,408},{0,187},{0,585},{0,219}}" />
+            <Property name="Text" value="Aller à gauche" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button345" >
+            <Property name="Area" value="{{0,604},{0,188},{0,718},{0,220}}" />
+            <Property name="Text" value="Q" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label452" >
+            <Property name="Area" value="{{0,408},{0,280},{0,584},{0,312}}" />
+            <Property name="Text" value="Tir 1" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button3452" >
+            <Property name="Area" value="{{0,603},{0,281},{0,715},{0,313}}" />
+            <Property name="Text" value="Souris gauche" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button34522" >
+            <Property name="Area" value="{{0,602},{0,329},{0,716},{0,360}}" />
+            <Property name="Text" value="Souris droite" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label4522" >
+            <Property name="Area" value="{{0,408},{0,326},{0,583},{0,358}}" />
+            <Property name="Text" value="Tir 2 / Lancer un maléfice" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label46" >
+            <Property name="Area" value="{{0,25},{0,241},{0,153},{0,273}}" />
+            <Property name="Text" value="Menu" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button346" >
+            <Property name="Area" value="{{0,172},{0,241},{0,268},{0,273}}" />
+            <Property name="Text" value="ECHAP" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label453" >
+            <Property name="Area" value="{{0,408},{0,235},{0,585},{0,267}}" />
+            <Property name="Text" value="Sauter" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button3453" >
+            <Property name="Area" value="{{0,604},{0,236},{0,718},{0,268}}" />
+            <Property name="Text" value="ESPACE" />
+        </Window>
+    </Window>
+</GUILayout>

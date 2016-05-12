@@ -12,5 +12,5 @@ public:
 	ObjectFactory() = delete;
 	~ObjectFactory() = delete;
 
-	static ecs::Entity *createObject(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const ecs::NetworkID, const ecs::Entity::EntityType entityType);
+	static ecs::Entity *createObject(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const ecs::PlayerId, const ecs::Entity::EntityType entityType);
 };

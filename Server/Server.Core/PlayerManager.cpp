@@ -8,7 +8,7 @@
 PlayerManager::PlayerManager(ecs::Entity* currentPlayer)
 {
 	m_currentPlayer = currentPlayer;
-	m_entities.insert(std::pair<ecs::NetworkID, ecs::Entity*>(currentPlayer->getNetworkID(), currentPlayer));
+	m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(currentPlayer->getOwner(), currentPlayer));
 }
 
 PlayerManager::PlayerManager()
@@ -18,51 +18,51 @@ PlayerManager::PlayerManager()
 
 void PlayerManager::addEntity(ecs::Entity* newPlayer)
 {
-	m_entities[newPlayer->getNetworkID()] = newPlayer;
+	m_entities[newPlayer->getOwner()] = newPlayer;
 	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 	{
 		RakNet::BitStream	bits;
 
-		if (it->first == newPlayer->getNetworkID())
+		if (it->first == newPlayer->getOwner())
 			continue;
 
-		bits.WriteCompressed(newPlayer->getNetworkID());
+		bits.WriteCompressed(newPlayer->getOwner());
 		//ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_ADD, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
 }
 
-bool PlayerManager::hasEntity(ecs::NetworkID netID)
+bool PlayerManager::hasEntity(ecs::PlayerId owner)
 {
-	return m_entities.find(netID) != m_entities.end();
+	return m_entities.find(owner) != m_entities.end();
 }
 
-void PlayerManager::removeEntity(ecs::NetworkID netID)
+void PlayerManager::removeEntity(ecs::PlayerId owner)
 {
-	m_entities.erase(netID);
+	m_entities.erase(owner);
 
 	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 	{
 		RakNet::BitStream bits;
 
-		if (it->first == netID)
+		if (it->first == owner)
 			continue;
 
-		bits.Write(netID);
+		bits.Write(owner);
 		//ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_REMOVE, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
 	}
 }
 
 void PlayerManager::setCurrentPlayer(ecs::Entity* newCurrentPlayer)
 {
-	if (m_entities[newCurrentPlayer->getNetworkID()] == nullptr)
+	if (m_entities[newCurrentPlayer->getOwner()] == nullptr)
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_entities.insert(std::pair<ecs::NetworkID, ecs::Entity*>(newCurrentPlayer->getNetworkID(), newCurrentPlayer));
+		m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(newCurrentPlayer->getOwner(), newCurrentPlayer));
 	}
 	else
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_entities[newCurrentPlayer->getNetworkID()] = newCurrentPlayer;
+		m_entities[newCurrentPlayer->getOwner()] = newCurrentPlayer;
 	}
 }
 

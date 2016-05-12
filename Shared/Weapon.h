@@ -35,14 +35,14 @@ namespace ecs
 
 		void				dump()							const;
 		
-		const int			getId()						const;
-		const int			getDamage()					const;
-		const int			getDamageExplosive()		const;
-		const WeaponType	getWeaponType()				const;
-		const bool			isHandToHand()				const;
-		const std::string&	getName()					const;
-		int					getAmmunition()				const;
-		int					getAmmunitionExplosive()	const;
+		const int			getId()							const;
+		const int			getDamage()						const;
+		const int			getDamageExplosive()			const;
+		const WeaponType	getWeaponType()					const;
+		const bool			isHandToHand()					const;
+		const std::string&	getName()						const;
+		int					getAmmunition()					const;
+		int					getAmmunitionExplosive()		const;
 		int					getAmmunitionLoader()			const;
 		int					getAmmunitionExplosiveLoader()	const;
 		void				reload();
@@ -55,6 +55,9 @@ namespace ecs
 		void				decAmmunitionExplosive(int nbFired);
 		void				incAmmunition(int nbAmmuition);
 		void				incAmmunitionExplosive(int nbAmmunition);
+
+
+		virtual void	dump(std::ostream& os)	const;
 
 
 	private:

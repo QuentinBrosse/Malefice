@@ -160,6 +160,8 @@
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="Movement.cpp" />
+    <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="NetworkObject.cpp" />
     <ClCompile Include="NetworkRPC.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
@@ -196,7 +198,8 @@
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MathUtility.h" />
     <ClInclude Include="Movement.h" />
-    <ClInclude Include="NetworkID.h" />
+    <ClInclude Include="NetworkManager.h" />
+    <ClInclude Include="NetworkObject.h" />
     <ClInclude Include="NetworkRPC.h" />
     <ClInclude Include="NodePickable.h" />
     <ClInclude Include="ObjectFactory.h" />

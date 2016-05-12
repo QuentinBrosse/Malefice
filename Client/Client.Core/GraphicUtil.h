@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "EventReceiver.h"
 #include "MainMenu.h"
+#include "MenuPause.h"
 #include "NetworkModule.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
@@ -23,8 +24,8 @@ public:
 	MainMenu* getMainMenu();
 	irr::video::IVideoDriver* getDriver();
 	void setGuiCamera();
-	void setFPSCamera();
-
+	MenuPause* getMenuPause();
+	void setFPSCamera(float moveSpeed = 0.06f, float rotationSpeed = 100.0f);
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;
@@ -33,5 +34,6 @@ private:
 	Camera*						m_guiCamera;
 	EventReceiver				m_receiver;
 	irr::SKeyMap*				m_keyMap;
-	MainMenu*					m_menu;
+	MainMenu*					m_menu = nullptr;
+	MenuPause*					m_menuPause = nullptr;
 };

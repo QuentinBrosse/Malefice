@@ -78,9 +78,6 @@
     <ClInclude Include="PlayerRPC.h">
       <Filter>Header Files\Network\RPC</Filter>
     </ClInclude>
-    <ClInclude Include="Chat.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
@@ -117,6 +114,9 @@
     <ClInclude Include="WeaponSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="MenuPause.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -145,9 +145,6 @@
     </ClCompile>
     <ClCompile Include="PlayerRPC.cpp">
       <Filter>Source Files\Network\RPC</Filter>
-    </ClCompile>
-    <ClCompile Include="Chat.cpp">
-      <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\General</Filter>
@@ -187,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="WeaponSystem.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPause.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

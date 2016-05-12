@@ -20,7 +20,6 @@ namespace ecs
 			SPELL_COUNT,
 		};
 
-	public:
 		Spell();
 		Spell(const int id, const std::string& name, const SpellType spellType, const int coolDown);
 		Spell(const Spell& cpy);
@@ -32,7 +31,8 @@ namespace ecs
 		void					lock();
 		void					unlock();
 
-		void					dump()	const;
+
+		virtual void	dump(std::ostream& os)	const;
 
 
 	private:

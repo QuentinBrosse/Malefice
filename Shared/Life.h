@@ -29,9 +29,10 @@ namespace ecs
 		// death system to simplify game management without take
 		// care of Life implementation. 
 
-		void dump()	const;
+		virtual void	dump(std::ostream& os)	const;
+
 
 	private:
-		int m_currentLife;		
+		int	m_currentLife;		
 	};
 }

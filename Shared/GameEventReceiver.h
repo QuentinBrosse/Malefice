@@ -10,7 +10,6 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT GameEventReceiver : public irr::IEventReceiver, public AComponent
 	{
 	public:
-
 		enum GameEventType
 		{
 			NOTHING,
@@ -25,12 +24,16 @@ namespace ecs
 		};
 
 		GameEventReceiver();
-		~GameEventReceiver() = default;
+		~GameEventReceiver()	= default;
 
 		virtual bool	OnEvent(const irr::SEvent& event); //Irrlicht callback norme exception here	
 
 		GameEventType				getEvent();
 		std::queue<GameEventType>	getEvents()	const;
+
+
+		virtual void	dump(std::ostream& os)	const;
+
 
 	private:
 		std::queue<GameEventType>	m_events;

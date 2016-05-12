@@ -3,12 +3,13 @@
 #include "ProjectGlobals.h"
 #include "ServerCore.h"
 #include "RakNetUtility.h"
+#include "NetworkManager.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
-	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(new RakNet::RPC3()), m_networkIDManager(), m_generalRPC(nullptr), m_playerRPC(nullptr)
+	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc(new RakNet::RPC3()), m_generalRPC(nullptr), m_playerRPC(nullptr)
 {
-	m_rpc->SetNetworkIDManager(&m_networkIDManager);
+	m_rpc->SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
 	m_rakPeer->AttachPlugin(m_rpc);
 }
 
@@ -56,16 +57,16 @@ void	NetworkModule::pulse()
 				LOG_INFO(NETWORK) << "Incoming connection from " << packet->systemAddress.ToString(true, ':') << ".";
 				break;
 			case ID_DISCONNECTION_NOTIFICATION:
-				if (ServerCore::getInstance().getPlayerManager()->hasEntity(static_cast<ecs::NetworkID>(packet->systemAddress.systemIndex)))
+				if (ServerCore::getInstance().getPlayerManager().hasEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
 				{
-					ServerCore::getInstance().getPlayerManager()->removeEntity(static_cast<ecs::NetworkID>(packet->systemAddress.systemIndex));
+					ServerCore::getInstance().getPlayerManager().removeEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex));
 					LOG_INFO(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected" << ".";
 				}
 				break;
 			case ID_CONNECTION_LOST:
-				if (ServerCore::getInstance().getPlayerManager()->hasEntity(static_cast<ecs::NetworkID>(packet->systemAddress.systemIndex)))
+				if (ServerCore::getInstance().getPlayerManager().hasEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
 				{
-					ServerCore::getInstance().getPlayerManager()->removeEntity((ecs::NetworkID)packet->systemAddress.systemIndex);
+					ServerCore::getInstance().getPlayerManager().removeEntity((ecs::PlayerId)packet->systemAddress.systemIndex);
 					LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)" << ".";
 				}
 				break;
@@ -93,9 +94,4 @@ void	NetworkModule::callRPC(const std::string& rpc, RakNet::NetworkIDObject* obj
 RakNet::RPC3*	NetworkModule::getRPC()
 {
 	return m_rpc;
-}
-
-RakNet::NetworkIDManager*	NetworkModule::getNetworkIDManager()
-{
-	return &m_networkIDManager;
 }

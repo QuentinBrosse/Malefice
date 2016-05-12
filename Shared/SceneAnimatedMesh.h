@@ -4,7 +4,6 @@
 
 namespace ecs
 {
-
 	class MALEFICE_DLL_EXPORT SceneAnimatedMesh : public AScene
 	{
 	public:
@@ -16,5 +15,4 @@ namespace ecs
 		irr::scene::IAnimatedMeshSceneNode*	m_node;
 
 	};
-
 }

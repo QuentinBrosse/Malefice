@@ -1,12 +1,13 @@
 #include <MessageIdentifiers.h>
 #include "NetworkModule.h"
 #include "RakNetUtility.h"
+#include "NetworkManager.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
-	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(), m_rpc(new RakNet::RPC3()), m_networkIDManager(), m_generalRPC(nullptr), m_playerRPC(nullptr), m_connected(false), m_netState(NETSTATE_NONE)
+	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(), m_rpc(new RakNet::RPC3()), m_generalRPC(nullptr), m_playerRPC(nullptr), m_connected(false), m_netState(NETSTATE_NONE)
 {
-	m_rpc->SetNetworkIDManager(&m_networkIDManager);
+	m_rpc->SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
 	m_rakPeer->AttachPlugin(m_rpc);
 }
 
@@ -101,11 +102,6 @@ void	NetworkModule::callRPC(const std::string& rpc, RakNet::NetworkIDObject* net
 RakNet::RPC3*	NetworkModule::getRPC()
 {
 	return m_rpc;
-}
-
-RakNet::NetworkIDManager*	NetworkModule::getNetworkIDManager()
-{
-	return &m_networkIDManager;
 }
 
 bool	NetworkModule::isConnected()	const

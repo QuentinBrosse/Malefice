@@ -12,6 +12,10 @@ namespace ecs
 
 		virtual	void			setPosition(const Position& newPosition);
 
+
+		virtual void	dump(std::ostream& os)	const;
+
+
 	private:
 		irr::scene::IMeshSceneNode*	m_node;
 	};

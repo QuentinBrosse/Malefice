@@ -1,13 +1,16 @@
 #pragma once
 
+#include <ostream>
 #include <map>
+#include "NetworkObject.h"
 #include "AComponent.h"
 #include "Export.h"
-#include "NetworkID.h"
 
 namespace ecs
 {
-	class MALEFICE_DLL_EXPORT Entity
+	typedef int	PlayerId;
+
+	class MALEFICE_DLL_EXPORT Entity : public NetworkObject
 	{
 	public:
 		enum EntityType
@@ -19,28 +22,27 @@ namespace ecs
 			ENTITY_COUNT,
 		};
 
-	public:
-		const int	ID;
-
-		Entity(NetworkID netID, const EntityType entityType);
+		Entity(PlayerId owner, const EntityType entityType);
 		~Entity();
-		Entity(const Entity& cpy) = delete;
-		Entity(Entity &&) = default;
+		Entity(const Entity&)	= delete;
+		Entity(Entity&&)		= default;
 		
-		Entity&	operator=(const Entity&) = delete;
-		Entity&	operator=(Entity&&) = default;
+		Entity&	operator=(const Entity&)	= delete;
+		Entity&	operator=(Entity&&)			= default;
+		
+
+		bool										has(ComponentType type)	const;
+		PlayerId									getOwner()				const;
+		const std::map<ComponentType, AComponent*>&	getComponents()			const;
 
 		AComponent*&	operator[](ComponentType type);
-		bool			has(ComponentType type);
 
-		void			dump()			const;
 
-		NetworkID		getNetworkID()	const;
-		void			setNetworkID(const NetworkID networkId);
 	private:
+		PlayerId								m_owner;
 		const EntityType						ENTITY_TYPE;
-
-		NetworkID								m_networkID;
 		std::map<ComponentType, AComponent*>	m_components;
 	};
 }
+
+MALEFICE_DLL_EXPORT	std::ostream&	operator<<(std::ostream& os, const ecs::Entity& entity);

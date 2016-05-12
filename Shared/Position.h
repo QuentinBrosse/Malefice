@@ -27,6 +27,10 @@ namespace ecs
 		bool					operator!=(const Position& other)	const;
 		bool					operator==(const Position& other)	const;
 
+
+		virtual void	dump(std::ostream& os)	const;
+
+
 	private:
 		irr::core::vector3df	m_vectorPosition;
 		irr::core::vector3df	m_vectorRotation;

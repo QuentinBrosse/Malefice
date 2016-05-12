@@ -35,9 +35,9 @@ namespace ecs
 		return m_currentWeapon->second;
 	}
 
-	void WeaponManager::dump() const
+	void	WeaponManager::dump(std::ostream& os)	const
 	{
 		for (auto& weapon : m_weapons)
-			weapon.second.dump();
+			weapon.second.dump(os);
 	}
 };
