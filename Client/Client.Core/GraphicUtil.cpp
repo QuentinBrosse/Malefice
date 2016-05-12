@@ -176,9 +176,11 @@ void GraphicUtil::setGuiCamera()
 {
 	irr::core::vector3df position = m_sceneManager->getActiveCamera()->getPosition();
 	irr::core::vector3df rotation = m_sceneManager->getActiveCamera()->getRotation();
+	irr::core::vector3df target =  m_sceneManager->getActiveCamera()->getTarget();
 	if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
 	m_sceneManager->addCameraSceneNode(0, position, rotation, -1);
+	m_sceneManager->getActiveCamera()->setTarget(target);
 	m_device->getCursorControl()->setVisible(true);
 }
 
