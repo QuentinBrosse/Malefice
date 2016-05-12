@@ -71,6 +71,8 @@ void	ClientCore::pulse()
 
 	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
 	{
+		m_graphicModule->getMenuPause()->checkPause();
+
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
