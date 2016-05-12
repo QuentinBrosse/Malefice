@@ -1,5 +1,7 @@
 #pragma once
 
+// Client Version
+
 #include "Entity.h"
 
 class EntityManager

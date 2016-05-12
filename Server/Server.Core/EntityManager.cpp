@@ -1,4 +1,4 @@
-// Client Version
+// Server Version
 
 #include "EntityManager.h"
 

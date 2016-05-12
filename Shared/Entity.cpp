@@ -9,8 +9,8 @@ namespace ecs
 		return id++;
 	}
 
-	Entity::Entity(NetworkID netID) :
-		ID(nextID()), m_networkID(netID)
+	Entity::Entity(NetworkID netID, const EntityType entityType) :
+		ID(nextID()), m_networkID(netID), ENTITY_TYPE(entityType)
 	{
 	}
 

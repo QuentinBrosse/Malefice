@@ -15,13 +15,14 @@ namespace ecs
 			NOTHING,
 			PLAYER,
 			SPAWN,
+			MAP,
 			ENTITY_COUNT,
 		};
 
 	public:
 		const int	ID;
 
-		Entity(NetworkID netID);
+		Entity(NetworkID netID, const EntityType entityType);
 		~Entity();
 		Entity(const Entity& cpy) = delete;
 		Entity(Entity &&) = default;
@@ -37,6 +38,8 @@ namespace ecs
 		NetworkID		getNetworkID()	const;
 		void			setNetworkID(const NetworkID networkId);
 	private:
+		const EntityType						ENTITY_TYPE;
+
 		NetworkID								m_networkID;
 		std::map<ComponentType, AComponent*>	m_components;
 	};

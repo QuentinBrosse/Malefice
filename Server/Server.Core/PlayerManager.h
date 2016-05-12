@@ -1,11 +1,14 @@
 #pragma once
 
+// Server Version
+
 #include <map>
 #include "Entity.h"
 #include "Export.h"
 #include "NetworkID.h"
+#include "EntityManager.h"
 
-class PlayerManager
+class PlayerManager : public EntityManager
 {
 public:
 	PlayerManager();
@@ -13,15 +16,15 @@ public:
 	PlayerManager(const PlayerManager&) = delete;
 	~PlayerManager() = default;
 
-	void			addPlayer(ecs::Entity* newPlayer);
-	void			removePlayer(ecs::NetworkID netID);
+	virtual void addEntity(ecs::Entity * newPlayer);
+	virtual bool hasEntity(ecs::NetworkID netID);
 
-	bool			hasPlayer(ecs::NetworkID netID);
+	virtual void removeEntity(ecs::NetworkID netID);
 
 	void			setCurrentPlayer(ecs::Entity* newCurrentPlayer);
 	ecs::Entity*	getCurrentPlayer() const;
 private:
-	std::map<ecs::NetworkID, ecs::Entity*>	m_players;
 	ecs::Entity*							m_currentPlayer;
 };
+
 #pragma once

@@ -40,7 +40,7 @@ void	PlayerRPC::playerConnect(RakNet::BitStream* bitStream, RakNet::RPC3* remote
 	bits.WriteCompressed(playerId);
 	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CONNECT, this, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, remote->GetLastSenderAddress(), false);
 
-	if (!ServerCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	if (!ServerCore::getInstance().getPlayerManager()->hasEntity(playerId))
 	{
 		//ServerCore::getInstance().getPlayerManager()->addPlayer(player);
 	}
