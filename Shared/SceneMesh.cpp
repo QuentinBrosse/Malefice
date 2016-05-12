@@ -1,9 +1,11 @@
 #include "SceneMesh.h"
 
+#include <iostream>
+
 namespace ecs
 {
 
-	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const std::string& namePK3): AScene(device, newNameTexture, newNameMesh, newPickableFlags),
+	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
 		irr::scene::IAnimatedMesh*		mesh;
@@ -23,10 +25,24 @@ namespace ecs
 			m_node = m_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, newPickableFlags);
 		else
 			std::cerr << "Error constructor SceneMesh : mesh NULL !!" << std::endl;
+
 		if (m_node)
 			m_node->setTriangleSelector(m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128));
 		else
 			std::cerr << "Error constructor SceneMesh : m_node NULL !!" << std::endl;
+
+		if (IS_COLLISIONABLE)
+		{
+			m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
+			m_node->setTriangleSelector(m_selector);
+			irr::scene::ISceneNodeAnimator*	animator = m_smgr->createCollisionResponseAnimator(m_selector,
+				m_smgr->getActiveCamera(),
+				irr::core::vector3df(30.f, 50.f, 30.f),
+				irr::core::vector3df(0.f, -10.f, 0.f),
+				irr::core::vector3df(0.f, 30.f, 0.f));
+			m_smgr->getActiveCamera()->addAnimator(animator);
+			animator->drop();
+		}
 	}
 
 	SceneMesh::~SceneMesh()

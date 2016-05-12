@@ -10,7 +10,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT AScene : public AComponent
 	{
 	public:
-		AScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags);
+		AScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~AScene() = 0;
 
 	public:
@@ -30,12 +30,15 @@ namespace ecs
 
 	protected:
 		const std::string			MEDIA_PATH;
-		std::string					m_nameTexture;
-		std::string					m_nameMesh;
-		int							m_pickableFlags;
-		irr::IrrlichtDevice*		m_device;
-		irr::video::SMaterial*		m_material;
-		irr::scene::ISceneManager*	m_smgr;
-		irr::video::IVideoDriver*	m_driver;
+		const bool					IS_COLLISIONABLE;
+
+		irr::scene::ITriangleSelector*	m_selector;
+		std::string						m_nameTexture;
+		std::string						m_nameMesh;
+		int								m_pickableFlags;
+		irr::IrrlichtDevice*			m_device;
+		irr::video::SMaterial*			m_material;
+		irr::scene::ISceneManager*		m_smgr;
+		irr::video::IVideoDriver*		m_driver;
 	};
 }
