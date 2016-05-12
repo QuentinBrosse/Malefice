@@ -40,7 +40,7 @@ void	ClientCore::run()
 	}
 	else
 	{
-		m_graphicModule->setFPSCamera(0.6f);
+		m_graphicModule->setFPSCamera();
 	}
 	createEntities();
 	while (this->isActive() && m_graphicModule->getDevice()->run())

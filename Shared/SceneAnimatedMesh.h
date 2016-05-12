@@ -11,6 +11,8 @@ namespace ecs
 		virtual ~SceneAnimatedMesh();
 
 		virtual void	setPosition(const ecs::Position& newPosition);
+
+		virtual void	dump(std::ostream& os)	const;
 	private:
 		irr::scene::IAnimatedMeshSceneNode*	m_node;
 
