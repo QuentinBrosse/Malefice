@@ -36,9 +36,9 @@ namespace ecs
 		return *this;
 	}
 
-	void	Weapon::dump() const
+	void	Weapon::dump(std::ostream& os)	const
 	{
-		std::cout << "[" << NAME << "/" << m_currentAmmunition << "/" << MAX_AMMUNITION << "/" << m_currentAmmunitionExplosive << "/" << MAX_AMMUNITION_EXPLOSIVE << "/" << DAMAGE << "/" << DAMAGE_EXPLOSIVE <<"]" << std::endl;
+		os << "[" << NAME << "/" << m_currentAmmunition << "/" << MAX_AMMUNITION << "/" << m_currentAmmunitionExplosive << "/" << MAX_AMMUNITION_EXPLOSIVE << "/" << DAMAGE << "/" << DAMAGE_EXPLOSIVE <<"]" << std::endl;
 	}
 
 	const int		Weapon::getDamage() const

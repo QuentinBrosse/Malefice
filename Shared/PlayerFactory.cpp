@@ -1,6 +1,5 @@
 #include "PlayerFactory.h"
 #include "Life.h"
-#include "NetworkID.h"
 #include "Team.h"
 #include "WeaponManager.h"
 #include "Weapon.h"

@@ -7,8 +7,6 @@
 
 PlayerRPC::PlayerRPC()
 {
-	this->SetNetworkIDManager(ServerCore::getInstance().getNetworkModule()->getNetworkIDManager());
-	this->SetNetworkID(NetworkRPC::PLAYER_RPC_ID);
 	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &PlayerRPC::playerConnect);
 	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_SYNC.c_str(), &PlayerRPC::playerSync);
 }
@@ -53,7 +51,7 @@ void	PlayerRPC::playerConnect(RakNet::BitStream* bitStream, RakNet::RPC3* remote
 */
 void	PlayerRPC::playerSync(RakNet::BitStream* bitStream, RakNet::RPC3* remote)
 {
-	ecs::NetworkID	playerId;
+	ecs::PlayerId	playerId;
 
 	bitStream->ReadCompressed(playerId);
 	LOG_INFO(NETWORK) << "Received sync for player " << playerId;

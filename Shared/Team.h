@@ -13,16 +13,16 @@ namespace ecs
 		Team(int teamNumber);
 		~Team();
 
-		void dump()	const;
-
 		int getKill()	const;
 		int getDeath()	const;
 
 		void setKill(int);
 		void setDeath(int);
-
 		void addDeath();
 		void addKill();
+
+
+		virtual void	dump(std::ostream& os)	const;
 
 		
 	private:

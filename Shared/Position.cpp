@@ -52,9 +52,9 @@ namespace ecs
 		return m_vectorRotation;
 	}
 
-	void Position::dump() const
+	void	Position::dump(std::ostream& os)	const
 	{
-		std::cout << "[" << NAME << ": {" << m_vectorPosition.X << ", " << m_vectorPosition.Y << ", " << m_vectorPosition.Z << "} \ {" << m_vectorRotation.X << ", " << m_vectorRotation.Y << ", " << m_vectorRotation.Z << "} ]" << std::endl;
+		os << "[" << NAME << ": {" << m_vectorPosition.X << ", " << m_vectorPosition.Y << ", " << m_vectorPosition.Z << "} \ {" << m_vectorRotation.X << ", " << m_vectorRotation.Y << ", " << m_vectorRotation.Z << "} ]" << std::endl;
 	}
 
 	bool Position::operator!=(const Position& other) const

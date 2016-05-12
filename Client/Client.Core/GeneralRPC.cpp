@@ -5,8 +5,6 @@
 
 GeneralRPC::GeneralRPC()
 {
-	this->SetNetworkIDManager(ClientCore::getInstance().getNetworkModule()->getNetworkIDManager());
-	this->SetNetworkID(NetworkRPC::GENERAL_RPC_ID);
 	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CHAT.c_str(), &GeneralRPC::playerChat);
 }
 

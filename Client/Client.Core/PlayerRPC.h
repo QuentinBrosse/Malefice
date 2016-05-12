@@ -1,10 +1,10 @@
 #pragma once
 
-#include <NetworkIDObject.h>
 #include <RPC3.h>
 #include <BitStream.h>
+#include "NetworkObject.h"
 
-class PlayerRPC : public RakNet::NetworkIDObject
+class PlayerRPC : public NetworkObject
 {
 public:
 	PlayerRPC();

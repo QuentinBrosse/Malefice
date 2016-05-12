@@ -239,9 +239,6 @@
     <ClInclude Include="SpellCreator.h">
       <Filter>Header Files\Creator</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkID.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkRPC.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>

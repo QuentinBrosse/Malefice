@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Chat.h" />
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="ConnectWindow.h" />
     <ClInclude Include="EntityManager.h" />
@@ -36,7 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Chat.cpp" />
     <ClCompile Include="ClientCore.cpp" />
     <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="EntityManager.cpp" />

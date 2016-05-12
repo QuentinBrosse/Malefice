@@ -14,11 +14,11 @@ namespace ecs
 
 	}
 
-	void Team::dump() const
+	void	Team::dump(std::ostream& os)	const
 	{
-		std::cout << "[Team : " << TEAM_NUMBER << "]" << std::endl;
-		std::cout << "[Kill : " << m_kill << "]" << std::endl;
-		std::cout << "[Death : " << m_death << "]" << std::endl;
+		os << "[Team : " << TEAM_NUMBER << "]" << std::endl;
+		os << "[Kill : " << m_kill << "]" << std::endl;
+		os << "[Death : " << m_death << "]" << std::endl;
 	}
 
 	int Team::getDeath() const

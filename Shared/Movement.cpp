@@ -17,16 +17,16 @@ namespace ecs
 		return m_destination;
 	}
 
+
 	void Movement::move(Position& startPosition) const
 	{
 		if (m_destination != startPosition)
 			startPosition = m_destination;
 	}
 
-	void Movement::dump() const
+
+	void	Movement::dump(std::ostream& os)	const
 	{
-		std::cout << "[ MOVEMENT ";
-		m_destination.dump();
-		std::cout << " ]" << std::endl;
+		os << "Movement {}";
 	}
 }

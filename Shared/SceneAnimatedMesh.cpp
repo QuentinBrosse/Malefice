@@ -2,7 +2,6 @@
 
 namespace ecs
 {
-
 	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags): AScene(device, newNameTexture, newNameMesh, newPickableFlags)
 	{
 	}
@@ -11,4 +10,9 @@ namespace ecs
 	{
 	}
 
+
+	void	SceneAnimatedMesh::dump(std::ostream& os)	const
+	{
+		os << "SceneAnimatedMesh {}";
+	}
 }

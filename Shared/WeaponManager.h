@@ -18,7 +18,10 @@ namespace ecs
 
 		Weapon&			getCurrentWeapon()	const;
 
-		void			dump()	const;
+
+		virtual void	dump(std::ostream& os)	const;
+
+
 	private:
 		std::map<Weapon::WeaponType, Weapon>			m_weapons;
 		std::map<Weapon::WeaponType, Weapon>::iterator	m_currentWeapon;

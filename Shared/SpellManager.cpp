@@ -34,9 +34,9 @@ namespace ecs
 			--m_currentSpell;
 	}
 
-	void SpellManager::dump() const
+	void	SpellManager::dump(std::ostream& os)	const
 	{
 		for (auto& spell : m_spells)
-			spell.second.dump();
+			spell.second.dump(os);
 	}
 }

@@ -17,7 +17,8 @@ namespace ecs
 
 		void			move(Position& startPosition) const;
 
-		void			dump() const;
+
+		void	dump(std::ostream& os)	const;
 
 
 	private:

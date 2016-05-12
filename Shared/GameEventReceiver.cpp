@@ -2,7 +2,6 @@
 
 namespace ecs
 {
-
 	GameEventReceiver::GameEventReceiver(): AComponent("GameEventReceiver", GAME_EVENT_RECEIVER)
 	{
 		
@@ -71,4 +70,9 @@ namespace ecs
 		return m_events;
 	}
 
+
+	void	GameEventReceiver::dump(std::ostream& os)	const
+	{
+		os << "GameEventReceiver {}";
+	}
 };

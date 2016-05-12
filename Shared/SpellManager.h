@@ -20,7 +20,9 @@ namespace ecs
 		void	changeToNextSpell();
 		void	changeToPrecSpell();
 
-		void	dump()	const;
+		
+		virtual void	dump(std::ostream& os)	const;
+
 
 	private:
 		std::map<Spell::SpellType, Spell>				m_spells;

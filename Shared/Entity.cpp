@@ -3,14 +3,8 @@
 
 namespace ecs
 {
-	static int nextID()
-	{
-		static int id = 0;
-		return id++;
-	}
-
-	Entity::Entity(NetworkID netID) :
-		ID(nextID()), m_networkID(netID)
+	Entity::Entity(PlayerId owner) : NetworkObject(),
+		m_owner(owner), m_components()
 	{
 	}
 
@@ -22,42 +16,48 @@ namespace ecs
 		}
 	}
 
-	AComponent*& Entity::operator[](ComponentType type)
-	{
-		return m_components[type];
-	}
 
-	bool Entity::has(ComponentType type)
+
+	bool	Entity::has(ComponentType type)	const
 	{
 		try
 		{
 			m_components.at(type);
 			return true;
 		}
+
 		catch (const std::exception&)
 		{
 			return false;
 		}
 	}
 
-	void Entity::dump() const
+	PlayerId	Entity::getOwner()	const
 	{
-		std::cout << "{ Entity " << ID << std::endl;
-		for (auto component : m_components)
-		{
-			component.second->dump();
-		}
-		std::cout << "}" << std::endl;
+		return m_owner;
 	}
 
-	NetworkID Entity::getNetworkID() const
+	const std::map<ComponentType, AComponent*>&	Entity::getComponents()	const
 	{
-		return m_networkID;
+		return m_components;
 	}
 
-	void Entity::setNetworkID(const NetworkID networkId)
-	{
-		m_networkID = networkId;
-	}
 
+	AComponent*&	Entity::operator[](ComponentType type)
+	{
+		return m_components[type];
+	}
+}
+
+std::ostream&	operator<<(std::ostream& os, const ecs::Entity& entity)
+{
+	auto&	components = entity.getComponents();
+
+	os << "Entity {owner = " << entity.getOwner() << ", components = [";
+	for (auto component : components)
+	{
+		os << *(component.second);
+	}
+	os << "]}";
+	return os;
 }

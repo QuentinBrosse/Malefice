@@ -1,10 +1,8 @@
 #pragma once
 
 #include <map>
-
 #include "EntityManager.h"
 #include "Export.h"
-#include "NetworkID.h"
 
 class PlayerManager : public EntityManager
 {

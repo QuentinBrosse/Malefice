@@ -18,8 +18,8 @@ public:
 	void	run();
 
 
-	NetworkModule*	getNetworkModule()	const;
-	PlayerManager*	getPlayerManager()	const;
+	NetworkModule&	getNetworkModule();
+	PlayerManager&	getPlayerManager();
 
 
 protected:
@@ -41,8 +41,8 @@ private:
 	bool		m_isActive;
 
 	ServerCoreConfiguration	m_configuration;
-	NetworkModule*			m_networkModule;
-	PlayerManager*			m_playerManager;
+	NetworkModule			m_networkModule;
+	PlayerManager			m_playerManager;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;

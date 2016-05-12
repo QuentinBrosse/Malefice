@@ -3,7 +3,6 @@
 #include <string>
 #include <RakPeerInterface.h>
 #include <RPC3.h>
-#include <NetworkIDManager.h>
 #include "GeneralRPC.h"
 #include "PlayerRPC.h"
 
@@ -20,13 +19,11 @@ public:
 
 
 	RakNet::RPC3*				getRPC();
-	RakNet::NetworkIDManager*	getNetworkIDManager();
 
 
 private:
 	RakNet::RakPeerInterface*	m_rakPeer;
 	RakNet::RPC3*				m_rpc;
-	RakNet::NetworkIDManager	m_networkIDManager;
 	GeneralRPC*					m_generalRPC;
 	PlayerRPC*					m_playerRPC;
 };

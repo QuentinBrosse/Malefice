@@ -3,7 +3,6 @@
 #include <map>
 #include "Entity.h"
 #include "Export.h"
-#include "NetworkID.h"
 
 class PlayerManager
 {
@@ -14,14 +13,14 @@ public:
 	~PlayerManager() = default;
 
 	void			addPlayer(ecs::Entity* newPlayer);
-	void			removePlayer(ecs::NetworkID netID);
+	void			removePlayer(ecs::PlayerId owner);
 
-	bool			hasPlayer(ecs::NetworkID netID);
+	bool			hasPlayer(ecs::PlayerId owner);
 
 	void			setCurrentPlayer(ecs::Entity* newCurrentPlayer);
 	ecs::Entity*	getCurrentPlayer() const;
 private:
-	std::map<ecs::NetworkID, ecs::Entity*>	m_players;
+	std::map<ecs::PlayerId, ecs::Entity*>	m_players;
 	ecs::Entity*							m_currentPlayer;
 };
 #pragma once

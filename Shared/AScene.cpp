@@ -14,6 +14,8 @@ namespace ecs
 	{
 	}
 
+
+
 	std::string AScene::getNameTexture() const
 	{
 		return m_nameTexture;
@@ -28,6 +30,12 @@ namespace ecs
 	{
 		return m_pickableFlags;
 	}
+
+	irr::video::SMaterial* AScene::getMaterial() const
+	{
+		return m_material;
+	}
+
 
 	void AScene::setNameTexture(const std::string& newNameTexture)
 	{
@@ -44,20 +52,14 @@ namespace ecs
 		m_pickableFlags = newPickableFlags;
 	}
 
-	irr::video::SMaterial* AScene::getMaterial() const
-	{
-		return m_material;
-	}
-
-	void AScene::dump() const
-	{
-		std::cout << "[" << NAME << "/" << m_nameMesh << "/" << m_nameTexture << "]" << std::endl;
-	}
-
-
 	void AScene::setMaterial(irr::video::SMaterial* newMaterial)
 	{
 		m_material = newMaterial;
 	}
 
+
+	void	AScene::dump(std::ostream& os)	const
+	{
+		os << "AScene {NAME = " << NAME << ", nameMash = \"" << m_nameMesh << "\", nameTexture = \"" << m_nameTexture << "\"}";
+	}
 }

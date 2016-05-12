@@ -1,6 +1,5 @@
 #include "PlayerRPC.h"
 #include "NetworkRPC.h"
-#include "NetworkID.h"
 #include "ClientCore.h"
 #include "Logger.h"
 #include "Entity.h"
@@ -9,8 +8,6 @@
 
 PlayerRPC::PlayerRPC()
 {
-	this->SetNetworkIDManager(ClientCore::getInstance().getNetworkModule()->getNetworkIDManager());
-	this->SetNetworkID(NetworkRPC::PLAYER_RPC_ID);
 	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &PlayerRPC::playerConnect);
 	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_ADD.c_str(), &PlayerRPC::addPlayer);
 	ClientCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_REMOVE.c_str(), &PlayerRPC::removePlayer);
@@ -73,7 +70,7 @@ void	PlayerRPC::addPlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 */
 void	PlayerRPC::removePlayer(RakNet::BitStream *bitStream, RakNet::RPC3* remote)
 {
-	ecs::NetworkID	playerId;
+	ecs::PlayerId	playerId;
 
 	bitStream->Read(playerId);
 	LOG_INFO(NETWORK) << "Player " << playerId << " disconnected..";
