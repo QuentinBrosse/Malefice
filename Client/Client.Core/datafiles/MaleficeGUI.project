@@ -8,8 +8,8 @@
         <Item path="layouts/connectWindows.layout" type="file" />
         <Item path="layouts/connectionToServer.layout" type="file" />
         <Item path="layouts/mainMenu.layout" type="file" />
-        <Item path="imagesets/spells.imageset" type="file" />
         <Item path="layouts/menuPause.layout" type="file" />
         <Item path="layouts/options.layout" type="file" />
+        <Item path="imagesets/spells.imageset" type="file" />
     </Items>
 </Project>
