@@ -1,5 +1,7 @@
 #pragma once
 
+// Client Version
+
 #include <map>
 #include "EntityManager.h"
 #include "Export.h"

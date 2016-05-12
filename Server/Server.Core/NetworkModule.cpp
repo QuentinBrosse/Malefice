@@ -57,16 +57,16 @@ void	NetworkModule::pulse()
 				LOG_INFO(NETWORK) << "Incoming connection from " << packet->systemAddress.ToString(true, ':') << ".";
 				break;
 			case ID_DISCONNECTION_NOTIFICATION:
-				if (ServerCore::getInstance().getPlayerManager().hasPlayer(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
+				if (ServerCore::getInstance().getPlayerManager().hasEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
 				{
-					ServerCore::getInstance().getPlayerManager().removePlayer(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex));
+					ServerCore::getInstance().getPlayerManager().removeEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex));
 					LOG_INFO(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected" << ".";
 				}
 				break;
 			case ID_CONNECTION_LOST:
-				if (ServerCore::getInstance().getPlayerManager().hasPlayer(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
+				if (ServerCore::getInstance().getPlayerManager().hasEntity(static_cast<ecs::PlayerId>(packet->systemAddress.systemIndex)))
 				{
-					ServerCore::getInstance().getPlayerManager().removePlayer((ecs::PlayerId)packet->systemAddress.systemIndex);
+					ServerCore::getInstance().getPlayerManager().removeEntity((ecs::PlayerId)packet->systemAddress.systemIndex);
 					LOG_WARNING(NETWORK) << "Player " << packet->systemAddress.systemIndex << " disconnected (connection lost)" << ".";
 				}
 				break;

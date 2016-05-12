@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="WindowsLook/Static" name="Static" >
+        <Property name="Area" value="{{0,0},{0,0},{0,1667},{0,1098}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Property name="BackgroundColours" value="tl:96000000 tr:96000000 bl:96000000 br:96000001" />
+        <Window type="WindowsLook/Button" name="Button" >
+            <Property name="ID" value="1" />
+            <Property name="Area" value="{{0,584},{0,270},{0,726},{0,322}}" />
+            <Property name="Text" value="Options" />
+        </Window>
+        <Window type="WindowsLook/Button" name="Button2" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0,582},{0,434},{0,724},{0,486}}" />
+            <Property name="Text" value="Quitter" />
+        </Window>
+    </Window>
+</GUILayout>

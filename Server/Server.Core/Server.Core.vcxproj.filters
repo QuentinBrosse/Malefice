@@ -45,9 +45,6 @@
     <ClInclude Include="ServerCore.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="ServerCoreConfiguration.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="GeneralRPC.h">
       <Filter>Header Files\Network\RPC</Filter>
     </ClInclude>
@@ -77,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="WeaponSystem.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerCoreConfiguration.h">
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="WeaponSystem.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

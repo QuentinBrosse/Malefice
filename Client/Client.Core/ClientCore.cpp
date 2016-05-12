@@ -39,7 +39,7 @@ void	ClientCore::run()
 	}
 	else
 	{
-		m_graphicModule->setFPSCamera();
+		m_graphicModule->setFPSCamera(0.6f);
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{

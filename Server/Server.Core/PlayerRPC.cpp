@@ -7,14 +7,14 @@
 
 PlayerRPC::PlayerRPC()
 {
-	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &PlayerRPC::playerConnect);
-	ServerCore::getInstance().getNetworkModule()->getRPC()->RegisterFunction(NetworkRPC::PLAYER_SYNC.c_str(), &PlayerRPC::playerSync);
+	ServerCore::getInstance().getNetworkModule().getRPC()->RegisterFunction(NetworkRPC::PLAYER_CONNECT.c_str(), &PlayerRPC::playerConnect);
+	ServerCore::getInstance().getNetworkModule().getRPC()->RegisterFunction(NetworkRPC::PLAYER_SYNC.c_str(), &PlayerRPC::playerSync);
 }
 
 PlayerRPC::~PlayerRPC()
 {
-	ServerCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
-	ServerCore::getInstance().getNetworkModule()->getRPC()->UnregisterFunction(NetworkRPC::PLAYER_SYNC.c_str());
+	ServerCore::getInstance().getNetworkModule().getRPC()->UnregisterFunction(NetworkRPC::PLAYER_CONNECT.c_str());
+	ServerCore::getInstance().getNetworkModule().getRPC()->UnregisterFunction(NetworkRPC::PLAYER_SYNC.c_str());
 }
 
 /*
@@ -36,9 +36,9 @@ void	PlayerRPC::playerConnect(RakNet::BitStream* bitStream, RakNet::RPC3* remote
 	ecs::Entity* player =  PlayerFactory::createPlayer(irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), playerId, 0, 100);
 
 	bits.WriteCompressed(playerId);
-	ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_CONNECT, this, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, remote->GetLastSenderAddress(), false);
+	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_CONNECT, this, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, remote->GetLastSenderAddress(), false);
 
-	if (!ServerCore::getInstance().getPlayerManager()->hasPlayer(playerId))
+	if (!ServerCore::getInstance().getPlayerManager().hasEntity(playerId))
 	{
 		//ServerCore::getInstance().getPlayerManager()->addPlayer(player);
 	}

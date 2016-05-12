@@ -18,10 +18,11 @@ namespace ecs
 			NOTHING,
 			PLAYER,
 			SPAWN,
+			MAP,
 			ENTITY_COUNT,
 		};
 
-		Entity(PlayerId owner);
+		Entity(PlayerId owner, const EntityType entityType);
 		~Entity();
 		Entity(const Entity&)	= delete;
 		Entity(Entity&&)		= default;
@@ -39,6 +40,7 @@ namespace ecs
 
 	private:
 		PlayerId								m_owner;
+		const EntityType						ENTITY_TYPE;
 		std::map<ComponentType, AComponent*>	m_components;
 	};
 }

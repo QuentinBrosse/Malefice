@@ -1,3 +1,5 @@
+// Server Version
+
 #include "PlayerManager.h"
 #include "NetworkRPC.h"
 #include "BitStream.h"
@@ -6,7 +8,7 @@
 PlayerManager::PlayerManager(ecs::Entity* currentPlayer)
 {
 	m_currentPlayer = currentPlayer;
-	m_players.insert(std::pair<ecs::PlayerId, ecs::Entity*>(currentPlayer->getOwner(), currentPlayer));
+	m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(currentPlayer->getOwner(), currentPlayer));
 }
 
 PlayerManager::PlayerManager()
@@ -14,10 +16,10 @@ PlayerManager::PlayerManager()
 	m_currentPlayer = nullptr;
 }
 
-void PlayerManager::addPlayer(ecs::Entity* newPlayer)
+void PlayerManager::addEntity(ecs::Entity* newPlayer)
 {
-	m_players[newPlayer->getOwner()] = newPlayer;
-	for (auto it = m_players.begin(); it != m_players.end(); it++)
+	m_entities[newPlayer->getOwner()] = newPlayer;
+	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 	{
 		RakNet::BitStream	bits;
 
@@ -29,16 +31,16 @@ void PlayerManager::addPlayer(ecs::Entity* newPlayer)
 	}
 }
 
-bool PlayerManager::hasPlayer(ecs::PlayerId owner)
+bool PlayerManager::hasEntity(ecs::PlayerId owner)
 {
-	return m_players.find(owner) != m_players.end();
+	return m_entities.find(owner) != m_entities.end();
 }
 
-void PlayerManager::removePlayer(ecs::PlayerId owner)
+void PlayerManager::removeEntity(ecs::PlayerId owner)
 {
-	m_players.erase(owner);
+	m_entities.erase(owner);
 
-	for (auto it = m_players.begin(); it != m_players.end(); it++)
+	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 	{
 		RakNet::BitStream bits;
 
@@ -52,15 +54,15 @@ void PlayerManager::removePlayer(ecs::PlayerId owner)
 
 void PlayerManager::setCurrentPlayer(ecs::Entity* newCurrentPlayer)
 {
-	if (m_players[newCurrentPlayer->getOwner()] == nullptr)
+	if (m_entities[newCurrentPlayer->getOwner()] == nullptr)
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_players.insert(std::pair<ecs::PlayerId, ecs::Entity*>(newCurrentPlayer->getOwner(), newCurrentPlayer));
+		m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(newCurrentPlayer->getOwner(), newCurrentPlayer));
 	}
 	else
 	{
 		m_currentPlayer = newCurrentPlayer;
-		m_players[newCurrentPlayer->getOwner()] = newCurrentPlayer;
+		m_entities[newCurrentPlayer->getOwner()] = newCurrentPlayer;
 	}
 }
 

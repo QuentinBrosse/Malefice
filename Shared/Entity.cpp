@@ -3,8 +3,8 @@
 
 namespace ecs
 {
-	Entity::Entity(PlayerId owner) : NetworkObject(),
-		m_owner(owner), m_components()
+	Entity::Entity(PlayerId owner, const EntityType entityType) : NetworkObject(),
+		m_owner(owner), m_components(), ENTITY_TYPE(entityType)
 	{
 	}
 
