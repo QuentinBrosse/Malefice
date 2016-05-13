@@ -34,6 +34,7 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
+	createEntities();
 	if (!ProjectGlobals::NO_MENU)
 	{
 		m_graphicModule->setGuiCamera();
@@ -42,7 +43,6 @@ void	ClientCore::run()
 	else
 	{
 		m_graphicModule->setFPSCamera();
-		createEntities();
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
