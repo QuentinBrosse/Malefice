@@ -15,8 +15,8 @@ namespace ecs
 		Position& operator=(const Position& pos);
 		~Position() = default;
 
-		void					setVectorPosition(float x, float y, float z);
-		void					setVectorRotation(float x, float y, float z);
+		void					setVectorPosition(const irr::core::vector3df& newVectorPosition);
+		void					setVectorRotation(const irr::core::vector3df& newVectorRotation);
 		void					set(const Position& pos);
 
 		irr::core::vector3df	getVectorPosition()					const;

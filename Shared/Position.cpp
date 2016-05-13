@@ -26,14 +26,14 @@ namespace ecs
 		return *this;
 	}
 
-	void Position::setVectorPosition(float x, float y, float z)
+	void Position::setVectorPosition(const irr::core::vector3df& newVectorPosition)
 	{
-		m_vectorPosition.set(x, y, z);
+		m_vectorPosition.set(newVectorPosition);
 	}
 
-	void Position::setVectorRotation(float x, float y, float z)
+	void Position::setVectorRotation(const irr::core::vector3df& newVectorRotation)
 	{
-		m_vectorRotation.set(x, y, z);
+		m_vectorRotation.set(newVectorRotation);
 	}
 
 	void Position::set(const Position& pos)

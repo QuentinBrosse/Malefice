@@ -15,7 +15,6 @@ GraphicUtil::GraphicUtil()
 
 	m_driver = m_device->getVideoDriver();
 	m_sceneManager = m_device->getSceneManager();
-	m_camera = new Camera(ecs::Position(0, 0, 0, 0, 0, 0), m_sceneManager);
 	m_keyMap = new irr::SKeyMap[5];
 	m_keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
 	m_keyMap[0].KeyCode = irr::KEY_KEY_Z;        // w
@@ -27,12 +26,13 @@ GraphicUtil::GraphicUtil()
 	m_keyMap[3].KeyCode = irr::KEY_KEY_D;        // d
 	m_keyMap[4].Action = irr::EKA_JUMP_UP;       // saut
 	m_keyMap[4].KeyCode = irr::KEY_SPACE;        // barre espace
+	initGraphics();
 }
 
 GraphicUtil::~GraphicUtil()
 {
-	if(m_camera)
-		delete (m_camera);
+	if(m_FPSCamera)
+		delete (m_FPSCamera);
 	// Delete all?
 }
 
@@ -40,7 +40,6 @@ void GraphicUtil::initGraphics()
 {
 	m_device->getCursorControl()->setVisible(false);
 	m_sceneManager->getParameters()->setAttribute(irr::scene::OBJ_TEXTURE_PATH, "media/"); //TODO: Define Texture's Path
-	m_camera->init();
 	m_device->setEventReceiver(&m_receiver);
 
 	CEGUI::IrrlichtRenderer& renderer = CEGUI::IrrlichtRenderer::create(*m_device);
@@ -98,9 +97,9 @@ irr::scene::ISceneManager* GraphicUtil::getSceneManager()
 	return m_sceneManager;
 }
 
-Camera* GraphicUtil::getCamera()
+Camera* GraphicUtil::getFPSCamera()
 {
-	return (m_camera);
+	return (m_FPSCamera);
 }
 
 void GraphicUtil::CEGUIEventInjector()
@@ -176,22 +175,19 @@ void GraphicUtil::setGuiCamera()
 {
 	irr::core::vector3df position = m_sceneManager->getActiveCamera()->getPosition();
 	irr::core::vector3df rotation = m_sceneManager->getActiveCamera()->getRotation();
+	irr::core::vector3df target =  m_sceneManager->getActiveCamera()->getTarget();
 	if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
 	m_sceneManager->addCameraSceneNode(0, position, rotation, -1);
+	m_sceneManager->getActiveCamera()->setTarget(target);
 	m_device->getCursorControl()->setVisible(true);
 }
 
-void GraphicUtil::setFPSCamera(float moveSpeed, float rotationSpeed)
+void GraphicUtil::setFPSCamera()
 {
 	if (m_sceneManager->getActiveCamera())
 		m_sceneManager->getActiveCamera()->remove();
 	m_device->getCursorControl()->setVisible(false);
-	m_sceneManager->addCameraSceneNodeFPS(
-		0,      // pas de noeud parent
-		rotationSpeed, // vitesse de rotation
-		moveSpeed,  // vitesse de deplacement
-		-1,
-		m_keyMap,
-		5);     //Keymap entries number
+	m_FPSCamera = new Camera(ecs::Position(irr::core::vector3df(50.0f, 50.0f, -60.0f), irr::core::vector3df(-70.0f, 30.0f, -60.0f)), m_sceneManager);
+	m_FPSCamera->init();
 }
