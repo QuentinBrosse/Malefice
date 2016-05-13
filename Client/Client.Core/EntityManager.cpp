@@ -1,30 +1,47 @@
-// Client Version
-
 #include "EntityManager.h"
+#include "Logger.h"
+
+EntityManager::EntityManager(NetworkRPC::ReservedNetworkIds networkId) : NetworkObject(networkId)
+{
+}
 
 EntityManager::~EntityManager()
 {
-
+	for (auto entity : m_entities)
+		delete entity.second;
 }
 
-void EntityManager::addEntity(ecs::Entity *newPlayer)
+void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity)
 {
-	// A voir si il faut tester avant de l'ajouter
-	m_entities[newPlayer->getOwner()] = newPlayer;
+	m_entities[owner] = entity;
 }
 
-void EntityManager::removeEntity(ecs::PlayerId owner)
+void	EntityManager::removeEntity(ecs::ClientId owner)
 {
-	m_entities.erase(owner);
+	auto	it = m_entities.find(owner);
+
+	if (it != m_entities.end())
+	{
+		m_entities.erase(it);
+	}
+	else
+	{
+		LOG_ERROR(ECS) << "Could not delete entity with owner = " << owner << " (not found).";
+	}
 }
 
-bool	EntityManager::hasEntity(ecs::PlayerId owner)
+
+bool	EntityManager::hasEntity(ecs::ClientId owner)	const
 {
 	return m_entities.find(owner) != m_entities.end();
 }
 
-ecs::Entity* EntityManager::findEntity(ecs::PlayerId owner)
+ecs::Entity*	EntityManager::findEntity(ecs::ClientId owner)	const
 {
-	return m_entities[owner];
-}
+	auto	it = m_entities.find(owner);
 
+	if (it != m_entities.end())
+		return it->second;
+	else
+		LOG_ERROR(ECS) << "Could not find entity with owner = " << owner << ".";
+}

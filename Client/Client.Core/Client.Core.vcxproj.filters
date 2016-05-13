@@ -37,12 +37,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Network\RPC">
-      <UniqueIdentifier>{ba354f28-1500-4860-b6cb-0b228f21a2a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Network\RPC">
-      <UniqueIdentifier>{9c0b07c6-1972-4af4-93bf-6e7c37e4f85f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{c8c39665-0cd2-41f7-bfca-d8ed959555bc}</UniqueIdentifier>
     </Filter>
@@ -71,12 +65,6 @@
     </ClInclude>
     <ClInclude Include="NetworkModule.h">
       <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneralRPC.h">
-      <Filter>Header Files\Network\RPC</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerRPC.h">
-      <Filter>Header Files\Network\RPC</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\General</Filter>
@@ -139,12 +127,6 @@
     </ClCompile>
     <ClCompile Include="NetworkModule.cpp">
       <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneralRPC.cpp">
-      <Filter>Source Files\Network\RPC</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerRPC.cpp">
-      <Filter>Source Files\Network\RPC</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\General</Filter>

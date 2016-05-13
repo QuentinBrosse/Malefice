@@ -2,22 +2,23 @@
 #include "NetworkModule.h"
 #include "RakNetUtility.h"
 #include "NetworkManager.h"
+#include "NetworkRPC.h"
+#include "ClientCore.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
-	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(), m_rpc(new RakNet::RPC3()), m_generalRPC(nullptr), m_playerRPC(nullptr), m_connected(false), m_netState(NETSTATE_NONE)
+	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(), m_connectionState(RakNet::ConnectionState::IS_NOT_CONNECTED), m_rpc()
 {
-	m_rpc->SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
-	m_rakPeer->AttachPlugin(m_rpc);
+	m_rpc.SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
+	this->registerRPCs();
+	m_rakPeer->AttachPlugin(&m_rpc);
 }
 
 NetworkModule::~NetworkModule()
 {
-	delete m_generalRPC;
-	delete m_playerRPC;
-	m_rakPeer->DetachPlugin(m_rpc);
+	m_rakPeer->DetachPlugin(&m_rpc);
+	this->unregisterRPCs();
 	m_rakPeer->Shutdown(500);
-	delete m_rpc;
 	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
@@ -35,52 +36,51 @@ bool	NetworkModule::init()
 	}
 }
 
-bool	NetworkModule::connect(const std::string& address, short port, const std::string& password)
+bool	NetworkModule::connect(const std::string& address, unsigned short port, const std::string& password)
 {
-	if (m_connected)
+	if (m_connectionState != RakNet::ConnectionState::IS_NOT_CONNECTED && m_connectionState == RakNet::ConnectionState::IS_DISCONNECTED)
 		return true;
-	m_generalRPC = new GeneralRPC();
-	m_playerRPC = new PlayerRPC();
 	if (m_rakPeer->Connect(address.c_str(), port, password.c_str(), password.length()) == RakNet::ConnectionAttemptResult::CONNECTION_ATTEMPT_STARTED)
 	{
-		m_netState = NETSTATE_CONNECTING;
-		m_connected = true;
+		m_connectionState = RakNet::ConnectionState::IS_CONNECTING;
 		return true;
 	}
 	else
 	{
-		m_connected = false;
+		m_connectionState = RakNet::ConnectionState::IS_NOT_CONNECTED;
 		return false;
 	}
 }
 
 void	NetworkModule::disconnect()
 {
-	if (!m_connected)
+	if (this->getConnectionState() != RakNet::ConnectionState::IS_CONNECTED)
 		return;
-	m_rakPeer->CloseConnection(RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-	m_connected = false;
-	m_netState = NETSTATE_DISCONNECTED;
+	m_rakPeer->CloseConnection(m_serverAddress, true);
+	m_connectionState = RakNet::ConnectionState::IS_DISCONNECTED;
 }
 
 void	NetworkModule::pulse()
 {
 	RakNet::Packet*	packet = nullptr;
 
-	if (m_netState == NETSTATE_DISCONNECTED)
+	if (m_connectionState != RakNet::ConnectionState::IS_CONNECTED && m_connectionState != RakNet::ConnectionState::IS_CONNECTING)
 		return;
-	while (packet = m_rakPeer->Receive())
+	while ((packet = m_rakPeer->Receive()) != nullptr)
 	{
-		if (packet == nullptr)
-			continue;
 		switch (packet->data[0])
 		{
-		case ID_CONNECTION_REQUEST_ACCEPTED:
-			m_netState = NETSTATE_CONNECTED;
+		case DefaultMessageIDTypes::ID_CONNECTION_REQUEST_ACCEPTED:
 			m_serverAddress = packet->systemAddress;
-			m_playerRPC->connectionAccepted();
+			m_connectionState = RakNet::ConnectionState::IS_CONNECTED;
 			break;
-		case ID_RPC_REMOTE_ERROR:
+		case DefaultMessageIDTypes::ID_DISCONNECTION_NOTIFICATION:
+			m_connectionState = RakNet::ConnectionState::IS_DISCONNECTED;
+			break;
+		case DefaultMessageIDTypes::ID_CONNECTION_LOST:
+			m_connectionState = RakNet::ConnectionState::IS_DISCONNECTED;
+			break;
+		case DefaultMessageIDTypes::ID_RPC_REMOTE_ERROR:
 			RakNetUtility::logRPCRemoteError(static_cast<RakNet::RPCErrorCodes>(packet->data[1]), std::string(reinterpret_cast<char*>(packet->data) + 2));
 			break;
 		}
@@ -88,23 +88,22 @@ void	NetworkModule::pulse()
 	}
 }
 
-
-void	NetworkModule::callRPC(const std::string& rpc, RakNet::NetworkIDObject* networkObject, RakNet::BitStream* bitStream, PacketPriority packetPriority, PacketReliability packetReliability)
+RakNet::ConnectionState	NetworkModule::getConnectionState()	const
 {
-	RakNet::RPC3::CallExplicitParameters	callExplicitParameters(networkObject->GetNetworkID(), m_serverAddress, false, 0, packetPriority, packetReliability, 0);
-
-	if (m_rpc != nullptr)
-		m_rpc->CallExplicit(rpc.c_str(), &callExplicitParameters, bitStream, m_rpc);
+	return m_connectionState;
 }
 
 
-
-RakNet::RPC3*	NetworkModule::getRPC()
+void	NetworkModule::registerRPCs()
 {
-	return m_rpc;
+	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
+	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
+	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
 }
 
-bool	NetworkModule::isConnected()	const
+void	NetworkModule::unregisterRPCs()
 {
-	return m_connected;
+	m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
 }

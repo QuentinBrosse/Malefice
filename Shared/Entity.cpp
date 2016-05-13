@@ -3,7 +3,7 @@
 
 namespace ecs
 {
-	Entity::Entity(PlayerId owner, const EntityType entityType) : NetworkObject(),
+	Entity::Entity(ecs::ClientId owner, const EntityType entityType) : NetworkObject(),
 		m_owner(owner), m_components(), ENTITY_TYPE(entityType)
 	{
 	}
@@ -32,7 +32,7 @@ namespace ecs
 		}
 	}
 
-	PlayerId	Entity::getOwner()	const
+	ecs::ClientId	Entity::getOwner()	const
 	{
 		return m_owner;
 	}

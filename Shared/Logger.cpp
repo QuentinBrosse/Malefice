@@ -27,6 +27,11 @@ void	Logger::setup(const std::string& filePath)
 
 	spdlog::register_logger(m_logger);
 	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S][%l]%v");
+#ifdef _DEBUG
+	spdlog::set_level(spdlog::level::debug);
+#else
+	spdlog::set_level(spdlog::level::info);
+#endif
 }
 
 std::string	Logger::logCategoryToString(Logger::LogCategory logCategory)
@@ -39,8 +44,8 @@ std::string	Logger::logCategoryToString(Logger::LogCategory logCategory)
 	case LogCategory::NETWORK:
 		return "network";
 		break;
-	case LogCategory::CHAT:
-		return "chat";
+	case LogCategory::ECS:
+		return "ecs";
 		break;
 	default:
 		throw std::invalid_argument("Unknown Logger::LogCategory " + std::to_string(static_cast<int>(logCategory)));

@@ -1,72 +1,27 @@
-// Server Version
-
+#include <RakNetTypes.h>
 #include "PlayerManager.h"
-#include "NetworkRPC.h"
-#include "BitStream.h"
+#include "PlayerFactory.h"
 #include "ServerCore.h"
+#include "NetworkRPC.h"
+#include "Logger.h"
 
-PlayerManager::PlayerManager(ecs::Entity* currentPlayer)
+void	PlayerManager::createEntity(ecs::ClientId owner)
 {
-	m_currentPlayer = currentPlayer;
-	m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(currentPlayer->getOwner(), currentPlayer));
+	m_entities[owner] = PlayerFactory::createPlayer(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), 0, 0); // TODO: pick random spawn position, set rotation/team/initial life
+	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, owner, m_entities[owner]);
 }
 
-PlayerManager::PlayerManager()
+void PlayerManager::deleteEntity(ecs::ClientId owner)
 {
-	m_currentPlayer = nullptr;
-}
+	auto	it = m_entities.find(owner);
 
-void PlayerManager::addEntity(ecs::Entity* newPlayer)
-{
-	m_entities[newPlayer->getOwner()] = newPlayer;
-	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+	if (it != m_entities.end())
 	{
-		RakNet::BitStream	bits;
-
-		if (it->first == newPlayer->getOwner())
-			continue;
-
-		bits.WriteCompressed(newPlayer->getOwner());
-		//ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_ADD, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
-	}
-}
-
-bool PlayerManager::hasEntity(ecs::PlayerId owner)
-{
-	return m_entities.find(owner) != m_entities.end();
-}
-
-void PlayerManager::removeEntity(ecs::PlayerId owner)
-{
-	m_entities.erase(owner);
-
-	for (auto it = m_entities.begin(); it != m_entities.end(); it++)
-	{
-		RakNet::BitStream bits;
-
-		if (it->first == owner)
-			continue;
-
-		bits.Write(owner);
-		//ServerCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_REMOVE, &bits, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE, it->first, false);
-	}
-}
-
-void PlayerManager::setCurrentPlayer(ecs::Entity* newCurrentPlayer)
-{
-	if (m_entities[newCurrentPlayer->getOwner()] == nullptr)
-	{
-		m_currentPlayer = newCurrentPlayer;
-		m_entities.insert(std::pair<ecs::PlayerId, ecs::Entity*>(newCurrentPlayer->getOwner(), newCurrentPlayer));
+		m_entities.erase(it);
+		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, owner);
 	}
 	else
 	{
-		m_currentPlayer = newCurrentPlayer;
-		m_entities[newCurrentPlayer->getOwner()] = newCurrentPlayer;
+		LOG_ERROR(ECS) << "Could not delete entity with owner = " << owner << " (not found).";
 	}
-}
-
-ecs::Entity* PlayerManager::getCurrentPlayer() const
-{
-	return m_currentPlayer;
 }

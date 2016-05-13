@@ -1,15 +1,19 @@
 #include "NetworkRPC.h"
 
+/*
+** These strings are just IDENTIFIERS of the RPCs.
+** Below the function names are used as identifiers but it would work with any string,
+** as long as the identifier and the function are correctly bound using RPC3::RegisterFunction()
+*/
 
-const RakNet::NetworkID	NetworkRPC::GENERAL_RPC_ID	= 0;
-const RakNet::NetworkID	NetworkRPC::PLAYER_RPC_ID	= 1;
+
+// Client-Side executed
+
+const std::string	NetworkRPC::CLIENT_CORE_SET_CLIENT_ID	= "ClientCore::setClientId";
+
+const std::string	NetworkRPC::PLAYER_MANAGER_ADD_ENTITY		= "PlayerManager::addEntity";
+const std::string	NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY	= "PlayerManager::removeEntity";
 
 
-const std::string	NetworkRPC::PLAYER_CONNECT		= "RPC_PlayerConnect";
-const std::string	NetworkRPC::PLAYER_DISCONNECT	= "RPC_PlayerDisconnect";
-const std::string	NetworkRPC::PLAYER_SYNC			= "RPC_PlayerSync";
+// Server-Side executed
 
-const std::string	NetworkRPC::PLAYER_ADD		= "RPC_PlayerAdd";
-const std::string	NetworkRPC::PLAYER_REMOVE	= "RPC_PlayerRemove";
-
-const std::string	NetworkRPC::PLAYER_CHAT	= "RPC_PlayerChat";

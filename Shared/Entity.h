@@ -8,7 +8,7 @@
 
 namespace ecs
 {
-	typedef int	PlayerId;
+	typedef int	ClientId;
 
 	class MALEFICE_DLL_EXPORT Entity : public NetworkObject
 	{
@@ -22,8 +22,8 @@ namespace ecs
 			ENTITY_COUNT,
 		};
 
-		Entity(PlayerId owner, const EntityType entityType);
-		~Entity();
+		Entity(ecs::ClientId owner, const EntityType entityType);
+		virtual ~Entity();
 		Entity(const Entity&)	= delete;
 		Entity(Entity&&)		= default;
 		
@@ -32,14 +32,14 @@ namespace ecs
 		
 
 		bool										has(ComponentType type)	const;
-		PlayerId									getOwner()				const;
+		ecs::ClientId								getOwner()				const;
 		const std::map<ComponentType, AComponent*>&	getComponents()			const;
 
 		AComponent*&	operator[](ComponentType type);
 
 
 	private:
-		PlayerId								m_owner;
+		ecs::ClientId							m_owner;
 		const EntityType						ENTITY_TYPE;
 		std::map<ComponentType, AComponent*>	m_components;
 	};

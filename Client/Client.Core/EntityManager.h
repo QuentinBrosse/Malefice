@@ -1,22 +1,22 @@
 #pragma once
 
-// Client Version
-
+#include "NetworkObject.h"
+#include "NetworkRPC.h"
 #include "Entity.h"
 
-class EntityManager
+class EntityManager : public NetworkObject
 {
 public:
-	EntityManager() = default;
+	EntityManager(NetworkRPC::ReservedNetworkIds networkId);
 	~EntityManager();
 
-	void			addEntity(ecs::Entity* newEntity);
-	void			removeEntity(ecs::PlayerId owner);
+	virtual void	addEntity(ecs::ClientId owner, ecs::Entity* entity);
+	virtual void	removeEntity(ecs::ClientId owner);
 
-	bool			hasEntity(ecs::PlayerId owner);
+	bool			hasEntity(ecs::ClientId owner)	const;
+	ecs::Entity*	findEntity(ecs::ClientId owner)	const;
 
-	ecs::Entity*	findEntity(ecs::PlayerId owner);
 
 protected:
-	std::map<ecs::PlayerId, ecs::Entity*>	m_entities;
+	std::map<ecs::ClientId, ecs::Entity*>	m_entities;
 };

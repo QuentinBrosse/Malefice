@@ -1,22 +1,20 @@
 #pragma once
 
-// Server Version
-
 #include "Entity.h"
 
 class EntityManager
 {
 public:
-	EntityManager() = default;
+	EntityManager()	= default;
 	~EntityManager();
 
-	virtual void			addEntity(ecs::Entity* newEntity);
-	virtual void			removeEntity(ecs::PlayerId owner);
+	virtual void			createEntity(ecs::ClientId owner)	= 0;
+	virtual void			deleteEntity(ecs::ClientId owner)	= 0;
 
-	virtual bool			hasEntity(ecs::PlayerId owner);
+	bool			hasEntity(ecs::ClientId owner)	const;
+	ecs::Entity*	findEntity(ecs::ClientId owner)	const;
 
-	virtual ecs::Entity*	findEntity(ecs::PlayerId owner);
 
 protected:
-	std::map<ecs::PlayerId, ecs::Entity*>	m_entities;
+	std::map<ecs::ClientId, ecs::Entity*>	m_entities;
 };
