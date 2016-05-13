@@ -73,13 +73,13 @@ void	ClientCore::pulse()
 	{
 		m_graphicModule->getMenuPause()->checkPause();
 
-
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		ecs::PositionSystem::update(*m_player);
+		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+			ecs::PositionSystem::update(*m_player);
 
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
