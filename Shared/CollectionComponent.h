@@ -8,6 +8,7 @@ namespace ecs
 	{
 		DEFAULT,
 		LIFE,
+		ARMOR,
 		POSITION,
 		MOVEMENT,
 		TEAM,

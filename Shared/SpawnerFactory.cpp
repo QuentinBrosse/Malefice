@@ -17,7 +17,7 @@ ecs::Entity* SpawnerFactory::createLifeSpawner(const irr::core::vector3df& vecto
 {
 	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
 
-	(*entity)[ecs::LIFE] = new ecs::Life(50);
+	(*entity)[ecs::LIFE] = new ecs::Life(50, ecs::ComponentType::LIFE);
 
 	return entity;
 }

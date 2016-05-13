@@ -165,6 +165,15 @@
     <ClCompile Include="SceneBillboard.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -273,6 +282,15 @@
       <Filter>Header Files\ECS\Factory</Filter>
     </ClInclude>
     <ClInclude Include="AScene.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>

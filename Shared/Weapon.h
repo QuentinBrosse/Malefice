@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+#include "SceneAnimatedMesh.h"
 #include "AComponent.h"
 #include "Export.h"
 
@@ -56,8 +57,13 @@ namespace ecs
 		void				incAmmunition(int nbAmmuition);
 		void				incAmmunitionExplosive(int nbAmmunition);
 
+		void				createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active);
 
-		virtual void	dump(std::ostream& os)	const;
+		void setActivity(const bool active);
+
+		SceneAnimatedMesh*	getScene()						const;
+
+		virtual void		dump(std::ostream& os)	const;
 
 
 	private:
@@ -75,5 +81,6 @@ namespace ecs
 		int					m_currentAmmunitionLoader;
 		int					m_currentAmmunitionExplosiveLoader;
 		int					m_currentAmmunitionExplosive;
+		SceneAnimatedMesh*	m_scene;
 	};
 }

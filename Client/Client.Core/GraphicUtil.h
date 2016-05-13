@@ -25,7 +25,7 @@ public:
 	irr::video::IVideoDriver* getDriver();
 	void setGuiCamera();
 	MenuPause* getMenuPause();
-	void setFPSCamera(float moveSpeed = 0.06f, float rotationSpeed = 100.0f);
+	void setFPSCamera();
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;

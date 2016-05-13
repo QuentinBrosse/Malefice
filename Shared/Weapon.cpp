@@ -1,16 +1,17 @@
 #include "Weapon.h"
+#include "NodePickable.h"
 
 namespace ecs
 {
 	Weapon::Weapon() : AComponent("Weapon", WEAPON),
-		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), MAX_AMMUNITION_LOADER(0), MAX_AMMUNITION_EXPLOSIVE_LOADER(0), WEAPON_TYPE(DEFAULT), HAND_TO_HAND(false)
+		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), MAX_AMMUNITION_LOADER(0), MAX_AMMUNITION_EXPLOSIVE_LOADER(0), WEAPON_TYPE(DEFAULT), HAND_TO_HAND(false), m_scene(nullptr)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
 		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
 	}
 
 	Weapon::Weapon(const int id, const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, const WeaponType weaponType, const bool handToHand) : AComponent("Weapon", WEAPON),
-		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), MAX_AMMUNITION_LOADER(maxAmmunitionLoader), MAX_AMMUNITION_EXPLOSIVE_LOADER(maxAmmunitionExplosiveLoader), WEAPON_TYPE(weaponType), HAND_TO_HAND(handToHand)
+		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), MAX_AMMUNITION_LOADER(maxAmmunitionLoader), MAX_AMMUNITION_EXPLOSIVE_LOADER(maxAmmunitionExplosiveLoader), WEAPON_TYPE(weaponType), HAND_TO_HAND(handToHand), m_scene(nullptr)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
 		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
@@ -19,7 +20,7 @@ namespace ecs
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", WEAPON),
-		ID(cpy.ID), WEAPON_NAME(cpy.NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND)
+		ID(cpy.ID), WEAPON_NAME(cpy.NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND), m_scene(nullptr)
 	{
 		m_currentAmmunition = cpy.m_currentAmmunition;
 		m_currentAmmunitionExplosive = cpy.m_currentAmmunitionExplosive;
@@ -33,6 +34,7 @@ namespace ecs
 		m_currentAmmunitionExplosive = other.m_currentAmmunitionExplosive;
 		m_currentAmmunitionLoader = other.m_currentAmmunitionLoader;
 		m_currentAmmunitionExplosiveLoader = other.m_currentAmmunitionExplosiveLoader;
+		m_scene = other.m_scene;
 		return *this;
 	}
 
@@ -158,5 +160,30 @@ namespace ecs
 		m_currentAmmunitionExplosive += nbAmmunition;
 		if (m_currentAmmunitionExplosive > MAX_AMMUNITION_EXPLOSIVE)
 			m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
+	}
+
+	void Weapon::createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active)
+	{
+		if (m_scene)
+			delete m_scene;
+		device->getSceneManager()->getActiveCamera();
+		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), newNameTexture, newNameMesh, nodePickable::NOT_PICKABLE, true);
+
+	
+		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+		m_scene->getScene()->setName(newNameMesh.c_str());
+
+		setActivity(active);
+		//TODO: replace nullptr with camera
+	}
+
+	void	Weapon::setActivity(const bool active)
+	{
+		m_scene->getScene()->setVisible(active);
+	}
+
+	SceneAnimatedMesh* Weapon::getScene() const
+	{
+		return m_scene;
 	}
 };

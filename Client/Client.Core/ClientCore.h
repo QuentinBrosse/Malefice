@@ -40,8 +40,7 @@ private:
 	bool						m_isActive;
 	
 	ecs::Entity*				m_map;
-	std::vector<ecs::Entity*>	m_entitiesMouvable;
-	ecs::Entity*				m_predator;
+	ecs::Entity*				m_player;
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();
 };
