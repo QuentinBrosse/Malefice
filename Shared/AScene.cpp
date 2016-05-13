@@ -36,7 +36,6 @@ namespace ecs
 		return m_material;
 	}
 
-
 	void AScene::setNameTexture(const std::string& newNameTexture)
 	{
 		m_nameTexture = newNameTexture;

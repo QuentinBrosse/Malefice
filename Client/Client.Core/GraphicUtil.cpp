@@ -1,4 +1,7 @@
 #include "GraphicUtil.h"
+#include "ClientCore.h"
+#include "SceneMesh.h"
+
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
@@ -196,4 +199,11 @@ void GraphicUtil::setFPSCamera()
 	m_device->getCursorControl()->setVisible(false);
 	m_FPSCamera = new Camera(ecs::Position(irr::core::vector3df(50.0f, 50.0f, -60.0f), irr::core::vector3df(-70.0f, 30.0f, -60.0f)), m_sceneManager);
 	m_FPSCamera->init();
+	ClientCore&		clientCore = ClientCore::getInstance();
+	ecs::Entity*	map;
+
+	if ((map = clientCore.getMap()) != nullptr)
+	{
+		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::SCENE])->setCollision();
+	}
 }

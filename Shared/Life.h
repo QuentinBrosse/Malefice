@@ -10,7 +10,7 @@ namespace ecs
 	public:
 		const int MAX_LIFE;
 
-		Life(int maxLife);
+		Life(const int maxLife, const ComponentType type);
 		~Life() = default;
 
 		int		get() const;
@@ -32,7 +32,7 @@ namespace ecs
 		virtual void	dump(std::ostream& os)	const;
 
 
-	private:
+	protected:
 		int	m_currentLife;		
 	};
 }

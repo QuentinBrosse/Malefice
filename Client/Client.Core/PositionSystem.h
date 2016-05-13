@@ -13,5 +13,7 @@ namespace ecs
 		~PositionSystem() = delete;
 
 		static void	update(Entity& entity);
+		static void	initWeapon(Entity& entity);
+		static void	initScenePosition(Entity& entity);
 	};
 }

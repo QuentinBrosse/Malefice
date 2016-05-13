@@ -12,6 +12,7 @@ namespace ecs
 
 		virtual	void			setPosition(const Position& newPosition);
 
+		void					setCollision();
 
 		virtual void	dump(std::ostream& os)	const;
 

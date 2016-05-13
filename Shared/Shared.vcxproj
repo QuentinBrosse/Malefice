@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="AComponent.cpp" />
     <ClCompile Include="AConfiguration.cpp" />
+    <ClCompile Include="Armor.cpp" />
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameEventReceiver.cpp" />
@@ -188,6 +189,7 @@
   <ItemGroup>
     <ClInclude Include="AComponent.h" />
     <ClInclude Include="AConfiguration.h" />
+    <ClInclude Include="Armor.h" />
     <ClInclude Include="AScene.h" />
     <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />

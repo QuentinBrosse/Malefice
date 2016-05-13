@@ -6,6 +6,7 @@
 #include "mapFactory.h"
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
+#include "WeaponManager.h"
 
 #include <iostream>
 #include <irrlicht.h>
@@ -78,7 +79,7 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		ecs::PositionSystem::update(*m_map);
+		ecs::PositionSystem::update(*m_player);
 
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
@@ -93,7 +94,10 @@ void	ClientCore::pulse()
 void ClientCore::createEntities()
 {
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, "20kdm2.bsp", "map-20kdm2.pk3");
-	m_predator = PlayerFactory::createPredator(0, irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(0.0, 0.0, 0.0));
+	ecs::PositionSystem::initScenePosition(*m_map);
+	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
+	ecs::PositionSystem::initScenePosition(*m_player);
+	ecs::PositionSystem::initWeapon(*m_player);
 }
 
 bool	ClientCore::isActive()	const
@@ -126,4 +130,9 @@ void	ClientCore::setClientId(ecs::ClientId clientId)
 {
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
+}
+
+ecs::Entity* ClientCore::getMap() const
+{
+	return m_map;
 }
