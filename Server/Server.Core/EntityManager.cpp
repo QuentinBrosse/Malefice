@@ -1,30 +1,24 @@
-// Server Version
-
 #include "EntityManager.h"
+#include "Logger.h"
 
 EntityManager::~EntityManager()
 {
-
+	for (auto entity : m_entities)
+		delete entity.second;
 }
 
-void EntityManager::addEntity(ecs::Entity *newPlayer)
-{
-	// A voir si il faut tester avant de l'ajouter
-	m_entities[newPlayer->getOwner()] = newPlayer;
-}
 
-void EntityManager::removeEntity(ecs::PlayerId owner)
-{
-	m_entities.erase(owner);
-}
-
-bool	EntityManager::hasEntity(ecs::PlayerId owner)
+bool	EntityManager::hasEntity(ecs::ClientId owner)	const
 {
 	return m_entities.find(owner) != m_entities.end();
 }
 
-ecs::Entity* EntityManager::findEntity(ecs::PlayerId owner)
+ecs::Entity*	EntityManager::findEntity(ecs::ClientId owner)	const
 {
-	return m_entities[owner];
-}
+	auto	it = m_entities.find(owner);
 
+	if (it != m_entities.end())
+		return it->second;
+	else
+		LOG_ERROR(ECS) << "Could not find entity with owner = " << owner << ".";
+}

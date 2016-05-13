@@ -17,9 +17,7 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="ServerCore.h" />
-    <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="NetworkModule.h" />
-    <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="ServerCoreConfiguration.h" />
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
@@ -34,10 +32,8 @@
     <ClCompile Include="PositionSystem.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
-    <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
-    <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="WeaponManagerSystem.cpp" />
