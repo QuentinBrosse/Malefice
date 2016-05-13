@@ -30,7 +30,7 @@ void MenuPause::checkPause()
 
 bool MenuPause::onOptionButtonClicked()
 {
-	std::cout << "Not implemented" << std::endl;
+	m_utilities.getMenuOptions()->display();
 	return (true);
 }
 

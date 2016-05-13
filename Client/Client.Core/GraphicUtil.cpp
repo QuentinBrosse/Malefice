@@ -85,6 +85,7 @@ void GraphicUtil::initGraphics()
 
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
+	m_menuOptions = new MenuOptions(*this);
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
@@ -164,6 +165,11 @@ MainMenu* GraphicUtil::getMainMenu()
 MenuPause* GraphicUtil::getMenuPause()
 {
 	return m_menuPause;
+}
+
+MenuOptions* GraphicUtil::getMenuOptions()
+{
+	return m_menuOptions;
 }
 
 irr::video::IVideoDriver* GraphicUtil::getDriver()
