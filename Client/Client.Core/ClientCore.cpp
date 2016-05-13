@@ -36,6 +36,7 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
+	createEntities();
 	if (!ProjectGlobals::NO_MENU)
 	{
 		m_graphicModule->setGuiCamera();
@@ -44,7 +45,6 @@ void	ClientCore::run()
 	else
 	{
 		m_graphicModule->setFPSCamera();
-		createEntities();
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
@@ -75,11 +75,13 @@ void	ClientCore::pulse()
 	{
 		m_graphicModule->getMenuPause()->checkPause();
 
-
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
+
+		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+			ecs::PositionSystem::update(*m_player);
 
 		ecs::PositionSystem::update(*m_player);
 		ecs::EventSystem::doEvents(*m_player);

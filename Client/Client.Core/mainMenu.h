@@ -27,5 +27,4 @@ private:
 	irr::video::IVideoDriver *m_driver;
 	irr::scene::ISceneManager *m_sceneManager;
 	GraphicUtil &m_graphicUtils;
-	ConnectWindow m_connectWindow;
 };

@@ -7,6 +7,9 @@
 #include "MenuPause.h"
 #include "NetworkModule.h"
 #include "MenuOptions.h"
+#include "ConnectWindow.h"
+#include "WaitingRoom.h"
+#include "InGameGUI.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -28,6 +31,9 @@ public:
 	MenuPause* getMenuPause();
 	void setFPSCamera();
 	MenuOptions* getMenuOptions();
+	ConnectWindow* getConnectWindow();
+	WaitingRoom* getWaitingRoom();
+	InGameGUI* getHUD();
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;
@@ -39,4 +45,7 @@ private:
 	MainMenu*					m_menu = nullptr;
 	MenuPause*					m_menuPause = nullptr;
 	MenuOptions*				m_menuOptions = nullptr;
+	ConnectWindow*				m_connectWindow = nullptr;
+	WaitingRoom*				m_salon = nullptr;
+	InGameGUI*					m_hud = nullptr;
 };

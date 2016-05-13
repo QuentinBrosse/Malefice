@@ -21,7 +21,6 @@ private:
 	std::string m_ipStr;
 	std::string m_portStr;
 	GraphicUtil& m_graphicUtils;
-	WaitingRoom m_salon;
 public:
 	ConnectWindow(GraphicUtil &gu);
 	~ConnectWindow() = default;

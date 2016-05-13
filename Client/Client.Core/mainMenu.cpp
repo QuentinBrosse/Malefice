@@ -1,7 +1,7 @@
 #include "MainMenu.h"
 #include "ClientCore.h"
 
-MainMenu::MainMenu(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu), m_connectWindow(gu)
+MainMenu::MainMenu(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onQuitButtonClicked, this));
@@ -20,7 +20,7 @@ void MainMenu::hide()
 
 bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_connectWindow.display();
+	m_graphicUtils.getConnectWindow()->display();
 	return (true);
 }
 

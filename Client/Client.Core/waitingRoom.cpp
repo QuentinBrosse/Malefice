@@ -60,6 +60,7 @@ bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
 	m_graphicalUtil.setFPSCamera();
+	m_graphicalUtil.getHUD()->display();
 	return (true);
 }
 

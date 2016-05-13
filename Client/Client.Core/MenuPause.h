@@ -18,6 +18,7 @@ public:
 	bool onQuitButtonClicked();
 	bool onContinueButtonClicked();
 	void checkPause();
+	bool getEnableStatus();
 private:
 	GraphicUtil&	m_utilities;
 	CEGUI::System&	m_systemd = CEGUI::System::getSingleton();

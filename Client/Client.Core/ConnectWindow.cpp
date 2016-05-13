@@ -1,7 +1,7 @@
 #include "ConnectWindow.h"
 #include "ClientCore.h"
 
-ConnectWindow::ConnectWindow(GraphicUtil &gu) : m_graphicUtils(gu), m_salon(gu)
+ConnectWindow::ConnectWindow(GraphicUtil &gu) : m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try
@@ -56,7 +56,7 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), "");
 		this->hide();
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
-		m_salon.display();
+		m_graphicUtils.getWaitingRoom()->display();
 		return true;
 	} else {
 		return false;
