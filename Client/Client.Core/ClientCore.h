@@ -23,8 +23,9 @@ public:
 	GraphicUtil*	getGraphicModule()	const;
 	PlayerManager*	getPlayerManager()	const;
 
-	void	setIsActive(bool isActive);
-	void	setClientId(ecs::ClientId clientId);
+	void			setIsActive(bool isActive);
+	void			setClientId(ecs::ClientId clientId);
+	ecs::Entity*	getMap()			const;
 
 protected:
 	ClientCore();

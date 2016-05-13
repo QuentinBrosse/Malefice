@@ -10,9 +10,9 @@
 #include "SceneAnimatedMesh.h"
 #include "NodePickable.h"
 
-ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const unsigned int networkId, const int team, const int life)
+ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const int team, const int life)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::PLAYER);
+	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, playerID, ecs::Entity::PLAYER);
 
 	(*entity)[ecs::LIFE] = new ecs::Life(life, ecs::ComponentType::LIFE);
 	(*entity)[ecs::TEAM] = new ecs::Team(team);
@@ -36,9 +36,9 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vect
 	return entity;
 }
 
-ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const unsigned int networkId)
+ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation)
 {
-	ecs::Entity* entity = PlayerFactory::createPlayer(device, newNameTexture, newNameMesh, vectorPosition, vectorRotation, networkId, 2, 1000);
+	ecs::Entity* entity = PlayerFactory::createPlayer(device, newNameTexture, newNameMesh, playerID, vectorPosition, vectorRotation, 2, 1000);
 
 	(*entity)[ecs::SPELL_MANAGER] = new ecs::SpellManager(ecs::Spell(1, "confusion", ecs::Spell::CONFUSION, 5));
 
