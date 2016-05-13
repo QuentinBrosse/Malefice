@@ -2,7 +2,9 @@
 
 <GUILayout version="4" >
     <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
+        <Property name="ID" value="33" />
         <Property name="Area" value="{{0,252},{0,96},{0.3,668},{0.3,369}}" />
+        <Property name="RollUpEnabled" value="false" />
         <AutoWindow namePath="__auto_titlebar__" >
             <Property name="AlwaysOnTop" value="false" />
         </AutoWindow>

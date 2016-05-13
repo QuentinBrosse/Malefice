@@ -21,6 +21,7 @@
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MenuOptions.h" />
     <ClInclude Include="MenuPause.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkModule.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
+    <ClCompile Include="MenuOptions.cpp" />
     <ClCompile Include="MenuPause.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="NetworkModule.cpp" />

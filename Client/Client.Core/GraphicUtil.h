@@ -6,6 +6,7 @@
 #include "MainMenu.h"
 #include "MenuPause.h"
 #include "NetworkModule.h"
+#include "MenuOptions.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -26,6 +27,7 @@ public:
 	void setGuiCamera();
 	MenuPause* getMenuPause();
 	void setFPSCamera();
+	MenuOptions* getMenuOptions();
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;
@@ -36,4 +38,5 @@ private:
 	irr::SKeyMap*				m_keyMap;
 	MainMenu*					m_menu = nullptr;
 	MenuPause*					m_menuPause = nullptr;
+	MenuOptions*				m_menuOptions = nullptr;
 };
