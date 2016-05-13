@@ -111,9 +111,6 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Logger</Filter>
     </ClCompile>
-    <ClCompile Include="GameEventReceiver.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="AConfiguration.cpp">
       <Filter>Source Files\Configuration</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
     </ClInclude>
     <ClInclude Include="NodePickable.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEventReceiver.h">
-      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="AConfiguration.h">
       <Filter>Header Files\Configuration</Filter>

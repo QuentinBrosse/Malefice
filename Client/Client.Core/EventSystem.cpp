@@ -32,10 +32,12 @@ namespace ecs
 					break;
 
 				case ecs::GameEventReceiver::NEXT_WEAPON:
+					std::cout << "CHANGE TO NEXT WEAPON !" << std::endl;
 					WeaponManagerSystem::changeToNext(localPlayer);
 					break;
 
 				case ecs::GameEventReceiver::PREC_WEAPON:
+					std::cout << "CHANGE TO PREC WEAPON !" << std::endl;
 					WeaponManagerSystem::changeToPrec(localPlayer);
 					break;
 

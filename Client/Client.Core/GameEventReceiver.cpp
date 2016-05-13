@@ -9,7 +9,6 @@ namespace ecs
 
 	bool GameEventReceiver::OnEvent(const irr::SEvent& event)
 	{
-		std::cout << "EVENT !" << std::endl;
 		if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
 		{
 			switch (event.MouseInput.Event)

@@ -13,8 +13,9 @@ namespace ecs
 
 	void PositionSystem::update(Entity& entity)
 	{
-		Position*	position;
-		AScene*		scene;
+		Position*		position;
+		AScene*			scene;
+		WeaponManager*	weaponManager;
 
 		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[SCENE])) != nullptr)
 		{
@@ -36,6 +37,13 @@ namespace ecs
 
 			scene->setPosition(ecs::Position(posCam, oriMe));
 		}
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
+		{
+			weaponManager->getCurrentWeapon();
+			weaponManager->getCurrentWeapon().setActivity(true);
+			std::cout << "PositionSystem:" << std::endl;
+			weaponManager->getCurrentWeapon().dump();
+		}
 	}
 
 	void PositionSystem::initWeapon(Entity & entity)
@@ -48,21 +56,26 @@ namespace ecs
 		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
+			std::map<ecs::Weapon::WeaponType, Weapon&>&	weapons = weaponManager->getWeapons();
 			GraphicUtil&			graphics = GraphicUtil::getInstance();
-			Weapon&	weapon = weaponManager->getCurrentWeapon();
-			scene = weapon.getScene();
+			
 			Camera*	camera = graphics.getFPSCamera();
 		
 			irr::core::vector3df	 scale = irr::core::vector3df(20.0f, 20.0f, 15.f);
 			irr::core::vector3df	 position = irr::core::vector3df(1.2f, -0.8f, 1.5f);
 			irr::core::vector3df	 rotation = irr::core::vector3df(0.f, 0.f, 0.f);
 			
-			weapon.createScene(graphics.getDevice(), "", "weapons/models/shotgun.obj", true);
-			weapon.getScene()->setAnimation(irr::scene::EMAT_ATTACK);
+			for (auto weapon : weapons)
+			{
+				scene = weapon.second.getScene();
 
-			weapon.getScene()->getScene()->setScale(scale);
-			weapon.getScene()->getScene()->setPosition(position);
-			weapon.getScene()->getScene()->setRotation(rotation);
+				weapon.second.getScene()->getScene()->setScale(scale);
+				weapon.second.getScene()->getScene()->setPosition(position);
+				weapon.second.getScene()->getScene()->setRotation(rotation);
+			}
+
+			weaponManager->getCurrentWeapon().setActivity(true);
+			
 			//TODO: update position of weapon's scene
 		}
 

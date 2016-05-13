@@ -155,7 +155,6 @@
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MapFactory.cpp" />
@@ -194,7 +193,6 @@
     <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Export.h" />
-    <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MapFactory.h" />
