@@ -86,7 +86,6 @@ void GraphicUtil::initGraphics()
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
 	m_menuOptions = new MenuOptions(*this);
-	this->setFPSCamera();
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()

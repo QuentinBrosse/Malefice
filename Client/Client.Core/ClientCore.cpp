@@ -41,8 +41,8 @@ void	ClientCore::run()
 	else
 	{
 		m_graphicModule->setFPSCamera();
+		createEntities();
 	}
-	createEntities();
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
 		this->pulse();
