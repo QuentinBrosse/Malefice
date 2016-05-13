@@ -3,12 +3,15 @@
 #include "NetworkObject.h"
 #include "NetworkManager.h"
 
-NetworkObject::NetworkObject() : RakNet::NetworkIDObject()
+NetworkObject::NetworkObject(NetworkRPC::ReservedNetworkIds networkId) : RakNet::NetworkIDObject()
 {
-	static std::atomic<RakNet::NetworkID>	networkId;
+	static std::atomic<RakNet::NetworkID>	nextNetworkId{static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::UnreservedStart)};
 
 	this->SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
-	this->SetNetworkID(networkId++);
+	if (networkId == NetworkRPC::ReservedNetworkIds::None)
+		this->SetNetworkID(nextNetworkId++);
+	else
+		this->SetNetworkID(static_cast<RakNet::NetworkID>(networkId));
 }
 
 NetworkObject::~NetworkObject()

@@ -10,19 +10,22 @@ public:
 	NetworkRPC()	= delete;
 	~NetworkRPC()	= delete;
 
-	static const RakNet::NetworkID	GENERAL_RPC_ID;
-	static const RakNet::NetworkID	PLAYER_RPC_ID;
+	enum class ReservedNetworkIds : RakNet::NetworkID
+	{
+		None = 0,
+		ClientCore,
+		PlayerManager,
+		UnreservedStart
+	};
 
 
-	// Local player
-	static const std::string	PLAYER_CONNECT;
-	static const std::string	PLAYER_DISCONNECT;
-	static const std::string	PLAYER_SYNC;
+	// Client-Side executed
 
-	// Remote players
-	static const std::string	PLAYER_ADD;
-	static const std::string	PLAYER_REMOVE;
-	
-	// General
-	static const std::string	PLAYER_CHAT;
+	static const std::string	CLIENT_CORE_SET_CLIENT_ID;
+
+	static const std::string	PLAYER_MANAGER_ADD_ENTITY;
+	static const std::string	PLAYER_MANAGER_REMOVE_ENTITY;
+
+
+	// Server-Side executed
 };

@@ -34,7 +34,7 @@ public:
 	{
 		GENERAL,
 		NETWORK,
-		CHAT,
+		ECS,
 		CategoryCount
 	};
 

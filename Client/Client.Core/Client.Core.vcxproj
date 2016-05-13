@@ -17,7 +17,6 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="EventSystem.h" />
-    <ClInclude Include="GeneralRPC.h" />
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
@@ -26,7 +25,6 @@
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
-    <ClInclude Include="PlayerRPC.h" />
     <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
@@ -40,7 +38,6 @@
     <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventSystem.cpp" />
-    <ClCompile Include="GeneralRPC.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="loadingWindows.cpp" />
@@ -51,7 +48,6 @@
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
-    <ClCompile Include="PlayerRPC.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />

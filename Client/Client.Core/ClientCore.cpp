@@ -14,14 +14,14 @@
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include <chrono>
 
-ClientCore::ClientCore() :
+ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_isActive(true)
 {
 }
 
 ClientCore::~ClientCore()
 {
-	if (m_networkModule->isConnected())
+	if (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED)
 		m_networkModule->disconnect();
 }
 
@@ -66,7 +66,7 @@ bool	ClientCore::init()
 
 void	ClientCore::pulse()
 {
-	if (m_networkModule != nullptr && m_networkModule->isConnected())
+	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
 	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
@@ -123,4 +123,10 @@ PlayerManager*	ClientCore::getPlayerManager() const
 void	ClientCore::setIsActive(bool isActive)
 {
 	m_isActive = isActive;
+}
+
+void	ClientCore::setClientId(ecs::ClientId clientId)
+{
+	m_clientId = clientId;
+	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
 }
