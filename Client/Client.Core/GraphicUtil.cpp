@@ -1,6 +1,7 @@
 #include "GraphicUtil.h"
 #include "ClientCore.h"
 #include "SceneMesh.h"
+#include "ProjectGlobals.h"
 
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
@@ -89,6 +90,11 @@ void GraphicUtil::initGraphics()
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
 	m_menuOptions = new MenuOptions(*this);
+	if (!ProjectGlobals::NO_MENU)
+	{
+		this->setFPSCamera();
+		this->setGuiCamera();
+	}
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
