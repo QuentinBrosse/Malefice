@@ -90,6 +90,9 @@ void GraphicUtil::initGraphics()
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
 	m_menuOptions = new MenuOptions(*this);
+	m_connectWindow = new ConnectWindow(*this);
+	m_salon = new WaitingRoom(*this);
+	m_hud = new InGameGUI();
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();
@@ -166,6 +169,11 @@ EventReceiver& GraphicUtil::getCEGUIEventReceiver()
 	return m_receiver;
 }
 
+ConnectWindow* GraphicUtil::getConnectWindow()
+{
+	return m_connectWindow;
+}
+
 MainMenu* GraphicUtil::getMainMenu()
 {
 	return m_menu;
@@ -179,6 +187,16 @@ MenuPause* GraphicUtil::getMenuPause()
 MenuOptions* GraphicUtil::getMenuOptions()
 {
 	return m_menuOptions;
+}
+
+InGameGUI* GraphicUtil::getHUD()
+{
+	return m_hud;
+}
+
+WaitingRoom* GraphicUtil::getWaitingRoom()
+{
+	return (m_salon);
 }
 
 irr::video::IVideoDriver* GraphicUtil::getDriver()
