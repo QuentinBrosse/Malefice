@@ -3,6 +3,7 @@
 #include <map>
 #include <utility>
 
+#include "WeaponManager.h"
 #include "Spell.h"
 #include "Export.h"
 
@@ -14,12 +15,21 @@ namespace ecs
 		SpellManager(const Spell& defaultSpell);
 		~SpellManager()	= default;
 
-		Spell&	getCurrentSpell()	const;
+		Spell&	getCurrentSpell()				const;
+		bool	weaponsIsCurrent()				const;
+
+		void	changeCurrentManager();
 
 		void	addSpell(const Spell& newSpell);
+		
 		void	changeToNextSpell();
 		void	changeToPrecSpell();
 
+
+		Weapon&	getCurrentWeapon()				const;
+
+		void	changeToNextWeapon();
+		void	changeToPrecWeapon();
 		
 		virtual void	dump(std::ostream& os)	const;
 
@@ -27,5 +37,7 @@ namespace ecs
 	private:
 		std::map<Spell::SpellType, Spell>				m_spells;
 		std::map<Spell::SpellType, Spell>::iterator		m_currentSpell;
+		WeaponManager									m_weaponManager;
+		bool											m_weaponsIsCurrent;
 	};
 }

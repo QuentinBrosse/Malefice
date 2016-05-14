@@ -15,6 +15,7 @@ namespace ecs
 
 		static void	changeToNext(Entity& predator);
 		static void	changeToPrec(Entity& predator);
+		static void changeManager(Entity& predator);
 	};
 
 }

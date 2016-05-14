@@ -27,12 +27,8 @@ namespace ecs
 				break;
 
 			case irr::EMIE_MOUSE_WHEEL:
-				std::cout << "event !" << std::endl;
 				if (event.MouseInput.Wheel < 0)
-				{
-					std::cout << "event change to next Weapon!" << std::endl;
 					m_events.push(GameEventReceiver::GameEventType::PREC_WEAPON);
-				}
 				else
 					m_events.push(GameEventReceiver::GameEventType::NEXT_WEAPON);
 				break;
@@ -47,11 +43,11 @@ namespace ecs
 			{
 
 			case irr::KEY_KEY_1:
-				m_events.push(GameEventReceiver::GameEventType::PREC_SPELL);
+				m_events.push(GameEventReceiver::GameEventType::CHANGE_MANAGER);
 				break;
 
 			case irr::KEY_KEY_2:
-				m_events.push(GameEventReceiver::GameEventType::NEXT_SPELL);
+				m_events.push(GameEventReceiver::GameEventType::CHANGE_MANAGER);
 				break;
 
 			default:
