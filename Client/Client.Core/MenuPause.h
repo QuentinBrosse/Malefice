@@ -23,5 +23,5 @@ private:
 	GraphicUtil&	m_utilities;
 	CEGUI::System&	m_systemd = CEGUI::System::getSingleton();
 	CEGUI::Window*	m_windows;
-	bool			m_isEnable = true;
+	bool			m_isEnable = false;
 };
