@@ -7,6 +7,8 @@
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
 #include "WeaponManager.h"
+#include "EventSystem.h"
+#include "GameEventReceiver.h"
 
 #include <iostream>
 #include <irrlicht.h>
@@ -81,6 +83,9 @@ void	ClientCore::pulse()
 		if (!m_graphicModule->getMenuPause()->getEnableStatus())
 			ecs::PositionSystem::update(*m_player);
 
+		ecs::PositionSystem::update(*m_player);
+		ecs::EventSystem::doEvents(*m_player);
+		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
@@ -98,6 +103,8 @@ void ClientCore::createEntities()
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::PositionSystem::initWeapon(*m_player);
+	(*m_player)[ecs::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
+	m_graphicModule->getDevice()->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*m_player)[ecs::GAME_EVENT_RECEIVER]));
 }
 
 bool	ClientCore::isActive()	const

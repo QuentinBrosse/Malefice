@@ -106,7 +106,10 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="MenuOptions.h">
-      <Filter>Header Files\GUI</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventReceiver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,11 +173,14 @@
     <ClCompile Include="MenuPause.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="MenuOptions.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="PositionSystem.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuOptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEventReceiver.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
