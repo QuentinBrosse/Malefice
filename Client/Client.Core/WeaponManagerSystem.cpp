@@ -23,9 +23,7 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[WEAPON_MANAGER])) != nullptr)
 		{
-			weaponManager->getCurrentWeapon().dump();
 			weaponManager->changeToPrecWeapon();
-			weaponManager->getCurrentWeapon().dump();
 			// TODO: send msg to server
 		}
 	}

@@ -1,5 +1,6 @@
 #include "GameEventReceiver.h"
 #include <iostream>
+
 namespace ecs
 {
 	GameEventReceiver::GameEventReceiver(): AComponent("GameEventReceiver", GAME_EVENT_RECEIVER)
@@ -9,7 +10,6 @@ namespace ecs
 
 	bool GameEventReceiver::OnEvent(const irr::SEvent& event)
 	{
-		std::cout << "EVENT !" << std::endl;
 		if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
 		{
 			switch (event.MouseInput.Event)
@@ -27,8 +27,12 @@ namespace ecs
 				break;
 
 			case irr::EMIE_MOUSE_WHEEL:
+				std::cout << "event !" << std::endl;
 				if (event.MouseInput.Wheel < 0)
+				{
+					std::cout << "event change to next Weapon!" << std::endl;
 					m_events.push(GameEventReceiver::GameEventType::PREC_WEAPON);
+				}
 				else
 					m_events.push(GameEventReceiver::GameEventType::NEXT_WEAPON);
 				break;

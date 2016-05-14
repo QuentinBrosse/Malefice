@@ -33,8 +33,6 @@ namespace ecs
 		~Weapon()	= default;
 
 		Weapon&				operator=(const Weapon& other);
-
-		void				dump()							const;
 		
 		const int			getId()							const;
 		const int			getDamage()						const;

@@ -42,7 +42,6 @@ namespace ecs
 			weaponManager->getCurrentWeapon();
 			weaponManager->getCurrentWeapon().setActivity(true);
 			std::cout << "PositionSystem:" << std::endl;
-			weaponManager->getCurrentWeapon().dump();
 		}
 	}
 

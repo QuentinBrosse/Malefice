@@ -36,7 +36,6 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	createEntities();
 	if (!ProjectGlobals::NO_MENU)
 	{
 		m_graphicModule->setGuiCamera();
@@ -45,6 +44,7 @@ void	ClientCore::run()
 	else
 	{
 		m_graphicModule->setFPSCamera();
+		createEntities();
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
@@ -80,11 +80,11 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+//		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+//		{
 			ecs::PositionSystem::update(*m_player);
-
-		ecs::PositionSystem::update(*m_player);
-		ecs::EventSystem::doEvents(*m_player);
+			ecs::EventSystem::doEvents(*m_player);
+	//	}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
@@ -103,8 +103,6 @@ void ClientCore::createEntities()
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::PositionSystem::initWeapon(*m_player);
-	(*m_player)[ecs::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
-	m_graphicModule->getDevice()->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*m_player)[ecs::GAME_EVENT_RECEIVER]));
 }
 
 bool	ClientCore::isActive()	const

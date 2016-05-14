@@ -6,6 +6,7 @@
 #include "Movement.h"
 #include "Position.h"
 #include "SpellManager.h"
+#include "GameEventReceiver.h"
 #include "Spell.h"
 #include "SceneAnimatedMesh.h"
 #include "NodePickable.h"
@@ -30,6 +31,10 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*entity)[ecs::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
+
+	(*entity)[ecs::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
+	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*entity)[ecs::GAME_EVENT_RECEIVER]));
+
 
 
 	return entity;

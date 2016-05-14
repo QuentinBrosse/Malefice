@@ -17,7 +17,6 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventReceiver.h" />
     <ClInclude Include="EventSystem.h" />
-    <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
     <ClInclude Include="LoadingWindows.h" />
@@ -40,7 +39,6 @@
     <ClCompile Include="ConnectWindow.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventSystem.cpp" />
-    <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
     <ClCompile Include="loadingWindows.cpp" />

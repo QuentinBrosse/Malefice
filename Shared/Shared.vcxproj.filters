@@ -171,6 +171,9 @@
     <ClCompile Include="Armor.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="GameEventReceiver.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -285,6 +288,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventReceiver.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
