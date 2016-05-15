@@ -27,9 +27,3 @@ namespace ecs
 }
 
 MALEFICE_DLL_EXPORT	std::ostream&	operator<<(std::ostream& os, const ecs::AComponent& component);
-
-namespace RakNet
-{
-	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator<<(RakNet::BitStream& out, ecs::AComponent& in);
-	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator>>(RakNet::BitStream& in, ecs::AComponent& out);
-}
