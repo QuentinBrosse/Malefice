@@ -3,6 +3,7 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
+// TODO: do we really need a PlayerManager or is an EntityManager enough?
 class PlayerManager : public EntityManager
 {
 public:
