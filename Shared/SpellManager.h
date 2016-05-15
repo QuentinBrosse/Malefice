@@ -2,7 +2,7 @@
 
 #include <map>
 #include <utility>
-
+#include <BitStream.h>
 #include "Spell.h"
 #include "Export.h"
 
@@ -11,6 +11,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT SpellManager : public AComponent
 	{
 	public:
+		SpellManager();
 		SpellManager(const Spell& defaultSpell);
 		~SpellManager()	= default;
 
@@ -22,6 +23,9 @@ namespace ecs
 
 		
 		virtual void	dump(std::ostream& os)	const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
 
 
 	private:

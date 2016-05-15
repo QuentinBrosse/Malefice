@@ -1,5 +1,6 @@
 #pragma once
 
+#include <BitStream.h>
 #include "Position.h"
 #include "Export.h"
 
@@ -8,7 +9,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Movement : public AComponent
 	{
 	public:
-		Movement() = default;
+		Movement();
 		Movement(const Position& position);
 		~Movement() = default;
 	
@@ -19,6 +20,9 @@ namespace ecs
 
 
 		void	dump(std::ostream& os)	const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
 
 
 	private:

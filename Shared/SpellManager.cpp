@@ -2,6 +2,10 @@
 
 namespace ecs
 {
+	SpellManager::SpellManager() : AComponent("SpellManager", ecs::ComponentType::SPELL_MANAGER)
+	{
+	}
+
 	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", SPELL_MANAGER)
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
@@ -38,5 +42,16 @@ namespace ecs
 	{
 		for (auto& spell : m_spells)
 			spell.second.dump(os);
+	}
+
+
+	void	SpellManager::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	SpellManager::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
 	}
 }

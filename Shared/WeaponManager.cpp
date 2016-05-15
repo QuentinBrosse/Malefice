@@ -1,7 +1,11 @@
-                                           #include "WeaponManager.h"
+#include "WeaponManager.h"
 
 namespace ecs
 {
+	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::ComponentType::WEAPON_MANAGER)
+	{
+	}
+
 	WeaponManager::WeaponManager(const Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
 	{
 		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon> (defaultWeapon.getWeaponType(), defaultWeapon));
@@ -39,5 +43,16 @@ namespace ecs
 	{
 		for (auto& weapon : m_weapons)
 			weapon.second.dump(os);
+	}
+
+
+	void	WeaponManager::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	WeaponManager::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
 	}
 };

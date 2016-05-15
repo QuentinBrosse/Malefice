@@ -75,4 +75,15 @@ namespace ecs
 	{
 		os << "GameEventReceiver {}";
 	}
+
+
+	void	GameEventReceiver::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	GameEventReceiver::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 };

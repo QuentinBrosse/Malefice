@@ -1,8 +1,8 @@
 #pragma once
 
-#include <irrlicht.h>
 #include <queue>
-
+#include <irrlicht.h>
+#include <BitStream.h>
 #include "AComponent.h"
 
 namespace ecs
@@ -33,6 +33,9 @@ namespace ecs
 
 
 		virtual void	dump(std::ostream& os)	const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
 
 
 	private:

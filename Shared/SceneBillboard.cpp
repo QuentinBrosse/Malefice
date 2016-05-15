@@ -15,4 +15,15 @@ namespace ecs
 	{
 		os << "SceneBillboard {}";
 	}
+
+
+	void	SceneBillboard::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	SceneBillboard::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 }

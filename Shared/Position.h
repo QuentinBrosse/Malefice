@@ -1,7 +1,8 @@
 #pragma once
 
-#include "AComponent.h"
 #include <irrlicht.h>
+#include <BitStream.h>
+#include "AComponent.h"
 #include "Export.h"
 
 namespace ecs
@@ -9,6 +10,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Position: public AComponent
 	{
 	public:
+		Position();
 		Position(float xPosition, float yPosition, float zPosition, float xRotation, float yRotation, float zRotation);
 		Position(const irr::core::vector3df& vectorPosition, const irr::core::vector3df vectorRotation);
 		Position(const Position& pos);
@@ -29,6 +31,9 @@ namespace ecs
 
 
 		virtual void	dump(std::ostream& os)	const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
 
 
 	private:

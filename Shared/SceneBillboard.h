@@ -1,5 +1,6 @@
 #pragma once
 
+#include <BitStream.h>
 #include "AScene.h"
 
 namespace ecs
@@ -11,5 +12,8 @@ namespace ecs
 		virtual ~SceneBillboard();
 
 		virtual void	dump(std::ostream& os)	const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
 	};
 }

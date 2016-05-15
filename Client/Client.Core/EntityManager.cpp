@@ -11,23 +11,20 @@ EntityManager::~EntityManager()
 		delete entity.second;
 }
 
-void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity)
+void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
 	m_entities[owner] = entity;
+	LOG_TRACE(NETWORK) << "EntityManager::addEntity received owner = " << owner << ", entity = " << *entity;
 }
 
-void	EntityManager::removeEntity(ecs::ClientId owner)
+void	EntityManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 {
 	auto	it = m_entities.find(owner);
 
 	if (it != m_entities.end())
-	{
 		m_entities.erase(it);
-	}
 	else
-	{
 		LOG_ERROR(ECS) << "Could not delete entity with owner = " << owner << " (not found).";
-	}
 }
 
 

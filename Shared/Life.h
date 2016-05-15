@@ -1,5 +1,6 @@
 #pragma once
 
+#include <BitStream.h>
 #include "AComponent.h"
 #include "Export.h"
 
@@ -8,8 +9,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Life : public AComponent
 	{
 	public:
-		const int MAX_LIFE;
-
+		Life(ecs::ComponentType lifeType);
 		Life(const int maxLife, const ComponentType type);
 		~Life() = default;
 
@@ -31,8 +31,12 @@ namespace ecs
 
 		virtual void	dump(std::ostream& os)	const;
 
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
+
 
 	protected:
 		int	m_currentLife;		
+		int	m_maxLife;
 	};
 }

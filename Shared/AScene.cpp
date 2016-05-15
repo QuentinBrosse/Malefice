@@ -61,4 +61,15 @@ namespace ecs
 	{
 		os << "AScene {NAME = " << NAME << ", nameMash = \"" << m_nameMesh << "\", nameTexture = \"" << m_nameTexture << "\"}";
 	}
+
+
+	void	AScene::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	AScene::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 }

@@ -3,8 +3,12 @@
 
 namespace ecs
 {
+	Life::Life(ecs::ComponentType lifeType) : AComponent("Life", lifeType)
+	{
+	}
+
 	Life::Life(const int maxLife, const ComponentType type) : AComponent("Life", type),
-		m_currentLife(maxLife), MAX_LIFE(maxLife)
+		m_currentLife(maxLife), m_maxLife(maxLife)
 	{
 
 	}
@@ -20,7 +24,7 @@ namespace ecs
 		{
 			// Error can't have negative life.
 		}
-		if (life > MAX_LIFE)
+		if (life > m_maxLife)
 		{
 			// Set to max Life ? Or throw exception ?
 		}
@@ -48,8 +52,8 @@ namespace ecs
 	void Life::restore(int quantity)
 	{
 		m_currentLife += quantity;
-		if (m_currentLife > MAX_LIFE)
-			m_currentLife = MAX_LIFE;
+		if (m_currentLife > m_maxLife)
+			m_currentLife = m_maxLife;
 	}
 
 	void Life::onDeath()
@@ -61,6 +65,17 @@ namespace ecs
 
 	void	Life::dump(std::ostream& os)	const
 	{
-		os << "Life {currentLife = " << m_currentLife << ", MAX_LIFE = " << MAX_LIFE << "}";
+		os << "Life {currentLife = " << m_currentLife << ", maxLife = " << m_maxLife << "}";
+	}
+
+
+	void	Life::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	Life::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
 	}
 }

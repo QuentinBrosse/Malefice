@@ -2,6 +2,10 @@
 
 namespace ecs
 {
+	Movement::Movement() : AComponent("Movement", ecs::ComponentType::MOVEMENT)
+	{
+	}
+
 	Movement::Movement(const Position& position) : AComponent("Movement", MOVEMENT),
 		m_destination(position)
 	{
@@ -28,5 +32,16 @@ namespace ecs
 	void	Movement::dump(std::ostream& os)	const
 	{
 		os << "Movement {}";
+	}
+
+
+	void	Movement::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	Movement::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
 	}
 }

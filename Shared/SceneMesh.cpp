@@ -72,4 +72,15 @@ namespace ecs
 	{
 		os << "SceneMesh {}";
 	}
+
+
+	void	SceneMesh::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	SceneMesh::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 }

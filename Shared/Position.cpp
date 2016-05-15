@@ -2,6 +2,10 @@
 
 namespace ecs
 {
+	Position::Position() : AComponent("Position", ecs::ComponentType::POSITION)
+	{
+	}
+
 	Position::Position(float xPosition, float yPosition, float zPosition, float xRotation, float yRotation, float zRotation) : AComponent("Position", POSITION),
 		m_vectorPosition(irr::core::vector3df(xPosition, yPosition, zPosition)), m_vectorRotation(irr::core::vector3df(xRotation, yRotation, zRotation))
 	{
@@ -65,5 +69,16 @@ namespace ecs
 	bool Position::operator==(const Position& other) const
 	{
 		return m_vectorPosition == other.m_vectorPosition && m_vectorRotation == other.m_vectorRotation;
+	}
+
+
+	void	Position::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	Position::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
 	}
 }

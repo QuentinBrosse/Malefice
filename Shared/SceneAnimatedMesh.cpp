@@ -55,4 +55,14 @@ namespace ecs
 		return m_node;
 	}
 
+
+	void	SceneAnimatedMesh::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	SceneAnimatedMesh::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 }

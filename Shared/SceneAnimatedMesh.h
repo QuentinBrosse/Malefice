@@ -1,5 +1,6 @@
 #pragma once
 
+#include <BitStream.h>
 #include "AScene.h"
 
 namespace ecs
@@ -16,6 +17,10 @@ namespace ecs
 		void								setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType);
 		void								setTexture(const std::string& nameTexture, const bool lighting = true, const irr::u32 level = 0);
 		irr::scene::IAnimatedMeshSceneNode*	getScene()				const;
+
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
+
 
 	private:
 		irr::scene::IAnimatedMeshSceneNode*	m_node;

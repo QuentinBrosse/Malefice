@@ -186,4 +186,15 @@ namespace ecs
 	{
 		return m_scene;
 	}
+
+
+	void	Weapon::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	Weapon::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 };

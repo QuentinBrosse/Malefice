@@ -1,5 +1,6 @@
 #pragma once
 
+#include <BitStream.h>
 #include "Life.h"
 
 namespace ecs
@@ -7,8 +8,11 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Armor: public Life
 	{
 	public:
+		Armor();
 		Armor(int maxHP);
-		~Armor() = default;
-	};
+		~Armor()	= default;
 
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
+	};
 }

@@ -126,7 +126,7 @@ void	ClientCore::setIsActive(bool isActive)
 	m_isActive = isActive;
 }
 
-void	ClientCore::setClientId(ecs::ClientId clientId)
+void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";

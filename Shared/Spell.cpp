@@ -51,4 +51,15 @@ namespace ecs
 	{
 		os << "[" << NAME << ": " << m_spellType << "/" << COOLDOWN << "]";
 	}
+
+
+	void	Spell::serialize(RakNet::BitStream& out)	const
+	{
+		// TODO: implement serialization
+	}
+
+	void	Spell::deserialize(RakNet::BitStream& in)
+	{
+		// TODO: implement deserialization
+	}
 }

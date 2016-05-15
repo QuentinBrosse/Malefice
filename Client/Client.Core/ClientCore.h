@@ -1,13 +1,13 @@
 #pragma once
 
+#include <chrono>
+#include <RPC3.h>
 #include "Singleton.h"
 #include "GraphicUtil.h"
 #include "NetworkModule.h"
 #include "EventReceiver.h"
 #include "PlayerManager.h"
 #include "SceneMesh.h"
-
-#include <chrono>
 
 typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
 
@@ -24,7 +24,7 @@ public:
 	PlayerManager*	getPlayerManager()	const;
 
 	void			setIsActive(bool isActive);
-	void			setClientId(ecs::ClientId clientId);
+	void			setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
 	ecs::Entity*	getMap()			const;
 
 protected:
