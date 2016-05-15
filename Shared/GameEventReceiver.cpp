@@ -1,4 +1,5 @@
 #include "GameEventReceiver.h"
+#include <iostream>
 
 namespace ecs
 {
@@ -42,11 +43,11 @@ namespace ecs
 			{
 
 			case irr::KEY_KEY_1:
-				m_events.push(GameEventReceiver::GameEventType::PREC_SPELL);
+				m_events.push(GameEventReceiver::GameEventType::CHANGE_MANAGER);
 				break;
 
 			case irr::KEY_KEY_2:
-				m_events.push(GameEventReceiver::GameEventType::NEXT_SPELL);
+				m_events.push(GameEventReceiver::GameEventType::CHANGE_MANAGER);
 				break;
 
 			default:

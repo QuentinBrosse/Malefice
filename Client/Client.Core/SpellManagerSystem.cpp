@@ -28,4 +28,15 @@ namespace ecs
 		}
 	}
 
+	void SpellManagerSystem::changeManager(Entity & predator)
+	{
+		SpellManager*	spellManager;
+
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
+		{
+			spellManager->changeCurrentManager();
+			// TODO : Send msg to server
+		}
+	}
+
 }

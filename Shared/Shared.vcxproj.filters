@@ -111,9 +111,6 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Logger</Filter>
     </ClCompile>
-    <ClCompile Include="GameEventReceiver.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="AConfiguration.cpp">
       <Filter>Source Files\Configuration</Filter>
     </ClCompile>
@@ -174,6 +171,9 @@
     <ClCompile Include="Armor.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
+    <ClCompile Include="GameEventReceiver.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -229,9 +229,6 @@
     </ClInclude>
     <ClInclude Include="NodePickable.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEventReceiver.h">
-      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="AConfiguration.h">
       <Filter>Header Files\Configuration</Filter>
@@ -291,6 +288,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">
+      <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventReceiver.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>

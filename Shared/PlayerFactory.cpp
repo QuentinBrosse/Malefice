@@ -6,6 +6,7 @@
 #include "Movement.h"
 #include "Position.h"
 #include "SpellManager.h"
+#include "GameEventReceiver.h"
 #include "Spell.h"
 #include "SceneAnimatedMesh.h"
 #include "NodePickable.h"
@@ -16,10 +17,25 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 
 	(*entity)[ecs::LIFE] = new ecs::Life(life, ecs::ComponentType::LIFE);
 	(*entity)[ecs::TEAM] = new ecs::Team(team);
-	(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager(ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true));
+	ecs::Weapon* weapon = new ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true);
+	ecs::Weapon* weaponSniper = new ecs::Weapon(1, "sniper", 100, 50, 20, 50, 10, 5, ecs::Weapon::SNIPER_RIFLE, true);
+
+	(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager();
+	dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::WEAPON_MANAGER])->createWeapon(device, "", "weapons/models/shotgun.obj", *weapon);
+	dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::WEAPON_MANAGER])->createWeapon(device, "", "weapons/models/sniper.obj", *weaponSniper);
+
 	(*entity)[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
+
 	(*entity)[ecs::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true);
+
+	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*entity)[ecs::SCENE]);
+	scene->setAnimation(irr::scene::EMAT_ATTACK);
+
+	(*entity)[ecs::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
+	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*entity)[ecs::GAME_EVENT_RECEIVER]));
+
+
 
 	return entity;
 }
@@ -30,7 +46,8 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vect
 
 	(*entity)[ecs::LIFE] = new ecs::Life(life, ecs::ComponentType::LIFE);
 	(*entity)[ecs::TEAM] = new ecs::Team(team);
-	(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager(ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true));
+	ecs::Weapon weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true);
+	(*entity)[ecs::WEAPON_MANAGER] = new ecs::WeaponManager(weapon);
 	(*entity)[ecs::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 	return entity;

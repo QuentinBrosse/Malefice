@@ -7,6 +7,8 @@
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
 #include "WeaponManager.h"
+#include "EventSystem.h"
+#include "GameEventReceiver.h"
 
 #include <iostream>
 #include <irrlicht.h>
@@ -78,9 +80,12 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		if (!m_graphicModule->getMenuPause()->getEnableStatus())
-			ecs::PositionSystem::update(*m_player);
-
+//		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+//		{
+			/*ecs::PositionSystem::update(*m_player);
+			ecs::EventSystem::doEvents(*m_player);*/
+	//	}
+		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui

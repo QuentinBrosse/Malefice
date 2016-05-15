@@ -20,7 +20,7 @@ namespace ecs
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", WEAPON),
-		ID(cpy.ID), WEAPON_NAME(cpy.NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND), m_scene(nullptr)
+		ID(cpy.ID), WEAPON_NAME(cpy.WEAPON_NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND), m_scene(nullptr)
 	{
 		m_currentAmmunition = cpy.m_currentAmmunition;
 		m_currentAmmunitionExplosive = cpy.m_currentAmmunitionExplosive;
@@ -41,6 +41,11 @@ namespace ecs
 	void	Weapon::dump(std::ostream& os)	const
 	{
 		os << "[" << NAME << "/" << m_currentAmmunition << "/" << MAX_AMMUNITION << "/" << m_currentAmmunitionExplosive << "/" << MAX_AMMUNITION_EXPLOSIVE << "/" << DAMAGE << "/" << DAMAGE_EXPLOSIVE <<"]" << std::endl;
+	}
+
+	const int Weapon::getId() const
+	{
+		return ID;
 	}
 
 	const int		Weapon::getDamage() const
@@ -174,7 +179,6 @@ namespace ecs
 		m_scene->getScene()->setName(newNameMesh.c_str());
 
 		setActivity(active);
-		//TODO: replace nullptr with camera
 	}
 
 	void	Weapon::setActivity(const bool active)

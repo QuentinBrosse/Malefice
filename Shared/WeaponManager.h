@@ -11,14 +11,17 @@ namespace ecs
 	{
 	public:
 		WeaponManager();
-		WeaponManager(const Weapon& defaultWeapon);
+		WeaponManager(Weapon& defaultWeapon);
 		~WeaponManager()	= default;
 
-		void			addWeapon(const Weapon& newWeapon);
+		void			addWeapon(Weapon& newWeapon);
 		void			changeToNextWeapon();
 		void			changeToPrecWeapon();
 
-		Weapon&			getCurrentWeapon()	const;
+		Weapon&									getCurrentWeapon()	const;
+		std::map<Weapon::WeaponType, Weapon&>&	getWeapons();
+
+		void			createWeapon(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const Weapon& weaponCpy);
 
 
 		virtual void	dump(std::ostream& os)	const;
@@ -28,7 +31,7 @@ namespace ecs
 
 
 	private:
-		std::map<Weapon::WeaponType, Weapon>			m_weapons;
-		std::map<Weapon::WeaponType, Weapon>::iterator	m_currentWeapon;
+		std::map<Weapon::WeaponType, Weapon&>			m_weapons;
+		std::map<Weapon::WeaponType, Weapon&>::iterator	m_currentWeapon;
 	};
 }
