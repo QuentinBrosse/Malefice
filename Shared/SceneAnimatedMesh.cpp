@@ -30,12 +30,7 @@ namespace ecs
 		m_node->setPosition(newPosition.getVectorPosition());
 		m_node->setRotation(newPosition.getVectorRotation());
 	}
-
-
-	void	SceneAnimatedMesh::dump(std::ostream& os)	const
-	{
-		os << "SceneAnimatedMesh {}";
-	}
+	
 
 	void SceneAnimatedMesh::setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType)
 	{
@@ -53,6 +48,12 @@ namespace ecs
 	irr::scene::IAnimatedMeshSceneNode * SceneAnimatedMesh::getScene() const
 	{
 		return m_node;
+	}
+
+
+	void	SceneAnimatedMesh::dump(std::ostream& os)	const
+	{
+		os << "SceneAnimatedMesh {}"; // TODO: what's interesting to dump in irr::scene::IAnimatedMeshSceneNode ?
 	}
 
 

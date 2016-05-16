@@ -32,8 +32,8 @@ namespace ecs
 
 
 	protected:
-		const std::string			MEDIA_PATH;
-		const bool					IS_COLLISIONABLE;
+		const std::string	MEDIA_PATH;
+		const bool			IS_COLLISIONABLE;
 
 		irr::scene::ITriangleSelector*	m_selector;
 		std::string						m_nameTexture;

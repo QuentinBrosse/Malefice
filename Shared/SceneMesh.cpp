@@ -70,7 +70,7 @@ namespace ecs
 
 	void	SceneMesh::dump(std::ostream& os)	const
 	{
-		os << "SceneMesh {}";
+		os << "SceneMesh {}"; // TODO: what's interesting to dump in irr::scene::IMeshSceneNode ?
 	}
 
 

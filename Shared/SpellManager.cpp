@@ -1,8 +1,10 @@
+#include <iterator>
 #include "SpellManager.h"
 
 namespace ecs
 {
-	SpellManager::SpellManager() : AComponent("SpellManager", ecs::ComponentType::SPELL_MANAGER)
+	SpellManager::SpellManager() : AComponent("SpellManager", ecs::ComponentType::SPELL_MANAGER),
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
 	{
 	}
 
@@ -66,10 +68,28 @@ namespace ecs
 		m_weaponManager.changeToPrecWeapon();
 	}
 
+
 	void	SpellManager::dump(std::ostream& os)	const
 	{
-		for (auto& spell : m_spells)
-			spell.second.dump(os);
+		os << "SpellManager {spells = [";
+		for (auto it = m_spells.begin(); it != m_spells.end(); ++it)
+		{
+			os << "Pair {SpellType = " << it->first << ", Spell = ";
+			it->second.dump(os);
+			os << "}" << (std::next(it) != m_spells.end() ? ", " : "");
+		}
+		os << "], currentSpell = ";
+		if (m_currentSpell != m_spells.end())
+		{
+			os << "Pair {SpellType = " << m_currentSpell->first << ", Spell = ";
+			m_currentSpell->second.dump(os);
+			os << "}";
+		}
+		else
+		{
+			os << "N/A";
+		}
+		os << ", weaponManager = " << m_weaponManager << ", weaponIsCurrent = " << m_weaponsIsCurrent << "}";
 	}
 
 

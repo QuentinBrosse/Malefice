@@ -1,5 +1,5 @@
 #include "Armor.h"
-
+#include <iostream>
 
 namespace ecs
 {
@@ -9,6 +9,13 @@ namespace ecs
 
 	Armor::Armor(int maxHP) : Life(maxHP, ComponentType::ARMOR)
 	{
+	}
+
+
+	void	Armor::dump(std::ostream& os)	const
+	{
+		os << "Armor:";
+		Life::dump(os);
 	}
 
 

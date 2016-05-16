@@ -19,7 +19,7 @@ namespace ecs
 		AComponent(const AComponent& component)	= delete;
 		virtual ~AComponent()					= default;
 
-		virtual void	dump(std::ostream& os)	const	= 0;
+		virtual	void	dump(std::ostream& os)	const	= 0;
 
 		virtual void	serialize(RakNet::BitStream& out)	const	= 0;
 		virtual void	deserialize(RakNet::BitStream& in)			= 0;

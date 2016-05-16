@@ -59,7 +59,7 @@ namespace ecs
 
 	void	AScene::dump(std::ostream& os)	const
 	{
-		os << "AScene {NAME = " << NAME << ", nameMash = \"" << m_nameMesh << "\", nameTexture = \"" << m_nameTexture << "\"}";
+		os << "AScene {MEDIA_PATH = \"" << AScene::MEDIA_PATH << "\", IS_COLLISIONNABLE = " << AScene::IS_COLLISIONABLE << ", nameTexture = \"" << m_nameTexture << "\", nameMash = \"" << m_nameMesh << "\", pickableFlags = " << m_pickableFlags << "}";
 	}
 
 

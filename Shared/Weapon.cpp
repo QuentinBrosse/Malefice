@@ -38,11 +38,7 @@ namespace ecs
 		return *this;
 	}
 
-	void	Weapon::dump(std::ostream& os)	const
-	{
-		os << "[" << NAME << "/" << m_currentAmmunition << "/" << MAX_AMMUNITION << "/" << m_currentAmmunitionExplosive << "/" << MAX_AMMUNITION_EXPLOSIVE << "/" << DAMAGE << "/" << DAMAGE_EXPLOSIVE <<"]" << std::endl;
-	}
-
+	
 	const int Weapon::getId() const
 	{
 		return ID;
@@ -189,6 +185,16 @@ namespace ecs
 	SceneAnimatedMesh* Weapon::getScene() const
 	{
 		return m_scene;
+	}
+
+
+	void	Weapon::dump(std::ostream& os)	const
+	{
+		os << "Weapon {ID = " << Weapon::ID << ", WEAPON_NAME = \"" << Weapon::WEAPON_NAME << "\", MAX_AMMUNITION = " << Weapon::MAX_AMMUNITION << "MAX_AMMUNITION_EXPLOSIVE = " << Weapon::MAX_AMMUNITION_EXPLOSIVE
+			<< ", DAMAGE = " << Weapon::DAMAGE << ", DAMAGE_EXPLOSIVE = " << Weapon::DAMAGE_EXPLOSIVE << ", MAX_AMMUNITION_LOADER = " << Weapon::MAX_AMMUNITION_LOADER
+			<< ", MAX_AMMUNITION_EXPLOSIVE_LOADER = " << Weapon::MAX_AMMUNITION_EXPLOSIVE_LOADER << ", WEAPON_TYPE = " << Weapon::WEAPON_TYPE << ", HAND_TO_HAND = " << Weapon::HAND_TO_HAND
+			<< ", currentAmmunition = " << m_currentAmmunition << ", currentAmmunitionLoader = " << m_currentAmmunitionLoader << ", m_currentAmmunitionExplosiveLoader = " << m_currentAmmunitionExplosiveLoader
+			<< ", currentAmmunitionExplosive = " << m_currentAmmunitionExplosive << ", scene = " << *m_scene << "}";
 	}
 
 

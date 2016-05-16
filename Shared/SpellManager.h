@@ -39,9 +39,9 @@ namespace ecs
 
 
 	private:
-		std::map<Spell::SpellType, Spell>				m_spells;
-		std::map<Spell::SpellType, Spell>::iterator		m_currentSpell;
-		WeaponManager									m_weaponManager;
-		bool											m_weaponsIsCurrent;
+		std::map<Spell::SpellType, Spell>			m_spells;
+		std::map<Spell::SpellType, Spell>::iterator	m_currentSpell;
+		WeaponManager								m_weaponManager;
+		bool										m_weaponsIsCurrent;
 	};
 }

@@ -31,7 +31,7 @@ namespace ecs
 
 	void	Movement::dump(std::ostream& os)	const
 	{
-		os << "Movement {}";
+		os << "Movement {destination = " << m_destination << "}";
 	}
 
 

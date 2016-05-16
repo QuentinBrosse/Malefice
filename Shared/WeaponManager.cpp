@@ -2,11 +2,13 @@
 
 namespace ecs
 {
-	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::ComponentType::WEAPON_MANAGER)
+	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::ComponentType::WEAPON_MANAGER),
+		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
 	}
 
-	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER)
+	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER),
+		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
 		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (defaultWeapon.getWeaponType(), defaultWeapon));
 		m_currentWeapon = m_weapons.begin();
@@ -58,10 +60,28 @@ namespace ecs
 			m_currentWeapon = m_weapons.begin();
 	}
 
+
 	void	WeaponManager::dump(std::ostream& os)	const
 	{
-		for (auto& weapon : m_weapons)
-			weapon.second.dump(os);
+		os << "WeaponManager {weapons = [";
+		for (auto it = m_weapons.begin(); it != m_weapons.end(); ++it)
+		{
+			os << "Pair {WeaponType = " << it->first << ", Weapon = ";
+			it->second.dump(os);
+			os << "}" << (std::next(it) != m_weapons.end() ? ", " : "");
+		}
+		os << "], currentWeapon = ";
+		if (m_currentWeapon != m_weapons.end())
+		{
+			os << "Pair {WeaponType = " << m_currentWeapon->first << ", Weapon = ";
+			m_currentWeapon->second.dump(os);
+			os << "}";
+		}
+		else
+		{
+			os << "N/A";
+		}
+		os << "}";
 	}
 
 

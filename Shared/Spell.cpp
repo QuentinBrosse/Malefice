@@ -49,7 +49,7 @@ namespace ecs
 
 	void	Spell::dump(std::ostream& os)	const
 	{
-		os << "[" << NAME << ": " << m_spellType << "/" << COOLDOWN << "]";
+		os << "Spell {ID = " << Spell::ID << ", SPELL_NAME = \"" << Spell::SPELL_NAME << "\", COOLDOWN = " << Spell::COOLDOWN << ", spellType = " << m_spellType << ", isLock = " << m_isLock << "}";
 	}
 
 

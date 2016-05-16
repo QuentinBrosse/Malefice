@@ -24,7 +24,7 @@ namespace ecs
 		void			createWeapon(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const Weapon& weaponCpy);
 
 
-		virtual void	dump(std::ostream& os)	const;
+		virtual	void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out)	const;
 		virtual void	deserialize(RakNet::BitStream& in);

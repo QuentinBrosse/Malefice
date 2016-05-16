@@ -18,12 +18,7 @@ namespace ecs
 
 	}
 
-	void	Team::dump(std::ostream& os)	const
-	{
-		os << "[Team : " << m_teamNumber << "]" << std::endl;
-		os << "[Kill : " << m_kill << "]" << std::endl;
-		os << "[Death : " << m_death << "]" << std::endl;
-	}
+	
 
 	int Team::getDeath() const
 	{
@@ -53,6 +48,12 @@ namespace ecs
 	void Team::addKill()
 	{
 		m_kill += 1;
+	}
+
+
+	void	Team::dump(std::ostream& os)	const
+	{
+		os << "Team {teamNumber = " << m_teamNumber << ", kill = " << m_kill << ", death = " << m_death << "}";
 	}
 
 

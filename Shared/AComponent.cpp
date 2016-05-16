@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	AComponent::AComponent(const std::string& name, ComponentType type) :
+	AComponent::AComponent(const std::string& name, ecs::ComponentType type) :
 		NAME(name), TYPE(type)
 	{
 	}

@@ -74,7 +74,12 @@ namespace ecs
 
 	void	GameEventReceiver::dump(std::ostream& os)	const
 	{
-		os << "GameEventReceiver {}";
+		os << "GameEventReceiver {events.size = " << m_events.size();
+		if (m_events.size() > 0)
+		{
+			os << ", events.front = " << m_events.front() << ", events.back = " << m_events.back();
+		}
+		os << "}";
 	}
 
 

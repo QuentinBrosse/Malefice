@@ -1,4 +1,5 @@
 #include "Position.h"
+#include "IrrlichtUtility.h"
 
 namespace ecs
 {
@@ -67,10 +68,6 @@ namespace ecs
 		return m_vectorScale;
 	}
 
-	void	Position::dump(std::ostream& os)	const
-	{
-		os << "[" << NAME << ": {" << m_vectorPosition.X << ", " << m_vectorPosition.Y << ", " << m_vectorPosition.Z << "} \ {" << m_vectorRotation.X << ", " << m_vectorRotation.Y << ", " << m_vectorRotation.Z << "} ]" << std::endl;
-	}
 
 	bool Position::operator!=(const Position& other) const
 	{
@@ -80,6 +77,12 @@ namespace ecs
 	bool Position::operator==(const Position& other) const
 	{
 		return m_vectorPosition == other.m_vectorPosition && m_vectorRotation == other.m_vectorRotation && m_vectorScale == other.m_vectorScale;
+	}
+
+
+	void	Position::dump(std::ostream& os)	const
+	{
+		os << "Position {vectorPosition = " << m_vectorPosition << ", vectorRotation = " << m_vectorRotation << ", vectorScale = " << m_vectorScale << "}";
 	}
 
 
