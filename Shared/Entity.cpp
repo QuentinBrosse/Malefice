@@ -6,6 +6,9 @@
 #include "Movement.h"
 #include "Position.h"
 #include "AScene.h"
+#include "SceneMesh.h"
+#include "SceneAnimatedMesh.h"
+#include "SceneBillboard.h"
 #include "Spell.h"
 #include "SpellManager.h"
 #include "Team.h"
@@ -128,7 +131,8 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 	for (std::size_t i = 0; i < componentsNb; ++i)
 	{
 		ecs::AComponent::ComponentType	componentType	= ecs::AComponent::ComponentType::COMPONENT_COUNT;
-		ecs::AComponent		*component		= nullptr;
+		ecs::AScene::SceneType			sceneType		= ecs::AScene::SceneType::SCENE_COUNT;
+		ecs::AComponent					*component		= nullptr;
 
 		in.Read(componentType);
 		switch (componentType)
@@ -152,7 +156,22 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			component = new ecs::Position();
 			break;
 		case ecs::AComponent::ComponentType::SCENE:
-			std::logic_error("Deserialization of component type SCENE not implemented yet"); // TODO: implement scene deserialization
+			in.Read(sceneType);
+			switch (sceneType)
+			{
+			case ecs::AScene::SceneType::MESH:
+				component = new ecs::SceneMesh();
+				break;
+			case ecs::AScene::SceneType::ANIMATED_MESH:
+				component = new ecs::SceneAnimatedMesh();
+				break;
+			case ecs::AScene::SceneType::BILLBOARD:
+				component = new ecs::SceneBillboard();
+				break;
+			default:
+				std::logic_error("Bad scene type");
+				break;
+			}
 			break;
 		case ecs::AComponent::ComponentType::SPELL:
 			component = new ecs::Spell();
@@ -170,7 +189,7 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			component = new ecs::WeaponManager();
 			break;
 		default:
-			std::logic_error("Bad component type COMPONENT_COUNT");
+			std::logic_error("Bad component type");
 			break;
 		}
 		component->deserialize(in);

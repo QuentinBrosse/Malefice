@@ -60,11 +60,17 @@ namespace ecs
 
 	void	Team::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out);
+		out.Write(m_teamNumber);
+		out.Write(m_kill);
+		out.Write(m_death);
 	}
 
 	void	Team::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		in.Write(m_teamNumber);
+		in.Write(m_kill);
+		in.Write(m_death);
 	}
 }

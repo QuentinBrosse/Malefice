@@ -87,11 +87,11 @@ namespace ecs
 
 	void	WeaponManager::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 
 	void	WeaponManager::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 };

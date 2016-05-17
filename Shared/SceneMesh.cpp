@@ -4,6 +4,10 @@
 
 namespace ecs
 {
+	SceneMesh::SceneMesh() : AScene(ecs::AScene::SceneType::MESH),
+		m_node(nullptr)
+	{
+	}
 
 	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(ecs::AScene::SceneType::MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
@@ -12,7 +16,7 @@ namespace ecs
 		
 		if (namePK3 != "")
 		{
-			m_device->getFileSystem()->addFileArchive((MEDIA_PATH + namePK3).c_str());
+			m_device->getFileSystem()->addFileArchive((m_mediaPath + namePK3).c_str());
 			mesh = m_smgr->getMesh(newNameMesh.c_str());
 		}
 		else
@@ -29,7 +33,7 @@ namespace ecs
 		else
 			std::cerr << "Error constructor SceneMesh : m_node NULL !!" << std::endl;
 
-		if (IS_COLLISIONABLE)
+		if (m_isCollisionable)
 		{
 			m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
 			m_node->setTriangleSelector(m_selector);
@@ -76,11 +80,11 @@ namespace ecs
 
 	void	SceneMesh::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AScene::serialize(out);
 	}
 
 	void	SceneMesh::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AScene::deserialize(in);
 	}
 }

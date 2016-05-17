@@ -8,6 +8,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT SceneAnimatedMesh : public AScene
 	{
 	public:
+		SceneAnimatedMesh();
 		SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~SceneAnimatedMesh();
 
