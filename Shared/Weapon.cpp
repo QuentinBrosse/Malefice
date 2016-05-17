@@ -4,44 +4,102 @@
 namespace ecs
 {
 	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), MAX_AMMUNITION_LOADER(0), MAX_AMMUNITION_EXPLOSIVE_LOADER(0), WEAPON_TYPE(WEAPON_COUNT), HAND_TO_HAND(false), m_currentAmmunition(0), m_currentAmmunitionLoader(0), m_currentAmmunitionExplosiveLoader(0), m_currentAmmunitionExplosive(0), m_scene(nullptr)
+		ID(0), WEAPON_NAME(""), MAX_AMMUNITION(0), DAMAGE(0), WEAPON_TYPE(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetricsPosition(0, 0, 0), m_fpsMetricsRotation(0, 0, 0), m_fpsMetricsScale(0, 0, 0), m_externalMetricsPosition(0, 0, 0), m_externalMetricsRotation(0, 0, 0), m_externalMetricsScale(0, 0, 0), m_scene(nullptr)
 	{
-		m_currentAmmunition = MAX_AMMUNITION;
-		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
+
 	}
 
-	Weapon::Weapon(const int id, const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, const WeaponType weaponType, const bool handToHand) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), MAX_AMMUNITION_LOADER(maxAmmunitionLoader), MAX_AMMUNITION_EXPLOSIVE_LOADER(maxAmmunitionExplosiveLoader), WEAPON_TYPE(weaponType), HAND_TO_HAND(handToHand), m_currentAmmunition(0), m_currentAmmunitionLoader(0), m_currentAmmunitionExplosiveLoader(0), m_currentAmmunitionExplosive(0), m_scene(nullptr)
+	Weapon::Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, irr::core::vector3df	fpsMetricsPosition, irr::core::vector3df fpsMetricsRotation, irr::core::vector3df fpsMetricsScale, irr::core::vector3df	externalMetricsPosition, irr::core::vector3df externalMetricsRotation, irr::core::vector3df	externalMetricsScale, bool sight) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
+		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(ammunition), DAMAGE(damage), WEAPON_TYPE(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetricsPosition(fpsMetricsPosition), m_fpsMetricsRotation(fpsMetricsRotation), m_fpsMetricsScale(fpsMetricsScale), m_externalMetricsPosition(externalMetricsPosition), m_externalMetricsRotation(externalMetricsRotation), m_externalMetricsScale(externalMetricsScale), m_scene(nullptr)
 	{
-		m_currentAmmunition = MAX_AMMUNITION;
-		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
-		m_currentAmmunitionLoader = MAX_AMMUNITION_LOADER;
-		m_currentAmmunitionExplosiveLoader = MAX_AMMUNITION_EXPLOSIVE_LOADER;
+
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(cpy.ID), WEAPON_NAME(cpy.WEAPON_NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND), m_currentAmmunition(0), m_currentAmmunitionLoader(0), m_currentAmmunitionExplosiveLoader(0), m_currentAmmunitionExplosive(0), m_scene(nullptr)
+		ID(cpy.getId()), WEAPON_NAME(cpy.getName()), MAX_AMMUNITION(cpy.getMaxAmmunitions()), DAMAGE(cpy.getDamage()), WEAPON_TYPE(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetricsPosition(cpy.getFPSMetricsPosition()), m_fpsMetricsRotation(cpy.getFPSMetricsRotation()), m_fpsMetricsScale(cpy.getFPSMetricsScale()), m_externalMetricsPosition(cpy.getExternalMetricsPosition()), m_externalMetricsRotation(cpy.getExternalMetricsRotation()), m_externalMetricsScale(cpy.getExternalMetricsScale()), m_scene(nullptr)
 	{
-		m_currentAmmunition = cpy.m_currentAmmunition;
-		m_currentAmmunitionExplosive = cpy.m_currentAmmunitionExplosive;
-		m_currentAmmunitionLoader = cpy.m_currentAmmunitionLoader;
-		m_currentAmmunitionExplosiveLoader = cpy.m_currentAmmunitionExplosiveLoader;
+
 	}
 
 	Weapon& Weapon::operator=(const Weapon& other)
 	{
-		m_currentAmmunition = other.m_currentAmmunition;
-		m_currentAmmunitionExplosive = other.m_currentAmmunitionExplosive;
-		m_currentAmmunitionLoader = other.m_currentAmmunitionLoader;
-		m_currentAmmunitionExplosiveLoader = other.m_currentAmmunitionExplosiveLoader;
 		m_scene = other.m_scene;
 		return *this;
 	}
 
-	
+	const bool Weapon::isSight() const
+	{
+		return m_sight;
+	}
+
+	const unsigned int Weapon::getReloadTime() const
+	{
+		return m_reloadTime;
+	}
+
+	const unsigned int Weapon::getAmmunitions() const
+	{
+		return m_ammunition;
+	}
+
+	const unsigned int Weapon::getMaxAmmunitions() const
+	{
+		return MAX_AMMUNITION;
+	}
+
+	const unsigned int Weapon::getAmmoPerShot() const
+	{
+		return m_ammoPerShot;
+	}
+
+	const float	Weapon::getFireRate() const
+	{
+		return m_fireRate;
+	}
+
+	const float Weapon::getDistance() const
+	{
+		return m_distance;
+	}
+
+	irr::core::vector3df Weapon::getFPSMetricsPosition() const
+	{
+		return m_fpsMetricsPosition;
+	}
+
+	irr::core::vector3df Weapon::getFPSMetricsRotation() const
+	{
+		return m_fpsMetricsRotation;
+	}
+
+	irr::core::vector3df Weapon::getFPSMetricsScale() const
+	{
+		return m_fpsMetricsScale;
+	}
+
+	irr::core::vector3df Weapon::getExternalMetricsPosition() const
+	{
+		return m_externalMetricsPosition;
+	}
+
+	irr::core::vector3df Weapon::getExternalMetricsRotation() const
+	{
+		return m_externalMetricsRotation;
+	}
+
+	irr::core::vector3df Weapon::getExternalMetricsScale() const
+	{
+		return m_externalMetricsScale;
+	}
+
 	const int Weapon::getId() const
 	{
 		return ID;
+	}
+
+	const std::string & Weapon::getName() const
+	{
+		return WEAPON_NAME;
 	}
 
 	const int		Weapon::getDamage() const
@@ -49,76 +107,14 @@ namespace ecs
 		return DAMAGE;
 	}
 
-	const int		Weapon::getDamageExplosive() const
+	void Weapon::shot()
 	{
-		return DAMAGE_EXPLOSIVE;
-	}
-
-	int			Weapon::getAmmunition() const
-	{
-		return m_currentAmmunition;
-	}
-
-	int			Weapon::getAmmunitionExplosive() const
-	{
-		return m_currentAmmunitionExplosive;
-	}
-
-	int Weapon::getAmmunitionLoader() const
-	{
-		return m_currentAmmunitionLoader;
-	}
-
-	int Weapon::getAmmunitionExplosiveLoader() const
-	{
-		return m_currentAmmunitionExplosiveLoader;
+		this->decAmmunition(m_ammoPerShot);
 	}
 
 	void Weapon::reload()
 	{
-		if (m_currentAmmunition != 0 && m_currentAmmunitionLoader < MAX_AMMUNITION_LOADER)
-		{
-			int nbAmmunition = MAX_AMMUNITION_LOADER - m_currentAmmunitionLoader;
-			if (m_currentAmmunition >= nbAmmunition)
-			{
-				m_currentAmmunitionLoader = MAX_AMMUNITION_EXPLOSIVE_LOADER;
-				decAmmunition(nbAmmunition);
-			}
-			else
-			{
-				m_currentAmmunitionLoader = m_currentAmmunition;
-				m_currentAmmunition = 0;
-			}
-		}
-
-	}
-
-	void Weapon::reloadExplosive()
-	{
-		if (m_currentAmmunitionExplosive != 0 && m_currentAmmunitionExplosiveLoader < MAX_AMMUNITION_EXPLOSIVE_LOADER)
-		{
-			int nbAmmunition = MAX_AMMUNITION_EXPLOSIVE_LOADER - m_currentAmmunitionExplosiveLoader;
-			if (nbAmmunition <= m_currentAmmunitionExplosive)
-			{
-				m_currentAmmunitionExplosiveLoader = MAX_AMMUNITION_EXPLOSIVE_LOADER;
-				decAmmunitionExplosive(nbAmmunition);
-			}
-			else
-			{
-				m_currentAmmunitionExplosiveLoader = m_currentAmmunitionExplosive;
-				m_currentAmmunitionExplosive = 0;
-			}
-		}
-	}
-
-	void Weapon::fired()
-	{
-		m_currentAmmunitionExplosiveLoader--;
-	}
-
-	void Weapon::firedExplosive()
-	{
-		m_currentAmmunitionExplosiveLoader--;
+		std::cout << "Non implementer" << std::endl;
 	}
 
 	const Weapon::WeaponType Weapon::getWeaponType() const
@@ -126,41 +122,19 @@ namespace ecs
 		return WEAPON_TYPE;
 	}
 
-	const bool		Weapon::isHandToHand() const
-	{
-		return HAND_TO_HAND;
-	}
-	const std::string & Weapon::getName() const
-	{
-		return WEAPON_NAME;
-	}
-
 	void Weapon::decAmmunition(int nbLoaded)
 	{
-		m_currentAmmunition -= nbLoaded;
-		if (m_currentAmmunition < 0)
-			m_currentAmmunition = 0;
-	}
-
-	void Weapon::decAmmunitionExplosive(int nbLoaded)
-	{
-		m_currentAmmunitionExplosive -= nbLoaded;
-		if (m_currentAmmunitionExplosive < 0)
-			m_currentAmmunitionExplosive = 0;
+		if (nbLoaded >= m_ammunition)
+			m_ammunition = 0;
+		else
+			m_ammunition -= nbLoaded;
 	}
 
 	void Weapon::incAmmunition(int nbAmmuition)
 	{
-		m_currentAmmunition += nbAmmuition;
-		if (m_currentAmmunition > MAX_AMMUNITION)
-			m_currentAmmunition = MAX_AMMUNITION;
-	}
-
-	void Weapon::incAmmunitionExplosive(int nbAmmunition)
-	{
-		m_currentAmmunitionExplosive += nbAmmunition;
-		if (m_currentAmmunitionExplosive > MAX_AMMUNITION_EXPLOSIVE)
-			m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
+		m_ammunition += nbAmmuition;
+		if (m_ammunition > MAX_AMMUNITION)
+			m_ammunition = MAX_AMMUNITION;
 	}
 
 	void Weapon::createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active)
@@ -190,11 +164,8 @@ namespace ecs
 
 	void	Weapon::dump(std::ostream& os)	const
 	{
-		os << "Weapon {ID = " << Weapon::ID << ", WEAPON_NAME = \"" << Weapon::WEAPON_NAME << "\", MAX_AMMUNITION = " << Weapon::MAX_AMMUNITION << "MAX_AMMUNITION_EXPLOSIVE = " << Weapon::MAX_AMMUNITION_EXPLOSIVE
-			<< ", DAMAGE = " << Weapon::DAMAGE << ", DAMAGE_EXPLOSIVE = " << Weapon::DAMAGE_EXPLOSIVE << ", MAX_AMMUNITION_LOADER = " << Weapon::MAX_AMMUNITION_LOADER
-			<< ", MAX_AMMUNITION_EXPLOSIVE_LOADER = " << Weapon::MAX_AMMUNITION_EXPLOSIVE_LOADER << ", WEAPON_TYPE = " << Weapon::WEAPON_TYPE << ", HAND_TO_HAND = " << Weapon::HAND_TO_HAND
-			<< ", currentAmmunition = " << m_currentAmmunition << ", currentAmmunitionLoader = " << m_currentAmmunitionLoader << ", m_currentAmmunitionExplosiveLoader = " << m_currentAmmunitionExplosiveLoader
-			<< ", currentAmmunitionExplosive = " << m_currentAmmunitionExplosive << ", scene = " << *m_scene << "}";
+		os << "Weapon {ID = " << Weapon::ID << ", WEAPON_NAME = \"" << Weapon::WEAPON_NAME << "\", MAX_AMMUNITION = " << Weapon::MAX_AMMUNITION
+		   << ", DAMAGE = " << Weapon::DAMAGE << ", WEAPON_TYPE = " << Weapon::WEAPON_TYPE << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
 	}
 
 

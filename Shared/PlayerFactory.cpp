@@ -17,8 +17,8 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
-	ecs::Weapon* weapon = new ecs::Weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true);
-	ecs::Weapon* weaponSniper = new ecs::Weapon(1, "sniper", 100, 50, 20, 50, 10, 5, ecs::Weapon::SNIPER_RIFLE, true);
+	ecs::Weapon* weapon = new ecs::Weapon();
+	ecs::Weapon* weaponSniper = new ecs::Weapon();
 
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager();
 	dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, "", "weapons/models/shotgun.obj", *weapon);
@@ -46,7 +46,7 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vect
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
-	ecs::Weapon weapon(1, "gun", 100, 50, 20, 50, 10, 5, ecs::Weapon::REVOLVER, true);
+	ecs::Weapon weapon;
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager(weapon);
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);

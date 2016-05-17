@@ -11,20 +11,11 @@ namespace ecs
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
-			if (isExplosive)
-			{
-				if (weapon.getAmmunitionExplosiveLoader() > 0)
-					weapon.firedExplosive();
-				else
-					weapon.reloadExplosive();
-			}
+
+			if (weapon.getAmmunitions() > 0)
+				;//weapon.fired();
 			else
-			{
-				if (weapon.getAmmunitionLoader() > 0)
-					weapon.fired();
-				else
-					weapon.reload();
-			}
+				weapon.reload();
 			//TODO: ray tracing etc..
 		}
 	}

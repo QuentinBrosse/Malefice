@@ -17,18 +17,17 @@ namespace ecs
 			DEFAULT,
 			SNIPER_RIFLE,
 			RAIL_GUN,
-			SHOTGUN,
+			SHOT_GUN,
 			MACHINE_GUN,
-			REVOLVER,
-			DOUBLE_GUN,
-			SABER,
-			CHAIN_SAW,
-			KNIFE,
+			PISTOL,
+			DOUBLE_PISTOL,
+			SABRE,
+			CHAINSAW,
 			WEAPON_COUNT
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, int maxAmmunition, int maxAmmunitionExplosive, int damage, int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, WeaponType weaponType, bool handToHand);
+		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, irr::core::vector3df	fpsMetricsPosition, irr::core::vector3df fpsMetricsRotation, irr::core::vector3df fpsMetricsScale, irr::core::vector3df	externalMetricsPosition, irr::core::vector3df externalMetricsRotation, irr::core::vector3df	externalMetricsScale, bool sight);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
@@ -36,24 +35,25 @@ namespace ecs
 		
 		const int			getId()							const;
 		const int			getDamage()						const;
-		const int			getDamageExplosive()			const;
 		const WeaponType	getWeaponType()					const;
-		const bool			isHandToHand()					const;
 		const std::string&	getName()						const;
-		int					getAmmunition()					const;
-		int					getAmmunitionExplosive()		const;
-		int					getAmmunitionLoader()			const;
-		int					getAmmunitionExplosiveLoader()	const;
+		const unsigned int	getAmmunitions()				const;
+		const unsigned int	getMaxAmmunitions()				const;
+		const unsigned int	getReloadTime()					const;
+		const unsigned int	getAmmoPerShot()				const;
+		const float			getFireRate()					const;
+		const float			getDistance()					const;
+		irr::core::vector3df getFPSMetricsPosition()		const;
+		irr::core::vector3df getFPSMetricsRotation()		const;
+		irr::core::vector3df getFPSMetricsScale()			const;
+		irr::core::vector3df getExternalMetricsPosition()	const;
+		irr::core::vector3df getExternalMetricsRotation()	const;
+		irr::core::vector3df getExternalMetricsScale()		const;
+		const bool			isSight() const;
+		void				shot();
 		void				reload();
-		void				reloadExplosive();
-
-		void				fired();
-		void				firedExplosive();
-
 		void				decAmmunition(int nbFired);
-		void				decAmmunitionExplosive(int nbFired);
 		void				incAmmunition(int nbAmmuition);
-		void				incAmmunitionExplosive(int nbAmmunition);
 
 		void				createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active);
 
@@ -70,18 +70,26 @@ namespace ecs
 	private:
 		const int			ID;
 		const std::string	WEAPON_NAME;
-		const int			MAX_AMMUNITION;
-		const int			MAX_AMMUNITION_EXPLOSIVE;
-		const int			DAMAGE;
-		const int			DAMAGE_EXPLOSIVE;
-		const int			MAX_AMMUNITION_LOADER;
-		const int			MAX_AMMUNITION_EXPLOSIVE_LOADER;
+		const unsigned int	MAX_AMMUNITION;
+		const unsigned int	DAMAGE;
 		const WeaponType	WEAPON_TYPE;
-		const bool			HAND_TO_HAND;
-		int					m_currentAmmunition;
-		int					m_currentAmmunitionLoader;
-		int					m_currentAmmunitionExplosiveLoader;
-		int					m_currentAmmunitionExplosive;
+
+		bool				m_sight;
+
+		unsigned int		m_ammunition;
+		unsigned int		m_reloadTime;
+		unsigned int		m_ammoPerShot;
+
+		float				m_fireRate;
+		float				m_distance;
+
 		SceneAnimatedMesh*	m_scene;
+
+		irr::core::vector3df	m_fpsMetricsPosition;
+		irr::core::vector3df	m_fpsMetricsRotation;
+		irr::core::vector3df	m_fpsMetricsScale;
+		irr::core::vector3df	m_externalMetricsPosition;
+		irr::core::vector3df	m_externalMetricsRotation;
+		irr::core::vector3df	m_externalMetricsScale;
 	};
 }

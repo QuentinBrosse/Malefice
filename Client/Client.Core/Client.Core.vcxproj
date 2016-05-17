@@ -101,7 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared;../../Dependencies/tinyxml2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
