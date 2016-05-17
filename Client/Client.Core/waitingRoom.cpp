@@ -6,7 +6,8 @@
 	#pragma warning(disable:4996)
 #endif
 
-WaitingRoom::WaitingRoom(GraphicUtil &gu) : m_graphicalUtil(gu)
+WaitingRoom::WaitingRoom(GraphicUtil &gu) :
+	m_graphicalUtil(gu), m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_timestamp(0), m_stopTimer(false), m_timerText(nullptr), m_rightTeam(nullptr), m_leftTeam(nullptr)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("WaitingRoom.layout");
 	try

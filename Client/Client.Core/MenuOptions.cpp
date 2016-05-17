@@ -1,6 +1,6 @@
 #include "MenuOptions.h"
 
-MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_utilities(gu)
+MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_frameWindows(nullptr), m_utilities(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("options.layout");
 	try

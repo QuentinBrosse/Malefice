@@ -1,7 +1,8 @@
 #include <iostream>
 #include "LoadingWindows.h"
 
-LoadingWindows::LoadingWindows()
+LoadingWindows::LoadingWindows() :
+	m_windows(nullptr), m_progressText(nullptr), m_outputList(nullptr), m_frameWindows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_progressBar(nullptr)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectionToServer.layout");
 	try

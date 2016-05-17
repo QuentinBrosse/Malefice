@@ -12,9 +12,11 @@ class MenuOptions
 public:
 	MenuOptions(GraphicUtil &gu);
 	~MenuOptions() = default;
+
 	void display();
 	void hide();
 	bool onCloseButtonClicked();
+
 private:
 	CEGUI::System& m_systemd;
 	CEGUI::Window* m_windows;

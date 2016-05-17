@@ -2,7 +2,8 @@
 #include "Camera.h"
 #include "MathUtility.h"
 
-Camera::Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneManager)
+Camera::Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneManager) :
+	m_camera(nullptr)
 {
 	irr::SKeyMap	keyMap[5];
 

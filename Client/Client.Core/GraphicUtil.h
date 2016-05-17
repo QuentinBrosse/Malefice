@@ -42,10 +42,10 @@ private:
 	Camera*						m_guiCamera;
 	EventReceiver				m_receiver;
 	irr::SKeyMap*				m_keyMap;
-	MainMenu*					m_menu = nullptr;
-	MenuPause*					m_menuPause = nullptr;
-	MenuOptions*				m_menuOptions = nullptr;
-	ConnectWindow*				m_connectWindow = nullptr;
-	WaitingRoom*				m_salon = nullptr;
-	InGameGUI*					m_hud = nullptr;
+	MainMenu*					m_menu;
+	MenuPause*					m_menuPause;
+	MenuOptions*				m_menuOptions;
+	ConnectWindow*				m_connectWindow;
+	WaitingRoom*				m_salon;
+	InGameGUI*					m_hud;
 };

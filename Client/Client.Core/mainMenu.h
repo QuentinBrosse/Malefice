@@ -14,11 +14,13 @@ class MainMenu
 public:
 	MainMenu(GraphicUtil &gu);
 	~MainMenu() = default;
+	
 	void display();
 	void hide();
 	bool onPlayButtonClicked(const CEGUI::EventArgs& e);
 	bool onOptionButtonClicked(const CEGUI::EventArgs& e);
 	bool onQuitButtonClicked(const CEGUI::EventArgs& e);
+
 private:
 	CEGUI::Window *m_windows;
 	CEGUI::System &m_systemd;

@@ -12,6 +12,7 @@ class MenuPause
 public:
 	MenuPause(GraphicUtil &utilities);
 	~MenuPause() = default;
+
 	void display();
 	void hide();
 	bool onOptionButtonClicked();
@@ -19,9 +20,10 @@ public:
 	bool onContinueButtonClicked();
 	void checkPause();
 	bool getEnableStatus();
+
 private:
 	GraphicUtil&	m_utilities;
-	CEGUI::System&	m_systemd = CEGUI::System::getSingleton();
+	CEGUI::System&	m_systemd;
 	CEGUI::Window*	m_windows;
-	bool			m_isEnable = false;
+	bool			m_isEnable;
 };

@@ -16,7 +16,7 @@ private:
 	CEGUI::Window* m_windows;
 	CEGUI::Editbox* m_ip;
 	CEGUI::Editbox* m_port;
-	CEGUI::System& m_systemd = CEGUI::System::getSingleton();
+	CEGUI::System& m_systemd;
 	CEGUI::FrameWindow* m_frameWindows;
 	std::string m_ipStr;
 	std::string m_portStr;

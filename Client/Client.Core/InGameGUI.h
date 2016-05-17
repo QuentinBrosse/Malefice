@@ -33,7 +33,7 @@ public:
 	void setTeam2Score(int nbr);
 private:
 	CEGUI::Window* m_hud;
-	CEGUI::System& m_systemd = CEGUI::System::getSingleton();
+	CEGUI::System& m_systemd;
 	CEGUI::ProgressBar* m_hpBar;
 	CEGUI::Window* m_hpBarText;
 	CEGUI::Window* m_mpBarText;
@@ -42,23 +42,18 @@ private:
 	CEGUI::Window* m_power2;
 	CEGUI::Window* m_power3;
 	CEGUI::Window* m_power4;
-	CEGUI::Window* m_team1_score;
-	CEGUI::Window* m_team2_score;
-
-	std::time_t m_timestamp = 0;
-
+	CEGUI::Window* m_team1Score;
+	CEGUI::Window* m_team2Score;
+	std::time_t m_timestamp;
 	std::vector<CEGUI::Window*> m_powerList;
-
-	unsigned int hp = 0;
-	unsigned int mp = 0;
-	const unsigned int max_hp = 100;
-	const unsigned int max_mp = 150;
-	bool m_stopTimer = true;
-
-	bool m_power1_activated;
-	bool m_power2_activated;
-	bool m_power3_activated;
-	bool m_power4_activated;
-
-	const int m_maxPowerNbr = 3;
+	unsigned int m_hp;
+	unsigned int m_mp;
+	const unsigned int m_maxHP;
+	const unsigned int m_maxMP;
+	bool m_stopTimer;
+	bool m_power1Activated;
+	bool m_power2Activated;
+	bool m_power3Activated;
+	bool m_power4Activated;
+	const int m_maxPowerNbr;
 };
