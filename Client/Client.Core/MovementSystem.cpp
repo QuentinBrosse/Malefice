@@ -10,7 +10,7 @@ namespace ecs
 		Movement*	movement;
 		Position*	position;
 
-		if ((movement = dynamic_cast<Movement*>(entity[MOVEMENT])) != nullptr && (position = dynamic_cast<Position*>(entity[POSITION])) != nullptr)
+		if ((movement = dynamic_cast<Movement*>(entity[ecs::AComponent::ComponentType::MOVEMENT])) != nullptr && (position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr)
 		{
 			movement->move(*position);
 			//TODO: send msg to server

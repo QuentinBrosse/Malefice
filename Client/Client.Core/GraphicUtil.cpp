@@ -228,6 +228,6 @@ void GraphicUtil::setFPSCamera()
 
 	if ((map = clientCore.getMap()) != nullptr)
 	{
-		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::SCENE])->setCollision();
+		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
 	}
 }

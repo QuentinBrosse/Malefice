@@ -4,6 +4,6 @@ ecs::Entity* ObjectFactory::createObject(const irr::core::vector3df& vectorPosit
 {
 	ecs::Entity*	entity = new ecs::Entity(owner, entityType);
 
-	(*entity)[ecs::POSITION] = new ecs::Position(vectorPosition, vectorRotation);
+	(*entity)[ecs::AComponent::ComponentType::POSITION] = new ecs::Position(vectorPosition, vectorRotation);
 	return entity;
 }

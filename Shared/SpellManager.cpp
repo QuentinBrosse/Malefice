@@ -3,7 +3,7 @@
 
 namespace ecs
 {
-	SpellManager::SpellManager() : AComponent("SpellManager", ecs::ComponentType::SPELL_MANAGER),
+	SpellManager::SpellManager() : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
 		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
 	{
 	}

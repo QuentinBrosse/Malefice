@@ -7,7 +7,7 @@ ecs::Entity* MapFactory::createMap(irr::IrrlichtDevice* device, const irr::core:
 {
 	ecs::Entity*	map = ObjectFactory::createObject(vectorPosition, vectorRotation, owner, ecs::Entity::MAP);
 
-	(*map)[ecs::SCENE] = new ecs::SceneMesh(device, "", nameMesh, nodePickable::IS_PICKABLE, true, namePK3);
+	(*map)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneMesh(device, "", nameMesh, nodePickable::IS_PICKABLE, true, namePK3);
 
 	return map;
 }

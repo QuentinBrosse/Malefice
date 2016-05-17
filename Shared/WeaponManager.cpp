@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::ComponentType::WEAPON_MANAGER),
+	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
 		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
 	}

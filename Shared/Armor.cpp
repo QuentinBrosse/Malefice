@@ -3,11 +3,11 @@
 
 namespace ecs
 {
-	Armor::Armor() : Life(ecs::ComponentType::ARMOR)
+	Armor::Armor() : Life(ecs::AComponent::ComponentType::ARMOR)
 	{
 	}
 
-	Armor::Armor(int maxHP) : Life(maxHP, ComponentType::ARMOR)
+	Armor::Armor(int maxHP) : Life(maxHP, ecs::AComponent::ComponentType::ARMOR)
 	{
 	}
 

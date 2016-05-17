@@ -9,8 +9,8 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Life : public AComponent
 	{
 	public:
-		Life(ecs::ComponentType lifeType);
-		Life(const int maxLife, const ComponentType type);
+		Life(ecs::AComponent::ComponentType lifeType);
+		Life(const int maxLife, const ecs::AComponent::ComponentType type);
 		~Life() = default;
 
 		int		get() const;

@@ -14,7 +14,7 @@ namespace ecs
 	{
 		GameEventReceiver*					eventReceiver;
 
-		if ((eventReceiver = dynamic_cast<GameEventReceiver*>(localPlayer[GAME_EVENT_RECEIVER])) != nullptr)
+		if ((eventReceiver = dynamic_cast<GameEventReceiver*>(localPlayer[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER])) != nullptr)
 		{
 			;	//TODO: implement EventSystem
 		}

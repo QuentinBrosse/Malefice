@@ -3,7 +3,7 @@
 
 namespace ecs
 {
-	Position::Position() : AComponent("Position", ecs::ComponentType::POSITION)
+	Position::Position() : AComponent("Position", ecs::AComponent::ComponentType::POSITION)
 	{
 	}
 

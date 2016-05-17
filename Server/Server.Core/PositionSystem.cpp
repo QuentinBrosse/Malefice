@@ -12,7 +12,7 @@ namespace ecs
 		Position*	position;
 		AScene*		scene;
 
-		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[SCENE])) != nullptr)
+		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
 		}

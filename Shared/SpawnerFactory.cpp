@@ -8,7 +8,7 @@ ecs::Entity* SpawnerFactory::createWeaponSpawner(const irr::core::vector3df& vec
 {
 	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
 
-	(*entity)[ecs::WEAPON] = new ecs::Weapon();
+	(*entity)[ecs::AComponent::ComponentType::WEAPON] = new ecs::Weapon();
 	
 	return entity;
 }
@@ -17,7 +17,7 @@ ecs::Entity* SpawnerFactory::createLifeSpawner(const irr::core::vector3df& vecto
 {
 	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
 
-	(*entity)[ecs::LIFE] = new ecs::Life(50, ecs::ComponentType::LIFE);
+	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(50, ecs::AComponent::ComponentType::LIFE);
 
 	return entity;
 }
@@ -26,7 +26,7 @@ ecs::Entity* SpawnerFactory::createSpellSpawner(const irr::core::vector3df& vect
 {
 	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
 
-	(*entity)[ecs::SPELL] = new ecs::Spell();
+	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell();
 
 	return entity;
 }

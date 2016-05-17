@@ -14,7 +14,7 @@ namespace ecs
 		GameEventReceiver*					eventReceiver;
 		SpellManager*						spellManager;
 
-		if ((eventReceiver = dynamic_cast<GameEventReceiver*>(localPlayer[GAME_EVENT_RECEIVER])) != nullptr && (spellManager = dynamic_cast<SpellManager*>(localPlayer[SPELL_MANAGER])) != nullptr)
+		if ((eventReceiver = dynamic_cast<GameEventReceiver*>(localPlayer[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER])) != nullptr && (spellManager = dynamic_cast<SpellManager*>(localPlayer[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 			EventSystem::doPredatorEvents(localPlayer, eventReceiver, spellManager);
 		else if (eventReceiver)
 			EventSystem::doPlayerEvents(localPlayer, eventReceiver);
