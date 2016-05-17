@@ -18,7 +18,7 @@ namespace ecs
 			SCENE_COUNT
 		};
 
-		AScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
+		AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~AScene() = 0;
 
 		std::string				getNameTexture()	const;
@@ -40,6 +40,8 @@ namespace ecs
 
 
 	protected:
+		ecs::AScene::SceneType	m_type;
+
 		const std::string	MEDIA_PATH;
 		const bool			IS_COLLISIONABLE;
 

@@ -21,11 +21,11 @@ namespace ecs
 
 	void	Armor::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		Life::serialize(out);
 	}
 
 	void	Armor::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		Life::deserialize(in);
 	}
 }
