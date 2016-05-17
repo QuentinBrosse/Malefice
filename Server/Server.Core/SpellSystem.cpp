@@ -9,7 +9,7 @@ namespace ecs
 		SpellManager*	spellManager;
 		Spell*			spellOfTarget;
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
 			//TODO: Ray Tracing, etc...

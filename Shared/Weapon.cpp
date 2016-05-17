@@ -3,14 +3,14 @@
 
 namespace ecs
 {
-	Weapon::Weapon() : AComponent("Weapon", WEAPON),
-		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), MAX_AMMUNITION_LOADER(0), MAX_AMMUNITION_EXPLOSIVE_LOADER(0), WEAPON_TYPE(DEFAULT), HAND_TO_HAND(false), m_scene(nullptr)
+	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
+		ID(0), WEAPON_NAME("Weapon"), MAX_AMMUNITION(0), MAX_AMMUNITION_EXPLOSIVE(0), DAMAGE(0), DAMAGE_EXPLOSIVE(0), MAX_AMMUNITION_LOADER(0), MAX_AMMUNITION_EXPLOSIVE_LOADER(0), WEAPON_TYPE(WEAPON_COUNT), HAND_TO_HAND(false), m_scene(nullptr)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
 		m_currentAmmunitionExplosive = MAX_AMMUNITION_EXPLOSIVE;
 	}
 
-	Weapon::Weapon(const int id, const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, const WeaponType weaponType, const bool handToHand) : AComponent("Weapon", WEAPON),
+	Weapon::Weapon(const int id, const std::string& name, const int maxAmmunition, const int maxAmmunitionExplosive, const int damage, const int damageExplosive, const int maxAmmunitionLoader, const int maxAmmunitionExplosiveLoader, const WeaponType weaponType, const bool handToHand) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
 		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(maxAmmunition), MAX_AMMUNITION_EXPLOSIVE(maxAmmunitionExplosive), DAMAGE(damage), DAMAGE_EXPLOSIVE(damageExplosive), MAX_AMMUNITION_LOADER(maxAmmunitionLoader), MAX_AMMUNITION_EXPLOSIVE_LOADER(maxAmmunitionExplosiveLoader), WEAPON_TYPE(weaponType), HAND_TO_HAND(handToHand), m_scene(nullptr)
 	{
 		m_currentAmmunition = MAX_AMMUNITION;
@@ -19,7 +19,7 @@ namespace ecs
 		m_currentAmmunitionExplosiveLoader = MAX_AMMUNITION_EXPLOSIVE_LOADER;
 	}
 
-	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", WEAPON),
+	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
 		ID(cpy.ID), WEAPON_NAME(cpy.WEAPON_NAME), MAX_AMMUNITION(cpy.MAX_AMMUNITION), MAX_AMMUNITION_EXPLOSIVE(cpy.MAX_AMMUNITION_EXPLOSIVE), DAMAGE(cpy.DAMAGE), DAMAGE_EXPLOSIVE(cpy.DAMAGE_EXPLOSIVE), MAX_AMMUNITION_LOADER(cpy.MAX_AMMUNITION_LOADER), MAX_AMMUNITION_EXPLOSIVE_LOADER(cpy.MAX_AMMUNITION_EXPLOSIVE_LOADER), WEAPON_TYPE(cpy.WEAPON_TYPE), HAND_TO_HAND(cpy.HAND_TO_HAND), m_scene(nullptr)
 	{
 		m_currentAmmunition = cpy.m_currentAmmunition;

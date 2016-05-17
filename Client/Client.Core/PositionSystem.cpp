@@ -17,7 +17,7 @@ namespace ecs
 		AScene*			scene;
 		WeaponManager*	weaponManager;
 
-		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[SCENE])) != nullptr)
+		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
 			Camera*	camera = GraphicUtil::getInstance().getFPSCamera();
@@ -37,7 +37,7 @@ namespace ecs
 
 			scene->setPosition(ecs::Position(posCam, oriMe));
 		}
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			weaponManager->getCurrentWeapon();
 			weaponManager->getCurrentWeapon().setActivity(true);
@@ -52,7 +52,7 @@ namespace ecs
 		SceneAnimatedMesh*		scene;
 		WeaponManager*			weaponManager;
 
-		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
+		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
 			std::map<ecs::Weapon::WeaponType, Weapon&>&	weapons = weaponManager->getWeapons();
@@ -85,7 +85,7 @@ namespace ecs
 		Position*	position;
 		AScene*		scene;
 
-		if ((position = dynamic_cast<Position*>(entity[POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[SCENE])) != nullptr)
+		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
 			scene->setPosition(*position);
 		}

@@ -34,7 +34,7 @@ namespace ecs
 
 
 
-	bool	Entity::has(ComponentType type)	const
+	bool	Entity::has(ecs::AComponent::ComponentType type)	const
 	{
 		try
 		{
@@ -58,13 +58,13 @@ namespace ecs
 		return m_entityType;
 	}
 
-	const std::map<ComponentType, AComponent*>&	Entity::getComponents()	const
+	const std::map<ecs::AComponent::ComponentType, AComponent*>&	Entity::getComponents()	const
 	{
 		return m_components;
 	}
 
 
-	AComponent*&	Entity::operator[](ComponentType type)
+	AComponent*&	Entity::operator[](ecs::AComponent::ComponentType type)
 	{
 		return m_components[type];
 	}
@@ -79,9 +79,9 @@ namespace ecs
 		m_entityType = entityType;
 	}
 
-	void	Entity::addComponent(ecs::ComponentType componentType, ecs::AComponent* component)
+	void	Entity::addComponent(ecs::AComponent::ComponentType componentType, ecs::AComponent* component)
 	{
-		m_components.insert(std::pair<ecs::ComponentType, ecs::AComponent*>(componentType, component));
+		m_components.insert(std::pair<ecs::AComponent::ComponentType, ecs::AComponent*>(componentType, component));
 	}
 }
 
@@ -127,52 +127,50 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 	out.setEntityType(entityType);
 	for (std::size_t i = 0; i < componentsNb; ++i)
 	{
-		ecs::ComponentType	componentType	= ecs::ComponentType::DEFAULT;
+		ecs::AComponent::ComponentType	componentType	= ecs::AComponent::ComponentType::COMPONENT_COUNT;
 		ecs::AComponent		*component		= nullptr;
 
 		in.Read(componentType);
 		switch (componentType)
 		{
-		case ecs::ComponentType::ARMOR:
+		case ecs::AComponent::ComponentType::ARMOR:
 			component = new ecs::Armor();
 			break;
-		case ecs::ComponentType::CAMERA:
+		case ecs::AComponent::ComponentType::CAMERA:
 			std::logic_error("Deserialization of component type CAMERA not implemented"); // TODO: right?
 			break;
-		case ecs::ComponentType::DEFAULT:
-			std::logic_error("Deserialization of component type DEFAULT not implemented");
-			break;
-		case ecs::ComponentType::GAME_EVENT_RECEIVER:
+		case ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER:
 			component = new ecs::GameEventReceiver();
 			break;
-		case ecs::ComponentType::LIFE:
-			component = new ecs::Life(ecs::ComponentType::LIFE);
+		case ecs::AComponent::ComponentType::LIFE:
+			component = new ecs::Life(ecs::AComponent::ComponentType::LIFE);
 			break;
-		case ecs::ComponentType::MOVEMENT:
+		case ecs::AComponent::ComponentType::MOVEMENT:
 			component = new ecs::Movement();
 			break;
-		case ecs::ComponentType::POSITION:
+		case ecs::AComponent::ComponentType::POSITION:
 			component = new ecs::Position();
 			break;
-		case ecs::ComponentType::SCENE:
+		case ecs::AComponent::ComponentType::SCENE:
 			std::logic_error("Deserialization of component type SCENE not implemented yet"); // TODO: implement scene deserialization
 			break;
-		case ecs::ComponentType::SPELL:
+		case ecs::AComponent::ComponentType::SPELL:
 			component = new ecs::Spell();
 			break;
-		case ecs::ComponentType::SPELL_MANAGER:
+		case ecs::AComponent::ComponentType::SPELL_MANAGER:
 			component = new ecs::SpellManager();
 			break;
-		case ecs::ComponentType::TEAM:
+		case ecs::AComponent::ComponentType::TEAM:
 			component = new ecs::Team();
 			break;
-		case ecs::ComponentType::WEAPON:
+		case ecs::AComponent::ComponentType::WEAPON:
 			component = new ecs::Weapon();
 			break;
-		case ecs::ComponentType::WEAPON_MANAGER:
+		case ecs::AComponent::ComponentType::WEAPON_MANAGER:
 			component = new ecs::WeaponManager();
 			break;
 		default:
+			std::logic_error("Bad component type COMPONENT_COUNT");
 			break;
 		}
 		component->deserialize(in);

@@ -2,12 +2,12 @@
 
 namespace ecs
 {
-	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::ComponentType::WEAPON_MANAGER),
+	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
 		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
 	}
 
-	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", WEAPON_MANAGER),
+	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
 		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
 		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (defaultWeapon.getWeaponType(), defaultWeapon));

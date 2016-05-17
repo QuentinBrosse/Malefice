@@ -10,7 +10,7 @@ namespace ecs
 	{
 		SpellManager*	spellManager;
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeToNextSpell();
 			// TODO : Send msg to server
@@ -21,7 +21,7 @@ namespace ecs
 	{
 		SpellManager*	spellManager;
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeToPrecSpell();
 			// TODO : Send msg to server
@@ -32,7 +32,7 @@ namespace ecs
 	{
 		SpellManager*	spellManager;
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[SPELL_MANAGER])) != nullptr)
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeCurrentManager();
 			// TODO : Send msg to server

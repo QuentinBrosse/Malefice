@@ -9,7 +9,7 @@ namespace ecs
 	{
 		WeaponManager*	weaponManager;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			if (isExplosive)

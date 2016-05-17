@@ -3,21 +3,21 @@
 
 namespace ecs
 {
-	Position::Position() : AComponent("Position", ecs::ComponentType::POSITION)
+	Position::Position() : AComponent("Position", ecs::AComponent::ComponentType::POSITION)
 	{
 	}
 
-	Position::Position(float xPosition, float yPosition, float zPosition, float xRotation, float yRotation, float zRotation, float xScale, float yScale, float zScale) : AComponent("Position", POSITION),
+	Position::Position(float xPosition, float yPosition, float zPosition, float xRotation, float yRotation, float zRotation, float xScale, float yScale, float zScale) : AComponent("Position", ecs::AComponent::ComponentType::POSITION),
 		m_vectorPosition(irr::core::vector3df(xPosition, yPosition, zPosition)), m_vectorRotation(irr::core::vector3df(xRotation, yRotation, zRotation)), m_vectorScale(irr::core::vector3df(xScale, yScale, zScale))
 	{
 	}
 
-	Position::Position(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const irr::core::vector3df& vectorScale): AComponent("Position", POSITION),
+	Position::Position(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const irr::core::vector3df& vectorScale): AComponent("Position", ecs::AComponent::ComponentType::POSITION),
 		m_vectorPosition(vectorPosition), m_vectorRotation(vectorRotation), m_vectorScale(vectorScale)
 	{
 	}
 
-	Position::Position(const Position& pos) : AComponent("Position", POSITION),
+	Position::Position(const Position& pos) : AComponent("Position", ecs::AComponent::ComponentType::POSITION),
 		m_vectorPosition(irr::core::vector3df(pos.m_vectorPosition)), m_vectorRotation(irr::core::vector3df(pos.m_vectorRotation)), m_vectorScale(irr::core::vector3df(pos.m_vectorScale))
 	{
 		

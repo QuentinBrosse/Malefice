@@ -191,9 +191,6 @@
     <ClInclude Include="AComponent.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="CollectionComponent.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\ECS\Entity</Filter>
     </ClInclude>

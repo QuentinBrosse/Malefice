@@ -10,6 +10,14 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT AScene : public AComponent
 	{
 	public:
+		enum class SceneType : int
+		{
+			MESH,
+			ANIMATED_MESH,
+			BILLBOARD,
+			SCENE_COUNT
+		};
+
 		AScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~AScene() = 0;
 

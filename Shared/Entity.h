@@ -13,7 +13,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Entity
 	{
 	public:
-		enum EntityType
+		enum class EntityType : int
 		{
 			NOTHING,
 			PLAYER,
@@ -32,21 +32,21 @@ namespace ecs
 		Entity&	operator=(Entity&&)			= default;
 		
 
-		bool										has(ComponentType type)	const;
+		bool										has(ecs::AComponent::ComponentType type)	const;
 		ecs::ClientId								getOwner()				const;
 		ecs::Entity::EntityType						getEntityType()			const;
-		const std::map<ComponentType, AComponent*>&	getComponents()			const;
+		const std::map<ecs::AComponent::ComponentType, AComponent*>&	getComponents()			const;
 
-		AComponent*&	operator[](ComponentType type);
+		AComponent*&	operator[](ecs::AComponent::ComponentType type);
 		void			setOwner(ecs::ClientId owner);
 		void			setEntityType(ecs::Entity::EntityType entityType);
-		void			addComponent(ecs::ComponentType componentType, ecs::AComponent* component);
+		void			addComponent(ecs::AComponent::ComponentType componentType, ecs::AComponent* component);
 
 
 	private:
 		ecs::ClientId							m_owner;
 		EntityType								m_entityType;
-		std::map<ComponentType, AComponent*>	m_components;
+		std::map<ecs::AComponent::ComponentType, AComponent*>	m_components;
 	};
 }
 

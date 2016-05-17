@@ -10,7 +10,7 @@ namespace ecs
 	{
 		WeaponManager*	weaponManager;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(player[WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			weaponManager->changeToNextWeapon();
 			//TODO: update?
@@ -21,7 +21,7 @@ namespace ecs
 	{
 		WeaponManager*	weaponManager;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(player[WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			//TODO: update?
 			weaponManager->changeToPrecWeapon();

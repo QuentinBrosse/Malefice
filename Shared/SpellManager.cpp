@@ -3,13 +3,13 @@
 
 namespace ecs
 {
-	SpellManager::SpellManager() : AComponent("SpellManager", ecs::ComponentType::SPELL_MANAGER),
+	SpellManager::SpellManager() : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
 		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
 	{
 	}
 
 	//TODO: CHange new Weapon with call to WeaponCreator
-	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", SPELL_MANAGER),
+	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
 		m_weaponManager(*(new Weapon(1, "shotgun", 100, 50, 50, 100, 10, 5, Weapon::WeaponType::SHOTGUN, false)))
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));

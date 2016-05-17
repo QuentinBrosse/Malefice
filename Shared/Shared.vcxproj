@@ -192,7 +192,6 @@
     <ClInclude Include="AConfiguration.h" />
     <ClInclude Include="Armor.h" />
     <ClInclude Include="AScene.h" />
-    <ClInclude Include="CollectionComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="GameEventReceiver.h" />
