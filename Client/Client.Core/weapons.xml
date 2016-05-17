@@ -1,101 +1,464 @@
+<!--
+
+	name 			:	Litteral name
+						String
+						[]
+
+	type			:	Type
+						Enum WEAPON_TYPE
+						[]
+
+	distance 		:	Shot distance 
+						Float
+						[sight = false]
+
+	precision		:	Radius
+						Float
+						[]
+
+	ammunition		:	Max ammunitons in the lodader
+						Unsigned Int
+						[type="bullet"]
+	
+	rateOfFire		:	Time between 2 shots
+						Float
+						[]
+
+	ammoPerShot		:	Ammont for unit per shot
+						Unsigned Int
+						[]
+
+	damage			:	Damage per shot
+						Unsigned Int
+						[]
+
+	reloadTime		:	Time to reload
+						Unsigned Int
+						[overheating = false]
+
+	FPSMetrics		:	Position / Rotation / Scale of the weapon in FTP view
+						Float
+						[]
+
+	ExternalMetrics	:	Position / Rotation / Scale of the weapon in external view
+						Float
+						[]
+-->
+
 <weapons>
+
 	<weapon id="1">
-		<name>AWP</name>
+		<name>Fusil Sniper</name>
 		<type>SNIPER_RIFLE</type>
-		<maxAmmunition>10</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>150</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
+		<distance sight="true">1000.0</distance>
+		<precision>0.0</precision>
+		<ammunition>40</ammunition>
+		<rateOfFire>10.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>60</damage>
+		<reloadTime>5</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="2">
-		<name>R8</name>
-		<type>REVOLVER</type>
-		<maxAmmunition>8</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>100</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
-	</weapon>
-		<weapon id="3">
-		<name>RailGun</name>
+		<name>Rail­-Gun</name>
 		<type>RAIL_GUN</type>
-		<maxAmmunition>100</maxAmmunition>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<damage>200</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
+		<distance>500.0</distance>
+		<precision>00.0</precision>
+		<ammunition>220</ammunition>
+		<rateOfFire>100.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>6</damage>
+		<reloadTime overheating="true">2</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
+	<weapon id="3">
+		<name>Fusil à Pompe</name>
+		<type>SHOT_GUN</type>
+		<distance>500.0</distance>
+		<precision>10.0</precision>
+		<ammunition>60</ammunition>
+		<rateOfFire>10.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>60</damage>
+		<reloadTime>5</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
+	</weapon>
+	
 	<weapon id="4">
-		<name>MachineGun</name>
+		<name>Mitraillette</name>
 		<type>MACHINE_GUN</type>
-		<maxAmmunition>5</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>150</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
+		<distance>750.0</distance>
+		<precision>5.0</precision>
+		<ammunition>360</ammunition>
+		<rateOfFire>60.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>13</damage>
+		<reloadTime>2</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="5">
-		<name>DoubleGun</name>
-		<type>DOUBLE_GUN</type>
-		<maxAmmunition>10</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>100</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
+		<name>Pistolet</name>
+		<type>PISTOL</type>
+		<distance>500.0</distance>
+		<precision>0.0</precision>
+		<ammunition>200</ammunition>
+		<rateOfFire>60.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>7</damage>
+		<reloadTime>2</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="6">
-		<name>MachineGun</name>
-		<type>MACHINE_GUN</type>
-		<maxAmmunition>5</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>10</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>150</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>FALSE</handToHand>
+		<name>Double Pistolet</name>
+		<type>DOUBLE_PISTOL</type>
+		<distance>500.0</distance>
+		<precision>5.0</precision>
+		<ammunition>400</ammunition>
+		<rateOfFire>120.0</rateOfFire>
+		<ammoPerShot>2</ammoPerShot>
+		<damage>14</damage>
+		<reloadTime>3</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="7">
-		<name>Saber</name>
-		<type>SABER</type>
-		<maxAmmunition>0</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>0</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>50</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>TRUE</handToHand>
+		<name>Sabre</name>
+		<type>SABRE</type>
+		<distance>20.0</distance>
+		<precision>0.0</precision>
+		<ammunition type="none">-1</ammunition>
+		<rateOfFire>10.0</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>45</damage>
+		<reloadTime>0</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="8">
-		<name>ChainSaw</name>
-		<type>CHAIN_SAW</type>
-		<maxAmmunition>0</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>0</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>100</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>TRUE</handToHand>
+		<name>Tronçonneuse</name>
+		<type>CHAINSAW</type>
+		<distance>20.0</distance>
+		<precision>0.0</precision>
+		<ammunition type="liter">2</ammunition>
+		<rateOfFire>0.01</rateOfFire>
+		<ammoPerShot>0.01</ammoPerShot>
+		<damage>70</damage>
+		<reloadTime>3</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 	<weapon id="9">
-		<name>Knife</name>
-		<type>KNIFE</type>
-		<maxAmmunition>0</maxAmmunition>
-		<maxAmmunitionExplosive>0</maxAmmunitionExplosive>
-		<maxAmmunitionLoader>0</maxAmmunitionLoader>
-		<maxAmmunitionExplosiveLoader>0</maxAmmunitionExplosiveLoader>
-		<damage>35</damage>
-		<damageExplosive>0</damageExplosive>
-		<handToHand>TRUE</handToHand>
+		<name>Sabre</name>
+		<type>SABRE</type>
+		<distance>20.0</distance>
+		<precision>0.0</precision>
+		<ammunition type="none">-1</ammunition>
+		<rateOfFire>10</rateOfFire>
+		<ammoPerShot>1</ammoPerShot>
+		<damage>25</damage>
+		<reloadTime>0</reloadTime>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</weapon>
+
 </weapons>
