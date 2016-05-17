@@ -31,6 +31,7 @@ public:
 	void disablePower(int nbr);
 	void setTeam1Score(int nbr);
 	void setTeam2Score(int nbr);
+
 private:
 	CEGUI::Window* m_hud;
 	CEGUI::System& m_systemd;

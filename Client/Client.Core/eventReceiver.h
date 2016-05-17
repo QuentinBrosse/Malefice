@@ -24,6 +24,7 @@ public:
 	EventReceiver();
 	EventReceiver::keyStatesENUM* getKeyStateList();
 	static unsigned char EventReceiver::irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc);
+
 private:
 	irr::SEvent::SJoystickEvent m_joystickState;
 	MouseState m_state;

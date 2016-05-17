@@ -7,7 +7,6 @@ MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onContinueButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onOptionButtonClicked, this));
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onQuitButtonClicked, this));
-	m_isEnable = false;
 }
 
 void MenuPause::display()

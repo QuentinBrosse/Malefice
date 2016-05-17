@@ -17,7 +17,7 @@
 #include <chrono>
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
-	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_isActive(true), m_map(nullptr), m_player(nullptr)
+	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr)
 {
 }
 

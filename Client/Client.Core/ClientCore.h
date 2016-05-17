@@ -41,7 +41,7 @@ private:
 	PlayerManager*	m_playerManager;
 	ecs::ClientId	m_clientId;
 	bool			m_isActive;
-	
+
 	ecs::Entity*				m_map;
 	ecs::Entity*				m_player;
 

@@ -1,6 +1,7 @@
 ﻿#include "EventReceiver.h"
 
-EventReceiver::EventReceiver()
+EventReceiver::EventReceiver() :
+	m_joystickState(), m_state(), m_keyState()
 {
 	for (EventReceiver::keyStatesENUM& e : m_keyState)
 	{
