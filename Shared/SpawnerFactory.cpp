@@ -6,7 +6,7 @@
 
 ecs::Entity* SpawnerFactory::createWeaponSpawner(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const unsigned int networkId)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
+	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::EntityType::SPAWN);
 
 	(*entity)[ecs::AComponent::ComponentType::WEAPON] = new ecs::Weapon();
 	
@@ -15,7 +15,7 @@ ecs::Entity* SpawnerFactory::createWeaponSpawner(const irr::core::vector3df& vec
 
 ecs::Entity* SpawnerFactory::createLifeSpawner(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const unsigned int networkId)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
+	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::EntityType::SPAWN);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(50, ecs::AComponent::ComponentType::LIFE);
 
@@ -24,7 +24,7 @@ ecs::Entity* SpawnerFactory::createLifeSpawner(const irr::core::vector3df& vecto
 
 ecs::Entity* SpawnerFactory::createSpellSpawner(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const unsigned int networkId)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::SPAWN);
+	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, networkId, ecs::Entity::EntityType::SPAWN);
 
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell();
 

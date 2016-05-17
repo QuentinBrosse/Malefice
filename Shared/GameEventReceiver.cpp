@@ -3,7 +3,7 @@
 
 namespace ecs
 {
-	GameEventReceiver::GameEventReceiver(): AComponent("GameEventReceiver", GAME_EVENT_RECEIVER)
+	GameEventReceiver::GameEventReceiver(): AComponent("GameEventReceiver", ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER)
 	{
 		
 	}

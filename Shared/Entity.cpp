@@ -127,7 +127,7 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 	out.setEntityType(entityType);
 	for (std::size_t i = 0; i < componentsNb; ++i)
 	{
-		ecs::AComponent::ComponentType	componentType	= ecs::AComponent::ComponentType::DEFAULT;
+		ecs::AComponent::ComponentType	componentType	= ecs::AComponent::ComponentType::COMPONENT_COUNT;
 		ecs::AComponent		*component		= nullptr;
 
 		in.Read(componentType);
@@ -138,9 +138,6 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			break;
 		case ecs::AComponent::ComponentType::CAMERA:
 			std::logic_error("Deserialization of component type CAMERA not implemented"); // TODO: right?
-			break;
-		case ecs::AComponent::ComponentType::DEFAULT:
-			std::logic_error("Deserialization of component type DEFAULT not implemented");
 			break;
 		case ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER:
 			component = new ecs::GameEventReceiver();
@@ -173,6 +170,7 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			component = new ecs::WeaponManager();
 			break;
 		default:
+			std::logic_error("Bad component type COMPONENT_COUNT");
 			break;
 		}
 		component->deserialize(in);

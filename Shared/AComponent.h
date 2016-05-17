@@ -10,9 +10,8 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT AComponent
 	{
 	public:
-		enum ComponentType
+		enum class ComponentType : int
 		{
-			DEFAULT,
 			LIFE,
 			ARMOR,
 			POSITION,
@@ -25,6 +24,7 @@ namespace ecs
 			CAMERA,
 			SCENE,
 			GAME_EVENT_RECEIVER,
+			COMPONENT_COUNT
 		};
 
 		const std::string	NAME;

@@ -13,7 +13,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Entity
 	{
 	public:
-		enum EntityType
+		enum class EntityType : int
 		{
 			NOTHING,
 			PLAYER,

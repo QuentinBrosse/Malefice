@@ -6,7 +6,7 @@ namespace ecs
 	{
 	}
 
-	Movement::Movement(const Position& position) : AComponent("Movement", MOVEMENT),
+	Movement::Movement(const Position& position) : AComponent("Movement", ecs::AComponent::ComponentType::MOVEMENT),
 		m_destination(position)
 	{
 	}

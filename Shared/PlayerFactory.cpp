@@ -13,7 +13,7 @@
 
 ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const int team, const int life)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, playerID, ecs::Entity::PLAYER);
+	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, playerID, ecs::Entity::EntityType::PLAYER);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
@@ -42,7 +42,7 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 
 ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const int team, const int life)
 {
-	ecs::Entity*	entity = ObjectFactory::createObject(vectorPosition, vectorRotation, id, ecs::Entity::PLAYER);
+	ecs::Entity*	entity = ObjectFactory::createObject(vectorPosition, vectorRotation, id, ecs::Entity::EntityType::PLAYER);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
