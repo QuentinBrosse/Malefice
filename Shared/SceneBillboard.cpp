@@ -28,11 +28,11 @@ namespace ecs
 
 	void	SceneBillboard::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AScene::serialize(out);
 	}
 
 	void	SceneBillboard::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AScene::deserialize(in);
 	}
 }

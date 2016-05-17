@@ -40,10 +40,10 @@ namespace ecs
 
 
 	private:
-		const int				ID;
-		const std::string		SPELL_NAME;
-		const int				COOLDOWN;
-		SpellType				m_spellType;
-		bool					m_isLock;
+		int			m_id;
+		std::string	m_name;
+		int			m_cooldown;
+		SpellType	m_spellType;
+		bool		m_isLock;
 	};
 }

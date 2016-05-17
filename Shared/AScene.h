@@ -43,7 +43,7 @@ namespace ecs
 	protected:
 		ecs::AScene::SceneType	m_type;
 
-		std::string	MEDIA_PATH;
+		std::string	m_mediaPath;
 		bool		m_isCollisionable;
 
 		irr::scene::ITriangleSelector*	m_selector;

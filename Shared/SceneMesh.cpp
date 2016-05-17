@@ -16,7 +16,7 @@ namespace ecs
 		
 		if (namePK3 != "")
 		{
-			m_device->getFileSystem()->addFileArchive((MEDIA_PATH + namePK3).c_str());
+			m_device->getFileSystem()->addFileArchive((m_mediaPath + namePK3).c_str());
 			mesh = m_smgr->getMesh(newNameMesh.c_str());
 		}
 		else
@@ -80,11 +80,11 @@ namespace ecs
 
 	void	SceneMesh::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AScene::serialize(out);
 	}
 
 	void	SceneMesh::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AScene::deserialize(in);
 	}
 }
