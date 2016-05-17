@@ -3,7 +3,8 @@
 
 namespace ecs
 {
-	Team::Team() : AComponent("Team", ecs::AComponent::ComponentType::TEAM)
+	Team::Team() : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
+		m_teamNumber(0), m_kill(0), m_death(0)
 	{
 	}
 

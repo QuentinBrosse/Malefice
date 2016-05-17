@@ -2,7 +2,8 @@
 
 namespace ecs
 {
-	Movement::Movement() : AComponent("Movement", ecs::AComponent::ComponentType::MOVEMENT)
+	Movement::Movement() : AComponent("Movement", ecs::AComponent::ComponentType::MOVEMENT),
+		m_destination()
 	{
 	}
 

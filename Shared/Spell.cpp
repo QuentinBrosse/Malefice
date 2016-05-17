@@ -4,9 +4,8 @@
 namespace ecs
 {
 	Spell::Spell() : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		ID(0), SPELL_NAME("default"), m_spellType(Spell::NOTHING), COOLDOWN(0)
+		ID(0), SPELL_NAME("default"), COOLDOWN(0), m_spellType(Spell::NOTHING), m_isLock(false)
 	{
-		m_isLock = false;
 	}
 
 	Spell::Spell(const int id, const std::string& name, const Spell::SpellType spellType, const int coolDown) : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),

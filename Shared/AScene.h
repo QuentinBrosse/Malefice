@@ -44,12 +44,12 @@ namespace ecs
 		const bool			IS_COLLISIONABLE;
 
 		irr::scene::ITriangleSelector*	m_selector;
+		irr::IrrlichtDevice*			m_device;
+		irr::scene::ISceneManager*		m_smgr;
+		irr::video::IVideoDriver*		m_driver;
 		std::string						m_nameTexture;
 		std::string						m_nameMesh;
 		int								m_pickableFlags;
-		irr::IrrlichtDevice*			m_device;
 		irr::video::SMaterial*			m_material;
-		irr::scene::ISceneManager*		m_smgr;
-		irr::video::IVideoDriver*		m_driver;
 	};
 }

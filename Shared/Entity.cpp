@@ -20,7 +20,7 @@ namespace ecs
 	}
 
 	Entity::Entity(ecs::ClientId owner, EntityType entityType) :
-		m_owner(owner), m_components(), m_entityType(entityType)
+		m_owner(owner), m_entityType(entityType), m_components()
 	{
 	}
 

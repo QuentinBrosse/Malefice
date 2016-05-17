@@ -12,6 +12,12 @@ const std::string	Logger::LOGGER_NAME		= ProjectGlobals::GAME_NAME + "Logger";
 const std::size_t	Logger::MAX_FILE_SIZE	= 1024 * 1024 * 10;
 const std::size_t	Logger::MAX_FILE_NB		= 10;
 
+Logger::Logger() :
+	m_logger()
+{
+
+}
+
 void	Logger::setup(const std::string& filePath)
 {
 	std::vector<spdlog::sink_ptr>	sinks;

@@ -21,13 +21,11 @@ namespace ecs
 		void addDeath();
 		void addKill();
 
-
 		virtual void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
-
-		
+	
 	private:
 		int	m_teamNumber;
 		int	m_kill;

@@ -3,7 +3,8 @@
 
 namespace ecs
 {
-	Life::Life(ecs::AComponent::ComponentType lifeType) : AComponent("Life", lifeType)
+	Life::Life(ecs::AComponent::ComponentType lifeType) : AComponent("Life", lifeType),
+		m_currentLife(0), m_maxLife(0)
 	{
 	}
 

@@ -64,7 +64,7 @@ public:
 	
 
 protected:
-	Logger()	= default;
+	Logger();
 	~Logger()	= default;
 
 
