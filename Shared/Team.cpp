@@ -58,9 +58,9 @@ namespace ecs
 	}
 
 
-	void	Team::serialize(RakNet::BitStream& out)	const
+	void	Team::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
+		AComponent::serialize(out, serializeType);
 		out.Write(m_teamNumber);
 		out.Write(m_kill);
 		out.Write(m_death);
@@ -69,8 +69,8 @@ namespace ecs
 	void	Team::deserialize(RakNet::BitStream& in)
 	{
 		AComponent::deserialize(in);
-		in.Write(m_teamNumber);
-		in.Write(m_kill);
-		in.Write(m_death);
+		in.Read(m_teamNumber);
+		in.Read(m_kill);
+		in.Read(m_death);
 	}
 }

@@ -19,9 +19,9 @@ namespace ecs
 	}
 
 
-	void	Armor::serialize(RakNet::BitStream& out)	const
+	void	Armor::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		Life::serialize(out);
+		Life::serialize(out, serializeType);
 	}
 
 	void	Armor::deserialize(RakNet::BitStream& in)

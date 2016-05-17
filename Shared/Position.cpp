@@ -1,5 +1,6 @@
 #include "Position.h"
 #include "IrrlichtUtility.h"
+#include "RakNetUtility.h"
 
 namespace ecs
 {
@@ -87,31 +88,19 @@ namespace ecs
 	}
 
 
-	void	Position::serialize(RakNet::BitStream& out)	const
+	void	Position::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
-		out.Write(m_vectorPosition.X);
-		out.Write(m_vectorPosition.Y);
-		out.Write(m_vectorPosition.Z);
-		out.Write(m_vectorRotation.X);
-		out.Write(m_vectorRotation.Y);
-		out.Write(m_vectorRotation.Z);
-		out.Write(m_vectorScale.X);
-		out.Write(m_vectorScale.Y);
-		out.Write(m_vectorScale.Z);
+		AComponent::serialize(out, serializeType);
+		RakNetUtility::serializeVector(out, m_vectorPosition);
+		RakNetUtility::serializeVector(out, m_vectorRotation);
+		RakNetUtility::serializeVector(out, m_vectorScale);
 	}
 
 	void	Position::deserialize(RakNet::BitStream& in)
 	{
 		AComponent::deserialize(in);
-		in.Read(m_vectorPosition.X);
-		in.Read(m_vectorPosition.Y);
-		in.Read(m_vectorPosition.Z);
-		in.Read(m_vectorRotation.X);
-		in.Read(m_vectorRotation.Y);
-		in.Read(m_vectorRotation.Z);
-		in.Read(m_vectorScale.X);
-		in.Read(m_vectorScale.Y);
-		in.Read(m_vectorScale.Z);
+		RakNetUtility::deserializeVector(in, m_vectorPosition);
+		RakNetUtility::deserializeVector(in, m_vectorRotation);
+		RakNetUtility::deserializeVector(in, m_vectorScale);
 	}
 }

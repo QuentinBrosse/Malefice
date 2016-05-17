@@ -68,9 +68,9 @@ namespace ecs
 	}
 
 
-	void	AScene::serialize(RakNet::BitStream& out)	const
+	void	AScene::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
+		AComponent::serialize(out, serializeType);
 		out.Write(m_type);
 		out.Write(m_nameTexture);
 		out.Write(m_nameMesh);

@@ -70,9 +70,9 @@ namespace ecs
 	}
 
 
-	void	Life::serialize(RakNet::BitStream& out)	const
+	void	Life::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
+		AComponent::serialize(out, serializeType);
 		out.Write(m_currentLife);
 		out.Write(m_maxLife);
 	}

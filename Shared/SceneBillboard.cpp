@@ -26,9 +26,9 @@ namespace ecs
 	}
 
 
-	void	SceneBillboard::serialize(RakNet::BitStream& out)	const
+	void	SceneBillboard::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AScene::serialize(out);
+		AScene::serialize(out, serializeType);
 	}
 
 	void	SceneBillboard::deserialize(RakNet::BitStream& in)

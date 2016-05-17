@@ -111,7 +111,6 @@ RakNet::BitStream&	RakNet::operator<<(RakNet::BitStream& out, ecs::Entity& in)
 	out.Write(components.size());
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
-		out.Write(it->first);
 		it->second->serialize(out);
 	}
 	return out;
@@ -169,7 +168,7 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 				component = new ecs::SceneBillboard();
 				break;
 			default:
-				std::logic_error("Bad scene type");
+				throw std::logic_error("Bad scene type " + std::to_string(static_cast<int>(sceneType)));
 				break;
 			}
 			break;
@@ -189,7 +188,7 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			component = new ecs::WeaponManager();
 			break;
 		default:
-			std::logic_error("Bad component type");
+			throw std::logic_error("Bad component type " + std::to_string(static_cast<int>(componentType)));
 			break;
 		}
 		component->deserialize(in);

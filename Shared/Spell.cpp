@@ -52,11 +52,11 @@ namespace ecs
 	}
 
 
-	void	Spell::serialize(RakNet::BitStream& out)	const
+	void	Spell::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
+		AComponent::serialize(out, serializeType);
 		out.Write(m_id);
-		out.Write(m_name);
+		out.Write(RakNet::RakString(m_name.c_str()));
 		out.Write(m_cooldown);
 		out.Write(m_spellType);
 		out.Write(m_isLock);
@@ -64,11 +64,14 @@ namespace ecs
 
 	void	Spell::deserialize(RakNet::BitStream& in)
 	{
+		RakNet::RakString	name;
+
 		AComponent::deserialize(in);
 		in.Read(m_id);
-		in.Read(m_name);
+		in.Read(name);
 		in.Read(m_cooldown);
 		in.Read(m_spellType);
 		in.Read(m_isLock);
+		m_name = name.C_String();
 	}
 }

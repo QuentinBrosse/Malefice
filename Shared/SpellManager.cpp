@@ -93,13 +93,15 @@ namespace ecs
 	}
 
 
-	void	SpellManager::serialize(RakNet::BitStream& out)	const
+	void	SpellManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
+		AComponent::serialize(out, serializeType);
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 
 	void	SpellManager::deserialize(RakNet::BitStream& in)
 	{
+		AComponent::deserialize(in);
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 }

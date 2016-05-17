@@ -63,25 +63,25 @@ namespace ecs
 
 		virtual	void	dump(std::ostream& os)	const;
 
-		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
 
 	private:
-		const int			ID;
-		const std::string	WEAPON_NAME;
-		const unsigned int	MAX_AMMUNITION;
-		const unsigned int	DAMAGE;
-		const WeaponType	WEAPON_TYPE;
+		int				m_id;
+		std::string		m_weaponName;
+		unsigned int	m_maxAmmunition;
+		unsigned int	m_damage;
+		WeaponType		m_weaponType;
 
-		bool				m_sight;
+		bool	m_sight;
 
-		unsigned int		m_ammunition;
-		unsigned int		m_reloadTime;
-		unsigned int		m_ammoPerShot;
+		unsigned int	m_ammunition;
+		unsigned int	m_reloadTime;
+		unsigned int	m_ammoPerShot;
 
-		float				m_fireRate;
-		float				m_distance;
+		float	m_fireRate;
+		float	m_distance;
 
 		SceneAnimatedMesh*	m_scene;
 

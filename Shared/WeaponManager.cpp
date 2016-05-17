@@ -85,13 +85,15 @@ namespace ecs
 	}
 
 
-	void	WeaponManager::serialize(RakNet::BitStream& out)	const
+	void	WeaponManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
+		AComponent::serialize(out, serializeType);
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 
 	void	WeaponManager::deserialize(RakNet::BitStream& in)
 	{
+		AComponent::deserialize(in);
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 };

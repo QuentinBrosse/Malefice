@@ -61,9 +61,9 @@ namespace ecs
 	}
 
 
-	void	SceneAnimatedMesh::serialize(RakNet::BitStream& out)	const
+	void	SceneAnimatedMesh::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AScene::serialize(out);
+		AScene::serialize(out, serializeType);
 	}
 
 	void	SceneAnimatedMesh::deserialize(RakNet::BitStream& in)

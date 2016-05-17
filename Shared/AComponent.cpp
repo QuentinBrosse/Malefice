@@ -8,9 +8,10 @@ namespace ecs
 	}
 
 
-	void	AComponent::serialize(RakNet::BitStream& out)	const
+	void	AComponent::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		out.Write(TYPE);
+		if (serializeType)
+			out.Write(TYPE);
 	}
 
 	void	AComponent::deserialize(RakNet::BitStream& in)

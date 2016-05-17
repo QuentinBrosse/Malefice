@@ -36,10 +36,10 @@ namespace ecs
 	}
 
 
-	void	Movement::serialize(RakNet::BitStream& out)	const
+	void	Movement::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		AComponent::serialize(out);
-		m_destination.serialize(out);
+		AComponent::serialize(out, serializeType);
+		m_destination.serialize(out, false);
 	}
 
 	void	Movement::deserialize(RakNet::BitStream& in)

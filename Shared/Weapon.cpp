@@ -1,22 +1,23 @@
 #include "Weapon.h"
 #include "NodePickable.h"
+#include "RakNetUtility.h"
 
 namespace ecs
 {
 	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(0), WEAPON_NAME(""), MAX_AMMUNITION(0), DAMAGE(0), WEAPON_TYPE(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetricsPosition(0, 0, 0), m_fpsMetricsRotation(0, 0, 0), m_fpsMetricsScale(0, 0, 0), m_externalMetricsPosition(0, 0, 0), m_externalMetricsRotation(0, 0, 0), m_externalMetricsScale(0, 0, 0), m_scene(nullptr)
+		m_id(0), m_weaponName(""), m_maxAmmunition(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetricsPosition(0, 0, 0), m_fpsMetricsRotation(0, 0, 0), m_fpsMetricsScale(0, 0, 0), m_externalMetricsPosition(0, 0, 0), m_externalMetricsRotation(0, 0, 0), m_externalMetricsScale(0, 0, 0), m_scene(nullptr)
 	{
 
 	}
 
 	Weapon::Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, irr::core::vector3df	fpsMetricsPosition, irr::core::vector3df fpsMetricsRotation, irr::core::vector3df fpsMetricsScale, irr::core::vector3df	externalMetricsPosition, irr::core::vector3df externalMetricsRotation, irr::core::vector3df	externalMetricsScale, bool sight) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(id), WEAPON_NAME(name), MAX_AMMUNITION(ammunition), DAMAGE(damage), WEAPON_TYPE(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetricsPosition(fpsMetricsPosition), m_fpsMetricsRotation(fpsMetricsRotation), m_fpsMetricsScale(fpsMetricsScale), m_externalMetricsPosition(externalMetricsPosition), m_externalMetricsRotation(externalMetricsRotation), m_externalMetricsScale(externalMetricsScale), m_scene(nullptr)
+		m_id(id), m_weaponName(name), m_maxAmmunition(ammunition), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetricsPosition(fpsMetricsPosition), m_fpsMetricsRotation(fpsMetricsRotation), m_fpsMetricsScale(fpsMetricsScale), m_externalMetricsPosition(externalMetricsPosition), m_externalMetricsRotation(externalMetricsRotation), m_externalMetricsScale(externalMetricsScale), m_scene(nullptr)
 	{
 
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		ID(cpy.getId()), WEAPON_NAME(cpy.getName()), MAX_AMMUNITION(cpy.getMaxAmmunitions()), DAMAGE(cpy.getDamage()), WEAPON_TYPE(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetricsPosition(cpy.getFPSMetricsPosition()), m_fpsMetricsRotation(cpy.getFPSMetricsRotation()), m_fpsMetricsScale(cpy.getFPSMetricsScale()), m_externalMetricsPosition(cpy.getExternalMetricsPosition()), m_externalMetricsRotation(cpy.getExternalMetricsRotation()), m_externalMetricsScale(cpy.getExternalMetricsScale()), m_scene(nullptr)
+		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_maxAmmunition(cpy.getMaxAmmunitions()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetricsPosition(cpy.getFPSMetricsPosition()), m_fpsMetricsRotation(cpy.getFPSMetricsRotation()), m_fpsMetricsScale(cpy.getFPSMetricsScale()), m_externalMetricsPosition(cpy.getExternalMetricsPosition()), m_externalMetricsRotation(cpy.getExternalMetricsRotation()), m_externalMetricsScale(cpy.getExternalMetricsScale()), m_scene(nullptr)
 	{
 
 	}
@@ -44,7 +45,7 @@ namespace ecs
 
 	const unsigned int Weapon::getMaxAmmunitions() const
 	{
-		return MAX_AMMUNITION;
+		return m_maxAmmunition;
 	}
 
 	const unsigned int Weapon::getAmmoPerShot() const
@@ -94,17 +95,17 @@ namespace ecs
 
 	const int Weapon::getId() const
 	{
-		return ID;
+		return m_id;
 	}
 
 	const std::string & Weapon::getName() const
 	{
-		return WEAPON_NAME;
+		return m_weaponName;
 	}
 
 	const int		Weapon::getDamage() const
 	{
-		return DAMAGE;
+		return m_damage;
 	}
 
 	void Weapon::shot()
@@ -114,12 +115,11 @@ namespace ecs
 
 	void Weapon::reload()
 	{
-		std::cout << "Non implementer" << std::endl;
 	}
 
 	const Weapon::WeaponType Weapon::getWeaponType() const
 	{
-		return WEAPON_TYPE;
+		return m_weaponType;
 	}
 
 	void Weapon::decAmmunition(int nbLoaded)
@@ -133,8 +133,8 @@ namespace ecs
 	void Weapon::incAmmunition(int nbAmmuition)
 	{
 		m_ammunition += nbAmmuition;
-		if (m_ammunition > MAX_AMMUNITION)
-			m_ammunition = MAX_AMMUNITION;
+		if (m_ammunition > m_maxAmmunition)
+			m_ammunition = m_maxAmmunition;
 	}
 
 	void Weapon::createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active)
@@ -164,18 +164,54 @@ namespace ecs
 
 	void	Weapon::dump(std::ostream& os)	const
 	{
-		os << "Weapon {ID = " << Weapon::ID << ", WEAPON_NAME = \"" << Weapon::WEAPON_NAME << "\", MAX_AMMUNITION = " << Weapon::MAX_AMMUNITION
-		   << ", DAMAGE = " << Weapon::DAMAGE << ", WEAPON_TYPE = " << Weapon::WEAPON_TYPE << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
+		os << "Weapon {ID = " << Weapon::m_id << ", WEAPON_NAME = \"" << Weapon::m_weaponName << "\", MAX_AMMUNITION = " << Weapon::m_maxAmmunition
+		   << ", DAMAGE = " << Weapon::m_damage << ", WEAPON_TYPE = " << Weapon::m_weaponType << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
 	}
 
 
-	void	Weapon::serialize(RakNet::BitStream& out)	const
+	void	Weapon::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out, serializeType);
+		out.Write(m_id);
+		out.Write(m_weaponName);
+		out.Write(m_maxAmmunition);
+		out.Write(m_damage);
+		out.Write(m_weaponType);
+		out.Write(m_sight);
+		out.Write(m_ammunition);
+		out.Write(m_reloadTime);
+		out.Write(m_ammoPerShot);
+		out.Write(m_fireRate);
+		out.Write(m_distance);
+		m_scene->serialize(out, false);
+		RakNetUtility::serializeVector(out, m_fpsMetricsPosition);
+		RakNetUtility::serializeVector(out, m_fpsMetricsRotation);
+		RakNetUtility::serializeVector(out, m_fpsMetricsScale);
+		RakNetUtility::serializeVector(out, m_externalMetricsPosition);
+		RakNetUtility::serializeVector(out, m_externalMetricsRotation);
+		RakNetUtility::serializeVector(out, m_externalMetricsScale);
 	}
 
 	void	Weapon::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		in.Read(m_id);
+		in.Read(m_weaponName);
+		in.Read(m_maxAmmunition);
+		in.Read(m_damage);
+		in.Read(m_weaponType);
+		in.Read(m_sight);
+		in.Read(m_ammunition);
+		in.Read(m_reloadTime);
+		in.Read(m_ammoPerShot);
+		in.Read(m_fireRate);
+		in.Read(m_distance);
+		m_scene->deserialize(in);
+		RakNetUtility::deserializeVector(in, m_fpsMetricsPosition);
+		RakNetUtility::deserializeVector(in, m_fpsMetricsRotation);
+		RakNetUtility::deserializeVector(in, m_fpsMetricsScale);
+		RakNetUtility::deserializeVector(in, m_externalMetricsPosition);
+		RakNetUtility::deserializeVector(in, m_externalMetricsRotation);
+		RakNetUtility::deserializeVector(in, m_externalMetricsScale);
 	}
 };
