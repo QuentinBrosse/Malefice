@@ -5,7 +5,7 @@
 namespace ecs
 {
 
-	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
+	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(ecs::AScene::SceneType::MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
 		irr::scene::IAnimatedMesh*		mesh;

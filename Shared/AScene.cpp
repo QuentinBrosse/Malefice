@@ -4,8 +4,8 @@
 
 namespace ecs
 {
-	AScene::AScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable) : AComponent("Scene", ecs::AComponent::ComponentType::SCENE),
-		MEDIA_PATH("media/"), IS_COLLISIONABLE(isCollisionable), m_selector(nullptr), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
+	AScene::AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable) : AComponent("Scene", ecs::AComponent::ComponentType::SCENE),
+		m_type(type), MEDIA_PATH("media/"), IS_COLLISIONABLE(isCollisionable), m_selector(nullptr), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
 	{
 				
 	}

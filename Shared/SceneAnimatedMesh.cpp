@@ -4,7 +4,7 @@
 namespace ecs
 {
 
-	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
+	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((MEDIA_PATH + newNameMesh).c_str()), parent, newPickableFlags);
