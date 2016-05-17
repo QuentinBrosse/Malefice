@@ -9,6 +9,12 @@ namespace ecs
 	{
 	}
 
+
+	void	GameEventReceiver::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
 	bool GameEventReceiver::OnEvent(const irr::SEvent& event)
 	{
 		if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)

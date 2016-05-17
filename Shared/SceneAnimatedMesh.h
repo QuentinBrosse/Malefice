@@ -12,6 +12,8 @@ namespace ecs
 		SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~SceneAnimatedMesh();
 
+		virtual void	init();
+
 		virtual void						setPosition(const ecs::Position& newPosition);
 		void								setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType);
 		void								setTexture(const std::string& nameTexture, const bool lighting = true, const irr::u32 level = 0);

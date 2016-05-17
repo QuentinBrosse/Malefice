@@ -22,6 +22,8 @@ namespace ecs
 		AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~AScene() = 0;
 
+		virtual void	init()	= 0;
+
 		std::string				getNameTexture()	const;
 		std::string				getNameMesh()		const;
 		int						getPickableFlags()	const;

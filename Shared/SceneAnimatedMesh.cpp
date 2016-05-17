@@ -29,6 +29,13 @@ namespace ecs
 	{
 	}
 
+
+	void	SceneAnimatedMesh::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	void SceneAnimatedMesh::setPosition(const ecs::Position & newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());

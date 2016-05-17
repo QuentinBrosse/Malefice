@@ -14,6 +14,13 @@ namespace ecs
 	{
 	}
 
+
+	void	SceneBillboard::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	void	SceneBillboard::setPosition(const ecs::Position& newPosition)
 	{
 		// TODO: implement

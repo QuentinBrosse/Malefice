@@ -12,6 +12,8 @@ namespace ecs
 		Movement();
 		Movement(const Position& position);
 		~Movement() = default;
+
+		virtual void	init();
 	
 		void			setDestination(const Position& newDestination);
 		const Position&	getDestination() const;

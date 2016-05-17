@@ -11,8 +11,14 @@ namespace ecs
 	Life::Life(const int maxLife, const ecs::AComponent::ComponentType type) : AComponent("Life", type),
 		m_currentLife(maxLife), m_maxLife(maxLife)
 	{
-
 	}
+
+
+	void	Life::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
 
 	int Life::get() const
 	{

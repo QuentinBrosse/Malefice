@@ -25,6 +25,8 @@ namespace ecs
 		GameEventReceiver();
 		~GameEventReceiver()	= default;
 
+		virtual void	init();
+
 		virtual bool	OnEvent(const irr::SEvent& event); //Irrlicht callback norme exception here	
 
 		GameEventType				getEvent();

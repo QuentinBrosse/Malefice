@@ -17,6 +17,8 @@ namespace ecs
 		Position& operator=(const Position& pos);
 		~Position() = default;
 
+		virtual void	init();
+
 		void					setVectorPosition(const irr::core::vector3df& newVectorPosition);
 		void					setVectorRotation(const irr::core::vector3df& newVectorRotation);
 		void					setVectorScale(const irr::core::vector3df& newVectorScale);

@@ -13,6 +13,8 @@ namespace ecs
 		Life(const int maxLife, const ecs::AComponent::ComponentType type);
 		~Life() = default;
 
+		virtual void	init();
+
 		int		get() const;
 		void	set(int life);
 		void	takeDamage(int damage);

@@ -20,6 +20,13 @@ namespace ecs
 		m_isLock = false;
 	}
 
+
+	void	Spell::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	const Spell::SpellType	Spell::getSpellType() const
 	{
 		return m_spellType;

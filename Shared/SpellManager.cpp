@@ -17,6 +17,13 @@ namespace ecs
 		m_weaponManager.addWeapon(*(new Weapon()));
 	}
 
+
+	void	SpellManager::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	Spell& SpellManager::getCurrentSpell() const
 	{
 		return m_currentSpell->second;

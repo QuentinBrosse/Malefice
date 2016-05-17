@@ -14,6 +14,13 @@ namespace ecs
 		m_currentWeapon = m_weapons.begin();
 	}
 
+
+	void	WeaponManager::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	void	WeaponManager::addWeapon(Weapon& newWeapon)
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())

@@ -22,6 +22,13 @@ namespace ecs
 
 	}
 
+
+	void	Weapon::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	Weapon& Weapon::operator=(const Weapon& other)
 	{
 		m_scene = other.m_scene;

@@ -22,8 +22,14 @@ namespace ecs
 	Position::Position(const Position& pos) : AComponent("Position", ecs::AComponent::ComponentType::POSITION),
 		m_vectorPosition(irr::core::vector3df(pos.m_vectorPosition)), m_vectorRotation(irr::core::vector3df(pos.m_vectorRotation)), m_vectorScale(irr::core::vector3df(pos.m_vectorScale))
 	{
-		
 	}
+
+
+	void	Position::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
 
 	Position& Position::operator=(const Position& pos)
 	{

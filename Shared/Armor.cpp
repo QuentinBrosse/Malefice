@@ -12,6 +12,12 @@ namespace ecs
 	}
 
 
+	void	Armor::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	void	Armor::dump(std::ostream& os)	const
 	{
 		os << "Armor:";

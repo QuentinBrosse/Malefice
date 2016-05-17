@@ -26,6 +26,8 @@ namespace ecs
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
+		virtual void	init();
+
 		const Spell::SpellType	getSpellType()	const;
 		void					setSpellType(const SpellType newSpellType);
 		bool					isLock() const;

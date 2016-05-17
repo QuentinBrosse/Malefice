@@ -31,6 +31,8 @@ namespace ecs
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
+		virtual void	init();
+
 		Weapon&				operator=(const Weapon& other);
 		
 		const int			getId()							const;

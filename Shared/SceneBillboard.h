@@ -12,6 +12,8 @@ namespace ecs
 		SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~SceneBillboard();
 
+		virtual void	init();
+
 		virtual void	setPosition(const ecs::Position& newPosition);
 
 		virtual	void	dump(std::ostream& os)	const;

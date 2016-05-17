@@ -13,6 +13,8 @@ namespace ecs
 		Team(int teamNumber);
 		~Team();
 
+		virtual void	init();
+
 		int getKill()	const;
 		int getDeath()	const;
 

@@ -52,6 +52,12 @@ namespace ecs
 	}
 
 
+	void	SceneMesh::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
+
 	void SceneMesh::setPosition(const Position& newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());

@@ -12,6 +12,8 @@ namespace ecs
 		Armor(int maxHP);
 		~Armor()	= default;
 
+		virtual void	init();
+
 		virtual	void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;

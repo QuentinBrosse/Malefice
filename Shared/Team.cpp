@@ -20,6 +20,11 @@ namespace ecs
 	}
 
 	
+	void	Team::init()
+	{
+		// TODO: implement constructor logic here
+	}
+
 
 	int Team::getDeath() const
 	{
