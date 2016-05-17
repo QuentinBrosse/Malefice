@@ -1,7 +1,8 @@
 #include "MainMenu.h"
 #include "ClientCore.h"
 
-MainMenu::MainMenu(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
+MainMenu::MainMenu(GraphicUtil &gu) :
+	m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_keyMap(nullptr), m_device(nullptr), m_driver(nullptr), m_sceneManager(nullptr), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
 	m_windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onQuitButtonClicked, this));

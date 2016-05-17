@@ -17,12 +17,11 @@ public:
 	void setProgress(unsigned int progress);
 	void listAddText(const std::string& txt);
 
-
 private:
 	CEGUI::Window* m_windows;
 	CEGUI::Window* m_progressText;
 	CEGUI::Listbox* m_outputList;
 	CEGUI::FrameWindow* m_frameWindows;
-	CEGUI::System& m_systemd = CEGUI::System::getSingleton();
+	CEGUI::System& m_systemd;
 	CEGUI::ProgressBar* m_progressBar;
 };

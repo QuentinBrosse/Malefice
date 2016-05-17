@@ -1,7 +1,7 @@
 #include "MenuPause.h"
 #include "GraphicUtil.h"
 
-MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities)
+MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_isEnable(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("menuPause.layout");
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onContinueButtonClicked, this));

@@ -1,7 +1,8 @@
 #include "ConnectWindow.h"
 #include "ClientCore.h"
 
-ConnectWindow::ConnectWindow(GraphicUtil &gu) : m_graphicUtils(gu)
+ConnectWindow::ConnectWindow(GraphicUtil &gu) :
+	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try

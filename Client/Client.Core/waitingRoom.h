@@ -22,13 +22,13 @@ public:
 	void addLeftTeamMember(const std::string& name);
 
 private:
+	GraphicUtil&				m_graphicalUtil;
 	CEGUI::Window*				m_windows;
-	CEGUI::System&				m_systemd = CEGUI::System::getSingleton();
+	CEGUI::System&				m_systemd;
 	CEGUI::FrameWindow*			m_frameWindows;
 	std::time_t					m_timestamp;
-	bool						m_stopTimer = false;
+	bool						m_stopTimer;
 	CEGUI::Window*				m_timerText;
 	CEGUI::Listbox*				m_rightTeam;
 	CEGUI::Listbox*				m_leftTeam;
-	GraphicUtil&				m_graphicalUtil;
 };

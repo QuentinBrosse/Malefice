@@ -8,7 +8,8 @@
 #include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include <Windows.h>
 
-GraphicUtil::GraphicUtil()
+GraphicUtil::GraphicUtil() :
+	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr)
 {
 	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
 	if (!m_device)
