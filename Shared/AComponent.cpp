@@ -6,6 +6,16 @@ namespace ecs
 		NAME(name), TYPE(type)
 	{
 	}
+
+
+	void	AComponent::serialize(RakNet::BitStream& out)	const
+	{
+		out.Write(TYPE);
+	}
+
+	void	AComponent::deserialize(RakNet::BitStream& in)
+	{
+	}
 }
 
 std::ostream&	operator<<(std::ostream& os, const ecs::AComponent& component)

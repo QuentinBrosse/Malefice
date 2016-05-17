@@ -4,6 +4,10 @@
 
 namespace ecs
 {
+	SceneMesh::SceneMesh() : AScene(ecs::AScene::SceneType::MESH),
+		m_node(nullptr)
+	{
+	}
 
 	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(ecs::AScene::SceneType::MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
@@ -29,7 +33,7 @@ namespace ecs
 		else
 			std::cerr << "Error constructor SceneMesh : m_node NULL !!" << std::endl;
 
-		if (IS_COLLISIONABLE)
+		if (m_isCollisionable)
 		{
 			m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
 			m_node->setTriangleSelector(m_selector);

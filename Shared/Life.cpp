@@ -72,11 +72,15 @@ namespace ecs
 
 	void	Life::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out);
+		out.Write(m_currentLife);
+		out.Write(m_maxLife);
 	}
 
 	void	Life::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		in.Read(m_currentLife);
+		in.Read(m_maxLife);
 	}
 }

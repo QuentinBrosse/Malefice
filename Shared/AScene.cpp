@@ -4,8 +4,13 @@
 
 namespace ecs
 {
+	AScene::AScene(ecs::AScene::SceneType type) : AComponent("Scene", ecs::AComponent::ComponentType::SCENE),
+		m_type(type), MEDIA_PATH("media/"), m_isCollisionable(false), m_selector(nullptr), m_device(nullptr), m_smgr(nullptr), m_driver(nullptr), m_nameTexture(), m_nameMesh(), m_pickableFlags(false), m_material(nullptr)
+	{
+	}
+
 	AScene::AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable) : AComponent("Scene", ecs::AComponent::ComponentType::SCENE),
-		m_type(type), MEDIA_PATH("media/"), IS_COLLISIONABLE(isCollisionable), m_selector(nullptr), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
+		m_type(type), MEDIA_PATH("media/"), m_isCollisionable(isCollisionable), m_selector(nullptr), m_device(device), m_smgr(m_device->getSceneManager()), m_driver(m_device->getVideoDriver()), m_nameTexture(newNameMesh), m_nameMesh(newNameMesh), m_pickableFlags(newPickableFlags), m_material(nullptr)
 	{
 				
 	}
@@ -59,17 +64,19 @@ namespace ecs
 
 	void	AScene::dump(std::ostream& os)	const
 	{
-		os << "AScene {MEDIA_PATH = \"" << AScene::MEDIA_PATH << "\", IS_COLLISIONNABLE = " << AScene::IS_COLLISIONABLE << ", nameTexture = \"" << m_nameTexture << "\", nameMash = \"" << m_nameMesh << "\", pickableFlags = " << m_pickableFlags << "}";
+		os << "AScene {MEDIA_PATH = \"" << AScene::MEDIA_PATH << "\", IS_COLLISIONNABLE = " << AScene::m_isCollisionable << ", nameTexture = \"" << m_nameTexture << "\", nameMash = \"" << m_nameMesh << "\", pickableFlags = " << m_pickableFlags << "}";
 	}
 
 
 	void	AScene::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out);
+		// TODO: implement serialization here
 	}
 
 	void	AScene::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		// TODO: implement deserialization here
 	}
 }

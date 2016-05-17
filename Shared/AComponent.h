@@ -37,8 +37,12 @@ namespace ecs
 
 		virtual	void	dump(std::ostream& os)	const	= 0;
 
-		virtual void	serialize(RakNet::BitStream& out)	const	= 0;
-		virtual void	deserialize(RakNet::BitStream& in)			= 0;
+		virtual void	serialize(RakNet::BitStream& out)	const;
+		virtual void	deserialize(RakNet::BitStream& in);
+
+
+	private:
+
 	};
 }
 

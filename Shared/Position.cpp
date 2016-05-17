@@ -89,11 +89,29 @@ namespace ecs
 
 	void	Position::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out);
+		out.Write(m_vectorPosition.X);
+		out.Write(m_vectorPosition.Y);
+		out.Write(m_vectorPosition.Z);
+		out.Write(m_vectorRotation.X);
+		out.Write(m_vectorRotation.Y);
+		out.Write(m_vectorRotation.Z);
+		out.Write(m_vectorScale.X);
+		out.Write(m_vectorScale.Y);
+		out.Write(m_vectorScale.Z);
 	}
 
 	void	Position::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		in.Read(m_vectorPosition.X);
+		in.Read(m_vectorPosition.Y);
+		in.Read(m_vectorPosition.Z);
+		in.Read(m_vectorRotation.X);
+		in.Read(m_vectorRotation.Y);
+		in.Read(m_vectorRotation.Z);
+		in.Read(m_vectorScale.X);
+		in.Read(m_vectorScale.Y);
+		in.Read(m_vectorScale.Z);
 	}
 }

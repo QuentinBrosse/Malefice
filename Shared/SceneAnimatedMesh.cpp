@@ -3,13 +3,17 @@
 
 namespace ecs
 {
+	SceneAnimatedMesh::SceneAnimatedMesh() : AScene(ecs::AScene::SceneType::ANIMATED_MESH),
+		m_node(nullptr)
+	{
+	}
 
 	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((MEDIA_PATH + newNameMesh).c_str()), parent, newPickableFlags);
 		m_node->setAnimationSpeed(20.f);
-		if (IS_COLLISIONABLE)
+		if (m_isCollisionable)
 		{
 			m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
 			m_node->setTriangleSelector(m_selector);

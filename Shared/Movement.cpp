@@ -38,11 +38,13 @@ namespace ecs
 
 	void	Movement::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		AComponent::serialize(out);
+		m_destination.serialize(out);
 	}
 
 	void	Movement::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		AComponent::deserialize(in);
+		m_destination.deserialize(in);
 	}
 }

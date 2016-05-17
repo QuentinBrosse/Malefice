@@ -1,12 +1,12 @@
 #include "GameEventReceiver.h"
 #include <iostream>
+#include <boost\serialization\queue.hpp>
 
 namespace ecs
 {
 	GameEventReceiver::GameEventReceiver(): AComponent("GameEventReceiver", ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER),
 		m_events()
 	{
-		
 	}
 
 	bool GameEventReceiver::OnEvent(const irr::SEvent& event)
@@ -86,11 +86,11 @@ namespace ecs
 
 	void	GameEventReceiver::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		// Won't be sent over network (will be modified with RPCs)
 	}
 
 	void	GameEventReceiver::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		// Won't be sent over network (will be modified with RPCs)
 	}
 };

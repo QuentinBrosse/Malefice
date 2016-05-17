@@ -8,6 +8,7 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT SceneMesh : public AScene
 	{
 	public:
+		SceneMesh();
 		SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, bool isCollisionable, const std::string& namePK3 = "");
 		virtual ~SceneMesh();
 
