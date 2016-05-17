@@ -95,11 +95,11 @@ namespace ecs
 
 	void	SpellManager::serialize(RakNet::BitStream& out)	const
 	{
-		// TODO: implement serialization
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 
 	void	SpellManager::deserialize(RakNet::BitStream& in)
 	{
-		// TODO: implement deserialization
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 }

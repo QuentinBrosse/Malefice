@@ -86,11 +86,11 @@ namespace ecs
 
 	void	GameEventReceiver::serialize(RakNet::BitStream& out)	const
 	{
-		// Won't be sent over network (will be modified with RPCs)
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 
 	void	GameEventReceiver::deserialize(RakNet::BitStream& in)
 	{
-		// Won't be sent over network (will be modified with RPCs)
+		// Won't be sent over the network (will be modified by RPCs)
 	}
 };
