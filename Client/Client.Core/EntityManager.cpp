@@ -1,7 +1,8 @@
 #include "EntityManager.h"
 #include "Logger.h"
 
-EntityManager::EntityManager(NetworkRPC::ReservedNetworkIds networkId) : NetworkObject(networkId)
+EntityManager::EntityManager(NetworkRPC::ReservedNetworkIds networkId) : NetworkObject(networkId),
+	m_entities()
 {
 }
 
