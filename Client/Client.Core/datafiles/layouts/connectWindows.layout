@@ -3,7 +3,7 @@
 <GUILayout version="4" >
     <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
         <Property name="ID" value="66" />
-        <Property name="Area" value="{{0.00078125,0},{0.00138889,0},{0.300781,76},{0.301389,106}}" />
+        <Property name="Area" value="{{0.00078125,0},{0.00138889,11},{0.300781,76},{0.301389,139}}" />
         <Property name="RollUpEnabled" value="false" />
         <Property name="VerticalAlignment" value="Centre" />
         <Property name="HorizontalAlignment" value="Centre" />
@@ -12,7 +12,7 @@
         </AutoWindow>
         <Window type="AlfiskoSkin/Button" name="Button" >
             <Property name="ID" value="3" />
-            <Property name="Area" value="{{0.333037,0},{0.672006,0},{0.333037,166},{0.672006,39}}" />
+            <Property name="Area" value="{{0.333037,0},{0.672006,35},{0.333037,166},{0.672006,74}}" />
             <Property name="Text" value="Connect" />
         </Window>
         <Window type="AlfiskoSkin/Editbox" name="Editbox" >
@@ -54,6 +54,18 @@
             <Property name="Area" value="{{0.350799,0},{0.316852,49},{0.350799,257},{0.316852,81}}" />
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="User42" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label222" >
+            <Property name="Area" value="{{0.0421847,-1},{0.302925,103},{0.0421847,127},{0.302925,135}}" />
+            <Property name="Text" value="Mot de passe:" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+        </Window>
+        <Window type="AlfiskoSkin/Editbox" name="Editbox222" >
+            <Property name="ID" value="53" />
+            <Property name="Area" value="{{0.350799,0},{0.316852,101},{0.350799,257},{0.316852,133}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="MaskText" value="true" />
         </Window>
     </Window>
 </GUILayout>
