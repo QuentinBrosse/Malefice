@@ -12,6 +12,7 @@ public:
 	~EntityManager();
 
 	virtual void	addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
+	virtual void	updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
 	virtual void	removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc);
 
 	bool			hasEntity(ecs::ClientId owner)	const;

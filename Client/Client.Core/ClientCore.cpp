@@ -1,3 +1,7 @@
+#include <chrono>
+#include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
@@ -9,12 +13,6 @@
 #include "WeaponManager.h"
 #include "EventSystem.h"
 #include "GameEventReceiver.h"
-
-#include <iostream>
-#include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
-#include <chrono>
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr)
@@ -135,6 +133,7 @@ void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
+	m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::RakString("MALEFICE_PLAYER"));
 }
 
 ecs::Entity* ClientCore::getMap() const

@@ -1,15 +1,19 @@
 #pragma once
 
+#include <RPC3.h>
 #include "EntityManager.h"
-#include "Entity.h"
+#include "AComponent.h"
+#include "NetworkObject.h"
 
-class PlayerManager : public EntityManager
+class PlayerManager : public EntityManager, public NetworkObject
 {
 public:
-	PlayerManager()						= default;
+	PlayerManager();
 	PlayerManager(const PlayerManager&)	= delete;
 	~PlayerManager()					= default;
 
 	virtual void	createEntity(ecs::ClientId owner);
 	virtual void	deleteEntity(ecs::ClientId owner);
+
+	void	setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc);
 };
