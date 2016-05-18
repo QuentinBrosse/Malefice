@@ -20,6 +20,7 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&ConnectWindow::onConnectButtonClicked, this));
 	m_ip = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(1));
 	m_port = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(2));
+	m_pseudo = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(3));
 }
 
 void ConnectWindow::display()
@@ -72,4 +73,9 @@ std::string ConnectWindow::getIPEditBox()
 std::string ConnectWindow::getPortEditBox()
 {
 	return (m_port->getText().c_str());
+}
+
+std::string ConnectWindow::getPseudoEditBox()
+{
+	return (m_pseudo->getText().c_str());
 }
