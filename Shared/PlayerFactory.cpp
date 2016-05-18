@@ -4,6 +4,7 @@
 #include "WeaponManager.h"
 #include "Weapon.h"
 #include "Movement.h"
+#include "PlayerInfos.h"
 #include "Position.h"
 #include "SpellManager.h"
 #include "GameEventReceiver.h"
@@ -35,6 +36,8 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	(*entity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
 	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*entity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
 
+	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
+
 
 
 	return entity;
@@ -50,6 +53,7 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vect
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager(weapon);
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
+	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 	return entity;
 }
 

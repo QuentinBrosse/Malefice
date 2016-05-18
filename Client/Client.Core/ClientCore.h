@@ -16,16 +16,19 @@ class ClientCore : public Singleton<ClientCore>, public NetworkObject
 	friend class Singleton<ClientCore>;
 
 public:
+	void	createEntities();
 	void			run();
 
 	bool			isActive()			const;
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;
 	PlayerManager*	getPlayerManager()	const;
-
-	void			setIsActive(bool isActive);
-	void			setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
 	ecs::Entity*	getMap()			const;
+
+	void	setIsActive(bool isActive);
+	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
+	void	setNickname(const std::string& nickname);
+
 
 protected:
 	ClientCore();
@@ -34,12 +37,12 @@ protected:
 private:
 	bool	init();
 	void	pulse();
-	void	createEntities();
 
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;
 	PlayerManager*	m_playerManager;
 	ecs::ClientId	m_clientId;
+	std::string		m_nickname;
 	bool			m_isActive;
 
 	ecs::Entity*				m_map;

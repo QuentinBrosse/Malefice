@@ -5,6 +5,7 @@
 #include <RakNetTypes.h>
 #include <PacketPriority.h>
 #include <RPC3.h>
+#include "Logger.h"
 
 class NetworkModule
 {

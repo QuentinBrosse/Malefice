@@ -4,6 +4,7 @@
 #include "GameEventReceiver.h"
 #include "Life.h"
 #include "Movement.h"
+#include "PlayerInfos.h"
 #include "Position.h"
 #include "AScene.h"
 #include "SceneMesh.h"
@@ -150,6 +151,9 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			break;
 		case ecs::AComponent::ComponentType::MOVEMENT:
 			component = new ecs::Movement();
+			break;
+		case ecs::AComponent::ComponentType::PLAYER_INFOS:
+			component = new ecs::PlayerInfos();
 			break;
 		case ecs::AComponent::ComponentType::POSITION:
 			component = new ecs::Position();
