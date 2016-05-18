@@ -41,7 +41,6 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 	}
 	else
 	{
@@ -75,6 +74,7 @@ void	ClientCore::pulse()
 
 	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
 	{
+		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 		m_graphicModule->getMenuPause()->checkPause();
 
 		auto begin = std::chrono::high_resolution_clock::now();
