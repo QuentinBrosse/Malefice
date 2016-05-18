@@ -52,7 +52,8 @@
 		<type>SNIPER_RIFLE</type>
 		<distance sight="true">1000.0</distance>
 		<precision>0.0</precision>
-		<ammunition>40</ammunition>
+		<amunitionsPerLoader>40</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
@@ -98,7 +99,8 @@
 		<type>RAIL_GUN</type>
 		<distance>500.0</distance>
 		<precision>00.0</precision>
-		<ammunition>220</ammunition>
+		<amunitionsPerLoader>220</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>100.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>6</damage>
@@ -144,7 +146,8 @@
 		<type>SHOT_GUN</type>
 		<distance>500.0</distance>
 		<precision>10.0</precision>
-		<ammunition>60</ammunition>
+		<amunitionsPerLoader>60</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
@@ -190,7 +193,8 @@
 		<type>MACHINE_GUN</type>
 		<distance>750.0</distance>
 		<precision>5.0</precision>
-		<ammunition>360</ammunition>
+		<amunitionsPerLoader>360</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>60.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>13</damage>
@@ -236,7 +240,8 @@
 		<type>PISTOL</type>
 		<distance>500.0</distance>
 		<precision>0.0</precision>
-		<ammunition>200</ammunition>
+		<amunitionsPerLoader>200</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>60.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>7</damage>
@@ -282,7 +287,8 @@
 		<type>DOUBLE_PISTOL</type>
 		<distance>500.0</distance>
 		<precision>5.0</precision>
-		<ammunition>400</ammunition>
+		<amunitionsPerLoader>400</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>120.0</rateOfFire>
 		<ammoPerShot>2</ammoPerShot>
 		<damage>14</damage>
@@ -328,7 +334,8 @@
 		<type>SABRE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
-		<ammunition type="none">-1</ammunition>
+		<amunitionsPerLoader type="none">-1</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>45</damage>
@@ -374,7 +381,8 @@
 		<type>CHAINSAW</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
-		<ammunition type="liter">2</ammunition>
+		<amunitionsPerLoader type="liter">2</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>0.01</rateOfFire>
 		<ammoPerShot>0.01</ammoPerShot>
 		<damage>70</damage>
@@ -420,7 +428,8 @@
 		<type>SABRE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
-		<ammunition type="none">-1</ammunition>
+		<amunitionsPerLoader type="none">-1</amunitionsPerLoader>
+		<nbrMunitionMax>4<nbrMunitionMax> 
 		<rateOfFire>10</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>25</damage>
