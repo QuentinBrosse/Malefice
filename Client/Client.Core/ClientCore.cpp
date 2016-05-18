@@ -41,6 +41,7 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
+		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 	}
 	else
 	{
