@@ -122,6 +122,11 @@ namespace ecs
 
 	void Weapon::reload()
 	{
+		if (m_nbrMunitionMax > 0)
+		{
+			m_nbrMunitionMax -= 1;
+			this->incAmmunition(m_maxAmmunition);
+		}
 	}
 
 	const Weapon::WeaponType Weapon::getWeaponType() const
