@@ -14,7 +14,7 @@ namespace ecs
 
 		static void	changeToNext(Entity& player);
 		static void changeToPrec(Entity& player);
-		void initWeapon(Entity& entity);
+		static void initWeapon(Entity& entity);
 	};
 
 }
