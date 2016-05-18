@@ -19,7 +19,7 @@
         </Window>
         <Window type="WindowsLook/Label" name="Label2" >
             <Property name="ID" value="101" />
-            <Property name="Area" value="{{0,217},{0,392},{0,438},{0,434}}" />
+            <Property name="Area" value="{{0,318},{0,417},{0,539},{0,459}}" />
             <Property name="Text" value="Initialisation du timer..." />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
@@ -29,7 +29,7 @@
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
         <Window type="AlfiskoSkin/Label" name="Label32" >
-            <Property name="Area" value="{{0,422},{0,72},{0,550},{0,104}}" />
+            <Property name="Area" value="{{0,391},{0,71},{0,519},{0,103}}" />
             <Property name="Text" value="Equipe 2" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
@@ -55,7 +55,7 @@
         </Window>
         <Window type="OgreTray/Listbox" name="Listbox2" >
             <Property name="ID" value="103" />
-            <Property name="Area" value="{{0,366},{0,115},{0,622},{0,371}}" />
+            <Property name="Area" value="{{0,326},{0,116},{0,582},{0,372}}" />
             <AutoWindow namePath="__auto_hscrollbar__" >
                 <AutoWindow namePath="__auto_incbtn__" >
                     <Property name="Visible" value="false" />
@@ -72,6 +72,31 @@
                     <Property name="Visible" value="false" />
                 </AutoWindow>
             </AutoWindow>
+        </Window>
+        <Window type="OgreTray/Listbox" name="Listbox22" >
+            <Property name="ID" value="104" />
+            <Property name="Area" value="{{0,607},{0,116},{0,824},{0,170}}" />
+            <AutoWindow namePath="__auto_hscrollbar__" >
+                <AutoWindow namePath="__auto_incbtn__" >
+                    <Property name="Visible" value="false" />
+                </AutoWindow>
+                <AutoWindow namePath="__auto_decbtn__" >
+                    <Property name="Visible" value="false" />
+                </AutoWindow>
+            </AutoWindow>
+            <AutoWindow namePath="__auto_vscrollbar__" >
+                <AutoWindow namePath="__auto_incbtn__" >
+                    <Property name="Visible" value="false" />
+                </AutoWindow>
+                <AutoWindow namePath="__auto_decbtn__" >
+                    <Property name="Visible" value="false" />
+                </AutoWindow>
+            </AutoWindow>
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label322" >
+            <Property name="Area" value="{{0,652},{0,71},{0,780},{0,103}}" />
+            <Property name="Text" value="Predateur" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
     </Window>
 </GUILayout>
