@@ -99,4 +99,12 @@ namespace ecs
 	{
 		// Won't be sent over the network (will be modified by RPCs)
 	}
+
+	AComponent& GameEventReceiver::affect(const AComponent& rhs)
+	{
+		const GameEventReceiver&	rhsEvent = dynamic_cast<const GameEventReceiver&>(rhs);
+
+		m_events = rhsEvent.m_events;
+		return *this;
+	}
 };

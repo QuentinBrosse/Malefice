@@ -44,12 +44,6 @@ namespace ecs
 	}
 
 
-	Weapon& Weapon::operator=(const Weapon& other)
-	{
-		m_scene = other.m_scene;
-		return *this;
-	}
-
 	const bool Weapon::isSight() const
 	{
 		return m_sight;
@@ -154,8 +148,7 @@ namespace ecs
 		if (m_scene)
 			delete m_scene;
 		device->getSceneManager()->getActiveCamera();
-		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), newNameTexture, newNameMesh, nodePickable::NOT_PICKABLE, true);
-
+		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), newNameTexture, newNameMesh, nodePickable::NOT_PICKABLE, true, true, 0);
 	
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		m_scene->getScene()->setName(newNameMesh.c_str());
@@ -180,6 +173,26 @@ namespace ecs
 		   << ", DAMAGE = " << Weapon::m_damage << ", WEAPON_TYPE = " << Weapon::m_weaponType << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
 	}
 
+	AComponent& Weapon::affect(const AComponent& rhs)
+	{
+		const Weapon& weapon = dynamic_cast<const Weapon&>(rhs);
+
+		m_id = weapon.m_id;
+		m_weaponName = weapon.m_weaponName;
+		m_maxAmmunition = weapon.m_maxAmmunition;
+		m_damage = weapon.m_damage;
+		m_weaponType = weapon.m_weaponType;
+		m_sight = weapon.m_sight;
+		m_ammunition = weapon.m_ammunition;
+		m_reloadTime = weapon.m_reloadTime;
+		m_ammoPerShot = weapon.m_ammoPerShot;
+		m_fireRate = weapon.m_fireRate;
+		m_distance = weapon.m_distance;
+		m_scene = weapon.m_scene;
+		m_fpsMetrics = weapon.m_fpsMetrics;
+		m_externalMetrics = weapon.m_externalMetrics;
+		return *this;
+	}
 
 	void	Weapon::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
@@ -196,8 +209,8 @@ namespace ecs
 		out.Write(m_fireRate);
 		out.Write(m_distance);
 		m_scene->serialize(out, false);
-		m_externalMetrics.serialize(out, false);	// bool = false ?
-		m_fpsMetrics.serialize(out, false);			// bool = false ?
+		m_externalMetrics.serialize(out, false);
+		m_fpsMetrics.serialize(out, false);
 	}
 
 	void	Weapon::deserialize(RakNet::BitStream& in)

@@ -54,6 +54,18 @@ namespace ecs
 		m_isLock = false;
 	}
 
+	AComponent& Spell::affect(const AComponent& rhs)
+	{
+		const Spell&	spell = dynamic_cast<const Spell&>(rhs);
+
+		m_id = spell.m_id;
+		m_name = spell.m_name;
+		m_cooldown = spell.m_cooldown;
+		m_spellType = spell.m_spellType;
+		m_isLock = spell.m_isLock;
+		return *this;
+	}
+
 
 	void	Spell::dump(std::ostream& os)	const
 	{

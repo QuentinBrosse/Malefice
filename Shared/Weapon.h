@@ -33,7 +33,7 @@ namespace ecs
 
 		void	init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax);
 
-		Weapon&				operator=(const Weapon& other);
+		virtual AComponent&	affect(const AComponent& rhs);
 		
 		const int			getId()							const;
 		const int			getDamage()						const;

@@ -97,4 +97,13 @@ namespace ecs
 		in.Read(m_currentLife);
 		in.Read(m_maxLife);
 	}
+
+	AComponent& Life::affect(const AComponent& rhs)
+	{
+		const Life&	life = dynamic_cast<const Life&>(rhs);
+
+		m_currentLife = life.m_currentLife;
+		m_maxLife = life.m_maxLife;
+		return *this;
+	}
 }

@@ -27,7 +27,7 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 
-	(*entity)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true);
+	(*entity)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, true, 0);
 
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*entity)[ecs::AComponent::ComponentType::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);

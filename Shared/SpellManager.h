@@ -34,6 +34,8 @@ namespace ecs
 		void	changeToNextWeapon();
 		void	changeToPrecWeapon();
 		
+		virtual	AComponent&	affect(const AComponent& rhs);
+
 		virtual void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;

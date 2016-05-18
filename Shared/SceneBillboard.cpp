@@ -18,6 +18,7 @@ namespace ecs
 
 	void	SceneBillboard::init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable)
 	{
+
 		// TODO: implement constructor logic here
 	}
 
@@ -31,6 +32,16 @@ namespace ecs
 	void	SceneBillboard::dump(std::ostream& os)	const
 	{
 		os << "SceneBillboard {}";
+	}
+
+	AComponent & SceneBillboard::affect(const AComponent & rhs)
+	{
+		const SceneBillboard&	scene = dynamic_cast<const SceneBillboard&>(rhs);
+
+		m_nameMesh = scene.m_nameMesh;
+		m_nameTexture = scene.m_nameTexture;
+		m_type = scene.m_type;
+		return *this;
 	}
 
 
