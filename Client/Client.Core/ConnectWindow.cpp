@@ -21,6 +21,7 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_ip = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(1));
 	m_port = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(2));
 	m_pseudo = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(52));
+	m_password = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(53));
 }
 
 void ConnectWindow::display()
@@ -55,8 +56,8 @@ bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0) {
-		ClientCore::getInstance().setNickname(this->getPseudoEditBox());
-		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPseudoEditBox());
+		ClientCore::getInstance().setNickname(this->getNickNameEditBox());
+		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPasswordEditBox());
 		this->hide();
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
 		m_graphicUtils.getWaitingRoom()->display();
@@ -76,7 +77,12 @@ std::string ConnectWindow::getPortEditBox()
 	return (m_port->getText().c_str());
 }
 
-std::string ConnectWindow::getPseudoEditBox()
+std::string ConnectWindow::getNickNameEditBox()
 {
 	return (m_pseudo->getText().c_str());
+}
+
+std::string ConnectWindow::getPasswordEditBox()
+{
+	return (m_password->getText().c_str());
 }
