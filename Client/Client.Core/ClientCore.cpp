@@ -75,6 +75,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 		m_graphicModule->getMenuPause()->checkPause();
 		m_graphicModule->getWaitingRoom()->refreshTime();
+		m_graphicModule->getHUD()->refreshTime();
 
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
