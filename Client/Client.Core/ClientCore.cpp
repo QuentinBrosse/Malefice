@@ -140,11 +140,11 @@ void	ClientCore::setIsActive(bool isActive)
 
 void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
-	RakNet::RakString	nickname = "";
+	RakNet::RakString	nickname = m_nickname.c_str();
 
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
-	m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::RakString("MALEFICE_PLAYER"));
+	m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), nickname);
 	LOG_DEBUG(NETWORK) << "Sent nickname \"" << nickname << "\" to server";
 }
 
