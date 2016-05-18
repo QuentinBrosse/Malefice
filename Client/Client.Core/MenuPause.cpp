@@ -48,6 +48,7 @@ bool MenuPause::onContinueButtonClicked()
 	std::cout << "Game resumed" << std::endl;
 	m_utilities.setFPSCamera();
 	this->hide();
+	m_utilities.getHUD()->display();
 	m_isEnable = false;
 	return (true);
 }
