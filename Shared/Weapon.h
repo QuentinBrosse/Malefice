@@ -27,11 +27,11 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight);
+		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
-		void	init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight);
+		void	init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax);
 
 		Weapon&				operator=(const Weapon& other);
 		
@@ -43,6 +43,7 @@ namespace ecs
 		const unsigned int	getMaxAmmunitions()				const;
 		const unsigned int	getReloadTime()					const;
 		const unsigned int	getAmmoPerShot()				const;
+		const unsigned int	getNbrMunitionMax()				const;
 		const float			getFireRate()					const;
 		const float			getDistance()					const;
 		Position			getFPSMetrics()					const;
@@ -78,6 +79,7 @@ namespace ecs
 		unsigned int	m_ammunition;
 		unsigned int	m_reloadTime;
 		unsigned int	m_ammoPerShot;
+		unsigned int	m_nbrMunitionMax;
 
 		float	m_fireRate;
 		float	m_distance;

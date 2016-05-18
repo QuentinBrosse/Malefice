@@ -43,5 +43,17 @@
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="2504" />
         </Window>
+        <Window type="AlfiskoSkin/Label" name="Label22" >
+            <Property name="Area" value="{{0.0421847,-1},{0.302925,52},{0.0421847,127},{0.302925,84}}" />
+            <Property name="Text" value="Pseudo" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+        </Window>
+        <Window type="AlfiskoSkin/Editbox" name="Editbox22" >
+            <Property name="ID" value="3" />
+            <Property name="Area" value="{{0.350799,0},{0.316852,49},{0.350799,257},{0.316852,81}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="User42" />
+        </Window>
     </Window>
 </GUILayout>
