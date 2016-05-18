@@ -31,6 +31,10 @@ namespace ecs
 		m_pickableFlags = newPickableFlags;
 		m_material = nullptr;
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((m_mediaPath + newNameMesh).c_str()), parent, newPickableFlags);
+		if (!m_node)
+		{
+			std::cerr << "Mesh cannot be loaded !" << std::endl;
+		}
 		m_node->setAnimationSpeed(20.f);
 		if (m_isCollisionable)
 		{

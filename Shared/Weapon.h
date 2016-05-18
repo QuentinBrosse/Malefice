@@ -48,7 +48,8 @@ namespace ecs
 		const float			getDistance()					const;
 		Position			getFPSMetrics()					const;
 		Position			getExternalMetrics()			const;
-		const bool			isSight() const;
+		const bool			isSight()						const;
+
 		void				shot();
 		void				reload();
 		void				decAmmunition(int nbFired);
