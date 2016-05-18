@@ -1,6 +1,7 @@
 #include <iostream>
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
+#include "ClientCore.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -59,6 +60,7 @@ bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 	this->hide();
 	m_graphicalUtil.getHUD()->display();
 	m_graphicalUtil.setFPSCamera();
+	ClientCore::getInstance().createEntities();
 	return (true);
 }
 
