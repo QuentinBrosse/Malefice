@@ -1,6 +1,7 @@
 #include <iostream>
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
+#include "ClientCore.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -23,6 +24,7 @@ WaitingRoom::WaitingRoom(GraphicUtil &gu) :
 	m_timerText = m_frameWindows->getChild(101);
 	m_rightTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(103));
 	m_leftTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(102));
+	m_predator = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(104));
 }
 
 void WaitingRoom::display()
@@ -47,10 +49,6 @@ void WaitingRoom::hide()
 		m_systemd.getDefaultGUIContext().getRootWindow()->getChild(100);
 		m_systemd.getDefaultGUIContext().getRootWindow()->removeChild(100);
 	}
-	catch (CEGUI::UnknownObjectException &e) {
-		std::cout << "Root windows not found. hiding loading windows as Root Windows" << std::endl;
-		m_systemd.getDefaultGUIContext().setRootWindow(0);
-	}
 	catch (std::exception &e) {
 		std::cout << "Root windows not found. hiding loading windows as Root Windows" << std::endl;
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
@@ -60,8 +58,9 @@ void WaitingRoom::hide()
 bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
-	m_graphicalUtil.setFPSCamera();
 	m_graphicalUtil.getHUD()->display();
+	m_graphicalUtil.setFPSCamera();
+	ClientCore::getInstance().createEntities();
 	return (true);
 }
 
@@ -86,4 +85,11 @@ void WaitingRoom::addLeftTeamMember(const std::string &txt)
 	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
 	item->setText(txt);
 	m_leftTeam->addItem(item);
+}
+
+void WaitingRoom::addPredator(const std::string &txt)
+{
+	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
+	item->setText(txt);
+	m_predator->addItem(item);
 }

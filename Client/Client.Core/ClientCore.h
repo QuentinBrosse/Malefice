@@ -16,6 +16,7 @@ class ClientCore : public Singleton<ClientCore>, public NetworkObject
 	friend class Singleton<ClientCore>;
 
 public:
+	void	createEntities();
 	void			run();
 
 	bool			isActive()			const;
@@ -34,7 +35,6 @@ protected:
 private:
 	bool	init();
 	void	pulse();
-	void	createEntities();
 
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;

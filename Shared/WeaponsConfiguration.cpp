@@ -34,6 +34,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		unsigned int			ammoPerShot = 0;
 		unsigned int			damage = 0;
 		unsigned int			reloadTime = 0;
+		unsigned int			nbrMunitionMax = 0;
 		ecs::Weapon::WeaponType	type;
 		std::string				name;
 		std::string				distanceStr;
@@ -43,6 +44,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				ammoPerShotStr;
 		std::string				precisionStr;
 		std::string				ammunitionStr;
+		std::string				nbrMunitionMaxStr;
 		irr::core::vector3df	fpsMetricsPosition;
 		irr::core::vector3df	fpsMetricsRotation;
 		irr::core::vector3df	fpsMetricsScale;
@@ -69,7 +71,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		precisionStr = this->getOrCreateElementString(doc, *currentWeapon, "precision", "");
 		precision = stof(precisionStr);
 
-		ammunitionStr = this->getOrCreateElementString(doc, *currentWeapon, "ammunition", "");
+		ammunitionStr = this->getOrCreateElementString(doc, *currentWeapon, "amunitionsPerLoader", "");
 		ammunition = std::stoi(ammunitionStr);
 
 		fireRateStr = this->getOrCreateElementString(doc, *currentWeapon, "rateOfFire", "");
@@ -83,6 +85,9 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 		reloadTimeStr = this->getOrCreateElementString(doc, *currentWeapon, "reloadTime", "");
 		reloadTime = std::stoi(reloadTimeStr);
+
+		nbrMunitionMaxStr = this->getOrCreateElementString(doc, *currentWeapon, "nbrMunitionMax", "");
+		nbrMunitionMax = std::stoi(nbrMunitionMaxStr);
 
 		tinyxml2::XMLElement* fpsMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
 		if (fpsMetrics == nullptr)
@@ -183,7 +188,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight);
+		ecs::Weapon tmp(id, name, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, nbrMunitionMax);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
 	return true;

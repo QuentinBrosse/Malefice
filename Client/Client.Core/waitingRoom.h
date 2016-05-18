@@ -20,6 +20,7 @@ public:
 	void refreshTime();
 	void addRightTeamMember(const std::string& name);
 	void addLeftTeamMember(const std::string& name);
+	void addPredator(const std::string &txt);
 
 private:
 	GraphicUtil&				m_graphicalUtil;
@@ -31,4 +32,5 @@ private:
 	CEGUI::Window*				m_timerText;
 	CEGUI::Listbox*				m_rightTeam;
 	CEGUI::Listbox*				m_leftTeam;
+	CEGUI::Listbox*				m_predator;
 };

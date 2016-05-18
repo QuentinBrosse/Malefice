@@ -13,6 +13,7 @@
 #include "WeaponManager.h"
 #include "EventSystem.h"
 #include "GameEventReceiver.h"
+#include "WeaponManagerSystem.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr)
@@ -38,6 +39,7 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
+		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 	}
 	else
 	{
@@ -100,7 +102,7 @@ void ClientCore::createEntities()
 	ecs::PositionSystem::initScenePosition(*m_map);
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
-	ecs::PositionSystem::initWeapon(*m_player);
+	ecs::WeaponManagerSystem::initWeapon(*m_player);
 }
 
 bool	ClientCore::isActive()	const
