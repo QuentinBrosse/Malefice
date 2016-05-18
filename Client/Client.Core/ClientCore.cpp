@@ -7,6 +7,7 @@
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
 #include "WeaponManager.h"
+#include "WeaponManagerSystem.h"
 #include "EventSystem.h"
 #include "GameEventReceiver.h"
 
@@ -80,11 +81,11 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-//		if (!m_graphicModule->getMenuPause()->getEnableStatus())
-//		{
-			/*ecs::PositionSystem::update(*m_player);
-			ecs::EventSystem::doEvents(*m_player);*/
-	//	}
+		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+		{
+			ecs::PositionSystem::update(*m_player);
+			ecs::EventSystem::doEvents(*m_player);
+		}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
@@ -102,7 +103,7 @@ void ClientCore::createEntities()
 	ecs::PositionSystem::initScenePosition(*m_map);
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
-	ecs::PositionSystem::initWeapon(*m_player);
+	ecs::WeaponManagerSystem::initWeapon(*m_player);
 }
 
 bool	ClientCore::isActive()	const

@@ -23,7 +23,7 @@ namespace ecs
 		Weapon&									getCurrentWeapon()	const;
 		std::map<Weapon::WeaponType, Weapon&>&	getWeapons();
 
-		void			createWeapon(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const Weapon& weaponCpy);
+		void			createWeapon(irr::IrrlichtDevice* device, const Weapon& weaponCpy);
 
 
 		virtual	void	dump(std::ostream& os)	const;

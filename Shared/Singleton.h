@@ -7,7 +7,6 @@ protected:
     Singleton() = default;
     ~Singleton() = default;
 
-
 public:
     // Delete copy constructor and assignment operator so there is no copy of the Singleton
     Singleton(const Singleton&) = delete;

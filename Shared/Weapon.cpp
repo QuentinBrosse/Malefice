@@ -4,29 +4,31 @@
 
 namespace ecs
 {
+	const std::string	Weapon::MEDIA_PATH = "weapons/models/";
+
 	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(0), m_weaponName(""), m_maxAmmunition(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_nbrMunitionMax(0), m_fireRate(0), m_distance(0), m_fpsMetrics(0, 0, 0, 0, 0, 0), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_scene(nullptr)
+		m_id(0), m_weaponName(""), m_meshName(""), m_maxAmmunition(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_defaultAmunitions(0), m_fireRate(0), m_distance(0), m_fpsMetrics(0, 0, 0, 0, 0, 0), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_scene(nullptr)
 	{
 
 	}
 
-	Weapon::Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(id), m_weaponName(name), m_maxAmmunition(ammunition), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_nbrMunitionMax(nbrMunitionMax), m_fireRate(fireRate), m_distance(distance), m_fpsMetrics(fpsMetrics), m_externalMetrics(externalMetrics), m_scene(nullptr)
+	Weapon::Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
+		m_id(id), m_weaponName(name), m_meshName(meshName), m_maxAmmunition(ammunition), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_defaultAmunitions(defaultAmunitions), m_fireRate(fireRate), m_distance(distance), m_fpsMetrics(fpsMetrics), m_externalMetrics(externalMetrics), m_scene(nullptr)
 	{
 
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_maxAmmunition(cpy.getMaxAmmunitions()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_nbrMunitionMax(cpy.getNbrMunitionMax()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
+		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_meshName(cpy.getMeshName()), m_maxAmmunition(cpy.getMaxAmmunitions()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_defaultAmunitions(cpy.getDefaultAmunitions()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
 	{
 
 	}
 
-
-	void	Weapon::init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrix, const Position& externalMetrix, bool sight, unsigned int nbrMunitonMax)
+	void	Weapon::init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrix, const Position& externalMetrix, bool sight, unsigned int nbrMunitonMax)
 	{
 		m_id = id;
 		m_weaponName = name;
+		m_meshName = meshName;
 		m_maxAmmunition = ammunition;
 		m_damage = damage;
 		m_weaponType =weaponType;
@@ -39,10 +41,9 @@ namespace ecs
 		m_fpsMetrics = fpsMetrix;
 		m_externalMetrics = externalMetrix;
 		m_scene = nullptr;
-		m_nbrMunitionMax = nbrMunitonMax;
+		m_defaultAmunitions = nbrMunitonMax;
 		// TODO: implement constructor logic here
 	}
-
 
 	Weapon& Weapon::operator=(const Weapon& other)
 	{
@@ -50,91 +51,96 @@ namespace ecs
 		return *this;
 	}
 
-	const bool Weapon::isSight() const
+	const bool	Weapon::isSight() const
 	{
 		return m_sight;
 	}
 
-	const unsigned int Weapon::getReloadTime() const
+	const unsigned int	Weapon::getReloadTime() const
 	{
 		return m_reloadTime;
 	}
 
-	const unsigned int Weapon::getNbrMunitionMax() const
+	const unsigned int	Weapon::getDefaultAmunitions() const
 	{
-		return m_nbrMunitionMax;
+		return m_defaultAmunitions;
 	}
 
-	const unsigned int Weapon::getAmmunitions() const
+	const unsigned int	Weapon::getAmmunitions() const
 	{
 		return m_ammunition;
 	}
-
-	const unsigned int Weapon::getMaxAmmunitions() const
+	
+	const unsigned int	Weapon::getMaxAmmunitions() const
 	{
 		return m_maxAmmunition;
 	}
 
-	const unsigned int Weapon::getAmmoPerShot() const
+	const unsigned int	Weapon::getAmmoPerShot() const
 	{
 		return m_ammoPerShot;
 	}
 
-	const float	Weapon::getFireRate() const
+	const float		Weapon::getFireRate() const
 	{
 		return m_fireRate;
 	}
 
-	const float Weapon::getDistance() const
+	const float		Weapon::getDistance() const
 	{
 		return m_distance;
 	}
 
-	Position Weapon::getFPSMetrics() const
+	Position	Weapon::getFPSMetrics() const
 	{
 		return m_fpsMetrics;
 	}
 
-	Position Weapon::getExternalMetrics() const
+	Position	Weapon::getExternalMetrics() const
 	{
 		return m_externalMetrics;
 	}
 
-	const int Weapon::getId() const
+	const int	Weapon::getId() const
 	{
 		return m_id;
 	}
 
-	const std::string & Weapon::getName() const
+	const	std::string & Weapon::getName() const
 	{
 		return m_weaponName;
 	}
 
-	const int		Weapon::getDamage() const
+	const	std::string& Weapon::getMeshName() const
+	{
+		return m_meshName;
+	}
+
+	const int	Weapon::getDamage() const
 	{
 		return m_damage;
 	}
 
-	void Weapon::shot()
+	void	Weapon::shot()
 	{
 		this->decAmmunition(m_ammoPerShot);
 	}
 
-	void Weapon::reload()
+	void	Weapon::reload()
 	{
-		if (m_nbrMunitionMax > 0)
+		if (m_defaultAmunitions > 0)
 		{
-			m_nbrMunitionMax -= 1;
+			m_defaultAmunitions -= 1;
 			this->incAmmunition(m_maxAmmunition);
 		}
 	}
 
-	const Weapon::WeaponType Weapon::getWeaponType() const
+	const	Weapon::WeaponType Weapon::getWeaponType() const
 	{
 		return m_weaponType;
 	}
 
-	void Weapon::decAmmunition(int nbLoaded)
+	void	Weapon::decAmmunition(int nbLoaded)
 	{
 		if (nbLoaded >= m_ammunition)
 			m_ammunition = 0;
@@ -142,23 +148,22 @@ namespace ecs
 			m_ammunition -= nbLoaded;
 	}
 
-	void Weapon::incAmmunition(int nbAmmuition)
+	void	Weapon::incAmmunition(int nbAmmuition)
 	{
 		m_ammunition += nbAmmuition;
 		if (m_ammunition > m_maxAmmunition)
 			m_ammunition = m_maxAmmunition;
 	}
 
-	void Weapon::createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active)
+	void	Weapon::createScene(irr::IrrlichtDevice* device, const bool active)
 	{
 		if (m_scene)
 			delete m_scene;
 		device->getSceneManager()->getActiveCamera();
-		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), newNameTexture, newNameMesh, nodePickable::NOT_PICKABLE, true);
-
+		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true);
 	
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-		m_scene->getScene()->setName(newNameMesh.c_str());
+		m_scene->getScene()->setName((MEDIA_PATH + m_meshName).c_str());
 
 		setActivity(active);
 	}
@@ -173,13 +178,11 @@ namespace ecs
 		return m_scene;
 	}
 
-
 	void	Weapon::dump(std::ostream& os)	const
 	{
-		os << "Weapon {ID = " << Weapon::m_id << ", WEAPON_NAME = \"" << Weapon::m_weaponName << "\", MAX_AMMUNITION = " << Weapon::m_maxAmmunition
+		os << "Weapon {ID = " << Weapon::m_id << ", WEAPON_NAME = \"" << Weapon::m_weaponName << ", MESH_NAME = \"" << Weapon::m_meshName << "\", MAX_AMMUNITION = " << Weapon::m_maxAmmunition
 		   << ", DAMAGE = " << Weapon::m_damage << ", WEAPON_TYPE = " << Weapon::m_weaponType << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
 	}
-
 
 	void	Weapon::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{

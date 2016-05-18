@@ -57,16 +57,15 @@ namespace ecs
 		return m_weapons;
 	}
 
-	void WeaponManager::createWeapon(irr::IrrlichtDevice * device, const std::string & newNameTexture, const std::string & newNameMesh, const Weapon& weaponCpy)
+	void WeaponManager::createWeapon(irr::IrrlichtDevice* device, const Weapon& weaponCpy)
 	{
 		Weapon*	weapon = new Weapon(weaponCpy);
 
-		weapon->createScene(device, newNameTexture, newNameMesh, false);
+		weapon->createScene(device, false);
 		addWeapon(*weapon);
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}
-
 
 	void	WeaponManager::dump(std::ostream& os)	const
 	{

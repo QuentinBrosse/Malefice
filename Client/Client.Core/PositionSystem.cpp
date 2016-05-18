@@ -41,7 +41,7 @@ namespace ecs
 			weaponManager->getCurrentWeapon().setActivity(true);
 	}
 
-	void PositionSystem::initScenePosition(Entity & entity)
+	void PositionSystem::initScenePosition(Entity& entity)
 	{
 		Position*	position;
 		AScene*		scene;

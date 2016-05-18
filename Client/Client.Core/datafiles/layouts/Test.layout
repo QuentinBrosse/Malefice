@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<GUILayout version="4" >
-    <Window type="WindowsLook/Button" name="Button" >
-        <Property name="Area" value="{{0,324},{0,257},{0,485},{0,314}}" />
-        <Property name="Font" value="DejaVuSans-12" />
-        <Property name="Text" value="Quitter" />
-    </Window>
-</GUILayout>

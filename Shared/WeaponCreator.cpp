@@ -1,17 +1,13 @@
 #include "WeaponCreator.h"
+#include "Logger.h"
 
-
-WeaponCreator::WeaponCreator():
-	m_weaponConfigurator()
+WeaponCreator::WeaponCreator()
 {
-	
+	m_configurator = &WeaponsConfiguration::getInstance();
+	m_weapons = m_configurator->getWeapons();
 }
 
 ecs::Weapon WeaponCreator::create(const ecs::Weapon::WeaponType weaponType)
 {
-	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	weapons;
-
-	weapons = m_weaponConfigurator.getWeapons();
-
-	return weapons[weaponType];
+	return m_weapons[weaponType];
 }

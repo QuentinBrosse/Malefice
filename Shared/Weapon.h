@@ -23,15 +23,16 @@ namespace ecs
 			DOUBLE_PISTOL,
 			SABRE,
 			CHAINSAW,
+			KNIFE,
 			WEAPON_COUNT
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax);
+		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
-		void	init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int nbrMunitionMax);
+		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
 
 		Weapon&				operator=(const Weapon& other);
 		
@@ -39,11 +40,12 @@ namespace ecs
 		const int			getDamage()						const;
 		const WeaponType	getWeaponType()					const;
 		const std::string&	getName()						const;
+		const std::string&	getMeshName()					const;
 		const unsigned int	getAmmunitions()				const;
 		const unsigned int	getMaxAmmunitions()				const;
 		const unsigned int	getReloadTime()					const;
 		const unsigned int	getAmmoPerShot()				const;
-		const unsigned int	getNbrMunitionMax()				const;
+		const unsigned int	getDefaultAmunitions()			const;
 		const float			getFireRate()					const;
 		const float			getDistance()					const;
 		Position			getFPSMetrics()					const;
@@ -55,9 +57,9 @@ namespace ecs
 		void				decAmmunition(int nbFired);
 		void				incAmmunition(int nbAmmuition);
 
-		void				createScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const bool active);
+		void				createScene(irr::IrrlichtDevice* device, const bool active);
 
-		void setActivity(const bool active);
+		void				setActivity(const bool active);
 
 		SceneAnimatedMesh*	getScene()						const;
 
@@ -68,8 +70,11 @@ namespace ecs
 
 
 	private:
+		static const std::string	MEDIA_PATH;
+
 		int				m_id;
 		std::string		m_weaponName;
+		std::string		m_meshName;
 		unsigned int	m_maxAmmunition;
 		unsigned int	m_damage;
 		WeaponType		m_weaponType;
@@ -79,7 +84,7 @@ namespace ecs
 		unsigned int	m_ammunition;
 		unsigned int	m_reloadTime;
 		unsigned int	m_ammoPerShot;
-		unsigned int	m_nbrMunitionMax;
+		unsigned int	m_defaultAmunitions;
 
 		float	m_fireRate;
 		float	m_distance;

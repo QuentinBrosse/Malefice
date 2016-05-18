@@ -15,9 +15,11 @@ public:
 	ecs::Weapon		create(const ecs::Weapon::WeaponType weaponType);
 
 protected:
-	~WeaponCreator() = default;
 	WeaponCreator();
+	virtual ~WeaponCreator() = default;
 
 private:
-	WeaponsConfiguration	m_weaponConfigurator;
+	WeaponsConfiguration*							m_configurator;
+	std::map<ecs::Weapon::WeaponType, ecs::Weapon>	m_weapons;
+
 };

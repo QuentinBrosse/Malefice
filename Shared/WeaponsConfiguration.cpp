@@ -3,7 +3,12 @@
 #include "WeaponsConfiguration.h"
 #include "Logger.h"
 
-const std::string	WeaponsConfiguration::WEAPONS_FILENAME = "weapons.xml";
+const std::string	WeaponsConfiguration::WEAPONS_FILENAME = "Config\\weapons.xml";
+
+WeaponsConfiguration::WeaponsConfiguration()
+{
+	loadFromFile(WEAPONS_FILENAME);
+}
 
 bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 {
@@ -13,7 +18,10 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		LOG_CRITICAL(GENERAL) << "Weapons configuration file could not be read properly (error code: " << loadResult << ").";
+		char *toto = (char *)calloc(500, 1);
+		GetCurrentDirectoryA(500, toto);
+
+		LOG_CRITICAL(GENERAL) << toto << "Weapons configuration file could not be read properly (error code: " << loadResult << ").";
 		return false;
 	}
 	weaponsElement = doc.RootElement();
@@ -22,6 +30,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		LOG_CRITICAL(GENERAL) << "Weapons configuration file could not be read properly (error code: " << doc.ErrorID() << ").";
 		return false;
 	}
+
 	for (tinyxml2::XMLElement* currentWeapon = weaponsElement->FirstChildElement(); currentWeapon != nullptr; currentWeapon = currentWeapon->NextSiblingElement())
 	{
 		bool					sight = false;
@@ -34,9 +43,10 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		unsigned int			ammoPerShot = 0;
 		unsigned int			damage = 0;
 		unsigned int			reloadTime = 0;
-		unsigned int			nbrMunitionMax = 0;
+		unsigned int			defaultAmunitions = 0;
 		ecs::Weapon::WeaponType	type;
 		std::string				name;
+		std::string				meshName;
 		std::string				distanceStr;
 		std::string				reloadTimeStr;
 		std::string				damageStr;
@@ -44,7 +54,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				ammoPerShotStr;
 		std::string				precisionStr;
 		std::string				ammunitionStr;
-		std::string				nbrMunitionMaxStr;
+		std::string				defaultAmunitionsStr;
 		irr::core::vector3df	fpsMetricsPosition;
 		irr::core::vector3df	fpsMetricsRotation;
 		irr::core::vector3df	fpsMetricsScale;
@@ -58,6 +68,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			continue;
 		}
 		name = this->getOrCreateElementString(doc, *currentWeapon, "name", "");
+		meshName = this->getOrCreateElementString(doc, *currentWeapon, "meshName", "");
 		type = this->parseWeaponType(this->getOrCreateElementString(doc, *currentWeapon, "type", ""));
 		damage = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "damage", "-1"));
 		damageExplosive = std::stoi(this->getOrCreateElementString(doc, *currentWeapon, "damageExplosive", "-1"));
@@ -86,8 +97,8 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		reloadTimeStr = this->getOrCreateElementString(doc, *currentWeapon, "reloadTime", "");
 		reloadTime = std::stoi(reloadTimeStr);
 
-		nbrMunitionMaxStr = this->getOrCreateElementString(doc, *currentWeapon, "nbrMunitionMax", "");
-		nbrMunitionMax = std::stoi(nbrMunitionMaxStr);
+		defaultAmunitionsStr = this->getOrCreateElementString(doc, *currentWeapon, "defaultAmunitions", "");
+		defaultAmunitions = std::stoi(defaultAmunitionsStr);
 
 		tinyxml2::XMLElement* fpsMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
 		if (fpsMetrics == nullptr)
@@ -188,9 +199,10 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, nbrMunitionMax);
+		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, defaultAmunitions);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
+
 	return true;
 }
 
@@ -198,7 +210,6 @@ bool	WeaponsConfiguration::saveToFile(const std::string& filepath)	const
 {
 	throw std::logic_error("WeaponsConfiguration::saveToFile() not implemented");
 }
-
 
 const std::map<ecs::Weapon::WeaponType, ecs::Weapon>	&WeaponsConfiguration::getWeapons()	const
 {
@@ -218,6 +229,7 @@ ecs::Weapon::WeaponType	WeaponsConfiguration::parseWeaponType(const std::string&
 	weaponTypes.insert(std::make_pair<std::string, ecs::Weapon::WeaponType>("DOUBLE_PISTOL", ecs::Weapon::WeaponType::DOUBLE_PISTOL));
 	weaponTypes.insert(std::make_pair<std::string, ecs::Weapon::WeaponType>("SABRE", ecs::Weapon::WeaponType::SABRE));
 	weaponTypes.insert(std::make_pair<std::string, ecs::Weapon::WeaponType>("CHAINSAW", ecs::Weapon::WeaponType::CHAINSAW));
+	weaponTypes.insert(std::make_pair<std::string, ecs::Weapon::WeaponType>("KNIFE", ecs::Weapon::WeaponType::KNIFE));
 	weaponType = weaponTypes.find(weaponTypeStr);
 	if (weaponType != weaponTypes.end())
 		return weaponType->second;
