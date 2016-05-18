@@ -20,9 +20,9 @@ void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 
 void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
-	/*ecs::Entity&	localEntity = *m_entities[owner];
+	ecs::Entity&	localEntity = *m_entities[owner];
 
-	localEntity*/
+	//localEntity = *entity; // TODO: implement operator=
 }
 
 void	EntityManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)

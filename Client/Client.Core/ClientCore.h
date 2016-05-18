@@ -23,10 +23,12 @@ public:
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;
 	PlayerManager*	getPlayerManager()	const;
-
-	void			setIsActive(bool isActive);
-	void			setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
 	ecs::Entity*	getMap()			const;
+
+	void	setIsActive(bool isActive);
+	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
+	void	setNickname(const std::string& nickname);
+
 
 protected:
 	ClientCore();
@@ -40,6 +42,7 @@ private:
 	GraphicUtil*	m_graphicModule;
 	PlayerManager*	m_playerManager;
 	ecs::ClientId	m_clientId;
+	std::string		m_nickname;
 	bool			m_isActive;
 
 	ecs::Entity*				m_map;

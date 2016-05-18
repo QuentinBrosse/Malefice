@@ -15,6 +15,14 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 {
 	m_entities[owner] = PlayerFactory::createPlayer(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), 0, 0); // TODO: pick random spawn position, set rotation/team/initial life
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, owner, m_entities[owner]);
+	
+	for (auto entity : m_entities)
+	{
+		if (entity.second->getOwner() != owner)
+		{
+			ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), owner, false, entity.second->getOwner(), entity.second);
+		}
+	}
 }
 
 void	PlayerManager::deleteEntity(ecs::ClientId owner)
@@ -44,6 +52,7 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 
 		playerInfos->setNickname(nickname.C_String());
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, it->second->getOwner(), it->second);
+		LOG_DEBUG(ECS) << "Set nickname of client " << rpc->GetLastSenderAddress().systemIndex << " to \"" << playerInfos->getNickname() << "\"";
 	}
 
 	else

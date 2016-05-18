@@ -55,7 +55,8 @@ bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0) {
-		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), "");
+		ClientCore::getInstance().setNickname(this->getPseudoEditBox());
+		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPseudoEditBox());
 		this->hide();
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
 		m_graphicUtils.getWaitingRoom()->display();

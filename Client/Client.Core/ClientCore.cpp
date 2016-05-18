@@ -125,6 +125,11 @@ PlayerManager*	ClientCore::getPlayerManager() const
 	return m_playerManager;
 }
 
+ecs::Entity* ClientCore::getMap() const
+{
+	return m_map;
+}
+
 
 void	ClientCore::setIsActive(bool isActive)
 {
@@ -133,12 +138,15 @@ void	ClientCore::setIsActive(bool isActive)
 
 void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
+	RakNet::RakString	nickname = "";
+
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
 	m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::RakString("MALEFICE_PLAYER"));
+	LOG_DEBUG(NETWORK) << "Sent nickname \"" << nickname << "\" to server";
 }
 
-ecs::Entity* ClientCore::getMap() const
+void	ClientCore::setNickname(const std::string& nickname)
 {
-	return m_map;
+	m_nickname = nickname;
 }
