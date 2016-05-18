@@ -5,26 +5,40 @@
 namespace ecs
 {
 	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(0), m_weaponName(""), m_maxAmmunition(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetricsPosition(0, 0, 0), m_fpsMetricsRotation(0, 0, 0), m_fpsMetricsScale(0, 0, 0), m_externalMetricsPosition(0, 0, 0), m_externalMetricsRotation(0, 0, 0), m_externalMetricsScale(0, 0, 0), m_scene(nullptr)
+		m_id(0), m_weaponName(""), m_maxAmmunition(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunition(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetrics(0, 0, 0, 0, 0, 0), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_scene(nullptr)
 	{
 
 	}
 
-	Weapon::Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, irr::core::vector3df	fpsMetricsPosition, irr::core::vector3df fpsMetricsRotation, irr::core::vector3df fpsMetricsScale, irr::core::vector3df	externalMetricsPosition, irr::core::vector3df externalMetricsRotation, irr::core::vector3df	externalMetricsScale, bool sight) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(id), m_weaponName(name), m_maxAmmunition(ammunition), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetricsPosition(fpsMetricsPosition), m_fpsMetricsRotation(fpsMetricsRotation), m_fpsMetricsScale(fpsMetricsScale), m_externalMetricsPosition(externalMetricsPosition), m_externalMetricsRotation(externalMetricsRotation), m_externalMetricsScale(externalMetricsScale), m_scene(nullptr)
+	Weapon::Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
+		m_id(id), m_weaponName(name), m_maxAmmunition(ammunition), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunition(ammunition), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetrics(fpsMetrics), m_externalMetrics(externalMetrics), m_scene(nullptr)
 	{
 
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_maxAmmunition(cpy.getMaxAmmunitions()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetricsPosition(cpy.getFPSMetricsPosition()), m_fpsMetricsRotation(cpy.getFPSMetricsRotation()), m_fpsMetricsScale(cpy.getFPSMetricsScale()), m_externalMetricsPosition(cpy.getExternalMetricsPosition()), m_externalMetricsRotation(cpy.getExternalMetricsRotation()), m_externalMetricsScale(cpy.getExternalMetricsScale()), m_scene(nullptr)
+		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_maxAmmunition(cpy.getMaxAmmunitions()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunition(cpy.getAmmunitions()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
 	{
 
 	}
 
 
-	void	Weapon::init()
+	void	Weapon::init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrix, const Position& externalMetrix, bool sight)
 	{
+		m_id = id;
+		m_weaponName = name;
+		m_maxAmmunition = ammunition;
+		m_damage = damage;
+		m_weaponType =weaponType;
+		m_sight = sight;
+		m_ammunition = ammunition;
+		m_reloadTime = reloadTime;
+		m_ammoPerShot = ammoPerShot;
+		m_fireRate = fireRate;
+		m_distance = distance;
+		m_fpsMetrics = fpsMetrix;
+		m_externalMetrics = externalMetrix;
+		m_scene = nullptr;
 		// TODO: implement constructor logic here
 	}
 
@@ -70,34 +84,14 @@ namespace ecs
 		return m_distance;
 	}
 
-	irr::core::vector3df Weapon::getFPSMetricsPosition() const
+	Position Weapon::getFPSMetrics() const
 	{
-		return m_fpsMetricsPosition;
+		return m_fpsMetrics;
 	}
 
-	irr::core::vector3df Weapon::getFPSMetricsRotation() const
+	Position Weapon::getExternalMetrics() const
 	{
-		return m_fpsMetricsRotation;
-	}
-
-	irr::core::vector3df Weapon::getFPSMetricsScale() const
-	{
-		return m_fpsMetricsScale;
-	}
-
-	irr::core::vector3df Weapon::getExternalMetricsPosition() const
-	{
-		return m_externalMetricsPosition;
-	}
-
-	irr::core::vector3df Weapon::getExternalMetricsRotation() const
-	{
-		return m_externalMetricsRotation;
-	}
-
-	irr::core::vector3df Weapon::getExternalMetricsScale() const
-	{
-		return m_externalMetricsScale;
+		return m_externalMetrics;
 	}
 
 	const int Weapon::getId() const
@@ -191,12 +185,8 @@ namespace ecs
 		out.Write(m_fireRate);
 		out.Write(m_distance);
 		m_scene->serialize(out, false);
-		RakNetUtility::serializeVector(out, m_fpsMetricsPosition);
-		RakNetUtility::serializeVector(out, m_fpsMetricsRotation);
-		RakNetUtility::serializeVector(out, m_fpsMetricsScale);
-		RakNetUtility::serializeVector(out, m_externalMetricsPosition);
-		RakNetUtility::serializeVector(out, m_externalMetricsRotation);
-		RakNetUtility::serializeVector(out, m_externalMetricsScale);
+		m_externalMetrics.serialize(out, false);	// bool = false ?
+		m_fpsMetrics.serialize(out, false);			// bool = false ?
 	}
 
 	void	Weapon::deserialize(RakNet::BitStream& in)
@@ -214,11 +204,7 @@ namespace ecs
 		in.Read(m_fireRate);
 		in.Read(m_distance);
 		m_scene->deserialize(in);
-		RakNetUtility::deserializeVector(in, m_fpsMetricsPosition);
-		RakNetUtility::deserializeVector(in, m_fpsMetricsRotation);
-		RakNetUtility::deserializeVector(in, m_fpsMetricsScale);
-		RakNetUtility::deserializeVector(in, m_externalMetricsPosition);
-		RakNetUtility::deserializeVector(in, m_externalMetricsRotation);
-		RakNetUtility::deserializeVector(in, m_externalMetricsScale);
+		m_externalMetrics.deserialize(in);
+		m_fpsMetrics.deserialize(in);
 	}
 };

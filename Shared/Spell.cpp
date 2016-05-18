@@ -9,21 +9,23 @@ namespace ecs
 	}
 
 	Spell::Spell(const int id, const std::string& name, const Spell::SpellType spellType, const int coolDown) : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown)
+		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown), m_isLock(false)
 	{
-		m_isLock = false;
 	}
 
 	Spell::Spell(const Spell& cpy): AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown)
+		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown), m_isLock(false)
 	{
-		m_isLock = false;
 	}
 
 
-	void	Spell::init()
+	void	Spell::init(const int id, const std::string& name, const SpellType spellType, const int coolDown)
 	{
-		// TODO: implement constructor logic here
+		m_id = id;
+		m_name = name;
+		m_spellType = spellType;
+		m_cooldown = coolDown;
+		m_isLock = false;
 	}
 
 

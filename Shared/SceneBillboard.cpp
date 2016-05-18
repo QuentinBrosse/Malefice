@@ -8,6 +8,7 @@ namespace ecs
 
 	SceneBillboard::SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::BILLBOARD, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable)
 	{
+		init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
 	}
 
 	SceneBillboard::~SceneBillboard()
@@ -15,7 +16,7 @@ namespace ecs
 	}
 
 
-	void	SceneBillboard::init()
+	void	SceneBillboard::init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable)
 	{
 		// TODO: implement constructor logic here
 	}

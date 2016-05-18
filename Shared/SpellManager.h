@@ -16,7 +16,7 @@ namespace ecs
 		SpellManager(const Spell& defaultSpell);
 		~SpellManager()	= default;
 
-		virtual void	init();
+		void	init(const Spell& defaultSpell);
 
 		Spell&	getCurrentSpell()				const;
 		bool	weaponsIsCurrent()				const;

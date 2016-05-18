@@ -183,7 +183,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale, externalMetricsPosition, externalMetricsRotation, externalMetricsScale, sight);
+		ecs::Weapon tmp(id, name, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
 	return true;

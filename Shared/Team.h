@@ -10,10 +10,10 @@ namespace ecs
 	{
 	public:
 		Team();
-		Team(int teamNumber);
+		Team(const int teamNumber);
 		~Team();
 
-		virtual void	init();
+		void	init(const int teamNumber);
 
 		int getKill()	const;
 		int getDeath()	const;

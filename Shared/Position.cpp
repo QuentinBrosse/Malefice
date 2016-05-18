@@ -24,13 +24,6 @@ namespace ecs
 	{
 	}
 
-
-	void	Position::init()
-	{
-		// TODO: implement constructor logic here
-	}
-
-
 	Position& Position::operator=(const Position& pos)
 	{
 		m_vectorPosition = pos.m_vectorPosition;
@@ -38,6 +31,13 @@ namespace ecs
 		m_vectorScale = pos.m_vectorScale;
 
 		return *this;
+	}
+
+	void Position::init(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const irr::core::vector3df& vectorScale)
+	{
+		m_vectorPosition = vectorPosition;
+		m_vectorRotation = vectorRotation;
+		m_vectorScale = vectorScale;
 	}
 
 	void Position::setVectorPosition(const irr::core::vector3df& newVectorPosition)

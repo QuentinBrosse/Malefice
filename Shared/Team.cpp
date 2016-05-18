@@ -8,7 +8,7 @@ namespace ecs
 	{
 	}
 
-	Team::Team(int teamNumber) : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
+	Team::Team(const int teamNumber) : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
 		m_teamNumber(teamNumber), m_death(0), m_kill(0)
 	{
 
@@ -16,13 +16,14 @@ namespace ecs
 
 	Team::~Team()
 	{
-
 	}
 
 	
-	void	Team::init()
+	void	Team::init(const int teamNumber)
 	{
-		// TODO: implement constructor logic here
+		m_teamNumber = teamNumber;
+		m_death = 0;
+		m_kill = 0;
 	}
 
 

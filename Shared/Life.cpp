@@ -3,6 +3,12 @@
 
 namespace ecs
 {
+	Life::Life(): AComponent("Life", ComponentType::LIFE),
+		m_currentLife(0), m_maxLife(0)
+	{
+
+	}
+
 	Life::Life(ecs::AComponent::ComponentType lifeType) : AComponent("Life", lifeType),
 		m_currentLife(0), m_maxLife(0)
 	{
@@ -14,8 +20,10 @@ namespace ecs
 	}
 
 
-	void	Life::init()
+	void	Life::init(const int maxLife)
 	{
+		m_maxLife = maxLife;
+		m_currentLife = m_maxLife;
 		// TODO: implement constructor logic here
 	}
 

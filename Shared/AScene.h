@@ -12,17 +12,19 @@ namespace ecs
 	public:
 		enum class SceneType : int
 		{
+			DEFAULT,
 			MESH,
 			ANIMATED_MESH,
 			BILLBOARD,
 			SCENE_COUNT
 		};
 
+		AScene();
 		AScene(ecs::AScene::SceneType type);
 		AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~AScene() = 0;
 
-		virtual void	init()	= 0;
+		void	init(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 
 		std::string				getNameTexture()	const;
 		std::string				getNameMesh()		const;
@@ -43,10 +45,10 @@ namespace ecs
 
 
 	protected:
-		ecs::AScene::SceneType	m_type;
+		ecs::AScene::SceneType			m_type;
 
-		std::string	m_mediaPath;
-		bool		m_isCollisionable;
+		std::string						m_mediaPath;
+		bool							m_isCollisionable;
 
 		irr::scene::ITriangleSelector*	m_selector;
 		irr::IrrlichtDevice*			m_device;

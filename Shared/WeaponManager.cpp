@@ -10,14 +10,14 @@ namespace ecs
 	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
 		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
-		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (defaultWeapon.getWeaponType(), defaultWeapon));
-		m_currentWeapon = m_weapons.begin();
+		init(defaultWeapon);
 	}
 
 
-	void	WeaponManager::init()
+	void	WeaponManager::init(Weapon& defaultWeapon)
 	{
-		// TODO: implement constructor logic here
+		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&>(defaultWeapon.getWeaponType(), defaultWeapon));
+		m_currentWeapon = m_weapons.begin();
 	}
 
 

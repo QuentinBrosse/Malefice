@@ -11,6 +11,25 @@ namespace ecs
 	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
+		init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
+	}
+
+	SceneAnimatedMesh::~SceneAnimatedMesh()
+	{
+	}
+
+
+	void	SceneAnimatedMesh::init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable)
+	{
+		m_type = SceneType::ANIMATED_MESH;
+		m_isCollisionable = isCollisionable;
+		m_device = device;
+		m_smgr = m_device->getSceneManager();
+		m_driver = m_device->getVideoDriver();
+		m_nameTexture = newNameTexture;
+		m_nameMesh = newNameMesh;
+		m_pickableFlags = newPickableFlags;
+		m_material = nullptr;
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((m_mediaPath + newNameMesh).c_str()), parent, newPickableFlags);
 		m_node->setAnimationSpeed(20.f);
 		if (m_isCollisionable)
@@ -25,21 +44,12 @@ namespace ecs
 			setTexture(newNameTexture);
 	}
 
-	SceneAnimatedMesh::~SceneAnimatedMesh()
-	{
-	}
-
-
-	void	SceneAnimatedMesh::init()
-	{
-		// TODO: implement constructor logic here
-	}
-
 
 	void SceneAnimatedMesh::setPosition(const ecs::Position & newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());
 		m_node->setRotation(newPosition.getVectorRotation());
+		m_node->setScale(newPosition.getVectorScale());
 	}
 	
 

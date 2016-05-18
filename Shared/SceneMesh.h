@@ -12,7 +12,7 @@ namespace ecs
 		SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, bool isCollisionable, const std::string& namePK3 = "");
 		virtual ~SceneMesh();
 
-		virtual void	init();
+		virtual void	init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, bool isCollisionable, const std::string& namePK3 = "");
 
 		virtual	void			setPosition(const Position& newPosition);
 

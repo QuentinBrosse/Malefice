@@ -12,12 +12,10 @@ namespace ecs
 	{
 	}
 
-
-	void	Movement::init()
+	void Movement::init(const Position& position)
 	{
-		// TODO: implement constructor logic here
+		m_destination = position;
 	}
-
 
 	void Movement::setDestination(const Position& newDestination)
 	{

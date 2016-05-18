@@ -4,8 +4,13 @@
 
 namespace ecs
 {
+	AScene::AScene(): AComponent("Scene", ComponentType::SCENE),
+		m_type(SceneType::DEFAULT), m_mediaPath("media/"), m_isCollisionable(false), m_selector(nullptr), m_device(nullptr), m_smgr(nullptr), m_driver(nullptr), m_nameTexture(), m_nameMesh(), m_pickableFlags(false), m_material(nullptr)
+	{
+	}
+
 	AScene::AScene(ecs::AScene::SceneType type) : AComponent("Scene", ecs::AComponent::ComponentType::SCENE),
-		m_type(type), m_mediaPath("media/"), m_isCollisionable(false), m_selector(nullptr), m_device(nullptr), m_smgr(nullptr), m_driver(nullptr), m_nameTexture(), m_nameMesh(), m_pickableFlags(false), m_material(nullptr)
+		m_type(type), m_mediaPath("media/"), m_isCollisionable(false), m_selector(nullptr), m_device(nullptr), m_smgr(nullptr), m_driver(nullptr), m_nameTexture(), m_nameMesh(), m_pickableFlags(0), m_material(nullptr)
 	{
 	}
 
@@ -17,6 +22,19 @@ namespace ecs
 
 	AScene::~AScene()
 	{
+	}
+
+	void AScene::init(ecs::AScene::SceneType type, irr::IrrlichtDevice * device, const std::string & newNameTexture, const std::string & newNameMesh, const int newPickableFlags, const bool isCollisionable)
+	{
+		m_type = type;
+		m_isCollisionable = isCollisionable;
+		m_device = device;
+		m_smgr = m_device->getSceneManager();
+		m_driver = m_device->getVideoDriver();
+		m_nameTexture = newNameTexture;
+		m_nameMesh = newNameMesh;
+		m_pickableFlags = newPickableFlags;
+		m_material = nullptr;
 	}
 
 

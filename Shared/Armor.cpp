@@ -11,19 +11,11 @@ namespace ecs
 	{
 	}
 
-
-	void	Armor::init()
-	{
-		// TODO: implement constructor logic here
-	}
-
-
 	void	Armor::dump(std::ostream& os)	const
 	{
 		os << "Armor:";
 		Life::dump(os);
 	}
-
 
 	void	Armor::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{

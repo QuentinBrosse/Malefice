@@ -12,8 +12,27 @@ namespace ecs
 	SceneMesh::SceneMesh(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const std::string& namePK3): AScene(ecs::AScene::SceneType::MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr)
 	{
+		init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, namePK3);
+	}
+
+	SceneMesh::~SceneMesh()
+	{
+	}
+
+
+	void	SceneMesh::init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, bool isCollisionable, const std::string& namePK3)
+	{
+		m_type = SceneType::MESH;
+		m_isCollisionable = isCollisionable;
+		m_device = device;
+		m_smgr = m_device->getSceneManager();
+		m_driver = m_device->getVideoDriver();
+		m_nameTexture = newNameTexture;
+		m_nameMesh = newNameMesh;
+		m_pickableFlags = newPickableFlags;
+		m_material = nullptr;
 		irr::scene::IAnimatedMesh*		mesh;
-		
+
 		if (namePK3 != "")
 		{
 			m_device->getFileSystem()->addFileArchive((m_mediaPath + namePK3).c_str());
@@ -47,21 +66,12 @@ namespace ecs
 		}
 	}
 
-	SceneMesh::~SceneMesh()
-	{
-	}
-
-
-	void	SceneMesh::init()
-	{
-		// TODO: implement constructor logic here
-	}
-
 
 	void SceneMesh::setPosition(const Position& newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());
 		m_node->setRotation(newPosition.getVectorRotation());
+		m_node->setScale(newPosition.getVectorScale());
 	}
 
 	void SceneMesh::setCollision()

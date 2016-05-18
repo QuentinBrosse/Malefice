@@ -26,7 +26,7 @@ namespace ecs
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
-		virtual void	init();
+		virtual void	init(const int id, const std::string& name, const SpellType spellType, const int coolDown);
 
 		const Spell::SpellType	getSpellType()	const;
 		void					setSpellType(const SpellType newSpellType);

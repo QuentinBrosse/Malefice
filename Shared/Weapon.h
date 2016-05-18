@@ -27,11 +27,11 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, irr::core::vector3df	fpsMetricsPosition, irr::core::vector3df fpsMetricsRotation, irr::core::vector3df fpsMetricsScale, irr::core::vector3df	externalMetricsPosition, irr::core::vector3df externalMetricsRotation, irr::core::vector3df	externalMetricsScale, bool sight);
+		Weapon(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
-		virtual void	init();
+		void	init(const int id, const std::string& name, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight);
 
 		Weapon&				operator=(const Weapon& other);
 		
@@ -45,12 +45,8 @@ namespace ecs
 		const unsigned int	getAmmoPerShot()				const;
 		const float			getFireRate()					const;
 		const float			getDistance()					const;
-		irr::core::vector3df getFPSMetricsPosition()		const;
-		irr::core::vector3df getFPSMetricsRotation()		const;
-		irr::core::vector3df getFPSMetricsScale()			const;
-		irr::core::vector3df getExternalMetricsPosition()	const;
-		irr::core::vector3df getExternalMetricsRotation()	const;
-		irr::core::vector3df getExternalMetricsScale()		const;
+		Position			getFPSMetrics()					const;
+		Position			getExternalMetrics()			const;
 		const bool			isSight() const;
 		void				shot();
 		void				reload();
@@ -87,11 +83,7 @@ namespace ecs
 
 		SceneAnimatedMesh*	m_scene;
 
-		irr::core::vector3df	m_fpsMetricsPosition;
-		irr::core::vector3df	m_fpsMetricsRotation;
-		irr::core::vector3df	m_fpsMetricsScale;
-		irr::core::vector3df	m_externalMetricsPosition;
-		irr::core::vector3df	m_externalMetricsRotation;
-		irr::core::vector3df	m_externalMetricsScale;
+		Position				m_externalMetrics;
+		Position				m_fpsMetrics;
 	};
 }

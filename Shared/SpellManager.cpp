@@ -12,15 +12,15 @@ namespace ecs
 	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
 		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(*(new Weapon()))
 	{
-		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
-		m_currentSpell = m_spells.begin();
-		m_weaponManager.addWeapon(*(new Weapon()));
 	}
 
 
-	void	SpellManager::init()
+	void	SpellManager::init(const Spell& defaultSpell)
 	{
-		// TODO: implement constructor logic here
+		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
+		m_currentSpell = m_spells.begin();
+		m_weaponManager.addWeapon(*(new Weapon()));
+		// TODO: Change new Weapon() with two weapons of predator
 	}
 
 
