@@ -2,13 +2,14 @@
 
 #include <ostream>
 #include <map>
+#include <RakNetTypes.h>
 #include <BitStream.h>
 #include "AComponent.h"
 #include "Export.h"
 
 namespace ecs
 {
-	typedef int	ClientId;
+	typedef RakNet::SystemIndex	ClientId;
 
 	class MALEFICE_DLL_EXPORT Entity
 	{

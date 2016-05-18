@@ -14,7 +14,7 @@ NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_rpc()
 {
 	m_rpc.SetNetworkIDManager(&NetworkManager::getInstance().getNetworkIdManager());
-	// TODO: register RPCs
+	this->registerRPCs();
 	m_rakPeer->AttachPlugin(&m_rpc);
 }
 
@@ -22,6 +22,7 @@ NetworkModule::~NetworkModule()
 {
 	m_rakPeer->Shutdown(NetworkModule::SHUTDOWN_TIMEOUT_MS);
 	m_rakPeer->DetachPlugin(&m_rpc);
+	this->unregisterRPCs();
 	RakNet::RakPeerInterface::DestroyInstance(m_rakPeer);
 }
 
@@ -71,21 +72,18 @@ void	NetworkModule::pulse()
 
 void	NetworkModule::registerRPCs()
 {
-	// TODO: register RPCs here
+	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str(), &PlayerManager::setPlayerNickname);
 }
 
 void	NetworkModule::unregisterRPCs()
 {
-	// TODO: unregister RPCs here
+	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str());
 }
 
 
 void	NetworkModule::acceptClient(RakNet::Packet* packet)
 {
-	static ecs::ClientId	clientId = 1;
-
-	this->callRPC(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), packet->systemAddress, false, clientId);
-	ServerCore::getInstance().getPlayerManager().createEntity(clientId);
-	LOG_INFO(NETWORK) << "New client connected from " << packet->systemAddress.ToString(true, ':') << ", assigned clientId = " << clientId << ".";
-	clientId += 1;
+	this->callRPC(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), packet->systemAddress, false, packet->systemAddress.systemIndex);
+	ServerCore::getInstance().getPlayerManager().createEntity(packet->systemAddress.systemIndex);
+	LOG_INFO(NETWORK) << "New client connected from " << packet->systemAddress.ToString(true, ':') << ", assigned clientId = " << packet->systemAddress.systemIndex << ".";
 }
