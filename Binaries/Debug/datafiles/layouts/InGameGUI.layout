@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="WindowsLook/Static" name="Static" >
+        <Property name="ID" value="42" />
+        <Property name="Area" value="{{0,2},{0,-1},{0,2184},{0,1366}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+        <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+        <Window type="Vanilla/ProgressBar" name="ProgressBar3" >
+            <Property name="ID" value="1" />
+            <Property name="Area" value="{{0.015625,6},{0.037037,632},{0.015625,262},{0.037037,664}}" />
+            <Property name="StepSize" value="0.01" />
+            <Property name="EnabledColour" value="tl:FF00FF00 tr:FF00FF00 bl:FF00FF00 br:FF00FF00" />
+            <Property name="CurrentProgress" value="1" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label2" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0.222656,2},{0.0180556,636},{0.222656,53},{0.0180556,686}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="100" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Static" name="Static34" >
+            <Property name="ID" value="200" />
+            <Property name="Area" value="{{0,400},{0,583},{0,515},{0,622}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+            <Window type="WindowsLook/StaticImage" name="StaticImage" >
+                <Property name="ID" value="201" />
+                <Property name="Area" value="{{0,80},{0,5},{0,107},{0,34}}" />
+                <Property name="Image" value="Circles/RedCircle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Label" name="Label" >
+            <Property name="ID" value="100" />
+            <Property name="Area" value="{{0,1148},{0,4},{0,1278},{0,44}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="0:0" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        </Window>
+        <Window type="WindowsLook/Static" name="Static342" >
+            <Property name="ID" value="300" />
+            <Property name="Area" value="{{0,529},{0,584},{0,644},{0,623}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+            <Window type="WindowsLook/StaticImage" name="StaticImage" >
+                <Property name="ID" value="301" />
+                <Property name="Area" value="{{0,80},{0,5},{0,107},{0,34}}" />
+                <Property name="Image" value="Circles/RedCircle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Static" name="Static3422" >
+            <Property name="ID" value="400" />
+            <Property name="Area" value="{{0,661},{0,583},{0,776},{0,622}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-41},{0.832407,-29},{0.394531,-9},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+            <Window type="WindowsLook/StaticImage" name="StaticImage" >
+                <Property name="ID" value="401" />
+                <Property name="Area" value="{{0,80},{0,6},{0,107},{0,35}}" />
+                <Property name="Image" value="Circles/RedCircle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Static" name="Static3423" >
+            <Property name="ID" value="500" />
+            <Property name="Area" value="{{0,790},{0,583},{0,905},{0,622}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-41},{0.832407,-30},{0.394531,-9},{0.832407,2}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+            <Window type="WindowsLook/StaticImage" name="StaticImage" >
+                <Property name="ID" value="501" />
+                <Property name="Area" value="{{0,80},{0,5},{0,107},{0,34}}" />
+                <Property name="Image" value="Circles/RedCircle" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Static" name="Static2" >
+            <Property name="ID" value="10" />
+            <Property name="Area" value="{{0,919},{0,582},{0,1037},{0,621}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:FF1E9EE1 tr:FF1E9EE1 bl:FF1E9EE1 br:FF1E9EE1" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage" >
+                <Property name="Area" value="{{0,2},{0,1},{0,43},{0,40}}" />
+                <Property name="Image" value="Eclair/NewImage" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+            <Window type="WindowsLook/Label" name="Label22" >
+                <Property name="ID" value="11" />
+                <Property name="Area" value="{{0.221875,26},{0.0907407,-3},{0.221875,85},{0.0907407,36}}" />
+                <Property name="Font" value="Terminator-12" />
+                <Property name="Text" value="150" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="NormalTextColour" value="FFFFFFFF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Label" name="Label3" >
+            <Property name="Area" value="{{0,6},{0,12},{0,121},{0,44}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="REFLEX:" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label4" >
+            <Property name="Area" value="{{0,7},{0,49},{0,113},{0,81}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="TEAM  1:" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+            <Property name="NormalTextColour" value="FF00FF00" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label42" >
+            <Property name="Area" value="{{0,8},{0,85},{0,112},{0,117}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="TEAM 2:" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+            <Property name="NormalTextColour" value="FF00FF00" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label44" >
+            <Property name="Area" value="{{0,140},{0,13},{0,280},{0,45}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="GAME ON" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="LeftAligned" />
+            <Property name="NormalTextColour" value="FF00FF00" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label32" >
+            <Property name="ID" value="50" />
+            <Property name="Area" value="{{0,140},{0,51},{0,201},{0,83}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="1" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="LeftAligned" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label33" >
+            <Property name="ID" value="51" />
+            <Property name="Area" value="{{0,139},{0,86},{0,203},{0,119}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="3" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="LeftAligned" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label22" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0.222656,92},{0.0180556,636},{0.222656,143},{0.0180556,686}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="8" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label23" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0.222656,178},{0.0180556,636},{0.222656,229},{0.0180556,686}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="77" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="WindowsLook/Static" name="Static343" >
+            <Property name="Area" value="{{0,272},{0,582},{0,387},{0,621}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:9600FFFF tr:9600FFFF bl:9600FFFF br:9600FFFF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/Static" name="Static3432" >
+            <Property name="Area" value="{{0,143},{0,582},{0,258},{0,621}}" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+            <Property name="BackgroundColours" value="tl:96FFFFFF tr:96FFFFFF bl:96FFFFFF br:96FFFFFF" />
+            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
+                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
+                <Property name="Image" value="Spells/FireBall" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
+                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>
