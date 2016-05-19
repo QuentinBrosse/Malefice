@@ -11,7 +11,7 @@ namespace ecs
 	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr), m_level(level), m_lighting(lighting)
 	{
-		init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, level, lighting);
+		this->init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, level, lighting);
 	}
 
 	SceneAnimatedMesh::~SceneAnimatedMesh()

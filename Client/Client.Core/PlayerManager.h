@@ -14,6 +14,8 @@ public:
 	virtual void	updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
 	virtual void	removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc);
 
+	void			initPlayersScene();
+
 	ecs::Entity*	getCurrentPlayer()	const;
 	void			setCurrentPlayer(ecs::Entity* localPlayer);
 

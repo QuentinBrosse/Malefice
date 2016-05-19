@@ -66,7 +66,7 @@ namespace ecs
 		}
 	}
 
-	void WeaponManagerSystem::attachCamera(Entity & entity)
+	void WeaponManagerSystem::attachCamera(Entity& entity)
 	{
 		WeaponManager*	weaponManager;
 

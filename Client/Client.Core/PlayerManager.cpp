@@ -1,5 +1,6 @@
 #include "PlayerManager.h"
 #include "ClientCore.h"
+#include "PlayerFactory.h"
 #include "PositionSystem.h"
 #include "WeaponManagerSystem.h"
 
@@ -10,11 +11,15 @@ PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::P
 
 void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
-	EntityManager::addEntity(owner, entity, rpc);
-	ecs::PositionSystem::initScenePosition(*entity);
-	ecs::WeaponManagerSystem::initWeapon(*entity);
+	ecs::Entity*	localEntity = new ecs::Entity(*entity);
+
+	EntityManager::addEntity(owner, localEntity, rpc);
+
 	if (ClientCore::getInstance().getClientId() == owner)
-		this->setCurrentPlayer(entity);
+	{
+		this->setCurrentPlayer(localEntity);
+		
+	}
 }
 
 void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -27,6 +32,15 @@ void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 	EntityManager::removeEntity(owner, rpc);
 }
 
+
+void PlayerManager::initPlayersScene()
+{
+	for (auto player : m_entities)
+	{
+		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *player.second);
+		ecs::PositionSystem::initScenePosition(*player.second);
+	}
+}
 
 ecs::Entity*	PlayerManager::getCurrentPlayer() const
 {

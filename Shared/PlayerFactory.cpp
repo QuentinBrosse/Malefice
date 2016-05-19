@@ -69,12 +69,27 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vect
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
-	ecs::Weapon weapon;
-	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager(weapon);
+
+	
+	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager();
+
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 	return entity;
+}
+
+void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & newNameTexture, const std::string & newNameMesh, ecs::Entity & entity)
+{
+	WeaponCreator& weaponCreator = WeaponCreator::getInstance();
+
+	ecs::Weapon weaponShotGun = weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN);
+	dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
+	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, false, 0);
+	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
+	scene->setAnimation(irr::scene::EMAT_ATTACK);
+	entity[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
+	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>(entity[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
 }
 
 ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation)

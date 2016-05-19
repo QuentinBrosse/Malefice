@@ -26,7 +26,7 @@ namespace ecs
 		Entity();
 		Entity(ecs::ClientId owner, EntityType entityType);
 		virtual ~Entity();
-		Entity(const Entity&)	= delete;
+		Entity(const Entity& rhs);
 		Entity(Entity&&)		= default;
 		
 		Entity&	operator=(const Entity&);

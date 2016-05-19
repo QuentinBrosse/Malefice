@@ -62,7 +62,7 @@ namespace ecs
 		Weapon*	weapon = new Weapon(weaponCpy);
 
 		weapon->createScene(device, false);
-		addWeapon(*weapon);
+		this->addWeapon(*weapon);
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}

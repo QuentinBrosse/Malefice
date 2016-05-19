@@ -166,8 +166,10 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
+	m_playerManager->initPlayersScene();
 	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();
+	ecs::WeaponManagerSystem::initWeapon(*m_playerManager->getCurrentPlayer());
 	LOG_INFO(GENERAL) << "Starting game.";
 }

@@ -161,7 +161,7 @@ namespace ecs
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		m_scene->getScene()->setName((MEDIA_PATH + m_meshName).c_str());
 
-		setActivity(active);
+		this->setActivity(active);
 	}
 
 	void	Weapon::setActivity(const bool active)

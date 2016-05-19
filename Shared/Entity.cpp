@@ -30,10 +30,19 @@ namespace ecs
 
 	Entity::~Entity()
 	{
-		for (auto component : m_components)
+	/*	for (auto component : m_components)
 		{
 			delete component.second;
-		}
+		}*/
+	}
+
+	Entity::Entity(const Entity& rhs):
+		m_components(rhs.m_components), m_entityType(rhs.m_entityType), m_owner(rhs.m_owner)
+	{
+		/*for (auto component : rhs.m_components)
+		{
+			(*m_components[component.second->TYPE]) = new (*component.second);
+		}*/
 	}
 
 	Entity&	Entity::operator=(const Entity& rhs)
