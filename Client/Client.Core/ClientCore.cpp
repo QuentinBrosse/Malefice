@@ -87,6 +87,10 @@ void	ClientCore::pulse()
 		{
 			ecs::PositionSystem::update(*m_player);
 			ecs::EventSystem::doEvents(*m_player);
+			if (m_playerIA)
+			{
+				ecs::PositionSystem::update(*m_playerIA);
+			}
 		}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
@@ -106,6 +110,9 @@ void ClientCore::createEntities()
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::WeaponManagerSystem::initWeapon(*m_player);
+	m_playerIA = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
+	ecs::PositionSystem::initScenePosition(*m_playerIA);
+	ecs::WeaponManagerSystem::initWeapon(*m_playerIA);
 }
 
 bool	ClientCore::isActive()	const
