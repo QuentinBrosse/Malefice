@@ -103,10 +103,10 @@ void ClientCore::createEntities()
 {
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::initScenePosition(*m_map);
-	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
+/*	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::WeaponManagerSystem::initWeapon(*m_player);
-	m_playerManager->setCurrentPlayer(m_player);
+	m_playerManager->setCurrentPlayer(m_player);*/
 }
 
 bool	ClientCore::isActive()	const
@@ -127,6 +127,11 @@ GraphicUtil		*ClientCore::getGraphicModule() const
 PlayerManager*	ClientCore::getPlayerManager() const
 {
 	return m_playerManager;
+}
+
+ecs::ClientId	ClientCore::getClientId()	const
+{
+	return m_clientId;
 }
 
 ecs::Entity* ClientCore::getMap() const

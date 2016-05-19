@@ -36,7 +36,16 @@ namespace ecs
 		}
 	}
 
+	Entity&	Entity::operator=(const Entity& rhs)
+	{
+		auto rhsComponents = rhs.getComponents();
 
+		for (auto component : m_components)
+		{
+			(*component.second) = (*rhsComponents[component.second->TYPE]);
+		}
+		return *this;
+	}
 
 	bool	Entity::has(ecs::AComponent::ComponentType type)	const
 	{
