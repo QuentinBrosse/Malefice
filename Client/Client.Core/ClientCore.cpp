@@ -83,7 +83,7 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		if (!m_graphicModule->getMenuPause()->getEnableStatus())
+		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_player)
 		{
 			ecs::PositionSystem::update(*m_player);
 			ecs::EventSystem::doEvents(*m_player);

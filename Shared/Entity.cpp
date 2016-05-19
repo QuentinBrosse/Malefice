@@ -152,9 +152,6 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 		case ecs::AComponent::ComponentType::MOVEMENT:
 			component = new ecs::Movement();
 			break;
-		case ecs::AComponent::ComponentType::PLAYER_INFOS:
-			component = new ecs::PlayerInfos();
-			break;
 		case ecs::AComponent::ComponentType::POSITION:
 			component = new ecs::Position();
 			break;

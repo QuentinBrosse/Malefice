@@ -46,6 +46,7 @@ namespace ecs
 		m_lighting = lighting;
 		m_material = nullptr;
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((m_mediaPath + newNameMesh).c_str()), parent, newPickableFlags);
+
 		if (!m_node)
 		{
 			std::cerr << "Mesh cannot be loaded !" << std::endl;

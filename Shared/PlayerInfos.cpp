@@ -27,6 +27,14 @@ void	ecs::PlayerInfos::dump(std::ostream& os)	const
 	os << "PlayerInfos {nickname = \"" << m_nickname << "\"}";
 }
 
+ecs::AComponent& ecs::PlayerInfos::affect(const AComponent & rhs)
+{
+	const PlayerInfos&	player = dynamic_cast<const PlayerInfos&>(rhs);
+
+	m_nickname = player.m_nickname;
+	return *this;
+}
+
 
 void	ecs::PlayerInfos::serialize(RakNet::BitStream& out, bool serializeType)	const
 {

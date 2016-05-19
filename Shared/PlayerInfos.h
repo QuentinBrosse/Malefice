@@ -20,10 +20,12 @@ namespace ecs
 		void	setNickname(const std::string& nickname);
 
 
-		virtual	void	dump(std::ostream& os)	const;
+		virtual	void		dump(std::ostream& os)	const;
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
+		virtual AComponent&	affect(const AComponent& rhs);
+
+		virtual void		serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void		deserialize(RakNet::BitStream& in);
 
 
 	private:
