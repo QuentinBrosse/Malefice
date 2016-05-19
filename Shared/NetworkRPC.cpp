@@ -12,8 +12,10 @@
 const std::string	NetworkRPC::CLIENT_CORE_SET_CLIENT_ID	= "ClientCore::setClientId";
 
 const std::string	NetworkRPC::PLAYER_MANAGER_ADD_ENTITY		= "PlayerManager::addEntity";
+const std::string	NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY	= "PlayerManager::updateEntity";
 const std::string	NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY	= "PlayerManager::removeEntity";
 
 
 // Server-Side executed
 
+const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";

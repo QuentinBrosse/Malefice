@@ -99,10 +99,23 @@ namespace ecs
 		os << ", weaponManager = " << m_weaponManager << ", weaponIsCurrent = " << m_weaponsIsCurrent << "}";
 	}
 
+	AComponent& SpellManager::affect(const AComponent& rhs)
+	{
+		// TODO: insérer une instruction return ici
+		const SpellManager&	spellManager = dynamic_cast<const SpellManager&>(rhs);
+
+		m_weaponsIsCurrent = spellManager.m_weaponsIsCurrent;
+		m_currentSpell = spellManager.m_currentSpell;
+		m_spells = spellManager.m_spells;
+		m_weaponManager = spellManager.m_weaponManager;
+
+		return *this;
+	}
 
 	void	SpellManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
+
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 

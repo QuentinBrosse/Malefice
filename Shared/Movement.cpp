@@ -52,4 +52,12 @@ namespace ecs
 		AComponent::deserialize(in);
 		m_destination.deserialize(in);
 	}
+
+	AComponent & Movement::affect(const AComponent& rhs)
+	{
+		const Movement& movement = dynamic_cast<const Movement&>(rhs);
+
+		m_destination = movement.m_destination;
+		return *this;
+	}
 }

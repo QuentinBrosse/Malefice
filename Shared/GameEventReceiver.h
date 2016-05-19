@@ -33,11 +33,12 @@ namespace ecs
 		std::queue<GameEventType>	getEvents()	const;
 
 
-		virtual void	dump(std::ostream& os)	const;
+		virtual void				dump(std::ostream& os)	const;
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
+		virtual void				serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void				deserialize(RakNet::BitStream& in);
 
+		virtual AComponent&			affect(const AComponent& rhs);
 
 	private:
 		std::queue<GameEventType>	m_events;

@@ -26,6 +26,7 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
+		virtual	AComponent&	affect(const AComponent& rhs);
 
 	private:
 		Position	m_destination;

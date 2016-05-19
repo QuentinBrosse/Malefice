@@ -74,6 +74,16 @@ namespace ecs
 		m_node->setScale(newPosition.getVectorScale());
 	}
 
+	AComponent & SceneMesh::affect(const AComponent & rhs)
+	{
+		const SceneMesh&	scene = dynamic_cast<const SceneMesh&>(rhs);
+
+		m_nameMesh = scene.m_nameMesh;
+		m_nameTexture = scene.m_nameTexture;
+		m_type = scene.m_type;
+		return *this;
+	}
+
 	void SceneMesh::setCollision()
 	{
 		m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);

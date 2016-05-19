@@ -24,8 +24,10 @@ namespace ecs
 	{
 	}
 
-	Position& Position::operator=(const Position& pos)
+	AComponent& Position::affect(const AComponent& rhs)
 	{
+		const Position& pos = dynamic_cast<const Position&>(rhs);
+
 		m_vectorPosition = pos.m_vectorPosition;
 		m_vectorRotation = pos.m_vectorRotation;
 		m_vectorScale = pos.m_vectorScale;

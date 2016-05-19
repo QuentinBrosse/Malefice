@@ -34,6 +34,7 @@ namespace ecs
 		void					lock();
 		void					unlock();
 
+		virtual AComponent&		affect(const AComponent& rhs);
 
 		virtual void	dump(std::ostream& os)	const;
 

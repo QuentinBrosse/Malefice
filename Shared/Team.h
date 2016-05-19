@@ -15,15 +15,17 @@ namespace ecs
 
 		void	init(const int teamNumber);
 
-		int getKill()	const;
-		int getDeath()	const;
+		int					getKill()	const;
+		int					getDeath()	const;
 
-		void setKill(int);
-		void setDeath(int);
-		void addDeath();
-		void addKill();
+		void				setKill(int);
+		void				setDeath(int);
+		void				addDeath();
+		void				addKill();
 
-		virtual void	dump(std::ostream& os)	const;
+		virtual void		dump(std::ostream& os)	const;
+
+		virtual AComponent&	affect(const AComponent& rhs);
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);

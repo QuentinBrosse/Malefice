@@ -6,6 +6,7 @@
 #include <RakNetTypes.h>
 #include "NetworkObject.h"
 #include "Logger.h"
+#include "Entity.h"
 
 class NetworkModule
 {
@@ -32,6 +33,12 @@ public:
 
 		LOG_TRACE(NETWORK) << "Calling RPC \"" << rpc << "\".";
 		m_rpc.CallExplicit(rpc.c_str(), &callExplicitParameters, args..., m_rpc);
+	}
+
+	template<typename... Args>
+	void	callRPC(const std::string& rpc, RakNet::NetworkID networkId, ecs::ClientId clientId, bool broadcast, Args... args)
+	{
+		this->callRPC(rpc, networkId, m_rpc.GetRakPeerInterface()->GetSystemAddressFromIndex(clientId), broadcast, args...);
 	}
 
 

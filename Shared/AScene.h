@@ -38,11 +38,12 @@ namespace ecs
 		virtual	void			setPosition(const Position& newPosition) = 0;   // Will set m_node's Position and Rotation
 
 
-		virtual void	dump(std::ostream& os)	const;
+		virtual void			dump(std::ostream& os)	const;
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
+		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void			deserialize(RakNet::BitStream& in);
 
+		virtual AComponent&		affect(const AComponent& rhs) = 0;
 
 	protected:
 		ecs::AScene::SceneType			m_type;

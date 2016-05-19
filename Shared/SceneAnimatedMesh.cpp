@@ -8,18 +8,31 @@ namespace ecs
 	{
 	}
 
-	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
-		m_node(nullptr)
+	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
+		m_node(nullptr), m_level(level), m_lighting(lighting)
 	{
-		init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
+		init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, level, lighting);
 	}
 
 	SceneAnimatedMesh::~SceneAnimatedMesh()
 	{
 	}
 
+	AComponent & SceneAnimatedMesh::affect(const AComponent & rhs)
+	{
+		const SceneAnimatedMesh& scene = dynamic_cast<const SceneAnimatedMesh&>(rhs);
 
-	void	SceneAnimatedMesh::init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable)
+		if (scene.m_nameTexture != m_nameTexture)
+			setTexture(scene.m_nameTexture);
+		m_nameMesh = scene.m_nameMesh;
+		m_nameTexture = scene.m_nameTexture;
+		m_type = scene.m_type;
+
+		return *this;
+	}
+
+
+	void	SceneAnimatedMesh::init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level)
 	{
 		m_type = SceneType::ANIMATED_MESH;
 		m_isCollisionable = isCollisionable;
@@ -29,6 +42,8 @@ namespace ecs
 		m_nameTexture = newNameTexture;
 		m_nameMesh = newNameMesh;
 		m_pickableFlags = newPickableFlags;
+		m_level = level;
+		m_lighting = lighting;
 		m_material = nullptr;
 		m_node = m_smgr->addAnimatedMeshSceneNode(m_smgr->getMesh((m_mediaPath + newNameMesh).c_str()), parent, newPickableFlags);
 		if (!m_node)
@@ -49,7 +64,7 @@ namespace ecs
 	}
 
 
-	void SceneAnimatedMesh::setPosition(const ecs::Position & newPosition)
+	void SceneAnimatedMesh::setPosition(const ecs::Position& newPosition)
 	{
 		m_node->setPosition(newPosition.getVectorPosition());
 		m_node->setRotation(newPosition.getVectorRotation());
@@ -62,12 +77,13 @@ namespace ecs
 		m_node->setMD2Animation(newAnimationType);
 	}
 
-	void SceneAnimatedMesh::setTexture(const std::string& nameTexture, const bool lighting, const irr::u32 level)
+	void SceneAnimatedMesh::setTexture(const std::string& nameTexture)
 	{
-		m_material->setTexture(level, m_driver->getTexture((m_mediaPath + nameTexture).c_str()));
+		m_material->setTexture(m_level, m_driver->getTexture((m_mediaPath + nameTexture).c_str()));
 		m_material->NormalizeNormals = true;
-		m_material->Lighting = lighting;
+		m_material->Lighting = m_lighting;
 		m_node->getMaterial(0) = *m_material;
+		m_nameTexture = nameTexture;
 	}
 
 	irr::scene::IAnimatedMeshSceneNode * SceneAnimatedMesh::getScene() const

@@ -63,6 +63,17 @@ namespace ecs
 		os << "Team {teamNumber = " << m_teamNumber << ", kill = " << m_kill << ", death = " << m_death << "}";
 	}
 
+	AComponent & Team::affect(const AComponent & rhs)
+	{
+		const Team&	team = dynamic_cast<const Team&>(rhs);
+
+		m_death = team.m_death;
+		m_kill = team.m_kill;
+		m_teamNumber = team.m_teamNumber;
+
+		return *this;
+	}
+
 
 	void	Team::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{

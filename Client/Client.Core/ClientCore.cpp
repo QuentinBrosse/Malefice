@@ -1,3 +1,7 @@
+#include <chrono>
+#include <irrlicht.h>
+#include <CEGUI\CEGUI.h>
+#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
@@ -10,12 +14,7 @@
 #include "WeaponManagerSystem.h"
 #include "EventSystem.h"
 #include "GameEventReceiver.h"
-
-#include <iostream>
-#include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
-#include <chrono>
+#include "WeaponManagerSystem.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr)
@@ -74,7 +73,10 @@ void	ClientCore::pulse()
 
 	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
 	{
+		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 		m_graphicModule->getMenuPause()->checkPause();
+		m_graphicModule->getWaitingRoom()->refreshTime();
+		m_graphicModule->getHUD()->refreshTime();
 
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
@@ -126,6 +128,11 @@ PlayerManager*	ClientCore::getPlayerManager() const
 	return m_playerManager;
 }
 
+ecs::Entity* ClientCore::getMap() const
+{
+	return m_map;
+}
+
 
 void	ClientCore::setIsActive(bool isActive)
 {
@@ -134,11 +141,15 @@ void	ClientCore::setIsActive(bool isActive)
 
 void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
+	RakNet::RakString	nickname = m_nickname.c_str();
+
 	m_clientId = clientId;
 	LOG_INFO(NETWORK) << "Server accepted connection, clientId = " << m_clientId << ".";
+	m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), nickname);
+	LOG_DEBUG(NETWORK) << "Sent nickname \"" << nickname << "\" to server";
 }
 
-ecs::Entity* ClientCore::getMap() const
+void	ClientCore::setNickname(const std::string& nickname)
 {
-	return m_map;
+	m_nickname = nickname;
 }

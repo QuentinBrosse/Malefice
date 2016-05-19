@@ -14,8 +14,10 @@ namespace ecs
 		Position(float xPosition, float yPosition, float zPosition, float xRotation, float yRotation, float zRotation, float xScale = 1.0f, float yScale = 1.0f, float zScale = 1.0f);
 		Position(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const irr::core::vector3df& vectorScale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
 		Position(const Position& pos);
-		Position& operator=(const Position& pos);
+
 		~Position() = default;
+
+		virtual AComponent& affect(const AComponent& rhs);
 
 		void	init(const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, const irr::core::vector3df& vectorScale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
 

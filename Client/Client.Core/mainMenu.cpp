@@ -6,6 +6,7 @@ MainMenu::MainMenu(GraphicUtil &gu) :
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("mainMenu.layout");
 	m_windows->getChild(0)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onQuitButtonClicked, this));
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onOptionButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MainMenu::onPlayButtonClicked, this));
 }
 
@@ -27,6 +28,7 @@ bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 
 bool MainMenu::onOptionButtonClicked(const CEGUI::EventArgs& e)
 {
+	m_graphicUtils.getMenuOptions()->display();
 	return (false);
 }
 

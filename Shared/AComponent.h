@@ -24,6 +24,7 @@ namespace ecs
 			CAMERA,
 			SCENE,
 			GAME_EVENT_RECEIVER,
+			PLAYER_INFOS,
 			COMPONENT_COUNT
 		};
 
@@ -36,6 +37,10 @@ namespace ecs
 		virtual ~AComponent()					= default;
 
 		virtual	void	dump(std::ostream& os)	const	= 0;
+
+		AComponent&	operator=(const AComponent& rhs);
+
+		virtual	AComponent&	affect(const AComponent& rhs) = 0;
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);

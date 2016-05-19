@@ -1,6 +1,7 @@
 #include <iostream>
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
+#include "ClientCore.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -48,10 +49,6 @@ void WaitingRoom::hide()
 		m_systemd.getDefaultGUIContext().getRootWindow()->getChild(100);
 		m_systemd.getDefaultGUIContext().getRootWindow()->removeChild(100);
 	}
-	catch (CEGUI::UnknownObjectException &e) {
-		std::cout << "Root windows not found. hiding loading windows as Root Windows" << std::endl;
-		m_systemd.getDefaultGUIContext().setRootWindow(0);
-	}
 	catch (std::exception &e) {
 		std::cout << "Root windows not found. hiding loading windows as Root Windows" << std::endl;
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
@@ -61,8 +58,10 @@ void WaitingRoom::hide()
 bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
-	m_graphicalUtil.setFPSCamera();
 	m_graphicalUtil.getHUD()->display();
+	m_graphicalUtil.setFPSCamera();
+	m_graphicalUtil.getHUD()->timerStart();
+	ClientCore::getInstance().createEntities();
 	return (true);
 }
 

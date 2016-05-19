@@ -162,9 +162,6 @@
     <ClCompile Include="SceneBillboard.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NetworkObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -176,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="IrrlichtUtility.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInfos.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +284,6 @@
     <ClInclude Include="AScene.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="NetworkManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -295,6 +295,12 @@
     </ClInclude>
     <ClInclude Include="IrrlichtUtility.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInfos.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
