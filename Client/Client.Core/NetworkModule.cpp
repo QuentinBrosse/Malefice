@@ -97,6 +97,7 @@ RakNet::ConnectionState	NetworkModule::getConnectionState()	const
 void	NetworkModule::registerRPCs()
 {
 	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
+	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str(), &ClientCore::startGame);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
@@ -105,6 +106,7 @@ void	NetworkModule::registerRPCs()
 void	NetworkModule::unregisterRPCs()
 {
 	m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());

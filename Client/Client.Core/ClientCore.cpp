@@ -104,7 +104,7 @@ void ClientCore::createEntities()
 {
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::initScenePosition(*m_map);
-	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
+	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::WeaponManagerSystem::initWeapon(*m_player);
 }
@@ -140,6 +140,13 @@ void	ClientCore::setIsActive(bool isActive)
 	m_isActive = isActive;
 }
 
+void	ClientCore::setNickname(const std::string& nickname)
+{
+	m_nickname = nickname;
+}
+
+
+
 void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 {
 	RakNet::RakString	nickname = m_nickname.c_str();
@@ -150,7 +157,7 @@ void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 	LOG_DEBUG(NETWORK) << "Sent nickname \"" << nickname << "\" to server";
 }
 
-void	ClientCore::setNickname(const std::string& nickname)
+void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
-	m_nickname = nickname;
+	LOG_INFO(GENERAL) << "Starting game.";
 }
