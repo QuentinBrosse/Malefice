@@ -52,6 +52,7 @@ private:
 	// Local Test
 	ecs::Entity*				m_map;
 	ecs::Entity*				m_player;
+	ecs::Entity*				m_player_ia;
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();
 };

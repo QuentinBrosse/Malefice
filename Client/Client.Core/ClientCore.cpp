@@ -17,7 +17,7 @@
 #include "WeaponManagerSystem.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
-	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr)
+	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
 {
 }
 
@@ -40,11 +40,14 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
+
 	}
 	else
 	{
 		m_graphicModule->setFPSCamera();
 		createEntities();
+		std::cout << "ouiiiii" << std::endl;
+		startGame(0);
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
@@ -83,10 +86,10 @@ void	ClientCore::pulse()
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
 
-		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_player)
+		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_playerManager->getCurrentPlayer() && (*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])
 		{
-			ecs::PositionSystem::update(*m_player);
-			ecs::EventSystem::doEvents(*m_player);
+			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
+			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 		}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
@@ -103,10 +106,16 @@ void ClientCore::createEntities()
 {
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::initScenePosition(*m_map);
-/*	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
-	ecs::PositionSystem::initScenePosition(*m_player);
-	ecs::WeaponManagerSystem::initWeapon(*m_player);
-	m_playerManager->setCurrentPlayer(m_player);*/
+	if (ProjectGlobals::NO_MENU)
+	{
+		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
+		ecs::PositionSystem::initScenePosition(*m_player);
+		ecs::WeaponManagerSystem::initWeapon(*m_player);
+		m_playerManager->setCurrentPlayer(m_player);
+		m_player_ia = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(10, 13, 10), irr::core::vector3df(0.0, 0.0, 0.0), ecs::Team::TeamType::Team1, 100);
+		ecs::PositionSystem::initScenePosition(*m_player_ia);
+
+	}
 }
 
 bool	ClientCore::isActive()	const
