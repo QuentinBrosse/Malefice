@@ -63,7 +63,7 @@ bool	ClientCore::init()
 		return false;
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
-	m_playerManager = new PlayerManager();
+	m_playerManager = &PlayerManager::getInstance();
 }
 
 void	ClientCore::pulse()
@@ -106,10 +106,7 @@ void ClientCore::createEntities()
 	m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
 	ecs::PositionSystem::initScenePosition(*m_player);
 	ecs::WeaponManagerSystem::initWeapon(*m_player);
-	m_playerIA = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, irr::core::vector3df(-1300, -100, -1300), irr::core::vector3df(0.0, 0.0, 0.0), 1, 100);
-	ecs::PositionSystem::initScenePosition(*m_playerIA);
-	ecs::WeaponManagerSystem::initWeapon(*m_playerIA);
-	ecs::PositionSystem::update(*m_playerIA);
+	m_playerManager->setCurrentPlayer(m_player);
 }
 
 bool	ClientCore::isActive()	const

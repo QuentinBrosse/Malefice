@@ -1,15 +1,22 @@
 #pragma once
 
 #include "EntityManager.h"
+#include "Singleton.h"
 #include "Entity.h"
 
 // TODO: do we really need a PlayerManager or is an EntityManager enough?
-class PlayerManager : public EntityManager
+class PlayerManager : public EntityManager, public Singleton<PlayerManager>
 {
-public:
+	friend class Singleton<PlayerManager>;
+
+protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;
 	~PlayerManager()					= default;
 
-	ecs::Entity*	getCurrentPlayer() const;
+public:
+	ecs::Entity*	getCurrentPlayer()	const;
+	void			setCurrentPlayer(ecs::Entity* localPlayer);
+private:
+	ecs::Entity*	m_currentPlayer;
 };

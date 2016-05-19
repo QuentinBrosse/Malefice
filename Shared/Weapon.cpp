@@ -166,7 +166,14 @@ namespace ecs
 
 	void	Weapon::setActivity(const bool active)
 	{
-		m_scene->getScene()->setVisible(active);
+		try
+		{
+			m_scene->getScene()->setVisible(active);
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
 
 	SceneAnimatedMesh* Weapon::getScene() const

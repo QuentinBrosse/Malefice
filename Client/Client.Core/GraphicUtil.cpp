@@ -2,6 +2,7 @@
 #include "ClientCore.h"
 #include "SceneMesh.h"
 #include "ProjectGlobals.h"
+#include "WeaponManagerSystem.h"
 
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
@@ -219,11 +220,24 @@ void GraphicUtil::setGuiCamera()
 
 void GraphicUtil::setFPSCamera()
 {
+	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
+
+	ecs::Position cameraPosition(
+		irr::core::vector3df(50.0f, 50.0f, -60.0f),
+		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
+
 	if (m_sceneManager->getActiveCamera())
+	{
+		cameraPosition.setVectorPosition(m_sceneManager->getActiveCamera()->getAbsolutePosition());
+		cameraPosition.setVectorRotation(m_sceneManager->getActiveCamera()->getTarget());
 		m_sceneManager->getActiveCamera()->remove();
+	}
 	m_device->getCursorControl()->setVisible(false);
-	m_FPSCamera = new Camera(ecs::Position(irr::core::vector3df(50.0f, 50.0f, -60.0f), irr::core::vector3df(-70.0f, 30.0f, -60.0f)), m_sceneManager);
+	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 	m_FPSCamera->init();
+
+	if (localPlayer)
+		ecs::WeaponManagerSystem::attachCamera(*localPlayer);
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
