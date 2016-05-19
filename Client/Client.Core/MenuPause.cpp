@@ -23,12 +23,24 @@ void MenuPause::hide()
 
 void MenuPause::checkPause()
 {
-	if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true)
+	static bool block;
+
+	if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && block)
+		return;
+	if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && !m_isEnable && !block)
 	{
 		m_isEnable = true;
 		m_utilities.setGuiCamera();
 		this->display();
+		block = true;
 	}
+	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && m_isEnable && !block)
+	{
+		this->hide();
+		block = true;
+	}
+	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == false && block)
+		block = false;
 }
 
 bool MenuPause::onOptionButtonClicked()
