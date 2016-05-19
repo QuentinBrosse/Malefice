@@ -8,8 +8,8 @@ EntityManager::EntityManager(NetworkRPC::ReservedNetworkIds networkId) : Network
 
 EntityManager::~EntityManager()
 {
-	for (auto entity : m_entities)
-		delete entity.second;
+	//for (auto entity : m_entities)
+		//delete entity.second;
 }
 
 void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)

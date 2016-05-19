@@ -51,6 +51,7 @@ void ConnectWindow::hide()
 bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
+	ClientCore::getInstance().getNetworkModule()->disconnect();
 	return (true);
 }
 
@@ -62,7 +63,7 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 		ClientCore::getInstance().setNickname(this->getNickNameEditBox());
 		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPasswordEditBox());
 		this->hide();
-		m_systemd.getDefaultGUIContext().setRootWindow(0);
+		m_graphicUtils.getMainMenu()->hide();
 		m_graphicUtils.getWaitingRoom()->display();
 
 		return true;
