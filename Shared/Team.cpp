@@ -4,12 +4,12 @@
 namespace ecs
 {
 	Team::Team() : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
-		m_teamNumber(0), m_kill(0), m_death(0)
+		m_team(ecs::Team::TeamType::TEAM_COUNT), m_kill(0), m_death(0)
 	{
 	}
 
-	Team::Team(const int teamNumber) : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
-		m_teamNumber(teamNumber), m_death(0), m_kill(0)
+	Team::Team(ecs::Team::TeamType team) : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
+		m_team(team), m_death(0), m_kill(0)
 	{
 
 	}
@@ -19,9 +19,9 @@ namespace ecs
 	}
 
 	
-	void	Team::init(const int teamNumber)
+	void	Team::init(ecs::Team::TeamType team)
 	{
-		m_teamNumber = teamNumber;
+		m_team = team;
 		m_death = 0;
 		m_kill = 0;
 	}
@@ -60,7 +60,7 @@ namespace ecs
 
 	void	Team::dump(std::ostream& os)	const
 	{
-		os << "Team {teamNumber = " << m_teamNumber << ", kill = " << m_kill << ", death = " << m_death << "}";
+		os << "Team {team = " << static_cast<int>(m_team) << ", kill = " << m_kill << ", death = " << m_death << "}";
 	}
 
 	AComponent & Team::affect(const AComponent & rhs)
@@ -69,7 +69,7 @@ namespace ecs
 
 		m_death = team.m_death;
 		m_kill = team.m_kill;
-		m_teamNumber = team.m_teamNumber;
+		m_team = team.m_team;
 
 		return *this;
 	}
@@ -78,7 +78,7 @@ namespace ecs
 	void	Team::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
-		out.Write(m_teamNumber);
+		out.Write(m_team);
 		out.Write(m_kill);
 		out.Write(m_death);
 	}
@@ -86,7 +86,7 @@ namespace ecs
 	void	Team::deserialize(RakNet::BitStream& in)
 	{
 		AComponent::deserialize(in);
-		in.Read(m_teamNumber);
+		in.Read(m_team);
 		in.Read(m_kill);
 		in.Read(m_death);
 	}

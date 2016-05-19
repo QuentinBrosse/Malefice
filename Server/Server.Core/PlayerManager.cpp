@@ -2,9 +2,11 @@
 #include "PlayerManager.h"
 #include "PlayerFactory.h"
 #include "PlayerInfos.h"
+#include "Team.h"
 #include "ServerCore.h"
 #include "NetworkRPC.h"
 #include "Logger.h"
+#include "ProjectGlobals.h"
 
 PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
@@ -13,7 +15,18 @@ PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::P
 
 void	PlayerManager::createEntity(ecs::ClientId owner)
 {
-	m_entities[owner] = PlayerFactory::createPlayer(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), 0, 0); // TODO: pick random spawn position, set rotation/team/initial life
+	ecs::Team::TeamType	team = ecs::Team::TeamType::TEAM_COUNT;
+
+	if (m_entities.size() < ProjectGlobals::NORMAL_TEAM_SIZE)
+		team = ecs::Team::TeamType::Team1;
+	else if (m_entities.size() < 2 * ProjectGlobals::NORMAL_TEAM_SIZE)
+		team = ecs::Team::TeamType::Team2;
+	else
+		team = ecs::Team::TeamType::Predator;
+	if (team != ecs::Team::TeamType::Predator)
+		m_entities[owner] = PlayerFactory::createPlayer(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), team, 100); // TODO: pick random spawn position, set rotation
+	else
+		m_entities[owner] = PlayerFactory::createPredator(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0)); // TODO: pick random spawn position, set rotation
 	// Don't send new player to anyone yet, wait for the username (C.F. below)
 }
 
@@ -50,6 +63,9 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 			ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), rpc->GetLastSenderAddress().systemIndex, false, entity.second->getOwner(), entity.second);
 		}
 		LOG_DEBUG(ECS) << "Set nickname of client " << rpc->GetLastSenderAddress().systemIndex << " to \"" << playerInfos->getNickname() << "\"";
+	
+		if (m_entities.size() == 3/*ProjectGlobals::MAX_PLAYERS_NB*/)
+			ServerCore::getInstance().startGame();
 	}
 
 	else

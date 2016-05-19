@@ -16,7 +16,7 @@ class ServerCore : public Singleton<ServerCore>
 
 public:
 	void	run();
-
+	void	startGame();
 
 	NetworkModule&	getNetworkModule();
 	PlayerManager&	getPlayerManager();
