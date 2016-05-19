@@ -4,14 +4,19 @@
 #include "Logger.h"
 #include "TimeUtility.h"
 
+const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
+
 ServerCore::ServerCore() :
-	m_startTime(0), m_isActive(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
 
 void	ServerCore::run()
 {
+	long long	lastTickTime = utility::TimeUtility::getMsTime();
+	long long	currentTime = lastTickTime;
+
 	LOG_INFO(GENERAL) << "Server started.";
 	if (this->init() == false)
 	{
@@ -21,7 +26,9 @@ void	ServerCore::run()
 	LOG_INFO(GENERAL) << "Server initialized.";
 	while (m_isActive)
 	{
-		this->pulse();
+		currentTime = utility::TimeUtility::getMsTime();
+		this->pulse(currentTime - lastTickTime);
+		lastTickTime = currentTime;
 		this->handleInput();
 	}
 	this->stop();
@@ -72,9 +79,16 @@ void	ServerCore::displayHeader()	const
 }
 
 
-void	ServerCore::pulse()
+void	ServerCore::pulse(long long elapsedTime)
 {
+	m_updateElapsedTime += elapsedTime;
 	m_networkModule.pulse();
+	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
+	{
+		//m_playerManager.updateEntities();
+		m_updateElapsedTime = 0;
+		LOG_TRACE(NETWORK) << "Updated all entities for everybody";
+	}
 }
 
 
@@ -132,6 +146,7 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 void	ServerCore::startGame()
 {
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+	m_gameStarted = true;
 }
 
 

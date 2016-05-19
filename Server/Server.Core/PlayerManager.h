@@ -13,6 +13,7 @@ public:
 	~PlayerManager()					= default;
 
 	virtual void	createEntity(ecs::ClientId owner);
+	virtual void	updateEntities();
 	virtual void	deleteEntity(ecs::ClientId owner);
 
 	void	setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc);

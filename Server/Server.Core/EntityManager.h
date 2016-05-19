@@ -9,6 +9,7 @@ public:
 	~EntityManager();
 
 	virtual void			createEntity(ecs::ClientId owner)	= 0;
+	virtual void			updateEntities()					= 0;
 	virtual void			deleteEntity(ecs::ClientId owner)	= 0;
 
 	bool			hasEntity(ecs::ClientId owner)	const;

@@ -30,6 +30,14 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 	// Don't send new player to anyone yet, wait for the username (C.F. below)
 }
 
+void	PlayerManager::updateEntities()
+{
+	for (auto entity : m_entities)
+	{
+		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity.second->getOwner(), entity.second);
+	}
+}
+
 void	PlayerManager::deleteEntity(ecs::ClientId owner)
 {
 	auto	it = m_entities.find(owner);
