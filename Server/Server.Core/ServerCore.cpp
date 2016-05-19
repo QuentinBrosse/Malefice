@@ -129,6 +129,13 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 
 
 
+void	ServerCore::startGame()
+{
+	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+}
+
+
+
 NetworkModule&	ServerCore::getNetworkModule()
 {
 	return m_networkModule;

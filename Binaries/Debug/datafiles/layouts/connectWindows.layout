@@ -3,7 +3,7 @@
 <GUILayout version="4" >
     <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
         <Property name="ID" value="66" />
-        <Property name="Area" value="{{0.00078125,0},{0.00138889,11},{0.300781,76},{0.301389,139}}" />
+        <Property name="Area" value="{{0.00078125,0},{0.00138889,12},{0.300781,76},{0.301389,140}}" />
         <Property name="RollUpEnabled" value="false" />
         <Property name="VerticalAlignment" value="Centre" />
         <Property name="HorizontalAlignment" value="Centre" />
@@ -12,12 +12,12 @@
         </AutoWindow>
         <Window type="AlfiskoSkin/Button" name="Button" >
             <Property name="ID" value="3" />
-            <Property name="Area" value="{{0.333037,0},{0.672006,35},{0.333037,166},{0.672006,74}}" />
-            <Property name="Text" value="Connect" />
+            <Property name="Area" value="{{0.333037,-2},{0.672006,46},{0.333037,164},{0.672006,85}}" />
+            <Property name="Text" value="Connection" />
         </Window>
         <Window type="AlfiskoSkin/Editbox" name="Editbox" >
             <Property name="ID" value="1" />
-            <Property name="Area" value="{{0.35302,0},{0.118384,0},{0.35302,256},{0.118384,32}}" />
+            <Property name="Area" value="{{0.35302,-2},{0.118384,-21},{0.35302,254},{0.118384,11}}" />
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="127.0.0.1" />
             <Property name="MaxTextLength" value="100" />
@@ -26,46 +26,58 @@
             <Property name="MouseAutoRepeatEnabled" value="true" />
         </Window>
         <Window type="AlfiskoSkin/Label" name="Label" >
-            <Property name="Area" value="{{0.0377442,0},{0.114903,0},{0.0377442,128},{0.114903,32}}" />
+            <Property name="Area" value="{{0.0377442,0},{0.114903,-19},{0.0377442,128},{0.114903,13}}" />
             <Property name="Text" value="Adresse IP :" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="RightAligned" />
         </Window>
         <Window type="AlfiskoSkin/Label" name="Label2" >
-            <Property name="Area" value="{{0.0421847,0},{0.302925,0},{0.0421847,128},{0.302925,32}}" />
+            <Property name="Area" value="{{0.0421847,-1},{0.302925,-31},{0.0421847,127},{0.302925,1}}" />
             <Property name="Text" value="Port :" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="RightAligned" />
         </Window>
         <Window type="AlfiskoSkin/Editbox" name="Editbox2" >
             <Property name="ID" value="2" />
-            <Property name="Area" value="{{0.350799,0},{0.316852,0},{0.350799,85},{0.316852,32}}" />
+            <Property name="Area" value="{{0.350799,-1},{0.316852,-35},{0.350799,84},{0.316852,-3}}" />
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="2504" />
         </Window>
         <Window type="AlfiskoSkin/Label" name="Label22" >
-            <Property name="Area" value="{{0.0421847,-1},{0.302925,52},{0.0421847,127},{0.302925,84}}" />
+            <Property name="Area" value="{{0.0421847,0},{0.302925,13},{0.0421847,128},{0.302925,45}}" />
             <Property name="Text" value="Pseudo" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="RightAligned" />
         </Window>
         <Window type="AlfiskoSkin/Editbox" name="Editbox22" >
             <Property name="ID" value="52" />
-            <Property name="Area" value="{{0.350799,0},{0.316852,49},{0.350799,257},{0.316852,81}}" />
+            <Property name="Area" value="{{0.350799,-2},{0.316852,8},{0.350799,255},{0.316852,40}}" />
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="Text" value="User42" />
         </Window>
         <Window type="AlfiskoSkin/Label" name="Label222" >
-            <Property name="Area" value="{{0.0421847,-1},{0.302925,103},{0.0421847,127},{0.302925,135}}" />
+            <Property name="Area" value="{{0.0421847,-1},{0.302925,60},{0.0421847,127},{0.302925,92}}" />
             <Property name="Text" value="Mot de passe:" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="RightAligned" />
         </Window>
         <Window type="AlfiskoSkin/Editbox" name="Editbox222" >
             <Property name="ID" value="53" />
-            <Property name="Area" value="{{0.350799,0},{0.316852,101},{0.350799,257},{0.316852,133}}" />
+            <Property name="Area" value="{{0.350799,-2},{0.316852,55},{0.350799,255},{0.316852,87}}" />
             <Property name="Font" value="DejaVuSans-12" />
             <Property name="MaskText" value="true" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label2222" >
+            <Property name="Area" value="{{0.0421847,-1},{0.302925,104},{0.0421847,127},{0.302925,136}}" />
+            <Property name="Text" value="Status" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+        </Window>
+        <Window type="AlfiskoSkin/Label" name="Label22222" >
+            <Property name="ID" value="60" />
+            <Property name="Area" value="{{0.0421847,140},{0.302925,106},{0.0421847,394},{0.302925,138}}" />
+            <Property name="Text" value="En attente de connection..." />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
         </Window>
     </Window>
 </GUILayout>

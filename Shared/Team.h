@@ -9,11 +9,19 @@ namespace ecs
 	class MALEFICE_DLL_EXPORT Team : public AComponent
 	{
 	public:
+		enum class TeamType : int
+		{
+			Team1,
+			Team2,
+			Predator,
+			TEAM_COUNT
+		};
+
 		Team();
-		Team(const int teamNumber);
+		Team(ecs::Team::TeamType team);
 		~Team();
 
-		void	init(const int teamNumber);
+		void	init(ecs::Team::TeamType team);
 
 		int					getKill()	const;
 		int					getDeath()	const;
@@ -31,7 +39,7 @@ namespace ecs
 		virtual void	deserialize(RakNet::BitStream& in);
 	
 	private:
-		int	m_teamNumber;
+		ecs::Team::TeamType	m_team;
 		int	m_kill;
 		int	m_death;
 	};

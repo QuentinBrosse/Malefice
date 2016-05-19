@@ -26,8 +26,11 @@ public:
 	ecs::Entity*	getMap()			const;
 
 	void	setIsActive(bool isActive);
-	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
 	void	setNickname(const std::string& nickname);
+
+
+	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
+	void	startGame(RakNet::RPC3* rpc);
 
 
 protected:
