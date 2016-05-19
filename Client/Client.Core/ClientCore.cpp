@@ -164,5 +164,10 @@ void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	m_graphicModule->getMainMenu()->hide();
+	m_graphicModule->getHUD()->display();
+	m_graphicModule->setFPSCamera();
+	m_graphicModule->getHUD()->timerStart();
+	ClientCore::getInstance().createEntities();
 	LOG_INFO(GENERAL) << "Starting game.";
 }
