@@ -65,4 +65,22 @@ namespace ecs
 			//TODO: update position of weapon's scene
 		}
 	}
+
+	void WeaponManagerSystem::attachCamera(Entity & entity)
+	{
+		WeaponManager*	weaponManager;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		{
+			GraphicUtil&	graphics = GraphicUtil::getInstance();
+
+			for (auto weapon : weaponManager->getWeapons())
+			{
+//				irr::scene::ISceneNode*	aaa = weapon.second.getScene()->getScene()->getParent();
+				weapon.second.createScene(graphics.getDevice(), false);
+				graphics.getSceneManager()->getActiveCamera()->addChild(weapon.second.getScene()->getScene());
+	//			irr::scene::ISceneNode*	bbb = weapon.second.getScene()->getScene()->getParent();
+			}
+		}
+	}
 }

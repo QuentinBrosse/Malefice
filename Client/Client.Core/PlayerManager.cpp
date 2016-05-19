@@ -6,5 +6,10 @@ PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::P
 
 ecs::Entity*	PlayerManager::getCurrentPlayer() const
 {
-	return (nullptr);
+	return m_currentPlayer;
+}
+
+void PlayerManager::setCurrentPlayer(ecs::Entity * localPlayer)
+{
+	m_currentPlayer = localPlayer;
 }

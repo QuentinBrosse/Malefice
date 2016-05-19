@@ -48,6 +48,7 @@ private:
 	std::string		m_nickname;
 	bool			m_isActive;
 
+	// Local Test
 	ecs::Entity*				m_map;
 	ecs::Entity*				m_player;
 
