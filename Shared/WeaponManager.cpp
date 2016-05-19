@@ -94,8 +94,8 @@ namespace ecs
 	{
 		const WeaponManager& weaponManager = dynamic_cast<const WeaponManager&>(rhs);
 
-		m_currentWeapon = weaponManager.m_currentWeapon;
-		m_weapons = weaponManager.m_weapons;
+/*		m_currentWeapon = weaponManager.m_currentWeapon;
+		m_weapons = weaponManager.m_weapons;*/
 
 		return *this;
 	}
@@ -104,6 +104,7 @@ namespace ecs
 	void	WeaponManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
+
 		// Won't be sent over the network (will be modified by RPCs)
 	}
 

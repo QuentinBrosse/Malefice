@@ -117,13 +117,20 @@ namespace ecs
 		AComponent::serialize(out, serializeType);
 		m_weaponManager.serialize(out, serializeType);
 		out.Write(m_weaponsIsCurrent);
-		out.Write(m_currentSpell->first);
 		out.Write<size_t>(m_spells.size());
 		for (auto it = m_spells.begin(); it != m_spells.end(); it++)
 		{
 			out.Write(it->first);
 			it->second.serialize(out, serializeType);
 		}
+		if (m_currentSpell != m_spells.end())
+		{
+			out.Write(true);
+			out.Write(m_currentSpell->first);
+		}
+		else
+			out.Write(false);
+
 	}
 
 	void	SpellManager::deserialize(RakNet::BitStream& in)
@@ -131,17 +138,24 @@ namespace ecs
 		Spell::SpellType current_spell_type;
 		Spell::SpellType spell_type;
 		size_t nb_spell;
+		bool	haveCurrentSpell;
 
 		AComponent::deserialize(in);
 		m_weaponManager.deserialize(in);
 		in.Read(m_weaponsIsCurrent);
-		in.Read(current_spell_type);
 		in.Read(nb_spell);
 		for (size_t i = 0; i < nb_spell; i++)
 		{
 			in.Read(spell_type);
 			m_spells[spell_type].deserialize(in);
 		}
-		m_currentSpell = m_spells.find(current_spell_type);
+		in.Read(haveCurrentSpell);
+		if (haveCurrentSpell)
+		{
+			in.Read(current_spell_type);
+			m_currentSpell = m_spells.find(current_spell_type);
+		}
+		else
+			m_currentSpell = m_spells.end();
 	}
 }
