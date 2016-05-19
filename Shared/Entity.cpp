@@ -188,6 +188,9 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 		case ecs::AComponent::ComponentType::WEAPON_MANAGER:
 			component = new ecs::WeaponManager();
 			break;
+		case ecs::AComponent::ComponentType::PLAYER_INFOS:
+			component = new ecs::PlayerInfos();
+			break;
 		default:
 			throw std::logic_error("Bad component type " + std::to_string(static_cast<int>(componentType)));
 			break;
