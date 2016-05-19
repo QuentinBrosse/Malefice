@@ -28,9 +28,11 @@ protected:
 
 
 private:
+	static const unsigned int	ENTITIES_UPDATES_TICKS;
+
 	bool	init();
 	void	stop();
-	void	pulse();
+	void	pulse(long long elapsedTime);
 	void	displayHeader()	const;
 	void	readInput();
 	void	handleInput();
@@ -38,7 +40,9 @@ private:
 
 
 	long long	m_startTime;
+	long long	m_updateElapsedTime;
 	bool		m_isActive;
+	bool		m_gameStarted;
 
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule			m_networkModule;

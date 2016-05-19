@@ -99,8 +99,8 @@ namespace ecs
 	{
 		const WeaponManager& weaponManager = dynamic_cast<const WeaponManager&>(rhs);
 
-		m_currentWeapon = weaponManager.m_currentWeapon;
-		m_weapons = weaponManager.m_weapons;
+/*		m_currentWeapon = weaponManager.m_currentWeapon;
+		m_weapons = weaponManager.m_weapons;*/
 
 		return *this;
 	}
