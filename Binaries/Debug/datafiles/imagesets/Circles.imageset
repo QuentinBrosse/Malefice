@@ -1,0 +1,4 @@
+<Imageset autoScaled="true" imagefile="circles.png" name="Circles" nativeHorzRes="800" nativeVertRes="600" version="2">
+    <Image height="28" name="RedCircle" width="30" xPos="16" yPos="22" />
+    <Image height="28" name="GreenCircle" width="30" xPos="51" yPos="56" />
+</Imageset>
