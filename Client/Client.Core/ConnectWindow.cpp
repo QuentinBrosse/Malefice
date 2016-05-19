@@ -22,6 +22,7 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_port = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(2));
 	m_pseudo = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(52));
 	m_password = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(53));
+	m_connectionStatus = m_windows->getChild(60);
 }
 
 void ConnectWindow::display()
@@ -57,13 +58,16 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0)
 	{
+		m_connectionStatus->setText("Connection en cour...");
 		ClientCore::getInstance().setNickname(this->getNickNameEditBox());
 		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPasswordEditBox());
 		this->hide();
 		m_systemd.getDefaultGUIContext().setRootWindow(0);
 		m_graphicUtils.getWaitingRoom()->display();
+
 		return true;
 	} else {
+		m_connectionStatus->setText("Informations invalides...");
 		return false;
 	}
 }

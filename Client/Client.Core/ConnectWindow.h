@@ -26,6 +26,7 @@ public:
 
 private:
 	CEGUI::Window* m_windows;
+	CEGUI::Window* m_connectionStatus;
 	CEGUI::Editbox* m_ip;
 	CEGUI::Editbox* m_port;
 	CEGUI::Editbox* m_pseudo;
