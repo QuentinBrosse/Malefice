@@ -29,7 +29,7 @@ namespace ecs
 		Entity(const Entity&)	= delete;
 		Entity(Entity&&)		= default;
 		
-		Entity&	operator=(const Entity&)	= delete;
+		Entity&	operator=(const Entity&);
 		Entity&	operator=(Entity&&)			= default;
 		
 

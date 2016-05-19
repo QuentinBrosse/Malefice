@@ -8,8 +8,8 @@ EntityManager::EntityManager(NetworkRPC::ReservedNetworkIds networkId) : Network
 
 EntityManager::~EntityManager()
 {
-	for (auto entity : m_entities)
-		delete entity.second;
+	//for (auto entity : m_entities)
+		//delete entity.second;
 }
 
 void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -22,7 +22,7 @@ void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 {
 	ecs::Entity&	localEntity = *m_entities[owner];
 
-	//localEntity = *entity; // TODO: implement operator=
+	localEntity = (*entity);
 }
 
 void	EntityManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
