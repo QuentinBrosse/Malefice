@@ -104,12 +104,31 @@ namespace ecs
 	void	WeaponManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
-		// Won't be sent over the network (will be modified by RPCs)
+		out.Write(m_currentWeapon->first);
+		out.Write<size_t>(m_weapons.size());
+		for (auto it = m_weapons.begin(); it != m_weapons.end(); it++)
+		{
+			out.Write(it->first);
+			it->second.serialize(out, serializeType);
+		}
 	}
 
 	void	WeaponManager::deserialize(RakNet::BitStream& in)
 	{
+		size_t nb_weapon;
+		Weapon::WeaponType current_weapon_type;
+		Weapon::WeaponType weapon_type;
+
+		
 		AComponent::deserialize(in);
-		// Won't be sent over the network (will be modified by RPCs)
+		in.Read(current_weapon_type);
+		in.Read(nb_weapon);
+		for (size_t i = 0; i < nb_weapon; i++)
+		{
+			in.Read(weapon_type);
+			m_weapons.emplace(weapon_type, *(new Weapon()));
+			m_weapons.at(weapon_type).deserialize(in);
+		}
+		m_currentWeapon = m_weapons.find(current_weapon_type);
 	}
 };
