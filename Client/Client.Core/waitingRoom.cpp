@@ -58,10 +58,7 @@ void WaitingRoom::hide()
 bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
-	m_graphicalUtil.getHUD()->display();
-	m_graphicalUtil.setFPSCamera();
-	m_graphicalUtil.getHUD()->timerStart();
-	ClientCore::getInstance().createEntities();
+	m_graphicalUtil.getMainMenu()->display();
 	return (true);
 }
 

@@ -9,14 +9,21 @@ class PlayerManager : public EntityManager, public Singleton<PlayerManager>
 {
 	friend class Singleton<PlayerManager>;
 
+public:
+	virtual void	addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
+	virtual void	updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
+	virtual void	removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc);
+
+	ecs::Entity*	getCurrentPlayer()	const;
+	void			setCurrentPlayer(ecs::Entity* localPlayer);
+
+
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;
 	~PlayerManager()					= default;
 
-public:
-	ecs::Entity*	getCurrentPlayer()	const;
-	void			setCurrentPlayer(ecs::Entity* localPlayer);
+
 private:
 	ecs::Entity*	m_currentPlayer;
 };
