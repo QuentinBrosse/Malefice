@@ -19,10 +19,11 @@ public:
 	void	createEntities();
 	void			run();
 
-	bool			isActive()			const;
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;
 	PlayerManager*	getPlayerManager()	const;
+	ecs::ClientId	getClientId()		const;
+	bool			isActive()			const;
 	ecs::Entity*	getMap()			const;
 
 	void	setIsActive(bool isActive);
