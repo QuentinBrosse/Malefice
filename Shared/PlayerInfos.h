@@ -10,6 +10,7 @@ namespace ecs
 	{
 	public:
 		PlayerInfos();
+		PlayerInfos(const PlayerInfos& cpy);
 		~PlayerInfos()	= default;
 
 		void	init();
@@ -23,6 +24,7 @@ namespace ecs
 		virtual	void		dump(std::ostream& os)	const;
 
 		virtual AComponent&	affect(const AComponent& rhs);
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
 		virtual void		serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void		deserialize(RakNet::BitStream& in);

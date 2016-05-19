@@ -9,6 +9,7 @@ namespace ecs
 	{
 	public:
 		SceneBillboard();
+		SceneBillboard(const SceneBillboard& cpy);
 		SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 		virtual ~SceneBillboard();
 
@@ -20,6 +21,7 @@ namespace ecs
 
 		virtual AComponent&	affect(const AComponent& rhs);
 
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 	};

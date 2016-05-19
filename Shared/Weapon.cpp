@@ -187,6 +187,12 @@ namespace ecs
 		   << ", DAMAGE = " << Weapon::m_damage << ", WEAPON_TYPE = " << Weapon::m_weaponType << ", ammunition = " << (static_cast<int>(m_ammunition) == -1 ? "none" : std::to_string(m_ammunition)) << ", sight = " << (m_sight == true ? "true" : "false") << ", scene = " << /*m_scene*/"Non implementer" << "}";
 	}
 
+	AComponent * Weapon::createCopy(const AComponent * rhs) const
+	{
+		const Weapon* weapon = dynamic_cast<const Weapon*>(rhs);
+		return new Weapon(*weapon);
+	}
+
 	AComponent& Weapon::affect(const AComponent& rhs)
 	{
 		const Weapon& weapon = dynamic_cast<const Weapon&>(rhs);

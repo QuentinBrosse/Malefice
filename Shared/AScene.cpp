@@ -20,6 +20,11 @@ namespace ecs
 				
 	}
 
+	AScene::AScene(const AScene & cpy) : AComponent("Scene", ComponentType::SCENE),
+		m_device(cpy.m_device), m_driver(cpy.m_driver), m_isCollisionable(cpy.m_isCollisionable), m_material(cpy.m_material), m_mediaPath(cpy.m_mediaPath), m_nameMesh(cpy.m_nameMesh), m_nameTexture(cpy.m_nameTexture), m_pickableFlags(cpy.m_pickableFlags), m_selector(cpy.m_selector), m_smgr(cpy.m_smgr), m_type(cpy.m_type)
+	{
+	}
+
 	AScene::~AScene()
 	{
 	}

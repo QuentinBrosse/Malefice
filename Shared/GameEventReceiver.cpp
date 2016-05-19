@@ -9,6 +9,11 @@ namespace ecs
 	{
 	}
 
+	GameEventReceiver::GameEventReceiver(const GameEventReceiver & cpy): AComponent("GameEventReceiver", ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER),
+		m_events(cpy.m_events)
+	{
+	}
+
 
 	void	GameEventReceiver::init()
 	{
@@ -106,5 +111,12 @@ namespace ecs
 
 		m_events = rhsEvent.m_events;
 		return *this;
+	}
+
+	AComponent* GameEventReceiver::createCopy(const AComponent * rhs) const
+	{
+		const GameEventReceiver*	event = dynamic_cast<const GameEventReceiver*>(rhs);
+
+		return new GameEventReceiver(*event);
 	}
 };

@@ -9,6 +9,12 @@ namespace ecs
 
 	}
 
+	Life::Life(const Life& cpy) : AComponent("Life", ComponentType::LIFE),
+		m_currentLife(cpy.m_currentLife), m_maxLife(cpy.m_maxLife)
+	{
+	
+	}
+
 	Life::Life(ecs::AComponent::ComponentType lifeType) : AComponent("Life", lifeType),
 		m_currentLife(0), m_maxLife(0)
 	{
@@ -105,5 +111,11 @@ namespace ecs
 		m_currentLife = life.m_currentLife;
 		m_maxLife = life.m_maxLife;
 		return *this;
+	}
+
+	AComponent*	Life::createCopy(const AComponent* rhs) const
+	{
+		const Life* life = dynamic_cast<const Life*>(rhs);
+		return new Life(*life);
 	}
 }

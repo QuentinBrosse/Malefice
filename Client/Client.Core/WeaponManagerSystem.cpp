@@ -37,7 +37,7 @@ namespace ecs
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
-			std::map<ecs::Weapon::WeaponType, Weapon&>&	weapons = weaponManager->getWeapons();
+			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
 			GraphicUtil&			graphics = GraphicUtil::getInstance();
 
 			Camera*	camera = graphics.getFPSCamera();

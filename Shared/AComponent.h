@@ -33,7 +33,7 @@ namespace ecs
 
 		AComponent()							= default;
 		AComponent(const std::string& name, ecs::AComponent::ComponentType type);
-		AComponent(const AComponent& component)	= delete;
+		AComponent(const AComponent& component)	= default;
 		virtual ~AComponent()					= default;
 
 		virtual	void	dump(std::ostream& os)	const	= 0;
@@ -41,7 +41,7 @@ namespace ecs
 		AComponent&	operator=(const AComponent& rhs);
 
 		virtual	AComponent&	affect(const AComponent& rhs) = 0;
-
+		virtual AComponent*	createCopy(const AComponent* rhs) const = 0;
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 

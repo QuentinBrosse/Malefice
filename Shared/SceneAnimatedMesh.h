@@ -10,6 +10,7 @@ namespace ecs
 	public:
 		SceneAnimatedMesh();
 		SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
+		SceneAnimatedMesh(const SceneAnimatedMesh& cpy);
 		virtual ~SceneAnimatedMesh();
 
 		virtual AComponent&	affect(const AComponent& rhs);
@@ -26,6 +27,7 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
 	private:
 		irr::scene::IAnimatedMeshSceneNode*	m_node;

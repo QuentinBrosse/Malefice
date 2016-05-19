@@ -12,6 +12,11 @@ namespace ecs
 	{
 	}
 
+	Movement::Movement(const Movement& cpy) : AComponent("Movement", ecs::AComponent::ComponentType::MOVEMENT),
+		m_destination(cpy.m_destination)
+	{
+	}
+
 	void Movement::init(const Position& position)
 	{
 		m_destination = position;
@@ -60,4 +65,11 @@ namespace ecs
 		m_destination = movement.m_destination;
 		return *this;
 	}
+
+	AComponent*	Movement::createCopy(const AComponent* rhs) const
+	{
+		const Movement* movement = dynamic_cast<const Movement*>(rhs);
+		return new Movement(*movement);
+	}
+
 }

@@ -23,6 +23,7 @@ namespace ecs
 		};
 
 		GameEventReceiver();
+		GameEventReceiver(const GameEventReceiver& cpy);
 		~GameEventReceiver()	= default;
 
 		virtual void	init();
@@ -39,6 +40,7 @@ namespace ecs
 		virtual void				deserialize(RakNet::BitStream& in);
 
 		virtual AComponent&			affect(const AComponent& rhs);
+		virtual AComponent*			createCopy(const AComponent* rhs) const;
 
 	private:
 		std::queue<GameEventType>	m_events;

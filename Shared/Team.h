@@ -18,6 +18,7 @@ namespace ecs
 		};
 
 		Team();
+		Team(const Team& cpy);
 		Team(ecs::Team::TeamType team);
 		~Team();
 
@@ -38,6 +39,8 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 	
+		virtual  AComponent*	createCopy(const AComponent* rhs) const;
+
 	private:
 		ecs::Team::TeamType	m_team;
 		int	m_kill;

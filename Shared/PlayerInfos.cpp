@@ -5,6 +5,11 @@ ecs::PlayerInfos::PlayerInfos() : AComponent("PlayerInfos", ecs::AComponent::Com
 {
 }
 
+ecs::PlayerInfos::PlayerInfos(const PlayerInfos& cpy) : AComponent("PlayerInfos", ecs::AComponent::ComponentType::PLAYER_INFOS),
+	m_nickname()
+{
+}
+
 void	ecs::PlayerInfos::init()
 {
 }
@@ -33,6 +38,12 @@ ecs::AComponent& ecs::PlayerInfos::affect(const AComponent & rhs)
 
 	m_nickname = player.m_nickname;
 	return *this;
+}
+
+ecs::AComponent*	ecs::PlayerInfos::createCopy(const ecs::AComponent* rhs) const
+{
+	const ecs::PlayerInfos* playerInfos = dynamic_cast<const ecs::PlayerInfos *>(rhs);
+	return new ecs::PlayerInfos(*playerInfos);
 }
 
 

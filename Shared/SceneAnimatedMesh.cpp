@@ -14,6 +14,12 @@ namespace ecs
 		this->init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, level, lighting);
 	}
 
+	SceneAnimatedMesh::SceneAnimatedMesh(const SceneAnimatedMesh& cpy): AScene(cpy),
+		m_node(cpy.m_node), m_level(cpy.m_level), m_lighting(cpy.m_lighting)
+	{
+
+	}
+
 	SceneAnimatedMesh::~SceneAnimatedMesh()
 	{
 	}
@@ -107,5 +113,12 @@ namespace ecs
 	void	SceneAnimatedMesh::deserialize(RakNet::BitStream& in)
 	{
 		AScene::deserialize(in);
+	}
+
+	AComponent * SceneAnimatedMesh::createCopy(const AComponent * rhs) const
+	{
+		const SceneAnimatedMesh* scene = dynamic_cast<const SceneAnimatedMesh*>(rhs);
+
+		return new SceneAnimatedMesh(*scene);
 	}
 }

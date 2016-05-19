@@ -7,6 +7,11 @@ namespace ecs
 	{
 	}
 
+	WeaponManager::WeaponManager(const WeaponManager & cpy): AComponent("WeaponManager", ComponentType::WEAPON_MANAGER),
+		m_currentWeapon(cpy.m_currentWeapon), m_weapons(cpy.m_weapons)
+	{
+	}
+
 	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
 		m_weapons(), m_currentWeapon(m_weapons.end())
 	{
@@ -52,7 +57,7 @@ namespace ecs
 		return m_currentWeapon->second;
 	}
 
-	std::map<Weapon::WeaponType, Weapon&>& WeaponManager::getWeapons()
+	std::map<Weapon::WeaponType, Weapon>& WeaponManager::getWeapons()
 	{
 		return m_weapons;
 	}
@@ -104,13 +109,48 @@ namespace ecs
 	void	WeaponManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
-		// Won't be sent over the network (will be modified by RPCs)
+
+		out.Write<size_t>(m_weapons.size());
+		for (auto weapon : m_weapons)
+			weapon.second.serialize(out, serializeType);
+
+		if (m_currentWeapon != m_weapons.end())
+		{
+			out.Write(true);
+			out.Write(m_currentWeapon->first);
+		}
+		else
+			out.Write(false);
 	}
 
 	void	WeaponManager::deserialize(RakNet::BitStream& in)
 	{
+		Weapon::WeaponType	weaponType;
+		bool				haveCurrent;
+		size_t				nbWeapons;
+
 		AComponent::deserialize(in);
-		// Won't be sent over the network (will be modified by RPCs)
+		in.Read(nbWeapons);
+		for (size_t i = 0; i < nbWeapons; i++)
+		{
+			in.Read(weaponType);
+			m_weapons[weaponType].deserialize(in);
+		}
+		in.Read(haveCurrent);
+		if (haveCurrent)
+		{
+			in.Read(weaponType);
+			m_currentWeapon = m_weapons.find(weaponType);
+		}
+		else
+			m_currentWeapon = m_weapons.end();
+	}
+
+	AComponent* WeaponManager::createCopy(const AComponent * rhs) const
+	{
+		const WeaponManager*	weaponManager = dynamic_cast<const WeaponManager*>(rhs);
+
+		return new WeaponManager(*weaponManager);
 	}
 };
 

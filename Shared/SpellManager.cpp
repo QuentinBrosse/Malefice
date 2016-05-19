@@ -8,6 +8,11 @@ namespace ecs
 	{
 	}
 
+	SpellManager::SpellManager(const SpellManager & cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
+		m_currentSpell(cpy.m_currentSpell), m_spells(cpy.m_spells), m_weaponManager(cpy.m_weaponManager), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
+	{
+	}
+
 	//TODO: CHange new Weapon with call to WeaponCreator
 	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
 		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(*(new Weapon()))
@@ -143,5 +148,12 @@ namespace ecs
 			m_spells[spell_type].deserialize(in);
 		}
 		m_currentSpell = m_spells.find(current_spell_type);
+	}
+
+	AComponent * SpellManager::createCopy(const AComponent * rhs) const
+	{
+		const SpellManager* spellManager = dynamic_cast<const SpellManager*>(rhs);
+
+		return new SpellManager(*spellManager);
 	}
 }

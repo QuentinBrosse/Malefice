@@ -11,6 +11,7 @@ namespace ecs
 	public:
 		Movement();
 		Movement(const Position& position);
+		Movement(const Movement& cpy);
 		~Movement() = default;
 
 		virtual void	init(const Position& position);
@@ -27,6 +28,7 @@ namespace ecs
 		virtual void	deserialize(RakNet::BitStream& in);
 
 		virtual	AComponent&	affect(const AComponent& rhs);
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
 	private:
 		Position	m_destination;

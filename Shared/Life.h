@@ -10,6 +10,7 @@ namespace ecs
 	{
 	public:
 		Life();
+		Life(const Life& cpy);
 		Life(ecs::AComponent::ComponentType lifeType);
 		Life(const int maxLife, const ecs::AComponent::ComponentType type);
 		~Life() = default;
@@ -38,6 +39,8 @@ namespace ecs
 		virtual void		deserialize(RakNet::BitStream& in);
 
 		virtual AComponent&	affect(const AComponent& rhs);
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
+
 	protected:
 		int	m_currentLife;		
 		int	m_maxLife;

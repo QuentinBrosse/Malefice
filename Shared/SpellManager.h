@@ -13,6 +13,7 @@ namespace ecs
 	{
 	public:
 		SpellManager();
+		SpellManager(const SpellManager& cpy);
 		SpellManager(const Spell& defaultSpell);
 		~SpellManager()	= default;
 
@@ -41,6 +42,7 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
 	private:
 		std::map<Spell::SpellType, Spell>			m_spells;

@@ -8,6 +8,11 @@ namespace ecs
 	{
 	}
 
+	Team::Team(const Team & cpy) : AComponent("team", ecs::AComponent::ComponentType::TEAM),
+		m_death(cpy.m_death), m_kill(cpy.m_kill), m_team(cpy.m_team)
+	{
+	}
+
 	Team::Team(ecs::Team::TeamType team) : AComponent("Team", ecs::AComponent::ComponentType::TEAM),
 		m_team(team), m_death(0), m_kill(0)
 	{
@@ -89,5 +94,12 @@ namespace ecs
 		in.Read(m_team);
 		in.Read(m_kill);
 		in.Read(m_death);
+	}
+
+	AComponent * Team::createCopy(const AComponent * rhs) const
+	{
+		const Team* team = dynamic_cast<const Team*>(rhs);
+
+		return new Team(*team);
 	}
 }

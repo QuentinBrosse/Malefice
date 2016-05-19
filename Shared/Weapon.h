@@ -65,6 +65,8 @@ namespace ecs
 
 		virtual	void	dump(std::ostream& os)	const;
 
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
+
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 

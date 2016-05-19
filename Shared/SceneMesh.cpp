@@ -15,6 +15,11 @@ namespace ecs
 		init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, namePK3);
 	}
 
+	SceneMesh::SceneMesh(const SceneMesh & cpy) : AScene(cpy),
+		m_node(cpy.m_node)
+	{
+	}
+
 	SceneMesh::~SceneMesh()
 	{
 	}
@@ -112,5 +117,12 @@ namespace ecs
 	void	SceneMesh::deserialize(RakNet::BitStream& in)
 	{
 		AScene::deserialize(in);
+	}
+
+	AComponent * SceneMesh::createCopy(const AComponent * rhs) const
+	{
+		const SceneMesh*	scene = dynamic_cast<const SceneMesh*>(rhs);
+
+		return new SceneMesh(*scene);
 	}
 }

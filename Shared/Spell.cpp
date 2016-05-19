@@ -95,4 +95,11 @@ namespace ecs
 		in.Read(m_isLock);
 		m_name = name.C_String();
 	}
+
+	AComponent * Spell::createCopy(const AComponent * rhs) const
+	{
+		const Spell*	spell = dynamic_cast<const Spell*>(rhs);
+
+		return new Spell(*spell);
+	}
 }

@@ -6,6 +6,10 @@ namespace ecs
 	{
 	}
 
+	SceneBillboard::SceneBillboard(const SceneBillboard & cpy) : AScene(cpy)
+	{
+	}
+
 	SceneBillboard::SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::BILLBOARD, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable)
 	{
 		init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
@@ -44,6 +48,13 @@ namespace ecs
 		return *this;
 	}
 
+
+	AComponent * SceneBillboard::createCopy(const AComponent * rhs) const
+	{
+		const SceneBillboard* scene = dynamic_cast<const SceneBillboard*>(rhs);
+
+		return new SceneBillboard(*scene);
+	}
 
 	void	SceneBillboard::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{

@@ -22,6 +22,7 @@ namespace ecs
 		AScene();
 		AScene(ecs::AScene::SceneType type);
 		AScene(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
+		AScene(const AScene& cpy);
 		virtual ~AScene() = 0;
 
 		void	init(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
@@ -44,6 +45,7 @@ namespace ecs
 		virtual void			deserialize(RakNet::BitStream& in);
 
 		virtual AComponent&		affect(const AComponent& rhs) = 0;
+		virtual AComponent*	createCopy(const AComponent* rhs) const = 0;
 
 	protected:
 		ecs::AScene::SceneType			m_type;

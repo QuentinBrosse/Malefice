@@ -111,4 +111,11 @@ namespace ecs
 		RakNetUtility::deserializeVector(in, m_vectorRotation);
 		RakNetUtility::deserializeVector(in, m_vectorScale);
 	}
+
+	AComponent* Position::createCopy(const AComponent * rhs) const
+	{
+		const Position*	position = dynamic_cast<const Position*>(rhs);
+
+		return new Position(*position);
+	}
 }

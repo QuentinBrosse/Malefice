@@ -11,6 +11,7 @@ namespace ecs
 	{
 	public:
 		WeaponManager();
+		WeaponManager(const WeaponManager& cpy);
 		WeaponManager(Weapon& defaultWeapon);
 		~WeaponManager()	= default;
 
@@ -21,7 +22,7 @@ namespace ecs
 		void			changeToPrecWeapon();
 
 		Weapon&									getCurrentWeapon()	const;
-		std::map<Weapon::WeaponType, Weapon&>&	getWeapons();
+		std::map<Weapon::WeaponType, Weapon>&	getWeapons();
 
 		void			createWeapon(irr::IrrlichtDevice* device, const Weapon& weaponCpy);
 
@@ -33,9 +34,9 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
-
+		virtual AComponent*	createCopy(const AComponent* rhs) const;
 	private:
-		std::map<Weapon::WeaponType, Weapon&>			m_weapons;
-		std::map<Weapon::WeaponType, Weapon&>::iterator	m_currentWeapon;
+		std::map<Weapon::WeaponType, Weapon>			m_weapons;
+		std::map<Weapon::WeaponType, Weapon>::iterator	m_currentWeapon;
 	};
 }

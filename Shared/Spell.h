@@ -41,6 +41,7 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
+		virtual	AComponent*	createCopy(const AComponent* rhs) const;
 
 	private:
 		int			m_id;
