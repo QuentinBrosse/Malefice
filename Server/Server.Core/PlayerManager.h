@@ -16,5 +16,7 @@ public:
 	virtual void	updateEntities();
 	virtual void	deleteEntity(ecs::ClientId owner);
 
+	bool			isNicknameAvailable(const std::string& nickname)	const;
+
 	void	setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc);
 };

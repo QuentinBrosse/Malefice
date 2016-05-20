@@ -171,6 +171,11 @@ void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 	LOG_DEBUG(NETWORK) << "Sent nickname \"" << nickname << "\" to server";
 }
 
+void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
+{
+	LOG_INFO(NETWORK) << "Nickname already taken.";
+}
+
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
 	m_graphicModule->getMainMenu()->hide();
