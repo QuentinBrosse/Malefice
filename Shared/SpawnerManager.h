@@ -24,9 +24,14 @@ public:
 	ecs::Entity* seekSpawnerById(ecs::ClientId owner);
 
 public:
-	void SpawnerManager::lifeRegeneration(ecs::Entity* spawner);
-	void SpawnerManager::armorRegeneration(ecs::Entity* spawner);
-	void SpawnerManager::weaponRegeneration(ecs::Entity* spawner);
+	void lifeRegeneration(ecs::Entity* spawner);
+	void armorRegeneration(ecs::Entity* spawner);
+	void weaponRegeneration(ecs::Entity* spawner);
+
+public:
+	//void pickObject(ecs::ClientId owner);
+	//Fonction qui renvoie s'il y a collisions (soit avec la ligne soit avec le perso)
+
 public:
 	void dump() const;
 

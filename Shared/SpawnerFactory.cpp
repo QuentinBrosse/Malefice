@@ -18,6 +18,7 @@ ecs::Entity* SpawnerFactory::createLifeSpawner(const ecs::Position position, con
 	int i = rand() % 10 + 1;
 	ecs::Entity* entity = ObjectFactory::createObject(position, owner, ecs::Entity::EntityType::LIFE_SPAWNER);
 
+	(*entity)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh();
 	if (i <= 5)
 		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(20, ecs::AComponent::ComponentType::LIFE);
 	else if (i >= 6 && i <= 8)

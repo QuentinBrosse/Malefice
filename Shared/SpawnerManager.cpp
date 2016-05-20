@@ -4,6 +4,16 @@
 #include "Weapon.h"
 #include "Armor.h"
 
+SpawnerManager::SpawnerManager()
+{
+
+}
+
+SpawnerManager::~SpawnerManager()
+{
+
+}
+
 std::map<ecs::ClientId, ecs::Entity*> SpawnerManager::getSpawners() const
 {
 	return (m_spawners);
