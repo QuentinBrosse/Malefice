@@ -9,8 +9,9 @@
 
 // Client-Side executed
 
-const std::string	NetworkRPC::CLIENT_CORE_SET_CLIENT_ID	= "ClientCore::setClientId";
-const std::string	NetworkRPC::CLIENT_CORE_START_GAME		= "ClientCore::startGame";
+const std::string	NetworkRPC::CLIENT_CORE_SET_CLIENT_ID			= "ClientCore::setClientId";
+const std::string	NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME	= "ClientCore::notifyInvalidNickname";
+const std::string	NetworkRPC::CLIENT_CORE_START_GAME				= "ClientCore::startGame";
 
 const std::string	NetworkRPC::PLAYER_MANAGER_ADD_ENTITY		= "PlayerManager::addEntity";
 const std::string	NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY	= "PlayerManager::updateEntity";

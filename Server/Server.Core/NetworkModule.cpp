@@ -57,8 +57,12 @@ void	NetworkModule::pulse()
 			this->acceptClient(packet);
 			break;
 		case DefaultMessageIDTypes::ID_DISCONNECTION_NOTIFICATION:
+			ServerCore::getInstance().getPlayerManager().deleteEntity(packet->systemAddress.systemIndex);
+			LOG_INFO(NETWORK) << "Client with ID = " << packet->systemAddress.systemIndex << " disconnected.";
 			break;
 		case DefaultMessageIDTypes::ID_CONNECTION_LOST:
+			ServerCore::getInstance().getPlayerManager().deleteEntity(packet->systemAddress.systemIndex);
+			LOG_WARNING(NETWORK) << "Client with ID = " << packet->systemAddress.systemIndex << " lost connection.";
 			break;
 		case DefaultMessageIDTypes::ID_RPC_REMOTE_ERROR:
 			RakNetUtility::logRPCRemoteError(static_cast<RakNet::RPCErrorCodes>(packet->data[1]), std::string(reinterpret_cast<char*>(packet->data) + 2));

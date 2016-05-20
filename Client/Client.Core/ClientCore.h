@@ -31,6 +31,7 @@ public:
 
 
 	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
+	void	notifyInvalidNickname(RakNet::RPC3* rpc);
 	void	startGame(RakNet::RPC3* rpc);
 
 

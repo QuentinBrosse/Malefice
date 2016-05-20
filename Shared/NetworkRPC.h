@@ -22,6 +22,7 @@ public:
 	// Client-Side executed
 
 	static const std::string	CLIENT_CORE_SET_CLIENT_ID;
+	static const std::string	CLIENT_CORE_NOTIFY_INVALID_NICKNAME;
 	static const std::string	CLIENT_CORE_START_GAME;
 
 	static const std::string	PLAYER_MANAGER_ADD_ENTITY;
