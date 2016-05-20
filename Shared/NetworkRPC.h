@@ -32,4 +32,5 @@ public:
 	// Server-Side executed
 
 	static const std::string	PLAYER_MANAGER_SET_PLAYER_NICKNAME;
+	static const std::string	PLAYER_MANAGER_SERVER_UPDATE_ENTITY;
 };

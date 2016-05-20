@@ -7,6 +7,12 @@ EntityManager::~EntityManager()
 		delete entity.second;
 }
 
+void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity *entity, RakNet::RPC3* rpc)
+{
+	ecs::Entity&	localEntity = *m_entities[owner];
+
+	localEntity = *entity;
+}
 
 bool	EntityManager::hasEntity(ecs::ClientId owner)	const
 {

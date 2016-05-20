@@ -61,6 +61,11 @@ void	PlayerManager::deleteEntity(ecs::ClientId owner)
 	}
 }
 
+void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
+{
+	EntityManager::updateEntity(owner, entity, rpc);
+}
+
 
 void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc)
 {

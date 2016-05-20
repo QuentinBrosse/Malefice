@@ -124,17 +124,17 @@ namespace ecs
 	{
 		AComponent::serialize(out, serializeType);
 
-		out.Write<size_t>(m_weapons.size());
+/*		out.Write<size_t>(m_weapons.size());
 		for (auto weapon : m_weapons)
 			weapon.second.serialize(out, serializeType);
 
-		if (m_currentWeapon != m_weapons.end())
+/	if (m_currentWeapon != m_weapons.end())
 		{
 			out.Write(true);
 			out.Write(m_currentWeapon->first);
 		}
 		else
-			out.Write(false);
+			out.Write(false);*/
 	}
 
 	void	WeaponManager::deserialize(RakNet::BitStream& in)
@@ -144,20 +144,20 @@ namespace ecs
 		size_t				nbWeapons;
 
 		AComponent::deserialize(in);
-		in.Read(nbWeapons);
+		/*in.Read(nbWeapons);
 		for (size_t i = 0; i < nbWeapons; i++)
 		{
 			in.Read(weaponType);
 			m_weapons[weaponType].deserialize(in);
 		}
-		in.Read(haveCurrent);
+	in.Read(haveCurrent);
 		if (haveCurrent)
 		{
 			in.Read(weaponType);
 			m_currentWeapon = m_weapons.find(weaponType);
 		}
 		else
-			m_currentWeapon = m_weapons.end();
+			m_currentWeapon = m_weapons.end();*/
 	}
 
 	AComponent* WeaponManager::createCopy(const AComponent* rhs) const

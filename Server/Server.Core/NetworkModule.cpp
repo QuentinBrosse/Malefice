@@ -69,10 +69,10 @@ void	NetworkModule::pulse()
 }
 
 
-
 void	NetworkModule::registerRPCs()
 {
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str(), &PlayerManager::setPlayerNickname);
+	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 }
 
 void	NetworkModule::unregisterRPCs()
