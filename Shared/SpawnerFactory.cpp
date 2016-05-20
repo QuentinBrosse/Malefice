@@ -1,15 +1,15 @@
 #include "SpawnerFactory.h"
+#include "WeaponCreator.h"
 #include "Position.h"
 #include "Life.h"
 #include "Armor.h"
 
-ecs::Entity* SpawnerFactory::createWeaponSpawner(const ecs::Position position, const ecs::ClientId owner, WeaponsConfiguration* weaponConfig)
+ecs::Entity* SpawnerFactory::createWeaponSpawner(const ecs::Position position, const ecs::ClientId owner)
 {
 	int i = rand() % 10;
 	ecs::Entity* entity = ObjectFactory::createObject(position, owner, ecs::Entity::EntityType::WEAPON_SPAWNER);
 
-	(*entity)[ecs::AComponent::ComponentType::WEAPON] = weaponConfig->create(i);
-	
+	(*entity)[ecs::AComponent::ComponentType::WEAPON] = &WeaponCreator::getInstance().create((const ecs::Weapon::WeaponType)i);	
 	return entity;
 }
 

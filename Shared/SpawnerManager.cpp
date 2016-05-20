@@ -1,5 +1,5 @@
 #include "SpawnerManager.h"
-#include "WeaponsConfiguration.h"
+#include "WeaponCreator.h"
 #include "Life.h"
 #include "Weapon.h"
 #include "Armor.h"
@@ -36,20 +36,20 @@ void SpawnerManager::armorRegeneration(ecs::Entity* entity)
 		(*entity)[ecs::AComponent::ComponentType::ARMOR] = new ecs::Armor(100);
 }
 
-void SpawnerManager::weaponRegeneration(ecs::Entity* entity, WeaponsConfiguration* weaponConfig)
+void SpawnerManager::weaponRegeneration(ecs::Entity* entity)
 {
 	int i = rand() % 10;
-	(*entity)[ecs::AComponent::ComponentType::WEAPON] = weaponConfig->getWeapons.at(i);
+	(*entity)[ecs::AComponent::ComponentType::WEAPON] = &WeaponCreator::getInstance().create((const ecs::Weapon::WeaponType)i);
 }
 
-void SpawnerManager::regenerate(ecs::ClientId owner, WeaponsConfiguration* weaponConfig)
+void SpawnerManager::regenerate(ecs::ClientId owner)
 {
 	if (getSpawners()[owner])
 	{
 		if (getSpawners()[owner]->getEntityType() == ecs::Entity::EntityType::ARMOR_SPAWNER)
 			armorRegeneration(getSpawners()[owner]);
 		else if (getSpawners()[owner]->getEntityType() == ecs::Entity::EntityType::WEAPON_SPAWNER)
-			weaponRegeneration(getSpawners()[owner], weaponConfig);
+			weaponRegeneration(getSpawners()[owner]);
 		else
 			lifeRegeneration(getSpawners()[owner]);
 	}

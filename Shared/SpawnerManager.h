@@ -17,7 +17,7 @@ public:
 
 public:
 	void add(ecs::Entity* newSpawner);
-	void regenerate(ecs::ClientId owner, WeaponsConfiguration* weaponConfig);
+	void regenerate(ecs::ClientId owner);
 	void remove(ecs::ClientId owner);
 
 public:
@@ -26,7 +26,7 @@ public:
 public:
 	void SpawnerManager::lifeRegeneration(ecs::Entity* spawner);
 	void SpawnerManager::armorRegeneration(ecs::Entity* spawner);
-	void SpawnerManager::weaponRegeneration(ecs::Entity* spawner, WeaponsConfiguration* weaponConfig);
+	void SpawnerManager::weaponRegeneration(ecs::Entity* spawner);
 public:
 	void dump() const;
 
