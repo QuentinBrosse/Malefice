@@ -18,7 +18,6 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 	if (ClientCore::getInstance().getClientId() == owner)
 	{
 		this->setCurrentPlayer(localEntity);
-		
 	}
 }
 
