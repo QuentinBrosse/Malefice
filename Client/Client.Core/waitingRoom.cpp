@@ -8,7 +8,7 @@
 #endif
 
 WaitingRoom::WaitingRoom(GraphicUtil &gu) :
-	m_graphicalUtil(gu), m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_timestamp(0), m_stopTimer(false), m_timerText(nullptr), m_rightTeam(nullptr), m_leftTeam(nullptr)
+	m_graphicalUtil(gu), m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_timestamp(0), m_stopTimer(false), m_timerText(nullptr), m_rightTeam(nullptr), m_leftTeam(nullptr), m_checkConnectedPlayers(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("WaitingRoom.layout");
 	try
@@ -39,10 +39,12 @@ void WaitingRoom::display()
 	}
 	else
 		m_systemd.getDefaultGUIContext().getRootWindow()->addChild(m_windows);
+	m_checkConnectedPlayers = true;
 }
 
 void WaitingRoom::hide()
 {
+	m_checkConnectedPlayers = false;
 	std::cout << "Timer stoped" << std::endl;
 	m_stopTimer = true;
 	try {
@@ -90,4 +92,12 @@ void WaitingRoom::addPredator(const std::string &txt)
 	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
 	item->setText(txt);
 	m_predator->addItem(item);
+}
+
+void WaitingRoom::checkConnectedPlayers()
+{
+	if (m_checkConnectedPlayers)
+	{
+		//ClientCore::getInstance().getPlayerManager()->
+	}
 }
