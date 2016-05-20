@@ -19,4 +19,6 @@ public:
 	bool			isNicknameAvailable(const std::string& nickname)	const;
 
 	void	setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc);
+
+	static int		positionXDebug; //REMOVE
 };

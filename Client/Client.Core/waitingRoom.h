@@ -21,6 +21,7 @@ public:
 	void addRightTeamMember(const std::string& name);
 	void addLeftTeamMember(const std::string& name);
 	void addPredator(const std::string &txt);
+	void checkConnectedPlayers();
 
 private:
 	GraphicUtil&				m_graphicalUtil;
@@ -33,4 +34,5 @@ private:
 	CEGUI::Listbox*				m_rightTeam;
 	CEGUI::Listbox*				m_leftTeam;
 	CEGUI::Listbox*				m_predator;
+	bool						m_checkConnectedPlayers;
 };

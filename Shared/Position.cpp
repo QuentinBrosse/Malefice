@@ -5,7 +5,7 @@
 namespace ecs
 {
 	Position::Position() : AComponent("Position", ecs::AComponent::ComponentType::POSITION),
-		m_vectorPosition(0.f, 0.f, 0.f), m_vectorRotation(0.f, 0.f, 0.f), m_vectorScale(0.f, 0.f, 0.f)
+		m_vectorPosition(0.f, 0.f, 0.f), m_vectorRotation(0.f, 0.f, 0.f), m_vectorScale(1.f, 1.f, 1.f)
 	{
 	}
 

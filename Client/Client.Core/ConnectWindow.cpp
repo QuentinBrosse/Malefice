@@ -2,7 +2,7 @@
 #include "ClientCore.h"
 
 ConnectWindow::ConnectWindow(GraphicUtil &gu) :
-	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu)
+	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try
@@ -65,7 +65,7 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 		this->hide();
 		m_graphicUtils.getMainMenu()->hide();
 		m_graphicUtils.getWaitingRoom()->display();
-
+		m_enableConnectStatusCheck = true;
 		return true;
 	} else {
 		m_connectionStatus->setText("Informations invalides...");
@@ -91,4 +91,19 @@ std::string ConnectWindow::getNickNameEditBox()
 std::string ConnectWindow::getPasswordEditBox()
 {
 	return (m_password->getText().c_str());
+}
+
+void ConnectWindow::checkConnectionStatus()
+{
+	if (m_enableConnectStatusCheck)
+	{
+		if (ClientCore::getInstance().getNetworkModule()->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED)
+		{
+			m_connectionStatus->setText("Connection réussi.");
+		}
+		if (ClientCore::getInstance().getNetworkModule()->getConnectionState() == RakNet::ConnectionState::IS_NOT_CONNECTED)
+		{
+			m_connectionStatus->setText("Connection échoué.");
+		}
+	}
 }
