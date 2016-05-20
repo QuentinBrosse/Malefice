@@ -14,9 +14,12 @@
 #include "WeaponCreator.h"
 #include "Logger.h"
 
-ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, ecs::Team::TeamType team, const int life)
+/*
+* Client 
+*/
+ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, ecs::ClientId playerID, const ecs::Position position, ecs::Team::TeamType team, const int life)
 {
-	ecs::Entity* entity = ObjectFactory::createObject(vectorPosition, vectorRotation, playerID, ecs::Entity::EntityType::PLAYER);
+	ecs::Entity* entity = ObjectFactory::createObject(position, playerID, ecs::Entity::EntityType::PLAYER);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
@@ -45,7 +48,7 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
 	dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, *weaponSniper);
 
-	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
+	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(position));
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, false, 0);
@@ -63,17 +66,19 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	return entity;
 }
 
-ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation, ecs::Team::TeamType team, const int life)
+/*
+* Server
+*/
+ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const ecs::Position position, ecs::Team::TeamType team, const int life)
 {
-	ecs::Entity*	entity = ObjectFactory::createObject(vectorPosition, vectorRotation, id, ecs::Entity::EntityType::PLAYER);
+	ecs::Entity*	entity = ObjectFactory::createObject(position, id, ecs::Entity::EntityType::PLAYER);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
 
-	
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager();
 
-	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(vectorPosition, vectorRotation));
+	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(position);
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 	return entity;
@@ -92,18 +97,18 @@ void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & 
 	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>(entity[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
 }
 
-ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const ecs::ClientId playerID, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation)
+ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const ecs::ClientId playerID, const ecs::Position position)
 {
-	ecs::Entity* entity = PlayerFactory::createPlayer(device, newNameTexture, newNameMesh, playerID, vectorPosition, vectorRotation, ecs::Team::TeamType::Predator, 1000);
+	ecs::Entity* entity = PlayerFactory::createPlayer(device, newNameTexture, newNameMesh, playerID, position, ecs::Team::TeamType::Predator, 1000);
 
 	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(ecs::Spell(1, "confusion", ecs::Spell::CONFUSION, 5));
 
 	return entity;
 }
 
-ecs::Entity* PlayerFactory::createPredator(ecs::ClientId id, const irr::core::vector3df& vectorPosition, const irr::core::vector3df& vectorRotation)
+ecs::Entity* PlayerFactory::createPredator(ecs::ClientId id, const ecs::Position position)
 {
-	ecs::Entity* entity = PlayerFactory::createPlayer(id, vectorPosition, vectorRotation, ecs::Team::TeamType::Predator, 1000);
+	ecs::Entity* entity = PlayerFactory::createPlayer(id, position, ecs::Team::TeamType::Predator, 1000);
 
 	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(ecs::Spell(1, "confusion", ecs::Spell::CONFUSION, 5));
 

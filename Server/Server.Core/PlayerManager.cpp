@@ -12,6 +12,7 @@ PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::P
 {
 }
 
+int PlayerManager::positionXDebug = 0; //REMOVE
 
 void	PlayerManager::createEntity(ecs::ClientId owner)
 {
@@ -23,10 +24,16 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 		team = ecs::Team::TeamType::Team2;
 	else
 		team = ecs::Team::TeamType::Predator;
+
+	ecs::Position position(irr::core::vector3df(positionXDebug, 0, 0), irr::core::vector3df(0, 0, 0));
+
 	if (team != ecs::Team::TeamType::Predator)
-		m_entities[owner] = PlayerFactory::createPlayer(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), team, 100); // TODO: pick random spawn position, set rotation
+	{
+		positionXDebug += 20; //REMOVE
+		m_entities[owner] = PlayerFactory::createPlayer(owner, position, team, 100); // TODO: pick random spawn position, set rotation
+	}
 	else
-		m_entities[owner] = PlayerFactory::createPredator(owner, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0)); // TODO: pick random spawn position, set rotation
+		m_entities[owner] = PlayerFactory::createPredator(owner, position); // TODO: pick random spawn position, set rotation
 	// Don't send new player to anyone yet, wait for the username (C.F. below)
 }
 

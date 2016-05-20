@@ -10,8 +10,8 @@ public:
 	SpawnerFactory() = delete;
 	~SpawnerFactory() = delete;
 
-	static ecs::Entity* createWeaponSpawner(const irr::core::vector3df & vectorPosition, const irr::core::vector3df & vectorRotation, const unsigned int networkId);
-	static ecs::Entity* createLifeSpawner(const irr::core::vector3df & vectorPosition, const irr::core::vector3df & vectorRotation, const unsigned int networkId);
-	static ecs::Entity* createSpellSpawner(const irr::core::vector3df & vectorPosition, const irr::core::vector3df & vectorRotation, const unsigned int networkId);
+	static ecs::Entity* createWeaponSpawner(const ecs::Position position, const unsigned int networkId);
+	static ecs::Entity* createLifeSpawner(const ecs::Position position, const unsigned int networkId);
+	static ecs::Entity* createSpellSpawner(const ecs::Position position, const unsigned int networkId);
 
 };

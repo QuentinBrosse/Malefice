@@ -17,4 +17,6 @@ public:
 	virtual void	deleteEntity(ecs::ClientId owner);
 
 	void	setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc);
+
+	static int		positionXDebug; //REMOVE
 };
