@@ -61,11 +61,36 @@ void	PlayerManager::deleteEntity(ecs::ClientId owner)
 	}
 }
 
+void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
+{
+	EntityManager::updateEntity(owner, entity, rpc);
+}
+
+
+bool	PlayerManager::isNicknameAvailable(const std::string& nickname)	const
+{
+	for (auto entity : m_entities)
+	{
+		ecs::Entity&	player = *entity.second;
+
+		ecs::PlayerInfos*	playerInfos = dynamic_cast<ecs::PlayerInfos*>(player[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+
+		if (nickname == playerInfos->getNickname())
+			return false;
+	}
+	return true;
+}
+
 
 void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* rpc)
 {
 	auto	it = m_entities.find(rpc->GetLastSenderAddress().systemIndex);
 
+	if (!this->isNicknameAvailable(nickname.C_String()))
+	{
+		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), rpc->GetLastSenderAddress().systemIndex, false);
+		return;
+	}
 	if (it != m_entities.end())
 	{
 		ecs::PlayerInfos*	playerInfos	= dynamic_cast<ecs::PlayerInfos*>((*it->second)[ecs::AComponent::ComponentType::PLAYER_INFOS]);

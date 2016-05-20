@@ -131,7 +131,8 @@ RakNet::BitStream&	RakNet::operator<<(RakNet::BitStream& out, ecs::Entity& in)
 	out.Write(components.size());
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
-		it->second->serialize(out);
+		if (it->second)
+			it->second->serialize(out);
 	}
 	return out;
 }

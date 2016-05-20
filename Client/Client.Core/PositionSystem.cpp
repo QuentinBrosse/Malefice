@@ -7,6 +7,7 @@
 #include "WeaponManager.h"
 #include "AScene.h"
 #include "MathUtility.h"
+#include "ClientCore.h"
 
 namespace ecs
 {
@@ -34,11 +35,14 @@ namespace ecs
 			posCam.Z = posCam.Z - dist * std::cos(radCamY);
 			oriMe.Y = oriCam.Y - 85.f;
 
+			position->set(ecs::Position(posCam, oriMe));
 			scene->setPosition(ecs::Position(posCam, oriMe));
 		}
+
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])))
 			weaponManager->getCurrentWeapon().setActivity(true);
 
+		ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY, true, entity.getOwner(), &entity);
 	}
 
 	void PositionSystem::initScenePosition(Entity& entity)

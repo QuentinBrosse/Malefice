@@ -24,6 +24,8 @@ public:
 	std::string getNickNameEditBox();
 	std::string getPasswordEditBox();
 	void checkConnectionStatus();
+	void setStatus(const std::string &status);
+	void disableConnectionStateCheck();
 
 private:
 	bool				m_enableConnectStatusCheck;
@@ -39,4 +41,5 @@ private:
 	std::string			m_portStr;
 	std::string			m_pseudoStr;
 	GraphicUtil&		m_graphicUtils;
+	bool				m_isConnected;
 };
