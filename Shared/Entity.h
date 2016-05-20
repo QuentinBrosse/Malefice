@@ -18,7 +18,9 @@ namespace ecs
 		{
 			NOTHING,
 			PLAYER,
-			SPAWN,
+			LIFE_SPAWNER,
+			WEAPON_SPAWNER,
+			ARMOR_SPAWNER,
 			MAP,
 			ENTITY_COUNT,
 		};

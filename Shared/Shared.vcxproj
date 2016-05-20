@@ -175,6 +175,7 @@
     <ClCompile Include="SceneBillboard.cpp" />
     <ClCompile Include="SceneMesh.cpp" />
     <ClCompile Include="SpawnerFactory.cpp" />
+    <ClCompile Include="SpawnerManager.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellCreator.cpp" />
     <ClCompile Include="SpellManager.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="SceneMesh.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpawnerFactory.h" />
+    <ClInclude Include="SpawnerManager.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="SpellCreator.h" />
     <ClInclude Include="SpellManager.h" />

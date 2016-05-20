@@ -150,9 +150,6 @@
     <ClCompile Include="RakNetUtility.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnerFactory.cpp">
-      <Filter>Source Files\ECS\Factory</Filter>
-    </ClCompile>
     <ClCompile Include="AScene.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
@@ -179,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="PlayerInfos.cpp">
       <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnerFactory.cpp">
+      <Filter>Source Files\ECS\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnerManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +281,6 @@
     <ClInclude Include="RakNetUtility.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="SpawnerFactory.h">
-      <Filter>Header Files\ECS\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="AScene.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
@@ -301,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="PlayerInfos.h">
       <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnerFactory.h">
+      <Filter>Header Files\ECS\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
