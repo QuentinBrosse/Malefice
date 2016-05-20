@@ -80,7 +80,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getMenuPause()->checkPause();
 		m_graphicModule->getWaitingRoom()->refreshTime();
 		m_graphicModule->getHUD()->refreshTime();
-
+		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);

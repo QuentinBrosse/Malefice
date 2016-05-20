@@ -23,18 +23,20 @@ public:
 	std::string getPortEditBox();
 	std::string getNickNameEditBox();
 	std::string getPasswordEditBox();
+	void checkConnectionStatus();
 
 private:
-	CEGUI::Window* m_windows;
-	CEGUI::Window* m_connectionStatus;
-	CEGUI::Editbox* m_ip;
-	CEGUI::Editbox* m_port;
-	CEGUI::Editbox* m_pseudo;
-	CEGUI::Editbox* m_password;
-	CEGUI::System& m_systemd;
+	bool				m_enableConnectStatusCheck;
+	CEGUI::Window*		m_windows;
+	CEGUI::Window*		m_connectionStatus;
+	CEGUI::Editbox*		m_ip;
+	CEGUI::Editbox*		m_port;
+	CEGUI::Editbox*		m_pseudo;
+	CEGUI::Editbox*		m_password;
+	CEGUI::System&		m_systemd;
 	CEGUI::FrameWindow* m_frameWindows;
-	std::string m_ipStr;
-	std::string m_portStr;
-	std::string m_pseudoStr;
-	GraphicUtil& m_graphicUtils;
+	std::string			m_ipStr;
+	std::string			m_portStr;
+	std::string			m_pseudoStr;
+	GraphicUtil&		m_graphicUtils;
 };
