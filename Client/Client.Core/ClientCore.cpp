@@ -177,6 +177,11 @@ void	ClientCore::setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc)
 void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 {
 	LOG_INFO(NETWORK) << "Nickname already taken.";
+	m_graphicModule->getWaitingRoom()->hide();
+	m_graphicModule->getMainMenu()->display();
+	m_graphicModule->getConnectWindow()->display();
+	m_graphicModule->getConnectWindow()->disableConnectionStateCheck();
+	m_graphicModule->getConnectWindow()->setStatus("Nickname already Taken");
 }
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)

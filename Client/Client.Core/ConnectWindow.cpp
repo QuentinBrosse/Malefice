@@ -2,7 +2,7 @@
 #include "ClientCore.h"
 
 ConnectWindow::ConnectWindow(GraphicUtil &gu) :
-	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false)
+	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false), m_isConnected(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
 	try
@@ -51,7 +51,6 @@ void ConnectWindow::hide()
 bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
-	ClientCore::getInstance().getNetworkModule()->disconnect();
 	return (true);
 }
 
@@ -61,11 +60,13 @@ bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 	{
 		m_connectionStatus->setText("Connection en cour...");
 		ClientCore::getInstance().setNickname(this->getNickNameEditBox());
-		ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPasswordEditBox());
+		if (!m_isConnected)
+			ClientCore::getInstance().getNetworkModule()->connect(this->getIPEditBox(), std::stoi(this->getPortEditBox()), this->getPasswordEditBox());
 		this->hide();
 		m_graphicUtils.getMainMenu()->hide();
 		m_graphicUtils.getWaitingRoom()->display();
 		m_enableConnectStatusCheck = true;
+		m_isConnected = true;
 		return true;
 	} else {
 		m_connectionStatus->setText("Informations invalides...");
@@ -106,4 +107,14 @@ void ConnectWindow::checkConnectionStatus()
 			m_connectionStatus->setText("Connection échoué.");
 		}
 	}
+}
+
+void ConnectWindow::disableConnectionStateCheck()
+{
+	m_enableConnectStatusCheck = false;
+}
+
+void ConnectWindow::setStatus(const std::string &status)
+{
+	m_connectionStatus->setText(status);
 }
