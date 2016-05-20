@@ -47,7 +47,6 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setFPSCamera();
 		createEntities();
-		std::cout << "ouiiiii" << std::endl;
 		startGame(0);
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
@@ -81,18 +80,16 @@ void	ClientCore::pulse()
 		m_graphicModule->getMenuPause()->checkPause();
 		m_graphicModule->getWaitingRoom()->refreshTime();
 		m_graphicModule->getHUD()->refreshTime();
-
+		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
-
 		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_playerManager->getCurrentPlayer() && (*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])
 		{
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 		}
-		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
