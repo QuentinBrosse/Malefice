@@ -8,15 +8,25 @@ namespace ecs
 	{
 	}
 
-	SpellManager::SpellManager(const SpellManager & cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
-		m_currentSpell(cpy.m_currentSpell), m_spells(cpy.m_spells), m_weaponManager(cpy.m_weaponManager), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
+	SpellManager::SpellManager(const SpellManager& cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
+		m_currentSpell(m_spells.end()), m_weaponManager(cpy.m_weaponManager), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
 	{
+		for (auto spell : cpy.m_spells)
+		{
+			m_spells[spell.first] = spell.second;
+		}
+		if (!m_spells.empty() && cpy.m_currentSpell != cpy.m_spells.end())
+			m_currentSpell = m_spells.find(cpy.m_currentSpell->first);
+		else
+			m_currentSpell = m_spells.end();
 	}
 
 	//TODO: CHange new Weapon with call to WeaponCreator
 	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
-		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(*(new Weapon()))
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
 	{
+		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
+		m_currentSpell = m_spells.begin();
 	}
 
 
@@ -24,7 +34,8 @@ namespace ecs
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
 		m_currentSpell = m_spells.begin();
-		m_weaponManager.addWeapon(*(new Weapon()));
+		m_weaponsIsCurrent = false;
+		//m_weaponManager.addWeapon(*(new Weapon()));
 		// TODO: Change new Weapon() with two weapons of predator
 	}
 
@@ -164,7 +175,7 @@ namespace ecs
 			m_currentSpell = m_spells.end();
 	}
 
-	AComponent * SpellManager::createCopy(const AComponent * rhs) const
+	AComponent * SpellManager::createCopy(const AComponent* rhs) const
 	{
 		const SpellManager* spellManager = dynamic_cast<const SpellManager*>(rhs);
 

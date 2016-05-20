@@ -85,7 +85,7 @@ void	ServerCore::pulse(long long elapsedTime)
 	m_networkModule.pulse();
 	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
 	{
-		//m_playerManager.updateEntities();
+		m_playerManager.updateEntities();
 		m_updateElapsedTime = 0;
 		LOG_TRACE(NETWORK) << "Updated all entities for everybody";
 	}

@@ -3,17 +3,24 @@
 namespace ecs
 {
 	WeaponManager::WeaponManager() : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
-		m_weapons(), m_currentWeapon(m_weapons.end())
+		m_currentWeapon(m_weapons.end())
 	{
 	}
 
-	WeaponManager::WeaponManager(const WeaponManager & cpy): AComponent("WeaponManager", ComponentType::WEAPON_MANAGER),
-		m_currentWeapon(cpy.m_currentWeapon), m_weapons(cpy.m_weapons)
+	WeaponManager::WeaponManager(const WeaponManager& cpy): AComponent("WeaponManager", ComponentType::WEAPON_MANAGER),
+		m_currentWeapon(m_weapons.end())
 	{
+		for (auto weapon : cpy.m_weapons)
+		{
+			m_weapons[weapon.first] = weapon.second;
+		}
+		if (!m_weapons.empty() && cpy.m_currentWeapon != cpy.m_weapons.end())
+			m_currentWeapon = m_weapons.find(cpy.m_currentWeapon->first);
+		else
+			m_currentWeapon = m_weapons.end();
 	}
 
-	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER),
-		m_weapons(), m_currentWeapon(m_weapons.end())
+	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER)
 	{
 		init(defaultWeapon);
 	}
@@ -30,6 +37,8 @@ namespace ecs
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
 			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (newWeapon.getWeaponType(), newWeapon));
+		if (m_weapons.size() == 1)
+			m_currentWeapon = m_weapons.begin();
 	}
 
 	
@@ -50,6 +59,11 @@ namespace ecs
 		else
 			--m_currentWeapon;
 		m_currentWeapon->second.setActivity(true);
+	}
+
+	bool	WeaponManager::hasCurrentWeapon() const
+	{
+		return m_currentWeapon != m_weapons.end();
 	}
 
 	Weapon&	WeaponManager::getCurrentWeapon() const
@@ -146,7 +160,7 @@ namespace ecs
 			m_currentWeapon = m_weapons.end();
 	}
 
-	AComponent* WeaponManager::createCopy(const AComponent * rhs) const
+	AComponent* WeaponManager::createCopy(const AComponent* rhs) const
 	{
 		const WeaponManager*	weaponManager = dynamic_cast<const WeaponManager*>(rhs);
 

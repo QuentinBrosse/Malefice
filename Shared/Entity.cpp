@@ -37,21 +37,22 @@ namespace ecs
 	}
 
 	Entity::Entity(const Entity& rhs):
-		m_components(rhs.m_components), m_entityType(rhs.m_entityType), m_owner(rhs.m_owner)
+		m_components(), m_entityType(rhs.m_entityType), m_owner(rhs.m_owner)
 	{
-		/*for (auto component : rhs.m_components)
+		for (auto component : rhs.m_components)
 		{
-			(*m_components[component.second->TYPE]) = new (*component.second);
-		}*/
+			m_components[component.second->TYPE] = component.second->createCopy(component.second);
+		}
 	}
 
 	Entity&	Entity::operator=(const Entity& rhs)
 	{
 		auto rhsComponents = rhs.getComponents();
 
-		for (auto component : m_components)
+		for (auto component : rhsComponents)
 		{
-			(*component.second) = (*rhsComponents[component.second->TYPE]);
+			if (component.second)
+				(*m_components[component.second->TYPE]) = (*component.second);
 		}
 		return *this;
 	}

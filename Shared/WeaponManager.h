@@ -21,6 +21,7 @@ namespace ecs
 		void			changeToNextWeapon();
 		void			changeToPrecWeapon();
 
+		bool			hasCurrentWeapon() const;
 		Weapon&									getCurrentWeapon()	const;
 		std::map<Weapon::WeaponType, Weapon>&	getWeapons();
 
@@ -35,6 +36,7 @@ namespace ecs
 		virtual void	deserialize(RakNet::BitStream& in);
 
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
+
 	private:
 		std::map<Weapon::WeaponType, Weapon>			m_weapons;
 		std::map<Weapon::WeaponType, Weapon>::iterator	m_currentWeapon;
