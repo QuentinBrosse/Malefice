@@ -31,7 +31,7 @@ namespace ecs
 		m_meshName = meshName;
 		m_maxAmmunition = ammunition;
 		m_damage = damage;
-		m_weaponType =weaponType;
+		m_weaponType = weaponType;
 		m_sight = sight;
 		m_ammunition = ammunition;
 		m_reloadTime = reloadTime;
@@ -228,7 +228,7 @@ namespace ecs
 		out.Write(m_ammoPerShot);
 		out.Write(m_fireRate);
 		out.Write(m_distance);
-		m_scene->serialize(out, false);
+		//m_scene->serialize(out, false);
 		m_externalMetrics.serialize(out, false);
 		m_fpsMetrics.serialize(out, false);
 	}
@@ -247,7 +247,7 @@ namespace ecs
 		in.Read(m_ammoPerShot);
 		in.Read(m_fireRate);
 		in.Read(m_distance);
-		m_scene->deserialize(in);
+		//m_scene->deserialize(in);
 		m_externalMetrics.deserialize(in);
 		m_fpsMetrics.deserialize(in);
 	}

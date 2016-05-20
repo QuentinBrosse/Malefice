@@ -34,10 +34,10 @@ void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 
 void PlayerManager::initPlayersScene()
 {
-	for (auto player : m_entities)
+	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *player.second);
-		ecs::PositionSystem::initScenePosition(*player.second);
+		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
+		ecs::PositionSystem::initScenePosition(*it->second);
 	}
 }
 

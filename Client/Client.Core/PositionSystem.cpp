@@ -27,7 +27,6 @@ namespace ecs
 			irr::core::vector3df oriCam = camera->getPosition().getVectorRotation();
 
 			const float dist = 5.f;
-			const double pi = std::acos(-1);
 			const float radCamY = utility::MathUtility::degreesToRadians(oriCam.Y);
 
 			posCam.Y -= 27.f;
@@ -37,8 +36,9 @@ namespace ecs
 
 			scene->setPosition(ecs::Position(posCam, oriMe));
 		}
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])))
 			weaponManager->getCurrentWeapon().setActivity(true);
+
 	}
 
 	void PositionSystem::initScenePosition(Entity& entity)

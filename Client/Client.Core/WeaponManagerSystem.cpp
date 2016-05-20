@@ -42,27 +42,16 @@ namespace ecs
 
 			Camera*	camera = graphics.getFPSCamera();
 
-			/*
-			irr::core::vector3df	 scale = irr::core::vector3df(20.0f, 20.0f, 15.f);
-			irr::core::vector3df	 position = irr::core::vector3df(1.2f, -0.8f, 1.5f);
-			irr::core::vector3df	 rotation = irr::core::vector3df(0.f, 0.f, 0.f);
-			*/
-
-			for (auto weapon : weapons)
+			for (auto it = weapons.begin(); it != weapons.end(); ++it)
 			{
-				scene = weapon.second.getScene();
+				(*it).second.createScene(graphics.getDevice(), false);
+				scene = (*it).second.getScene();
 
-				weapon.second.getScene()->setPosition(weapon.second.getFPSMetrics());
-				/*
-				weapon.second.getScene()->getScene()->setScale(scale);
-				weapon.second.getScene()->getScene()->setPosition(position);
-				weapon.second.getScene()->getScene()->setRotation(rotation);
-				*/
+				(*it).second.getScene()->setPosition((*it).second.getFPSMetrics());
 			}
 
-			weaponManager->getCurrentWeapon().setActivity(true);
-
-			//TODO: update position of weapon's scene
+			if (weaponManager->hasCurrentWeapon())
+				weaponManager->getCurrentWeapon().setActivity(true);
 		}
 	}
 
