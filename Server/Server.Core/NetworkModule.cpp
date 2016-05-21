@@ -82,6 +82,7 @@ void	NetworkModule::registerRPCs()
 void	NetworkModule::unregisterRPCs()
 {
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str());
 }
 
 
