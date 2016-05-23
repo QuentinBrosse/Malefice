@@ -67,9 +67,13 @@ namespace ecs
 		m_material = new irr::video::SMaterial();
 
 		if (newNameTexture != "")
-			setTexture(newNameTexture);
+			this->setTexture(newNameTexture);
 	}
 
+	irr::scene::ISceneNode*	SceneAnimatedMesh::getNode()	const
+	{
+		return m_node;
+	}
 
 	void SceneAnimatedMesh::setPosition(const ecs::Position& newPosition)
 	{

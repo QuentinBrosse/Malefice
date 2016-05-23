@@ -1,13 +1,22 @@
 #include <iostream>
+#include <irrlicht.h>
 #include "ServerCore.h"
 #include "ProjectGlobals.h"
 #include "Logger.h"
 #include "TimeUtility.h"
+#include "Position.h"
+#include "PositionSystem.h"
+#include "WeaponManager.h"
+#include "WeaponManagerSystem.h"
+#include "EventSystem.h"
+#include "GameEventReceiver.h"
+#include "MapFactory.h"
+#include "NodePickable.h"
 
 const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -141,10 +150,19 @@ void	ServerCore::processCommand(const std::string& command, const std::string& p
 	}
 }
 
+void ServerCore::createEntities()
+{
+	ecs::Position	mapPos(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0, 0, 0));
+	ecs::Entity*	map = MapFactory::createMap(m_physicsUtil.getDevice(), mapPos, -1, "20kdm2.bsp", "map-20kdm2.pk3");
+
+	ecs::PositionSystem::initScenePosition(*map);
+}
+
 
 
 void	ServerCore::startGame()
 {
+	this->createEntities();
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	m_gameStarted = true;
 }
@@ -159,4 +177,9 @@ NetworkModule&	ServerCore::getNetworkModule()
 PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
+}
+
+PhysicsUtil & ServerCore::getPhysicsUtil()
+{
+	return m_physicsUtil;
 }

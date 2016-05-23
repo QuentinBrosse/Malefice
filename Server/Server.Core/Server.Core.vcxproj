@@ -14,6 +14,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="MovementSystem.h" />
+    <ClInclude Include="PhysicsUtil.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
     <ClInclude Include="ServerCore.h" />
@@ -28,6 +29,7 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="PhysicsUtil.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />

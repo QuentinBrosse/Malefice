@@ -17,6 +17,7 @@ namespace ecs
 
 		virtual void	init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
 
+		virtual irr::scene::ISceneNode*	getNode()	const;
 		virtual void						setPosition(const ecs::Position& newPosition);
 		void								setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType);
 		void								setTexture(const std::string& nameTexture);
