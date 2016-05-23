@@ -41,14 +41,13 @@ protected:
 
 private:
 	bool	init();
-	void	pulse(long long elapsedTime);
+	void	pulse();
 
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;
 	PlayerManager*	m_playerManager;
 	ecs::ClientId	m_clientId;
 	std::string		m_nickname;
-	long long		m_updateElapsedTime;
 	bool			m_isActive;
 
 	// Local Test

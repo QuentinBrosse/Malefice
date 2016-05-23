@@ -4,7 +4,7 @@
 #include "Logger.h"
 #include "TimeUtility.h"
 
-const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 1;
+const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
 	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()

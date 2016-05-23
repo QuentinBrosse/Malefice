@@ -8,7 +8,6 @@ PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::P
 {
 }
 
-
 void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
@@ -24,6 +23,9 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
 	EntityManager::updateEntity(owner, entity, rpc);
+
+	for (auto& pair : m_entities)		
+		ecs::PositionSystem::initScenePosition(*pair.second);
 }
 
 void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)

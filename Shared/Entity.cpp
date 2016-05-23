@@ -15,6 +15,7 @@
 #include "Team.h"
 #include "Weapon.h"
 #include "WeaponManager.h"
+#include "Logger.h"
 
 namespace ecs
 {
@@ -49,11 +50,17 @@ namespace ecs
 	{
 		auto rhsComponents = rhs.getComponents();
 
+		
+		if (has(ecs::AComponent::ComponentType::SCENE))
+		{
+			LOG_DEBUG(GENERAL) << "------------------------------------BITE --------------------------------------------------------------------";
+		}
+
 		for (auto component : rhsComponents)
 		{
 			if (component.second)
 			{
-				AComponent*	localComponent = m_components[component.second->TYPE];
+				AComponent*	localComponent = m_components[component.first];
 
 				if (localComponent != nullptr)
 					*localComponent = *component.second;

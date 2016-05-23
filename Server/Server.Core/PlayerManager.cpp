@@ -104,7 +104,7 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 		}
 		LOG_DEBUG(ECS) << "Set nickname of client " << rpc->GetLastSenderAddress().systemIndex << " to \"" << playerInfos->getNickname() << "\"";
 	
-		if (m_entities.size() == 3/*ProjectGlobals::MAX_PLAYERS_NB*/)
+		if (m_entities.size() == 2/*ProjectGlobals::MAX_PLAYERS_NB*/)
 			ServerCore::getInstance().startGame();
 	}
 

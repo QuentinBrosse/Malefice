@@ -1,6 +1,7 @@
 #include "Position.h"
 #include "IrrlichtUtility.h"
 #include "RakNetUtility.h"
+#include "Logger.h"
 
 namespace ecs
 {
