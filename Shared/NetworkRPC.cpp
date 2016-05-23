@@ -21,4 +21,4 @@ const std::string	NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY	= "PlayerManager::rem
 // Server-Side executed
 
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";
-const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateServerEntity";
+const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateEntity";

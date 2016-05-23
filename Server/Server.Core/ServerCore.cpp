@@ -4,7 +4,7 @@
 #include "Logger.h"
 #include "TimeUtility.h"
 
-const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
+const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 1;
 
 ServerCore::ServerCore() :
 	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
@@ -70,6 +70,7 @@ void	ServerCore::displayHeader()	const
 	std::cout << "                         " << title << std::endl;
 	std::cout << "==============================================================" << std::endl;
 	std::cout << "=Server Name	: " << m_configuration.getName() << std::endl;
+	std::cout << "=Server bound to: " << m_configuration.getAddress() << std::endl;
 	std::cout << "=Server Port	: " << m_configuration.getPort() << std::endl;
 	std::cout << "=Max Players	: " << ProjectGlobals::MAX_PLAYERS_NB << std::endl;
 	if (m_configuration.getPassword().length() > 0)

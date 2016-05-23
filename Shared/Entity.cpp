@@ -52,7 +52,12 @@ namespace ecs
 		for (auto component : rhsComponents)
 		{
 			if (component.second)
-				(*m_components[component.second->TYPE]) = (*component.second);
+			{
+				AComponent*	localComponent = m_components[component.second->TYPE];
+
+				if (localComponent != nullptr)
+					*localComponent = *component.second;
+			}
 		}
 		return *this;
 	}

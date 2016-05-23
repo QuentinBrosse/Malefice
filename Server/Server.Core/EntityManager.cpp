@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "Logger.h"
+#include "Position.h"
 
 EntityManager::~EntityManager()
 {
@@ -12,6 +13,9 @@ void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity *entity, RakNe
 	ecs::Entity&	localEntity = *m_entities[owner];
 
 	localEntity = *entity;
+	ecs::Position*	pos = dynamic_cast<ecs::Position*>(localEntity[ecs::AComponent::ComponentType::POSITION]);
+
+	LOG_DEBUG(ECS) << "Updated pos for client " << owner << ": " << *pos;
 }
 
 bool	EntityManager::hasEntity(ecs::ClientId owner)	const

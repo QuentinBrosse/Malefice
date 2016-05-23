@@ -16,6 +16,7 @@
 #include "EventSystem.h"
 #include "GameEventReceiver.h"
 #include "WeaponManagerSystem.h"
+#include "TimeUtility.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -30,6 +31,9 @@ ClientCore::~ClientCore()
 
 void	ClientCore::run()
 {
+	long long	lastTickTime = utility::TimeUtility::getMsTime();
+	long long	currentTime = lastTickTime;
+
 	LOG_INFO(GENERAL) << "Client started.";
 	if (this->init() == false)
 	{
@@ -51,7 +55,9 @@ void	ClientCore::run()
 	}
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
-		this->pulse();
+		currentTime = utility::TimeUtility::getMsTime();
+		this->pulse(currentTime - lastTickTime);
+		lastTickTime = currentTime;
 	}
 	m_graphicModule->getDevice()->drop();
 	LOG_INFO(GENERAL) << "Client stopped.";
@@ -69,8 +75,9 @@ bool	ClientCore::init()
 	m_playerManager = &PlayerManager::getInstance();
 }
 
-void	ClientCore::pulse()
+void	ClientCore::pulse(long long elapsedTime)
 {
+	m_updateElapsedTime += elapsedTime;
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
@@ -87,7 +94,11 @@ void	ClientCore::pulse()
 		m_lastTime = begin;
 		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_playerManager->getCurrentPlayer() && (*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])
 		{
-			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
+			if (m_updateElapsedTime >= 1000.0 / 1)
+			{
+				ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
+				m_updateElapsedTime = 0;
+			}
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
