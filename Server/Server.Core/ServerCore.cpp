@@ -183,3 +183,18 @@ PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
 }
+
+ServerCoreConfiguration& ServerCore::getServerCoreConfiguration()
+{
+	return m_configuration;
+}
+
+MasterList& ServerCore::getMasterList()
+{
+	return m_masterList;
+}
+
+PhysicsUtil& ServerCore::getPhysicsUtil()
+{
+	return m_physicsUtil;
+}

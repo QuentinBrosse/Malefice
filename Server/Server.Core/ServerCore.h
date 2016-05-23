@@ -25,6 +25,7 @@ public:
 	PlayerManager&				getPlayerManager();
 	ServerCoreConfiguration&	getServerCoreConfiguration();
 	MasterList&					getMasterList();
+	PhysicsUtil&				getPhysicsUtil();
 
 protected:
 	ServerCore();
@@ -52,6 +53,7 @@ private:
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule			m_networkModule;
 	PlayerManager			m_playerManager;
+	PhysicsUtil&			m_physicsUtil;
 	MasterList				m_masterList;
 
 	std::queue<std::string>	m_inputQueue;
