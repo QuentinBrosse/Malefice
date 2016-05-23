@@ -78,6 +78,9 @@
     <ClInclude Include="PhysicsUtil.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="MasterList.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -118,9 +121,6 @@
     </ClCompile>
     <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsUtil.cpp">
-      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

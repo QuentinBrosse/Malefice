@@ -29,3 +29,8 @@ ecs::Entity*	EntityManager::findEntity(ecs::ClientId owner)	const
 	else
 		LOG_ERROR(ECS) << "Could not find entity with owner = " << owner << ".";
 }
+
+int	EntityManager::getPoolSize() const
+{
+	return m_entities.size();
+}

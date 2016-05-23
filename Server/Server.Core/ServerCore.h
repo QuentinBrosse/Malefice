@@ -10,6 +10,7 @@
 #include "NetworkModule.h"
 #include "PlayerManager.h"
 #include "PhysicsUtil.h"
+#include "MasterList.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -18,11 +19,13 @@ class ServerCore : public Singleton<ServerCore>
 public:
 	void	run();
 	void	startGame();
+	bool	isActive() const;
 
-	NetworkModule&	getNetworkModule();
-	PlayerManager&	getPlayerManager();
-	PhysicsUtil&	getPhysicsUtil();
-
+	NetworkModule&				getNetworkModule();
+	PlayerManager&				getPlayerManager();
+	ServerCoreConfiguration&	getServerCoreConfiguration();
+	MasterList&					getMasterList();
+	PhysicsUtil&				getPhysicsUtil();
 
 protected:
 	ServerCore();
@@ -51,6 +54,7 @@ private:
 	NetworkModule			m_networkModule;
 	PlayerManager			m_playerManager;
 	PhysicsUtil&			m_physicsUtil;
+	MasterList				m_masterList;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;
