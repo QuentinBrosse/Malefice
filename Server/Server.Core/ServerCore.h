@@ -9,6 +9,7 @@
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
 #include "PlayerManager.h"
+#include "MasterList.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -17,10 +18,12 @@ class ServerCore : public Singleton<ServerCore>
 public:
 	void	run();
 	void	startGame();
+	bool	isActive() const;
 
-	NetworkModule&	getNetworkModule();
-	PlayerManager&	getPlayerManager();
-
+	NetworkModule&				getNetworkModule();
+	PlayerManager&				getPlayerManager();
+	ServerCoreConfiguration&	getServerCoreConfiguration();
+	MasterList&					getMasterList();
 
 protected:
 	ServerCore();
@@ -47,6 +50,7 @@ private:
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule			m_networkModule;
 	PlayerManager			m_playerManager;
+	MasterList				m_masterList;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;

@@ -25,7 +25,7 @@ public:
 	static const std::string	GAME_CLIENT_LAUNCHER_LOG_FILEPATH;
 	static const std::string	GAME_SERVER_LOG_FILEPATH;
 
-
+	static const std::string	MASTERLIST_URL;
 	ProjectGlobals()	= delete;
 	~ProjectGlobals()	= delete;
 };

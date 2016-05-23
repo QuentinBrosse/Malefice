@@ -7,7 +7,7 @@
 const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_masterList(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -45,6 +45,7 @@ bool	ServerCore::init()
 		return false;
 	}
 	m_isActive = true;
+	m_masterList.getInstance().run();
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
 	m_startTime = utility::TimeUtility::getMsTime();
@@ -150,6 +151,10 @@ void	ServerCore::startGame()
 }
 
 
+bool	ServerCore::isActive() const
+{
+	return m_isActive;
+}
 
 NetworkModule&	ServerCore::getNetworkModule()
 {
@@ -159,4 +164,14 @@ NetworkModule&	ServerCore::getNetworkModule()
 PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
+}
+
+ServerCoreConfiguration& ServerCore::getServerCoreConfiguration()
+{
+	return m_configuration;
+}
+
+MasterList&	ServerCore::getMasterList()
+{
+	return m_masterList;
 }
