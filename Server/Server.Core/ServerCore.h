@@ -9,6 +9,7 @@
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
 #include "PlayerManager.h"
+#include "PhysicsUtil.h"
 #include "MasterList.h"
 
 class ServerCore : public Singleton<ServerCore>
@@ -40,6 +41,7 @@ private:
 	void	readInput();
 	void	handleInput();
 	void	processCommand(const std::string& command, const std::string& params);
+	void	createEntities();
 
 
 	long long	m_startTime;

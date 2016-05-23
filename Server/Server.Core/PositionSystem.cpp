@@ -18,4 +18,14 @@ namespace ecs
 		}
 	}
 
+	void	PositionSystem::initScenePosition(Entity& entity)
+	{
+		ecs::Position*	position;
+		ecs::AScene*	scene;
+
+		if ((position = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
+		{
+			scene->setPosition(*position);
+		}
+	}
 }

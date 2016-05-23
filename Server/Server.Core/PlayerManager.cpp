@@ -12,7 +12,7 @@ PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::P
 {
 }
 
-int PlayerManager::positionXDebug = 0; //REMOVE
+int PlayerManager::positionXDebug = 0; // TODO: REMOVE
 
 void	PlayerManager::createEntity(ecs::ClientId owner)
 {
@@ -29,11 +29,13 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 
 	if (team != ecs::Team::TeamType::Predator)
 	{
-		positionXDebug += 20; //REMOVE
-		m_entities[owner] = PlayerFactory::createPlayer(owner, position, team, 100); // TODO: pick random spawn position, set rotation
+		positionXDebug += 20; // TODO: REMOVE
+		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), "sydney.bmp", "sydney.md2", owner, position, team, 100); // TODO: pick random spawn position, set rotation
 	}
 	else
-		m_entities[owner] = PlayerFactory::createPredator(owner, position); // TODO: pick random spawn position, set rotation
+	{
+		m_entities[owner] = PlayerFactory::createPredator(ServerCore::getInstance().getPhysicsUtil().getDevice(), "sydney.bmp", "sydney.md2", owner, position); // TODO: pick random spawn position, set rotation
+	}
 	// Don't send new player to anyone yet, wait for the username (C.F. below)
 }
 

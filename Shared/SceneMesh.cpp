@@ -1,4 +1,5 @@
 #include "SceneMesh.h"
+#include "Logger.h"
 
 #include <iostream>
 
@@ -66,11 +67,19 @@ namespace ecs
 				irr::core::vector3df(30.f, 50.f, 30.f),
 				irr::core::vector3df(0.f, -10.f, 0.f),
 				irr::core::vector3df(0.f, 30.f, 0.f));
-			m_smgr->getActiveCamera()->addAnimator(animator);
+			if (m_device->getVideoDriver()->getDriverType() != irr::video::EDT_NULL)
+				m_smgr->getActiveCamera()->addAnimator(animator);
+			else
+				; // TODO: do something?
 			animator->drop();
 		}
 	}
 
+
+	irr::scene::ISceneNode*	SceneMesh::getNode()	const
+	{
+		return m_node;
+	}
 
 	void SceneMesh::setPosition(const Position& newPosition)
 	{

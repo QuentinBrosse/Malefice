@@ -8,6 +8,5 @@ ecs::Entity* MapFactory::createMap(irr::IrrlichtDevice* device, const ecs::Posit
 	ecs::Entity*	map = ObjectFactory::createObject(position, owner, ecs::Entity::EntityType::MAP);
 
 	(*map)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneMesh(device, "", nameMesh, nodePickable::IS_PICKABLE, true, namePK3);
-
 	return map;
 }
