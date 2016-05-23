@@ -88,7 +88,6 @@ void	ServerCore::pulse(long long elapsedTime)
 	{
 		m_playerManager.updateEntities();
 		m_updateElapsedTime = 0;
-		LOG_TRACE(NETWORK) << "Updated all entities for everybody";
 	}
 }
 

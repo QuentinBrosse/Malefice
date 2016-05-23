@@ -16,7 +16,6 @@ EntityManager::~EntityManager()
 void	EntityManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
 {
 	m_entities[owner] = entity;
-	LOG_TRACE(NETWORK) << "EntityManager::addEntity received owner = " << owner << ", entity = " << *entity;
 }
 
 void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -24,9 +23,6 @@ void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 	ecs::Entity&	localEntity = *m_entities[owner];
 
 	localEntity = (*entity);
-	ecs::Position*	pos = dynamic_cast<ecs::Position*>(localEntity[ecs::AComponent::ComponentType::POSITION]);
-
-	LOG_DEBUG(ECS) << "Updated pos for client " << owner << ": " << *pos;
 }
 
 void	EntityManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)

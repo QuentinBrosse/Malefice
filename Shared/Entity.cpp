@@ -50,12 +50,6 @@ namespace ecs
 	{
 		auto rhsComponents = rhs.getComponents();
 
-		
-		if (has(ecs::AComponent::ComponentType::SCENE))
-		{
-			LOG_DEBUG(GENERAL) << "------------------------------------BITE --------------------------------------------------------------------";
-		}
-
 		for (auto component : rhsComponents)
 		{
 			if (component.second)
