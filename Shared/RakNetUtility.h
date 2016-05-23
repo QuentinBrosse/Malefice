@@ -18,7 +18,7 @@ public:
 	{
 		out.Write(vector.X);
 		out.Write(vector.Y);
-		out.Write(vector.X);
+		out.Write(vector.Z);
 	}
 
 	template<typename T>
@@ -26,6 +26,6 @@ public:
 	{
 		in.Read(vector.X);
 		in.Read(vector.Y);
-		in.Read(vector.X);
+		in.Read(vector.Z);
 	}
 };
