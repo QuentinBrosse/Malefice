@@ -36,7 +36,7 @@ void MenuPause::checkPause()
 	}
 	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && m_isEnable && !block)
 	{
-		this->hide();
+		this->onContinueButtonClicked();
 		block = true;
 	}
 	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == false && block)
@@ -57,7 +57,6 @@ bool MenuPause::onQuitButtonClicked()
 
 bool MenuPause::onContinueButtonClicked()
 {
-	std::cout << "Game resumed" << std::endl;
 	m_utilities.setFPSCamera();
 	this->hide();
 	m_utilities.getHUD()->display();

@@ -47,7 +47,7 @@ namespace ecs
 				(*it).second.createScene(graphics.getDevice(), false);
 				scene = (*it).second.getScene();
 
-				(*it).second.getScene()->setPosition((*it).second.getFPSMetrics());
+				scene->setPosition((*it).second.getFPSMetrics());
 			}
 
 			if (weaponManager->hasCurrentWeapon())
@@ -65,10 +65,8 @@ namespace ecs
 
 			for (auto weapon : weaponManager->getWeapons())
 			{
-//				irr::scene::ISceneNode*	aaa = weapon.second.getScene()->getScene()->getParent();
 				weapon.second.createScene(graphics.getDevice(), false);
 				graphics.getSceneManager()->getActiveCamera()->addChild(weapon.second.getScene()->getScene());
-	//			irr::scene::ISceneNode*	bbb = weapon.second.getScene()->getScene()->getParent();
 			}
 		}
 	}

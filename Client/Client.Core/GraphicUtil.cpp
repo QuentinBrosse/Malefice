@@ -237,7 +237,7 @@ void GraphicUtil::setFPSCamera()
 	m_FPSCamera->init();
 
 	if (localPlayer)
-		ecs::WeaponManagerSystem::attachCamera(*localPlayer);
+		ecs::WeaponManagerSystem::initWeapon(*localPlayer);
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
