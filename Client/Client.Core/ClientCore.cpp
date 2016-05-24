@@ -164,6 +164,8 @@ void	ClientCore::setIsActive(bool isActive)
 void	ClientCore::setNickname(const std::string& nickname)
 {
 	m_nickname = nickname;
+	if (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED)
+		m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::RakString(nickname.c_str()));
 }
 
 
