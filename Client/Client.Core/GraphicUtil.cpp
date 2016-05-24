@@ -97,6 +97,8 @@ void GraphicUtil::initGraphics()
 	m_connectWindow = new ConnectWindow(*this);
 	m_salon = new WaitingRoom(*this);
 	m_hud = new InGameGUI();
+	m_masterList = new MasterList(*this);
+
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();
@@ -191,6 +193,11 @@ MenuPause* GraphicUtil::getMenuPause()
 MenuOptions* GraphicUtil::getMenuOptions()
 {
 	return m_menuOptions;
+}
+
+MasterList* GraphicUtil::getMasterList()
+{
+	return m_masterList;
 }
 
 InGameGUI* GraphicUtil::getHUD()

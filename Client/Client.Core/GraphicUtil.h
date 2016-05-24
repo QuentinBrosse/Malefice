@@ -10,6 +10,7 @@
 #include "ConnectWindow.h"
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
+#include "MasterList.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -34,6 +35,8 @@ public:
 	ConnectWindow* getConnectWindow();
 	WaitingRoom* getWaitingRoom();
 	InGameGUI* getHUD();
+	MasterList* getMasterList();
+
 private:
 	irr::IrrlichtDevice*		m_device;
 	irr::scene::ISceneManager*	m_sceneManager;
@@ -48,4 +51,5 @@ private:
 	ConnectWindow*				m_connectWindow;
 	WaitingRoom*				m_salon;
 	InGameGUI*					m_hud;
+	MasterList*					m_masterList;
 };
