@@ -15,7 +15,8 @@ public:
 		None = 0,
 		ClientCore,
 		PlayerManager,
-		UnreservedStart
+		UnreservedStart,
+		WeaponSystem = RakNet::UNASSIGNED_NETWORK_ID
 	};
 
 
@@ -34,4 +35,5 @@ public:
 
 	static const std::string	PLAYER_MANAGER_SET_PLAYER_NICKNAME;
 	static const std::string	PLAYER_MANAGER_SERVER_UPDATE_ENTITY;
+	static const std::string	WEAPON_SYSTEM_SHOOT;
 };

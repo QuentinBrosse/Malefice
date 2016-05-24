@@ -3,6 +3,7 @@
 #include "NetworkManager.h"
 #include "NetworkRPC.h"
 #include "ServerCore.h"
+#include "WeaponSystem.h"
 #include "RakNetUtility.h"
 #include "ProjectGlobals.h"
 #include "Logger.h"
@@ -77,12 +78,14 @@ void	NetworkModule::registerRPCs()
 {
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str(), &PlayerManager::setPlayerNickname);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
+	m_rpc.RegisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str(), &ecs::WeaponSystem::shoot);
 }
 
 void	NetworkModule::unregisterRPCs()
 {
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str());
 }
 
 
