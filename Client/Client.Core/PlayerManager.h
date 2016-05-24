@@ -16,6 +16,8 @@ public:
 
 	void			initPlayersScene();
 
+	void initPlayersWeapons();
+
 	ecs::Entity*	getCurrentPlayer()	const;
 	void			setCurrentPlayer(ecs::Entity* localPlayer);
 
