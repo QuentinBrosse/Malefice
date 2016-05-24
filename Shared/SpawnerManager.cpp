@@ -1,5 +1,6 @@
 #include "SpawnerManager.h"
 #include "WeaponCreator.h"
+#include "WeaponManager.h"
 #include "Life.h"
 #include "Weapon.h"
 #include "Armor.h"
@@ -50,6 +51,30 @@ void SpawnerManager::weaponRegeneration(ecs::Entity* entity)
 {
 	int i = rand() % 10;
 	(*entity)[ecs::AComponent::ComponentType::WEAPON] = &WeaponCreator::getInstance().create((const ecs::Weapon::WeaponType)i);
+}
+
+void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
+{
+	switch (spawner->getEntityType())
+	{
+	case ecs::Entity::EntityType::LIFE_SPAWNER :
+		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr && dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
+		{
+			dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE])->restore(dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
+			dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->set(0);
+		}
+	case ecs::Entity::EntityType::ARMOR_SPAWNER :
+		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr && dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
+		{
+			dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR])->restore(dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
+			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
+		}
+	case ecs::Entity::EntityType::WEAPON_SPAWNER :
+		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*player)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
+		{
+			return;
+		}
+	}
 }
 
 void SpawnerManager::regenerate(ecs::ClientId owner)
