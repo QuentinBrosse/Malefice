@@ -22,6 +22,7 @@ public:
 	void addLeftTeamMember(const std::string& name);
 	void addPredator(const std::string &txt);
 	void checkConnectedPlayers();
+	void resetTeamDisplay();
 
 private:
 	GraphicUtil&				m_graphicalUtil;

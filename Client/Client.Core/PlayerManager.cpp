@@ -77,3 +77,8 @@ void PlayerManager::setCurrentPlayer(ecs::Entity * localPlayer)
 {
 	m_currentPlayer = localPlayer;
 }
+
+const std::map<ecs::ClientId, ecs::Entity*> &PlayerManager::getEntities() const
+{
+	return m_entities;
+}
