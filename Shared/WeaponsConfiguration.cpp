@@ -150,8 +150,8 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		}
 
 
-		tinyxml2::XMLElement* externalMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
-		if (fpsMetrics == nullptr)
+		tinyxml2::XMLElement* externalMetrics = this->getOrCreateElement(doc, *currentWeapon, "ExternalMetrics");
+		if (externalMetrics == nullptr)
 		{
 			LOG_ERROR(GENERAL) << "<ExternalMetrics> not found, skipping element.";
 			continue;
