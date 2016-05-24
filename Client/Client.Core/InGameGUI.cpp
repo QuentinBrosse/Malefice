@@ -1,14 +1,13 @@
 #include "InGameGUI.h"
 
 InGameGUI::InGameGUI() :
-	m_hud(nullptr), m_systemd(CEGUI::System::getSingleton()), m_hpBar(nullptr), m_hpBarText(nullptr), m_mpBarText(nullptr), m_timerText(nullptr), m_power1(nullptr), m_power2(nullptr), m_power3(nullptr), m_power4(nullptr), m_team1Score(nullptr), m_team2Score(nullptr), m_timestamp(0), m_hp(0), m_mp(0), m_maxHP(100), m_maxMP(150), m_stopTimer(true), m_power1Activated(false), m_power2Activated(false), m_power3Activated(false), m_power4Activated(false), m_maxPowerNbr(3)
+	m_hud(nullptr), m_systemd(CEGUI::System::getSingleton()), m_hpBar(nullptr), m_hpBarText(nullptr), m_timerText(nullptr), m_power1(nullptr), m_power2(nullptr), m_power3(nullptr), m_power4(nullptr), m_team1Score(nullptr), m_team2Score(nullptr), m_timestamp(0), m_hp(0), m_maxHP(100), m_stopTimer(true), m_power1Activated(false), m_power2Activated(false), m_power3Activated(false), m_power4Activated(false), m_maxPowerNbr(3), m_maxArmor(100), m_isActive(false)
 {
 	m_hud = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("InGameGUI.layout");
 	m_hpBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(1));
 	m_hpBarText = m_hud->getChild(2);
 	m_hpBar->setProgress(0);
-	m_hpBarText->setText(std::to_string(0) + "/" + std::to_string(this->m_maxHP));
-	m_mpBarText = m_hud->getChild(10)->getChild(11);
+	m_hpBarText->setText(std::to_string(0));
 	m_timerText = m_hud->getChild(100);
 
 	m_power1 = m_hud->getChild(200)->getChild(201);
@@ -22,16 +21,21 @@ InGameGUI::InGameGUI() :
 
 	m_team1Score = m_hud->getChild(50);
 	m_team2Score = m_hud->getChild(51);
+	m_bullets = m_hud->getChild(600);
+	m_armorBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(642));
+	m_armors = m_hud->getChild(650);
 }
 
 void InGameGUI::display()
 {
 	m_systemd.getDefaultGUIContext().setRootWindow(m_hud);
+	m_isActive = true;
 }
 
 void InGameGUI::hide()
 {
 	m_systemd.getDefaultGUIContext().setRootWindow(0);
+	m_isActive = false;
 }
 
 void InGameGUI::addHealthPoint(unsigned int hp)
@@ -74,45 +78,6 @@ void InGameGUI::setHealthPoint(unsigned int hp)
 unsigned int InGameGUI::getHealthPoint()
 {
 	return (this->m_hp);
-}
-
-void InGameGUI::addEnergyPoint(unsigned int mp)
-{
-	long tmp = mp + this->m_mp;
-	if (tmp > 0)
-		this->m_mp += mp;
-	else
-		this->m_mp = 0;
-
-	if (this->m_mp > this->m_maxMP)
-		this->m_mp = this->m_maxMP;
-	m_mpBarText->setText(std::to_string(this->m_mp));
-}
-
-void InGameGUI::subEnergyPoint(unsigned int mp)
-{
-	long tmp = mp - this->m_mp;
-	if (tmp > 0)
-		this->m_mp -= mp;
-	else
-		this->m_mp = 0;
-
-	if (this->m_mp > this->m_maxMP)
-		this->m_mp = this->m_maxMP;
-	m_mpBarText->setText(std::to_string(this->m_mp));
-}
-
-void InGameGUI::setEnergyPoint(unsigned int mp)
-{
-	this->m_mp = mp;
-	if (this->m_mp > this->m_maxMP)
-		this->m_mp = this->m_maxMP;
-	m_mpBarText->setText(std::to_string(this->m_mp));
-}
-
-unsigned int InGameGUI::getEnergyPoint()
-{
-	return (this->m_mp);
 }
 
 void InGameGUI::timerStart()
@@ -167,4 +132,57 @@ void InGameGUI::setTeam1Score(int nbr)
 void InGameGUI::setTeam2Score(int nbr)
 {
 	m_team2Score->setText(std::to_string(nbr));
+}
+
+void InGameGUI::setBulletsNbr(unsigned int nbr)
+{
+	m_bullets->setText(std::to_string(nbr));
+}
+
+const bool InGameGUI::isActive() const
+{
+	return m_isActive;
+}
+
+
+void InGameGUI::addArmorPoint(unsigned int hp)
+{
+	long tmp = hp + this->m_armor;
+	if (tmp > 0)
+		this->m_armor += hp;
+	else
+		this->m_armor = 0;
+
+	if (this->m_armor > this->m_maxArmor)
+		this->m_armor = this->m_maxArmor;
+	m_armorBar->setProgress(static_cast<float>(this->m_armor) / static_cast<float>(this->m_maxArmor));
+	m_armors->setText(std::to_string(this->m_armor));
+}
+
+void InGameGUI::subArmorPoint(unsigned int hp)
+{
+	long tmp = hp - this->m_armor;
+	if (tmp > 0)
+		this->m_armor -= hp;
+	else
+		this->m_armor = 0;
+
+	if (this->m_armor > this->m_maxArmor)
+		this->m_armor = this->m_maxArmor;
+	m_armorBar->setProgress(static_cast<float>(this->m_armor) / static_cast<float>(this->m_maxArmor));
+	m_armors->setText(std::to_string(this->m_armor));
+}
+
+void InGameGUI::setArmorPoint(unsigned int hp)
+{
+	this->m_armor = hp;
+	if (this->m_armor > this->m_maxArmor)
+		this->m_armor = this->m_maxArmor;
+	m_armorBar->setProgress(static_cast<float>(this->m_armor) / static_cast<float>(this->m_maxArmor));
+	m_armors->setText(std::to_string(this->m_armor));
+}
+
+unsigned int InGameGUI::getArmorPoint()
+{
+	return (this->m_armor);
 }

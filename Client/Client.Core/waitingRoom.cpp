@@ -111,7 +111,6 @@ void WaitingRoom::checkConnectedPlayers()
 		for (auto entity : entities)
 		{
 			this->addLeftTeamMember(dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname());
-			LOG_INFO(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname();
 		}
 	}
 }
