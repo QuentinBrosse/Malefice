@@ -18,10 +18,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 	if (loadResult != tinyxml2::XMLError::XML_SUCCESS)
 	{
-		char *toto = (char *)calloc(500, 1);
-		GetCurrentDirectoryA(500, toto);
-
-		LOG_CRITICAL(GENERAL) << toto << "Weapons configuration file could not be read properly (error code: " << loadResult << ").";
+		LOG_CRITICAL(GENERAL) << "Weapons configuration file could not be read properly (error code: " << loadResult << ").";
 		return false;
 	}
 	weaponsElement = doc.RootElement();
@@ -34,10 +31,10 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 	for (tinyxml2::XMLElement* currentWeapon = weaponsElement->FirstChildElement(); currentWeapon != nullptr; currentWeapon = currentWeapon->NextSiblingElement())
 	{
 		bool					sight = false;
-		float					distance;
-		float					precision;
-		float					fireRate = 0.0;
-		int						damageExplosive;
+		float					distance = 0.F;
+		float					precision = 0.F;
+		float					fireRate = 0.F;
+		int						damageExplosive = 0;
 		int						id = 0;
 		unsigned int			ammunition = 0;
 		unsigned int			ammoPerShot = 0;
@@ -55,9 +52,12 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				precisionStr;
 		std::string				ammunitionStr;
 		std::string				defaultAmunitionsStr;
+		std::string				fpsMetricsCoefOffsetStr;
 		irr::core::vector3df	fpsMetricsPosition;
 		irr::core::vector3df	fpsMetricsRotation;
 		irr::core::vector3df	fpsMetricsScale;
+		irr::core::vector3df	fpsMetricsOffset;
+		float					fpsMetricsCoefOffset = 0.F;
 		irr::core::vector3df	externalMetricsPosition;
 		irr::core::vector3df	externalMetricsRotation;
 		irr::core::vector3df	externalMetricsScale;
@@ -149,6 +149,23 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			fpsMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
+		tinyxml2::XMLElement* offset = this->getOrCreateElement(doc, *fpsMetrics, "offset");
+		if (scale == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<offset> not found inside <FPSMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *offset, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *offset, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *offset, "z", ""));
+			fpsMetricsOffset = irr::core::vector3df(x, y, z);
+		}
+
+		fpsMetricsCoefOffsetStr = this->getOrCreateElementString(doc, *fpsMetrics, "coefOffset", "");
+		fpsMetricsCoefOffset = std::stof(fpsMetricsCoefOffsetStr);
+
 
 		tinyxml2::XMLElement* externalMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
 		if (fpsMetrics == nullptr)
@@ -199,7 +216,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, defaultAmunitions);
+		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), fpsMetricsOffset, fpsMetricsCoefOffset, ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, defaultAmunitions);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
 

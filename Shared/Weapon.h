@@ -28,48 +28,49 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
+		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
-		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
+		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
 
 		virtual AComponent&	affect(const AComponent& rhs);
 		
-		const int			getId()							const;
-		const int			getDamage()						const;
-		const WeaponType	getWeaponType()					const;
-		const std::string&	getName()						const;
-		const std::string&	getMeshName()					const;
-		const unsigned int	getAmmunitions()				const;
-		const unsigned int	getMaxAmmunitions()				const;
-		const unsigned int	getReloadTime()					const;
-		const unsigned int	getAmmoPerShot()				const;
-		const unsigned int	getDefaultAmunitions()			const;
-		const float			getFireRate()					const;
-		const float			getDistance()					const;
-		Position			getFPSMetrics()					const;
-		Position			getExternalMetrics()			const;
-		const bool			isSight()						const;
+		const int				getId()							const;
+		const int				getDamage()						const;
+		const WeaponType		getWeaponType()					const;
+		const std::string&		getName()						const;
+		const std::string&		getMeshName()					const;
+		const unsigned int		getAmmunitions()				const;
+		const unsigned int		getMaxAmmunitions()				const;
+		const unsigned int		getReloadTime()					const;
+		const unsigned int		getAmmoPerShot()				const;
+		const unsigned int		getDefaultAmunitions()			const;
+		const float				getFireRate()					const;
+		const float				getDistance()					const;
+		Position				getFPSMetrics()					const;
+		irr::core::vector3df	getFPSMetricsOffset()			const;
+		float					getFPSMetricsCoefOffset()		const;
+		Position				getExternalMetrics()			const;
+		const bool				isSight()						const;
 
-		void				shot();
-		void				reload();
-		void				decAmmunition(int nbFired);
-		void				incAmmunition(int nbAmmuition);
+		void					shot();
+		void					reload();
+		void					decAmmunition(int nbFired);
+		void					incAmmunition(int nbAmmuition);
 
-		void				createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
+		void					createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
 
-		void				setActivity(const bool active);
+		void					setActivity(const bool active);
 
-		SceneAnimatedMesh*	getScene()						const;
+		SceneAnimatedMesh*		getScene()						const;
 
-		virtual	void	dump(std::ostream& os)	const;
+		virtual	void			dump(std::ostream& os)	const;
 
-		virtual AComponent*	createCopy(const AComponent* rhs) const;
+		virtual AComponent*		createCopy(const AComponent* rhs) const;
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
-
+		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void			deserialize(RakNet::BitStream& in);
 
 	private:
 		static const std::string	MEDIA_PATH;
@@ -88,12 +89,14 @@ namespace ecs
 		unsigned int	m_ammoPerShot;
 		unsigned int	m_defaultAmunitions;
 
-		float	m_fireRate;
-		float	m_distance;
+		float					m_fireRate;
+		float					m_distance;
 
-		SceneAnimatedMesh*	m_scene;
+		SceneAnimatedMesh*		m_scene;
 
-		Position				m_externalMetrics;
 		Position				m_fpsMetrics;
+		irr::core::vector3df	m_fpsMetricsOffset;
+		float					m_fpsMetricsCoefOffset;
+		Position				m_externalMetrics;
 	};
 }
