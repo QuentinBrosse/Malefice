@@ -115,13 +115,14 @@ void ClientCore::createEntities()
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
 		ecs::PositionSystem::initScenePosition(*m_player);
-		ecs::WeaponManagerSystem::initWeapon(*m_player);
 		m_playerManager->setCurrentPlayer(m_player);
 
 		//Player 2
 		ecs::Position playerPosition2(irr::core::vector3df(10, 13, 10), irr::core::vector3df(0.0, 0.0, 0.0));
 		m_player_ia = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition2, ecs::Team::TeamType::Team1, 100);
 		ecs::PositionSystem::initScenePosition(*m_player_ia);
+
+		m_playerManager->initPlayersWeapons();
 	}
 }
 
@@ -194,10 +195,10 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
-	m_graphicModule->setFPSCamera();
 	m_playerManager->initPlayersScene();
+	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();
-	ecs::WeaponManagerSystem::initWeapon(*m_playerManager->getCurrentPlayer());
+	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
 }

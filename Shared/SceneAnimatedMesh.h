@@ -9,13 +9,13 @@ namespace ecs
 	{
 	public:
 		SceneAnimatedMesh();
-		SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
+		SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
 		SceneAnimatedMesh(const SceneAnimatedMesh& cpy);
 		virtual ~SceneAnimatedMesh();
 
 		virtual AComponent&	affect(const AComponent& rhs);
 
-		virtual void	init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
+		virtual void	init(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level);
 
 		virtual irr::scene::ISceneNode*	getNode()	const;
 		virtual void						setPosition(const ecs::Position& newPosition);

@@ -14,8 +14,8 @@ namespace ecs
 
 		static void	changeToNext(Entity& player);
 		static void changeToPrec(Entity& player);
-		static void initWeapon(Entity& entity);
-		static void	attachCamera(Entity& entity);
+		static void initFPSWeapon(Entity& entity);
+		static void initExternalWeapon(Entity& entity);
 	};
 
 }

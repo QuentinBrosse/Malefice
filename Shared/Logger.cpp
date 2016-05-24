@@ -34,7 +34,7 @@ void	Logger::setup(const std::string& filePath)
 	spdlog::register_logger(m_logger);
 	spdlog::set_pattern("[%d/%m/%Y %H:%M:%S][%l]%v");
 #ifdef _DEBUG
-	spdlog::set_level(spdlog::level::trace);
+	spdlog::set_level(spdlog::level::debug);
 #else
 	spdlog::set_level(spdlog::level::info);
 #endif

@@ -57,7 +57,7 @@ namespace ecs
 		void				decAmmunition(int nbFired);
 		void				incAmmunition(int nbAmmuition);
 
-		void				createScene(irr::IrrlichtDevice* device, const bool active);
+		void				createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
 
 		void				setActivity(const bool active);
 
