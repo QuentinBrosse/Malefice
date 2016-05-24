@@ -15,6 +15,7 @@ namespace ecs
 
 		virtual void	init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, bool isCollisionable, const std::string& namePK3 = "");
 
+		virtual irr::scene::ISceneNode*	getNode()	const;
 		virtual	void			setPosition(const Position& newPosition);
 
 		virtual AComponent&		affect(const AComponent& rhs);

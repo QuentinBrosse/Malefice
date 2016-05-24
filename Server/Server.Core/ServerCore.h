@@ -9,6 +9,8 @@
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
 #include "PlayerManager.h"
+#include "PhysicsUtil.h"
+#include "MasterList.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -17,10 +19,13 @@ class ServerCore : public Singleton<ServerCore>
 public:
 	void	run();
 	void	startGame();
+	bool	isActive() const;
 
-	NetworkModule&	getNetworkModule();
-	PlayerManager&	getPlayerManager();
-
+	NetworkModule&				getNetworkModule();
+	PlayerManager&				getPlayerManager();
+	ServerCoreConfiguration&	getServerCoreConfiguration();
+	MasterList&					getMasterList();
+	PhysicsUtil&				getPhysicsUtil();
 
 protected:
 	ServerCore();
@@ -37,6 +42,7 @@ private:
 	void	readInput();
 	void	handleInput();
 	void	processCommand(const std::string& command, const std::string& params);
+	void	createEntities();
 
 
 	long long	m_startTime;
@@ -47,6 +53,8 @@ private:
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule			m_networkModule;
 	PlayerManager			m_playerManager;
+	PhysicsUtil&			m_physicsUtil;
+	MasterList				m_masterList;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;

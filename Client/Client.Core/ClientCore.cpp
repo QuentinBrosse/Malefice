@@ -86,7 +86,10 @@ void	ClientCore::pulse()
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
 		m_lastTime = begin;
-		if (!m_graphicModule->getMenuPause()->getEnableStatus() && m_playerManager->getCurrentPlayer() && (*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])
+		if (!m_graphicModule->getMenuPause()->getEnableStatus() &&
+			m_playerManager->getCurrentPlayer() &&
+			(*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE] != nullptr &&
+			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
@@ -162,6 +165,8 @@ void	ClientCore::setIsActive(bool isActive)
 void	ClientCore::setNickname(const std::string& nickname)
 {
 	m_nickname = nickname;
+	if (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED)
+		m_networkModule->callRPC(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::RakString(nickname.c_str()));
 }
 
 

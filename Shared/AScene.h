@@ -27,10 +27,11 @@ namespace ecs
 
 		void	init(ecs::AScene::SceneType type, irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 
-		std::string				getNameTexture()	const;
-		std::string				getNameMesh()		const;
-		int						getPickableFlags()	const;
-		irr::video::SMaterial*	getMaterial()		const;
+		virtual irr::scene::ISceneNode*	getNode()	const	= 0;
+		std::string						getNameTexture()	const;
+		std::string						getNameMesh()		const;
+		int								getPickableFlags()	const;
+		irr::video::SMaterial*			getMaterial()		const;
 
 		void					setNameTexture(const std::string& newNameTexture);
 		void					setNameMesh(const std::string& newNameMesh);

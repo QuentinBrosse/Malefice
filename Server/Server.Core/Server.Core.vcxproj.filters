@@ -31,6 +31,12 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{dbc66ca8-6286-4351-aa17-83e3f01891a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{5d06bf72-225d-41f5-82b1-77bf3b1b1d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{e6e5b2fb-d8c5-4e8b-9885-f3c3414b98a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NetworkModule.h">
@@ -67,6 +73,12 @@
       <Filter>Header Files\Network</Filter>
     </ClInclude>
     <ClInclude Include="ServerCoreConfiguration.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsUtil.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterList.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>

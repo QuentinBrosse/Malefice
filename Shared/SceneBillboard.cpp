@@ -2,17 +2,20 @@
 
 namespace ecs
 {
-	SceneBillboard::SceneBillboard() : AScene(ecs::AScene::SceneType::BILLBOARD)
+	SceneBillboard::SceneBillboard() : AScene(ecs::AScene::SceneType::BILLBOARD),
+		m_node(nullptr)
 	{
 	}
 
-	SceneBillboard::SceneBillboard(const SceneBillboard & cpy) : AScene(cpy)
+	SceneBillboard::SceneBillboard(const SceneBillboard & cpy) : AScene(cpy),
+		m_node(cpy.m_node)
 	{
 	}
 
-	SceneBillboard::SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::BILLBOARD, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable)
+	SceneBillboard::SceneBillboard(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable): AScene(ecs::AScene::SceneType::BILLBOARD, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
+		m_node(nullptr)
 	{
-		init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
+		this->init(device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable);
 	}
 
 	SceneBillboard::~SceneBillboard()
@@ -26,6 +29,11 @@ namespace ecs
 		// TODO: implement constructor logic here
 	}
 
+
+	irr::scene::ISceneNode*	SceneBillboard::getNode()	const
+	{
+		return m_node;
+	}
 
 	void	SceneBillboard::setPosition(const ecs::Position& newPosition)
 	{

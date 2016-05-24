@@ -15,6 +15,7 @@ namespace ecs
 
 		virtual void	init(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable);
 
+		virtual irr::scene::ISceneNode*	getNode()	const;
 		virtual void	setPosition(const ecs::Position& newPosition);
 
 		virtual	void	dump(std::ostream& os)	const;
@@ -24,5 +25,8 @@ namespace ecs
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
+
+	private:
+		irr::scene::IBillboardSceneNode*	m_node;
 	};
 }

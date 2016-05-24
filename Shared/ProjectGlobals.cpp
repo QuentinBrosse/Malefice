@@ -19,3 +19,5 @@ const std::string	ProjectGlobals::LOGS_DIRECTORY	= "";
 const std::string	ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH		= ProjectGlobals::LOGS_DIRECTORY + "Client.Core.log";
 const std::string	ProjectGlobals::GAME_CLIENT_LAUNCHER_LOG_FILEPATH	= ProjectGlobals::LOGS_DIRECTORY + "Client.Launcher.log";
 const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= ProjectGlobals::LOGS_DIRECTORY + "Server.Core.log";
+
+const std::string	ProjectGlobals::MASTERLIST_URL = "malefice.pinot.ovh";

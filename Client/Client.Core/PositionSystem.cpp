@@ -50,10 +50,9 @@ namespace ecs
 		Position*	position;
 		AScene*		scene;
 
-		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
+		if ((position = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
 			scene->setPosition(*position);
 		}
 	}
-
 }

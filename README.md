@@ -25,6 +25,27 @@ Pour les autres dépendances, afin de réduire le temps de compilation, il est p
 *À faire*
 
 
+## Configuration de Visual Studio
+
+### Working directory (obligatoire)
+
+Cette procédure est à suivre pour **le client** ***et*** **le serveur**.
+
+* Clic-droit sur le projet
+* *Propriétés*
+* *Débogage*
+* Indiquer le répertoire "Binaries\Debug" (ou "Binaries\Release") dans *Répertoire de travail*
+
+### Projets de démarrage (optionnel)
+
+Si vous souhaitez démarrer à la fois le client et le serveur :
+* Clic-droit sur la solution
+* *Propriétés*
+* Cocher *Plusieurs projets de démarrage*
+* Sélectionner *Démarrer* pour *Client.Core* et *Server.Core*
+
+
+
 ## Cloner et mettre à jour les submodules
 Se rendre à la racine du dépôt avec **Git Bash** et lancer la commande :
 ```

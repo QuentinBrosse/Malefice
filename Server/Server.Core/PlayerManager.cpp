@@ -12,8 +12,6 @@ PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::P
 {
 }
 
-int PlayerManager::positionXDebug = 0; //REMOVE
-
 void	PlayerManager::createEntity(ecs::ClientId owner)
 {
 	ecs::Team::TeamType	team = ecs::Team::TeamType::TEAM_COUNT;
@@ -25,15 +23,16 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 	else
 		team = ecs::Team::TeamType::Predator;
 
-	ecs::Position position(irr::core::vector3df(positionXDebug, 0, 0), irr::core::vector3df(0, 0, 0));
+	ecs::Position position(irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0));
 
 	if (team != ecs::Team::TeamType::Predator)
 	{
-		positionXDebug += 20; //REMOVE
-		m_entities[owner] = PlayerFactory::createPlayer(owner, position, team, 100); // TODO: pick random spawn position, set rotation
+		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), "sydney.bmp", "sydney.md2", owner, position, team, 100); // TODO: pick random spawn position, set rotation
 	}
 	else
-		m_entities[owner] = PlayerFactory::createPredator(owner, position); // TODO: pick random spawn position, set rotation
+	{
+		m_entities[owner] = PlayerFactory::createPredator(ServerCore::getInstance().getPhysicsUtil().getDevice(), "sydney.bmp", "sydney.md2", owner, position); // TODO: pick random spawn position, set rotation
+	}
 	// Don't send new player to anyone yet, wait for the username (C.F. below)
 }
 
@@ -107,7 +106,6 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 		if (m_entities.size() == ProjectGlobals::MAX_PLAYERS_NB)
 			ServerCore::getInstance().startGame();
 	}
-
 	else
 	{
 		LOG_ERROR(ECS) << "Could not set player nickname with owner = " << rpc->GetLastSenderAddress().systemIndex << " (not found).";

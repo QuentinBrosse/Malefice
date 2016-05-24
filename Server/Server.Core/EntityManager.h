@@ -14,8 +14,10 @@ public:
 	virtual void			deleteEntity(ecs::ClientId owner)	= 0;
 	virtual void			updateEntity(ecs::ClientId owner, ecs::Entity *entity, RakNet::RPC3* rpc);
 
-	bool			hasEntity(ecs::ClientId owner)	const;
-	ecs::Entity*	findEntity(ecs::ClientId owner)	const;
+	bool					hasEntity(ecs::ClientId owner)	const;
+	ecs::Entity*			findEntity(ecs::ClientId owner)	const;
+
+	int						getPoolSize() const;
 
 
 protected:
