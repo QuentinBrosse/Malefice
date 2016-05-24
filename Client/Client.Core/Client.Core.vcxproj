@@ -19,6 +19,7 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="GraphicUtil.h" />
     <ClInclude Include="InGameGUI.h" />
+    <ClInclude Include="LifeSystem.h" />
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MasterList.h" />
@@ -42,6 +43,7 @@
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="GraphicUtil.cpp" />
     <ClCompile Include="InGameGUI.cpp" />
+    <ClCompile Include="LifeSystem.cpp" />
     <ClCompile Include="loadingWindows.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />

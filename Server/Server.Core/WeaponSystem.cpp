@@ -11,8 +11,11 @@ namespace ecs
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 
 			weapon.shoot();
-
-			//TODO: ray tracing etc..
+			/*
+			 * TODO:
+			 * 1) Get the entity we shot (let's call it "shotEntity")
+			 * 2) If its life <= 0, call LifeSystem::die(shotEntity) (and LifeSystem::die itself call client's RPC die() or something)
+			*/
 		}
 	}
 }

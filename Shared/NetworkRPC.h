@@ -16,7 +16,8 @@ public:
 		ClientCore,
 		PlayerManager,
 		UnreservedStart,
-		WeaponSystem = RakNet::UNASSIGNED_NETWORK_ID
+		WeaponSystem = RakNet::UNASSIGNED_NETWORK_ID,
+		LifeSystem = RakNet::UNASSIGNED_NETWORK_ID
 	};
 
 
@@ -30,10 +31,13 @@ public:
 	static const std::string	PLAYER_MANAGER_UPDATE_ENTITY;
 	static const std::string	PLAYER_MANAGER_REMOVE_ENTITY;
 
+	static const std::string	LIFE_SYSTEM_DIE;
+
 
 	// Server-Side executed
 
 	static const std::string	PLAYER_MANAGER_SET_PLAYER_NICKNAME;
 	static const std::string	PLAYER_MANAGER_SERVER_UPDATE_ENTITY;
+	
 	static const std::string	WEAPON_SYSTEM_SHOOT;
 };

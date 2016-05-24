@@ -29,7 +29,7 @@ public:
 	void weaponRegeneration(ecs::Entity* spawner);
 
 public:
-	//void pickObject(ecs::ClientId owner);
+	void pickObject(ecs::Entity* spawner, ecs::Entity* player);
 	//Fonction qui renvoie s'il y a collisions (soit avec la ligne soit avec le perso)
 
 public:

@@ -16,6 +16,7 @@ namespace ecs
 		~WeaponManager()	= default;
 
 		virtual void	init(Weapon& defaultWeapon);
+		void			reset();
 
 		void			addWeapon(Weapon& newWeapon);
 		void			changeToNextWeapon();
