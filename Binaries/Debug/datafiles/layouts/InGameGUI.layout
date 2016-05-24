@@ -9,14 +9,14 @@
         <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
         <Window type="Vanilla/ProgressBar" name="ProgressBar3" >
             <Property name="ID" value="1" />
-            <Property name="Area" value="{{0.015625,6},{0.037037,632},{0.015625,262},{0.037037,664}}" />
+            <Property name="Area" value="{{0.015625,4},{0.037037,617},{0.015625,260},{0.037037,649}}" />
             <Property name="StepSize" value="0.01" />
             <Property name="EnabledColour" value="tl:FF00FF00 tr:FF00FF00 bl:FF00FF00 br:FF00FF00" />
             <Property name="CurrentProgress" value="1" />
         </Window>
         <Window type="WindowsLook/Label" name="Label2" >
             <Property name="ID" value="2" />
-            <Property name="Area" value="{{0.222656,2},{0.0180556,636},{0.222656,53},{0.0180556,686}}" />
+            <Property name="Area" value="{{0.222656,3},{0.0180556,629},{0.222656,77},{0.0180556,661}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="100" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
@@ -117,28 +117,6 @@
                 <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
             </Window>
         </Window>
-        <Window type="WindowsLook/Static" name="Static2" >
-            <Property name="ID" value="10" />
-            <Property name="Area" value="{{0,919},{0,582},{0,1037},{0,621}}" />
-            <Property name="MaxSize" value="{{1,0},{1,0}}" />
-            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-            <Property name="BackgroundColours" value="tl:FF1E9EE1 tr:FF1E9EE1 bl:FF1E9EE1 br:FF1E9EE1" />
-            <Window type="WindowsLook/StaticImage" name="StaticImage" >
-                <Property name="Area" value="{{0,2},{0,1},{0,43},{0,40}}" />
-                <Property name="Image" value="Eclair/NewImage" />
-                <Property name="MaxSize" value="{{1,0},{1,0}}" />
-                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
-            </Window>
-            <Window type="WindowsLook/Label" name="Label22" >
-                <Property name="ID" value="11" />
-                <Property name="Area" value="{{0.221875,26},{0.0907407,-3},{0.221875,85},{0.0907407,36}}" />
-                <Property name="Font" value="Terminator-12" />
-                <Property name="Text" value="150" />
-                <Property name="MaxSize" value="{{1,0},{1,0}}" />
-                <Property name="NormalTextColour" value="FFFFFFFF" />
-            </Window>
-        </Window>
         <Window type="WindowsLook/Label" name="Label3" >
             <Property name="Area" value="{{0,6},{0,12},{0,121},{0,44}}" />
             <Property name="Font" value="Terminator-12" />
@@ -190,46 +168,27 @@
             <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
         <Window type="WindowsLook/Label" name="Label22" >
-            <Property name="ID" value="2" />
-            <Property name="Area" value="{{0.222656,92},{0.0180556,636},{0.222656,143},{0.0180556,686}}" />
+            <Property name="ID" value="600" />
+            <Property name="Area" value="{{0.222656,174},{0.0180556,636},{0.222656,225},{0.0180556,686}}" />
             <Property name="Font" value="Terminator-12" />
-            <Property name="Text" value="8" />
+            <Property name="Text" value="0" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="NormalTextColour" value="FFFFFFFF" />
+        </Window>
+        <Window type="Vanilla/ProgressBar" name="ProgressBar32" >
+            <Property name="ID" value="642" />
+            <Property name="Area" value="{{0.015625,6},{0.037037,655},{0.015625,262},{0.037037,687}}" />
+            <Property name="StepSize" value="0.01" />
+            <Property name="EnabledColour" value="tl:FF969696 tr:FF969696 bl:FF969696 br:FF969696" />
+            <Property name="CurrentProgress" value="1" />
         </Window>
         <Window type="WindowsLook/Label" name="Label23" >
-            <Property name="ID" value="2" />
-            <Property name="Area" value="{{0.222656,178},{0.0180556,636},{0.222656,229},{0.0180556,686}}" />
+            <Property name="ID" value="650" />
+            <Property name="Area" value="{{0.222656,3},{0.0180556,667},{0.222656,77},{0.0180556,699}}" />
             <Property name="Font" value="Terminator-12" />
-            <Property name="Text" value="77" />
+            <Property name="Text" value="100" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="NormalTextColour" value="FFFFFFFF" />
-        </Window>
-        <Window type="WindowsLook/Static" name="Static343" >
-            <Property name="Area" value="{{0,272},{0,582},{0,387},{0,621}}" />
-            <Property name="MaxSize" value="{{1,0},{1,0}}" />
-            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-            <Property name="BackgroundColours" value="tl:9600FFFF tr:9600FFFF bl:9600FFFF br:9600FFFF" />
-            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
-                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
-                <Property name="Image" value="Spells/FireBall" />
-                <Property name="MaxSize" value="{{1,0},{1,0}}" />
-                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
-            </Window>
-        </Window>
-        <Window type="WindowsLook/Static" name="Static3432" >
-            <Property name="Area" value="{{0,143},{0,582},{0,258},{0,621}}" />
-            <Property name="MaxSize" value="{{1,0},{1,0}}" />
-            <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-            <Property name="BackgroundColours" value="tl:96FFFFFF tr:96FFFFFF bl:96FFFFFF br:96FFFFFF" />
-            <Window type="WindowsLook/StaticImage" name="StaticImage2" >
-                <Property name="Area" value="{{0.394531,-42},{0.832407,-29},{0.394531,-10},{0.832407,3}}" />
-                <Property name="Image" value="Spells/FireBall" />
-                <Property name="MaxSize" value="{{1,0},{1,0}}" />
-                <Property name="FrameColours" value="tl:00FFFFFF tr:00FFFFFF bl:00FFFFFF br:00FFFFFF" />
-                <Property name="BackgroundColours" value="tl:00DFDFDF tr:00DFDFDF bl:00DFDFDF br:00DFDFDF" />
-            </Window>
         </Window>
     </Window>
 </GUILayout>

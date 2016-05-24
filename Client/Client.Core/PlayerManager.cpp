@@ -13,7 +13,6 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
 
 	EntityManager::addEntity(owner, localEntity, rpc);
-
 	if (ClientCore::getInstance().getClientId() == owner)
 	{
 		this->setCurrentPlayer(localEntity);

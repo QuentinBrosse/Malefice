@@ -6,7 +6,7 @@ ecs::PlayerInfos::PlayerInfos() : AComponent("PlayerInfos", ecs::AComponent::Com
 }
 
 ecs::PlayerInfos::PlayerInfos(const PlayerInfos& cpy) : AComponent("PlayerInfos", ecs::AComponent::ComponentType::PLAYER_INFOS),
-	m_nickname()
+	m_nickname(cpy.getNickname())
 {
 }
 
@@ -32,7 +32,7 @@ void	ecs::PlayerInfos::dump(std::ostream& os)	const
 	os << "PlayerInfos {nickname = \"" << m_nickname << "\"}";
 }
 
-ecs::AComponent& ecs::PlayerInfos::affect(const AComponent & rhs)
+ecs::AComponent&	ecs::PlayerInfos::affect(const AComponent& rhs)
 {
 	const PlayerInfos&	player = dynamic_cast<const PlayerInfos&>(rhs);
 

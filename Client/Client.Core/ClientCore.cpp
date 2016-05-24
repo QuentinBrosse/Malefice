@@ -17,6 +17,7 @@
 #include "GameEventReceiver.h"
 #include "WeaponManagerSystem.h"
 #include "TimeUtility.h"
+#include "Armor.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -84,6 +85,21 @@ void	ClientCore::pulse()
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 
+		if (m_graphicModule->getHUD()->isActive())
+		{
+			ecs::WeaponManager*	weaponManager = dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER]);
+			m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitions());
+			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
+			ecs::Life* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
+			if (life != nullptr)
+				m_graphicModule->getHUD()->setHealthPoint(life->get());
+			else
+				m_graphicModule->getHUD()->setHealthPoint(0);
+			if (armor != nullptr)
+				m_graphicModule->getHUD()->setArmorPoint(armor->get());
+			else
+				m_graphicModule->getHUD()->setArmorPoint(0);
+		}
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed);
