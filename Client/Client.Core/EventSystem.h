@@ -4,7 +4,7 @@
 
 #include "Entity.h"
 #include "SpellManager.h"
-#include "GameEventReceiver.h"
+#include "EventReceiver.h"
 
 namespace ecs
 {
@@ -15,7 +15,7 @@ namespace ecs
 		~EventSystem() = delete;
 
 		static void	doEvents(Entity& localPlayer);
-		static void	doPredatorEvents(Entity& predator, GameEventReceiver* eventReceiver, SpellManager* spellManager);
-		static void	doPlayerEvents(Entity& localPlayer, GameEventReceiver* eventReceiver);
+		static void	doPredatorEvents(Entity& predator, EventReceiver& eventReceiver, SpellManager* spellManager);
+		static void	doPlayerEvents(Entity& localPlayer, EventReceiver& eventReceiver);
 	};
 }

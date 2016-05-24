@@ -15,11 +15,9 @@ namespace ecs
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
-
-			//Est-ce que je peux shoot serveur ?
 			ray = WeaponSystem::getRay(weapon);
-
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &ray);
+			weapon.setRay(ray);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity);
 		}
 	}
 

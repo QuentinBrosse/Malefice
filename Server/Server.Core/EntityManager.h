@@ -18,6 +18,7 @@ public:
 	ecs::Entity*			findEntity(ecs::ClientId owner)	const;
 
 	int						getPoolSize() const;
+	std::map<ecs::ClientId, ecs::Entity*>	getEntities() const;
 
 
 protected:

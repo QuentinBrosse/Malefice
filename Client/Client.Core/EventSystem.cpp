@@ -5,49 +5,50 @@
 #include "SpellSystem.h"
 #include "SpellManagerSystem.h"
 #include "WeaponManagerSystem.h"
+#include "GraphicUtil.h"
 
 namespace ecs
 {
 
 	void	EventSystem::doEvents(Entity& localPlayer)
 	{
-		GameEventReceiver*					eventReceiver;
+		EventReceiver&						eventReceiver = GraphicUtil::getInstance().getCEGUIEventReceiver();
 		SpellManager*						spellManager;
 
-		if ((eventReceiver = dynamic_cast<GameEventReceiver*>(localPlayer[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER])) != nullptr && (spellManager = dynamic_cast<SpellManager*>(localPlayer[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-			EventSystem::doPredatorEvents(localPlayer, eventReceiver, spellManager);
-		else if (eventReceiver)
+		if ((spellManager = dynamic_cast<SpellManager*>(localPlayer[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+			EventSystem::doPredatorEvents(localPlayer, eventReceiver, spellManager); 
+		else
 			EventSystem::doPlayerEvents(localPlayer, eventReceiver);
 	}
 
-	void EventSystem::doPredatorEvents(Entity& predator, GameEventReceiver* eventReceiver, SpellManager* spellManager)
+	void EventSystem::doPredatorEvents(Entity& predator, EventReceiver& eventReceiver, SpellManager* spellManager)
 	{
-		while (!eventReceiver->getEvents().empty())
+		while (!eventReceiver.getEvents().empty())
 		{
-			switch (eventReceiver->getEvent())
+			switch (eventReceiver.getEvent())
 			{
-			case ecs::GameEventReceiver::LEFT_ATTACK:
+			case EventReceiver::GameEventType::LEFT_ATTACK:
 				if (!spellManager->weaponsIsCurrent())
 					SpellSystem::launchSpell(predator);
 				else
 					WeaponSystem::shoot(predator);
 				break;				
 
-			case ecs::GameEventReceiver::NEXT_WEAPON:
+			case EventReceiver::NEXT_WEAPON:
 				if (!spellManager->weaponsIsCurrent())
 					SpellManagerSystem::changeToNext(predator);
 				else
 					WeaponManagerSystem::changeToNext(predator);
 				break;
 
-			case ecs::GameEventReceiver::PREC_WEAPON:
+			case EventReceiver::PREC_WEAPON:
 				if (!spellManager->weaponsIsCurrent())
 					SpellManagerSystem::changeToPrec(predator);
 				else
 					WeaponManagerSystem::changeToPrec(predator);
 				break;
 
-			case ecs::GameEventReceiver::CHANGE_MANAGER:
+			case EventReceiver::CHANGE_MANAGER:
 				SpellManagerSystem::changeManager(predator);
 				break;
 
@@ -57,25 +58,25 @@ namespace ecs
 		}
 	}
 
-	void EventSystem::doPlayerEvents(Entity& localPlayer, GameEventReceiver* eventReceiver)
+	void EventSystem::doPlayerEvents(Entity& localPlayer, EventReceiver& eventReceiver)
 	{
-		while (!eventReceiver->getEvents().empty())
+		while (!eventReceiver.getEvents().empty())
 		{
-			switch (eventReceiver->getEvent())
+			switch (eventReceiver.getEvent())
 			{
-			case ecs::GameEventReceiver::LEFT_ATTACK:
+			case EventReceiver::LEFT_ATTACK:
 				WeaponSystem::shoot(localPlayer);
 				break;
 
-			case ecs::GameEventReceiver::NEXT_WEAPON:
+			case EventReceiver::NEXT_WEAPON:
 				WeaponManagerSystem::changeToNext(localPlayer);
 				break;
 
-			case ecs::GameEventReceiver::PREC_WEAPON:
+			case EventReceiver::PREC_WEAPON:
 				WeaponManagerSystem::changeToPrec(localPlayer);
 				break;
 
-			case ecs::GameEventReceiver::ZOOM:
+			case EventReceiver::ZOOM:
 				//TODO: Camera?
 				break;
 			default:

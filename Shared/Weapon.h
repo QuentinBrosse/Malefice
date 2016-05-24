@@ -55,7 +55,7 @@ namespace ecs
 		Position				getExternalMetrics()			const;
 		const bool				isSight()						const;
 
-		void					shoot();
+		bool					shoot();
 		void					reload();
 		void					decAmmunition(int nbLoaded);
 		void					incAmmunition(int nbAmmunition);
@@ -73,6 +73,9 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
+		void					setRay(const irr::core::line3df& ray);
+
+		irr::core::line3df		getRay()	const;
 	private:
 		static const std::string	MEDIA_PATH;
 
@@ -100,5 +103,7 @@ namespace ecs
 		irr::core::vector3df	m_fpsMetricsOffset;
 		float					m_fpsMetricsCoefOffset;
 		Position				m_externalMetrics;
+
+		irr::core::line3df		m_ray;
 	};
 }

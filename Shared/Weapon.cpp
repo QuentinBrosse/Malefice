@@ -21,7 +21,7 @@ namespace ecs
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_meshName(cpy.getMeshName()), m_maxAmmunitions(cpy.getMaxAmmunitions()), m_maxAmmunitionsClip(cpy.getMaxAmmunitionsClip()),  m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunitions(cpy.getAmmunitions()), m_ammunitionsClip(cpy.getAmmunitionsClip()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_fpsMetricsOffset(cpy.m_fpsMetricsOffset), m_fpsMetricsCoefOffset(cpy.m_fpsMetricsCoefOffset), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
+		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_meshName(cpy.getMeshName()), m_maxAmmunitions(cpy.getMaxAmmunitions()), m_maxAmmunitionsClip(cpy.getMaxAmmunitionsClip()),  m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunitions(cpy.getAmmunitions()), m_ammunitionsClip(cpy.getAmmunitionsClip()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_fpsMetricsOffset(cpy.m_fpsMetricsOffset), m_fpsMetricsCoefOffset(cpy.m_fpsMetricsCoefOffset), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr), m_ray(cpy.getRay())
 	{
 
 	}
@@ -136,12 +136,16 @@ namespace ecs
 		return m_damage;
 	}
 
-	void	Weapon::shoot()
+	bool	Weapon::shoot()
 	{
 		if (m_ammunitionsClip > m_ammoPerShot)
+		{
 			m_ammunitionsClip -= m_ammoPerShot;
+			return true;
+		}
 		else
 			this->reload();
+		return false;
 	}
 
 	void	Weapon::reload()
@@ -245,6 +249,7 @@ namespace ecs
 		m_scene = weapon.m_scene;
 		m_fpsMetrics = weapon.m_fpsMetrics;
 		m_externalMetrics = weapon.m_externalMetrics;
+		m_ray = weapon.m_ray;
 		return *this;
 	}
 
@@ -267,6 +272,7 @@ namespace ecs
 		out.Write(RakNet::RakString(m_meshName.c_str()));
 		m_externalMetrics.serialize(out, false);
 		m_fpsMetrics.serialize(out, false);
+		RakNetUtility::serializeLine(out, m_ray);
 	}
 
 	void	Weapon::deserialize(RakNet::BitStream& in)
@@ -293,5 +299,14 @@ namespace ecs
 		m_meshName = meshName.C_String();
 		m_externalMetrics.deserialize(in);
 		m_fpsMetrics.deserialize(in);
+		RakNetUtility::deserializeLine(in, m_ray);
+	}
+	void Weapon::setRay(const irr::core::line3df & ray)
+	{
+		m_ray = ray;
+	}
+	irr::core::line3df Weapon::getRay() const
+	{
+		return m_ray;
 	}
 };

@@ -34,3 +34,8 @@ int	EntityManager::getPoolSize() const
 {
 	return m_entities.size();
 }
+
+std::map<ecs::ClientId, ecs::Entity*> EntityManager::getEntities() const
+{
+	return m_entities;
+}

@@ -165,9 +165,6 @@
     <ClCompile Include="Armor.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
-    <ClCompile Include="GameEventReceiver.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="IrrlichtUtility.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
@@ -288,9 +285,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Armor.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEventReceiver.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="IrrlichtUtility.h">

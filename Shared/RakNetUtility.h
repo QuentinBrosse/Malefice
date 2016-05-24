@@ -28,4 +28,18 @@ public:
 		in.Read(vector.Y);
 		in.Read(vector.Z);
 	}
+
+	template<typename T>
+	static void	serializeLine(RakNet::BitStream& out, const irr::core::line3d<T>& line)
+	{
+		RakNetUtility::serializeVector(out, line.start);
+		RakNetUtility::serializeVector(out, line.end);
+	}
+
+	template<typename T>
+	static void	deserializeLine(RakNet::BitStream& in, irr::core::line3d<T>& line)
+	{
+		RakNetUtility::deserializeVector(in, line.start);
+		RakNetUtility::deserializeVector(in, line.end);
+	}
 };
