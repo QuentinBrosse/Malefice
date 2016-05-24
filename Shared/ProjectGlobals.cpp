@@ -8,7 +8,7 @@ const std::size_t	ProjectGlobals::NORMAL_TEAM_SIZE	= 1;
 const std::size_t	ProjectGlobals::NORMAL_TEAMS_NB		= 2;
 const std::size_t	ProjectGlobals::PREDATOR_TEAM_SIZE	= 1;
 const std::size_t	ProjectGlobals::PREDATOR_TEAMS_NB	= 1;
-const std::size_t	ProjectGlobals::MAX_PLAYERS_NB = 1;// (ProjectGlobals::NORMAL_TEAM_SIZE * ProjectGlobals::NORMAL_TEAMS_NB) + (ProjectGlobals::PREDATOR_TEAM_SIZE * ProjectGlobals::PREDATOR_TEAMS_NB);
+const std::size_t	ProjectGlobals::MAX_PLAYERS_NB = 2;// (ProjectGlobals::NORMAL_TEAM_SIZE * ProjectGlobals::NORMAL_TEAMS_NB) + (ProjectGlobals::PREDATOR_TEAM_SIZE * ProjectGlobals::PREDATOR_TEAMS_NB);
 
 const std::string	ProjectGlobals::GAME_CLIENT_VERSION	= "0.1";
 

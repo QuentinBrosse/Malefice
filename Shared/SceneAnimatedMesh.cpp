@@ -8,7 +8,7 @@ namespace ecs
 	{
 	}
 
-	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
+	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
 		m_node(nullptr), m_level(level), m_lighting(lighting)
 	{
 		this->init(device, parent, newNameTexture, newNameMesh, newPickableFlags, isCollisionable, level, lighting);
@@ -38,7 +38,7 @@ namespace ecs
 	}
 
 
-	void	SceneAnimatedMesh::init(irr::IrrlichtDevice* device, irr::scene::ICameraSceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level)
+	void	SceneAnimatedMesh::init(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level)
 	{
 		m_type = SceneType::ANIMATED_MESH;
 		m_isCollisionable = isCollisionable;

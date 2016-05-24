@@ -43,6 +43,17 @@ void PlayerManager::initPlayersScene()
 	}
 }
 
+void PlayerManager::initPlayersWeapons()
+{
+	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
+	{
+		if (ClientCore::getInstance().getClientId() == it->first)
+			ecs::WeaponManagerSystem::initFPSWeapon(*it->second);
+		else
+			ecs::WeaponManagerSystem::initExternalWeapon(*it->second);
+	}
+}
+
 ecs::Entity*	PlayerManager::getCurrentPlayer() const
 {
 	return m_currentPlayer;
