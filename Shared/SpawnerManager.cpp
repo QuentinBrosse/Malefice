@@ -29,22 +29,28 @@ void SpawnerManager::lifeRegeneration(ecs::Entity* entity)
 {
 	int i = rand() % 10 + 1;
 
-	if (i <= 5)
-		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(20, ecs::AComponent::ComponentType::LIFE);
-	else if (i >= 6 && i <= 8)
-		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(40, ecs::AComponent::ComponentType::LIFE);
-	else
-		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(100, ecs::AComponent::ComponentType::LIFE);
+	if (dynamic_cast<ecs::Life*>((*entity)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
+	{
+		if (i <= 5)
+			dynamic_cast<ecs::Life*>((*entity)[ecs::AComponent::ComponentType::LIFE])->set(20);
+		else if (i >= 6 && i <= 8)
+			dynamic_cast<ecs::Life*>((*entity)[ecs::AComponent::ComponentType::LIFE])->set(40);
+		else
+			dynamic_cast<ecs::Life*>((*entity)[ecs::AComponent::ComponentType::LIFE])->set(100);
+	}
 }
 
 void SpawnerManager::armorRegeneration(ecs::Entity* entity)
 {
 	int i = rand() % 5 + 1;
 
-	if (i <= 4)
-		(*entity)[ecs::AComponent::ComponentType::ARMOR] = new ecs::Armor(40);
-	else
-		(*entity)[ecs::AComponent::ComponentType::ARMOR] = new ecs::Armor(100);
+	if (dynamic_cast<ecs::Armor*>((*entity)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
+	{
+		if (i <= 4)
+			dynamic_cast<ecs::Armor*>((*entity)[ecs::AComponent::ComponentType::ARMOR])->set(40);
+		else
+			dynamic_cast<ecs::Armor*>((*entity)[ecs::AComponent::ComponentType::ARMOR])->set(100);
+	}
 }
 
 void SpawnerManager::weaponRegeneration(ecs::Entity* entity)
@@ -70,9 +76,10 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
 		}
 	case ecs::Entity::EntityType::WEAPON_SPAWNER :
-		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*player)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
+		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
 		{
-			return;
+			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
+			(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
 		}
 	}
 }

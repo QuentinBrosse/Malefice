@@ -36,8 +36,9 @@ namespace ecs
 	void	WeaponManager::addWeapon(Weapon& newWeapon)
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
-			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (newWeapon.getWeaponType(), newWeapon));
-
+			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&>(newWeapon.getWeaponType(), newWeapon));
+		else
+			m_weapons[newWeapon.getWeaponType()].incAmmunition(newWeapon.getAmmunitions());
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}
