@@ -13,6 +13,7 @@ GraphicUtil::GraphicUtil() :
 	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr)
 {
 	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
+
 	if (!m_device)
 	{
 		// TODO: Throw exception
@@ -21,6 +22,7 @@ GraphicUtil::GraphicUtil() :
 
 	m_driver = m_device->getVideoDriver();
 	m_sceneManager = m_device->getSceneManager();
+
 	m_keyMap = new irr::SKeyMap[5];
 	m_keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
 	m_keyMap[0].KeyCode = irr::KEY_KEY_Z;        // w
@@ -95,6 +97,8 @@ void GraphicUtil::initGraphics()
 	m_connectWindow = new ConnectWindow(*this);
 	m_salon = new WaitingRoom(*this);
 	m_hud = new InGameGUI();
+	m_masterList = new MasterList(*this);
+
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();
@@ -189,6 +193,11 @@ MenuPause* GraphicUtil::getMenuPause()
 MenuOptions* GraphicUtil::getMenuOptions()
 {
 	return m_menuOptions;
+}
+
+MasterList* GraphicUtil::getMasterList()
+{
+	return m_masterList;
 }
 
 InGameGUI* GraphicUtil::getHUD()

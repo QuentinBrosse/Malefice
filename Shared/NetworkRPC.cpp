@@ -17,9 +17,12 @@ const std::string	NetworkRPC::PLAYER_MANAGER_ADD_ENTITY		= "PlayerManager::addEn
 const std::string	NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY	= "PlayerManager::updateEntity";
 const std::string	NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY	= "PlayerManager::removeEntity";
 
+const std::string	NetworkRPC::LIFE_SYSTEM_DIE	= "LifeSystem::die";
+
 
 // Server-Side executed
 
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";
 const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateEntity";
-const std::string	NetworkRPC::WEAPON_SYSTEM_SHOOT					= "WeaponSystem::shoot";
+
+const std::string	NetworkRPC::WEAPON_SYSTEM_SHOOT	= "WeaponSystem::shoot";

@@ -23,7 +23,6 @@ namespace ecs
 			SPELL_MANAGER,
 			CAMERA,
 			SCENE,
-			GAME_EVENT_RECEIVER,
 			PLAYER_INFOS,
 			COMPONENT_COUNT
 		};

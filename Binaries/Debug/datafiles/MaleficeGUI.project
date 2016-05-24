@@ -11,5 +11,6 @@
         <Item path="layouts/menuPause.layout" type="file" />
         <Item path="layouts/options.layout" type="file" />
         <Item path="imagesets/spells.imageset" type="file" />
+        <Item path="layouts/masterList.layout" type="file" />
     </Items>
 </Project>

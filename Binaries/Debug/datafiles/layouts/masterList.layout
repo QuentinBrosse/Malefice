@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="AlfiskoSkin/FrameWindow" name="FrameWindow" >
+        <Property name="ID" value="1234" />
+        <Property name="Area" value="{{0,12},{0,-3},{0.3,466},{0.3,210}}" />
+        <Property name="RollUpEnabled" value="false" />
+        <Property name="VerticalAlignment" value="Centre" />
+        <Property name="HorizontalAlignment" value="Centre" />
+        <AutoWindow namePath="__auto_titlebar__" >
+            <Property name="AlwaysOnTop" value="false" />
+        </AutoWindow>
+        <Window type="AlfiskoSkin/Button" name="Button" >
+            <Property name="ID" value="2" />
+            <Property name="Area" value="{{0,623},{0,16},{0,803},{0,57}}" />
+            <Property name="Text" value="Connection depuis la liste" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button2" >
+            <Property name="ID" value="1" />
+            <Property name="Area" value="{{0,621},{0,328},{0,803},{0,369}}" />
+            <Property name="Text" value="Connection manuelle" />
+        </Window>
+        <Window type="WindowsLook/Listbox" name="Listbox" >
+            <Property name="ID" value="33" />
+            <Property name="Area" value="{{0,36},{0,15},{0,596},{0,365}}" />
+            <Property name="DragDropTarget" value="false" />
+            <Property name="ClippedByParent" value="false" />
+            <Property name="WantsMultiClickEvents" value="false" />
+        </Window>
+    </Window>
+</GUILayout>

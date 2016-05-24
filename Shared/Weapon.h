@@ -28,11 +28,11 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
+		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 		Weapon(const Weapon& cpy);
 		~Weapon()	= default;
 
-		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int ammunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int defaultAmunitions);
+		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 
 		virtual AComponent&	affect(const AComponent& rhs);
 		
@@ -45,7 +45,8 @@ namespace ecs
 		const unsigned int		getMaxAmmunitions()				const;
 		const unsigned int		getReloadTime()					const;
 		const unsigned int		getAmmoPerShot()				const;
-		const unsigned int		getDefaultAmunitions()			const;
+		const unsigned int		getMaxAmmunitionsClip()			const;
+		const unsigned int		getAmmunitionsClip()			const;
 		const float				getFireRate()					const;
 		const float				getDistance()					const;
 		Position				getFPSMetrics()					const;
@@ -54,10 +55,10 @@ namespace ecs
 		Position				getExternalMetrics()			const;
 		const bool				isSight()						const;
 
-		void					shot();
+		bool					shoot();
 		void					reload();
-		void					decAmmunition(int nbFired);
-		void					incAmmunition(int nbAmmuition);
+		void					decAmmunition(int nbLoaded);
+		void					incAmmunition(int nbAmmunition);
 
 		void					createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
 
@@ -72,22 +73,26 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
+		void					setRay(const irr::core::line3df& ray);
+
+		irr::core::line3df		getRay()	const;
 	private:
 		static const std::string	MEDIA_PATH;
 
 		int				m_id;
 		std::string		m_weaponName;
 		std::string		m_meshName;
-		unsigned int	m_maxAmmunition;
+		unsigned int	m_maxAmmunitions;			// Max ammunition total
+		unsigned int	m_maxAmmunitionsClip;		//	Max Ammunition in clip
 		unsigned int	m_damage;
 		WeaponType		m_weaponType;
 
 		bool	m_sight;
 
-		unsigned int	m_ammunition;
 		unsigned int	m_reloadTime;
 		unsigned int	m_ammoPerShot;
-		unsigned int	m_defaultAmunitions;
+		unsigned int	m_ammunitions;
+		unsigned int	m_ammunitionsClip;
 
 		float					m_fireRate;
 		float					m_distance;
@@ -98,5 +103,7 @@ namespace ecs
 		irr::core::vector3df	m_fpsMetricsOffset;
 		float					m_fpsMetricsCoefOffset;
 		Position				m_externalMetrics;
+
+		irr::core::line3df		m_ray;
 	};
 }

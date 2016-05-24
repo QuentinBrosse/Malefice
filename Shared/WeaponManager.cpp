@@ -1,4 +1,5 @@
 #include "WeaponManager.h"
+#include "WeaponCreator.h"
 
 namespace ecs
 {
@@ -22,7 +23,7 @@ namespace ecs
 
 	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER)
 	{
-		init(defaultWeapon);
+		this->init(defaultWeapon);
 	}
 
 
@@ -32,11 +33,18 @@ namespace ecs
 		m_currentWeapon = m_weapons.begin();
 	}
 
+	void	WeaponManager::reset()
+	{
+		m_weapons.erase(m_weapons.begin(), m_weapons.end());
+		this->init(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
+	}
+
 
 	void	WeaponManager::addWeapon(Weapon& newWeapon)
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
 			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (newWeapon.getWeaponType(), newWeapon));
+
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}
@@ -176,4 +184,3 @@ namespace ecs
 		return new WeaponManager(*weaponManager);
 	}
 };
-

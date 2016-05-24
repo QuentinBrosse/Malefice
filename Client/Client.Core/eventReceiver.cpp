@@ -45,6 +45,46 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 			m_keyState[event.KeyInput.Key] = UP;
 		}
 	}
+	if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
+	{
+		switch (event.MouseInput.Event)
+		{
+		case irr::EMIE_LMOUSE_LEFT_UP:
+			m_events.push(EventReceiver::GameEventType::LEFT_ATTACK);
+			break;
+
+		case irr::EMIE_MMOUSE_PRESSED_DOWN:
+			m_events.push(EventReceiver::GameEventType::ZOOM);
+			break;
+
+		case irr::EMIE_MOUSE_WHEEL:
+			if (event.MouseInput.Wheel < 0)
+				m_events.push(EventReceiver::GameEventType::PREC_WEAPON);
+			else
+				m_events.push(EventReceiver::GameEventType::NEXT_WEAPON);
+			break;
+
+		default:
+			break;
+		}
+	}
+	else if (event.EventType == irr::EET_KEY_INPUT_EVENT)
+	{
+		switch (event.KeyInput.Key)
+		{
+
+		case irr::KEY_KEY_1:
+			m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+			break;
+
+		case irr::KEY_KEY_2:
+			m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+			break;
+
+		default:
+			break;
+		}
+	}
 	return false;
 }
 
@@ -214,4 +254,17 @@ unsigned char EventReceiver::irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc)
 	irr2ceCODE[irr::KEY_PA1] = 0;  // PA1 key
 	irr2ceCODE[irr::KEY_OEM_CLEAR] = 0;  // Clear key
 	return irr2ceCODE[kc];
+}
+
+std::queue < EventReceiver::GameEventType > EventReceiver::getEvents() const
+{
+	return m_events;
+}
+
+EventReceiver::GameEventType EventReceiver::getEvent()
+{
+	GameEventType	event = m_events.front();
+
+	m_events.pop();
+	return event;
 }
