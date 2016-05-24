@@ -108,6 +108,9 @@
     <ClInclude Include="MenuOptions.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="MasterList.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="MenuOptions.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterList.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
