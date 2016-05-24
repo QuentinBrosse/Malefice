@@ -75,6 +75,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -123,6 +129,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -171,6 +183,12 @@
 				<y>20.0</y>
 				<z>15.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -219,6 +237,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -267,6 +291,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -315,6 +345,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -363,6 +399,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -411,6 +453,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
@@ -459,6 +507,12 @@
 				<y>0.0</y>
 				<z>0.0</z>
 			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
