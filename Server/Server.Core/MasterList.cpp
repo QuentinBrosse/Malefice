@@ -8,7 +8,7 @@
 #include "TimeUtility.h"
 #include "StringUtility.h"
 
-MasterList::MasterList():
+MasterList::MasterList(): Singleton<MasterList>(),
 	m_state(STATE_ADD), m_lastUpdateTime(0)
 {
 }
@@ -19,7 +19,8 @@ MasterList::~MasterList()
 		m_worker.join();
 
 	if (m_tcp) {
-		m_tcp->Stop();
+		if(m_tcp->WasStarted())
+			m_tcp->Stop();
 		delete(m_tcp);
 	}
 }
@@ -42,7 +43,7 @@ void	MasterList::pulse()
 
 	while (ServerCore::getInstance().isActive())
 	{
-		if ((utility::TimeUtility::getMsTime() - m_lastUpdateTime) < 5000)
+		if ((utility::TimeUtility::getMsTime() - m_lastUpdateTime) < 3000)
 			continue;
 
 		if (m_tcp->Connect(ProjectGlobals::MASTERLIST_URL.c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)

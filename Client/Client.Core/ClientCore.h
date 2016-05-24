@@ -7,6 +7,7 @@
 #include "NetworkModule.h"
 #include "EventReceiver.h"
 #include "PlayerManager.h"
+#include "MasterList.h"
 #include "SceneMesh.h"
 
 typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
@@ -22,6 +23,7 @@ public:
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;
 	PlayerManager*	getPlayerManager()	const;
+	MasterList*		getMasterList()		const;
 	ecs::ClientId	getClientId()		const;
 	bool			isActive()			const;
 	ecs::Entity*	getMap()			const;
@@ -46,6 +48,7 @@ private:
 	NetworkModule*	m_networkModule;
 	GraphicUtil*	m_graphicModule;
 	PlayerManager*	m_playerManager;
+	MasterList*		m_masterList;
 	ecs::ClientId	m_clientId;
 	std::string		m_nickname;
 	bool			m_isActive;
