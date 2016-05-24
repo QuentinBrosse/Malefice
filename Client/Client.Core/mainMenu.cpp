@@ -22,7 +22,7 @@ void MainMenu::hide()
 
 bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 {
-	m_graphicUtils.getConnectWindow()->display();
+	m_graphicUtils.getMasterList()->display();
 	return (true);
 }
 

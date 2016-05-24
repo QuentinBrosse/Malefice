@@ -1,11 +1,18 @@
 #include "MasterList.h"
+#include "GraphicUtil.h"
 
-MasterList::MasterList() : m_systemd(CEGUI::System::getSingleton())
+MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("masterList.layout");
 	m_manualConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(1));
 	m_autoConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(2));
-	m_serverList = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(10));
+	m_serverList = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(33));
+	if (m_serverList == nullptr)
+		LOG_DEBUG(GENERAL) << "Cannot cast !";
+	m_frameWindow = dynamic_cast<CEGUI::FrameWindow *>(m_windows);
+	m_frameWindow->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onCloseButtonClicked, this));
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonClicked, this));
+	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonClicked, this));
 }
 
 void MasterList::display()
@@ -33,12 +40,36 @@ void MasterList::hide()
 
 void MasterList::addServer(const std::string &txt)
 {
-	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
+	CEGUI::ListboxItem* item = new CEGUI::ListboxTextItem("ok");
 	item->setText(txt);
+	item->setUserData(0);
+	item->setSelectionBrushImage("WindowsLook/TitlebarBottom");
+	item->setSelected(false);
 	m_serverList->addItem(item);
 }
 
 void MasterList::resetList()
 {
 	m_serverList->resetList();
+}
+
+bool MasterList::onManualConnectButtonClicked()
+{
+	this->hide();
+	m_graphicUtils.getConnectWindow()->display();
+	return (true);
+}
+
+bool MasterList::onAutoConnectButtonClicked()
+{
+	CEGUI::ListboxItem* item = m_serverList->getFirstSelectedItem();
+	this->hide();
+	m_graphicUtils.getConnectWindow()->display();
+	return (true);
+}
+
+bool MasterList::onCloseButtonClicked()
+{
+	this->hide();
+	return (true);
 }

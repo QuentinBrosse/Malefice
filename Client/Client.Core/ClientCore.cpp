@@ -69,6 +69,7 @@ bool	ClientCore::init()
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
+	m_graphicModule->getMasterList()->addServer("Oklooklmmmmm");
 }
 
 void	ClientCore::pulse()
