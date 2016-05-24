@@ -3,45 +3,39 @@
 #include "WeaponSystem.h"
 #include "SceneAnimatedMesh.h"
 #include "GraphicUtil.h"
+#include "ClientCore.h"
 
 namespace ecs
 {
 	void				WeaponSystem::shoot(Entity& entity)
 	{
-		WeaponManager*	weaponManager;
+		WeaponManager*		weaponManager;
+		irr::core::line3df	ray;
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 
-			if (weapon.getAmmunitions() > 0)
-				weapon.shot();
-			else
-				weapon.reload();
+			//Est-ce que je peux shoot serveur ?
+			ray = WeaponSystem::getRay(weapon);
 
-			//TODO: sens to msg to server
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &ray);
 		}
 	}
 
-	irr::core::line3df	WeaponSystem::getRay(Entity & entity)
+	irr::core::line3df	WeaponSystem::getRay(Weapon& weapon)
 	{
-		WeaponManager*				weaponManager;
-		irr::core::line3d<irr::f32> ray;
+		irr::core::line3df	ray;
+		Camera*				camera = GraphicUtil::getInstance().getFPSCamera();
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
-		{
-			Weapon&					weapon = weaponManager->getCurrentWeapon();
-			Camera*					camera = GraphicUtil::getInstance().getFPSCamera();
+		weapon.getScene()->getScene()->updateAbsolutePosition();
 
-			weapon.getScene()->getScene()->updateAbsolutePosition();
-
-			ray.start = weapon.getScene()->getScene()->getAbsolutePosition();
-			ray.end = ray.start + (camera->getTarget() - ray.start).normalize() * weapon.getDistance();
-			ray.start += weapon.getFPSMetricsOffset();
-			irr::core::vector3df vector(ray.end - ray.start);
-			vector.normalize();
-			ray.start += vector * weapon.getFPSMetricsCoefOffset();
-		}
+		ray.start = weapon.getScene()->getScene()->getAbsolutePosition();
+		ray.end = ray.start + (camera->getTarget() - ray.start).normalize() * weapon.getDistance();
+		ray.start += weapon.getFPSMetricsOffset();
+		irr::core::vector3df vector(ray.end - ray.start);
+		vector.normalize();
+		ray.start += vector * weapon.getFPSMetricsCoefOffset();
 		return ray;
 	}
 

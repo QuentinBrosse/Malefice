@@ -2,7 +2,7 @@
 
 namespace ecs
 {
-	void	WeaponSystem::shoot(Entity* entity, RakNet::RPC3* rpc)
+	void	WeaponSystem::shoot(Entity* entity, irr::core::line3df* ray, RakNet::RPC3* rpc)
 	{
 		WeaponManager*	weaponManager;
 
@@ -10,10 +10,8 @@ namespace ecs
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 
-			if (weapon.getAmmunitions() > 0)
-				;//weapon.fired();
-			else
-				weapon.reload();
+			weapon.shoot();
+
 			//TODO: ray tracing etc..
 		}
 	}

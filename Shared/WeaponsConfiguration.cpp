@@ -40,7 +40,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		unsigned int			ammoPerShot = 0;
 		unsigned int			damage = 0;
 		unsigned int			reloadTime = 0;
-		unsigned int			defaultAmunitions = 0;
+		unsigned int			ammunitionsClip = 0;
 		ecs::Weapon::WeaponType	type;
 		std::string				name;
 		std::string				meshName;
@@ -51,7 +51,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				ammoPerShotStr;
 		std::string				precisionStr;
 		std::string				ammunitionStr;
-		std::string				defaultAmunitionsStr;
+		std::string				ammunitionsClipStr;
 		std::string				fpsMetricsCoefOffsetStr;
 		irr::core::vector3df	fpsMetricsPosition;
 		irr::core::vector3df	fpsMetricsRotation;
@@ -82,7 +82,10 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		precisionStr = this->getOrCreateElementString(doc, *currentWeapon, "precision", "");
 		precision = stof(precisionStr);
 
-		ammunitionStr = this->getOrCreateElementString(doc, *currentWeapon, "amunitionsPerLoader", "");
+		ammunitionsClipStr = this->getOrCreateElementString(doc, *currentWeapon, "ammunitionsClip", "");
+		ammunitionsClip = std::stoi(ammunitionsClipStr);
+
+		ammunitionStr = this->getOrCreateElementString(doc, *currentWeapon, "ammunitionsTotal", "");
 		ammunition = std::stoi(ammunitionStr);
 
 		fireRateStr = this->getOrCreateElementString(doc, *currentWeapon, "rateOfFire", "");
@@ -96,9 +99,6 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 		reloadTimeStr = this->getOrCreateElementString(doc, *currentWeapon, "reloadTime", "");
 		reloadTime = std::stoi(reloadTimeStr);
-
-		defaultAmunitionsStr = this->getOrCreateElementString(doc, *currentWeapon, "defaultAmunitions", "");
-		defaultAmunitions = std::stoi(defaultAmunitionsStr);
 
 		tinyxml2::XMLElement* fpsMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
 		if (fpsMetrics == nullptr)
@@ -216,7 +216,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), fpsMetricsOffset, fpsMetricsCoefOffset, ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, defaultAmunitions);
+		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), fpsMetricsOffset, fpsMetricsCoefOffset, ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, ammunitionsClip);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
 
