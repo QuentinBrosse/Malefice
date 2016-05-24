@@ -50,10 +50,6 @@ namespace ecs
 			// Set to max Life ? Or throw exception ?
 		}
 		m_currentLife = life;
-		if (m_currentLife == 0)
-		{
-			onDeath();
-		}
 	}
 
 	void Life::takeDamage(int damage)
@@ -66,7 +62,6 @@ namespace ecs
 		if (m_currentLife <= 0)
 		{
 			m_currentLife = 0;
-			onDeath();
 		}
 	}
 
@@ -75,11 +70,6 @@ namespace ecs
 		m_currentLife += quantity;
 		if (m_currentLife > m_maxLife)
 			m_currentLife = m_maxLife;
-	}
-
-	void Life::onDeath()
-	{
-		// Death behavior ...
 	}
 
 

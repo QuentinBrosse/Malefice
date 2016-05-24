@@ -111,6 +111,9 @@
     <ClInclude Include="MasterList.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="LifeSystem.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -181,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="MasterList.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeSystem.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
