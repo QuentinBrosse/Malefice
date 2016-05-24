@@ -1,17 +1,12 @@
+#include <iostream>
 #include "MasterList.h"
-
 #include "ProjectGlobals.h"
-
 #include "ServerCore.h"
 #include "ServerCoreConfiguration.h"
 #include "PlayerManager.h"
-
 #include "Logger.h"
-
 #include "TimeUtility.h"
 #include "StringUtility.h"
-
-#include <iostream>
 
 MasterList::MasterList():
 	m_state(STATE_ADD), m_lastUpdateTime(0)

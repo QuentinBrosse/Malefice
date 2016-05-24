@@ -1,7 +1,6 @@
 #pragma once
 
-// Server Version
-
+#include <RPC3.h>
 #include "Entity.h"
 #include "WeaponManager.h"
 #include "Life.h"
@@ -12,8 +11,9 @@ namespace ecs
 	class WeaponSystem
 	{
 	public:
-		WeaponSystem() = delete;
-		~WeaponSystem() = delete;
-		static void	shoot(Entity& entity, bool isExplosive);
+		WeaponSystem()	= delete;
+		~WeaponSystem()	= delete;
+
+		static void	shoot(Entity* entity, RakNet::RPC3* rpc);
 	};
 }
