@@ -37,6 +37,7 @@ namespace ecs
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
 			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (newWeapon.getWeaponType(), newWeapon));
+
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}

@@ -18,9 +18,10 @@ MasterList::~MasterList()
 	if (m_worker.joinable())
 		m_worker.join();
 
-	m_tcp->Stop();
-
-	delete(m_tcp);
+	if (m_tcp) {
+		m_tcp->Stop();
+		delete(m_tcp);
+	}
 }
 
 void	MasterList::run()
