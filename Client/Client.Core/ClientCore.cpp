@@ -70,7 +70,7 @@ bool	ClientCore::init()
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_graphicModule->getMasterList()->addServer("Oklooklmmmmm");
-	m_masterList = &MasterList::getInstance();
+	m_masterList = &MasterListNetwork::getInstance();
 	m_masterList->fetch();
 }
 
@@ -168,7 +168,7 @@ PlayerManager*	ClientCore::getPlayerManager() const
 	return m_playerManager;
 }
 
-MasterList*		ClientCore::getMasterList() const
+MasterListNetwork*		ClientCore::getMasterList() const
 {
 	return m_masterList;
 }
