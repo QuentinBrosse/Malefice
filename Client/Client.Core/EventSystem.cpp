@@ -27,15 +27,11 @@ namespace ecs
 			switch (eventReceiver->getEvent())
 			{
 			case ecs::GameEventReceiver::LEFT_ATTACK:
-				WeaponSystem::shoot(predator, false);
-				break;
-
-			case ecs::GameEventReceiver::RIGHT_ATTACK:
 				if (!spellManager->weaponsIsCurrent())
 					SpellSystem::launchSpell(predator);
 				else
-					WeaponSystem::shoot(predator, true);
-				break;
+					WeaponSystem::shoot(predator);
+				break;				
 
 			case ecs::GameEventReceiver::NEXT_WEAPON:
 				if (!spellManager->weaponsIsCurrent())
@@ -68,11 +64,7 @@ namespace ecs
 			switch (eventReceiver->getEvent())
 			{
 			case ecs::GameEventReceiver::LEFT_ATTACK:
-				WeaponSystem::shoot(localPlayer, false);
-				break;
-
-			case ecs::GameEventReceiver::RIGHT_ATTACK:
-				WeaponSystem::shoot(localPlayer, true);
+				WeaponSystem::shoot(localPlayer);
 				break;
 
 			case ecs::GameEventReceiver::NEXT_WEAPON:

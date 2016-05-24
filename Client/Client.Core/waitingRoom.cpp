@@ -98,6 +98,10 @@ void WaitingRoom::checkConnectedPlayers()
 {
 	if (m_checkConnectedPlayers)
 	{
-		//ClientCore::getInstance().getPlayerManager()->
+		const std::map<ecs::ClientId, ecs::Entity*> &entities = ClientCore::getInstance().getPlayerManager()->getEntities();
+		for (auto entity : entities)
+		{
+			std::cout << entity.first << std::endl;
+		}
 	}
 }

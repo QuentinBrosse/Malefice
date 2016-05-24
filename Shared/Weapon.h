@@ -59,7 +59,7 @@ namespace ecs
 		void					decAmmunition(int nbFired);
 		void					incAmmunition(int nbAmmuition);
 
-		void					createScene(irr::IrrlichtDevice* device, const bool active);
+		void					createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
 
 		void					setActivity(const bool active);
 
@@ -89,10 +89,10 @@ namespace ecs
 		unsigned int	m_ammoPerShot;
 		unsigned int	m_defaultAmunitions;
 
-		float	m_fireRate;
-		float	m_distance;
+		float					m_fireRate;
+		float					m_distance;
 
-		SceneAnimatedMesh*	m_scene;
+		SceneAnimatedMesh*		m_scene;
 
 		Position				m_fpsMetrics;
 		irr::core::vector3df	m_fpsMetricsOffset;

@@ -162,12 +162,11 @@ namespace ecs
 			m_ammunition = m_maxAmmunition;
 	}
 
-	void	Weapon::createScene(irr::IrrlichtDevice* device, const bool active)
+	void	Weapon::createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active)
 	{
 		if (m_scene)
 			delete m_scene;
-		device->getSceneManager()->getActiveCamera();
-		m_scene = new SceneAnimatedMesh(device, device->getSceneManager()->getActiveCamera(), "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true, true, 0);
+		m_scene = new SceneAnimatedMesh(device, parent, "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true, true, 0);
 
 	
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);

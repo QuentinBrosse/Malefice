@@ -29,7 +29,7 @@ namespace ecs
 		}
 	}
 
-	void WeaponManagerSystem::initWeapon(Entity& entity)
+	void WeaponManagerSystem::initFPSWeapon(Entity& entity)
 	{
 		SceneAnimatedMesh*		scene;
 		WeaponManager*			weaponManager;
@@ -44,7 +44,7 @@ namespace ecs
 
 			for (auto it = weapons.begin(); it != weapons.end(); ++it)
 			{
-				(*it).second.createScene(graphics.getDevice(), false);
+				(*it).second.createScene(graphics.getDevice(), graphics.getDevice()->getSceneManager()->getActiveCamera(), false);
 				scene = (*it).second.getScene();
 
 				scene->setPosition((*it).second.getFPSMetrics());
@@ -55,19 +55,33 @@ namespace ecs
 		}
 	}
 
-	void WeaponManagerSystem::attachCamera(Entity& entity)
+	void WeaponManagerSystem::initExternalWeapon(Entity& entity)
 	{
-		WeaponManager*	weaponManager;
+		SceneAnimatedMesh*		sceneWeapon;
+		SceneAnimatedMesh*		sceneplayer;
+		WeaponManager*			weaponManager;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		if (entity.has(ecs::AComponent::ComponentType::SCENE))
+			std::cout << "blaaaaa" << std::endl;
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && (sceneplayer = dynamic_cast<SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
-			GraphicUtil&	graphics = GraphicUtil::getInstance();
+			// TODO: remove or update entity's position to others?
+			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
+			GraphicUtil&			graphics = GraphicUtil::getInstance();
 
-			for (auto weapon : weaponManager->getWeapons())
+			Camera*	camera = graphics.getFPSCamera();
+
+			for (auto it = weapons.begin(); it != weapons.end(); ++it)
 			{
-				weapon.second.createScene(graphics.getDevice(), false);
-				graphics.getSceneManager()->getActiveCamera()->addChild(weapon.second.getScene()->getScene());
+				(*it).second.createScene(graphics.getDevice(), sceneplayer->getScene(), false);
+				sceneWeapon = (*it).second.getScene();
+
+				sceneWeapon->setPosition((*it).second.getExternalMetrics());
 			}
+
+			if (weaponManager->hasCurrentWeapon())
+				weaponManager->getCurrentWeapon().setActivity(true);
 		}
+
 	}
 }

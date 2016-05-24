@@ -14,7 +14,6 @@ namespace ecs
 		{
 			NOTHING,
 			LEFT_ATTACK,
-			RIGHT_ATTACK,
 			NEXT_WEAPON,
 			PREC_WEAPON,
 			CHANGE_MANAGER,
