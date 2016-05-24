@@ -107,11 +107,13 @@ void WaitingRoom::checkConnectedPlayers()
 	if (m_checkConnectedPlayers)
 	{
 		const std::map<ecs::ClientId, ecs::Entity*> &entities = ClientCore::getInstance().getPlayerManager()->getEntities();
+
 		this->resetTeamDisplay();
 		for (auto entity : entities)
 		{
-			this->addLeftTeamMember(dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname());
-			LOG_INFO(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname();
+			ecs::PlayerInfos*	playerInfos = dynamic_cast<ecs::PlayerInfos*>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+
+			this->addLeftTeamMember(playerInfos->getNickname());
 		}
 	}
 }

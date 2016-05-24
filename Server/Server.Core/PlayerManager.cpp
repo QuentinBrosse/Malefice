@@ -101,7 +101,7 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 		ecs::PlayerInfos*	playerInfos	= dynamic_cast<ecs::PlayerInfos*>((*it->second)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
 
 		playerInfos->setNickname(nickname.C_String());
-		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), rpc->GetLastSenderAddress().systemIndex, true, it->second->getOwner(), it->second);
+		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), rpc->GetLastSenderAddress(), true, it->second->getOwner(), it->second);
 
 		for (auto entity : m_entities)
 		{
