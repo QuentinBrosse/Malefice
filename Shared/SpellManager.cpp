@@ -121,9 +121,13 @@ namespace ecs
 		const SpellManager&	spellManager = dynamic_cast<const SpellManager&>(rhs);
 
 		m_weaponsIsCurrent = spellManager.m_weaponsIsCurrent;
-		m_currentSpell = spellManager.m_currentSpell;
-		m_spells = spellManager.m_spells;
 		m_weaponManager = spellManager.m_weaponManager;
+		for (auto spell : spellManager.m_spells)
+			m_spells.insert(spell);
+		if (spellManager.m_currentSpell != spellManager.m_spells.end())
+			m_currentSpell = m_spells.find(spellManager.m_currentSpell->first);
+		else
+			m_currentSpell = m_spells.end();
 
 		return *this;
 	}
@@ -131,13 +135,13 @@ namespace ecs
 	void	SpellManager::serialize(RakNet::BitStream& out, bool serializeType)	const
 	{
 		AComponent::serialize(out, serializeType);
-	/*	m_weaponManager.serialize(out, serializeType);
+		m_weaponManager.serialize(out, false);
 		out.Write(m_weaponsIsCurrent);
 		out.Write<size_t>(m_spells.size());
 		for (auto it = m_spells.begin(); it != m_spells.end(); it++)
 		{
 			out.Write(it->first);
-			it->second.serialize(out, serializeType);
+			it->second.serialize(out, false);
 		}
 		if (m_currentSpell != m_spells.end())
 		{
@@ -146,7 +150,6 @@ namespace ecs
 		}
 		else
 			out.Write(false);
-			*/
 	}
 
 	void	SpellManager::deserialize(RakNet::BitStream& in)
@@ -157,7 +160,7 @@ namespace ecs
 		bool	haveCurrentSpell;
 
 		AComponent::deserialize(in);
-	/*	m_weaponManager.deserialize(in);
+		m_weaponManager.deserialize(in);
 		in.Read(m_weaponsIsCurrent);
 		in.Read(nb_spell);
 		for (size_t i = 0; i < nb_spell; i++)
@@ -172,7 +175,7 @@ namespace ecs
 			m_currentSpell = m_spells.find(current_spell_type);
 		}
 		else
-			m_currentSpell = m_spells.end();*/
+			m_currentSpell = m_spells.end();
 	}
 
 	AComponent * SpellManager::createCopy(const AComponent* rhs) const

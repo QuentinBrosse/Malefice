@@ -1,3 +1,5 @@
+#include <RakNetTypes.h>
+
 #include "Weapon.h"
 #include "NodePickable.h"
 #include "RakNetUtility.h"
@@ -211,6 +213,7 @@ namespace ecs
 		m_id = weapon.m_id;
 		m_weaponName = weapon.m_weaponName;
 		m_maxAmmunition = weapon.m_maxAmmunition;
+		m_meshName = weapon.m_meshName;
 		m_damage = weapon.m_damage;
 		m_weaponType = weapon.m_weaponType;
 		m_sight = weapon.m_sight;
@@ -229,7 +232,7 @@ namespace ecs
 	{
 		AComponent::serialize(out, serializeType);
 		out.Write(m_id);
-		out.Write(m_weaponName);
+		out.Write(RakNet::RakString(m_weaponName.c_str()));
 		out.Write(m_maxAmmunition);
 		out.Write(m_damage);
 		out.Write(m_weaponType);
@@ -239,16 +242,20 @@ namespace ecs
 		out.Write(m_ammoPerShot);
 		out.Write(m_fireRate);
 		out.Write(m_distance);
-		//m_scene->serialize(out, false);
+		out.Write(RakNet::RakString(m_meshName.c_str()));
 		m_externalMetrics.serialize(out, false);
 		m_fpsMetrics.serialize(out, false);
 	}
 
 	void	Weapon::deserialize(RakNet::BitStream& in)
 	{
+		RakNet::RakString	meshName;
+		RakNet::RakString	weaponName;
+
 		AComponent::deserialize(in);
 		in.Read(m_id);
-		in.Read(m_weaponName);
+		in.Read(weaponName);
+		m_weaponName = weaponName.C_String();
 		in.Read(m_maxAmmunition);
 		in.Read(m_damage);
 		in.Read(m_weaponType);
@@ -258,7 +265,8 @@ namespace ecs
 		in.Read(m_ammoPerShot);
 		in.Read(m_fireRate);
 		in.Read(m_distance);
-		//m_scene->deserialize(in);
+		in.Read(meshName);
+		m_meshName = meshName.C_String();
 		m_externalMetrics.deserialize(in);
 		m_fpsMetrics.deserialize(in);
 	}

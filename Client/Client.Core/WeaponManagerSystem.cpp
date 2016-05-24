@@ -61,8 +61,6 @@ namespace ecs
 		SceneAnimatedMesh*		sceneplayer;
 		WeaponManager*			weaponManager;
 
-		if (entity.has(ecs::AComponent::ComponentType::SCENE))
-			std::cout << "blaaaaa" << std::endl;
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && (sceneplayer = dynamic_cast<SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
 			// TODO: remove or update entity's position to others?
@@ -75,7 +73,7 @@ namespace ecs
 			{
 				(*it).second.createScene(graphics.getDevice(), sceneplayer->getScene(), false);
 				sceneWeapon = (*it).second.getScene();
-
+				std::cout << (*it).second.getExternalMetrics() << std::endl;
 				sceneWeapon->setPosition((*it).second.getExternalMetrics());
 			}
 

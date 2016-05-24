@@ -10,7 +10,7 @@ namespace ecs
 
 	AComponent& AComponent::operator=(const AComponent & rhs)
 	{
-		return affect(rhs);
+		return this->affect(rhs);
 	}
 
 	void	AComponent::serialize(RakNet::BitStream& out, bool serializeType)	const

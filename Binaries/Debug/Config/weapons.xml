@@ -192,19 +192,19 @@
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
-				<x>2.2</x>
-				<y>-1.8</y>
-				<z>3.5</z>
+				<x>7.0</x>
+				<y>20.0</y>
+				<z>-1.0</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
-				<y>0.0</y>
+				<y>90.0</y>
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>10.0</x>
-				<y>10.0</y>
-				<z>5.0</z>
+				<x>200.0</x>
+				<y>150.0</y>
+				<z>150.0</z>
 			</scale>
 		</ExternalMetrics>
 	</weapon>
