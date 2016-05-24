@@ -4,6 +4,7 @@
 #include "NetworkManager.h"
 #include "NetworkRPC.h"
 #include "ClientCore.h"
+#include "LifeSystem.h"
 #include "Logger.h"
 
 NetworkModule::NetworkModule() :
@@ -102,6 +103,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
+	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
 }
 
 void	NetworkModule::unregisterRPCs()
@@ -112,4 +114,5 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
 }

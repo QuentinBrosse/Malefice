@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventSystem.h" />
+    <ClInclude Include="LifeSystem.h" />
     <ClInclude Include="MasterList.h" />
     <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PhysicsUtil.h" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventSystem.cpp" />
+    <ClCompile Include="LifeSystem.cpp" />
     <ClCompile Include="MasterList.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PhysicsUtil.cpp" />
