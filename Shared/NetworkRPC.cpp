@@ -22,3 +22,4 @@ const std::string	NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY	= "PlayerManager::rem
 
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";
 const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateEntity";
+const std::string	NetworkRPC::WEAPON_SYSTEM_SHOOT					= "WeaponSystem::shoot";

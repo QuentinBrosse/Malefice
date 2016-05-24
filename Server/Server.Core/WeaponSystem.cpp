@@ -1,14 +1,12 @@
-// Server Version
-
 #include "WeaponSystem.h"
 
 namespace ecs
 {
-	void				WeaponSystem::shoot(Entity& entity, bool isExplosive)
+	void	WeaponSystem::shoot(Entity* entity, RakNet::RPC3* rpc)
 	{
 		WeaponManager*	weaponManager;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 
@@ -19,5 +17,4 @@ namespace ecs
 			//TODO: ray tracing etc..
 		}
 	}
-
 }

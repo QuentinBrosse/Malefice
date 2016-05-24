@@ -30,15 +30,15 @@ public:
 	void	callRPC(const std::string& rpc, RakNet::NetworkID networkId, const RakNet::SystemAddress& to, bool broadcast, Args... args)
 	{
 		RakNet::RPC3::CallExplicitParameters	callExplicitParameters(networkId, to, broadcast, 0, PacketPriority::HIGH_PRIORITY, PacketReliability::RELIABLE_ORDERED, 0);
-
+		
 		LOG_TRACE(NETWORK) << "Calling RPC \"" << rpc << "\".";
 		m_rpc.CallExplicit(rpc.c_str(), &callExplicitParameters, args..., m_rpc);
 	}
 
 	template<typename... Args>
-	void	callRPC(const std::string& rpc, RakNet::NetworkID networkId, ecs::ClientId clientId, bool broadcast, Args... args)
+	void	callRPC(const std::string& rpc, RakNet::NetworkID networkId, ecs::ClientId to, bool broadcast, Args... args)
 	{
-		this->callRPC(rpc, networkId, m_rpc.GetRakPeerInterface()->GetSystemAddressFromIndex(clientId), broadcast, args...);
+		this->callRPC(rpc, networkId, m_rpc.GetRakPeerInterface()->GetSystemAddressFromIndex(to), broadcast, args...);
 	}
 
 

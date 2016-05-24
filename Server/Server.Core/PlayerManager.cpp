@@ -3,6 +3,7 @@
 #include "PlayerFactory.h"
 #include "PlayerInfos.h"
 #include "Team.h"
+#include "AScene.h"
 #include "ServerCore.h"
 #include "NetworkRPC.h"
 #include "Logger.h"
@@ -50,8 +51,13 @@ void	PlayerManager::deleteEntity(ecs::ClientId owner)
 
 	if (it != m_entities.end())
 	{
+		ecs::Entity&	entity = *it->second;
+
+		ecs::AScene*	scene = dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE]);
+		scene->getNode()->remove();
 		m_entities.erase(it);
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, owner);
+		LOG_INFO(ECS) << "Deleted player entity with owner ID = " << owner << ".";
 	}
 
 	else

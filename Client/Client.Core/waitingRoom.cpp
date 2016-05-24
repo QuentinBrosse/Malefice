@@ -2,6 +2,7 @@
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
 #include "ClientCore.h"
+#include "PlayerInfos.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -94,10 +95,23 @@ void WaitingRoom::addPredator(const std::string &txt)
 	m_predator->addItem(item);
 }
 
+void WaitingRoom::resetTeamDisplay()
+{
+	m_leftTeam->resetList();
+	m_rightTeam->resetList();
+	m_leftTeam->resetList();
+}
+
 void WaitingRoom::checkConnectedPlayers()
 {
 	if (m_checkConnectedPlayers)
 	{
-		//ClientCore::getInstance().getPlayerManager()->
+		this->resetTeamDisplay();
+		const std::map<ecs::ClientId, ecs::Entity*> &entities = ClientCore::getInstance().getPlayerManager()->getEntities();
+		for (auto entity : entities)
+		{
+			this->addLeftTeamMember(dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname());
+			LOG_INFO(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname();
+		}
 	}
 }
