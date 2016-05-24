@@ -14,7 +14,6 @@
 #include "WeaponManager.h"
 #include "WeaponManagerSystem.h"
 #include "EventSystem.h"
-#include "GameEventReceiver.h"
 #include "WeaponManagerSystem.h"
 #include "TimeUtility.h"
 #include "Armor.h"

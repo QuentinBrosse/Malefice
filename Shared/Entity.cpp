@@ -1,7 +1,6 @@
 #include <iterator>
 #include "Entity.h"
 #include "Armor.h"
-#include "GameEventReceiver.h"
 #include "Life.h"
 #include "Movement.h"
 #include "PlayerInfos.h"
@@ -168,9 +167,6 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			break;
 		case ecs::AComponent::ComponentType::CAMERA:
 			std::logic_error("Deserialization of component type CAMERA not implemented"); // TODO: right?
-			break;
-		case ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER:
-			component = new ecs::GameEventReceiver();
 			break;
 		case ecs::AComponent::ComponentType::LIFE:
 			component = new ecs::Life(ecs::AComponent::ComponentType::LIFE);

@@ -155,7 +155,6 @@
     <ClCompile Include="Armor.cpp" />
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="GameEventReceiver.cpp" />
     <ClCompile Include="IrrlichtUtility.cpp" />
     <ClCompile Include="Life.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -196,7 +195,6 @@
     <ClInclude Include="AScene.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Export.h" />
-    <ClInclude Include="GameEventReceiver.h" />
     <ClInclude Include="IrrlichtUtility.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Logger.h" />

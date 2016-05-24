@@ -9,7 +9,6 @@
 #include "WeaponManager.h"
 #include "WeaponManagerSystem.h"
 #include "EventSystem.h"
-#include "GameEventReceiver.h"
 #include "MapFactory.h"
 #include "NodePickable.h"
 

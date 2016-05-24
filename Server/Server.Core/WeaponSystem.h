@@ -14,6 +14,6 @@ namespace ecs
 		WeaponSystem()	= delete;
 		~WeaponSystem()	= delete;
 
-		static void	shoot(Entity* entity, irr::core::line3df* ray, RakNet::RPC3* rpc);
+		static void	shoot(Entity* entity, RakNet::RPC3* rpc);
 	};
 }

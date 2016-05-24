@@ -7,7 +7,6 @@
 #include "PlayerInfos.h"
 #include "Position.h"
 #include "SpellManager.h"
-#include "GameEventReceiver.h"
 #include "Spell.h"
 #include "SceneAnimatedMesh.h"
 #include "NodePickable.h"
@@ -41,15 +40,10 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 
 	//Scene
-	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, false, 0);
+	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE, true, false, 0);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
 	
-	//Game Event Receiver
-	ecs::GameEventReceiver* gameEventReceiver = new ecs::GameEventReceiver();
-	(*entity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = gameEventReceiver;
-	device->setEventReceiver(gameEventReceiver);
-
 	//Player Infos
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 
@@ -83,8 +77,6 @@ void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & 
 	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, false, 0);
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
-	entity[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
-	device->setEventReceiver(dynamic_cast<irr::IEventReceiver*>(entity[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
 }
 
 ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, const ecs::ClientId playerID, const ecs::Position position)
