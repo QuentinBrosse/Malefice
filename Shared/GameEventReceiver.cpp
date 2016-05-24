@@ -30,10 +30,6 @@ namespace ecs
 				m_events.push(GameEventReceiver::GameEventType::LEFT_ATTACK);
 				break;
 
-			case irr::EMIE_RMOUSE_PRESSED_DOWN:
-				m_events.push(GameEventReceiver::GameEventType::RIGHT_ATTACK);
-				break;
-
 			case irr::EMIE_MMOUSE_PRESSED_DOWN:
 				m_events.push(GameEventReceiver::GameEventType::ZOOM);
 				break;
