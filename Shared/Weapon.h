@@ -30,11 +30,11 @@ namespace ecs
 		Weapon();
 		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 		Weapon(const Weapon& cpy);
-		~Weapon()	= default;
+		~Weapon();
 
 		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 
-		virtual AComponent&	affect(const AComponent& rhs);
+		virtual AComponent&		affect(const AComponent& rhs);
 		
 		const int				getId()							const;
 		const int				getDamage()						const;
@@ -73,9 +73,9 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
-		void					setRay(const irr::core::line3df& ray);
+		void					setRay(irr::core::line3df* ray);
 
-		irr::core::line3df		getRay()	const;
+		irr::core::line3df*		getRay()	const;
 	private:
 		static const std::string	MEDIA_PATH;
 
@@ -104,6 +104,6 @@ namespace ecs
 		float					m_fpsMetricsCoefOffset;
 		Position				m_externalMetrics;
 
-		irr::core::line3df		m_ray;
+		irr::core::line3df*		m_ray;
 	};
 }

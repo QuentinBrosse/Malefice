@@ -41,7 +41,9 @@ namespace ecs
 	{
 		for (auto component : rhs.m_components)
 		{
-			m_components[component.second->TYPE] = component.second->createCopy(component.second);
+
+			if (component.first != ecs::AComponent::ComponentType::SCENE)
+				m_components[component.first] = component.second->createCopy(component.second);
 		}
 	}
 
@@ -51,7 +53,7 @@ namespace ecs
 
 		for (auto component : rhsComponents)
 		{
-			if (component.second)
+			if (component.second && component.first != ecs::AComponent::ComponentType::SCENE)
 			{
 				AComponent*	localComponent = m_components[component.first];
 

@@ -18,7 +18,7 @@ namespace ecs
 		}
 	}
 
-	void	PositionSystem::initScenePosition(Entity& entity)
+	void	PositionSystem::updateScenePosition(Entity& entity)
 	{
 		ecs::Position*	position;
 		ecs::AScene*	scene;

@@ -1,5 +1,6 @@
 #include "WeaponManager.h"
 #include "WeaponCreator.h"
+#include "Logger.h"
 
 namespace ecs
 {
@@ -120,10 +121,10 @@ namespace ecs
 	AComponent& WeaponManager::affect(const AComponent& rhs)
 	{
 		const WeaponManager& weaponManager = dynamic_cast<const WeaponManager&>(rhs);
-
-		for (auto weapon : weaponManager.m_weapons)
+		
+		for (auto& weapon : weaponManager.m_weapons)
 		{
-			m_weapons.insert(weapon);
+			m_weapons.insert(std::make_pair(weapon.first, weapon.second));
 		}
 		if (weaponManager.m_currentWeapon != weaponManager.m_weapons.end())
 			m_currentWeapon = m_weapons.find(weaponManager.m_currentWeapon->first);

@@ -9,33 +9,32 @@
 
 namespace ecs
 {
-	void	WeaponSystem::shoot(Entity* entity, RakNet::RPC3* rpc)
+	void	WeaponSystem::shoot(Entity* entityClient, RakNet::RPC3* rpc)
 	{
 		WeaponManager*	weaponManager;
-
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(entityClient->getOwner());
+		
+		*entity = *entityClient;
 		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
+
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
-			irr::core::line3df	ray = weapon.getRay();
-
+			irr::core::line3df*	ray = weapon.getRay();
 			if (weapon.shoot())
 			{
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
 					physicsUtil.getSceneManager()->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(
-						ray,
+						*ray,
 						intersection,
 						hitTriangle,
 						nodePickable::IS_PICKABLE,
 						0);
 
-			weapon.shoot();
-
-			//TODO: ray tracing etc..
-				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
+ 				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
 					auto entities = playerManager.getEntities();
 					for (auto player : entities)

@@ -21,7 +21,7 @@ namespace ecs
 			Weapon&	weapon = spellManager->getCurrentWeapon();
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
-			irr::core::line3df	ray = weapon.getRay();
+			irr::core::line3df*	ray = weapon.getRay();
 
 			if (weapon.shoot())
 			{
@@ -29,7 +29,7 @@ namespace ecs
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
 					physicsUtil.getSceneManager()->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(
-						ray,
+						*ray,
 						intersection,
 						hitTriangle,
 						nodePickable::IS_PICKABLE,

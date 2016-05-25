@@ -93,6 +93,7 @@ void	ServerCore::pulse(long long elapsedTime)
 {
 	m_updateElapsedTime += elapsedTime;
 	m_networkModule.pulse();
+	
 	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
 	{
 		m_playerManager.updateEntities();
@@ -155,7 +156,7 @@ void ServerCore::createEntities()
 	ecs::Position	mapPos(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0, 0, 0));
 	ecs::Entity*	map = MapFactory::createMap(m_physicsUtil.getDevice(), mapPos, -1, "20kdm2.bsp", "map-20kdm2.pk3");
 
-	ecs::PositionSystem::initScenePosition(*map);
+	ecs::PositionSystem::updateScenePosition(*map);
 }
 
 

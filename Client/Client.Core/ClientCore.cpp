@@ -148,19 +148,19 @@ void ClientCore::createEntities()
 {
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
-	ecs::PositionSystem::initScenePosition(*m_map);
+	ecs::PositionSystem::updateScenePosition(*m_map);
 	if (ProjectGlobals::NO_MENU)
 	{
 		//Player 1
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
-		ecs::PositionSystem::initScenePosition(*m_player);
+		ecs::PositionSystem::updateScenePosition(*m_player);
 		m_playerManager->setCurrentPlayer(m_player);
 
 		//Player 2
 		ecs::Position playerPosition2(irr::core::vector3df(10, 13, 10), irr::core::vector3df(0.0, 0.0, 0.0));
 		m_player_ia = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition2, ecs::Team::TeamType::Team1, 100);
-		ecs::PositionSystem::initScenePosition(*m_player_ia);
+		ecs::PositionSystem::updateScenePosition(*m_player_ia);
 
 		m_playerManager->initPlayersWeapons();
 	}

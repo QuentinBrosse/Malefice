@@ -41,7 +41,7 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell(0, "default", ecs::Spell::SpellType::NOTHING, 60);
 
 	//Scene
-	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE, true, false, 0);
+	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
 	
@@ -77,7 +77,7 @@ void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & 
 
 	ecs::Weapon weaponShotGun = weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN);
 	dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
-	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, nodePickable::IS_SHOOTABLE, true, false, 0);
+	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 }

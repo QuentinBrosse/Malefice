@@ -1,6 +1,7 @@
 #include "SpellSystem.h"
 #include "ClientCore.h"
 #include "WeaponSystem.h"
+#include "Target.h"
 
 namespace ecs
 {
@@ -11,12 +12,9 @@ namespace ecs
 
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
-			irr::core::line3df	ray;
 
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
-			Weapon&	weapon = spellManager->getCurrentWeapon();
-			ray = WeaponSystem::getRay(weapon);
-			weapon.setRay(ray);
+			spellManager->getCurrentWeapon().setRay(&Target::getInstance().getRay());
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator);
 		}
 	}
