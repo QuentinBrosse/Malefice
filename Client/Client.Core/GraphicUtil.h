@@ -36,6 +36,7 @@ public:
 	WaitingRoom* getWaitingRoom();
 	InGameGUI* getHUD();
 	MasterList* getMasterList();
+	bool		isInFPSMode()	const;
 
 private:
 	irr::IrrlichtDevice*		m_device;
@@ -52,4 +53,5 @@ private:
 	WaitingRoom*				m_salon;
 	InGameGUI*					m_hud;
 	MasterList*					m_masterList;
+	bool						m_isInFPSMode;
 };

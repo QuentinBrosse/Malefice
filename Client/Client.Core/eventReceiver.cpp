@@ -1,4 +1,5 @@
 ﻿#include "EventReceiver.h"
+#include "GraphicUtil.h"
 
 EventReceiver::EventReceiver() :
 	m_joystickState(), m_state(), m_keyState()
@@ -20,13 +21,28 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 			break;
 
 		case irr::EMIE_LMOUSE_LEFT_UP:
-			m_state.leftButtonDown = false;
+			if (GraphicUtil::getInstance().isInFPSMode())
+				m_events.push(EventReceiver::GameEventType::LEFT_ATTACK);
+			else
+				m_state.leftButtonDown = false;
 			break;
 
 		case irr::EMIE_MOUSE_MOVED:
 			m_state.position.X = event.MouseInput.X;
 			m_state.position.Y = event.MouseInput.Y;
 			break;
+
+		case irr::EMIE_MMOUSE_PRESSED_DOWN:
+			m_events.push(EventReceiver::GameEventType::ZOOM);
+			break;
+
+		case irr::EMIE_MOUSE_WHEEL:
+			if (event.MouseInput.Wheel < 0)
+				m_events.push(EventReceiver::GameEventType::PREC_WEAPON);
+			else
+				m_events.push(EventReceiver::GameEventType::NEXT_WEAPON);
+			break;
+
 		default:
 			// Mouse Wheel here (perhaps...)
 			break;
@@ -36,16 +52,35 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 		m_joystickState = event.JoystickEvent;
 	if (event.EventType == irr::EET_KEY_INPUT_EVENT)
 	{
-		if (event.KeyInput.PressedDown == true)
+		if (GraphicUtil::getInstance().isInFPSMode())
 		{
-			m_keyState[event.KeyInput.Key] = DOWN;
+			switch (event.KeyInput.Key)
+			{
+			case irr::KEY_KEY_1:
+				m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+				break;
+
+			case irr::KEY_KEY_2:
+				m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+				break;
+
+			default:
+				break;
+			}
 		}
 		else
 		{
-			m_keyState[event.KeyInput.Key] = UP;
+			if (event.KeyInput.PressedDown == true)
+			{
+				m_keyState[event.KeyInput.Key] = DOWN;
+			}
+			else
+			{
+				m_keyState[event.KeyInput.Key] = UP;
+			}
 		}
 	}
-	if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
+/*	if (event.EventType == irr::EET_MOUSE_INPUT_EVENT)
 	{
 		switch (event.MouseInput.Event)
 		{
@@ -84,7 +119,7 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 		default:
 			break;
 		}
-	}
+	}*/
 	return false;
 }
 

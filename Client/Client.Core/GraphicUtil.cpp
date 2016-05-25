@@ -10,7 +10,7 @@
 #include <Windows.h>
 
 GraphicUtil::GraphicUtil() :
-	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr)
+	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr), m_isInFPSMode(false)
 {
 	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
 
@@ -200,6 +200,11 @@ MasterList* GraphicUtil::getMasterList()
 	return m_masterList;
 }
 
+bool GraphicUtil::isInFPSMode() const
+{
+	return m_isInFPSMode;
+}
+
 InGameGUI* GraphicUtil::getHUD()
 {
 	return m_hud;
@@ -217,6 +222,7 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 
 void GraphicUtil::setGuiCamera()
 {
+	m_isInFPSMode = false;
 	irr::core::vector3df position = m_sceneManager->getActiveCamera()->getPosition();
 	irr::core::vector3df rotation = m_sceneManager->getActiveCamera()->getRotation();
 	irr::core::vector3df target =  m_sceneManager->getActiveCamera()->getTarget();
@@ -253,4 +259,5 @@ void GraphicUtil::setFPSCamera()
 	{
 		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
 	}
+	m_isInFPSMode = true;
 }
