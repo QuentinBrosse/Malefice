@@ -28,7 +28,7 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 
 	if (team != ecs::Team::TeamType::Predator)
 	{
-		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), "sydney.bmp", "sydney.md2", owner, position, team, 100); // TODO: pick random spawn position, set rotation
+		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), team == ecs::Team::TeamType::Team1 ? "sydney_t1.bmp" : "sydney_t2.bmp", "sydney.md2", owner, position, team, 100); // TODO: pick random spawn position, set rotation
 	}
 	else
 	{
