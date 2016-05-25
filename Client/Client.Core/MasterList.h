@@ -16,7 +16,7 @@ public:
 	~MasterList() = default;
 	void display();
 	void hide();
-	void addServer(const std::string& ip, const std::string& port, bool hasPassword= false);
+	void addServer(const std::string& ip, const std::string& port, bool hasPassword = false, int players = -1);
 	void resetList();
 	bool onManualConnectButtonClicked();
 	bool onAutoConnectButtonClicked();

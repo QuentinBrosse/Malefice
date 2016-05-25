@@ -38,14 +38,14 @@ void MasterList::hide()
 	}
 }
 
-void MasterList::addServer(const std::string& ip, const std::string& port, bool hasPassword)
+void MasterList::addServer(const std::string& ip, const std::string& port, bool hasPassword, int players)
 {
 	Server *info = new Server();
 	info->setHasPassword(hasPassword);
 	info->setIp(ip);
 	info->setPort(port);
 	CEGUI::ListboxItem* item = new CEGUI::ListboxTextItem("ok");
-	item->setText("[colour='FF000000']IP: " + ip + " Port: " + port + " " + (hasPassword  ? "(has password)" : "(has no password)"));
+	item->setText("[colour='FF000000']IP: " + ip + "   Port: " + port + "    Players: " + (players < 0 ? std::string("unknown") : std::to_string(players)) + (hasPassword ? "   (has password)" : "   (no password)"));
 	item->setUserData(info);
 	item->setSelectionBrushImage("WindowsLook/TitlebarBottom");
 	item->setSelected(false);
