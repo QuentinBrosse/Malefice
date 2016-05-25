@@ -17,6 +17,7 @@
 #include "WeaponManagerSystem.h"
 #include "TimeUtility.h"
 #include "Armor.h"
+#include "Target.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -110,13 +111,17 @@ void	ClientCore::pulse()
 			(*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE] != nullptr &&
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
+			Target::getInstance().refresh();
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 		}
+		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
+
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 		m_graphicModule->CEGUIEventInjector();
+		
 		m_graphicModule->getDriver()->endScene();
 	}
 }

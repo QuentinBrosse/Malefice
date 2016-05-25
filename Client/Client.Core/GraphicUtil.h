@@ -20,22 +20,22 @@ protected:
 	~GraphicUtil();
 
 public:
-	void	initGraphics();
-	irr::IrrlichtDevice* getDevice();
-	irr::scene::ISceneManager* getSceneManager();
-	Camera* getFPSCamera();
-	EventReceiver& getCEGUIEventReceiver();
-	void CEGUIEventInjector();
-	MainMenu* getMainMenu();
-	irr::video::IVideoDriver* getDriver();
-	void setGuiCamera();
-	MenuPause* getMenuPause();
-	void setFPSCamera();
-	MenuOptions* getMenuOptions();
-	ConnectWindow* getConnectWindow();
-	WaitingRoom* getWaitingRoom();
-	InGameGUI* getHUD();
-	MasterList* getMasterList();
+	void						initGraphics();
+	irr::IrrlichtDevice*		getDevice();
+	irr::scene::ISceneManager*	getSceneManager();
+	Camera*						getFPSCamera();
+	EventReceiver&				getCEGUIEventReceiver();
+	void						CEGUIEventInjector();
+	MainMenu*					getMainMenu();
+	irr::video::IVideoDriver*	getDriver();
+	void						setGuiCamera();
+	MenuPause*					getMenuPause();
+	void						setFPSCamera();
+	MenuOptions*				getMenuOptions();
+	ConnectWindow*				getConnectWindow();
+	WaitingRoom*				getWaitingRoom();
+	InGameGUI*					getHUD();
+	MasterList*					getMasterList();
 
 private:
 	irr::IrrlichtDevice*		m_device;

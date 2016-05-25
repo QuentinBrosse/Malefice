@@ -31,20 +31,7 @@ namespace ecs
 						nodePickable::IS_PICKABLE,
 						0);
 
-				auto entities = playerManager.getEntities();
-
-				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
-				{
-					for (auto player : entities)
-					{
-						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
-						{
-							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << "is shoot modafoka !";
-							break;
-						}
-					}
-				}
-			}
+			weapon.shoot();
 
 			//TODO: ray tracing etc..
 		}

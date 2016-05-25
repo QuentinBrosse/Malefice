@@ -51,12 +51,12 @@ namespace ecs
 		if (mesh)
 			m_node = m_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, newPickableFlags);
 		else
-			std::cerr << "Error constructor SceneMesh : mesh NULL !!" << std::endl;
+			LOG_ERROR(ECS) << "Error constructor SceneMesh : mesh NULL !!";
 
 		if (m_node)
 			m_node->setTriangleSelector(m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128));
 		else
-			std::cerr << "Error constructor SceneMesh : m_node NULL !!" << std::endl;
+			LOG_ERROR(ECS) << "Error constructor SceneMesh : mesh NULL !!";
 
 		if (m_isCollisionable)
 		{

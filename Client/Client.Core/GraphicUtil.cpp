@@ -46,10 +46,19 @@ GraphicUtil::~GraphicUtil()
 
 void GraphicUtil::initGraphics()
 {
+	//Cursor
 	m_device->getCursorControl()->setVisible(false);
-	m_sceneManager->getParameters()->setAttribute(irr::scene::OBJ_TEXTURE_PATH, "media/"); //TODO: Define Texture's Path
+
+	//Texture obj path
+	m_sceneManager->getParameters()->setAttribute(irr::scene::OBJ_TEXTURE_PATH, "media/");
+
+	//Event Reveiver
 	m_device->setEventReceiver(&m_receiver);
 
+	//Target
+
+
+	//Gui
 	CEGUI::IrrlichtRenderer& renderer = CEGUI::IrrlichtRenderer::create(*m_device);
 	CEGUI::System& system = CEGUI::System::create(renderer);
 	CEGUI::XMLParser* parser;
@@ -99,6 +108,7 @@ void GraphicUtil::initGraphics()
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
 
+	//Cameras
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();

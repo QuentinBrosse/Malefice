@@ -16,7 +16,7 @@ class ClientCore : public Singleton<ClientCore>, public NetworkObject
 	friend class Singleton<ClientCore>;
 
 public:
-	void	createEntities();
+	void			createEntities();
 	void			run();
 
 	NetworkModule*	getNetworkModule()	const;

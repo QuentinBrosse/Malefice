@@ -145,7 +145,7 @@ namespace ecs
 			weapon.second.serialize(out, false);
 		}
 
-	if (m_currentWeapon != m_weapons.end())
+		if (m_currentWeapon != m_weapons.end())
 		{
 			out.Write(true);
 			out.Write(m_currentWeapon->first);

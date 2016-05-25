@@ -1,4 +1,6 @@
 #include "SceneAnimatedMesh.h"
+#include "Logger.h"
+
 #include <iostream>
 
 namespace ecs
@@ -55,7 +57,7 @@ namespace ecs
 
 		if (!m_node)
 		{
-			std::cerr << "Mesh cannot be loaded !" << std::endl;
+			LOG_ERROR(ECS) << "Mesh cannot be loaded !";
 		}
 		m_node->setAnimationSpeed(20.f);
 		if (m_isCollisionable)
