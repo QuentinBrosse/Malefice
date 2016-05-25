@@ -85,10 +85,10 @@ bool	ClientCore::init()
 	}
 
 	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm...");
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!");
-	m_graphicModule->getHUD()->displayNotification("Une notification !");
-	m_graphicModule->getHUD()->displayNotification("Une autre !");
+	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
+	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
+	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
+	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
