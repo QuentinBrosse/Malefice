@@ -1,5 +1,3 @@
-// Client Version
-
 #include "WeaponSystem.h"
 #include "SceneAnimatedMesh.h"
 #include "GraphicUtil.h"
