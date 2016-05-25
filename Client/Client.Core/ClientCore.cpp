@@ -17,9 +17,10 @@
 #include "WeaponManagerSystem.h"
 #include "TimeUtility.h"
 #include "Armor.h"
+#include "MasterList.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
-	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
+	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
 {
 }
 
@@ -68,8 +69,22 @@ bool	ClientCore::init()
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
+	m_masterList = &MasterListNetwork::getInstance();
 
-	m_graphicModule->getMasterList()->addServer("Oklooklmmmmm");
+	std::vector<std::string> datas = m_masterList->fetch();
+	LOG_DEBUG(GENERAL) << "Server master list size: " + std::to_string(datas.size());
+	for (auto it : datas)
+	{
+		std::string ip = it.substr(0, it.find(":"));
+		it = it.substr(it.find(":") + 1);
+		std::string port = it.substr(0, it.find(":"));
+		it = it.substr(it.find(":") + 1);
+		std::string players = it;
+
+		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
+	}
+
+	m_masterList->fetch();
 }
 
 void	ClientCore::pulse()
@@ -165,6 +180,11 @@ GraphicUtil		*ClientCore::getGraphicModule() const
 PlayerManager*	ClientCore::getPlayerManager() const
 {
 	return m_playerManager;
+}
+
+MasterListNetwork*		ClientCore::getMasterList() const
+{
+	return m_masterList;
 }
 
 ecs::ClientId	ClientCore::getClientId()	const

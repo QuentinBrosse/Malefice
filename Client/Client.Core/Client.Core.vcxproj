@@ -23,6 +23,7 @@
     <ClInclude Include="LoadingWindows.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MasterList.h" />
+    <ClInclude Include="MasterListNetwork.h" />
     <ClInclude Include="MenuOptions.h" />
     <ClInclude Include="MenuPause.h" />
     <ClInclude Include="MovementSystem.h" />
@@ -49,6 +50,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="EventReceiver.cpp" />
     <ClCompile Include="MasterList.cpp" />
+    <ClCompile Include="MasterListNetwork.cpp" />
     <ClCompile Include="MenuOptions.cpp" />
     <ClCompile Include="MenuPause.cpp" />
     <ClCompile Include="MovementSystem.cpp" />

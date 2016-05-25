@@ -59,8 +59,6 @@ namespace ecs
 					}
 				}
 			}
-
-			//TODO: ray tracing etc..
 		}
 	}
 }
