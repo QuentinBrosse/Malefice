@@ -69,7 +69,7 @@ bool	ClientCore::init()
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
-	m_graphicModule->getMasterList()->addServer("Oklooklmmmmm");
+	m_graphicModule->getMasterList()->addServer("192.168.1.1", "4242", false);
 	m_masterList = &MasterListNetwork::getInstance();
 	m_masterList->fetch();
 }

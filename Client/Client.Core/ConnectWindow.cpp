@@ -118,3 +118,15 @@ void ConnectWindow::setStatus(const std::string &status)
 {
 	m_connectionStatus->setText(status);
 }
+
+void ConnectWindow::setIp(const std::string &ip)
+{
+	m_ipStr = ip;
+	m_ip->setText(ip);
+}
+
+void ConnectWindow::setPort(const std::string &port)
+{
+	m_portStr = port;
+	m_port->setText(port);
+}

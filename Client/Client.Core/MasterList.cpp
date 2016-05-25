@@ -38,11 +38,15 @@ void MasterList::hide()
 	}
 }
 
-void MasterList::addServer(const std::string &txt)
+void MasterList::addServer(const std::string& ip, const std::string& port, bool hasPassword)
 {
+	Server *info = new Server();
+	info->setHasPassword(hasPassword);
+	info->setIp(ip);
+	info->setPort(port);
 	CEGUI::ListboxItem* item = new CEGUI::ListboxTextItem("ok");
-	item->setText(txt);
-	item->setUserData(0);
+	item->setText("[colour='FF000000']IP: " + ip + " Port: " + port + " " + (hasPassword  ? "(has password)" : "(has no password)"));
+	item->setUserData(info);
 	item->setSelectionBrushImage("WindowsLook/TitlebarBottom");
 	item->setSelected(false);
 	m_serverList->addItem(item);
@@ -63,6 +67,12 @@ bool MasterList::onManualConnectButtonClicked()
 bool MasterList::onAutoConnectButtonClicked()
 {
 	CEGUI::ListboxItem* item = m_serverList->getFirstSelectedItem();
+	if (item != nullptr && item->getUserData() != nullptr)
+	{
+		Server *info = reinterpret_cast<Server *>(item->getUserData());
+		m_graphicUtils.getConnectWindow()->setIp(info->getIp());
+		m_graphicUtils.getConnectWindow()->setPort(info->getPort());
+	}
 	this->hide();
 	m_graphicUtils.getConnectWindow()->display();
 	return (true);
@@ -72,4 +82,34 @@ bool MasterList::onCloseButtonClicked()
 {
 	this->hide();
 	return (true);
+}
+
+void MasterList::Server::setIp(const std::string &ip)
+{
+	this->m_ip = ip;
+}
+
+void MasterList::Server::setPort(const std::string &port)
+{
+	this->m_port = port;
+}
+
+void MasterList::Server::setHasPassword(bool password)
+{
+	this->m_password = password;
+}
+
+const std::string& MasterList::Server::getIp() const
+{
+	return m_ip;
+}
+
+const std::string& MasterList::Server::getPort() const
+{
+	return m_port;
+}
+
+bool MasterList::Server::hasPassword() const
+{
+	return m_password;
 }
