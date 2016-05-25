@@ -34,7 +34,6 @@ public:
 	void setBulletsNbr(unsigned int nbr);
 	const bool isActive() const;
 	void displayNotification(const std::string &, unsigned long = 3);
-	void setNotificationEraseDelai();
 	void refreshEventDisplay();
 
 private:
@@ -66,4 +65,15 @@ private:
 	bool m_power3Activated;
 	bool m_power4Activated;
 	const int m_maxPowerNbr;
+
+	class NotificationItemData
+	{
+	public:
+		NotificationItemData(unsigned long);
+		~NotificationItemData() = default;
+		time_t getNotificationEndTimestamps() const;
+	private:
+		time_t m_begin;
+		time_t m_end;
+	};
 };

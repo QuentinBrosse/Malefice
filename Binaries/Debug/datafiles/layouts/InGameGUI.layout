@@ -50,6 +50,7 @@
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="0:0" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
         <Window type="WindowsLook/Static" name="Static342" >
             <Property name="ID" value="300" />
