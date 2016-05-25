@@ -1,5 +1,5 @@
 #include "PlayerFactory.h"
-#include "Life.h"
+#include "Armor.h"
 #include "Team.h"
 #include "WeaponManager.h"
 #include "Weapon.h"
@@ -23,6 +23,7 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 
 	//Life
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
+	(*entity)[ecs::AComponent::ComponentType::ARMOR] = new ecs::Armor(life / 2);
 
 	//Team
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
@@ -58,6 +59,8 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const ecs::Position p
 	ecs::Entity*	entity = ObjectFactory::createObject(position, id, ecs::Entity::EntityType::PLAYER);
 
 	(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(life, ecs::AComponent::ComponentType::LIFE);
+	(*entity)[ecs::AComponent::ComponentType::ARMOR] = new ecs::Armor(life / 2);
+
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(team);
 
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = new ecs::WeaponManager();

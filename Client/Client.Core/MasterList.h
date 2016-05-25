@@ -16,7 +16,7 @@ public:
 	~MasterList() = default;
 	void display();
 	void hide();
-	void addServer(const std::string &txt);
+	void addServer(const std::string& ip, const std::string& port, bool hasPassword = false, int players = -1);
 	void resetList();
 	bool onManualConnectButtonClicked();
 	bool onAutoConnectButtonClicked();
@@ -30,4 +30,20 @@ private:
 	CEGUI::PushButton*	m_manualConnect;
 	CEGUI::PushButton*	m_autoConnect;
 	CEGUI::Listbox*		m_serverList;
+	class Server
+	{
+	public:
+		Server() = default;
+		~Server() = default;
+		void setIp(const std::string &);
+		void setPort(const std::string &);
+		void setHasPassword(bool);
+		const std::string& getIp() const;
+		const std::string& getPort() const;
+		bool hasPassword() const;
+	private:
+		std::string m_ip;
+		std::string m_port;
+		bool m_password;
+	};
 };

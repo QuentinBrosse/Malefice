@@ -26,6 +26,8 @@ public:
 	void checkConnectionStatus();
 	void setStatus(const std::string &status);
 	void disableConnectionStateCheck();
+	void setIp(const std::string &);
+	void setPort(const std::string &);
 
 private:
 	bool				m_enableConnectStatusCheck;

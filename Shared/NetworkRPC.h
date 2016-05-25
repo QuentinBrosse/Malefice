@@ -17,6 +17,7 @@ public:
 		PlayerManager,
 		UnreservedStart,
 		WeaponSystem = RakNet::UNASSIGNED_NETWORK_ID,
+		SpellSystem = RakNet::UNASSIGNED_NETWORK_ID,
 		LifeSystem = RakNet::UNASSIGNED_NETWORK_ID
 	};
 
@@ -40,4 +41,6 @@ public:
 	static const std::string	PLAYER_MANAGER_SERVER_UPDATE_ENTITY;
 	
 	static const std::string	WEAPON_SYSTEM_SHOOT;
+
+	static const std::string	SPELL_SYSTEM_LAUNCH_SPELL;
 };

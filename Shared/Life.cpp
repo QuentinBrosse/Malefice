@@ -52,17 +52,17 @@ namespace ecs
 		m_currentLife = life;
 	}
 
-	void Life::takeDamage(int damage)
+	int	 Life::takeDamage(int damage)
 	{
 		if (damage < 0)
 		{
 			// Heal ? Or throw exception ?
 		}
+		int	rest = damage - m_currentLife;
 		m_currentLife -= damage;
-		if (m_currentLife <= 0)
-		{
+		if (m_currentLife - damage <= 0)
 			m_currentLife = 0;
-		}
+		return (rest);
 	}
 
 	void Life::restore(int quantity)

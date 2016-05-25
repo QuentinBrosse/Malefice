@@ -4,12 +4,15 @@
 #include "Weapon.h"
 #include "WeaponManager.h"
 #include "ServerCore.h"
+#include "PlayerInfos.h"
 
 void	ecs::LifeSystem::die(ecs::Entity* dead)
 {
 	ecs::Life*		life = dynamic_cast<ecs::Life*>((*dead)[ecs::AComponent::ComponentType::LIFE]);
 	ecs::Position*	position = dynamic_cast<ecs::Position*>((*dead)[ecs::AComponent::ComponentType::POSITION]);
 	ecs::WeaponManager*	weaponManager = dynamic_cast<ecs::WeaponManager*>((*dead)[ecs::AComponent::ComponentType::WEAPON_MANAGER]);
+
+	LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*dead)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is dead modafoka !";
 
 	life->set(100);
 	position->setVectorPosition(irr::core::vector3df(0, 0, 0));

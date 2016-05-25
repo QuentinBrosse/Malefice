@@ -114,6 +114,9 @@
     <ClInclude Include="LifeSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="MasterListNetwork.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
     <ClInclude Include="Target.h">
       <Filter>Header Files\Graphic</Filter>
     </ClInclude>
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="Target.cpp">
       <Filter>Source Files\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterListNetwork.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

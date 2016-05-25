@@ -1,10 +1,7 @@
 #pragma once
 
-// Server Version
-
+#include <RPC3.h>
 #include "Entity.h"
-#include "SpellManager.h"
-#include "Export.h"
 
 namespace ecs
 {
@@ -14,7 +11,6 @@ namespace ecs
 		SpellSystem() = delete;
 		~SpellSystem() = delete;
 
-		static void	launchSpell(Entity& predator);
+		static void	launchSpell(Entity& predator, RakNet::RPC3* rpc);
 	};
-
 }
