@@ -85,10 +85,10 @@ bool	ClientCore::init()
 	}
 
 	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm");
+	m_graphicModule->getHUD()->displayNotification("Oklm...");
+	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!");
 	m_graphicModule->getHUD()->displayNotification("Une notification !");
 	m_graphicModule->getHUD()->displayNotification("Une autre !");
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!");
 }
 
 void	ClientCore::pulse()
@@ -104,6 +104,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getHUD()->refreshTime();
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
+		m_graphicModule->getHUD()->refreshEventDisplay();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
