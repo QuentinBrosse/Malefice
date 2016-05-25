@@ -34,6 +34,8 @@ namespace ecs
 		irr::core::vector3df vector(ray.end - ray.start);
 		vector.normalize();
 		ray.start += vector * weapon.getFPSMetricsCoefOffset();
+
+
 		return ray;
 	}
 

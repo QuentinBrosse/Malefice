@@ -19,7 +19,7 @@ namespace ecs
 
 		int		get() const;
 		void	set(int life);
-		void	takeDamage(int damage);
+		int		takeDamage(int damage);
 		void	restore(int quantity);
 
 		virtual	void		dump(std::ostream& os)	const;
