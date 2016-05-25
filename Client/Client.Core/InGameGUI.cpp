@@ -24,6 +24,7 @@ InGameGUI::InGameGUI() :
 	m_bullets = m_hud->getChild(600);
 	m_armorBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(642));
 	m_armors = m_hud->getChild(650);
+	m_eventNotifier = dynamic_cast<CEGUI::Listbox *>(m_hud->getChild(1000));
 }
 
 void InGameGUI::display()
@@ -185,4 +186,23 @@ void InGameGUI::setArmorPoint(unsigned int hp)
 unsigned int InGameGUI::getArmorPoint()
 {
 	return (this->m_armor);
+}
+
+void InGameGUI::displayNotification(const std::string &notification, unsigned long time)
+{
+	CEGUI::ListboxItem* item = new CEGUI::ListboxTextItem("item");
+	item->setText("[colour='FFFF0000']"+ notification);
+	item->setSelectionBrushImage("WindowsLook/TitlebarBottom");
+	item->setSelected(false);
+	m_eventNotifier->addItem(item);
+}
+
+void InGameGUI::setNotificationEraseDelai()
+{
+	
+}
+
+void InGameGUI::refreshEventDisplay()
+{
+
 }

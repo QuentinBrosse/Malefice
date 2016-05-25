@@ -1426,7 +1426,7 @@
         <StateImagery name="Enabled">
             <Layer>
                 <Section section="Frame" look="Vanilla/Shared">
-                    <Colours topLeft="FF7F7F7F" bottomLeft="FF7F7F7F" topRight="FF7F7F7F" bottomRight="FF7F7F7F"/>
+                    <Colours topLeft="007F7F7F" bottomLeft="007F7F7F" topRight="007F7F7F" bottomRight="007F7F7F"/>
                 </Section>
             </Layer>
         </StateImagery>
