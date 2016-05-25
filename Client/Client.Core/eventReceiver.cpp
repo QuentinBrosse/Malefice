@@ -67,6 +67,14 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 			default:
 				break;
 			}
+			if (event.KeyInput.PressedDown == true)
+			{
+				m_keyState[event.KeyInput.Key] = DOWN;
+			}
+			else
+			{
+				m_keyState[event.KeyInput.Key] = UP;
+			}
 		}
 		else
 		{

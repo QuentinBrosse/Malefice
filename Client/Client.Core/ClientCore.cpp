@@ -86,6 +86,10 @@ bool	ClientCore::init()
 	}
 
 	m_masterList->fetch();
+	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
+	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
+	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
+	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
@@ -101,12 +105,13 @@ void	ClientCore::pulse()
 		m_graphicModule->getHUD()->refreshTime();
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
+		m_graphicModule->getHUD()->refreshEventDisplay();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
 			ecs::WeaponManager*	weaponManager = dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER]);
 			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
-			ecs::Life* armor = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
+			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
 			m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
 			if (life != nullptr)

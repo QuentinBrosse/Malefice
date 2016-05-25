@@ -33,6 +33,8 @@ public:
 	void setTeam2Score(int nbr);
 	void setBulletsNbr(unsigned int nbr);
 	const bool isActive() const;
+	void displayNotification(const std::string &, unsigned long = 3);
+	void refreshEventDisplay();
 
 private:
 	CEGUI::Window* m_hud;
@@ -48,6 +50,7 @@ private:
 	CEGUI::Window* m_team2Score;
 	CEGUI::Window* m_bullets;
 	CEGUI::Window* m_armors;
+	CEGUI::Listbox* m_eventNotifier;
 	CEGUI::ProgressBar* m_armorBar;
 	std::time_t m_timestamp;
 	std::vector<CEGUI::Window*> m_powerList;
@@ -62,4 +65,15 @@ private:
 	bool m_power3Activated;
 	bool m_power4Activated;
 	const int m_maxPowerNbr;
+
+	class NotificationItemData
+	{
+	public:
+		NotificationItemData(unsigned long);
+		~NotificationItemData() = default;
+		time_t getNotificationEndTimestamps() const;
+	private:
+		time_t m_begin;
+		time_t m_end;
+	};
 };

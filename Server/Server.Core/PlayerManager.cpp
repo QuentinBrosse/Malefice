@@ -25,7 +25,7 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 	else
 		team = ecs::Team::TeamType::Predator;
 
-	ecs::Position position(irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0));
+	ecs::Position position(irr::core::vector3df(1000, 1000, 1000), irr::core::vector3df(0, 0, 0));
 
 	if (team != ecs::Team::TeamType::Predator)
 	{

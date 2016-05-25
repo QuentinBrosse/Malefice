@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Life.h"
 
 namespace ecs

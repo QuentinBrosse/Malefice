@@ -1,4 +1,5 @@
 #include "InGameGUI.h"
+#include "Logger.h"
 
 InGameGUI::InGameGUI() :
 	m_hud(nullptr), m_systemd(CEGUI::System::getSingleton()), m_hpBar(nullptr), m_hpBarText(nullptr), m_timerText(nullptr), m_power1(nullptr), m_power2(nullptr), m_power3(nullptr), m_power4(nullptr), m_team1Score(nullptr), m_team2Score(nullptr), m_timestamp(0), m_hp(0), m_maxHP(100), m_stopTimer(true), m_power1Activated(false), m_power2Activated(false), m_power3Activated(false), m_power4Activated(false), m_maxPowerNbr(3), m_maxArmor(100), m_isActive(false)
@@ -24,6 +25,7 @@ InGameGUI::InGameGUI() :
 	m_bullets = m_hud->getChild(600);
 	m_armorBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(642));
 	m_armors = m_hud->getChild(650);
+	m_eventNotifier = dynamic_cast<CEGUI::Listbox *>(m_hud->getChild(1000));
 }
 
 void InGameGUI::display()
@@ -185,4 +187,52 @@ void InGameGUI::setArmorPoint(unsigned int hp)
 unsigned int InGameGUI::getArmorPoint()
 {
 	return (this->m_armor);
+}
+
+void InGameGUI::displayNotification(const std::string &notification, unsigned long duration)
+{
+	NotificationItemData *data = new NotificationItemData(duration);
+	CEGUI::ListboxItem* item = new CEGUI::ListboxTextItem("item");
+	item->setText("[colour='FFFF0000']"+ notification);
+	item->setSelectionBrushImage("WindowsLook/TitlebarBottom");
+	item->setSelected(false);
+	item->setUserData(data);
+	m_eventNotifier->addItem(item);
+}
+
+void InGameGUI::refreshEventDisplay()
+{
+	unsigned int count = m_eventNotifier->getItemCount();
+	size_t idx = 0;
+	while (idx < count && m_isActive)
+	{
+		try
+		{
+			CEGUI::ListboxItem* item = m_eventNotifier->getListboxItemFromIndex(idx);
+			if (item != nullptr && item->getUserData() != nullptr)
+			{
+				NotificationItemData *data = reinterpret_cast<NotificationItemData *>(item->getUserData());
+				if (data->getNotificationEndTimestamps() < time(nullptr))
+				{
+					m_eventNotifier->removeItem(item);
+				}
+			}
+		}
+		catch (std::exception &e)
+		{
+			LOG_DEBUG(GENERAL) << "Index Out of range Requested";
+		}
+		idx++;
+	}
+}
+
+InGameGUI::NotificationItemData::NotificationItemData(unsigned long duration)
+{
+	m_begin = std::time(nullptr);
+	m_end = m_begin + duration;
+}
+
+time_t InGameGUI::NotificationItemData::getNotificationEndTimestamps() const
+{
+	return m_end;
 }
