@@ -55,7 +55,6 @@ namespace ecs
 			{
 				AComponent*	localComponent = m_components[component.first];
 
-				//if (localComponent != nullptr)
 				*localComponent = *component.second;
 			}
 		}
