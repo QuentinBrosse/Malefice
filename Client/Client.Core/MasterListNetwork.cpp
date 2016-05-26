@@ -1,6 +1,9 @@
 #include "MasterListNetwork.h"
 #include "ProjectGlobals.h"
 
+#include "StringUtility.h"
+
+#include <string>
 #include <iostream>
 
 MasterListNetwork::MasterListNetwork() : Singleton<MasterListNetwork>(),
@@ -43,7 +46,8 @@ std::vector<std::string>	MasterListNetwork::fetch()
 	if (!packet)
 		return retn;
 
-	std::cout << packet->data;
+	std::vector<std::string> strings = utility::StringUtility::explode(std::string((char *)packet->data), "\r\n");
+	std::cout << strings[15] << std::endl;
 
 	m_lastUpdateTime = utility::TimeUtility::getMsTime();
 	m_tcp->DeallocatePacket(packet);
