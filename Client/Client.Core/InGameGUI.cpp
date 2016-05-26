@@ -22,6 +22,7 @@ InGameGUI::InGameGUI() :
 
 	m_team1Score = m_hud->getChild(50);
 	m_team2Score = m_hud->getChild(51);
+	m_predatorScore = m_hud->getChild(52);
 	m_bullets = m_hud->getChild(600);
 	m_armorBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(642));
 	m_armors = m_hud->getChild(650);
@@ -134,6 +135,11 @@ void InGameGUI::setTeam1Score(int nbr)
 void InGameGUI::setTeam2Score(int nbr)
 {
 	m_team2Score->setText(std::to_string(nbr));
+}
+
+void InGameGUI::setPredatorScore(int nbr)
+{
+	m_predatorScore->setText(std::to_string(nbr));
 }
 
 void InGameGUI::setBulletsNbr(unsigned int nbr)

@@ -122,6 +122,10 @@ void	ClientCore::pulse()
 				m_graphicModule->getHUD()->setArmorPoint(armor->get());
 			else
 				m_graphicModule->getHUD()->setArmorPoint(0);
+
+			m_graphicModule->getHUD()->setTeam1Score(m_playerManager->getTeam1Score());
+			m_graphicModule->getHUD()->setTeam2Score(m_playerManager->getTeam2Score());
+			m_graphicModule->getHUD()->setPredatorScore(m_playerManager->getPredatorScore());
 		}
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();

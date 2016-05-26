@@ -2,6 +2,7 @@
 #include "ClientCore.h"
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
+#include "PlayerInfos.h"
 #include "WeaponManagerSystem.h"
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
@@ -85,4 +86,43 @@ void PlayerManager::setCurrentPlayer(ecs::Entity * localPlayer)
 const std::map<ecs::ClientId, ecs::Entity*> &PlayerManager::getEntities() const
 {
 	return m_entities;
+}
+
+int				PlayerManager::getTeam1Score()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team1)
+			score += team->getKills();
+	}
+	return score;
+}
+
+int				PlayerManager::getTeam2Score()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team2)
+			score += team->getKills();
+	}
+	return score;
+}
+
+int				PlayerManager::getPredatorScore()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Predator)
+			score += team->getKills();
+	}
+	return score;
 }
