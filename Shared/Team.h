@@ -24,13 +24,14 @@ namespace ecs
 
 		void	init(ecs::Team::TeamType team);
 
-		int					getKill()	const;
-		int					getDeath()	const;
+		int					getKills()	const;
+		int					getDeaths()	const;
 
-		void				setKill(int);
-		void				setDeath(int);
+		void				setKills(int);
+		void				setDeaths(int);
 		void				addDeath();
 		void				addKill();
+		const TeamType		getTeam() const;
 
 		virtual void		dump(std::ostream& os)	const;
 
@@ -43,7 +44,7 @@ namespace ecs
 
 	private:
 		ecs::Team::TeamType	m_team;
-		int	m_kill;
-		int	m_death;
+		int	m_kills;
+		int	m_deaths;
 	};
 }
