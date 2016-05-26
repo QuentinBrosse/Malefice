@@ -2,6 +2,9 @@
 
 #include <string>
 #include <algorithm>
+#include <vector>
+#include <iostream>
+#include <ostream>
 #include "Export.h"
 
 namespace utility
@@ -11,6 +14,8 @@ namespace utility
 	public:
 		StringUtility()		= delete;
 		~StringUtility()	= delete;
+
+		static std::vector<std::string> explode(const std::string& s, const std::string& delim);
 
 		template<class T>
 		static std::string	pluralize(const std::string& word, const T& nb)
