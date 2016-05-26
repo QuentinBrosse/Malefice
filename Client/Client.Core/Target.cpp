@@ -15,7 +15,7 @@ Target::~Target()
 {
 }
 
-irr::core::line3df Target::getRay() const
+const irr::core::line3df& Target::getRay() const
 {
 	return m_ray;
 }

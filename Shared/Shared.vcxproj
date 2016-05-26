@@ -157,6 +157,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="IrrlichtUtility.cpp" />
     <ClCompile Include="Life.cpp" />
+    <ClCompile Include="Line3dWrapper.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MathUtility.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Export.h" />
     <ClInclude Include="IrrlichtUtility.h" />
     <ClInclude Include="Life.h" />
+    <ClInclude Include="Line3dWrapper.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MathUtility.h" />

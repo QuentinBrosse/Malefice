@@ -126,6 +126,7 @@ namespace ecs
 		{
 			m_weapons.insert(std::make_pair(weapon.first, weapon.second));
 		}
+
 		if (weaponManager.m_currentWeapon != weaponManager.m_weapons.end())
 			m_currentWeapon = m_weapons.find(weaponManager.m_currentWeapon->first);
 		else

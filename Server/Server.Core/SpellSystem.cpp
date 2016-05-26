@@ -21,8 +21,8 @@ namespace ecs
 			Weapon&	weapon = spellManager->getCurrentWeapon();
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
-			irr::core::line3df*	ray = weapon.getRay();
-
+			irr::core::line3df*	ray = nullptr;
+			// TODO: move ray to argument
 			if (weapon.shoot())
 			{
 				irr::core::vector3df intersection;
