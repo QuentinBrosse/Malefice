@@ -16,9 +16,9 @@ protected:
 	~Target();
 
 public:
-	void				refresh();
-	void				debugDrawRay()	const;
-	irr::core::line3df	getRay()		const;
+	void						refresh();
+	void						debugDrawRay()	const;
+	const irr::core::line3df&	getRay()		const;
 
 private:
 	GraphicUtil*			m_graphicUtil;

@@ -14,7 +14,8 @@ namespace ecs
 		{
 
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
-			spellManager->getCurrentWeapon().setRay(&Target::getInstance().getRay());
+//			spellManager->getCurrentWeapon().setRay(&Target::getInstance().getRay());
+			//TODO : Move Target::getRay to RPC argument
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator);
 		}
 	}

@@ -2,6 +2,7 @@
 
 #include <ostream>
 #include <map>
+#include <irrlicht.h>
 #include <RakNetTypes.h>
 #include <BitStream.h>
 #include "AComponent.h"
@@ -59,4 +60,7 @@ namespace RakNet
 {
 	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator<<(RakNet::BitStream& out, ecs::Entity& in);
 	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator>>(RakNet::BitStream& in, ecs::Entity& out);
+
+	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator<<(RakNet::BitStream& out, irr::core::line3df& in);
+	MALEFICE_DLL_EXPORT RakNet::BitStream&	operator >> (RakNet::BitStream& in, irr::core::line3df& out);
 }
