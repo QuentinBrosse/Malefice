@@ -73,10 +73,10 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const ecs::Position p
 
 void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & newNameTexture, const std::string & newNameMesh, ecs::Entity & entity)
 {
-	WeaponCreator& weaponCreator = WeaponCreator::getInstance();
+//	WeaponCreator& weaponCreator = WeaponCreator::getInstance();
 
-	ecs::Weapon weaponShotGun = weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN);
-	dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
+	//ecs::Weapon weaponShotGun = weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN);
+	//dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
 	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);

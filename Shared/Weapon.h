@@ -32,6 +32,7 @@ namespace ecs
 		Weapon(const Weapon& cpy);
 		~Weapon();
 
+		Weapon& operator=(const Weapon&) = delete;
 		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 
 		virtual AComponent&		affect(const AComponent& rhs);
@@ -73,6 +74,8 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
+		SceneAnimatedMesh*		m_scene;
+
 	private:
 		static const std::string	MEDIA_PATH;
 
@@ -94,7 +97,7 @@ namespace ecs
 		float					m_fireRate;
 		float					m_distance;
 
-		SceneAnimatedMesh*		m_scene;
+		
 
 		Position				m_fpsMetrics;
 		irr::core::vector3df	m_fpsMetricsOffset;

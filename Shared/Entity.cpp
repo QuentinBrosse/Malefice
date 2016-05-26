@@ -51,7 +51,7 @@ namespace ecs
 	{
 		auto rhsComponents = rhs.getComponents();
 
-		for (auto component : rhsComponents)
+		for (auto& component : rhsComponents)
 		{
 			if (component.second && component.first != ecs::AComponent::ComponentType::SCENE)
 			{

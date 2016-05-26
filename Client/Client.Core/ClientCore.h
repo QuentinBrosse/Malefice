@@ -10,6 +10,7 @@
 #include "MasterList.h"
 #include "MasterListNetwork.h"
 #include "SceneMesh.h"
+#include "Weapon.h"
 
 typedef std::chrono::duration<float, std::chrono::seconds::period> fpTime;
 
@@ -20,6 +21,8 @@ class ClientCore : public Singleton<ClientCore>, public NetworkObject
 public:
 	void			createEntities();
 	void			run();
+
+	static ecs::Weapon*	buggedWeapon;
 
 	NetworkModule*	getNetworkModule()	const;
 	GraphicUtil*	getGraphicModule()	const;

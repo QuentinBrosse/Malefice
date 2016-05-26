@@ -20,6 +20,8 @@
 #include "MasterList.h"
 #include "Target.h"
 
+ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
+
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
 {
@@ -94,6 +96,8 @@ bool	ClientCore::init()
 
 void	ClientCore::pulse()
 {
+	if (buggedWeapon)
+		std::cout << buggedWeapon->m_scene << std::endl;
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
@@ -136,6 +140,7 @@ void	ClientCore::pulse()
 			(*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE] != nullptr &&
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
+			//toto = dynamic_cast<ecs::WeaponManager*>(m_playerManager->getCurrentPlayer()->operator[](ecs::AComponent::ComponentType::WEAPON_MANAGER))->getCurrentWeapon().getScene();
 			Target::getInstance().refresh();
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
@@ -248,7 +253,6 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();
-	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
 }
 

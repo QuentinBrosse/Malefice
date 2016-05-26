@@ -15,8 +15,9 @@ namespace ecs
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
+			irr::core::line3df toto = Target::getInstance().getRay();
+			Position*	pos = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
-
 }
