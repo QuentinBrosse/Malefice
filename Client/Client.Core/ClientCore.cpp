@@ -251,3 +251,15 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
 }
+
+void ClientCore::onKillDie(RakNet::RPC3* rpc)
+{
+	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " has killed " + std::string("name") + ".";
+	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " has killed " + std::string("name") + ".", 3);
+}
+
+void ClientCore::onPlayerDisconnected(RakNet::RPC3* rpc)
+{
+	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " disconnected.";
+	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " disconnected.", 3);
+}
