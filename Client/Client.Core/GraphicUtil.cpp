@@ -90,6 +90,8 @@ void GraphicUtil::initGraphics()
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14-NoScale.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-10.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
@@ -98,6 +100,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("spells.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("MainMenu.scheme");
 
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);

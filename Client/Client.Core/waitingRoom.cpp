@@ -13,6 +13,7 @@ WaitingRoom::WaitingRoom(GraphicUtil &gu) :
 	m_graphicalUtil(gu), m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_timestamp(0), m_stopTimer(false), m_timerText(nullptr), m_rightTeam(nullptr), m_leftTeam(nullptr), m_checkConnectedPlayers(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("WaitingRoom.layout");
+	m_windows->setName("WaitingRoom");
 	try
 	{
 		m_frameWindows = dynamic_cast<CEGUI::FrameWindow *>(m_windows);
