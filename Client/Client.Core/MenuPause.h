@@ -20,10 +20,12 @@ public:
 	bool onContinueButtonClicked();
 	void checkPause();
 	bool getEnableStatus();
+	void activate(bool);
 
 private:
 	GraphicUtil&	m_utilities;
 	CEGUI::System&	m_systemd;
 	CEGUI::Window*	m_windows;
 	bool			m_isEnable;
+	bool			m_isActivated;
 };

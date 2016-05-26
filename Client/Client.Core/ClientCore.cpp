@@ -48,6 +48,7 @@ void	ClientCore::run()
 	}
 	else
 	{
+		m_graphicModule->getMenuPause()->activate(true);
 		m_graphicModule->setFPSCamera();
 		createEntities();
 		startGame(0);
@@ -242,6 +243,7 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
 	m_playerManager->initPlayersScene();
