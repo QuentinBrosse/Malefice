@@ -5,6 +5,7 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false), m_isConnected(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
+	m_windows->setName("connectWindows");
 	try
 	{
 		m_frameWindows = dynamic_cast<CEGUI::FrameWindow *>(m_windows);

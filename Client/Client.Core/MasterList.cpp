@@ -4,6 +4,7 @@
 MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("masterList.layout");
+	m_windows->setName("MasterList");
 	m_manualConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(1));
 	m_autoConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(2));
 	m_serverList = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(33));
