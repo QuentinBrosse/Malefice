@@ -11,6 +11,7 @@
 #include "PlayerManager.h"
 #include "PhysicsUtil.h"
 #include "MasterList.h"
+#include "QueryServer.h"
 
 class ServerCore : public Singleton<ServerCore>
 {
@@ -26,6 +27,7 @@ public:
 	ServerCoreConfiguration&	getServerCoreConfiguration();
 	MasterList&					getMasterList();
 	PhysicsUtil&				getPhysicsUtil();
+	QueryServer&				getQueryServer();
 
 protected:
 	ServerCore();
@@ -55,6 +57,7 @@ private:
 	PlayerManager			m_playerManager;
 	PhysicsUtil&			m_physicsUtil;
 	MasterList				m_masterList;
+	QueryServer				m_queryServer;
 
 	std::queue<std::string>	m_inputQueue;
 	std::mutex				m_inputMutex;
