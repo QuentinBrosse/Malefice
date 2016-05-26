@@ -67,9 +67,10 @@ void GraphicUtil::initGraphics()
 	rp = dynamic_cast<CEGUI::DefaultResourceProvider *>(CEGUI::System::getSingleton().getResourceProvider());
 	if (rp == nullptr)
 	{
-		std::cout << "Problem during ressource provider instanciation process..." << std::endl;
-		exit(0);
+		LOG_ERROR(GENERAL) << "Problem during ressource provider instanciation process...";
+		exit(1);
 	}
+
 	rp->setResourceGroupDirectory("schemes", "./datafiles/schemes/");
 	rp->setResourceGroupDirectory("imagesets", "./datafiles/imagesets/");
 	rp->setResourceGroupDirectory("fonts", "./datafiles/fonts/");
@@ -77,19 +78,17 @@ void GraphicUtil::initGraphics()
 	rp->setResourceGroupDirectory("looknfeels", "./datafiles/looknfeel/");
 	rp->setResourceGroupDirectory("lua_scripts", "./datafiles/lua_scripts/");
 
-	// set the default resource groups to be used
 	CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 	CEGUI::Font::setDefaultResourceGroup("fonts");
 	CEGUI::Scheme::setDefaultResourceGroup("schemes");
 	CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
 	CEGUI::WindowManager::setDefaultResourceGroup("layouts");
 	CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
-	// setup default group for validation schemas
+	
 	parser = CEGUI::System::getSingleton().getXMLParser();
 	if (parser->isPropertyPresent("SchemaDefaultResourceGroup"))
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
-	//Chargement des fichiers de police et de configuration de CEGUI
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
@@ -108,7 +107,6 @@ void GraphicUtil::initGraphics()
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
 
-	//Cameras
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();
@@ -246,19 +244,17 @@ void GraphicUtil::setGuiCamera()
 void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
-	//ecs::Position*	localPlayerPos = dynamic_cast<ecs::Position*>((*localPlayer)[ecs::AComponent::ComponentType::POSITION]);
 
-	ecs::Position cameraPosition;
-	//ecs::Position cameraPosition = *localPlayerPos;
+	ecs::Position cameraPosition(
+		irr::core::vector3df(50.0f, 50.0f, -60.0f),
+		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
+
 	if (m_sceneManager->getActiveCamera())
 	{
 		cameraPosition.setVectorPosition(m_sceneManager->getActiveCamera()->getAbsolutePosition());
 		cameraPosition.setVectorRotation(m_sceneManager->getActiveCamera()->getTarget());
 		m_sceneManager->getActiveCamera()->remove();
 	}
-
-		cameraPosition.setVectorPosition(irr::core::vector3df(0.F, 0.F, 0.F));
-
 	m_device->getCursorControl()->setVisible(false);
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 	m_FPSCamera->init();
