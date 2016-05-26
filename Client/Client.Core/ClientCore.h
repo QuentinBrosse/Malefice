@@ -36,7 +36,8 @@ public:
 	void	setClientId(ecs::ClientId clientId, RakNet::RPC3* rpc);
 	void	notifyInvalidNickname(RakNet::RPC3* rpc);
 	void	startGame(RakNet::RPC3* rpc);
-
+	void	onKillDie(RakNet::RPC3* rpc);
+	void	onPlayerDisconnected(RakNet::RPC3* rpc);
 
 protected:
 	ClientCore();

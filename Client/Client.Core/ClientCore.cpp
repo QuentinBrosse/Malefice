@@ -122,6 +122,10 @@ void	ClientCore::pulse()
 				m_graphicModule->getHUD()->setArmorPoint(armor->get());
 			else
 				m_graphicModule->getHUD()->setArmorPoint(0);
+
+			m_graphicModule->getHUD()->setTeam1Score(m_playerManager->getTeam1Score());
+			m_graphicModule->getHUD()->setTeam2Score(m_playerManager->getTeam2Score());
+			m_graphicModule->getHUD()->setPredatorScore(m_playerManager->getPredatorScore());
 		}
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
@@ -246,4 +250,16 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 	ClientCore::getInstance().createEntities();
 	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
+}
+
+void ClientCore::onKillDie(RakNet::RPC3* rpc)
+{
+	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " has killed " + std::string("name") + ".";
+	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " has killed " + std::string("name") + ".", 3);
+}
+
+void ClientCore::onPlayerDisconnected(RakNet::RPC3* rpc)
+{
+	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " disconnected.";
+	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " disconnected.", 3);
 }

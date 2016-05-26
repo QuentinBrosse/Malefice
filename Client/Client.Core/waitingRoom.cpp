@@ -2,6 +2,7 @@
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
 #include "ClientCore.h"
+#include "Team.h"
 #include "PlayerInfos.h"
 
 #ifdef _MSC_VER
@@ -111,7 +112,21 @@ void WaitingRoom::checkConnectedPlayers()
 		this->resetTeamDisplay();
 		for (auto entity : entities)
 		{
-			this->addLeftTeamMember(dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname());
+			ecs::PlayerInfos* playerInfo = dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+			ecs::Team* teamInfo = dynamic_cast<ecs::Team *>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
+
+			if (teamInfo->getTeam() == ecs::Team::TeamType::Team1)
+			{
+				this->addLeftTeamMember(playerInfo->getNickname());
+			}
+			else if (teamInfo->getTeam() == ecs::Team::TeamType::Team2)
+			{
+				this->addRightTeamMember(playerInfo->getNickname());
+			}
+			else if (teamInfo->getTeam() == ecs::Team::TeamType::Predator)
+			{
+				this->addPredator(playerInfo->getNickname());
+			}
 		}
 	}
 }

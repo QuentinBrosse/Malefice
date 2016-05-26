@@ -19,6 +19,7 @@
     <ClInclude Include="PhysicsUtil.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="QueryServer.h" />
     <ClInclude Include="ServerCore.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="ServerCoreConfiguration.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="PhysicsUtil.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
+    <ClCompile Include="QueryServer.cpp" />
     <ClCompile Include="ServerCoreConfiguration.cpp" />
     <ClCompile Include="ServerCore.cpp" />
     <ClCompile Include="main.cpp" />
@@ -92,7 +94,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../../Dependencies/tinyxml2/build/Debug;../../Binaries/Debug</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -115,7 +117,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../../Dependencies/tinyxml2/build/Release;../../Binaries/Release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;tinyxml2.lib;Shared.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

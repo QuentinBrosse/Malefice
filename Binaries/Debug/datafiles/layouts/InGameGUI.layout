@@ -119,7 +119,7 @@
             </Window>
         </Window>
         <Window type="WindowsLook/Label" name="Label3" >
-            <Property name="Area" value="{{0,6},{0,12},{0,121},{0,44}}" />
+            <Property name="Area" value="{{0,6},{0,12},{0,166},{0,44}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="REFLEX:" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
@@ -127,7 +127,7 @@
             <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
         <Window type="WindowsLook/Label" name="Label4" >
-            <Property name="Area" value="{{0,7},{0,49},{0,113},{0,81}}" />
+            <Property name="Area" value="{{0,7},{0,49},{0,165},{0,81}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="TEAM  1:" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
@@ -135,7 +135,7 @@
             <Property name="NormalTextColour" value="FF00FF00" />
         </Window>
         <Window type="WindowsLook/Label" name="Label42" >
-            <Property name="Area" value="{{0,8},{0,85},{0,112},{0,117}}" />
+            <Property name="Area" value="{{0,8},{0,85},{0,165},{0,117}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="TEAM 2:" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
@@ -143,7 +143,7 @@
             <Property name="NormalTextColour" value="FF00FF00" />
         </Window>
         <Window type="WindowsLook/Label" name="Label44" >
-            <Property name="Area" value="{{0,140},{0,13},{0,280},{0,45}}" />
+            <Property name="Area" value="{{0,175},{0,13},{0,315},{0,45}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="GAME ON" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
@@ -152,18 +152,18 @@
         </Window>
         <Window type="WindowsLook/Label" name="Label32" >
             <Property name="ID" value="50" />
-            <Property name="Area" value="{{0,140},{0,51},{0,201},{0,83}}" />
+            <Property name="Area" value="{{0,175},{0,54},{0,236},{0,86}}" />
             <Property name="Font" value="Terminator-12" />
-            <Property name="Text" value="1" />
+            <Property name="Text" value="0" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="LeftAligned" />
             <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
         <Window type="WindowsLook/Label" name="Label33" >
             <Property name="ID" value="51" />
-            <Property name="Area" value="{{0,139},{0,86},{0,203},{0,119}}" />
+            <Property name="Area" value="{{0,174},{0,89},{0,238},{0,122}}" />
             <Property name="Font" value="Terminator-12" />
-            <Property name="Text" value="3" />
+            <Property name="Text" value="0" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="HorzFormatting" value="LeftAligned" />
             <Property name="NormalTextColour" value="FFFFFFFF" />
@@ -196,6 +196,23 @@
             <Property name="Area" value="{{0,935},{0,10},{0,1270},{0,135}}" />
             <Property name="Font" value="Jura-10" />
             <Property name="ForceVertScrollbar" value="false" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label422" >
+            <Property name="Area" value="{{0,8},{0,125},{0,165},{0,157}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="PREDATOR:" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="RightAligned" />
+            <Property name="NormalTextColour" value="FF00FF00" />
+        </Window>
+        <Window type="WindowsLook/Label" name="Label332" >
+            <Property name="ID" value="52" />
+            <Property name="Area" value="{{0,176},{0,125},{0,236},{0,158}}" />
+            <Property name="Font" value="Terminator-12" />
+            <Property name="Text" value="0" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HorzFormatting" value="LeftAligned" />
+            <Property name="NormalTextColour" value="FFFFFFFF" />
         </Window>
     </Window>
 </GUILayout>
