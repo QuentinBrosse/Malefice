@@ -19,6 +19,8 @@ public:
 	void hide();
 	bool onCloseButtonClicked(const CEGUI::EventArgs& e);
 	bool onConnectButtonClicked(const CEGUI::EventArgs& e);
+	bool onCloseButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onConnectButtonEnterArea(const CEGUI::EventArgs& e);
 	std::string getIPEditBox();
 	std::string getPortEditBox();
 	std::string getNickNameEditBox();

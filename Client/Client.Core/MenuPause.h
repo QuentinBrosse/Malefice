@@ -18,9 +18,9 @@ public:
 	bool onOptionButtonClicked();
 	bool onQuitButtonClicked();
 	bool onContinueButtonClicked();
-	bool onContinueButtonEnterArea();
-	bool onOptionButtonEnterArea();
-	bool onQuitButtonEnterArea();
+	bool onContinueButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onOptionButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onQuitButtonEnterArea(const CEGUI::EventArgs& e);
 	void checkPause();
 	bool getEnableStatus();
 	void activate(bool);

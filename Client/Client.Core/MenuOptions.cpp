@@ -48,25 +48,25 @@ void MenuOptions::hide()
 	}
 }
 
-bool MenuOptions::onCloseButtonClicked()
+bool MenuOptions::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
 	return (true);
 }
 
-bool MenuOptions::onCloseButtonEnterArea()
+bool MenuOptions::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;
 }
 
-bool MenuOptions::onValidateButtonEnterArea()
+bool MenuOptions::onValidateButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;
 }
 
-bool MenuOptions::onCancellButtonEnterArea()
+bool MenuOptions::onCancellButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;

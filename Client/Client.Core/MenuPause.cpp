@@ -83,19 +83,19 @@ void MenuPause::activate(bool stat)
 	m_isActivated = stat;
 }
 
-bool MenuPause::onContinueButtonEnterArea()
+bool MenuPause::onContinueButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;
 }
 
-bool MenuPause::onOptionButtonEnterArea()
+bool MenuPause::onOptionButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;
 }
 
-bool MenuPause::onQuitButtonEnterArea()
+bool MenuPause::onQuitButtonEnterArea(const CEGUI::EventArgs& e)
 {
 
 	return true;
