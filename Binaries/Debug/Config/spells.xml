@@ -4,35 +4,275 @@
 		<type>BLIND</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>
 	<spell id = "2">
 		<name>Paranoia</name>
 		<type>PARANOIA</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>
 	<spell id = "3">
 		<name>Confusion</name>
 		<type>CONFUSION</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>
 	<spell id = "4">
 		<name>Deaf</name>
 		<type>DEAF</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>
 	<spell id = "5">
 		<name>Parkinson</name>
 		<type>PARKINSON</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>
 	<spell id = "6">
 		<name>Slow</name>
 		<type>SLOW</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<FPSMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+			<offset>
+				<x>0.0</x>
+				<y>0.14</y>
+				<z>0.0</z>
+			</offset>
+			<coefOffset>0.7</coefOffset>
+		</FPSMetrics>
+		<ExternalMetrics>
+			<position>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</position>
+			<rotation>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</rotation>
+			<scale>
+				<x>0.0</x>
+				<y>0.0</y>
+				<z>0.0</z>
+			</scale>
+		</ExternalMetrics>
 	</spell>	
 </spells>

@@ -18,7 +18,7 @@ namespace ecs
 		virtual void	init(Weapon& defaultWeapon);
 		void			reset();
 
-		void			addWeapon(Weapon& newWeapon);
+		void			addWeapon(const Weapon& newWeapon);
 		void			changeToNextWeapon();
 		void			changeToPrecWeapon();
 
@@ -26,15 +26,15 @@ namespace ecs
 		Weapon&									getCurrentWeapon()	const;
 		std::map<Weapon::WeaponType, Weapon>&	getWeapons();
 
-		void			createWeapon(irr::IrrlichtDevice* device, const Weapon& weaponCpy);
+		void				createWeapon(irr::IrrlichtDevice* device, const Weapon& weaponCpy);
+			
 
-
-		virtual	void	dump(std::ostream& os)	const;
+		virtual	void		dump(std::ostream& os)	const;
 
 		virtual AComponent&	affect(const AComponent& rhs);
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
+		virtual void		serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void		deserialize(RakNet::BitStream& in);
 
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
 

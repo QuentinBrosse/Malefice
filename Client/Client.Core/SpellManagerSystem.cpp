@@ -2,6 +2,8 @@
 
 #include "SpellManagerSystem.h"
 #include "SpellManager.h"
+#include "GraphicUtil.h"
+#include "SceneAnimatedMesh.h"
 
 namespace ecs
 {
@@ -36,6 +38,26 @@ namespace ecs
 		{
 			spellManager->changeCurrentManager();
 			// TODO : Send msg to server
+		}
+	}
+
+	void SpellManagerSystem::initFPSScene(Entity & predator)
+	{
+		SpellManager*	spellManager;
+
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			spellManager->createFPSScene(GraphicUtil::getInstance().getDevice(), GraphicUtil::getInstance().getSceneManager()->getActiveCamera());
+		}
+	}
+
+	void SpellManagerSystem::initExternalScene(Entity & predator)
+	{
+		SpellManager*	spellManager;
+
+		if ((spellManager = dynamic_cast<SpellManager*>(predator[AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			spellManager->createExternalScene(GraphicUtil::getInstance().getDevice(), GraphicUtil::getInstance().getSceneManager()->getActiveCamera());
 		}
 	}
 

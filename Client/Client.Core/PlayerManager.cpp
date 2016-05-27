@@ -4,6 +4,7 @@
 #include "PositionSystem.h"
 #include "PlayerInfos.h"
 #include "WeaponManagerSystem.h"
+#include "SpellManagerSystem.h"
 #include "WeaponManager.h"
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
@@ -48,7 +49,6 @@ void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 	}
 }
 
-
 void PlayerManager::initPlayersScene()
 {
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
@@ -62,10 +62,20 @@ void PlayerManager::initPlayersWeapons()
 {
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		if (ClientCore::getInstance().getClientId() == it->first)
-			ecs::WeaponManagerSystem::initFPSWeapon(*it->second);
+		if (dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM])->getTeam() == ecs::Team::TeamType::Predator)
+		{
+			if (ClientCore::getInstance().getClientId() == it->first)
+				ecs::SpellManagerSystem::initFPSScene(*it->second);
+			else
+				ecs::SpellManagerSystem::initExternalScene(*it->second);
+		}
 		else
-			ecs::WeaponManagerSystem::initExternalWeapon(*it->second);
+		{
+			if (ClientCore::getInstance().getClientId() == it->first)
+				ecs::WeaponManagerSystem::initFPSWeapon(*it->second);
+			else
+				ecs::WeaponManagerSystem::initExternalWeapon(*it->second);
+		}
 	}
 }
 

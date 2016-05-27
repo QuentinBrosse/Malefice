@@ -15,6 +15,7 @@ namespace ecs
 		~SpellSystem() = delete;
 
 		static void	launchSpell(Entity& predator);
+		static void affect(Entity& entity);
 	};
 
 }

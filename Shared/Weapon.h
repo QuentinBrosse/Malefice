@@ -74,30 +74,30 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
-		SceneAnimatedMesh*		m_scene;
 
 	private:
 		static const std::string	MEDIA_PATH;
 
-		int				m_id;
-		std::string		m_weaponName;
-		std::string		m_meshName;
-		unsigned int	m_maxAmmunitions;			// Max ammunition total
-		unsigned int	m_maxAmmunitionsClip;		//	Max Ammunition in clip
-		unsigned int	m_damage;
-		WeaponType		m_weaponType;
+		int					m_id;
+		std::string			m_weaponName;
+		WeaponType			m_weaponType;
 
-		bool	m_sight;
+		SceneAnimatedMesh*	m_scene;
+		std::string			m_meshName;
 
-		unsigned int	m_reloadTime;
-		unsigned int	m_ammoPerShot;
-		unsigned int	m_ammunitions;
-		unsigned int	m_ammunitionsClip;
+		unsigned int		m_maxAmmunitions;			// Max ammunition total
+		unsigned int		m_maxAmmunitionsClip;		//	Max Ammunition in clip
+		unsigned int		m_damage;
 
-		float					m_fireRate;
-		float					m_distance;
+		bool				m_sight;
 
-		
+		unsigned int		m_reloadTime;
+		unsigned int		m_ammoPerShot;
+		unsigned int		m_ammunitions;
+		unsigned int		m_ammunitionsClip;
+
+		float				m_fireRate;
+		float				m_distance;
 
 		Position				m_fpsMetrics;
 		irr::core::vector3df	m_fpsMetricsOffset;

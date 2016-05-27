@@ -13,5 +13,6 @@ namespace ecs
 		~SpellSystem() = delete;
 
 		static void	launchSpell(Entity* predator, Line3dWrapper* rayWrap, RakNet::RPC3* rpc);
+		static void checkSpell(Entity& entity);
 	};
 }
