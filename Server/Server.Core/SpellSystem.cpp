@@ -27,7 +27,6 @@ namespace ecs
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
 			irr::core::line3df	ray = rayWrap->getLine();
-			// TODO: move ray to argument
 			if (!spellOfPredator.isLock())
 			{
 				irr::core::vector3df intersection;
@@ -51,7 +50,9 @@ namespace ecs
 							Spell*	spellOfTarget;
 
 							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos*>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shot WITH SPELL modafoka !";
-							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr && !spellOfTarget->isLock() && !spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
+							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr
+								&& !spellOfTarget->isLock()
+								&& spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
 							{
 								long long	spellEffectEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getDuration() * 1000;
 								long long	spellCooldownEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getCooldown() * 1000;

@@ -15,7 +15,7 @@ class MALEFICE_DLL_EXPORT SpellsConfiguration : public AConfiguration, public Si
 	friend class Singleton<SpellsConfiguration>;
 
 protected:
-	SpellsConfiguration() = default;
+	SpellsConfiguration();
 	virtual ~SpellsConfiguration() = default;
 
 public:

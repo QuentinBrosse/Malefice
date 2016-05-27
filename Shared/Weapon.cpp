@@ -194,10 +194,11 @@ namespace ecs
 
 	void	Weapon::createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active)
 	{
+		if (m_meshName == "")  //DEBUG
+			return;
 		if (m_scene)
 			delete m_scene;
 		m_scene = new SceneAnimatedMesh(device, parent, "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true, true, 0);
-
 
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		m_scene->getScene()->setName((MEDIA_PATH + m_meshName).c_str());

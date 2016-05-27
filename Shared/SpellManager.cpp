@@ -15,7 +15,7 @@ namespace ecs
 	{
 		for (auto& spell : cpy.m_spells)
 		{
-			m_spells[spell.first] = spell.second;
+			m_spells[spell.first].affect(spell.second);
 		}
 		if (!m_spells.empty() && cpy.m_currentSpell != cpy.m_spells.end())
 			m_currentSpell = m_spells.find(cpy.m_currentSpell->first);
@@ -31,7 +31,7 @@ namespace ecs
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
 		m_currentSpell = m_spells.begin();
 		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
-		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
+		//m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
 	}
 
 
@@ -69,7 +69,7 @@ namespace ecs
 
 	bool SpellManager::isLock() const
 	{
-		return m_cooldownEndTime < utility::TimeUtility::getMsTime();
+		return m_cooldownEndTime < utility::TimeUtility::getMsTime() && m_cooldownEndTime != 0;
 	}
 
 	void SpellManager::setCooldownEndTime(const long long cooldownEndTime)
@@ -131,6 +131,8 @@ namespace ecs
 		{
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
+			if (scene == nullptr) //DEBUG
+				return;
 			scene->setPosition(weapon.second.getFPSMetrics());
 		}
 		//TODO: create spell's scenes
@@ -144,6 +146,8 @@ namespace ecs
 		{
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
+			if (scene == nullptr) //DEBUG
+				return;
 			scene->setPosition(weapon.second.getExternalMetrics());
 		}
 		//TODO: create spell's scenes
@@ -179,9 +183,9 @@ namespace ecs
 		const SpellManager&	spellManager = dynamic_cast<const SpellManager&>(rhs);
 
 		m_weaponsIsCurrent = spellManager.m_weaponsIsCurrent;
-		m_weaponManager = spellManager.m_weaponManager;
-		for (auto spell : spellManager.m_spells)
-			m_spells.insert(spell);
+		m_weaponManager.affect(spellManager.m_weaponManager);
+		for (auto& spell : spellManager.m_spells)
+			m_spells[spell.first].affect(spell.second);
 		if (spellManager.m_currentSpell != spellManager.m_spells.end())
 			m_currentSpell = m_spells.find(spellManager.m_currentSpell->first);
 		else

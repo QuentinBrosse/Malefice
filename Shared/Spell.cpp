@@ -86,7 +86,7 @@ namespace ecs
 
 	bool Spell::isLock() const
 	{
-		return m_cooldownEndTime < utility::TimeUtility::getMsTime();
+		return m_cooldownEndTime < utility::TimeUtility::getMsTime() && m_cooldownEndTime != 0;
 	}
 
 	Position Spell::getFPSMetrics() const
@@ -148,6 +148,8 @@ namespace ecs
 
 	void Spell::createScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent, const bool active)
 	{
+		if (m_meshName == "") // DEBUG
+			return;
 		if (m_scene)
 			delete m_scene;
 		m_scene = new SceneAnimatedMesh(device, parent, "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true, true, 0);

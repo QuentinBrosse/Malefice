@@ -481,7 +481,7 @@
 
 	<weapon id="9">
 		<name>Knife</name>
-		<meshName>knife_sharp.obj</meshName>
+		<meshName>shotgun.obj</meshName>
 		<type>NKIFE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
