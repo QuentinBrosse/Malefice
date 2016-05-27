@@ -3,6 +3,7 @@
 MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_frameWindows(nullptr), m_utilities(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("options.layout");
+	m_windows->setName("MenuOptions");
 	try
 	{
 		m_frameWindows = dynamic_cast<CEGUI::FrameWindow *>(m_windows);

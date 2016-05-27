@@ -1,9 +1,10 @@
 #include "MenuPause.h"
 #include "GraphicUtil.h"
 
-MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_isEnable(false)
+MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_isEnable(false), m_isActivated(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("menuPause.layout");
+	m_windows->setName("MenuPause");
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onContinueButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onOptionButtonClicked, this));
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onQuitButtonClicked, this));
@@ -25,22 +26,25 @@ void MenuPause::checkPause()
 {
 	static bool block;
 
-	if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && block)
-		return;
-	if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && !m_isEnable && !block)
+	if (m_isActivated)
 	{
-		m_isEnable = true;
-		m_utilities.setGuiCamera();
-		this->display();
-		block = true;
+		if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && block)
+			return;
+		if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && !m_isEnable && !block)
+		{
+			m_isEnable = true;
+			m_utilities.setGuiCamera();
+			this->display();
+			block = true;
+		}
+		else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && m_isEnable && !block)
+		{
+			this->onContinueButtonClicked();
+			block = true;
+		}
+		else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == false && block)
+			block = false;
 	}
-	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == true && m_isEnable && !block)
-	{
-		this->onContinueButtonClicked();
-		block = true;
-	}
-	else if (m_utilities.getCEGUIEventReceiver().getKeyStateList()[irr::KEY_ESCAPE] == false && block)
-		block = false;
 }
 
 bool MenuPause::onOptionButtonClicked()
@@ -67,4 +71,9 @@ bool MenuPause::onContinueButtonClicked()
 bool MenuPause::getEnableStatus()
 {
 	return (m_isEnable);
+}
+
+void MenuPause::activate(bool stat)
+{
+	m_isActivated = stat;
 }

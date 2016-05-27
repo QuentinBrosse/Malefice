@@ -1,3 +1,5 @@
+// SERVER VERSION
+
 #include "WeaponSystem.h"
 #include "PhysicsUtil.h"
 #include "NodePickable.h"
@@ -35,7 +37,6 @@ namespace ecs
 						hitTriangle,
 						nodePickable::IS_PICKABLE,
 						0);
-
   				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
 					auto entities = playerManager.getEntities();

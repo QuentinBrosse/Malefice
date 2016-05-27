@@ -5,6 +5,7 @@ InGameGUI::InGameGUI() :
 	m_hud(nullptr), m_systemd(CEGUI::System::getSingleton()), m_hpBar(nullptr), m_hpBarText(nullptr), m_timerText(nullptr), m_power1(nullptr), m_power2(nullptr), m_power3(nullptr), m_power4(nullptr), m_team1Score(nullptr), m_team2Score(nullptr), m_timestamp(0), m_hp(0), m_maxHP(100), m_stopTimer(true), m_power1Activated(false), m_power2Activated(false), m_power3Activated(false), m_power4Activated(false), m_maxPowerNbr(3), m_maxArmor(100), m_isActive(false)
 {
 	m_hud = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("InGameGUI.layout");
+	m_hud->setName("HUD");
 	m_hpBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(1));
 	m_hpBarText = m_hud->getChild(2);
 	m_hpBar->setProgress(0);

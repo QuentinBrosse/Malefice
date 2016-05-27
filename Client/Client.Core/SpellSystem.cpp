@@ -1,7 +1,10 @@
+// CLIENT VERSION
+
 #include "SpellSystem.h"
 #include "ClientCore.h"
 #include "WeaponSystem.h"
 #include "Target.h"
+#include "Line3dWrapper.h"
 
 namespace ecs
 {
@@ -14,9 +17,35 @@ namespace ecs
 		{
 
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
-//			spellManager->getCurrentWeapon().setRay(&Target::getInstance().getRay());
-			//TODO : Move Target::getRay to RPC argument
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator);
+			Target::getInstance().refresh();
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator, &Line3dWrapper(Target::getInstance().getRay()));
+		}
+	}
+
+	void SpellSystem::affect(Entity& entity)
+	{
+		Spell*	spell;
+
+		if ((spell = dynamic_cast<Spell*>(entity[ecs::AComponent::ComponentType::SPELL])) != nullptr)
+		{
+			Spell::SpellType	spellType = spell->getSpellType();
+			switch (spellType)
+			{
+			case ecs::Spell::BLIND:
+				break;
+			case ecs::Spell::PARANOIA:
+				break;
+			case ecs::Spell::CONFUSION:
+				break;
+			case ecs::Spell::DEAF:
+				break;
+			case ecs::Spell::PARKINSON:
+				break;
+			case ecs::Spell::SLOW:
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

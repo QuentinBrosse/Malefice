@@ -30,10 +30,15 @@ namespace ecs
 		void	changeToPrecSpell();
 
 
-		Weapon&	getCurrentWeapon()				const;
+		Weapon&								getCurrentWeapon()	const;
+		std::map<Spell::SpellType, Spell>&	getSpells();
 
 		void	changeToNextWeapon();
 		void	changeToPrecWeapon();
+
+		void	createFPSScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent);
+
+		void	createExternalScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent);
 		
 		virtual	AComponent&	affect(const AComponent& rhs);
 

@@ -14,7 +14,7 @@ namespace ecs
 	{
 		for (auto weapon : cpy.m_weapons)
 		{
-			m_weapons[weapon.first] = weapon.second;
+			m_weapons[weapon.first].affect(weapon.second);
 		}
 		if (!m_weapons.empty() && cpy.m_currentWeapon != cpy.m_weapons.end())
 			m_currentWeapon = m_weapons.find(cpy.m_currentWeapon->first);
@@ -41,10 +41,10 @@ namespace ecs
 	}
 
 
-	void	WeaponManager::addWeapon(Weapon& newWeapon)
+	void	WeaponManager::addWeapon(const Weapon& newWeapon)
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
-			m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&> (newWeapon.getWeaponType(), newWeapon));
+			m_weapons[newWeapon.getWeaponType()].affect(newWeapon);
 
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
@@ -89,7 +89,6 @@ namespace ecs
 	{
 		Weapon*	weapon = new Weapon(weaponCpy);
 
-		//weapon->createScene(device, false);
 		this->addWeapon(*weapon);
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
@@ -124,7 +123,8 @@ namespace ecs
 		
 		for (auto& weapon : weaponManager.m_weapons)
 		{
-			m_weapons.insert(std::make_pair(weapon.first, weapon.second));
+			//m_weapons.insert(std::make_pair(weapon.first, weapon.second));
+			m_weapons[weapon.first].affect(weapon.second);
 		}
 
 		if (weaponManager.m_currentWeapon != weaponManager.m_weapons.end())
@@ -141,7 +141,7 @@ namespace ecs
 		AComponent::serialize(out, serializeType);
 
 		out.Write<size_t>(m_weapons.size());
-		for (auto weapon : m_weapons)
+		for (auto& weapon : m_weapons)
 		{
 			out.Write(weapon.first);
 			weapon.second.serialize(out, false);

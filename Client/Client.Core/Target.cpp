@@ -1,7 +1,8 @@
+#include <irrlicht.h>
 #include "Target.h"
 #include "ClientCore.h"
-#include "Irrlicht.h"
 #include "Weapon.h"
+#include "IrrlichtUtility.h"
 
 Target::Target()
 {
@@ -50,7 +51,6 @@ void	Target::refresh()
 		if (selectedSceneNode)
 		{
 			m_scene->getNode()->setVisible(true);
-			ecs::Position position(m_ray.end, irr::core::vector3df(0.F, 0.F, 0.F), irr::core::vector3df(20.F, 20.F, 0.F));
 			m_scene->getNode()->setPosition(intersection);
 		}
 		else

@@ -209,7 +209,8 @@ namespace ecs
 	{
 		try
 		{
-			m_scene->getScene()->setVisible(active);
+			if (m_scene != nullptr)
+				m_scene->getScene()->setVisible(active);
 		}
 		catch (const std::exception& e)
 		{
@@ -252,7 +253,7 @@ namespace ecs
 		m_ammoPerShot = weapon.m_ammoPerShot;
 		m_fireRate = weapon.m_fireRate;
 		m_distance = weapon.m_distance;
-		m_scene = weapon.m_scene;
+		//m_scene = nullptr;
 		m_fpsMetrics = weapon.m_fpsMetrics;
 		m_externalMetrics = weapon.m_externalMetrics;
 		return *this;

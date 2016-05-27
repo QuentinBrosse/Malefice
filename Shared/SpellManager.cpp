@@ -1,5 +1,6 @@
 #include <iterator>
 #include "SpellManager.h"
+#include "WeaponCreator.h"
 
 namespace ecs
 {
@@ -9,9 +10,9 @@ namespace ecs
 	}
 
 	SpellManager::SpellManager(const SpellManager& cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
-		m_currentSpell(m_spells.end()), m_weaponManager(cpy.m_weaponManager), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
+		m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
 	{
-		for (auto spell : cpy.m_spells)
+		for (auto& spell : cpy.m_spells)
 		{
 			m_spells[spell.first] = spell.second;
 		}
@@ -19,6 +20,7 @@ namespace ecs
 			m_currentSpell = m_spells.find(cpy.m_currentSpell->first);
 		else
 			m_currentSpell = m_spells.end();
+		m_weaponManager.affect(cpy.m_weaponManager);
 	}
 
 	//TODO: CHange new Weapon with call to WeaponCreator
@@ -27,6 +29,8 @@ namespace ecs
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
 		m_currentSpell = m_spells.begin();
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
 	}
 
 
@@ -81,6 +85,11 @@ namespace ecs
 		return m_weaponManager.getCurrentWeapon();
 	}
 
+	std::map<Spell::SpellType, Spell>& SpellManager::getSpells()
+	{
+		return m_spells;
+	}
+
 	void SpellManager::changeToNextWeapon()
 	{
 		m_weaponManager.changeToNextWeapon();
@@ -89,6 +98,32 @@ namespace ecs
 	void SpellManager::changeToPrecWeapon()
 	{
 		m_weaponManager.changeToPrecWeapon();
+	}
+
+	void SpellManager::createFPSScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent)
+	{
+		SceneAnimatedMesh*	scene;
+
+		for (auto& weapon : m_weaponManager.getWeapons())
+		{
+			weapon.second.createScene(device, parent, false);
+			scene = weapon.second.getScene();
+			scene->setPosition(weapon.second.getFPSMetrics());
+		}
+		//TODO: create spell's scenes
+	}
+
+	void SpellManager::createExternalScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent)
+	{
+		SceneAnimatedMesh*	scene;
+
+		for (auto& weapon : m_weaponManager.getWeapons())
+		{
+			weapon.second.createScene(device, parent, false);
+			scene = weapon.second.getScene();
+			scene->setPosition(weapon.second.getExternalMetrics());
+		}
+		//TODO: create spell's scenes
 	}
 
 

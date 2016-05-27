@@ -9,6 +9,7 @@
 #include "Logger.h"
 #include "ProjectGlobals.h"
 #include "PositionSystem.h"
+#include "SpellSystem.h"
 
 PlayerManager::PlayerManager() : NetworkObject(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
@@ -29,7 +30,7 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 
 	if (team != ecs::Team::TeamType::Predator)
 	{
-		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), team == ecs::Team::TeamType::Team1 ? "sydney_t1.bmp" : "sydney_t2.bmp", "sydney.md2", owner, position, team, 100); // TODO: pick random spawn position, set rotation
+		m_entities[owner] = PlayerFactory::createPlayer(ServerCore::getInstance().getPhysicsUtil().getDevice(), team == ecs::Team::TeamType::Team1 ? "sydney_t1.bmp" : "sydney_t2.bmp", "sydney.md2", owner, position, team); // TODO: pick random spawn position, set rotation
 	}
 	else
 	{
@@ -40,8 +41,9 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 
 void	PlayerManager::updateEntities()
 {
-	for (auto entity : m_entities)
+	for (auto& entity : m_entities)
 	{
+		ecs::SpellSystem::checkSpell(*entity.second);
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity.second->getOwner(), entity.second);
 		ecs::PositionSystem::updateScenePosition(*entity.second);
 	}

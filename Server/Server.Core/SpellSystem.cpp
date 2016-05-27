@@ -1,3 +1,5 @@
+// SERVER VERSION
+
 #include "SpellSystem.h"
 #include "SpellManager.h"
 #include "Spell.h"
@@ -6,30 +8,32 @@
 #include "ServerCore.h"
 #include "NodePickable.h"
 #include "PlayerInfos.h"
+#include "PositionSystem.h"
 
 namespace ecs
 {
-	void SpellSystem::launchSpell(Entity& predator, RakNet::RPC3* rpc)
+	void SpellSystem::launchSpell(Entity* predatorClient, Line3dWrapper* rayWrap, RakNet::RPC3* rpc)
 	{
 		SpellManager*	spellManager;
-		Spell*			spellOfTarget;
+		ecs::Entity*	predator = ServerCore::getInstance().getPlayerManager().findEntity(predatorClient->getOwner());
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		*predator = *predatorClient;
+		PositionSystem::updateScenePosition(*predator);
+		if ((spellManager = dynamic_cast<SpellManager*>((*predator)[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
 			
-			Weapon&	weapon = spellManager->getCurrentWeapon();
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
-			irr::core::line3df*	ray = nullptr;
+			irr::core::line3df	ray = rayWrap->getLine();
 			// TODO: move ray to argument
-			if (weapon.shoot())
+			if (!spellOfPredator.isLock())
 			{
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
 					physicsUtil.getSceneManager()->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(
-						*ray,
+						ray,
 						intersection,
 						hitTriangle,
 						nodePickable::IS_PICKABLE,
@@ -43,10 +47,46 @@ namespace ecs
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{
+							Spell*			spellOfTarget;
+
 							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos*>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shot WITH SPELL modafoka !";
+							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr && !spellOfTarget->isLock() && !spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
+							{
+//								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+
+								spellOfTarget->lock();
+							}
 							break;
 						}
 					}
+				}
+			}
+		}
+	}
+
+	void SpellSystem::checkSpell(Entity & entity)
+	{
+		Spell*			spell;
+		SpellManager*	spellManager;
+
+		if ((spell = dynamic_cast<Spell*>(entity[ecs::AComponent::ComponentType::SPELL])) != nullptr)
+		{
+			if (spell->getSpellType() != Spell::SpellType::NOTHING)
+			{
+				; //TODO: check timer for remove effects
+			}
+			if (spell->isLock())
+			{
+				; //TODO: Check timer for unlock
+			}
+		}
+		else if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			for (auto& spell : spellManager->getSpells())
+			{
+				if (spell.second.isLock())
+				{
+					; //TODO: Check timer for unlock
 				}
 			}
 		}

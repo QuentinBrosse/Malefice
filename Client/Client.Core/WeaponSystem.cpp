@@ -1,3 +1,5 @@
+// CLIENT VERSION
+
 #include "WeaponSystem.h"
 #include "SceneAnimatedMesh.h"
 #include "GraphicUtil.h"
@@ -19,5 +21,4 @@ namespace ecs
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
-
 }
