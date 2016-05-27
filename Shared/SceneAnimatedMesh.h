@@ -23,6 +23,8 @@ namespace ecs
 		void								setTexture(const std::string& nameTexture);
 		irr::scene::IAnimatedMeshSceneNode*	getScene()				const;
 
+		Position							getPosition()	const;
+
 		virtual	void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;

@@ -26,6 +26,16 @@ void	ecs::PlayerInfos::setNickname(const std::string& nickname)
 	m_nickname = nickname;
 }
 
+void ecs::PlayerInfos::setNicknameNode(ecs::SceneBillboardText* nicknameNode)
+{
+	m_nicknameNode = nicknameNode;
+}
+
+ecs::SceneBillboardText*	ecs::PlayerInfos::getNicknameNode() const
+{
+	return m_nicknameNode;
+}
+
 
 void	ecs::PlayerInfos::dump(std::ostream& os)	const
 {
