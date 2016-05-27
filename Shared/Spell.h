@@ -38,6 +38,8 @@ namespace ecs
 		const std::string&		getMeshName()			const;
 		std::size_t				getCooldown()			const;
 		std::size_t				getDuration()			const;
+		long long				getEffectEndTime()		const;
+		long long				getCooldownEndTime()	const;
 
 		void					setSpellType(const SpellType newSpellType);
 		void					setMeshName(const std::string& meshName);
@@ -45,8 +47,8 @@ namespace ecs
 		void					setExternalMetrics(const Position& externalMetrics);
 		void					setCooldown(const std::size_t& cooldown);
 		void					setDuration(const std::size_t& duration);
-		void					lock();
-		void					unlock();
+		void					setEffectEndTime(long long effectEndTime);
+		void					setCooldownEndTime(long long cooldownEndTime);
 
 		virtual AComponent&		affect(const AComponent& rhs);
 
@@ -71,12 +73,13 @@ namespace ecs
 		std::size_t			m_cooldown;
 		std::size_t			m_duration;
 
-		bool				m_isLock;
-
 		Position			m_fpsMetrics;
 		Position			m_externalMetrics;
 
 		SceneAnimatedMesh*	m_scene;
 		std::string			m_meshName;
+
+		long long			m_effectEndTime;
+		long long			m_cooldownEndTime;
 	};
 }

@@ -68,7 +68,7 @@ namespace ecs
 		}
 	}
 
-	void SpellSystem::checkSpell(Entity & entity)
+	void SpellSystem::checkSpell(Entity& entity)
 	{
 		Spell*			spell;
 		SpellManager*	spellManager;
@@ -77,20 +77,9 @@ namespace ecs
 		{
 			if (spell->getSpellType() != Spell::SpellType::NOTHING)
 			{
-				; //TODO: check timer for remove effects
-			}
-			if (spell->isLock())
-			{
-				; //TODO: Check timer for unlock
-			}
-		}
-		else if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-		{
-			for (auto& spell : spellManager->getSpells())
-			{
-				if (spell.second.isLock())
+				if (spell->getEffectEndTime() >= utility::TimeUtility::getMsTime())
 				{
-					; //TODO: Check timer for unlock
+					spell->setSpellType(ecs::Spell::SpellType::NOTHING);
 				}
 			}
 		}
