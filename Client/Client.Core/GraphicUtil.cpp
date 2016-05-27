@@ -109,6 +109,7 @@ void GraphicUtil::initGraphics()
 	m_salon = new WaitingRoom(*this);
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
+	m_blindFx = new Blind();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -229,6 +230,11 @@ WaitingRoom* GraphicUtil::getWaitingRoom()
 irr::video::IVideoDriver* GraphicUtil::getDriver()
 {
 	return m_driver;
+}
+
+Blind* GraphicUtil::getBlindFx()
+{
+	return m_blindFx;
 }
 
 void GraphicUtil::setGuiCamera()

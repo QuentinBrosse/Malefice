@@ -46,7 +46,7 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-
+		m_graphicModule->getBlindFx()->display();
 	}
 	else
 	{
@@ -105,6 +105,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 		m_graphicModule->getHUD()->refreshEventDisplay();
+		m_graphicModule->getBlindFx()->refresh();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{

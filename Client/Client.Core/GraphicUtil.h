@@ -11,6 +11,7 @@
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
 #include "MasterList.h"
+#include "Blind.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -35,6 +36,7 @@ public:
 	ConnectWindow*				getConnectWindow();
 	WaitingRoom*				getWaitingRoom();
 	InGameGUI*					getHUD();
+	Blind*						getBlindFx();
 	MasterList*					getMasterList();
 	bool						isInFPSMode()		const;
 
@@ -53,5 +55,6 @@ private:
 	WaitingRoom*				m_salon;
 	InGameGUI*					m_hud;
 	MasterList*					m_masterList;
+	Blind*						m_blindFx;
 	bool						m_isInFPSMode;
 };
