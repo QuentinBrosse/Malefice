@@ -15,8 +15,8 @@ public:
 
 	ecs::Position			getPosition()	const;
 	irr::core::vector3df	getTarget()		const;
-	void							init();
-
+	void					init();
+	void					loadKey(const ecs::Position& position, irr::scene::ISceneManager* sceneManager, bool normalKey);
 private:
 	irr::scene::ICameraSceneNode*	m_camera;
 };

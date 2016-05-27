@@ -2,7 +2,7 @@
 	<spell id = "1">
 		<name>Blind</name>
 		<type>BLIND</type>
-		<cooldown>5</cooldown>
+		<cooldown>20</cooldown>
 		<duration>5</duration>
 		<FPSMetrics>
 			<position>
@@ -94,8 +94,8 @@
 	<spell id = "3">
 		<name>Confusion</name>
 		<type>CONFUSION</type>
-		<cooldown>5</cooldown>
-		<duration>5</duration>
+		<cooldown>20</cooldown>
+		<duration>10</duration>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
