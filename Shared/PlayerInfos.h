@@ -3,6 +3,7 @@
 #include <BitStream.h>
 #include "AComponent.h"
 #include "Export.h"
+#include "SceneBillboardText.h"
 
 namespace ecs
 {
@@ -15,11 +16,11 @@ namespace ecs
 
 		void	init();
 		
-
 		const std::string&	getNickname()	const;
+		void				setNickname(const std::string& nickname);
 
-		void	setNickname(const std::string& nickname);
-
+		void				setNicknameNode(ecs::SceneBillboardText* nicknameNode);
+		ecs::SceneBillboardText*	getNicknameNode() const;
 
 		virtual	void		dump(std::ostream& os)	const;
 
@@ -31,6 +32,7 @@ namespace ecs
 
 
 	private:
-		std::string	m_nickname;
+		std::string					m_nickname;
+		ecs::SceneBillboardText*	m_nicknameNode;
 	};
 }

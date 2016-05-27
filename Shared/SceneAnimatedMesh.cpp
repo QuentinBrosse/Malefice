@@ -104,6 +104,11 @@ namespace ecs
 		return m_node;
 	}
 
+	Position SceneAnimatedMesh::getPosition() const
+	{
+		return Position(m_node->getPosition(), m_node->getRotation(), m_node->getScale());
+	}
+
 
 	void	SceneAnimatedMesh::dump(std::ostream& os)	const
 	{
