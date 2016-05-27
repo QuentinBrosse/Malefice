@@ -18,7 +18,7 @@ namespace ecs
 	}
 
 	Spell::Spell(const Spell& cpy): AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown), m_meshName(cpy.m_meshName), m_scene(nullptr), m_cooldownEndTime(cpy.m_cooldownEndTime), m_effectEndTime(cpy.m_effectEndTime)
+		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown), m_duration(cpy.m_duration), m_fpsMetrics(cpy.m_fpsMetrics), m_externalMetrics(cpy.m_externalMetrics), m_meshName(cpy.m_meshName), m_scene(nullptr), m_cooldownEndTime(cpy.m_cooldownEndTime), m_effectEndTime(cpy.m_effectEndTime)
 	{
 	}
 

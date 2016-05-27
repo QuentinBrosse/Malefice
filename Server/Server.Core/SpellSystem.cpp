@@ -79,7 +79,7 @@ namespace ecs
 		{
 			if (spell->getSpellType() != Spell::SpellType::NOTHING)
 			{
-				if (spell->getEffectEndTime() <= utility::TimeUtility::getMsTime())
+				if (utility::TimeUtility::getMsTime() >= spell->getEffectEndTime())
 				{
 					spell->setSpellType(ecs::Spell::SpellType::NOTHING);
 				}
