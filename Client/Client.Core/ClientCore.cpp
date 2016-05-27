@@ -87,18 +87,12 @@ bool	ClientCore::init()
 
 		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
 	}
-
-	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
-	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
-	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
 {
-	if (buggedWeapon)
-		std::cout << buggedWeapon->m_scene << std::endl;
+	//if (buggedWeapon)
+		//std::cout << buggedWeapon->m_scene << std::endl;
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
