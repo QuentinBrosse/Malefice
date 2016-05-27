@@ -14,13 +14,18 @@ namespace ecs
 	public:
 		SpellManager();
 		SpellManager(const SpellManager& cpy);
-		SpellManager(const Spell& defaultSpell);
+		SpellManager(const Spell& defaultSpell, const int cooldown);
 		~SpellManager()	= default;
 
-		void	init(const Spell& defaultSpell);
+		void	init(const Spell& defaultSpell, const int cooldown);
 
-		Spell&	getCurrentSpell()				const;
-		bool	weaponsIsCurrent()				const;
+		Spell&		getCurrentSpell()		const;
+		bool		weaponsIsCurrent()		const;
+		long long	getCooldownEndTime()	const;
+		int			getCooldown()			const;
+		bool		isLock()				const;
+
+		void		setCooldownEndTime(const long long cooldownEndTime);
 
 		void	changeCurrentManager();
 
@@ -54,5 +59,7 @@ namespace ecs
 		std::map<Spell::SpellType, Spell>::iterator	m_currentSpell;
 		WeaponManager								m_weaponManager;
 		bool										m_weaponsIsCurrent;
+		int											m_cooldown;
+		long long									m_cooldownEndTime;
 	};
 }
