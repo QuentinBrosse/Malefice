@@ -24,6 +24,9 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_pseudo = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(52));
 	m_password = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(53));
 	m_connectionStatus = m_windows->getChild(60);
+
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&ConnectWindow::onCloseButtonEnterArea, this));
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&ConnectWindow::onConnectButtonEnterArea, this));
 }
 
 void ConnectWindow::display()
@@ -130,4 +133,14 @@ void ConnectWindow::setPort(const std::string &port)
 {
 	m_portStr = port;
 	m_port->setText(port);
+}
+
+bool ConnectWindow::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	return true;
+}
+
+bool ConnectWindow::onConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	return true;
 }
