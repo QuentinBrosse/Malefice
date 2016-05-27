@@ -1,23 +1,24 @@
 #include <iostream>
 #include "Spell.h"
 #include "NodePickable.h"
+#include "TimeUtility.h"
 
 namespace ecs
 {
 	const std::string	Spell::MEDIA_PATH = "spells/models/";
 
 	Spell::Spell() : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(0), m_name("default"), m_cooldown(0), m_spellType(Spell::NOTHING), m_isLock(false), m_duration(0), m_fpsMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_meshName(""), m_scene(nullptr)
+		m_id(0), m_name("default"), m_cooldown(0), m_spellType(Spell::NOTHING), m_duration(0), m_fpsMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_meshName(""), m_scene(nullptr), m_cooldownEndTime(0), m_effectEndTime(0)
 	{
 	}
 
 	Spell::Spell(const int id, const std::string& name, const Spell::SpellType spellType, const size_t coolDown, const std::size_t duration, const Position& FPSMetrics, const Position& externalMetrics, const std::string& meshName) : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown), m_isLock(false), m_duration(m_cooldown), m_fpsMetrics(FPSMetrics), m_externalMetrics(externalMetrics), m_meshName(meshName), m_scene(nullptr)
+		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown), m_duration(m_cooldown), m_fpsMetrics(FPSMetrics), m_externalMetrics(externalMetrics), m_meshName(meshName), m_scene(nullptr), m_cooldownEndTime(0), m_effectEndTime(0)
 	{
 	}
 
 	Spell::Spell(const Spell& cpy): AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown), m_isLock(false), m_meshName(cpy.m_meshName), m_scene(nullptr)
+		m_id(cpy.m_id), m_name(cpy.m_name), m_spellType(cpy.m_spellType), m_cooldown(cpy.m_cooldown), m_meshName(cpy.m_meshName), m_scene(nullptr), m_cooldownEndTime(cpy.m_cooldownEndTime), m_effectEndTime(cpy.m_effectEndTime)
 	{
 	}
 
@@ -28,12 +29,13 @@ namespace ecs
 		m_name = name;
 		m_spellType = spellType;
 		m_cooldown = coolDown;
-		m_isLock = false;
 		m_duration = duration;
 		m_fpsMetrics = FPSMetrics;
 		m_externalMetrics = externalMetrics;
 		m_meshName = meshName;
 		m_scene = nullptr;
+		m_cooldownEndTime = 0;
+		m_effectEndTime = 0;
 	}
 
 
@@ -72,9 +74,19 @@ namespace ecs
 		m_duration = duration;
 	}
 
+	void Spell::setEffectEndTime(long long effectEndTime)
+	{
+		m_effectEndTime = effectEndTime;
+	}
+
+	void Spell::setCooldownEndTime(long long cooldownEndTime)
+	{
+		m_cooldownEndTime = cooldownEndTime;
+	}
+
 	bool Spell::isLock() const
 	{
-		return m_isLock;
+		return (m_cooldownEndTime < utility::TimeUtility::getMsTime());
 	}
 
 	Position Spell::getFPSMetrics() const
@@ -107,14 +119,14 @@ namespace ecs
 		return m_duration;
 	}
 
-	void Spell::lock()
+	long long Spell::getEffectEndTime() const
 	{
-		m_isLock = true;
+		return m_effectEndTime;
 	}
 
-	void Spell::unlock()
+	long long Spell::getCooldownEndTime() const
 	{
-		m_isLock = false;
+		return m_cooldownEndTime;
 	}
 
 	AComponent& Spell::affect(const AComponent& rhs)
@@ -125,11 +137,12 @@ namespace ecs
 		m_name = spell.m_name;
 		m_cooldown = spell.m_cooldown;
 		m_spellType = spell.m_spellType;
-		m_isLock = spell.m_isLock;
 		m_duration = spell.m_duration;
 		m_fpsMetrics = spell.m_fpsMetrics;
 		m_externalMetrics = spell.m_externalMetrics;
 		m_meshName = spell.m_meshName;
+		m_cooldownEndTime = spell.m_cooldownEndTime;
+		m_effectEndTime = spell.m_effectEndTime;
 		return *this;
 	}
 
@@ -161,7 +174,7 @@ namespace ecs
 
 	void	Spell::dump(std::ostream& os)	const
 	{
-		os << "Spell {ID = " << Spell::m_id << ", SPELL_NAME = \"" << Spell::m_name << "\", COOLDOWN = " << Spell::m_cooldown << ", spellType = " << m_spellType << ", isLock = " << m_isLock << "}";
+		os << "Spell {ID = " << Spell::m_id << ", SPELL_NAME = \"" << Spell::m_name << "\", COOLDOWN = " << Spell::m_cooldown << ", spellType = " << m_spellType << ", isLock = " <<  "}";
 	}
 
 
@@ -172,11 +185,12 @@ namespace ecs
 		out.Write(RakNet::RakString(m_name.c_str()));
 		out.Write(m_cooldown);
 		out.Write(m_spellType);
-		out.Write(m_isLock);
 		out.Write(m_duration);
 		m_externalMetrics.serialize(out, false);
 		m_fpsMetrics.serialize(out, false);
 		out.Write(RakNet::RakString(m_meshName.c_str()));
+		out.Write(m_cooldownEndTime);
+		out.Write(m_effectEndTime);
 	}
 
 	void	Spell::deserialize(RakNet::BitStream& in)
@@ -189,13 +203,14 @@ namespace ecs
 		in.Read(name);
 		in.Read(m_cooldown);
 		in.Read(m_spellType);
-		in.Read(m_isLock);
 		in.Read(m_duration);
 		m_name = name.C_String();
 		m_externalMetrics.deserialize(in);
 		m_fpsMetrics.deserialize(in);
 		in.Read(meshName);
 		m_meshName = meshName.C_String();
+		in.Read(m_cooldownEndTime);
+		in.Read(m_effectEndTime);
 	}
 
 	AComponent * Spell::createCopy(const AComponent * rhs) const

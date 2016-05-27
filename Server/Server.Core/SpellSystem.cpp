@@ -54,7 +54,6 @@ namespace ecs
 							{
 //								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
 
-								spellOfTarget->lock();
 							}
 							break;
 						}
