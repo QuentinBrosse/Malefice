@@ -128,6 +128,20 @@ void InGameGUI::disablePower(int nbr)
 		std::cerr << "Given power number not exist" << std::endl;
 }
 
+void InGameGUI::setPowerVisible(int nbr, bool status)
+{
+	if (nbr == 1)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 2)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 3)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 4)
+		m_hud->getChild(200)->setVisible(status);
+	else
+		LOG_DEBUG(GENERAL) << "Unknown power number " + std::to_string(nbr) + ". (autorised 1 to 4)";
+}
+
 void InGameGUI::setTeam1Score(int nbr)
 {
 	m_team1Score->setText(std::to_string(nbr));
