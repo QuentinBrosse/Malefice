@@ -1,6 +1,11 @@
 #include "SpellsConfiguration.h"
 
-const std::string	SpellsConfiguration::SPELLS_FILENAME = "spells.xml";
+const std::string	SpellsConfiguration::SPELLS_FILENAME = "Config\\spells.xml";
+
+SpellsConfiguration::SpellsConfiguration()
+{
+	loadFromFile(SPELLS_FILENAME);
+}
 
 bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 {
@@ -45,7 +50,7 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		duration = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "duration", "-1"));
 		meshName = this->getOrCreateElementString(doc, *currentSpell, "meshName", "");
 
-		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1 || duration <= -1 || meshName == "")
+		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1 || duration <= -1)
 		{
 			LOG_ERROR(GENERAL) << "Bad Spell element value, skipping element.";
 			continue;
