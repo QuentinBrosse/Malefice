@@ -86,7 +86,7 @@ namespace ecs
 
 	bool Spell::isLock() const
 	{
-		return (m_cooldownEndTime < utility::TimeUtility::getMsTime());
+		return m_cooldownEndTime < utility::TimeUtility::getMsTime();
 	}
 
 	Position Spell::getFPSMetrics() const
