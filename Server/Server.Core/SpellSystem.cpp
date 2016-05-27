@@ -52,12 +52,41 @@ namespace ecs
 							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos*>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shot WITH SPELL modafoka !";
 							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr && !spellOfTarget->isLock() && !spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
 							{
-								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+//								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+
 								spellOfTarget->lock();
 							}
 							break;
 						}
 					}
+				}
+			}
+		}
+	}
+
+	void SpellSystem::checkSpell(Entity & entity)
+	{
+		Spell*			spell;
+		SpellManager*	spellManager;
+
+		if ((spell = dynamic_cast<Spell*>(entity[ecs::AComponent::ComponentType::SPELL])) != nullptr)
+		{
+			if (spell->getSpellType() != Spell::SpellType::NOTHING)
+			{
+				; //TODO: check timer for remove effects
+			}
+			if (spell->isLock())
+			{
+				; //TODO: Check timer for unlock
+			}
+		}
+		else if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			for (auto& spell : spellManager->getSpells())
+			{
+				if (spell.second.isLock())
+				{
+					; //TODO: Check timer for unlock
 				}
 			}
 		}

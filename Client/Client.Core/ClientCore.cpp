@@ -19,6 +19,7 @@
 #include "Armor.h"
 #include "MasterList.h"
 #include "Target.h"
+#include "SpellSystem.h"
 
 ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
 
@@ -90,8 +91,6 @@ bool	ClientCore::init()
 
 void	ClientCore::pulse()
 {
-	//if (buggedWeapon)
-		//std::cout << buggedWeapon->m_scene << std::endl;
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
@@ -135,10 +134,10 @@ void	ClientCore::pulse()
 			(*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE] != nullptr &&
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
-			//toto = dynamic_cast<ecs::WeaponManager*>(m_playerManager->getCurrentPlayer()->operator[](ecs::AComponent::ComponentType::WEAPON_MANAGER))->getCurrentWeapon().getScene();
 			Target::getInstance().refresh();
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
+			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
 		}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
@@ -162,7 +161,7 @@ void ClientCore::createEntities()
 	{
 		//Player 1
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
+		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1);
 		ecs::PositionSystem::updateScenePosition(*m_player);
 		m_playerManager->setCurrentPlayer(m_player);
 

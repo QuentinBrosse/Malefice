@@ -41,7 +41,7 @@ namespace ecs
 	}
 
 
-	void	WeaponManager::addWeapon(Weapon& newWeapon)
+	void	WeaponManager::addWeapon(const Weapon& newWeapon)
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
 			m_weapons[newWeapon.getWeaponType()].affect(newWeapon);
@@ -89,7 +89,6 @@ namespace ecs
 	{
 		Weapon*	weapon = new Weapon(weaponCpy);
 
-		//weapon->createScene(device, false);
 		this->addWeapon(*weapon);
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
