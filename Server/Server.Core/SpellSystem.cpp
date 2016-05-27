@@ -58,6 +58,7 @@ namespace ecs
 								long long	spellCooldownEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getCooldown() * 1000;
 
 								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+
 								spellOfTarget->setEffectEndTime(spellEffectEndTime);
 								spellOfTarget->setCooldownEndTime(spellCooldownEndTime);
 							}
