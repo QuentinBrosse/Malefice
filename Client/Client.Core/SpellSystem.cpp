@@ -1,7 +1,10 @@
+// CLIENT VERSION
+
 #include "SpellSystem.h"
 #include "ClientCore.h"
 #include "WeaponSystem.h"
 #include "Target.h"
+#include "Line3dWrapper.h"
 
 namespace ecs
 {
@@ -14,9 +17,9 @@ namespace ecs
 		{
 
 			Spell&	spellOfPredator = spellManager->getCurrentSpell();
-//			spellManager->getCurrentWeapon().setRay(&Target::getInstance().getRay());
+			Target::getInstance().refresh();
 			//TODO : Move Target::getRay to RPC argument
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
 }

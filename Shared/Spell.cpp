@@ -4,12 +4,12 @@
 namespace ecs
 {
 	Spell::Spell() : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(0), m_name("default"), m_cooldown(0), m_spellType(Spell::NOTHING), m_isLock(false)
+		m_id(0), m_name("default"), m_cooldown(0), m_spellType(Spell::NOTHING), m_isLock(false), m_duration(0)
 	{
 	}
 
-	Spell::Spell(const int id, const std::string& name, const Spell::SpellType spellType, const int coolDown) : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
-		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown), m_isLock(false)
+	Spell::Spell(const int id, const std::string& name, const Spell::SpellType spellType, const size_t coolDown, const std::size_t duration) : AComponent("Spell", ecs::AComponent::ComponentType::SPELL),
+		m_id(id), m_name(name), m_spellType(spellType), m_cooldown(coolDown), m_isLock(false), m_duration(m_cooldown)
 	{
 	}
 
@@ -19,13 +19,14 @@ namespace ecs
 	}
 
 
-	void	Spell::init(const int id, const std::string& name, const SpellType spellType, const int coolDown)
+	void	Spell::init(const int id, const std::string& name, const SpellType spellType, const std::size_t coolDown, const std::size_t duration)
 	{
 		m_id = id;
 		m_name = name;
 		m_spellType = spellType;
 		m_cooldown = coolDown;
 		m_isLock = false;
+		m_duration = duration;
 	}
 
 
@@ -63,6 +64,7 @@ namespace ecs
 		m_cooldown = spell.m_cooldown;
 		m_spellType = spell.m_spellType;
 		m_isLock = spell.m_isLock;
+		m_duration = spell.m_duration;
 		return *this;
 	}
 
@@ -81,6 +83,7 @@ namespace ecs
 		out.Write(m_cooldown);
 		out.Write(m_spellType);
 		out.Write(m_isLock);
+		out.Write(m_duration);
 	}
 
 	void	Spell::deserialize(RakNet::BitStream& in)
@@ -93,6 +96,7 @@ namespace ecs
 		in.Read(m_cooldown);
 		in.Read(m_spellType);
 		in.Read(m_isLock);
+		in.Read(m_duration);
 		m_name = name.C_String();
 	}
 

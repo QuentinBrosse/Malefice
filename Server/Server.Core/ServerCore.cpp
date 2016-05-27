@@ -100,6 +100,11 @@ void	ServerCore::pulse(long long elapsedTime)
 		m_playerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
+	m_physicsUtil.getVideoDriver()->beginScene();
+
+	m_physicsUtil.getSceneManager()->drawAll();
+
+	m_physicsUtil.getVideoDriver()->endScene();
 }
 
 

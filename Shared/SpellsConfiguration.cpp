@@ -25,6 +25,7 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		ecs::Spell::SpellType	type;
 		std::string				name;
 		int						cooldown;
+		int						duration;
 
 		if (currentSpell->QueryIntAttribute("id", &id) != tinyxml2::XMLError::XML_NO_ERROR || id <= 0)
 		{
@@ -34,12 +35,13 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		name = this->getOrCreateElementString(doc, *currentSpell, "name", "");
 		type = this->parseSpellType(this->getOrCreateElementString(doc, *currentSpell, "type", ""));
 		cooldown = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "cooldown", "-1"));
-		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1)
+		duration = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "duration", "-1"));
+		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1 || duration <= -1)
 		{
 			LOG_ERROR(GENERAL) << "Bad Spell element value, skipping element.";
 			continue;
 		}
-		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown));
+		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown, duration));
 	}
 	return true;
 }

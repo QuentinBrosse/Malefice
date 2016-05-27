@@ -248,8 +248,10 @@ void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
 
+	std::srand(std::time(nullptr));
+
 	ecs::Position cameraPosition(
-		irr::core::vector3df(50.0f, 50.0f, -60.0f),
+		irr::core::vector3df(50.0f + (std::rand() % 50) + 20, 50.0f, -60.0f),
 		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
 
 	if (m_sceneManager->getActiveCamera())
@@ -262,7 +264,6 @@ void GraphicUtil::setFPSCamera()
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 	m_FPSCamera->init();
 
-	PlayerManager::getInstance().initPlayersWeapons();
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
@@ -271,4 +272,5 @@ void GraphicUtil::setFPSCamera()
 		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
 	}
 	m_isInFPSMode = true;
+	PlayerManager::getInstance().initPlayersWeapons();
 }

@@ -4,6 +4,7 @@
 #include "PositionSystem.h"
 #include "PlayerInfos.h"
 #include "WeaponManagerSystem.h"
+#include "WeaponManager.h"
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
@@ -17,11 +18,6 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 	if (ClientCore::getInstance().getClientId() == owner)
 	{
 		this->setCurrentPlayer(localEntity);
-	/*	GraphicUtil::getInstance().getDevice()->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
-		irr::IEventReceiver* sex = dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]);
-		(*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
-		irr::IEventReceiver* bite =  GraphicUtil::getInstance().getDevice()->getEventReceiver();
-		bite = bite;*/
 	}
 }
 
