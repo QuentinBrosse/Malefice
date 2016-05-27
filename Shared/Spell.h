@@ -22,11 +22,11 @@ namespace ecs
 		};
 
 		Spell();
-		Spell(const int id, const std::string& name, const SpellType spellType, const int coolDown);
+		Spell(const int id, const std::string& name, const SpellType spellType, const std::size_t coolDown, const std::size_t duration);
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
-		virtual void	init(const int id, const std::string& name, const SpellType spellType, const int coolDown);
+		virtual void	init(const int id, const std::string& name, const SpellType spellType, const std::size_t coolDown, const std::size_t duration);
 
 		const Spell::SpellType	getSpellType()	const;
 		void					setSpellType(const SpellType newSpellType);
@@ -46,8 +46,9 @@ namespace ecs
 	private:
 		int			m_id;
 		std::string	m_name;
-		int			m_cooldown;
+		std::size_t	m_cooldown;
 		SpellType	m_spellType;
+		std::size_t	m_duration;
 		bool		m_isLock;
 	};
 }

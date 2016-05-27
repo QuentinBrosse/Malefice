@@ -1,3 +1,5 @@
+// SERVER VERSION
+
 #include "WeaponSystem.h"
 #include "PhysicsUtil.h"
 #include "NodePickable.h"
