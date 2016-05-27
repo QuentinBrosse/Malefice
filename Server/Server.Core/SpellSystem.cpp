@@ -9,6 +9,7 @@
 #include "NodePickable.h"
 #include "PlayerInfos.h"
 #include "PositionSystem.h"
+#include "TimeUtility.h"
 
 namespace ecs
 {
@@ -43,17 +44,21 @@ namespace ecs
 
 				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
-					for (auto player : entities)
+					for (auto& player : entities)
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{
-							Spell*			spellOfTarget;
+							Spell*	spellOfTarget;
 
 							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos*>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shot WITH SPELL modafoka !";
 							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr && !spellOfTarget->isLock() && !spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
 							{
-//								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+								long long	spellEffectEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getDuration() * 1000;
+								long long	spellCooldownEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getCooldown() * 1000;
 
+								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+								spellOfTarget->setEffectEndTime(spellEffectEndTime);
+								spellOfTarget->setCooldownEndTime(spellCooldownEndTime);
 							}
 							break;
 						}
@@ -63,7 +68,7 @@ namespace ecs
 		}
 	}
 
-	void SpellSystem::checkSpell(Entity & entity)
+	void SpellSystem::checkSpell(Entity& entity)
 	{
 		Spell*			spell;
 		SpellManager*	spellManager;
@@ -72,20 +77,9 @@ namespace ecs
 		{
 			if (spell->getSpellType() != Spell::SpellType::NOTHING)
 			{
-				; //TODO: check timer for remove effects
-			}
-			if (spell->isLock())
-			{
-				; //TODO: Check timer for unlock
-			}
-		}
-		else if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-		{
-			for (auto& spell : spellManager->getSpells())
-			{
-				if (spell.second.isLock())
+				if (spell->getEffectEndTime() >= utility::TimeUtility::getMsTime())
 				{
-					; //TODO: Check timer for unlock
+					spell->setSpellType(ecs::Spell::SpellType::NOTHING);
 				}
 			}
 		}
