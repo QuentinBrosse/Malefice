@@ -9,7 +9,7 @@
 
 namespace ecs
 {
-	void				WeaponSystem::shoot(Entity& entity)
+	void	WeaponSystem::shoot(Entity& entity)
 	{
 		WeaponManager*		weaponManager;
 

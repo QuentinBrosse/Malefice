@@ -9,6 +9,7 @@
 #include "NodePickable.h"
 #include "PlayerInfos.h"
 #include "PositionSystem.h"
+#include "TimeUtility.h"
 
 namespace ecs
 {
@@ -43,18 +44,21 @@ namespace ecs
 
 				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
-					for (auto player : entities)
+					for (auto& player : entities)
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{
-							Spell*			spellOfTarget;
+							Spell*	spellOfTarget;
 
 							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos*>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shot WITH SPELL modafoka !";
 							if ((spellOfTarget = dynamic_cast<Spell*>((*player.second)[ecs::AComponent::ComponentType::SPELL])) != nullptr && !spellOfTarget->isLock() && !spellOfTarget->getSpellType() == Spell::SpellType::NOTHING)
 							{
-//								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+								long long	spellEffectEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getDuration() * 1000;
+								long long	spellCooldownEndTime = utility::TimeUtility::getMsTime() + spellOfPredator.getCooldown() * 1000;
 
-								spellOfTarget->lock();
+								spellOfTarget->setSpellType(spellOfPredator.getSpellType());
+								spellOfTarget->setEffectEndTime(spellEffectEndTime);
+								spellOfTarget->setCooldownEndTime(spellCooldownEndTime);
 							}
 							break;
 						}

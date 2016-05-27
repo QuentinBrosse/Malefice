@@ -40,7 +40,7 @@ namespace ecs
   				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
 					auto entities = playerManager.getEntities();
-					for (auto player : entities)
+					for (auto& player : entities)
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{
