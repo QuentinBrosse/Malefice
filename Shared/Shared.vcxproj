@@ -173,6 +173,7 @@
     <ClCompile Include="RakNetUtility.cpp" />
     <ClCompile Include="SceneAnimatedMesh.cpp" />
     <ClCompile Include="SceneBillboard.cpp" />
+    <ClCompile Include="SceneBillboardText.cpp" />
     <ClCompile Include="SceneMesh.cpp" />
     <ClCompile Include="SpawnerFactory.cpp" />
     <ClCompile Include="SpawnerManager.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="RakNetUtility.h" />
     <ClInclude Include="SceneAnimatedMesh.h" />
     <ClInclude Include="SceneBillboard.h" />
+    <ClInclude Include="SceneBillboardText.h" />
     <ClInclude Include="SceneMesh.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpawnerFactory.h" />

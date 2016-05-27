@@ -4,6 +4,8 @@
 #include "PositionSystem.h"
 #include "PlayerInfos.h"
 #include "WeaponManagerSystem.h"
+#include "GraphicUtil.h"
+#include "SceneAnimatedMesh.h"
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
@@ -14,14 +16,10 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
 
 	EntityManager::addEntity(owner, localEntity, rpc);
+
 	if (ClientCore::getInstance().getClientId() == owner)
 	{
 		this->setCurrentPlayer(localEntity);
-	/*	GraphicUtil::getInstance().getDevice()->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
-		irr::IEventReceiver* sex = dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]);
-		(*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
-		irr::IEventReceiver* bite =  GraphicUtil::getInstance().getDevice()->getEventReceiver();
-		bite = bite;*/
 	}
 }
 
@@ -55,10 +53,15 @@ void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 
 void PlayerManager::initPlayersScene()
 {
+	irr::IrrlichtDevice* device = GraphicUtil::getInstance().getDevice();
+
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
 		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
+
+		ecs::SceneAnimatedMesh* parent = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+		PlayerFactory::initNicknameNode(it->second, device, parent->getNode());
 	}
 }
 

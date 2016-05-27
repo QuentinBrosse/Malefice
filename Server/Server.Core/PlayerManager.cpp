@@ -43,7 +43,7 @@ void	PlayerManager::updateEntities()
 	for (auto entity : m_entities)
 	{
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity.second->getOwner(), entity.second);
-		//ecs::PositionSystem::updateScenePosition(*entity.second);
+		ecs::PositionSystem::updateScenePosition(*entity.second);
 	}
 }
 

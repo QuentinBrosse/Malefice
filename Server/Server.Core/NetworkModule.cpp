@@ -9,7 +9,7 @@
 #include "ProjectGlobals.h"
 #include "Logger.h"
 
-const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 10000;
+const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 100000; // / 10
 const RakNet::TimeMS	NetworkModule::SHUTDOWN_TIMEOUT_MS	= 500;
 
 NetworkModule::NetworkModule() :

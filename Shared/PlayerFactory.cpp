@@ -9,6 +9,7 @@
 #include "SpellManager.h"
 #include "Spell.h"
 #include "SceneAnimatedMesh.h"
+#include "SceneBillboardText.h"
 #include "NodePickable.h"
 #include "WeaponCreator.h"
 #include "Logger.h"
@@ -44,11 +45,23 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
-	
+
 	//Player Infos
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 
 	return entity;
+}
+
+void			PlayerFactory::initNicknameNode(ecs::Entity* entity, irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent)
+{
+	ecs::PlayerInfos* playerInfos = dynamic_cast<ecs::PlayerInfos*>((*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+	ecs::Position pseudoPosition(irr::core::vector3df(0.F, 35.F, 0.F), irr::core::vector3df(0.F, 0.F, 0.F), irr::core::vector3df(5.F, 5.F, 0.F));
+	irr::video::SColor pseudoColor(255, 255, 255, 255);
+
+	ecs::SceneBillboardText* nicknameNode = new ecs::SceneBillboardText(device, pseudoColor, playerInfos->getNickname(), pseudoPosition);
+
+	playerInfos->setNicknameNode(nicknameNode);
+	playerInfos->getNicknameNode()->setParent(parent);
 }
 
 /*
@@ -73,11 +86,8 @@ ecs::Entity*	PlayerFactory::createPlayer(ecs::ClientId id, const ecs::Position p
 
 void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & newNameTexture, const std::string & newNameMesh, ecs::Entity & entity)
 {
-	WeaponCreator& weaponCreator = WeaponCreator::getInstance();
-
-	ecs::Weapon weaponShotGun = weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN);
-	dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->createWeapon(device, weaponShotGun);
 	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
+
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 }
