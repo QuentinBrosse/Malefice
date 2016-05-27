@@ -39,9 +39,9 @@ namespace ecs
 						nodePickable::IS_PICKABLE,
 						0);
 
-				auto entities = playerManager.getEntities();
+				auto& entities = playerManager.getEntities();
 
-				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
+				if (selectedSceneNode != nullptr && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
 					for (auto& player : entities)
 					{
@@ -79,7 +79,7 @@ namespace ecs
 		{
 			if (spell->getSpellType() != Spell::SpellType::NOTHING)
 			{
-				if (spell->getEffectEndTime() >= utility::TimeUtility::getMsTime())
+				if (spell->getEffectEndTime() <= utility::TimeUtility::getMsTime())
 				{
 					spell->setSpellType(ecs::Spell::SpellType::NOTHING);
 				}
