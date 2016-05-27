@@ -47,10 +47,10 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-
 	}
 	else
 	{
+		m_graphicModule->getMenuPause()->activate(true);
 		m_graphicModule->setFPSCamera();
 		createEntities();
 		startGame(0);
@@ -87,12 +87,6 @@ bool	ClientCore::init()
 
 		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
 	}
-
-	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
-	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
-	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
@@ -109,6 +103,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 		m_graphicModule->getHUD()->refreshEventDisplay();
+		m_graphicModule->getBlindFx()->refresh();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
@@ -246,6 +241,7 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
 	m_playerManager->initPlayersScene();

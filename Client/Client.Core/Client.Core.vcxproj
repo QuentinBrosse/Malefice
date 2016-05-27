@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blind.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClientCore.h" />
     <ClInclude Include="ConnectWindow.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="WeaponSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Blind.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClientCore.cpp" />
     <ClCompile Include="ConnectWindow.cpp" />
