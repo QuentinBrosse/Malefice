@@ -18,6 +18,9 @@ public:
 	bool onOptionButtonClicked();
 	bool onQuitButtonClicked();
 	bool onContinueButtonClicked();
+	bool onContinueButtonEnterArea();
+	bool onOptionButtonEnterArea();
+	bool onQuitButtonEnterArea();
 	void checkPause();
 	bool getEnableStatus();
 	void activate(bool);

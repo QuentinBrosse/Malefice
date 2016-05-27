@@ -16,7 +16,9 @@ public:
 	void display();
 	void hide();
 	bool onCloseButtonClicked();
-
+	bool onCloseButtonEnterArea();
+	bool onValidateButtonEnterArea();
+	bool onCancellButtonEnterArea();
 private:
 	CEGUI::System& m_systemd;
 	CEGUI::Window* m_windows;

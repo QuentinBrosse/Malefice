@@ -18,6 +18,11 @@ MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleto
 	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
+
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onValidateButtonEnterArea, this));
+	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onCancellButtonEnterArea, this));
+
 }
 
 void MenuOptions::display()
@@ -47,4 +52,22 @@ bool MenuOptions::onCloseButtonClicked()
 {
 	this->hide();
 	return (true);
+}
+
+bool MenuOptions::onCloseButtonEnterArea()
+{
+
+	return true;
+}
+
+bool MenuOptions::onValidateButtonEnterArea()
+{
+
+	return true;
+}
+
+bool MenuOptions::onCancellButtonEnterArea()
+{
+
+	return true;
 }

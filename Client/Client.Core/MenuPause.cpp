@@ -8,6 +8,11 @@ MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onContinueButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onOptionButtonClicked, this));
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuPause::onQuitButtonClicked, this));
+
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuPause::onContinueButtonEnterArea, this));
+	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuPause::onOptionButtonEnterArea, this));
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuPause::onQuitButtonEnterArea, this));
+
 }
 
 void MenuPause::display()
@@ -76,4 +81,22 @@ bool MenuPause::getEnableStatus()
 void MenuPause::activate(bool stat)
 {
 	m_isActivated = stat;
+}
+
+bool MenuPause::onContinueButtonEnterArea()
+{
+
+	return true;
+}
+
+bool MenuPause::onOptionButtonEnterArea()
+{
+
+	return true;
+}
+
+bool MenuPause::onQuitButtonEnterArea()
+{
+
+	return true;
 }
