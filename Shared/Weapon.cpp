@@ -154,9 +154,14 @@ namespace ecs
 		return m_damage;
 	}
 
+	bool	Weapon::mustBeReloaded() const
+	{
+		return m_ammunitionsClip < m_ammoPerShot;
+	}
+
 	bool	Weapon::shoot()
 	{
-		if (m_ammunitionsClip > m_ammoPerShot)
+		if (!this->mustBeReloaded())
 		{
 			m_ammunitionsClip -= m_ammoPerShot;
 			return true;

@@ -58,6 +58,7 @@ namespace ecs
 		Position				getExternalMetrics()			const;
 		const bool				isSight()						const;
 
+		bool					mustBeReloaded()				const;
 		bool					shoot();
 		void					reload();
 		void					decAmmunition(int nbLoaded);

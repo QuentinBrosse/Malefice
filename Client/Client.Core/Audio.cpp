@@ -37,3 +37,11 @@ void	Audio::play2D(const std::string& soundFile)
 {
 	m_engine->play2D((m_soundPath + soundFile).c_str());
 }
+
+void Audio::play3D(const std::string& soundFile, const ecs::Position& position)
+{
+	irrklang::vec3df irrPos(position.getVectorPosition().X,
+		position.getVectorPosition().Y,
+		position.getVectorPosition().Z);
+	m_engine->play3D((m_soundPath + soundFile).c_str(), irrPos);
+}

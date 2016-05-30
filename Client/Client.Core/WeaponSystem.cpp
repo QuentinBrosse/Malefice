@@ -13,12 +13,18 @@ namespace ecs
 	void	WeaponSystem::shoot(Entity& entity)
 	{
 		WeaponManager*		weaponManager;
+		ecs::Position*		playerPosition;
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
+			playerPosition = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
-			Audio::getInstance().play2D(weapon.getAudioShot());
+
+			if (weapon.mustBeReloaded())
+				Audio::getInstance().play3D(weapon.getAudioReload(), *playerPosition);
+			else
+				Audio::getInstance().play3D(weapon.getAudioShot(), *playerPosition);
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}

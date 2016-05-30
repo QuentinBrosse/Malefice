@@ -22,7 +22,8 @@ public:
 
 	void	refreshListenerPosition(const ecs::Position& position);
 	void	playGUISound(const SoundType);
-	void	play2D(const std::string &soundFile);
+	void	play2D(const std::string& soundFile);
+	void	play3D(const std::string& soundFile, const ecs::Position& position);
 
 protected:
 	Audio();
