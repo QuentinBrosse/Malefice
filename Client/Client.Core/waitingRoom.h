@@ -17,6 +17,7 @@ public:
 	void display();
 	void hide();
 	bool onCloseButtonClicked(const CEGUI::EventArgs& e);
+	bool onCloseButtunMouseEntersArea(const CEGUI::EventArgs& e);
 	void refreshTime();
 	void addRightTeamMember(const std::string& name);
 	void addLeftTeamMember(const std::string& name);

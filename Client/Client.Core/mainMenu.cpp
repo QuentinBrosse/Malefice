@@ -1,5 +1,6 @@
 #include "MainMenu.h"
 #include "ClientCore.h"
+#include "Audio.h"
 
 MainMenu::MainMenu(GraphicUtil &gu) :
 	m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_keyMap(nullptr), m_device(nullptr), m_driver(nullptr), m_sceneManager(nullptr), m_graphicUtils(gu)
@@ -28,36 +29,39 @@ void MainMenu::hide()
 
 bool MainMenu::onPlayButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	m_graphicUtils.getMasterList()->display();
 	return true;
 }
 
 bool MainMenu::onOptionButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	m_graphicUtils.getMenuOptions()->display();
 	return false;
 }
 
 bool MainMenu::onQuitButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	ClientCore::getInstance().setIsActive(false);
 	return false;
 }
 
 bool MainMenu::onPlayButtonMouseEntersArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MainMenu::onOptionButtonMouseEntersArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MainMenu::onQuitButtonMouseEntersArea(const CEGUI::EventArgs& e)
 {
-	
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }

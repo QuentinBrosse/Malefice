@@ -1,4 +1,5 @@
 #include "MenuOptions.h"
+#include "Audio.h"
 
 MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_frameWindows(nullptr), m_utilities(gu)
 {
@@ -19,7 +20,7 @@ MenuOptions::MenuOptions(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleto
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
 
-	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonClicked, this));
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onCloseButtonEnterArea, this));
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onValidateButtonEnterArea, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MenuOptions::onCancellButtonEnterArea, this));
 
@@ -50,24 +51,25 @@ void MenuOptions::hide()
 
 bool MenuOptions::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	return (true);
 }
 
 bool MenuOptions::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MenuOptions::onValidateButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MenuOptions::onCancellButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }

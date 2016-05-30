@@ -4,6 +4,7 @@
 #include "ClientCore.h"
 #include "Team.h"
 #include "PlayerInfos.h"
+#include "Audio.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -24,6 +25,7 @@ WaitingRoom::WaitingRoom(GraphicUtil &gu) :
 		std::cout << e.what() << std::endl;
 	}
 	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&WaitingRoom::onCloseButtonClicked, this));
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&WaitingRoom::onCloseButtunMouseEntersArea, this));
 	m_timerText = m_frameWindows->getChild(101);
 	m_rightTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(103));
 	m_leftTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(102));
@@ -62,9 +64,16 @@ void WaitingRoom::hide()
 
 bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	m_graphicalUtil.getMainMenu()->display();
-	return (true);
+	return true;
+}
+
+bool WaitingRoom::onCloseButtunMouseEntersArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
 }
 
 void WaitingRoom::refreshTime()
