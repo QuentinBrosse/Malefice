@@ -32,6 +32,7 @@
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="ressource.h" />
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Target.h" />
@@ -68,6 +69,9 @@
     <ClCompile Include="WaitingRoom.cpp" />
     <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F340DDED-C270-42B0-9C4A-57AEA463C455}</ProjectGuid>
