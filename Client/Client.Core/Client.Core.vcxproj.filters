@@ -126,6 +126,9 @@
     <ClInclude Include="Audio.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
+    <ClInclude Include="ressource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -212,5 +215,10 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
