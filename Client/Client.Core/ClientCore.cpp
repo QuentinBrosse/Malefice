@@ -72,6 +72,7 @@ bool	ClientCore::init()
 		return false;
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
+	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_masterList = &MasterListNetwork::getInstance();
 
