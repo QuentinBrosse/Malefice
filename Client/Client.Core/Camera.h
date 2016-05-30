@@ -13,8 +13,9 @@ public:
 	Camera(const Camera&) = delete;
 	~Camera();
 
-	ecs::Position					getPosition()	const;
-	irr::core::vector3df			getTarget()		const;
+	ecs::Position					getPosition()		const;
+	ecs::Position					getPositionTarget()	const;
+	irr::core::vector3df			getTarget()			const;
 	void							init();
 
 private:

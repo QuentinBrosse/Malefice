@@ -137,6 +137,7 @@ void	ClientCore::pulse()
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
 			Target::getInstance().refresh();
+			Audio::getInstance().refreshListenerPosition(GraphicUtil::getInstance().getFPSCamera()->getPositionTarget());
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());

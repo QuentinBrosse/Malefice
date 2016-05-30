@@ -6,6 +6,7 @@
 #include "ClientCore.h"
 #include "Target.h"
 #include "Line3dWrapper.h"
+#include "Audio.h"
 
 namespace ecs
 {
@@ -17,7 +18,7 @@ namespace ecs
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
-			LOG_DEBUG(ECS) << dynamic_cast<SceneAnimatedMesh*>((entity)[ecs::AComponent::ComponentType::SCENE])->getPosition();
+			Audio::getInstance().play2D(weapon.getAudioShot());
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}

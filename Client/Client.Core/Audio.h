@@ -4,6 +4,7 @@
 #include	<map>
 
 #include	"Singleton.h"
+#include	"Position.h"
 
 class Audio : public Singleton<Audio>
 {
@@ -19,14 +20,16 @@ public:
 		COUNT
 	};
 
+	void	refreshListenerPosition(const ecs::Position& position);
 	void	playGUISound(const SoundType);
+	void	play2D(const std::string &soundFile);
 
 protected:
 	Audio();
 	~Audio();
 
 private:
-	const std::string&								m_soundPath;
+	const std::string								m_soundPath;
 	irrklang::ISoundEngine*							m_engine;
 	std::map<const SoundType, const std::string>	m_sounds;
 

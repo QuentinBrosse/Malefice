@@ -59,8 +59,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
 		<reloadTime>5</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -115,8 +115,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>6</damage>
 		<reloadTime overheating="true">2</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -171,8 +171,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
 		<reloadTime>5</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>1.2</x>
@@ -227,8 +227,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>13</damage>
 		<reloadTime>2</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -283,8 +283,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>7</damage>
 		<reloadTime>2</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -339,8 +339,8 @@
 		<ammoPerShot>2</ammoPerShot>
 		<damage>14</damage>
 		<reloadTime>3</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -395,8 +395,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>45</damage>
 		<reloadTime>0</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -451,8 +451,8 @@
 		<ammoPerShot>0.01</ammoPerShot>
 		<damage>70</damage>
 		<reloadTime>3</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
@@ -507,8 +507,8 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>25</damage>
 		<reloadTime>0</reloadTime>
-		<audioShot>shotgun_shot.wav</audioShot>
-		<audioReload>shotgun_reload.wav</audioReload>
+		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>
