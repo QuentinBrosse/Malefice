@@ -1,20 +1,21 @@
 #include <iterator>
 #include "SpellManager.h"
 #include "WeaponCreator.h"
+#include "TimeUtility.h"
 
 namespace ecs
 {
 	SpellManager::SpellManager() : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
-		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(0), m_cooldownEndTime(0)
 	{
 	}
 
 	SpellManager::SpellManager(const SpellManager& cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
-		m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent)
+		m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(cpy.m_weaponsIsCurrent), m_cooldown(cpy.m_cooldown), m_cooldownEndTime(cpy.m_cooldownEndTime)
 	{
 		for (auto& spell : cpy.m_spells)
 		{
-			m_spells[spell.first] = spell.second;
+			m_spells[spell.first].affect(spell.second);
 		}
 		if (!m_spells.empty() && cpy.m_currentSpell != cpy.m_spells.end())
 			m_currentSpell = m_spells.find(cpy.m_currentSpell->first);
@@ -24,23 +25,25 @@ namespace ecs
 	}
 
 	//TODO: CHange new Weapon with call to WeaponCreator
-	SpellManager::SpellManager(const Spell& defaultSpell) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
-		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false)
+	SpellManager::SpellManager(const Spell& defaultSpell, const int cooldown) : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(cooldown), m_cooldownEndTime(0)
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
 		m_currentSpell = m_spells.begin();
 		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
-		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
+		//m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
 	}
 
 
-	void	SpellManager::init(const Spell& defaultSpell)
+	void	SpellManager::init(const Spell& defaultSpell, const int cooldown)
 	{
 		m_spells.insert(std::pair<Spell::SpellType, Spell>(defaultSpell.getSpellType(), defaultSpell));
 		m_currentSpell = m_spells.begin();
 		m_weaponsIsCurrent = false;
-		//m_weaponManager.addWeapon(*(new Weapon()));
-		// TODO: Change new Weapon() with two weapons of predator
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::KNIFE));
+		m_cooldown = cooldown;
+		m_cooldownEndTime = 0;
 	}
 
 
@@ -52,6 +55,26 @@ namespace ecs
 	bool SpellManager::weaponsIsCurrent() const
 	{
 		return m_weaponsIsCurrent;
+	}
+
+	long long SpellManager::getCooldownEndTime() const
+	{
+		return m_cooldownEndTime;
+	}
+
+	int SpellManager::getCooldown() const
+	{
+		return m_cooldown;
+	}
+
+	bool SpellManager::isLock() const
+	{
+		return m_cooldownEndTime < utility::TimeUtility::getMsTime() && m_cooldownEndTime != 0;
+	}
+
+	void SpellManager::setCooldownEndTime(const long long cooldownEndTime)
+	{
+		m_cooldownEndTime = cooldownEndTime;
 	}
 
 	void SpellManager::changeCurrentManager()
@@ -108,6 +131,8 @@ namespace ecs
 		{
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
+			if (scene == nullptr) //DEBUG
+				return;
 			scene->setPosition(weapon.second.getFPSMetrics());
 		}
 		//TODO: create spell's scenes
@@ -121,6 +146,8 @@ namespace ecs
 		{
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
+			if (scene == nullptr) //DEBUG
+				return;
 			scene->setPosition(weapon.second.getExternalMetrics());
 		}
 		//TODO: create spell's scenes
@@ -156,13 +183,15 @@ namespace ecs
 		const SpellManager&	spellManager = dynamic_cast<const SpellManager&>(rhs);
 
 		m_weaponsIsCurrent = spellManager.m_weaponsIsCurrent;
-		m_weaponManager = spellManager.m_weaponManager;
-		for (auto spell : spellManager.m_spells)
-			m_spells.insert(spell);
+		m_weaponManager.affect(spellManager.m_weaponManager);
+		for (auto& spell : spellManager.m_spells)
+			m_spells[spell.first].affect(spell.second);
 		if (spellManager.m_currentSpell != spellManager.m_spells.end())
 			m_currentSpell = m_spells.find(spellManager.m_currentSpell->first);
 		else
 			m_currentSpell = m_spells.end();
+		m_cooldown = spellManager.m_cooldown;
+		m_cooldownEndTime = spellManager.m_cooldownEndTime;
 
 		return *this;
 	}
@@ -185,6 +214,8 @@ namespace ecs
 		}
 		else
 			out.Write(false);
+		out.Write(m_cooldown);
+		out.Write(m_cooldownEndTime);
 	}
 
 	void	SpellManager::deserialize(RakNet::BitStream& in)
@@ -211,6 +242,8 @@ namespace ecs
 		}
 		else
 			m_currentSpell = m_spells.end();
+		in.Read(m_cooldown);
+		in.Read(m_cooldownEndTime);
 	}
 
 	AComponent * SpellManager::createCopy(const AComponent* rhs) const

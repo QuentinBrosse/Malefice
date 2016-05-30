@@ -36,6 +36,7 @@ public:
 	const bool isActive() const;
 	void displayNotification(const std::string &, unsigned long = 3);
 	void refreshEventDisplay();
+	void setPowerVisible(int, bool);
 
 private:
 	CEGUI::Window* m_hud;

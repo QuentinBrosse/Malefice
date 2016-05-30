@@ -14,6 +14,11 @@ MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton(
 	m_frameWindow->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onCloseButtonClicked, this));
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonClicked, this));
+
+	m_frameWindow->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onCloseButtonEnterArea, this));
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonEnterArea, this));
+	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonEnterArea, this));
+
 }
 
 void MasterList::display()
@@ -58,14 +63,14 @@ void MasterList::resetList()
 	m_serverList->resetList();
 }
 
-bool MasterList::onManualConnectButtonClicked()
+bool MasterList::onManualConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
 	m_graphicUtils.getConnectWindow()->display();
 	return (true);
 }
 
-bool MasterList::onAutoConnectButtonClicked()
+bool MasterList::onAutoConnectButtonClicked(const CEGUI::EventArgs& e)
 {
 	CEGUI::ListboxItem* item = m_serverList->getFirstSelectedItem();
 	if (item != nullptr && item->getUserData() != nullptr)
@@ -79,7 +84,7 @@ bool MasterList::onAutoConnectButtonClicked()
 	return (true);
 }
 
-bool MasterList::onCloseButtonClicked()
+bool MasterList::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
 	this->hide();
 	return (true);
@@ -113,4 +118,19 @@ const std::string& MasterList::Server::getPort() const
 bool MasterList::Server::hasPassword() const
 {
 	return m_password;
+}
+
+bool MasterList::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	return true;
+}
+
+bool MasterList::onManualConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	return true;
+}
+
+bool MasterList::onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	return true;
 }

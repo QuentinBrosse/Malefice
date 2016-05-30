@@ -15,8 +15,10 @@ public:
 
 	void display();
 	void hide();
-	bool onCloseButtonClicked();
-
+	bool onCloseButtonClicked(const CEGUI::EventArgs& e);
+	bool onCloseButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onValidateButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onCancellButtonEnterArea(const CEGUI::EventArgs& e);
 private:
 	CEGUI::System& m_systemd;
 	CEGUI::Window* m_windows;

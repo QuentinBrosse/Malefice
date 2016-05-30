@@ -21,7 +21,7 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 
 	if (m_entities.size() < ProjectGlobals::NORMAL_TEAM_SIZE)
 		team = ecs::Team::TeamType::Team1;
-	else if (m_entities.size() < 2 * ProjectGlobals::NORMAL_TEAM_SIZE)
+	else if (m_entities.size() < ProjectGlobals::NORMAL_TEAMS_NB * ProjectGlobals::NORMAL_TEAM_SIZE)
 		team = ecs::Team::TeamType::Team2;
 	else
 		team = ecs::Team::TeamType::Predator;

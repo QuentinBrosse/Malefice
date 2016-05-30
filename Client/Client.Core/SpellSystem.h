@@ -16,6 +16,8 @@ namespace ecs
 
 		static void	launchSpell(Entity& predator);
 		static void affect(Entity& entity);
+	private:
+		static Spell::SpellType	lastSpellType;
 	};
 
 }
