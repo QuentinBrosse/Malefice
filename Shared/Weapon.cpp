@@ -194,10 +194,11 @@ namespace ecs
 
 	void	Weapon::createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active)
 	{
+		if (m_meshName == "")  //DEBUG
+			return;
 		if (m_scene)
 			delete m_scene;
 		m_scene = new SceneAnimatedMesh(device, parent, "", MEDIA_PATH + m_meshName, nodePickable::NOT_PICKABLE, true, true, 0);
-
 
 		m_scene->getScene()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 		m_scene->getScene()->setName((MEDIA_PATH + m_meshName).c_str());
@@ -209,7 +210,8 @@ namespace ecs
 	{
 		try
 		{
-			m_scene->getScene()->setVisible(active);
+			if (m_scene != nullptr)
+				m_scene->getScene()->setVisible(active);
 		}
 		catch (const std::exception& e)
 		{
@@ -252,7 +254,7 @@ namespace ecs
 		m_ammoPerShot = weapon.m_ammoPerShot;
 		m_fireRate = weapon.m_fireRate;
 		m_distance = weapon.m_distance;
-		m_scene = weapon.m_scene;
+		//m_scene = nullptr;
 		m_fpsMetrics = weapon.m_fpsMetrics;
 		m_externalMetrics = weapon.m_externalMetrics;
 		return *this;

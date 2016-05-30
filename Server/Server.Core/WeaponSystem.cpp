@@ -1,3 +1,5 @@
+// SERVER VERSION
+
 #include "WeaponSystem.h"
 #include "PhysicsUtil.h"
 #include "NodePickable.h"
@@ -17,29 +19,28 @@ namespace ecs
 		
 		*entity = *entityClient;
 		PositionSystem::updateScenePosition(*entity);
+		ecs::SceneAnimatedMesh* scene = dynamic_cast<SceneAnimatedMesh*>((*entity)[ecs::AComponent::ComponentType::SCENE]);
 		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
-
 			PhysicsUtil& physicsUtil = PhysicsUtil::getInstance();
 			PlayerManager& playerManager = ServerCore::getInstance().getPlayerManager();
-			irr::core::line3df*	ray = &rayWrap->getLine();
+			irr::core::line3df ray = rayWrap->getLine();
 			if (weapon.shoot())
 			{
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
 					physicsUtil.getSceneManager()->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(
-						*ray,
+						ray,
 						intersection,
 						hitTriangle,
 						nodePickable::IS_PICKABLE,
 						0);
-
   				if (selectedSceneNode && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{
 					auto entities = playerManager.getEntities();
-					for (auto player : entities)
+					for (auto& player : entities)
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{

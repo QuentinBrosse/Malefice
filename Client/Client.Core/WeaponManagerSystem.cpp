@@ -46,7 +46,8 @@ namespace ecs
 			{
 				(*it).second.createScene(graphics.getDevice(), graphics.getDevice()->getSceneManager()->getActiveCamera(), false);
 				scene = (*it).second.getScene();
-
+				if (scene == nullptr) // DEBUG
+					return;
 				scene->setPosition((*it).second.getFPSMetrics());
 			}
 

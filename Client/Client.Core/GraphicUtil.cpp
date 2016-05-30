@@ -90,6 +90,8 @@ void GraphicUtil::initGraphics()
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14-NoScale.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-10.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
@@ -98,6 +100,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("spells.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("MainMenu.scheme");
 
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
@@ -106,6 +109,7 @@ void GraphicUtil::initGraphics()
 	m_salon = new WaitingRoom(*this);
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
+	m_blindFx = new Blind();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -228,6 +232,11 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 	return m_driver;
 }
 
+Blind* GraphicUtil::getBlindFx()
+{
+	return m_blindFx;
+}
+
 void GraphicUtil::setGuiCamera()
 {
 	m_isInFPSMode = false;
@@ -245,8 +254,10 @@ void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
 
+	std::srand(std::time(nullptr));
+
 	ecs::Position cameraPosition(
-		irr::core::vector3df(50.0f, 50.0f, -60.0f),
+		irr::core::vector3df(50.0f + (std::rand() % 50) + 20, 50.0f, -60.0f),
 		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
 
 	if (m_sceneManager->getActiveCamera())
@@ -259,7 +270,6 @@ void GraphicUtil::setFPSCamera()
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 	m_FPSCamera->init();
 
-	PlayerManager::getInstance().initPlayersWeapons();
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
@@ -268,4 +278,5 @@ void GraphicUtil::setFPSCamera()
 		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
 	}
 	m_isInFPSMode = true;
+	PlayerManager::getInstance().initPlayersWeapons();
 }

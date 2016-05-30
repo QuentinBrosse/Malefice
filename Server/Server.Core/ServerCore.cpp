@@ -100,6 +100,11 @@ void	ServerCore::pulse(long long elapsedTime)
 		m_playerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
+	m_physicsUtil.getVideoDriver()->beginScene();
+
+	m_physicsUtil.getSceneManager()->drawAll();
+
+	m_physicsUtil.getVideoDriver()->endScene();
 }
 
 
@@ -156,11 +161,8 @@ void ServerCore::createEntities()
 {
 	ecs::Position	mapPos(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0, 0, 0));
 	ecs::Entity*	map = MapFactory::createMap(m_physicsUtil.getDevice(), mapPos, -1, "20kdm2.bsp", "map-20kdm2.pk3");
-
 	ecs::PositionSystem::updateScenePosition(*map);
 }
-
-
 
 void	ServerCore::startGame()
 {
@@ -168,7 +170,6 @@ void	ServerCore::startGame()
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	m_gameStarted = true;
 }
-
 
 bool	ServerCore::isActive() const
 {

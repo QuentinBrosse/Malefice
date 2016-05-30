@@ -1,3 +1,5 @@
+// CLIENT VERSION
+
 #include "WeaponSystem.h"
 #include "SceneAnimatedMesh.h"
 #include "GraphicUtil.h"
@@ -7,7 +9,7 @@
 
 namespace ecs
 {
-	void				WeaponSystem::shoot(Entity& entity)
+	void	WeaponSystem::shoot(Entity& entity)
 	{
 		WeaponManager*		weaponManager;
 
@@ -15,8 +17,8 @@ namespace ecs
 		{
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
+			LOG_DEBUG(ECS) << dynamic_cast<SceneAnimatedMesh*>((entity)[ecs::AComponent::ComponentType::SCENE])->getPosition();
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
-
 }

@@ -5,6 +5,7 @@ InGameGUI::InGameGUI() :
 	m_hud(nullptr), m_systemd(CEGUI::System::getSingleton()), m_hpBar(nullptr), m_hpBarText(nullptr), m_timerText(nullptr), m_power1(nullptr), m_power2(nullptr), m_power3(nullptr), m_power4(nullptr), m_team1Score(nullptr), m_team2Score(nullptr), m_timestamp(0), m_hp(0), m_maxHP(100), m_stopTimer(true), m_power1Activated(false), m_power2Activated(false), m_power3Activated(false), m_power4Activated(false), m_maxPowerNbr(3), m_maxArmor(100), m_isActive(false)
 {
 	m_hud = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("InGameGUI.layout");
+	m_hud->setName("HUD");
 	m_hpBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(1));
 	m_hpBarText = m_hud->getChild(2);
 	m_hpBar->setProgress(0);
@@ -125,6 +126,20 @@ void InGameGUI::disablePower(int nbr)
 		m_powerList[nbr]->setProperty("Image", "Circles/RedCircle");
 	else
 		std::cerr << "Given power number not exist" << std::endl;
+}
+
+void InGameGUI::setPowerVisible(int nbr, bool status)
+{
+	if (nbr == 1)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 2)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 3)
+		m_hud->getChild(200)->setVisible(status);
+	else if (nbr == 4)
+		m_hud->getChild(200)->setVisible(status);
+	else
+		LOG_DEBUG(GENERAL) << "Unknown power number " + std::to_string(nbr) + ". (autorised 1 to 4)";
 }
 
 void InGameGUI::setTeam1Score(int nbr)

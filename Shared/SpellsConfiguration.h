@@ -10,22 +10,24 @@
 #include "Spell.h"
 #include "Export.h"
 
-class MALEFICE_DLL_EXPORT SpellsConfiguration : public AConfiguration
+class MALEFICE_DLL_EXPORT SpellsConfiguration : public AConfiguration, public Singleton<SpellsConfiguration>
 {
-public:
-	static const std::string	SPELLS_FILENAME;
+	friend class Singleton<SpellsConfiguration>;
 
-	SpellsConfiguration() = default;
+protected:
+	SpellsConfiguration();
 	virtual ~SpellsConfiguration() = default;
 
+public:
 	virtual bool	loadFromFile(const std::string& filepath);
 	virtual bool	saveToFile(const std::string& filepath)	const;
-
 
 	const std::map<ecs::Spell::SpellType, ecs::Spell>	&getSpells()	const;
 
 
 private:
+	static const std::string	SPELLS_FILENAME;
+
 	ecs::Spell::SpellType	parseSpellType(const std::string& SpellTypeStr)	const;
 
 	std::map<ecs::Spell::SpellType, ecs::Spell>	m_Spells;

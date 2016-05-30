@@ -189,6 +189,9 @@
     <ClCompile Include="Line3dWrapper.cpp">
       <Filter>Source Files\Wrapper</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBillboardText.cpp">
+      <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="Line3dWrapper.h">
       <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBillboardText.h">
+      <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

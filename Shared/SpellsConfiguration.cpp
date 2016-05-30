@@ -1,6 +1,11 @@
 #include "SpellsConfiguration.h"
 
-const std::string	SpellsConfiguration::SPELLS_FILENAME = "spells.xml";
+const std::string	SpellsConfiguration::SPELLS_FILENAME = "Config\\spells.xml";
+
+SpellsConfiguration::SpellsConfiguration()
+{
+	loadFromFile(SPELLS_FILENAME);
+}
 
 bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 {
@@ -25,6 +30,14 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		ecs::Spell::SpellType	type;
 		std::string				name;
 		int						cooldown;
+		int						duration;
+		irr::core::vector3df	fpsMetricsPosition;
+		irr::core::vector3df	fpsMetricsRotation;
+		irr::core::vector3df	fpsMetricsScale;
+		irr::core::vector3df	externalMetricsPosition;
+		irr::core::vector3df	externalMetricsRotation;
+		irr::core::vector3df	externalMetricsScale;
+		std::string				meshName;
 
 		if (currentSpell->QueryIntAttribute("id", &id) != tinyxml2::XMLError::XML_NO_ERROR || id <= 0)
 		{
@@ -34,12 +47,112 @@ bool	SpellsConfiguration::loadFromFile(const std::string& filepath)
 		name = this->getOrCreateElementString(doc, *currentSpell, "name", "");
 		type = this->parseSpellType(this->getOrCreateElementString(doc, *currentSpell, "type", ""));
 		cooldown = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "cooldown", "-1"));
-		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1)
+		duration = std::stoi(this->getOrCreateElementString(doc, *currentSpell, "duration", "-1"));
+		meshName = this->getOrCreateElementString(doc, *currentSpell, "meshName", "");
+
+		if (name == "" || type == ecs::Spell::SPELL_COUNT || cooldown <= -1 || duration <= -1)
 		{
 			LOG_ERROR(GENERAL) << "Bad Spell element value, skipping element.";
 			continue;
 		}
-		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown));
+		tinyxml2::XMLElement* fpsMetrics = this->getOrCreateElement(doc, *currentSpell, "FPSMetrics");
+		if (fpsMetrics == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<FPSMetrics> not found, skipping element.";
+			continue;
+		}
+		tinyxml2::XMLElement* position = this->getOrCreateElement(doc, *fpsMetrics, "position");
+		if (position == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<position> not found inside <FPSMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *position, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *position, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *position, "z", ""));
+			fpsMetricsPosition = irr::core::vector3df(x, y, z);
+		}
+
+		tinyxml2::XMLElement* rotation = this->getOrCreateElement(doc, *fpsMetrics, "rotation");
+		if (rotation == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<rotation> not found inside <FPSMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *rotation, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *rotation, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *rotation, "z", ""));
+			fpsMetricsRotation = irr::core::vector3df(x, y, z);
+		}
+
+		tinyxml2::XMLElement* scale = this->getOrCreateElement(doc, *fpsMetrics, "scale");
+		if (scale == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<scale> not found inside <FPSMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *scale, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *scale, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *scale, "z", ""));
+			fpsMetricsScale = irr::core::vector3df(x, y, z);
+		}
+
+		tinyxml2::XMLElement* externalMetrics = this->getOrCreateElement(doc, *currentSpell, "ExternalMetrics");
+		if (externalMetrics == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<ExternalMetrics> not found, skipping element.";
+			continue;
+		}
+
+		tinyxml2::XMLElement* positionExt = this->getOrCreateElement(doc, *externalMetrics, "position");
+		if (positionExt == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<position> not found inside <ExternalMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *positionExt, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *positionExt, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *positionExt, "z", ""));
+			externalMetricsPosition = irr::core::vector3df(x, y, z);
+		}
+
+		tinyxml2::XMLElement* rotationExt = this->getOrCreateElement(doc, *externalMetrics, "rotation");
+		if (rotationExt == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<rotation> not found inside <ExternalMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *rotationExt, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *rotationExt, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *rotationExt, "z", ""));
+			externalMetricsRotation = irr::core::vector3df(x, y, z);
+		}
+
+		tinyxml2::XMLElement* scaleExt = this->getOrCreateElement(doc, *externalMetrics, "scale");
+		if (scaleExt == nullptr)
+		{
+			LOG_ERROR(GENERAL) << "<scale> not found inside <ExternalMetrics>, skipping element.";
+			continue;
+		}
+		else
+		{
+			irr::f32 x = std::stof(this->getOrCreateElementString(doc, *scaleExt, "x", ""));
+			irr::f32 y = std::stof(this->getOrCreateElementString(doc, *scaleExt, "y", ""));
+			irr::f32 z = std::stof(this->getOrCreateElementString(doc, *scaleExt, "z", ""));
+			externalMetricsScale = irr::core::vector3df(x, y, z);
+		}
+		
+		m_Spells.emplace(std::piecewise_construct, std::make_tuple(type), std::make_tuple(id, name, type, cooldown, duration, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), meshName));
 	}
 	return true;
 }

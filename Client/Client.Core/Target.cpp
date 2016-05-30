@@ -1,7 +1,10 @@
+#include <irrlicht.h>
 #include "Target.h"
 #include "ClientCore.h"
-#include "Irrlicht.h"
 #include "Weapon.h"
+#include "IrrlichtUtility.h"
+#include "SpellManager.h"
+#include "Team.h"
 
 Target::Target()
 {
@@ -24,18 +27,22 @@ void	Target::refresh()
 {
 	if (!m_playerManager->getCurrentPlayer())
 		return;
+	ecs::Weapon*	weapon;
 	Camera*			camera = GraphicUtil::getInstance().getFPSCamera();
-	ecs::Weapon&	weapon = dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getCurrentWeapon();
+	if (dynamic_cast<ecs::Team*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::TEAM])->getTeam() != ecs::Team::TeamType::Predator)
+		weapon = &dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getCurrentWeapon();
+	else
+		weapon = &dynamic_cast<ecs::SpellManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SPELL_MANAGER])->getCurrentWeapon();
 
-	if (weapon.getScene())
+	if (weapon->getScene())
 	{
-		weapon.getScene()->getScene()->updateAbsolutePosition();
-		m_ray.start = weapon.getScene()->getScene()->getAbsolutePosition();
-		m_ray.end = m_ray.start + (camera->getTarget() - m_ray.start).normalize() * weapon.getDistance();
-		m_ray.start += weapon.getFPSMetricsOffset();
+		weapon->getScene()->getScene()->updateAbsolutePosition();
+		m_ray.start = weapon->getScene()->getScene()->getAbsolutePosition();
+		m_ray.end = m_ray.start + (camera->getTarget() - m_ray.start).normalize() * weapon->getDistance();
+		m_ray.start += weapon->getFPSMetricsOffset();
 		irr::core::vector3df vector(m_ray.end - m_ray.start);
 		vector.normalize();
-		m_ray.start += vector * weapon.getFPSMetricsCoefOffset();
+		m_ray.start += vector * weapon->getFPSMetricsCoefOffset();
 
 		irr::core::vector3df intersection;
 		irr::core::triangle3df hitTriangle;
@@ -50,7 +57,6 @@ void	Target::refresh()
 		if (selectedSceneNode)
 		{
 			m_scene->getNode()->setVisible(true);
-			ecs::Position position(m_ray.end, irr::core::vector3df(0.F, 0.F, 0.F), irr::core::vector3df(20.F, 20.F, 0.F));
 			m_scene->getNode()->setPosition(intersection);
 		}
 		else

@@ -19,6 +19,9 @@
 #include "Armor.h"
 #include "MasterList.h"
 #include "Target.h"
+#include "SpellSystem.h"
+
+ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -44,10 +47,10 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-
 	}
 	else
 	{
+		m_graphicModule->getMenuPause()->activate(true);
 		m_graphicModule->setFPSCamera();
 		createEntities();
 		startGame(0);
@@ -84,12 +87,6 @@ bool	ClientCore::init()
 
 		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
 	}
-
-	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
-	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
-	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
@@ -106,6 +103,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 		m_graphicModule->getHUD()->refreshEventDisplay();
+		m_graphicModule->getBlindFx()->refresh();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
@@ -113,7 +111,8 @@ void	ClientCore::pulse()
 			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
-			m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
+			if (weaponManager)
+				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
 			if (life != nullptr)
 				m_graphicModule->getHUD()->setHealthPoint(life->get());
 			else
@@ -139,6 +138,7 @@ void	ClientCore::pulse()
 			Target::getInstance().refresh();
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
+			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
 		}
 		
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
@@ -162,7 +162,7 @@ void ClientCore::createEntities()
 	{
 		//Player 1
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
+		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1);
 		ecs::PositionSystem::updateScenePosition(*m_player);
 		m_playerManager->setCurrentPlayer(m_player);
 
@@ -242,24 +242,18 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
 	m_playerManager->initPlayersScene();
 	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();
-	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
 }
 
-void ClientCore::onKillDie(RakNet::RPC3* rpc)
+void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::RPC3* rpc)
 {
-	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " has killed " + std::string("name") + ".";
-	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " has killed " + std::string("name") + ".", 3);
-}
-
-void ClientCore::onPlayerDisconnected(RakNet::RPC3* rpc)
-{
-	LOG_DEBUG(GENERAL) << "Player " + std::string("name") + " disconnected.";
-	m_graphicModule->getHUD()->displayNotification("Player " + std::string("name") + " disconnected.", 3);
+	LOG_DEBUG(GENERAL) << "Message received";
+	m_graphicModule->getHUD()->displayNotification(str.C_String(), time);
 }

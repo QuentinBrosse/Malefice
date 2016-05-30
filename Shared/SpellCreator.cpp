@@ -1,15 +1,12 @@
 #include "SpellCreator.h"
 
-SpellCreator::SpellCreator(const std::string& XMLFilename):
-	XML_FILENAME(XMLFilename)
+SpellCreator::SpellCreator()
 {
+	m_configurator = &SpellsConfiguration::getInstance();
+	m_spells = m_configurator->getSpells();
 }
 
 ecs::Spell SpellCreator::create(const ecs::Spell::SpellType spellType)
 {
 	return m_spells[spellType];
-}
-
-void SpellCreator::loadSpells()
-{
 }

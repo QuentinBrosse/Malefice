@@ -3,6 +3,8 @@
 #include <BitStream.h>
 #include "AComponent.h"
 #include "Export.h"
+#include "Position.h"
+#include "SceneAnimatedMesh.h"
 
 namespace ecs
 {
@@ -22,32 +24,62 @@ namespace ecs
 		};
 
 		Spell();
-		Spell(const int id, const std::string& name, const SpellType spellType, const int coolDown);
+		Spell(const int id, const std::string& name, const SpellType spellType, const std::size_t coolDown, const std::size_t duration, const Position& FPSMetrics, const Position& externalMetrics, const std::string& meshName);
 		Spell(const Spell& cpy);
 		~Spell() = default;
 
-		virtual void	init(const int id, const std::string& name, const SpellType spellType, const int coolDown);
+		virtual void			init(const int id, const std::string& name, const SpellType spellType, const std::size_t coolDown, const std::size_t duration, const Position& FPSMetrics, const Position& externalMetrics, const std::string& meshName);
 
-		const Spell::SpellType	getSpellType()	const;
+		const Spell::SpellType	getSpellType()			const;
+		bool					isLock()				const;
+		Position				getFPSMetrics()			const;
+		Position				getExternalMetrics()	const;
+		SceneAnimatedMesh*		getScene()				const;
+		const std::string&		getMeshName()			const;
+		std::size_t				getCooldown()			const;
+		std::size_t				getDuration()			const;
+		long long				getEffectEndTime()		const;
+		long long				getCooldownEndTime()	const;
+
 		void					setSpellType(const SpellType newSpellType);
-		bool					isLock() const;
-		void					lock();
-		void					unlock();
+		void					setMeshName(const std::string& meshName);
+		void					setFPSMetrics(const Position& fpsMetrics);
+		void					setExternalMetrics(const Position& externalMetrics);
+		void					setCooldown(const std::size_t& cooldown);
+		void					setDuration(const std::size_t& duration);
+		void					setEffectEndTime(long long effectEndTime);
+		void					setCooldownEndTime(long long cooldownEndTime);
 
 		virtual AComponent&		affect(const AComponent& rhs);
 
-		virtual void	dump(std::ostream& os)	const;
+		void					createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const bool active);
 
-		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
-		virtual void	deserialize(RakNet::BitStream& in);
+		void					setActivity(const bool active);
 
-		virtual	AComponent*	createCopy(const AComponent* rhs) const;
+		virtual void			dump(std::ostream& os)	const;
+
+		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
+		virtual void			deserialize(RakNet::BitStream& in);
+
+		virtual	AComponent*		createCopy(const AComponent* rhs) const;
 
 	private:
-		int			m_id;
-		std::string	m_name;
-		int			m_cooldown;
-		SpellType	m_spellType;
-		bool		m_isLock;
+		static const std::string	MEDIA_PATH;
+
+		int					m_id;
+		std::string			m_name;
+		SpellType			m_spellType;
+
+		std::size_t			m_cooldown;
+		std::size_t			m_duration;
+
+		Position			m_fpsMetrics;
+		Position			m_externalMetrics;
+
+		SceneAnimatedMesh*	m_scene;
+		std::string			m_meshName;
+
+		long long			m_effectEndTime;
+		long long			m_cooldownEndTime;
 	};
 }

@@ -18,12 +18,17 @@ public:
 	bool onOptionButtonClicked();
 	bool onQuitButtonClicked();
 	bool onContinueButtonClicked();
+	bool onContinueButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onOptionButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onQuitButtonEnterArea(const CEGUI::EventArgs& e);
 	void checkPause();
 	bool getEnableStatus();
+	void activate(bool);
 
 private:
 	GraphicUtil&	m_utilities;
 	CEGUI::System&	m_systemd;
 	CEGUI::Window*	m_windows;
 	bool			m_isEnable;
+	bool			m_isActivated;
 };
