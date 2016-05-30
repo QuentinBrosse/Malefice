@@ -18,7 +18,8 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	position->setVectorPosition(irr::core::vector3df(0, 0, 0));
 	position->setVectorRotation(irr::core::vector3df(0, 0, 0));
 	position->setVectorScale(irr::core::vector3df(1.0F, 1.0F, 1.0F));
-	weaponManager->reset();
+	if (weaponManager)
+		weaponManager->reset();
 	// TODO: add death to dead's team, add kill to dead's opponent's team
 	// TODO: what about the scene?
 	// TODO: if predator, what about the spells?

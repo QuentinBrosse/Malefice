@@ -28,12 +28,12 @@ namespace ecs
 		};
 
 		Weapon();
-		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
+		Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const std::string& audioShot, const std::string& audioReload, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 		Weapon(const Weapon& cpy);
 		~Weapon();
 
 		Weapon& operator=(const Weapon&) = delete;
-		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
+		void	init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const std::string& audioShot, const std::string& audioReload, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip);
 
 		virtual AComponent&		affect(const AComponent& rhs);
 		
@@ -50,6 +50,8 @@ namespace ecs
 		const unsigned int		getAmmunitionsClip()			const;
 		const float				getFireRate()					const;
 		const float				getDistance()					const;
+		const std::string&		getAudioShot()					const;
+		const std::string&		getAudioReload()				const;
 		Position				getFPSMetrics()					const;
 		irr::core::vector3df	getFPSMetricsOffset()			const;
 		float					getFPSMetricsCoefOffset()		const;
@@ -98,6 +100,9 @@ namespace ecs
 
 		float				m_fireRate;
 		float				m_distance;
+
+		std::string			m_audioShot;
+		std::string			m_audioReload;
 
 		Position				m_fpsMetrics;
 		irr::core::vector3df	m_fpsMetricsOffset;
