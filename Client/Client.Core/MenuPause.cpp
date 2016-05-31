@@ -1,5 +1,6 @@
 #include "MenuPause.h"
 #include "GraphicUtil.h"
+#include "Audio.h"
 
 MenuPause::MenuPause(GraphicUtil &utilities) : m_utilities(utilities), m_systemd(CEGUI::System::getSingleton()), m_windows(nullptr), m_isEnable(false), m_isActivated(false)
 {
@@ -54,18 +55,21 @@ void MenuPause::checkPause()
 
 bool MenuPause::onOptionButtonClicked()
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	m_utilities.getMenuOptions()->display();
 	return (true);
 }
 
 bool MenuPause::onQuitButtonClicked()
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	std::exit(0);
 	return (true);
 }
 
 bool MenuPause::onContinueButtonClicked()
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	m_utilities.setFPSCamera();
 	this->hide();
 	m_utilities.getHUD()->display();
@@ -85,18 +89,18 @@ void MenuPause::activate(bool stat)
 
 bool MenuPause::onContinueButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MenuPause::onOptionButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MenuPause::onQuitButtonEnterArea(const CEGUI::EventArgs& e)
 {
-
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }

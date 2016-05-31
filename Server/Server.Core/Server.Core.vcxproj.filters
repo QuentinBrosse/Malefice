@@ -87,6 +87,9 @@
     <ClInclude Include="QueryServer.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="ressource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,5 +143,10 @@
     <ClCompile Include="QueryServer.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

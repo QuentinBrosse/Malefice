@@ -10,19 +10,19 @@ namespace ecs
 	const std::string	Weapon::MEDIA_PATH = "weapons/models/";
 
 	Weapon::Weapon() : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(0), m_weaponName(""), m_meshName(""), m_maxAmmunitions(0), m_maxAmmunitionsClip(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunitions(0), m_ammunitionsClip(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_fpsMetrics(0, 0, 0, 0, 0, 0), m_fpsMetricsOffset(irr::core::vector3df(0.F, 0.F, 0.F)), m_fpsMetricsCoefOffset(0.F), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_scene(nullptr)
+		m_id(0), m_weaponName(""), m_meshName(""), m_maxAmmunitions(0), m_maxAmmunitionsClip(0), m_damage(0), m_weaponType(WeaponType::DEFAULT), m_sight(false), m_ammunitions(0), m_ammunitionsClip(0), m_reloadTime(0), m_ammoPerShot(0), m_fireRate(0), m_distance(0), m_audioShot(""), m_audioReload(""), m_fpsMetrics(0, 0, 0, 0, 0, 0), m_fpsMetricsOffset(irr::core::vector3df(0.F, 0.F, 0.F)), m_fpsMetricsCoefOffset(0.F), m_externalMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0), m_scene(nullptr)
 	{
 
 	}
 
-	Weapon::Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(id), m_weaponName(name), m_meshName(meshName), m_maxAmmunitions(maxAmmunition), m_maxAmmunitionsClip(maxAmunitionsClip), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunitions(maxAmmunition), m_ammunitionsClip(maxAmunitionsClip), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_fpsMetrics(fpsMetrics), m_fpsMetricsOffset(fpsMetricsOffset), m_fpsMetricsCoefOffset(fpsMetricsCoefOffset), m_externalMetrics(externalMetrics), m_scene(nullptr)
+	Weapon::Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const std::string& audioShot, const std::string& audioReload, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
+		m_id(id), m_weaponName(name), m_meshName(meshName), m_maxAmmunitions(maxAmmunition), m_maxAmmunitionsClip(maxAmunitionsClip), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunitions(maxAmmunition), m_ammunitionsClip(maxAmunitionsClip), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_audioShot(audioShot), m_audioReload(audioReload), m_fpsMetrics(fpsMetrics), m_fpsMetricsOffset(fpsMetricsOffset), m_fpsMetricsCoefOffset(fpsMetricsCoefOffset), m_externalMetrics(externalMetrics), m_scene(nullptr)
 	{
 
 	}
 
 	Weapon::Weapon(const Weapon& cpy) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_meshName(cpy.getMeshName()), m_maxAmmunitions(cpy.getMaxAmmunitions()), m_maxAmmunitionsClip(cpy.getMaxAmmunitionsClip()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunitions(cpy.getAmmunitions()), m_ammunitionsClip(cpy.getAmmunitionsClip()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_fpsMetrics(cpy.m_fpsMetrics), m_fpsMetricsOffset(cpy.m_fpsMetricsOffset), m_fpsMetricsCoefOffset(cpy.m_fpsMetricsCoefOffset), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
+		m_id(cpy.getId()), m_weaponName(cpy.getName()), m_meshName(cpy.getMeshName()), m_maxAmmunitions(cpy.getMaxAmmunitions()), m_maxAmmunitionsClip(cpy.getMaxAmmunitionsClip()), m_damage(cpy.getDamage()), m_weaponType(cpy.getWeaponType()), m_sight(cpy.isSight()), m_ammunitions(cpy.getAmmunitions()), m_ammunitionsClip(cpy.getAmmunitionsClip()), m_reloadTime(cpy.getReloadTime()), m_ammoPerShot(cpy.getAmmoPerShot()), m_fireRate(cpy.getFireRate()), m_distance(cpy.getDistance()), m_audioShot(cpy.getAudioShot()), m_audioReload(cpy.getAudioReload()), m_fpsMetrics(cpy.m_fpsMetrics), m_fpsMetricsOffset(cpy.m_fpsMetricsOffset), m_fpsMetricsCoefOffset(cpy.m_fpsMetricsCoefOffset), m_externalMetrics(cpy.m_externalMetrics), m_scene(nullptr)
 	{
 
 	}
@@ -32,7 +32,7 @@ namespace ecs
 
 	}
 
-	void	Weapon::init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const Position& fpsMetrix, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrix, bool sight, unsigned int maxAmunitionsClip)
+	void	Weapon::init(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunitions, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const std::string& audioShot, const std::string& audioReload, const Position& fpsMetrix, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrix, bool sight, unsigned int maxAmunitionsClip)
 	{
 		m_id = id;
 		m_weaponName = name;
@@ -48,6 +48,8 @@ namespace ecs
 		m_ammoPerShot = ammoPerShot;
 		m_fireRate = fireRate;
 		m_distance = distance;
+		m_audioShot = audioShot;
+		m_audioReload = audioReload;
 		m_fpsMetrics = fpsMetrix;
 		m_fpsMetricsOffset = fpsMetricsOffset;
 		m_fpsMetricsCoefOffset = fpsMetricsCoefOffset;
@@ -102,6 +104,16 @@ namespace ecs
 		return m_distance;
 	}
 
+	const std::string&		Weapon::getAudioShot() const
+	{
+		return m_audioShot;
+	}
+
+	const std::string&		Weapon::getAudioReload() const
+	{
+		return m_audioReload;
+	}
+
 	Position	Weapon::getFPSMetrics() const
 	{
 		return m_fpsMetrics;
@@ -142,9 +154,14 @@ namespace ecs
 		return m_damage;
 	}
 
+	bool	Weapon::mustBeReloaded() const
+	{
+		return m_ammunitionsClip < m_ammoPerShot;
+	}
+
 	bool	Weapon::shoot()
 	{
-		if (m_ammunitionsClip > m_ammoPerShot)
+		if (!this->mustBeReloaded())
 		{
 			m_ammunitionsClip -= m_ammoPerShot;
 			return true;
@@ -255,6 +272,8 @@ namespace ecs
 		m_fireRate = weapon.m_fireRate;
 		m_distance = weapon.m_distance;
 		//m_scene = nullptr;
+		m_audioShot = weapon.m_audioShot;
+		m_audioReload = weapon.m_audioReload;
 		m_fpsMetrics = weapon.m_fpsMetrics;
 		m_externalMetrics = weapon.m_externalMetrics;
 		return *this;
@@ -276,6 +295,8 @@ namespace ecs
 		out.Write(m_ammoPerShot);
 		out.Write(m_fireRate);
 		out.Write(m_distance);
+		out.Write(RakNet::RakString(m_audioShot.c_str()));
+		out.Write(RakNet::RakString(m_audioReload.c_str()));
 		out.Write(RakNet::RakString(m_meshName.c_str()));
 		m_externalMetrics.serialize(out, false);
 		m_fpsMetrics.serialize(out, false);
@@ -285,6 +306,8 @@ namespace ecs
 	{
 		RakNet::RakString	meshName;
 		RakNet::RakString	weaponName;
+		RakNet::RakString	audioShot;
+		RakNet::RakString	audioReload;
 
 		AComponent::deserialize(in);
 		in.Read(m_id);
@@ -301,6 +324,10 @@ namespace ecs
 		in.Read(m_ammoPerShot);
 		in.Read(m_fireRate);
 		in.Read(m_distance);
+		in.Read(audioShot);
+		m_audioShot = audioShot.C_String();
+		in.Read(audioReload);
+		m_audioReload = audioReload.C_String();
 		in.Read(meshName);
 		m_meshName = meshName.C_String();
 		m_externalMetrics.deserialize(in);

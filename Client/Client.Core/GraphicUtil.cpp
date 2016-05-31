@@ -3,6 +3,7 @@
 #include "SceneMesh.h"
 #include "ProjectGlobals.h"
 #include "WeaponManagerSystem.h"
+#include "ressource.h"
 
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
@@ -116,6 +117,13 @@ void GraphicUtil::initGraphics()
 		this->setFPSCamera();
 		this->setGuiCamera();
 	}
+
+	HINSTANCE hInstance = (HINSTANCE)GetModuleHandle(NULL);
+	HICON hSmallIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(ID_ICON), IMAGE_ICON, 32, 32, LR_DEFAULTCOLOR);
+	irr::video::SExposedVideoData exposedData = m_driver->getExposedVideoData();
+	HWND hWnd = reinterpret_cast<HWND>(exposedData.D3D9.HWnd);
+	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (long)hSmallIcon);
+
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()

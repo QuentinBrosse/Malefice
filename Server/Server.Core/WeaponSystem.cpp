@@ -44,8 +44,6 @@ namespace ecs
 					{
 						if (dynamic_cast<ecs::AScene *>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getNode() == selectedSceneNode)
 						{
-							LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*player.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is shoot modafoka !";
-
 							ecs::Life*	lifeTarget;
 							ecs::Armor*	armorTarget;
 

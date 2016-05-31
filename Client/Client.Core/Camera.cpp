@@ -19,6 +19,11 @@ ecs::Position Camera::getPosition() const
 	return ecs::Position(m_camera->getPosition(), m_camera->getRotation());
 }
 
+ecs::Position Camera::getPositionTarget() const
+{
+	return ecs::Position(m_camera->getPosition(), m_camera->getTarget());
+}
+
 irr::core::vector3df Camera::getTarget() const
 {
 	return m_camera->getTarget();

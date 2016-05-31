@@ -1,5 +1,6 @@
 #include "MasterList.h"
 #include "GraphicUtil.h"
+#include "Audio.h"
 
 MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
 {
@@ -65,6 +66,7 @@ void MasterList::resetList()
 
 bool MasterList::onManualConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	m_graphicUtils.getConnectWindow()->display();
 	return (true);
@@ -72,6 +74,7 @@ bool MasterList::onManualConnectButtonClicked(const CEGUI::EventArgs& e)
 
 bool MasterList::onAutoConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	CEGUI::ListboxItem* item = m_serverList->getFirstSelectedItem();
 	if (item != nullptr && item->getUserData() != nullptr)
 	{
@@ -86,6 +89,7 @@ bool MasterList::onAutoConnectButtonClicked(const CEGUI::EventArgs& e)
 
 bool MasterList::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	return (true);
 }
@@ -122,15 +126,18 @@ bool MasterList::Server::hasPassword() const
 
 bool MasterList::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MasterList::onManualConnectButtonEnterArea(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool MasterList::onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
