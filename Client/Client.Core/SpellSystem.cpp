@@ -32,16 +32,20 @@ namespace ecs
 			Spell::SpellType	spellType = spell->getSpellType();
 			if (spellType == lastSpellType)
 				return;
+			GraphicUtil&	graphics = GraphicUtil::getInstance();
+			ecs::Position cameraPosition(graphics.getSceneManager()->getActiveCamera()->getAbsolutePosition(),
+										graphics.getSceneManager()->getActiveCamera()->getTarget());
 			if (spellType == Spell::SpellType::NOTHING)
 			{
 				switch (lastSpellType)
 				{
 				case ecs::Spell::BLIND:
-					GraphicUtil::getInstance().getBlindFx()->hide();
+					graphics.getBlindFx()->hide();
 					break;
 				case ecs::Spell::PARANOIA:
 					break;
 				case ecs::Spell::CONFUSION:
+					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), true);
 					break;
 				case ecs::Spell::DEAF:
 					break;
@@ -63,6 +67,7 @@ namespace ecs
 				case ecs::Spell::PARANOIA:
 					break;
 				case ecs::Spell::CONFUSION:
+					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), false);
 					break;
 				case ecs::Spell::DEAF:
 					break;

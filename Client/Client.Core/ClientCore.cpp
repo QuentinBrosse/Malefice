@@ -72,6 +72,7 @@ bool	ClientCore::init()
 		return false;
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
+	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_masterList = &MasterListNetwork::getInstance();
 
@@ -136,6 +137,7 @@ void	ClientCore::pulse()
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
 			Target::getInstance().refresh();
+			Audio::getInstance().refreshListenerPosition(GraphicUtil::getInstance().getFPSCamera()->getPositionTarget());
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());

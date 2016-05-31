@@ -52,6 +52,8 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 		std::string				precisionStr;
 		std::string				ammunitionStr;
 		std::string				ammunitionsClipStr;
+		std::string				audioShot;
+		std::string				audioReload;
 		std::string				fpsMetricsCoefOffsetStr;
 		irr::core::vector3df	fpsMetricsPosition;
 		irr::core::vector3df	fpsMetricsRotation;
@@ -99,6 +101,9 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 
 		reloadTimeStr = this->getOrCreateElementString(doc, *currentWeapon, "reloadTime", "");
 		reloadTime = std::stoi(reloadTimeStr);
+
+		audioShot = this->getOrCreateElementString(doc, *currentWeapon, "audioShot", "");
+		audioReload = this->getOrCreateElementString(doc, *currentWeapon, "audioReload", "");
 
 		tinyxml2::XMLElement* fpsMetrics = this->getOrCreateElement(doc, *currentWeapon, "FPSMetrics");
 		if (fpsMetrics == nullptr)
@@ -216,7 +221,7 @@ bool	WeaponsConfiguration::loadFromFile(const std::string& filepath)
 			externalMetricsScale = irr::core::vector3df(x, y, z);
 		}
 
-		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), fpsMetricsOffset, fpsMetricsCoefOffset, ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, ammunitionsClip);
+		ecs::Weapon tmp(id, name, meshName, type, distance, precision, ammunition, fireRate, ammoPerShot, damage, reloadTime, audioShot, audioReload, ecs::Position(fpsMetricsPosition, fpsMetricsRotation, fpsMetricsScale), fpsMetricsOffset, fpsMetricsCoefOffset, ecs::Position(externalMetricsPosition, externalMetricsRotation, externalMetricsScale), sight, ammunitionsClip);
 		m_weapons.emplace(std::make_pair(type, tmp));
 	}
 

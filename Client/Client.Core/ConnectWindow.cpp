@@ -1,5 +1,6 @@
 #include "ConnectWindow.h"
 #include "ClientCore.h"
+#include "Audio.h"
 
 ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false), m_isConnected(false)
@@ -54,12 +55,14 @@ void ConnectWindow::hide()
 
 bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	return (true);
 }
 
 bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0)
 	{
 		m_connectionStatus->setText("Connection en cour...");
@@ -137,10 +140,12 @@ void ConnectWindow::setPort(const std::string &port)
 
 bool ConnectWindow::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
 
 bool ConnectWindow::onConnectButtonEnterArea(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;
 }
