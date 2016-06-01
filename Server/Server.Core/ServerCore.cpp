@@ -10,12 +10,14 @@
 #include "WeaponManagerSystem.h"
 #include "EventSystem.h"
 #include "MapFactory.h"
+#include "SpawnerFactory.h"
 #include "NodePickable.h"
+#include "SpawnerManager.h"
 
 const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_spawnerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -28,7 +30,7 @@ void	ServerCore::run()
 	LOG_INFO(GENERAL) << "Server started.";
 	if (this->init() == false)
 	{
-		LOG_CRITICAL(GENERAL) << "Server initialization failed. Abortring.";
+		LOG_CRITICAL(GENERAL) << "Server initialization failed. Aborting.";
 		return;
 	}
 	LOG_INFO(GENERAL) << "Server initialized.";
@@ -94,8 +96,10 @@ void	ServerCore::pulse(long long elapsedTime)
 	m_updateElapsedTime += elapsedTime;
 	m_networkModule.pulse();
 	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
-	{
+	{ 
 		m_playerManager.updateEntities();
+		m_spawnerManager.collisionDetection();
+		m_spawnerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
 }
@@ -156,6 +160,13 @@ void ServerCore::createEntities()
 	ecs::Entity*	map = MapFactory::createMap(m_physicsUtil.getDevice(), mapPos, -1, "20kdm2.bsp", "map-20kdm2.pk3");
 
 	ecs::PositionSystem::initScenePosition(*map);
+
+	//Weapon Spawner
+	m_spawnerManager.createEntity((ecs::ClientId)80);
+	/*ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(800.f, 1000.f, 100.f));
+	ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(m_physicsUtil.getInstance().getDevice(), spawnPosition1, 18);
+	m_spawnerManager.addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1);
+	ecs::PositionSystem::initScenePosition(*spawnerWeapon1);*/
 }
 
 
@@ -182,6 +193,11 @@ PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
 }
+
+//SpawnerManager& ServerCore::getSpawnerManager()
+//{
+//	return m_spawnerManager;
+//}
 
 ServerCoreConfiguration& ServerCore::getServerCoreConfiguration()
 {

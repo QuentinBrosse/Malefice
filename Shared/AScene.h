@@ -32,6 +32,7 @@ namespace ecs
 		std::string						getNameMesh()		const;
 		int								getPickableFlags()	const;
 		irr::video::SMaterial*			getMaterial()		const;
+		irr::scene::ITriangleSelector*	getSelector()		const;
 
 		void					setNameTexture(const std::string& newNameTexture);
 		void					setNameMesh(const std::string& newNameMesh);

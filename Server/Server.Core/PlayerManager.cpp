@@ -107,6 +107,7 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 		{
 			ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), rpc->GetLastSenderAddress().systemIndex, false, entity.second->getOwner(), entity.second);
 		}
+
 		LOG_DEBUG(ECS) << "Set nickname of client " << rpc->GetLastSenderAddress().systemIndex << " to \"" << playerInfos->getNickname() << "\"";
 	
 		if (m_entities.size() == ProjectGlobals::MAX_PLAYERS_NB)

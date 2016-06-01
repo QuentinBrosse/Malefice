@@ -11,8 +11,8 @@ public:
 	SpawnerFactory() = delete;
 	~SpawnerFactory() = delete;
 
-	static ecs::Entity* createWeaponSpawner(const ecs::Position position, const ecs::ClientId owner);
-	static ecs::Entity* createLifeSpawner(const ecs::Position position, const ecs::ClientId owner);
-	static ecs::Entity* createSpellSpawner(const ecs::Position position, const ecs::ClientId owner);
+	static ecs::Entity* createWeaponSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
+	static ecs::Entity* createLifeSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
+	static ecs::Entity* createSpellSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
 
 };

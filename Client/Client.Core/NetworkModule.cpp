@@ -103,6 +103,9 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
+	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str(), &SpawnerManager::addEntity);
+	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str(), &SpawnerManager::updateEntity);
+	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str(), &SpawnerManager::removeEntity);
 	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
 }
 
@@ -114,5 +117,8 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
 }

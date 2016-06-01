@@ -9,6 +9,7 @@
 #include "NodePickable.h"
 #include "mapFactory.h"
 #include "PlayerFactory.h"
+#include "SpawnerFactory.h"
 #include "Position.h"
 #include "PositionSystem.h"
 #include "WeaponManager.h"
@@ -20,7 +21,7 @@
 #include "MasterList.h"
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
-	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
+	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_spawnerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
 {
 }
 
@@ -69,6 +70,7 @@ bool	ClientCore::init()
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
+	m_spawnerManager = &SpawnerManager::getInstance();
 	m_masterList = &MasterListNetwork::getInstance();
 
 	std::vector<std::string> datas = m_masterList->fetch();
@@ -133,9 +135,10 @@ void	ClientCore::pulse()
 		{
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
+	//		m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
-
+	//	m_graphicModule->getDriver()->setTransform(irr::video::ETS_WORLD, irr::core::IdentityMatrix);
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 		m_graphicModule->CEGUIEventInjector();
@@ -152,6 +155,12 @@ void ClientCore::createEntities()
 	ecs::PositionSystem::initScenePosition(*m_map);
 	if (ProjectGlobals::NO_MENU)
 	{
+		//Weapon Spawner
+		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));
+		ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(GraphicUtil::getInstance().getDevice(), spawnPosition1, 18);
+		m_spawnerManager->addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1, nullptr);
+		ecs::PositionSystem::initScenePosition(*spawnerWeapon1);
+
 		//Player 1
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
@@ -242,6 +251,7 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
 	m_playerManager->initPlayersScene();
+//	m_spawnerManager->initSpawnersScene();
 	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();

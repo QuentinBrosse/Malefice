@@ -177,9 +177,6 @@
     <ClCompile Include="SpawnerFactory.cpp">
       <Filter>Source Files\ECS\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -295,9 +292,6 @@
     </ClInclude>
     <ClInclude Include="PlayerInfos.h">
       <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SpawnerManager.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpawnerFactory.h">
       <Filter>Header Files\ECS\Factory</Filter>
