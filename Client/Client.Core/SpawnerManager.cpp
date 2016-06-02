@@ -18,12 +18,13 @@ SpawnerManager::~SpawnerManager()
 
 void SpawnerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3 * rpc)
 {
-	EntityManager::addEntity(owner, entity, rpc);
+	ecs::Entity*	localEntity = new ecs::Entity(*entity);
+	EntityManager::addEntity(owner, localEntity, rpc);
 
 	irr::core::line3df		line;
 	irr::core::vector3df	endPos;
 
-	line.start = dynamic_cast<ecs::Position *>((*entity)[ecs::AComponent::ComponentType::POSITION])->getVectorPosition();
+	line.start = dynamic_cast<ecs::Position *>((*localEntity)[ecs::AComponent::ComponentType::POSITION])->getVectorPosition();
 
 	endPos = line.start;
 	endPos.X = line.start.X + 15;

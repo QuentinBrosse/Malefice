@@ -99,7 +99,7 @@ void	ServerCore::pulse(long long elapsedTime)
 	{ 
 		m_playerManager.updateEntities();
 		m_spawnerManager.collisionDetection();
-		m_spawnerManager.updateEntities();
+		//m_spawnerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
 }

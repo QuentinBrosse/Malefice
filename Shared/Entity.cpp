@@ -54,7 +54,7 @@ namespace ecs
 			if (component.second)
 			{
 				AComponent*	localComponent = m_components[component.first];
-
+				LOG_DEBUG(NETWORK) << "first: " << static_cast<int>(component.first);
 				*localComponent = *component.second;
 			}
 		}
