@@ -6,6 +6,7 @@
 #include "ClientCore.h"
 #include "LifeSystem.h"
 #include "Logger.h"
+#include "WeaponSystem.h"
 
 NetworkModule::NetworkModule() :
 	m_rakPeer(RakNet::RakPeerInterface::GetInstance()), m_serverAddress(), m_connectionState(RakNet::ConnectionState::IS_NOT_CONNECTED), m_rpc()
@@ -94,7 +95,6 @@ RakNet::ConnectionState	NetworkModule::getConnectionState()	const
 	return m_connectionState;
 }
 
-
 void	NetworkModule::registerRPCs()
 {
 	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
@@ -104,6 +104,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
 	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
+	m_rpc.RegisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str(), &ecs::WeaponSystem::triggerShootActions);
 }
 
 void	NetworkModule::unregisterRPCs()
@@ -115,4 +116,5 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str());
 }
