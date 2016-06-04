@@ -1,8 +1,9 @@
 #include "Audio.h"
 #include "Logger.h"
 
+
 Audio::Audio() :
-	m_soundPath("Media/Sounds/")
+	m_soundPath("Media/Sounds/"), m_isDeaf(false)
 {
 	m_sounds.insert(std::make_pair(SoundType::GUI_BTN_HOVER, m_soundPath + "gui_hover.wav"));
 	m_sounds.insert(std::make_pair(SoundType::GUI_BTN_PRESS, m_soundPath + "gui_press.wav"));
@@ -35,13 +36,27 @@ void	Audio::playGUISound(const Audio::SoundType soundType)
 
 void	Audio::play2D(const std::string& soundFile)
 {
-	m_engine->play2D((m_soundPath + soundFile).c_str());
+	if (!m_isDeaf)
+		m_engine->play2D((m_soundPath + soundFile).c_str());
 }
 
 void Audio::play3D(const std::string& soundFile, const ecs::Position& position)
 {
-	irrklang::vec3df irrPos(position.getVectorPosition().X,
-		position.getVectorPosition().Y,
-		position.getVectorPosition().Z);
-	m_engine->play3D((m_soundPath + soundFile).c_str(), irrPos);
+	if (!m_isDeaf)
+	{
+		irrklang::vec3df irrPos(position.getVectorPosition().X,
+			position.getVectorPosition().Y,
+			position.getVectorPosition().Z);
+		m_engine->play3D((m_soundPath + soundFile).c_str(), irrPos);
+	}
+}
+
+void Audio::setIsDeaf(const bool isDeaf)
+{
+	m_isDeaf = isDeaf;
+}
+
+bool Audio::isDeaf() const
+{
+	return m_isDeaf;
 }

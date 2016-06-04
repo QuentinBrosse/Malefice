@@ -9,6 +9,7 @@
 #include "PlayerInfos.h"
 #include "LifeSystem.h"
 #include "PositionSystem.h"
+#include "Team.h"
 
 namespace ecs
 {
@@ -55,7 +56,10 @@ namespace ecs
 								{
 									rest = lifeTarget->takeDamage(rest);
 									if (rest >= 0)
+									{
+										dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])->addKill();
 										LifeSystem::die(player.second);
+									}
 								}
 							}
 							break;

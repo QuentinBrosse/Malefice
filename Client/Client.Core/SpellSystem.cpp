@@ -5,6 +5,7 @@
 #include "WeaponSystem.h"
 #include "Target.h"
 #include "Line3dWrapper.h"
+#include "Audio.h"
 
 namespace ecs
 {
@@ -48,6 +49,7 @@ namespace ecs
 					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), true);
 					break;
 				case ecs::Spell::DEAF:
+					Audio::getInstance().setIsDeaf(false);
 					break;
 				case ecs::Spell::PARKINSON:
 					break;
@@ -70,6 +72,7 @@ namespace ecs
 					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), false);
 					break;
 				case ecs::Spell::DEAF:
+					Audio::getInstance().setIsDeaf(true);
 					break;
 				case ecs::Spell::PARKINSON:
 					break;
