@@ -2,7 +2,9 @@
 #include "WaitingRoom.h"
 #include "GraphicUtil.h"
 #include "ClientCore.h"
+#include "Team.h"
 #include "PlayerInfos.h"
+#include "Audio.h"
 
 #ifdef _MSC_VER
 	#pragma warning(disable:4996)
@@ -12,6 +14,7 @@ WaitingRoom::WaitingRoom(GraphicUtil &gu) :
 	m_graphicalUtil(gu), m_windows(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_timestamp(0), m_stopTimer(false), m_timerText(nullptr), m_rightTeam(nullptr), m_leftTeam(nullptr), m_checkConnectedPlayers(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("WaitingRoom.layout");
+	m_windows->setName("WaitingRoom");
 	try
 	{
 		m_frameWindows = dynamic_cast<CEGUI::FrameWindow *>(m_windows);
@@ -22,6 +25,7 @@ WaitingRoom::WaitingRoom(GraphicUtil &gu) :
 		std::cout << e.what() << std::endl;
 	}
 	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&WaitingRoom::onCloseButtonClicked, this));
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&WaitingRoom::onCloseButtunMouseEntersArea, this));
 	m_timerText = m_frameWindows->getChild(101);
 	m_rightTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(103));
 	m_leftTeam = dynamic_cast<CEGUI::Listbox *>(m_frameWindows->getChild(102));
@@ -60,9 +64,16 @@ void WaitingRoom::hide()
 
 bool WaitingRoom::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	m_graphicalUtil.getMainMenu()->display();
-	return (true);
+	return true;
+}
+
+bool WaitingRoom::onCloseButtunMouseEntersArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
 }
 
 void WaitingRoom::refreshTime()
@@ -111,7 +122,21 @@ void WaitingRoom::checkConnectedPlayers()
 		this->resetTeamDisplay();
 		for (auto entity : entities)
 		{
-			this->addLeftTeamMember(dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname());
+			ecs::PlayerInfos* playerInfo = dynamic_cast<ecs::PlayerInfos *>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+			ecs::Team* teamInfo = dynamic_cast<ecs::Team *>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
+
+			if (teamInfo->getTeam() == ecs::Team::TeamType::Team1)
+			{
+				this->addLeftTeamMember(playerInfo->getNickname());
+			}
+			else if (teamInfo->getTeam() == ecs::Team::TeamType::Team2)
+			{
+				this->addRightTeamMember(playerInfo->getNickname());
+			}
+			else if (teamInfo->getTeam() == ecs::Team::TeamType::Predator)
+			{
+				this->addPredator(playerInfo->getNickname());
+			}
 		}
 	}
 }

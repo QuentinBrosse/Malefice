@@ -3,6 +3,8 @@
 // Client Version
 
 #include "Entity.h"
+#include "Export.h"
+#include "ClientCore.h"
 
 namespace ecs
 {

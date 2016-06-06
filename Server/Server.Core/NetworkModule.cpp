@@ -4,12 +4,13 @@
 #include "NetworkRPC.h"
 #include "ServerCore.h"
 #include "WeaponSystem.h"
+#include "WeaponManagerSystem.h"
 #include "SpellSystem.h"
 #include "RakNetUtility.h"
 #include "ProjectGlobals.h"
 #include "Logger.h"
 
-const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 10000;
+const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 10000000;
 const RakNet::TimeMS	NetworkModule::SHUTDOWN_TIMEOUT_MS	= 500;
 
 NetworkModule::NetworkModule() :
@@ -79,6 +80,8 @@ void	NetworkModule::registerRPCs()
 {
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str(), &PlayerManager::setPlayerNickname);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
+	m_rpc.RegisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT.c_str(), &ecs::WeaponManagerSystem::changeToNext);
+	m_rpc.RegisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC.c_str(), &ecs::WeaponManagerSystem::changeToPrec);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str(), &ecs::WeaponSystem::shoot);
 	m_rpc.RegisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str(), &ecs::SpellSystem::launchSpell);
 }
@@ -87,6 +90,8 @@ void	NetworkModule::unregisterRPCs()
 {
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str());
 }

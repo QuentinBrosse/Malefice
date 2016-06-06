@@ -17,7 +17,7 @@
 const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_spawnerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_queryServer(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -56,6 +56,7 @@ bool	ServerCore::init()
 	}
 	m_isActive = true;
 	m_masterList.getInstance().run();
+	m_queryServer.getInstance().init(m_configuration.getPort() + 1);
 	m_readInput = true;
 	m_inputThread = std::thread(&ServerCore::readInput, this);
 	m_startTime = utility::TimeUtility::getMsTime();
@@ -95,13 +96,18 @@ void	ServerCore::pulse(long long elapsedTime)
 {
 	m_updateElapsedTime += elapsedTime;
 	m_networkModule.pulse();
+	
 	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
 	{ 
 		m_playerManager.updateEntities();
-		m_spawnerManager.collisionDetection();
-		//m_spawnerManager.updateEntities();
+		m_spawnerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
+	m_physicsUtil.getVideoDriver()->beginScene();
+
+	m_physicsUtil.getSceneManager()->drawAll();
+
+	m_physicsUtil.getVideoDriver()->endScene();
 }
 
 
@@ -159,17 +165,18 @@ void ServerCore::createEntities()
 	ecs::Position	mapPos(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0, 0, 0));
 	ecs::Entity*	map = MapFactory::createMap(m_physicsUtil.getDevice(), mapPos, -1, "20kdm2.bsp", "map-20kdm2.pk3");
 
-	ecs::PositionSystem::initScenePosition(*map);
-
 	//Weapon Spawner
-	m_spawnerManager.createEntity((ecs::ClientId)80);
+	m_spawnerManager.createEntity((ecs::ClientId)20);
 	/*ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(800.f, 1000.f, 100.f));
 	ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(m_physicsUtil.getInstance().getDevice(), spawnPosition1, 18);
 	m_spawnerManager.addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1);
 	ecs::PositionSystem::initScenePosition(*spawnerWeapon1);*/
+	for (auto& entity : m_spawnerManager.getSpawners())
+	{
+		ecs::PositionSystem::updateScenePosition(*entity.second);
+	}
+	ecs::PositionSystem::updateScenePosition(*map);
 }
-
-
 
 void	ServerCore::startGame()
 {
@@ -177,7 +184,6 @@ void	ServerCore::startGame()
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	m_gameStarted = true;
 }
-
 
 bool	ServerCore::isActive() const
 {

@@ -10,9 +10,15 @@ EntityManager::~EntityManager()
 
 void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity *entity, RakNet::RPC3* rpc)
 {
+	ecs::Position*	posLocal;
+	ecs::Position*	posClient;
 	ecs::Entity&	localEntity = *m_entities[owner];
 
-	localEntity = *entity;
+	if ((posLocal = dynamic_cast<ecs::Position*>(localEntity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (posClient = dynamic_cast<ecs::Position*>((*entity)[ecs::AComponent::ComponentType::POSITION])) != nullptr)
+	{
+		posLocal->affect(*posClient);
+	}
+//	localEntity = *entity;
 }
 
 bool	EntityManager::hasEntity(ecs::ClientId owner)	const

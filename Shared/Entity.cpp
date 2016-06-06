@@ -15,6 +15,7 @@
 #include "Weapon.h"
 #include "WeaponManager.h"
 #include "Logger.h"
+#include "RakNetUtility.h"
 
 namespace ecs
 {
@@ -39,9 +40,10 @@ namespace ecs
 	Entity::Entity(const Entity& rhs):
 		m_components(), m_entityType(rhs.m_entityType), m_owner(rhs.m_owner)
 	{
-		for (auto component : rhs.m_components)
+		for (auto& component : rhs.m_components)
 		{
-			m_components[component.second->TYPE] = component.second->createCopy(component.second);
+//			if (component.first != ecs::AComponent::ComponentType::SCENE)
+			m_components[component.first] = component.second->createCopy(component.second);
 		}
 	}
 
@@ -49,12 +51,12 @@ namespace ecs
 	{
 		auto rhsComponents = rhs.getComponents();
 
-		for (auto component : rhsComponents)
+		for (auto& component : rhsComponents)
 		{
-			if (component.second)
+			if (component.second /*&& component.first != ecs::AComponent::ComponentType::SCENE*/)
 			{
 				AComponent*	localComponent = m_components[component.first];
-				LOG_DEBUG(NETWORK) << "first: " << static_cast<int>(component.first);
+			//	LOG_DEBUG(NETWORK) << "first: " << static_cast<int>(component.first);
 				*localComponent = *component.second;
 			}
 		}
@@ -128,11 +130,17 @@ std::ostream&	operator<<(std::ostream& os, const ecs::Entity& entity)
 
 RakNet::BitStream&	RakNet::operator<<(RakNet::BitStream& out, ecs::Entity& in)
 {
-	auto&	components = in.getComponents();
+	auto&		components = in.getComponents();
+	std::size_t	cpt = 0;
 
 	out.Write(in.getOwner());
 	out.Write(in.getEntityType());
-	out.Write(components.size());
+	for (auto it = components.begin(); it != components.end(); ++it)
+	{
+		if (it->second)
+			cpt++;
+	}
+	out.Write(cpt);
 	for (auto it = components.begin(); it != components.end(); ++it)
 	{
 		if (it->second)
@@ -221,3 +229,4 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 	}
 	return in;
 }
+

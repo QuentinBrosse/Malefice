@@ -44,7 +44,7 @@ public:
 	void weaponRegeneration(ecs::Entity* spawner);
 	void pickObject(ecs::Entity* spawner, ecs::Entity* player);
 	
-	void collisionDetection();
+	void collisionDetection(PlayerManager& m_player);
 	
 	void drawLine();
 	void dump() const;

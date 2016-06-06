@@ -3,6 +3,7 @@
 #include "SceneMesh.h"
 #include "ProjectGlobals.h"
 #include "WeaponManagerSystem.h"
+#include "ressource.h"
 
 #include <irrlicht.h>
 #include <CEGUI\CEGUI.h>
@@ -46,10 +47,19 @@ GraphicUtil::~GraphicUtil()
 
 void GraphicUtil::initGraphics()
 {
+	//Cursor
 	m_device->getCursorControl()->setVisible(false);
-	m_sceneManager->getParameters()->setAttribute(irr::scene::OBJ_TEXTURE_PATH, "media/"); //TODO: Define Texture's Path
+
+	//Texture obj path
+	m_sceneManager->getParameters()->setAttribute(irr::scene::OBJ_TEXTURE_PATH, "media/");
+
+	//Event Reveiver
 	m_device->setEventReceiver(&m_receiver);
 
+	//Target
+
+
+	//Gui
 	CEGUI::IrrlichtRenderer& renderer = CEGUI::IrrlichtRenderer::create(*m_device);
 	CEGUI::System& system = CEGUI::System::create(renderer);
 	CEGUI::XMLParser* parser;
@@ -58,9 +68,10 @@ void GraphicUtil::initGraphics()
 	rp = dynamic_cast<CEGUI::DefaultResourceProvider *>(CEGUI::System::getSingleton().getResourceProvider());
 	if (rp == nullptr)
 	{
-		std::cout << "Problem during ressource provider instanciation process..." << std::endl;
-		exit(0);
+		LOG_ERROR(GENERAL) << "Problem during ressource provider instanciation process...";
+		exit(1);
 	}
+
 	rp->setResourceGroupDirectory("schemes", "./datafiles/schemes/");
 	rp->setResourceGroupDirectory("imagesets", "./datafiles/imagesets/");
 	rp->setResourceGroupDirectory("fonts", "./datafiles/fonts/");
@@ -68,20 +79,20 @@ void GraphicUtil::initGraphics()
 	rp->setResourceGroupDirectory("looknfeels", "./datafiles/looknfeel/");
 	rp->setResourceGroupDirectory("lua_scripts", "./datafiles/lua_scripts/");
 
-	// set the default resource groups to be used
 	CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 	CEGUI::Font::setDefaultResourceGroup("fonts");
 	CEGUI::Scheme::setDefaultResourceGroup("schemes");
 	CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
 	CEGUI::WindowManager::setDefaultResourceGroup("layouts");
 	CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
-	// setup default group for validation schemas
+	
 	parser = CEGUI::System::getSingleton().getXMLParser();
 	if (parser->isPropertyPresent("SchemaDefaultResourceGroup"))
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
-	//Chargement des fichiers de police et de configuration de CEGUI
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
+	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14-NoScale.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-10.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");
@@ -90,6 +101,7 @@ void GraphicUtil::initGraphics()
 	CEGUI::SchemeManager::getSingleton().createFromFile("spells.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Circles.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("Eclair.scheme");
+	CEGUI::SchemeManager::getSingleton().createFromFile("MainMenu.scheme");
 
 	m_menu = new MainMenu(*this);
 	m_menuPause = new MenuPause(*this);
@@ -98,12 +110,20 @@ void GraphicUtil::initGraphics()
 	m_salon = new WaitingRoom(*this);
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
+	m_blindFx = new Blind();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
 		this->setFPSCamera();
 		this->setGuiCamera();
 	}
+
+	HINSTANCE hInstance = (HINSTANCE)GetModuleHandle(NULL);
+	HICON hSmallIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(ID_ICON), IMAGE_ICON, 32, 32, LR_DEFAULTCOLOR);
+	irr::video::SExposedVideoData exposedData = m_driver->getExposedVideoData();
+	HWND hWnd = reinterpret_cast<HWND>(exposedData.D3D9.HWnd);
+	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (long)hSmallIcon);
+
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
@@ -220,6 +240,11 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 	return m_driver;
 }
 
+Blind* GraphicUtil::getBlindFx()
+{
+	return m_blindFx;
+}
+
 void GraphicUtil::setGuiCamera()
 {
 	m_isInFPSMode = false;
@@ -237,8 +262,10 @@ void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
 
+	std::srand(std::time(nullptr));
+
 	ecs::Position cameraPosition(
-		irr::core::vector3df(50.0f, 50.0f, -60.0f),
+		irr::core::vector3df(50.0f + (std::rand() % 50) + 20, 50.0f, -60.0f),
 		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
 
 	if (m_sceneManager->getActiveCamera())
@@ -251,7 +278,6 @@ void GraphicUtil::setFPSCamera()
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 	m_FPSCamera->init();
 
-	PlayerManager::getInstance().initPlayersWeapons();
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
@@ -260,4 +286,5 @@ void GraphicUtil::setFPSCamera()
 		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
 	}
 	m_isInFPSMode = true;
+	PlayerManager::getInstance().initPlayersWeapons();
 }

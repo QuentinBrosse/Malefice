@@ -4,13 +4,15 @@
         <Item path="imagesets/Circles.imageset" type="file" />
         <Item path="imagesets/Eclair.imageset" type="file" />
         <Item path="layouts/InGameGUI.layout" type="file" />
+        <Item path="imagesets/MainMenu.imageset" type="file" />
         <Item path="layouts/WaitingRoom.layout" type="file" />
+        <Item path="layouts/blind.layout" type="file" />
         <Item path="layouts/connectWindows.layout" type="file" />
         <Item path="layouts/connectionToServer.layout" type="file" />
         <Item path="layouts/mainMenu.layout" type="file" />
+        <Item path="layouts/masterList.layout" type="file" />
         <Item path="layouts/menuPause.layout" type="file" />
         <Item path="layouts/options.layout" type="file" />
         <Item path="imagesets/spells.imageset" type="file" />
-        <Item path="layouts/masterList.layout" type="file" />
     </Items>
 </Project>

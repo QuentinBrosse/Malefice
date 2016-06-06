@@ -31,10 +31,12 @@ public:
 	void disablePower(int nbr);
 	void setTeam1Score(int nbr);
 	void setTeam2Score(int nbr);
+	void setPredatorScore(int nbr);
 	void setBulletsNbr(unsigned int nbr);
 	const bool isActive() const;
 	void displayNotification(const std::string &, unsigned long = 3);
 	void refreshEventDisplay();
+	void setPowerVisible(int, bool);
 
 private:
 	CEGUI::Window* m_hud;
@@ -48,6 +50,7 @@ private:
 	CEGUI::Window* m_power4;
 	CEGUI::Window* m_team1Score;
 	CEGUI::Window* m_team2Score;
+	CEGUI::Window* m_predatorScore;
 	CEGUI::Window* m_bullets;
 	CEGUI::Window* m_armors;
 	CEGUI::Listbox* m_eventNotifier;

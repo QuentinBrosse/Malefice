@@ -2,7 +2,12 @@
 #include "ClientCore.h"
 #include "PlayerFactory.h"
 #include "PositionSystem.h"
+#include "PlayerInfos.h"
 #include "WeaponManagerSystem.h"
+#include "SpellManagerSystem.h"
+#include "WeaponManager.h"
+#include "GraphicUtil.h"
+#include "SceneAnimatedMesh.h"
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
@@ -13,14 +18,10 @@ void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
 
 	EntityManager::addEntity(owner, localEntity, rpc);
+
 	if (ClientCore::getInstance().getClientId() == owner)
 	{
 		this->setCurrentPlayer(localEntity);
-	/*	GraphicUtil::getInstance().getDevice()->setEventReceiver(dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]));
-		irr::IEventReceiver* sex = dynamic_cast<irr::IEventReceiver*>((*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER]);
-		(*localEntity)[ecs::AComponent::ComponentType::GAME_EVENT_RECEIVER] = new ecs::GameEventReceiver();
-		irr::IEventReceiver* bite =  GraphicUtil::getInstance().getDevice()->getEventReceiver();
-		bite = bite;*/
 	}
 }
 
@@ -28,8 +29,10 @@ void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 {
 	EntityManager::updateEntity(owner, entity, rpc);
 
-	for (auto& pair : m_entities)		
-		ecs::PositionSystem::initScenePosition(*pair.second);
+	for (auto& pair : m_entities)
+	{
+		ecs::PositionSystem::updateScenePosition(*pair.second);
+	}
 }
 
 void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
@@ -51,13 +54,17 @@ void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 	}
 }
 
-
 void PlayerManager::initPlayersScene()
 {
+	irr::IrrlichtDevice* device = GraphicUtil::getInstance().getDevice();
+
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
 		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
-		ecs::PositionSystem::initScenePosition(*it->second);
+		ecs::PositionSystem::updateScenePosition(*it->second);
+
+		ecs::SceneAnimatedMesh* parent = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+		PlayerFactory::initNicknameNode(it->second, device, parent->getNode());
 	}
 }
 
@@ -65,10 +72,20 @@ void PlayerManager::initPlayersWeapons()
 {
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		if (ClientCore::getInstance().getClientId() == it->first)
-			ecs::WeaponManagerSystem::initFPSWeapon(*it->second);
+		if (dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM])->getTeam() == ecs::Team::TeamType::Predator)
+		{
+			if (ClientCore::getInstance().getClientId() == it->first)
+				ecs::SpellManagerSystem::initFPSScene(*it->second);
+			else
+				ecs::SpellManagerSystem::initExternalScene(*it->second);
+		}
 		else
-			ecs::WeaponManagerSystem::initExternalWeapon(*it->second);
+		{
+			if (ClientCore::getInstance().getClientId() == it->first)
+				ecs::WeaponManagerSystem::initFPSWeapon(*it->second);
+			else
+				ecs::WeaponManagerSystem::initExternalWeapon(*it->second);
+		}
 	}
 }
 
@@ -85,4 +102,43 @@ void PlayerManager::setCurrentPlayer(ecs::Entity * localPlayer)
 const std::map<ecs::ClientId, ecs::Entity*> &PlayerManager::getEntities() const
 {
 	return m_entities;
+}
+
+int				PlayerManager::getTeam1Score()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team1)
+			score += team->getKills();
+	}
+	return score;
+}
+
+int				PlayerManager::getTeam2Score()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team2)
+			score += team->getKills();
+	}
+	return score;
+}
+
+int				PlayerManager::getPredatorScore()
+{
+	int			score = 0;
+
+	for (auto &entity : m_entities)
+	{
+		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Predator)
+			score += team->getKills();
+	}
+	return score;
 }

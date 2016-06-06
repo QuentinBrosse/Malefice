@@ -1,9 +1,11 @@
 #include "MasterList.h"
 #include "GraphicUtil.h"
+#include "Audio.h"
 
 MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicUtils(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("masterList.layout");
+	m_windows->setName("MasterList");
 	m_manualConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(1));
 	m_autoConnect = dynamic_cast<CEGUI::PushButton *>(m_windows->getChild(2));
 	m_serverList = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(33));
@@ -13,6 +15,11 @@ MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton(
 	m_frameWindow->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onCloseButtonClicked, this));
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonClicked, this));
+
+	m_frameWindow->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onCloseButtonEnterArea, this));
+	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonEnterArea, this));
+	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonEnterArea, this));
+
 }
 
 void MasterList::display()
@@ -57,15 +64,17 @@ void MasterList::resetList()
 	m_serverList->resetList();
 }
 
-bool MasterList::onManualConnectButtonClicked()
+bool MasterList::onManualConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	m_graphicUtils.getConnectWindow()->display();
 	return (true);
 }
 
-bool MasterList::onAutoConnectButtonClicked()
+bool MasterList::onAutoConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	CEGUI::ListboxItem* item = m_serverList->getFirstSelectedItem();
 	if (item != nullptr && item->getUserData() != nullptr)
 	{
@@ -78,8 +87,9 @@ bool MasterList::onAutoConnectButtonClicked()
 	return (true);
 }
 
-bool MasterList::onCloseButtonClicked()
+bool MasterList::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	return (true);
 }
@@ -112,4 +122,22 @@ const std::string& MasterList::Server::getPort() const
 bool MasterList::Server::hasPassword() const
 {
 	return m_password;
+}
+
+bool MasterList::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
+}
+
+bool MasterList::onManualConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
+}
+
+bool MasterList::onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
 }

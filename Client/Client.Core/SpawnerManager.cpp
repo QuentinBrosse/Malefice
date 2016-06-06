@@ -38,7 +38,9 @@ void	SpawnerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakN
 	EntityManager::updateEntity(owner, entity, rpc);
 
 	for (auto& pair : m_entities)
-		ecs::PositionSystem::initScenePosition(*pair.second);
+	{
+		ecs::PositionSystem::updateScenePosition(*pair.second);
+	}
 }
 
 void	SpawnerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
@@ -62,9 +64,12 @@ void	SpawnerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
 
 void SpawnerManager::initSpawnersScene()
 {
+	irr::IrrlichtDevice* device = GraphicUtil::getInstance().getDevice();
+
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		ecs::PositionSystem::initScenePosition(*it->second);
+		SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + dynamic_cast<ecs::Weapon*>((*it->second)[ecs::AComponent::ComponentType::WEAPON])->getMeshName()).c_str(), *it->second);
+		ecs::PositionSystem::updateScenePosition(*it->second);
 	}
 }
 
@@ -130,6 +135,8 @@ void SpawnerManager::collisionDetection(ecs::Entity& entity)
 			pickObject(spawn.second, &entity);
 		}
 	}
+
+	std::cout << dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getWeapons().size() << std::endl;
 }
 
 void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
@@ -152,7 +159,7 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
 		{
 			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
-			(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
+			//(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
 		}
 	}
 }

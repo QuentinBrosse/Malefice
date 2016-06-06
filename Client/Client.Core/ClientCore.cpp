@@ -19,6 +19,10 @@
 #include "TimeUtility.h"
 #include "Armor.h"
 #include "MasterList.h"
+#include "Target.h"
+#include "SpellSystem.h"
+
+ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_spawnerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -44,10 +48,10 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-
 	}
 	else
 	{
+		m_graphicModule->getMenuPause()->activate(true);
 		m_graphicModule->setFPSCamera();
 		createEntities();
 		startGame(0);
@@ -69,6 +73,7 @@ bool	ClientCore::init()
 		return false;
 	}
 	m_graphicModule = &GraphicUtil::getInstance();
+	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_spawnerManager = &SpawnerManager::getInstance();
 	m_masterList = &MasterListNetwork::getInstance();
@@ -85,12 +90,6 @@ bool	ClientCore::init()
 
 		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
 	}
-
-	m_masterList->fetch();
-	m_graphicModule->getHUD()->displayNotification("Oklm...", 30);
-	m_graphicModule->getHUD()->displayNotification("Un lama ! Un lamastico !!!", 33);
-	m_graphicModule->getHUD()->displayNotification("Une notification !", 40);
-	m_graphicModule->getHUD()->displayNotification("Une autre !", 42);
 }
 
 void	ClientCore::pulse()
@@ -107,6 +106,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getConnectWindow()->checkConnectionStatus();
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 		m_graphicModule->getHUD()->refreshEventDisplay();
+		m_graphicModule->getBlindFx()->refresh();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
@@ -114,7 +114,8 @@ void	ClientCore::pulse()
 			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
-			m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
+			if (weaponManager)
+				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
 			if (life != nullptr)
 				m_graphicModule->getHUD()->setHealthPoint(life->get());
 			else
@@ -123,6 +124,10 @@ void	ClientCore::pulse()
 				m_graphicModule->getHUD()->setArmorPoint(armor->get());
 			else
 				m_graphicModule->getHUD()->setArmorPoint(0);
+
+			m_graphicModule->getHUD()->setTeam1Score(m_playerManager->getTeam1Score());
+			m_graphicModule->getHUD()->setTeam2Score(m_playerManager->getTeam2Score());
+			m_graphicModule->getHUD()->setPredatorScore(m_playerManager->getPredatorScore());
 		}
 		auto begin = std::chrono::high_resolution_clock::now();
 		float elapsed = fpTime(begin - m_lastTime).count();
@@ -133,12 +138,15 @@ void	ClientCore::pulse()
 			(*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE] != nullptr &&
 			dynamic_cast<ecs::AScene*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::SCENE])->getNode() != nullptr)
 		{
+			Target::getInstance().refresh();
+			Audio::getInstance().refreshListenerPosition(GraphicUtil::getInstance().getFPSCamera()->getPositionTarget());
 			ecs::PositionSystem::update(*m_playerManager->getCurrentPlayer());
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
-	//		m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
+			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
+			m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
+			std::cout << dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getCurrentWeapon().getName() << std::endl;
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
-	//	m_graphicModule->getDriver()->setTransform(irr::video::ETS_WORLD, irr::core::IdentityMatrix);
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene
 		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
 		m_graphicModule->CEGUIEventInjector();
@@ -152,25 +160,20 @@ void ClientCore::createEntities()
 {
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
-	ecs::PositionSystem::initScenePosition(*m_map);
+	ecs::PositionSystem::updateScenePosition(*m_map);
 	if (ProjectGlobals::NO_MENU)
 	{
 		//Weapon Spawner
 		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));
 		ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(GraphicUtil::getInstance().getDevice(), spawnPosition1, 18);
 		m_spawnerManager->addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1, nullptr);
-		ecs::PositionSystem::initScenePosition(*spawnerWeapon1);
+		//ecs::PositionSystem::initScenePosition(*spawnerWeapon1);
 
 		//Player 1
 		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1, 100);
-		ecs::PositionSystem::initScenePosition(*m_player);
+		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1);
+		ecs::PositionSystem::updateScenePosition(*m_player);
 		m_playerManager->setCurrentPlayer(m_player);
-
-		//Player 2
-		ecs::Position playerPosition2(irr::core::vector3df(10, 13, 10), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player_ia = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition2, ecs::Team::TeamType::Team1, 100);
-		ecs::PositionSystem::initScenePosition(*m_player_ia);
 
 		m_playerManager->initPlayersWeapons();
 	}
@@ -248,13 +251,19 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();
 	m_playerManager->initPlayersScene();
-//	m_spawnerManager->initSpawnersScene();
+	m_spawnerManager->initSpawnersScene();
 	m_graphicModule->setFPSCamera();
 	m_graphicModule->getHUD()->timerStart();
 	ClientCore::getInstance().createEntities();
-	m_playerManager->initPlayersWeapons();
 	LOG_INFO(GENERAL) << "Starting game.";
+}
+
+void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::RPC3* rpc)
+{
+	LOG_DEBUG(GENERAL) << "Message received";
+	m_graphicModule->getHUD()->displayNotification(str.C_String(), time);
 }

@@ -1,10 +1,12 @@
 #include "ConnectWindow.h"
 #include "ClientCore.h"
+#include "Audio.h"
 
 ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_windows(nullptr), m_ip(nullptr), m_port(nullptr), m_systemd(CEGUI::System::getSingleton()), m_frameWindows(nullptr), m_ipStr(""), m_portStr(""), m_graphicUtils(gu), m_enableConnectStatusCheck(false), m_isConnected(false)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("connectWindows.layout");
+	m_windows->setName("connectWindows");
 	try
 	{
 		m_frameWindows = dynamic_cast<CEGUI::FrameWindow *>(m_windows);
@@ -23,6 +25,9 @@ ConnectWindow::ConnectWindow(GraphicUtil &gu) :
 	m_pseudo = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(52));
 	m_password = dynamic_cast<CEGUI::Editbox *>(m_windows->getChild(53));
 	m_connectionStatus = m_windows->getChild(60);
+
+	m_frameWindows->getCloseButton()->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&ConnectWindow::onCloseButtonEnterArea, this));
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&ConnectWindow::onConnectButtonEnterArea, this));
 }
 
 void ConnectWindow::display()
@@ -50,12 +55,14 @@ void ConnectWindow::hide()
 
 bool ConnectWindow::onCloseButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	this->hide();
 	return (true);
 }
 
 bool ConnectWindow::onConnectButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_PRESS);
 	if (this->getIPEditBox().length() > 0 && this->getPortEditBox().length() > 0)
 	{
 		m_connectionStatus->setText("Connection en cour...");
@@ -129,4 +136,16 @@ void ConnectWindow::setPort(const std::string &port)
 {
 	m_portStr = port;
 	m_port->setText(port);
+}
+
+bool ConnectWindow::onCloseButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
+}
+
+bool ConnectWindow::onConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
 }

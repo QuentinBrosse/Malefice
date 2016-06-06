@@ -13,8 +13,22 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
+			irr::scene::ISceneNode* parent = weaponManager->getCurrentWeapon().getScene()->getNode()->getParent();
+			irr::core::vector3df pos = weaponManager->getCurrentWeapon().getScene()->getNode()->getPosition();
+
 			weaponManager->changeToNextWeapon();
-			// TODO: send msg to server
+			if (!weaponManager->getCurrentWeapon().getScene())
+			{
+				weaponManager->getCurrentWeapon().createScene(GraphicUtil::getInstance().getDevice(), dynamic_cast<ecs::SceneAnimatedMesh*>((player)[ecs::AComponent::ComponentType::SCENE])->getNode(), true);
+				weaponManager->getCurrentWeapon().getScene()->getNode()->setParent(parent);
+				weaponManager->getCurrentWeapon().getScene()->setPosition(ecs::Position(pos, irr::core::vector3df(0, 0, 0), irr::core::vector3df(20.F, 20.F, 15.F)));
+			}
+			if (weaponManager->getWeapons().size() > 1)
+			{
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
+			}
+			Sleep(25);
+			PositionSystem::updateScenePosition(player);
 		}
 	}
 
@@ -24,8 +38,22 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
+			irr::scene::ISceneNode* parent = weaponManager->getCurrentWeapon().getScene()->getNode()->getParent();
+			irr::core::vector3df pos = weaponManager->getCurrentWeapon().getScene()->getNode()->getPosition();
+
 			weaponManager->changeToPrecWeapon();
-			// TODO: send msg to server
+			if (!weaponManager->getCurrentWeapon().getScene())
+			{
+				weaponManager->getCurrentWeapon().createScene(GraphicUtil::getInstance().getDevice(), dynamic_cast<ecs::SceneAnimatedMesh*>((player)[ecs::AComponent::ComponentType::SCENE])->getNode(), true);
+				weaponManager->getCurrentWeapon().getScene()->getNode()->setParent(parent);
+				weaponManager->getCurrentWeapon().getScene()->setPosition(ecs::Position(pos, irr::core::vector3df(0, 0, 0), irr::core::vector3df(20.F, 20.F, 15.F)));
+			}
+			if (weaponManager->getWeapons().size() > 1)
+			{
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
+			}
+			Sleep(25);
+			PositionSystem::updateScenePosition(player);
 		}
 	}
 
@@ -46,7 +74,8 @@ namespace ecs
 			{
 				(*it).second.createScene(graphics.getDevice(), graphics.getDevice()->getSceneManager()->getActiveCamera(), false);
 				scene = (*it).second.getScene();
-
+				if (scene == nullptr) // DEBUG
+					return;
 				scene->setPosition((*it).second.getFPSMetrics());
 			}
 

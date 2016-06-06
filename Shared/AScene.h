@@ -16,6 +16,7 @@ namespace ecs
 			MESH,
 			ANIMATED_MESH,
 			BILLBOARD,
+			BILLBOARD_TEXT,
 			SCENE_COUNT
 		};
 
@@ -38,8 +39,7 @@ namespace ecs
 		void					setNameMesh(const std::string& newNameMesh);
 		void					setPickableFlags(int newPickableFlags);
 		void					setMaterial(irr::video::SMaterial* newMaterial);
-		virtual	void			setPosition(const Position& newPosition) = 0;   // Will set m_node's Position and Rotation
-
+		virtual	void			setPosition(const Position& newPosition) = 0; // Will set m_node's Position and Rotation
 
 		virtual void			dump(std::ostream& os)	const;
 
@@ -47,7 +47,7 @@ namespace ecs
 		virtual void			deserialize(RakNet::BitStream& in);
 
 		virtual AComponent&		affect(const AComponent& rhs) = 0;
-		virtual AComponent*	createCopy(const AComponent* rhs) const = 0;
+		virtual AComponent*		createCopy(const AComponent* rhs) const = 0;
 
 	protected:
 		ecs::AScene::SceneType			m_type;

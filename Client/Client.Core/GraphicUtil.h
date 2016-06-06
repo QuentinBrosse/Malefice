@@ -11,6 +11,7 @@
 #include "WaitingRoom.h"
 #include "InGameGUI.h"
 #include "MasterList.h"
+#include "Blind.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -20,23 +21,24 @@ protected:
 	~GraphicUtil();
 
 public:
-	void	initGraphics();
-	irr::IrrlichtDevice* getDevice();
-	irr::scene::ISceneManager* getSceneManager();
-	Camera* getFPSCamera();
-	EventReceiver& getCEGUIEventReceiver();
-	void CEGUIEventInjector();
-	MainMenu* getMainMenu();
-	irr::video::IVideoDriver* getDriver();
-	void setGuiCamera();
-	MenuPause* getMenuPause();
-	void setFPSCamera();
-	MenuOptions* getMenuOptions();
-	ConnectWindow* getConnectWindow();
-	WaitingRoom* getWaitingRoom();
-	InGameGUI* getHUD();
-	MasterList* getMasterList();
-	bool		isInFPSMode()	const;
+	void						initGraphics();
+	irr::IrrlichtDevice*		getDevice();
+	irr::scene::ISceneManager*	getSceneManager();
+	Camera*						getFPSCamera();
+	EventReceiver&				getCEGUIEventReceiver();
+	void						CEGUIEventInjector();
+	MainMenu*					getMainMenu();
+	irr::video::IVideoDriver*	getDriver();
+	void						setGuiCamera();
+	MenuPause*					getMenuPause();
+	void						setFPSCamera();
+	MenuOptions*				getMenuOptions();
+	ConnectWindow*				getConnectWindow();
+	WaitingRoom*				getWaitingRoom();
+	InGameGUI*					getHUD();
+	Blind*						getBlindFx();
+	MasterList*					getMasterList();
+	bool						isInFPSMode()		const;
 
 private:
 	irr::IrrlichtDevice*		m_device;
@@ -53,5 +55,6 @@ private:
 	WaitingRoom*				m_salon;
 	InGameGUI*					m_hud;
 	MasterList*					m_masterList;
+	Blind*						m_blindFx;
 	bool						m_isInFPSMode;
 };

@@ -30,5 +30,9 @@ const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManage
 const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateEntity";
 
 const std::string	NetworkRPC::WEAPON_SYSTEM_SHOOT	= "WeaponSystem::shoot";
+
+const std::string	NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT = "WeaponManagerSystem::changeToNext";
+const std::string	NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC = "WeaponManagerSystem::changeToPrec";
+
 const std::string	NetworkRPC::SPAWNER_MANAGER_COLLISION_DETECTION = "SpawnerManager::collisionDetection";
 const std::string	NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL	= "SpellSystem::launchSpell";

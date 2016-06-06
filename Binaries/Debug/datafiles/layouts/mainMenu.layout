@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <GUILayout version="4" >
-    <Window type="WindowsLook/Static" name="Static" >
+    <Window type="WindowsLook/StaticImage" name="StaticImage" >
         <Property name="ID" value="42" />
-        <Property name="Area" value="{{0,-2},{0,-1},{0.333854,1291},{0.340741,720}}" />
+        <Property name="Area" value="{{0,0},{0,0},{0,1285},{0,739}}" />
+        <Property name="Image" value="background/Background" />
         <Property name="MaxSize" value="{{1,0},{1,0}}" />
-        <Property name="BackgroundColours" value="tl:96DFDFDF tr:96DFDFDF bl:96DFDFDF br:96DFDFDF" />
-        <Window type="WindowsLook/Button" name="Button" >
-            <Property name="ID" value="1" />
-            <Property name="Area" value="{{0,0},{0,333},{0,151},{0,377}}" />
-            <Property name="Font" value="DejaVuSans-12" />
-            <Property name="Text" value="Options" />
-            <Property name="HorizontalAlignment" value="Centre" />
-        </Window>
-        <Window type="WindowsLook/Button" name="Button2" >
-            <Property name="Area" value="{{0,1},{0,425},{0,152},{0,469}}" />
-            <Property name="Font" value="DejaVuSans-12" />
-            <Property name="Text" value="Quitter" />
-            <Property name="HorizontalAlignment" value="Centre" />
-        </Window>
-        <Window type="WindowsLook/Button" name="Button3" >
+        <Window type="AlfiskoSkin/Button" name="Button4" >
             <Property name="ID" value="2" />
-            <Property name="Area" value="{{0,0},{0,238},{0,151},{0,282}}" />
-            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Area" value="{{0,564},{0,253},{0,719},{0,296}}" />
+            <Property name="Font" value="DejaVuSans-14-NoScale" />
             <Property name="Text" value="Jouer" />
-            <Property name="HorizontalAlignment" value="Centre" />
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button42" >
+            <Property name="Area" value="{{0,557},{0,489},{0,712},{0,532}}" />
+            <Property name="Font" value="DejaVuSans-14-NoScale" />
+            <Property name="Text" value="Quitter" />
+            <Window type="AlfiskoSkin/Button" name="Button4" >
+                <Property name="ID" value="2" />
+                <Property name="Area" value="{{0,564},{0,249},{0,719},{0,292}}" />
+                <Property name="Font" value="DejaVuSans-14-NoScale" />
+                <Property name="Text" value="Jouer" />
+            </Window>
+        </Window>
+        <Window type="AlfiskoSkin/Button" name="Button43" >
+            <Property name="ID" value="1" />
+            <Property name="Area" value="{{0,561},{0,368},{0,716},{0,411}}" />
+            <Property name="Font" value="DejaVuSans-14-NoScale" />
+            <Property name="Text" value="Options" />
         </Window>
     </Window>
 </GUILayout>

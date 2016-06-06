@@ -9,18 +9,26 @@
 SpawnerManager::SpawnerManager() : EntityManager(), NetworkObject(NetworkRPC::ReservedNetworkIds::SpawnerManager)
 {
 	m_inc = 0.F;
-	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0)));
-	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(-10, -50, -10), irr::core::vector3df(0.0, 0.0, 0.0)));
-	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(-10, -50, -150), irr::core::vector3df(0.0, 0.0, 0.0)));
+	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -300), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
+	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -20), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
+	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -150), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
 }
-
-
 
 void SpawnerManager::createEntity(ecs::ClientId owner)
 {
 	for (std::list<ecs::Position>::iterator it = m_spawnPositionsWeapon.begin(); it != m_spawnPositionsWeapon.end(); ++it)
 	{
 		m_entities[owner] = SpawnerFactory::createWeaponSpawner(ServerCore::getInstance().getPhysicsUtil().getDevice(), (*it), owner);
+		irr::core::line3df		line;
+		irr::core::vector3df	endPos;
+
+		line.start = (*it).getVectorPosition();
+
+		endPos = line.start;
+		endPos.X = line.start.X + 15;
+		endPos.Y = line.start.Y + 65;
+		line.end = endPos;
+		m_spawnLine.insert(std::pair<ecs::ClientId, irr::core::line3df>(owner, line));
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), RakNet::UNASSIGNED_NETWORK_ID, true, owner, m_entities[owner]);
 		owner++;
 	}
@@ -64,8 +72,6 @@ void SpawnerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakN
 
 void SpawnerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity)
 {
-	//EntityManager::createEntity(owner);
-
 	irr::core::line3df		line;
 	irr::core::vector3df	endPos;
 
@@ -127,11 +133,11 @@ ecs::Entity* SpawnerManager::seekSpawnerById(ecs::ClientId owner)
 	return(nullptr);
 }
 
-void SpawnerManager::collisionDetection()
+void SpawnerManager::collisionDetection(PlayerManager& playerManager)
 {
 	//VOIR SI LA DETECTION MARCHE, DRAW LES LIGNES !
 	
-	for (auto& player : m_entities)
+	for (auto& player : playerManager.getEntities())
 	{
 		for (auto& spawn : m_entities)
 		{
@@ -184,9 +190,6 @@ void SpawnerManager::drawLine()
 	for (auto& spawn : m_entities)
 	{
 		irr::core::line3df *line = &m_spawnLine[spawn.first];
-		std::cout << "x : " << line->start.X << std::endl;
-		std::cout << "y : " << line->start.Y << std::endl;
-		std::cout << "z : " << line->start.Z << std::endl;
 		irr::video::SMaterial mat;
 		mat.Lighting = false;
 		driver->setMaterial(mat);

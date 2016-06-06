@@ -18,9 +18,13 @@ public:
 	void hide();
 	void addServer(const std::string& ip, const std::string& port, bool hasPassword = false, int players = -1);
 	void resetList();
-	bool onManualConnectButtonClicked();
-	bool onAutoConnectButtonClicked();
-	bool onCloseButtonClicked();
+	bool onManualConnectButtonClicked(const CEGUI::EventArgs& e);
+	bool onAutoConnectButtonClicked(const CEGUI::EventArgs& e);
+	bool onCloseButtonClicked(const CEGUI::EventArgs& e);
+
+	bool onCloseButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onManualConnectButtonEnterArea(const CEGUI::EventArgs& e);
+	bool onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e);
 
 private:
 	CEGUI::System&		m_systemd;

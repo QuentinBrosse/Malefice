@@ -3,8 +3,10 @@
 #include <RPC3.h>
 #include "Entity.h"
 #include "WeaponManager.h"
+#include "RakNetUtility.h"
 #include "Life.h"
 #include "Export.h"
+#include "Line3dWrapper.h"
 
 namespace ecs
 {
@@ -14,6 +16,6 @@ namespace ecs
 		WeaponSystem()	= delete;
 		~WeaponSystem()	= delete;
 
-		static void	shoot(Entity* entity, RakNet::RPC3* rpc);
+		static void	shoot(Entity* entity, Line3dWrapper* rayWrap, RakNet::RPC3* rpc);
 	};
 }

@@ -1,40 +1,31 @@
+// CLIENT VERSION
+
 #include "WeaponSystem.h"
 #include "SceneAnimatedMesh.h"
 #include "GraphicUtil.h"
 #include "ClientCore.h"
+#include "Target.h"
+#include "Line3dWrapper.h"
+#include "Audio.h"
 
 namespace ecs
 {
-	void				WeaponSystem::shoot(Entity& entity)
+	void	WeaponSystem::shoot(Entity& entity)
 	{
 		WeaponManager*		weaponManager;
-		irr::core::line3df	ray;
+		ecs::Position*		playerPosition;
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
+			playerPosition = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
-			ray = WeaponSystem::getRay(weapon);
-			weapon.setRay(ray);
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity);
+			Target::getInstance().refresh();
+
+			if (weapon.mustBeReloaded())
+				Audio::getInstance().play3D(weapon.getAudioReload(), *playerPosition);
+			else
+				Audio::getInstance().play3D(weapon.getAudioShot(), *playerPosition);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
-
-	irr::core::line3df	WeaponSystem::getRay(Weapon& weapon)
-	{
-		irr::core::line3df	ray;
-		Camera*				camera = GraphicUtil::getInstance().getFPSCamera();
-
-		weapon.getScene()->getScene()->updateAbsolutePosition();
-
-		ray.start = weapon.getScene()->getScene()->getAbsolutePosition();
-		ray.end = ray.start + (camera->getTarget() - ray.start).normalize() * weapon.getDistance();
-		ray.start += weapon.getFPSMetricsOffset();
-		irr::core::vector3df vector(ray.end - ray.start);
-		vector.normalize();
-		ray.start += vector * weapon.getFPSMetricsCoefOffset();
-
-
-		return ray;
-	}
-
 }

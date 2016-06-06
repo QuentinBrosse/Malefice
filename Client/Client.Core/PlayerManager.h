@@ -22,6 +22,10 @@ public:
 	void			setCurrentPlayer(ecs::Entity* localPlayer);
 	const std::map<ecs::ClientId, ecs::Entity*> &getEntities() const;
 
+	int				getTeam1Score();
+	int				getTeam2Score();
+	int				getPredatorScore();
+
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;
