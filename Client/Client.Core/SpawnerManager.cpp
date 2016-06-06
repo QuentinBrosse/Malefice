@@ -135,7 +135,6 @@ void SpawnerManager::collisionDetection(ecs::Entity& entity)
 			pickObject(spawn.second, &entity);
 		}
 	}
-
 	std::cout << dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getWeapons().size() << std::endl;
 }
 
@@ -162,6 +161,7 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 			//(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
 		}
 	}
+	dynamic_cast<ecs::AScene*>((*spawner)[ecs::AComponent::ComponentType::SCENE])->getNode()->setVisible(false);
 }
 
 void SpawnerManager::drawLine()

@@ -9,7 +9,6 @@
 
 ecs::Entity* SpawnerFactory::createWeaponSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner)
 {
-	//TODO TTH : Randomiser la mesh weapon
 	int i = rand() % 10;
 	ecs::Entity* entity = ObjectFactory::createObject(position, owner, ecs::Entity::EntityType::WEAPON_SPAWNER);
 	ecs::Weapon* pickweapon = new ecs::Weapon(WeaponCreator::getInstance().create((ecs::Weapon::WeaponType)i));
