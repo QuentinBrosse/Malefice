@@ -9,6 +9,7 @@
         <Item path="layouts/blind.layout" type="file" />
         <Item path="layouts/connectWindows.layout" type="file" />
         <Item path="layouts/connectionToServer.layout" type="file" />
+        <Item path="layouts/dead.layout" type="file" />
         <Item path="layouts/mainMenu.layout" type="file" />
         <Item path="layouts/masterList.layout" type="file" />
         <Item path="layouts/menuPause.layout" type="file" />

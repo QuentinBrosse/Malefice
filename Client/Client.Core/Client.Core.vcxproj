@@ -40,6 +40,7 @@
     <ClInclude Include="WaitingRoom.h" />
     <ClInclude Include="WeaponManagerSystem.h" />
     <ClInclude Include="WeaponSystem.h" />
+    <ClInclude Include="YourDead.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
@@ -71,6 +72,7 @@
     <ClCompile Include="WaitingRoom.cpp" />
     <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponSystem.cpp" />
+    <ClCompile Include="YourDead.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

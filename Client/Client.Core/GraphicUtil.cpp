@@ -112,6 +112,7 @@ void GraphicUtil::initGraphics()
 	m_masterList = new MasterList(*this);
 	m_blindFx = new Blind();
 	m_touchedFx = new TouchedFx();
+	m_deadGUI = new YourDead();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -229,6 +230,11 @@ bool GraphicUtil::isInFPSMode() const
 InGameGUI* GraphicUtil::getHUD()
 {
 	return m_hud;
+}
+
+YourDead* GraphicUtil::getDeadGUI()
+{
+	return m_deadGUI;
 }
 
 TouchedFx* GraphicUtil::getTouchedFx()

@@ -132,6 +132,9 @@
     <ClInclude Include="TouchedFx.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="YourDead.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainMenu.cpp">
@@ -219,6 +222,9 @@
       <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="TouchedFx.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="YourDead.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
