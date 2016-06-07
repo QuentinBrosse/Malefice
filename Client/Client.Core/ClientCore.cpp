@@ -144,6 +144,7 @@ void	ClientCore::pulse()
 			ecs::EventSystem::doEvents(*m_playerManager->getCurrentPlayer());
 			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
 			m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
+			m_playerManager->initPlayersWeapons();
 			std::cout << dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getCurrentWeapon().getName() << std::endl;
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));

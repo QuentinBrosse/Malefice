@@ -63,9 +63,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -73,9 +73,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -86,19 +86,19 @@
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>7.0</x>
+				<y>20.0</y>
+				<z>-1.0</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
-				<y>0.0</y>
+				<y>90.0</y>
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>200.0</x>
+				<y>150.0</y>
+				<z>150.0</z>
 			</scale>
 		</ExternalMetrics>
 	</weapon>
@@ -119,9 +119,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -129,9 +129,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -142,19 +142,19 @@
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>7.0</x>
+				<y>20.0</y>
+				<z>-1.0</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
-				<y>0.0</y>
+				<y>90.0</y>
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>200.0</x>
+				<y>150.0</y>
+				<z>150.0</z>
 			</scale>
 		</ExternalMetrics>
 	</weapon>
@@ -231,9 +231,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -241,9 +241,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -254,19 +254,19 @@
 		</FPSMetrics>
 		<ExternalMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>7.0</x>
+				<y>20.0</y>
+				<z>-1.0</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
-				<y>0.0</y>
+				<y>90.0</y>
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>200.0</x>
+				<y>150.0</y>
+				<z>150.0</z>
 			</scale>
 		</ExternalMetrics>
 	</weapon>
@@ -287,9 +287,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -297,9 +297,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -343,9 +343,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -353,9 +353,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -399,9 +399,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -409,9 +409,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -455,9 +455,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -465,9 +465,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -511,9 +511,9 @@
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -521,9 +521,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>

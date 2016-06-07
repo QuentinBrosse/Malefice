@@ -16,7 +16,6 @@ namespace ecs
 	{
 		Position*		position;
 		AScene*			scene;
-		WeaponManager*	weaponManager;
 
 		if ((position = dynamic_cast<Position*>(entity[ecs::AComponent::ComponentType::POSITION])) != nullptr && (scene = dynamic_cast<AScene*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
@@ -40,9 +39,6 @@ namespace ecs
 
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::PlayerManager), entity.getOwner(), &entity);
 		}
-
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])))
-			weaponManager->getCurrentWeapon().setActivity(true);
 	}
 
 	void PositionSystem::updateScenePosition(Entity& entity)
