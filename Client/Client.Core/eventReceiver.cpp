@@ -16,15 +16,14 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 	{
 		switch (event.MouseInput.Event)
 		{
+
 		case irr::EMIE_LMOUSE_PRESSED_DOWN:
+			m_events.push(EventReceiver::GameEventType::LEFT_ATTACK);
 			m_state.leftButtonDown = true;
 			break;
 
 		case irr::EMIE_LMOUSE_LEFT_UP:
-			if (GraphicUtil::getInstance().isInFPSMode())
-				m_events.push(EventReceiver::GameEventType::LEFT_ATTACK);
-			else
-				m_state.leftButtonDown = false;
+			m_state.leftButtonDown = false;
 			break;
 
 		case irr::EMIE_MOUSE_MOVED:

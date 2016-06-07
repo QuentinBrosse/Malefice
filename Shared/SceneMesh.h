@@ -20,7 +20,7 @@ namespace ecs
 
 		virtual AComponent&		affect(const AComponent& rhs);
 
-		void					setCollision();
+		void					setCollision(bool gratity);
 
 		virtual	void	dump(std::ostream& os)	const;
 
