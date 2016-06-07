@@ -84,6 +84,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC.c_str(), &ecs::WeaponManagerSystem::changeToPrec);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str(), &ecs::WeaponSystem::shoot);
 	m_rpc.RegisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str(), &ecs::SpellSystem::launchSpell);
+	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
 }
 
 void	NetworkModule::unregisterRPCs()
@@ -94,6 +95,7 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY.c_str());
 }
 
 

@@ -6,7 +6,6 @@
 
 namespace ecs
 {
-
 	void WeaponManagerSystem::changeToNext(Entity& player)
 	{
 		WeaponManager*	weaponManager;
@@ -19,7 +18,7 @@ namespace ecs
 			weaponManager->changeToNextWeapon();
 			if (!weaponManager->getCurrentWeapon().getScene())
 			{
-				weaponManager->getCurrentWeapon().createScene(GraphicUtil::getInstance().getDevice(), dynamic_cast<ecs::SceneAnimatedMesh*>((player)[ecs::AComponent::ComponentType::SCENE])->getNode(), true);
+				weaponManager->getCurrentWeapon().createScene(GraphicUtil::getInstance().getDevice(), nullptr, true);
 				weaponManager->getCurrentWeapon().getScene()->getNode()->setParent(parent);
 				weaponManager->getCurrentWeapon().getScene()->setPosition(ecs::Position(pos, irr::core::vector3df(0, 0, 0), irr::core::vector3df(20.F, 20.F, 15.F)));
 			}

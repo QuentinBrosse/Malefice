@@ -54,12 +54,12 @@
 		<distance sight="true">1000.0</distance>
 		<precision>0.0</precision>
 		<ammunitionsTotal>40</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip> 
+		<ammunitionsClip>3</ammunitionsClip> 
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
-		<damage>60</damage>
+		<damage>6</damage>
 		<reloadTime>5</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>sniper_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>

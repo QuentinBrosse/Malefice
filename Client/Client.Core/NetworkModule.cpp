@@ -106,6 +106,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str(), &SpawnerManager::addEntity);
 	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str(), &SpawnerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str(), &SpawnerManager::removeEntity);
+	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
 	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
 	m_rpc.RegisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str(), &ecs::WeaponSystem::triggerShootActions);
 }
@@ -121,6 +122,7 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str());
+	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str());
 }

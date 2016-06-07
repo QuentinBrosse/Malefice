@@ -50,6 +50,9 @@ public:
 public:
 	void dump() const;
 
+public:
+	void	setSpawnerVisibility(ecs::Entity* player, const bool isVisible, RakNet::RPC3* rpc);
+
 private:
 	std::map<ecs::ClientId, irr::core::line3df> m_spawnLine;
 	float	m_inc;

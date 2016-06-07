@@ -49,6 +49,8 @@ public:
 	void drawLine();
 	void dump() const;
 
+	void setSpawnerVisibility(ecs::Entity* spawner, const bool isVisible, RakNet::RPC3* rpc);
+
 private:
 	std::map<ecs::ClientId, irr::core::line3df> m_spawnLine;
 	std::list<ecs::Position>				m_spawnPositionsWeapon;

@@ -3,7 +3,7 @@
 #include "Life.h"
 #include "Weapon.h"
 #include "Armor.h"
-
+#include "ClientCore.h"
 //Client Side
 
 SpawnerManager::SpawnerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::SpawnerManager)
@@ -172,8 +172,10 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 		{
 			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
 		}
+		else
+			return;
 	}
-	dynamic_cast<ecs::AScene*>((*spawner)[ecs::AComponent::ComponentType::SCENE])->getNode()->setVisible(false);
+	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), spawner, false);
 }
 
 void SpawnerManager::drawLine()
@@ -201,4 +203,10 @@ std::map<ecs::ClientId, ecs::Entity*> SpawnerManager::getSpawners() const
 void SpawnerManager::dump() const
 {
 	return;
+}
+
+void SpawnerManager::setSpawnerVisibility(ecs::Entity* player, const bool isVisible, RakNet::RPC3* rpc)
+{
+	ecs::Entity* entity = m_entities[player->getOwner()];
+	dynamic_cast<ecs::SceneAnimatedMesh*>((*entity)[ecs::AComponent::ComponentType::SCENE])->getNode()->setVisible(isVisible);
 }
