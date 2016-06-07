@@ -52,6 +52,7 @@ namespace ecs
 					Audio::getInstance().setIsDeaf(false);
 					break;
 				case ecs::Spell::PARKINSON:
+					Target::getInstance().setIsTrembling(false);
 					break;
 				case ecs::Spell::SLOW:
 					break;
@@ -75,6 +76,7 @@ namespace ecs
 					Audio::getInstance().setIsDeaf(true);
 					break;
 				case ecs::Spell::PARKINSON:
+					Target::getInstance().setIsTrembling(true);
 					break;
 				case ecs::Spell::SLOW:
 					break;

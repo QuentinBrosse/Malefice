@@ -22,7 +22,7 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	position->setVectorScale(irr::core::vector3df(1.0F, 1.0F, 1.0F));*/
 
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::LIFE_SYSTEM_DIE,
-		static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore),
+		static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem),
 		dead->getOwner(),
 		false);
 
