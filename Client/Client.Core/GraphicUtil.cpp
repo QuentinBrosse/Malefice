@@ -111,6 +111,7 @@ void GraphicUtil::initGraphics()
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
 	m_blindFx = new Blind();
+	m_touchedFx = new TouchedFx();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -228,6 +229,11 @@ bool GraphicUtil::isInFPSMode() const
 InGameGUI* GraphicUtil::getHUD()
 {
 	return m_hud;
+}
+
+TouchedFx* GraphicUtil::getTouchedFx()
+{
+	return m_touchedFx;
 }
 
 WaitingRoom* GraphicUtil::getWaitingRoom()
