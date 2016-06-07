@@ -42,7 +42,6 @@ GraphicUtil::~GraphicUtil()
 {
 	if(m_FPSCamera)
 		delete (m_FPSCamera);
-	// Delete all?
 }
 
 void GraphicUtil::initGraphics()
