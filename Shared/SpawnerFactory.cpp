@@ -26,15 +26,28 @@ ecs::Entity* SpawnerFactory::createLifeSpawner(irr::IrrlichtDevice* device, cons
 	//TODO TTH : 3 mesh de coeur différent à faire
 	int i = rand() % 10 + 1;
 	ecs::Entity* entity = ObjectFactory::createObject(position, owner, ecs::Entity::EntityType::LIFE_SPAWNER);
-	(*entity)[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, "", std::string(std::string("weapons/models/") + std::string("flamethrowerhandle.obj")).c_str(), nodePickable::IS_PICKABLE, true, false, 0);
+	ecs::SceneAnimatedMesh* scene;
 
 	if (i <= 5)
+	{
+		scene = new ecs::SceneAnimatedMesh(device, nullptr, "", std::string(std::string("weapons/models/") + std::string("heart.obj")).c_str(), nodePickable::IS_PICKABLE, true, false, 0);
+		(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
 		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(20, ecs::AComponent::ComponentType::LIFE);
+	
+	}
 	else if (i >= 6 && i <= 8)
+	{
+		scene = new ecs::SceneAnimatedMesh(device, nullptr, "", std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), nodePickable::IS_PICKABLE, true, false, 0);
+		(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
 		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(40, ecs::AComponent::ComponentType::LIFE);
+	}
 	else
+	{
+		scene = new ecs::SceneAnimatedMesh(device, nullptr, "", std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), nodePickable::IS_PICKABLE, true, false, 0);
+		(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
 		(*entity)[ecs::AComponent::ComponentType::LIFE] = new ecs::Life(100, ecs::AComponent::ComponentType::LIFE);
-
+	}
+	scene->getNode()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	return entity;
 }
 
@@ -54,7 +67,7 @@ ecs::Entity* SpawnerFactory::createSpellSpawner(irr::IrrlichtDevice* device, con
 
 void SpawnerFactory::initScene(irr::IrrlichtDevice* device, const std::string& newNameMesh, ecs::Entity& entity)
 {
-	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, "", newNameMesh, (nodePickable::NOT_PICKABLE), true, true, 0);
+	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, "", newNameMesh, nodePickable::NOT_PICKABLE, true, true, 0);
 	scene->getNode()->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	entity[ecs::AComponent::ComponentType::SCENE] = scene;
 }

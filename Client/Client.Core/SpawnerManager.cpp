@@ -68,7 +68,19 @@ void SpawnerManager::initSpawnersScene()
 
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + dynamic_cast<ecs::Weapon*>((*it->second)[ecs::AComponent::ComponentType::WEAPON])->getMeshName()).c_str(), *it->second);
+		if (it->second->getEntityType() == ecs::Entity::EntityType::WEAPON_SPAWNER)
+		{
+			SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + dynamic_cast<ecs::Weapon*>((*it->second)[ecs::AComponent::ComponentType::WEAPON])->getMeshName()).c_str(), *it->second);
+		}
+		else if (it->second->getEntityType() == ecs::Entity::EntityType::LIFE_SPAWNER)
+		{
+			if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 20)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart.obj")).c_str(), *it->second);
+			else if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 40)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
+			else
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
+		}
 		ecs::PositionSystem::updateScenePosition(*it->second);
 	}
 }
@@ -123,6 +135,7 @@ ecs::Entity* SpawnerManager::seekSpawnerById(ecs::ClientId owner)
 
 void SpawnerManager::collisionDetection(ecs::Entity& entity)
 {
+	irr::f32 inc = 0;
 	for (auto& spawn : m_entities)
 	{
 		irr::core::line3df *line = &m_spawnLine[spawn.first];
@@ -158,7 +171,6 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
 		{
 			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
-			//(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
 		}
 	}
 	dynamic_cast<ecs::AScene*>((*spawner)[ecs::AComponent::ComponentType::SCENE])->getNode()->setVisible(false);
