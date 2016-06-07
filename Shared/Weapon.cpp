@@ -156,7 +156,7 @@ namespace ecs
 
 	bool	Weapon::mustBeReloaded() const
 	{
-		return m_ammunitionsClip < m_ammoPerShot;
+		return m_ammoPerShot > m_ammunitionsClip;
 	}
 
 	bool	Weapon::shoot()
