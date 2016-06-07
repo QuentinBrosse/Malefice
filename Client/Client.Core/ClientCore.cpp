@@ -20,6 +20,7 @@
 #include "MasterList.h"
 #include "Target.h"
 #include "SpellSystem.h"
+#include "TouchedFx.h"
 
 ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
 
@@ -47,6 +48,8 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
+		m_graphicModule->getDeadGUI()->display();
+		m_graphicModule->getDeadGUI()->setPseudo("OklmMan");
 	}
 	else
 	{
@@ -105,6 +108,8 @@ void	ClientCore::pulse()
 		m_graphicModule->getWaitingRoom()->checkConnectedPlayers();
 		m_graphicModule->getHUD()->refreshEventDisplay();
 		m_graphicModule->getBlindFx()->refresh();
+		m_graphicModule->getTouchedFx()->refresh();
+		m_graphicModule->getDeadGUI()->refresh();
 
 		if (m_graphicModule->getHUD()->isActive())
 		{
