@@ -16,7 +16,7 @@ namespace ecs
 	}
 
 	Weapon::Weapon(const int id, const std::string& name, const std::string& meshName, WeaponType weaponType, float distance, float precision, unsigned int maxAmmunition, float fireRate, unsigned int ammoPerShot, unsigned int damage, unsigned int reloadTime, const std::string& audioShot, const std::string& audioReload, const Position& fpsMetrics, const irr::core::vector3df fpsMetricsOffset, float fpsMetricsCoefOffset, const Position& externalMetrics, bool sight, unsigned int maxAmunitionsClip) : AComponent("Weapon", ecs::AComponent::ComponentType::WEAPON),
-		m_id(id), m_weaponName(name), m_meshName(meshName), m_maxAmmunitions(maxAmmunition), m_maxAmmunitionsClip(maxAmunitionsClip), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunitions(maxAmmunition), m_ammunitionsClip(maxAmunitionsClip), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_audioShot(audioShot), m_audioReload(audioReload), m_fpsMetrics(fpsMetrics), m_fpsMetricsOffset(fpsMetricsOffset), m_fpsMetricsCoefOffset(fpsMetricsCoefOffset), m_externalMetrics(externalMetrics), m_scene(nullptr)
+		m_id(id), m_weaponName(name), m_meshName(meshName), m_maxAmmunitions(maxAmmunition), m_maxAmmunitionsClip(maxAmunitionsClip), m_damage(damage), m_weaponType(weaponType), m_sight(sight), m_ammunitions(maxAmmunition - maxAmunitionsClip), m_ammunitionsClip(maxAmunitionsClip), m_reloadTime(reloadTime), m_ammoPerShot(ammoPerShot), m_fireRate(fireRate), m_distance(distance), m_audioShot(audioShot), m_audioReload(audioReload), m_fpsMetrics(fpsMetrics), m_fpsMetricsOffset(fpsMetricsOffset), m_fpsMetricsCoefOffset(fpsMetricsCoefOffset), m_externalMetrics(externalMetrics), m_scene(nullptr)
 	{
 
 	}
@@ -42,7 +42,7 @@ namespace ecs
 		m_damage = damage;
 		m_weaponType = weaponType;
 		m_sight = sight;
-		m_ammunitions = maxAmmunitions;
+		m_ammunitions = maxAmmunitions - maxAmunitionsClip;
 		m_ammunitionsClip = maxAmunitionsClip;
 		m_reloadTime = reloadTime;
 		m_ammoPerShot = ammoPerShot;

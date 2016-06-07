@@ -9,6 +9,7 @@
 #include "PlayerInfos.h"
 #include "LifeSystem.h"
 #include "PositionSystem.h"
+#include "Team.h"
 
 namespace ecs
 {
@@ -28,6 +29,7 @@ namespace ecs
 			irr::core::line3df ray = rayWrap->getLine();
 			if (weapon.shoot())
 			{
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity); 
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
@@ -54,7 +56,10 @@ namespace ecs
 								{
 									rest = lifeTarget->takeDamage(rest);
 									if (rest >= 0)
+									{
+										dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])->addKill();
 										LifeSystem::die(player.second);
+									}
 								}
 							}
 							break;
@@ -62,6 +67,8 @@ namespace ecs
 					}
 				}
 			}
+			else
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, false, entity);
 		}
 	}
 }

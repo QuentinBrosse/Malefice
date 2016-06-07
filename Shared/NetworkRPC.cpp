@@ -23,7 +23,7 @@ const std::string	NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY	= "SpawnerManager::r
 
 const std::string	NetworkRPC::LIFE_SYSTEM_DIE	= "LifeSystem::die";
 
-
+const std::string	NetworkRPC::TRIGGER_SHOOT_ACTIONS = "WeaponSystem::triggerShootActions";
 // Server-Side executed
 
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";

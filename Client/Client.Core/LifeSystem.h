@@ -9,5 +9,5 @@ public:
 	LifeSystem()	= delete;
 	~LifeSystem()	= delete;
 
-	static void	die(ecs::Entity* dead, RakNet::RPC3* rpc);
+	static void	die(RakNet::RPC3* rpc);
 };

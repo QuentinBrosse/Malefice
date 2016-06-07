@@ -153,9 +153,6 @@
     <ClCompile Include="NetworkRPC.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
-    <ClCompile Include="RakNetUtility.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="AScene.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
@@ -191,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="SceneBillboardText.cpp">
       <Filter>Source Files\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="RakNetUtility.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

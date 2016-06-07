@@ -12,6 +12,7 @@ Target::Target()
 	m_scene = new ecs::SceneBillboard();
 	m_scene->init(m_graphicUtil->getDevice(), "particle.bmp", false, 0);
 	m_playerManager = &PlayerManager::getInstance();
+	m_isTrembling = false;
 }
 
 Target::~Target()
@@ -21,6 +22,11 @@ Target::~Target()
 const irr::core::line3df& Target::getRay() const
 {
 	return m_ray;
+}
+
+void Target::setIsTrembling(const bool isTrembling)
+{
+	m_isTrembling = isTrembling;
 }
 
 void	Target::refresh()
@@ -44,6 +50,31 @@ void	Target::refresh()
 		vector.normalize();
 		m_ray.start += vector * weapon->getFPSMetricsCoefOffset();
 
+		if (m_isTrembling)
+		{
+			int a = std::rand() % 5;
+			switch (a)
+			{
+			case 0:
+				m_ray.end.X += 15;
+				break;
+			case 1:
+				m_ray.end.X -= 15;
+				break;
+			case 2:
+				m_ray.end.Y += 15;
+				break;
+			case 3:
+				m_ray.end.Y -= 15;
+				break;
+			case 4:
+				m_ray.end.Z += 15;
+				break;
+			case 5:
+				m_ray.end.Z -= 15;
+				break;
+			}
+		}
 		irr::core::vector3df intersection;
 		irr::core::triangle3df hitTriangle;
 		irr::scene::ISceneNode* selectedSceneNode =

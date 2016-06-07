@@ -59,7 +59,7 @@ namespace ecs
 		}
 		int	rest = damage - m_currentLife;
 		m_currentLife -= damage;
-		if (m_currentLife - damage <= 0)
+		if (m_currentLife < 0)
 			m_currentLife = 0;
 		return (rest);
 	}

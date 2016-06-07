@@ -80,3 +80,10 @@ void Camera::loadKey(const ecs::Position& position, irr::scene::ISceneManager* s
 	m_camera->setTarget(irr::core::vector3df(position.getVectorRotation()));
 	init();
 }
+
+void Camera::setPosition(const ecs::Position & newPosition)
+{
+	m_camera->setPosition(newPosition.getVectorPosition());
+	m_camera->setRotation(newPosition.getVectorRotation());
+	m_camera->setScale(newPosition.getVectorScale());
+}

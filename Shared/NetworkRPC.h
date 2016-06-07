@@ -40,6 +40,7 @@ public:
 
 	static const std::string	LIFE_SYSTEM_DIE;
 
+	static const std::string	TRIGGER_SHOOT_ACTIONS;
 
 	// Server-Side executed
 
