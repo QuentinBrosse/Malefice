@@ -48,8 +48,6 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-		m_graphicModule->getDeadGUI()->display();
-		m_graphicModule->getDeadGUI()->setPseudo("OklmMan");
 	}
 	else
 	{
