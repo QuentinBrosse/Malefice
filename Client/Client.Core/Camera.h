@@ -13,13 +13,15 @@ public:
 	Camera(const Camera&) = delete;
 	~Camera();
 
-	ecs::Position			getPosition()		const;
-	ecs::Position			getPositionTarget()	const;
-	irr::core::vector3df	getTarget()			const;
-	void					init();
-	void					loadKey(const ecs::Position& position, irr::scene::ISceneManager* sceneManager, bool normalKey);
+	ecs::Position					getPosition()		const;
+	ecs::Position					getPositionTarget()	const;
+	irr::core::vector3df			getTarget()			const;
+	irr::scene::ICameraSceneNode*	getNode()			const;
 
-	void					setPosition(const ecs::Position& newPosition);
+	void							init();
+	void							loadKey(const ecs::Position& position, irr::scene::ISceneManager* sceneManager, bool normalKey);
+
+	void							setPosition(const ecs::Position& newPosition);
 private:
 	irr::scene::ICameraSceneNode*	m_camera;
 };

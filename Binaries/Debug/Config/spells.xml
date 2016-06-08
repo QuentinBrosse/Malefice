@@ -186,8 +186,8 @@
 	<spell id = "5">
 		<name>Parkinson</name>
 		<type>PARKINSON</type>
-		<cooldown>5</cooldown>
-		<duration>5</duration>
+		<cooldown>20</cooldown>
+		<duration>10</duration>
 		<FPSMetrics>
 			<position>
 				<x>0.0</x>

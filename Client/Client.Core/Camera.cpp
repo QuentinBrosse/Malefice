@@ -29,6 +29,11 @@ irr::core::vector3df Camera::getTarget() const
 	return m_camera->getTarget();
 }
 
+irr::scene::ICameraSceneNode * Camera::getNode() const
+{
+	return m_camera;
+}
+
 void Camera::init()
 {
 	m_camera->setFOV(utility::MathUtility::degreesToRadians(90.f));

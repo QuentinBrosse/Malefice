@@ -36,9 +36,11 @@
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Target.h" />
+    <ClInclude Include="TouchedFx.h" />
     <ClInclude Include="WaitingRoom.h" />
     <ClInclude Include="WeaponManagerSystem.h" />
     <ClInclude Include="WeaponSystem.h" />
+    <ClInclude Include="YourDead.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
@@ -66,9 +68,11 @@
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Target.cpp" />
+    <ClCompile Include="TouchedFx.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
     <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponSystem.cpp" />
+    <ClCompile Include="YourDead.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
