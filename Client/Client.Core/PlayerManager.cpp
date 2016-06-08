@@ -88,8 +88,6 @@ void PlayerManager::initPlayersWeapons()
 		{
 			if (ClientCore::getInstance().getClientId() == it->first)
 				ecs::SpellManagerSystem::initFPSScene(*it->second);
-			else
-				ecs::SpellManagerSystem::initExternalScene(*it->second);
 		}
 		else
 		{

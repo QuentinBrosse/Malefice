@@ -56,7 +56,7 @@ namespace ecs
 					Target::getInstance().setIsTrembling(false);
 					break;
 				case ecs::Spell::SLOW:
-					graphics.getFPSCamera()->setSpeed(0.5f);
+					graphics.getFPSCamera()->setSpeed(0.5f, 100.0f);
 					break;
 				default:
 					break;
@@ -82,7 +82,7 @@ namespace ecs
 					Target::getInstance().setIsTrembling(true);
 					break;
 				case ecs::Spell::SLOW:
-					graphics.getFPSCamera()->setSpeed(0.1f);
+					graphics.getFPSCamera()->setSpeed(0.1f, 50.0f);
 					break;
 				default:
 					break;

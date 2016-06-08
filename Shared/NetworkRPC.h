@@ -48,6 +48,7 @@ public:
 	static const std::string	PLAYER_MANAGER_SERVER_UPDATE_ENTITY;
 	
 	static const std::string	WEAPON_SYSTEM_SHOOT;
+	static const std::string	WEAPON_SYSTEM_RELOAD;
 
 	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_NEXT;
 	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_PREC;

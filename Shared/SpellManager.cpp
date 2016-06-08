@@ -132,12 +132,22 @@ namespace ecs
 	{
 		SceneAnimatedMesh*	scene;
 
+		for (auto& spell : m_spells)
+		{
+			if (spell.second.getScene() != nullptr)
+				continue;
+			spell.second.createScene(device, parent, false);
+			scene = spell.second.getScene();
+			scene->setPosition(spell.second.getFPSMetrics());
+		}
+		if (m_currentSpell != m_spells.end() && !m_weaponsIsCurrent)
+			m_currentSpell->second.setActivity(true);
 		for (auto& weapon : m_weaponManager.getWeapons())
 		{
+			if (weapon.second.getScene() != nullptr)
+				continue;
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
-			if (scene == nullptr) //DEBUG
-				return;
 			scene->setPosition(weapon.second.getFPSMetrics());
 		}
 		//TODO: create spell's scenes

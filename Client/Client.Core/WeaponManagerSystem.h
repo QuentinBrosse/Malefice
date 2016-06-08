@@ -19,7 +19,6 @@ namespace ecs
 		static void initFPSWeapon(Entity& entity);
 		static void initExternalWeapon(Entity& entity);
 		static void	setCurrentWeaponVisibility(Entity& entity);
-		static void reload(Entity& entity);
 	};
 
 }

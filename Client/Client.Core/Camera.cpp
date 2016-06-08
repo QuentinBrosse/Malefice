@@ -93,7 +93,8 @@ void	Camera::setPosition(const ecs::Position & newPosition)
 	m_camera->setScale(newPosition.getVectorScale());
 }
 
-void Camera::setSpeed(const irr::f32 speed)
+void Camera::setSpeed(const irr::f32 speedMove, const irr::f32 speedRotation)
 {
-	m_cameraAnimator->setMoveSpeed(speed);
+	m_cameraAnimator->setMoveSpeed(speedMove);
+	m_cameraAnimator->setRotateSpeed(speedRotation);
 }

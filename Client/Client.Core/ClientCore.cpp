@@ -118,7 +118,7 @@ void	ClientCore::pulse()
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
 			if (weaponManager)
-				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitions());
+				m_graphicModule->getHUD()->setAmoClip(weaponManager->getCurrentWeapon().getAmmunitions());
 			if (weaponManager)
 				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
 			if (life != nullptr)
@@ -150,7 +150,6 @@ void	ClientCore::pulse()
 			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
 			m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
 			m_playerManager->initPlayersWeapons();
-			std::cout << dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getCurrentWeapon().getName() << std::endl;
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll(); //draw scene

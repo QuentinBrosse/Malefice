@@ -23,7 +23,7 @@ public:
 	void							loadInvertKeys();
 	void							setPosition(const ecs::Position& newPosition);
 
-	void							setSpeed(const irr::f32 speed);
+	void							setSpeed(const irr::f32 speedMove, const irr::f32 speedRotation);
 
 private:
 	irr::scene::ICameraSceneNode*				m_camera;

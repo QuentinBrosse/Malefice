@@ -146,7 +146,7 @@ namespace ecs
 		return *this;
 	}
 
-	void Spell::createScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent, const bool active)
+	void Spell::createScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode * parent, const bool active)
 	{
 		if (m_meshName == "") // DEBUG
 			return;

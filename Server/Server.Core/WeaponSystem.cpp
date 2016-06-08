@@ -10,6 +10,7 @@
 #include "LifeSystem.h"
 #include "PositionSystem.h"
 #include "Team.h"
+#include "SpellManager.h"
 
 namespace ecs
 {
@@ -78,5 +79,19 @@ namespace ecs
 			else
 				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 2);
 		}
+	}
+
+	void WeaponSystem::reload(Entity* entityClient, RakNet::RPC3* rpc)
+	{
+		WeaponManager*	weaponManager;
+		SpellManager*	spellManager;
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(entityClient->getOwner());
+
+		*entity = *entityClient;
+		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && weaponManager->hasCurrentWeapon())
+			weaponManager->getCurrentWeapon().reload();
+		else if ((spellManager = dynamic_cast<SpellManager*>((*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr && spellManager->hasCurrentWeapon())
+			spellManager->getCurrentWeapon().reload();
+
 	}
 }

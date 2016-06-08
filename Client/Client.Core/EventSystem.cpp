@@ -54,7 +54,7 @@ namespace ecs
 
 			case EventReceiver::RELOAD:
 				if (spellManager->weaponsIsCurrent())
-					WeaponManagerSystem::reload(predator);
+					ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_RELOAD, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &predator);
 				break;
 
 			default:
@@ -85,7 +85,7 @@ namespace ecs
 				//TODO: Camera?
 				break;
 			case EventReceiver::RELOAD:
-				WeaponManagerSystem::reload(localPlayer);
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_RELOAD, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &localPlayer);
 			default:
 				break;
 			}
