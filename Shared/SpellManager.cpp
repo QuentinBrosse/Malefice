@@ -103,6 +103,11 @@ namespace ecs
 			--m_currentSpell;
 	}
 
+	bool	SpellManager::hasCurrentWeapon()	const
+	{
+		return m_weaponManager.hasCurrentWeapon();
+	}
+
 	Weapon& SpellManager::getCurrentWeapon() const
 	{
 		return m_weaponManager.getCurrentWeapon();

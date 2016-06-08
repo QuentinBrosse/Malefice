@@ -3,6 +3,7 @@
 #include "WeaponManagerSystem.h"
 #include "WeaponManager.h"
 #include "GraphicUtil.h"
+#include "SpellManager.h"
 
 namespace ecs
 {
@@ -125,5 +126,17 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && weaponManager->hasCurrentWeapon())
 			weaponManager->getCurrentWeapon().setActivity(true);
+	}
+
+	void WeaponManagerSystem::reload(Entity & entity)
+	{
+		WeaponManager*	weaponManager;
+		SpellManager*	spellManager;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && weaponManager->hasCurrentWeapon())
+			weaponManager->getCurrentWeapon().reload();
+		else if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr && spellManager->hasCurrentWeapon())
+			spellManager->getCurrentWeapon().reload();
+
 	}
 }

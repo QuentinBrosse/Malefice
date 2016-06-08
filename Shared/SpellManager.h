@@ -34,7 +34,7 @@ namespace ecs
 		void	changeToNextSpell();
 		void	changeToPrecSpell();
 
-
+		bool								hasCurrentWeapon()	const;
 		Weapon&								getCurrentWeapon()	const;
 		std::map<Spell::SpellType, Spell>&	getSpells();
 

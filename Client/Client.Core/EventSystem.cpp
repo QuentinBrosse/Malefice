@@ -52,6 +52,11 @@ namespace ecs
 				SpellManagerSystem::changeManager(predator);
 				break;
 
+			case EventReceiver::RELOAD:
+				if (spellManager->weaponsIsCurrent())
+					WeaponManagerSystem::reload(predator);
+				break;
+
 			default:
 				break;
 			}
@@ -79,6 +84,8 @@ namespace ecs
 			case EventReceiver::ZOOM:
 				//TODO: Camera?
 				break;
+			case EventReceiver::RELOAD:
+				WeaponManagerSystem::reload(localPlayer);
 			default:
 				break;
 			}

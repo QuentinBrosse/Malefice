@@ -66,6 +66,10 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 				m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
 				break;
 
+			case irr::KEY_KEY_R:
+				m_events.push(EventReceiver::GameEventType::RELOAD);
+				break;
+
 			default:
 				break;
 			}
