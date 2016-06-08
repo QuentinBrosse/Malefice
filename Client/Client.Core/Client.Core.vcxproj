@@ -143,7 +143,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared;C:\local\irrKlang-1.5.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared;C:\local\irrKlang-1.5.0\include;../../Dependencies/tinyxml2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -152,6 +152,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../../Binaries/Release;C:\local\irrKlang-1.5.0\lib\Win32-visualStudio</AdditionalLibraryDirectories>
       <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
