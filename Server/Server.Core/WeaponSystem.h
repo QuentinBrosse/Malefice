@@ -17,5 +17,6 @@ namespace ecs
 		~WeaponSystem()	= delete;
 
 		static void	shoot(Entity* entity, Line3dWrapper* rayWrap, RakNet::RPC3* rpc);
+		static void reload(Entity* entityClient, RakNet::RPC3* rpc);
 	};
 }

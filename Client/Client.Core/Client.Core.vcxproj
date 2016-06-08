@@ -32,13 +32,16 @@
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="SpawnerManager.h" />
     <ClInclude Include="ressource.h" />
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
     <ClInclude Include="Target.h" />
+    <ClInclude Include="TouchedFx.h" />
     <ClInclude Include="WaitingRoom.h" />
     <ClInclude Include="WeaponManagerSystem.h" />
     <ClInclude Include="WeaponSystem.h" />
+    <ClInclude Include="YourDead.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
@@ -63,12 +66,15 @@
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
+    <ClCompile Include="SpawnerManager.cpp" />
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Target.cpp" />
+    <ClCompile Include="TouchedFx.cpp" />
     <ClCompile Include="WaitingRoom.cpp" />
     <ClCompile Include="WeaponManagerSystem.cpp" />
     <ClCompile Include="WeaponSystem.cpp" />
+    <ClCompile Include="YourDead.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -139,7 +145,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared;C:\local\irrKlang-1.5.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_60_0;../../Dependencies/cegui/cegui/include;C:\local\irrlicht-1.8.3\include;../../Dependencies/RakNet/Source;../../Dependencies/RakNet/DependentExtensions/RPC3;../../Dependencies/spdlog/include;../../Shared;C:\local\irrKlang-1.5.0\include;../../Dependencies/tinyxml2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;ELPP_WINSOCK2;ELPP_THREAD_SAFE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -147,7 +153,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>../../Dependencies/cegui/build/lib;C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Release;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Release;../../Binaries/Release;C:\local\irrKlang-1.5.0\lib\Win32-visualStudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalOptions>/ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

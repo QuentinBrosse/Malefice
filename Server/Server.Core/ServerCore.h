@@ -9,6 +9,7 @@
 #include "ServerCoreConfiguration.h"
 #include "NetworkModule.h"
 #include "PlayerManager.h"
+#include "SpawnerManager.h"
 #include "PhysicsUtil.h"
 #include "MasterList.h"
 #include "QueryServer.h"
@@ -24,6 +25,7 @@ public:
 
 	NetworkModule&				getNetworkModule();
 	PlayerManager&				getPlayerManager();
+	//SpawnerManager&				getSpawnerManager();
 	ServerCoreConfiguration&	getServerCoreConfiguration();
 	MasterList&					getMasterList();
 	PhysicsUtil&				getPhysicsUtil();
@@ -55,6 +57,7 @@ private:
 	ServerCoreConfiguration	m_configuration;
 	NetworkModule			m_networkModule;
 	PlayerManager			m_playerManager;
+	SpawnerManager			m_spawnerManager;
 	PhysicsUtil&			m_physicsUtil;
 	MasterList				m_masterList;
 	QueryServer				m_queryServer;

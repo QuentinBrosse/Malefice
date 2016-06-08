@@ -79,7 +79,7 @@ ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const st
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(ecs::Team::TeamType::Predator);
 
 	// SpellManager	
-	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(SpellCreator::getInstance().create(ecs::Spell::SpellType::CONFUSION), 20);
+	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(SpellCreator::getInstance().create(ecs::Spell::SpellType::SLOW), 20);
 
 	//Movement
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(position));
@@ -88,7 +88,7 @@ ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const st
 	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
-
+//	scene->getScene()->setVisible(false);
 	//Player Infos
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 

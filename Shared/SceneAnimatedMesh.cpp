@@ -1,5 +1,6 @@
 #include "SceneAnimatedMesh.h"
 #include "Logger.h"
+#include "ProjectGlobals.h"
 
 #include <iostream>
 
@@ -8,6 +9,7 @@ namespace ecs
 	SceneAnimatedMesh::SceneAnimatedMesh() : AScene(ecs::AScene::SceneType::ANIMATED_MESH),
 		m_node(nullptr)
 	{
+
 	}
 
 	SceneAnimatedMesh::SceneAnimatedMesh(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent, const std::string& newNameTexture, const std::string& newNameMesh, const int newPickableFlags, const bool isCollisionable, const bool lighting, const irr::u32 level): AScene(ecs::AScene::SceneType::ANIMATED_MESH, device, newNameTexture, newNameMesh, newPickableFlags, isCollisionable),
@@ -26,12 +28,12 @@ namespace ecs
 	{
 	}
 
-	AComponent & SceneAnimatedMesh::affect(const AComponent & rhs)
+	AComponent& SceneAnimatedMesh::affect(const AComponent & rhs)
 	{
 		const SceneAnimatedMesh& scene = dynamic_cast<const SceneAnimatedMesh&>(rhs);
 
-		if (scene.m_nameTexture != m_nameTexture)
-			setTexture(scene.m_nameTexture);
+//		if (scene.m_nameTexture != m_nameTexture)
+	//		setTexture(scene.m_nameTexture);
 		m_nameMesh = scene.m_nameMesh;
 		m_nameTexture = scene.m_nameTexture;
 		m_type = scene.m_type;
@@ -83,7 +85,6 @@ namespace ecs
 		m_node->setRotation(newPosition.getVectorRotation());
 		m_node->setScale(newPosition.getVectorScale());
 	}
-	
 
 	void SceneAnimatedMesh::setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType)
 	{
@@ -92,11 +93,11 @@ namespace ecs
 
 	void SceneAnimatedMesh::setTexture(const std::string& nameTexture)
 	{
-		m_material->setTexture(m_level, m_driver->getTexture((m_mediaPath + nameTexture).c_str()));
+		m_nameTexture = nameTexture;
+		m_material->setTexture(m_level, m_driver->getTexture((m_mediaPath + m_nameTexture).c_str()));
 		m_material->NormalizeNormals = true;
 		m_material->Lighting = m_lighting;
 		m_node->getMaterial(0) = *m_material;
-		m_nameTexture = nameTexture;
 	}
 
 	irr::scene::IAnimatedMeshSceneNode * SceneAnimatedMesh::getScene() const
@@ -109,6 +110,22 @@ namespace ecs
 		return Position(m_node->getPosition(), m_node->getRotation(), m_node->getScale());
 	}
 
+	void SceneAnimatedMesh::setCollision(bool gratity)
+	{
+		irr::core::vector3df g;
+
+		m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
+		m_node->setTriangleSelector(m_selector);
+		if (gratity)
+			g = ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND;
+		irr::scene::ISceneNodeAnimator*	animator = m_smgr->createCollisionResponseAnimator(m_selector,
+			m_smgr->getActiveCamera(),
+			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS,
+			g,
+			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION);
+		m_smgr->getActiveCamera()->addAnimator(animator);
+		animator->drop();
+	}
 
 	void	SceneAnimatedMesh::dump(std::ostream& os)	const
 	{
@@ -131,5 +148,12 @@ namespace ecs
 		const SceneAnimatedMesh* scene = dynamic_cast<const SceneAnimatedMesh*>(rhs);
 
 		return new SceneAnimatedMesh(*scene);
+	}
+
+	void SceneAnimatedMesh::deleteTexture()
+	{
+		if (m_material != nullptr
+			&& m_material->getTexture(0) != nullptr)
+			m_driver->removeTexture(m_material->getTexture(0));
 	}
 }

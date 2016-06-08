@@ -59,7 +59,7 @@ namespace ecs
 		}
 		int	rest = damage - m_currentLife;
 		m_currentLife -= damage;
-		if (m_currentLife - damage <= 0)
+		if (m_currentLife < 0)
 			m_currentLife = 0;
 		return (rest);
 	}
@@ -106,5 +106,9 @@ namespace ecs
 	{
 		const Life* life = dynamic_cast<const Life*>(rhs);
 		return new Life(*life);
+	}
+	int Life::getMaxLife() const
+	{
+		return m_maxLife;
 	}
 }

@@ -29,8 +29,10 @@ void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 {
 	EntityManager::updateEntity(owner, entity, rpc);
 
-	for (auto& pair : m_entities)		
+	for (auto& pair : m_entities)
+	{
 		ecs::PositionSystem::updateScenePosition(*pair.second);
+	}
 }
 
 void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
@@ -58,11 +60,23 @@ void PlayerManager::initPlayersScene()
 
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
 	{
-		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
+		ecs::Team*	team = dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM]);
+		if (!team)
+			continue;
+		if (team->getTeam() == ecs::Team::TeamType::Predator)
+			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
+		else if (team->getTeam() == ecs::Team::TeamType::Team1)
+			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t1.bmp", "sydney.md2", *it->second);
+		else
+			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t2.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
 
-		ecs::SceneAnimatedMesh* parent = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
-		PlayerFactory::initNicknameNode(it->second, device, parent->getNode());
+		if (it->second != m_currentPlayer)
+		{
+			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+
+			PlayerFactory::initNicknameNode(it->second, device, scene->getNode());
+		}
 	}
 }
 
@@ -74,8 +88,6 @@ void PlayerManager::initPlayersWeapons()
 		{
 			if (ClientCore::getInstance().getClientId() == it->first)
 				ecs::SpellManagerSystem::initFPSScene(*it->second);
-			else
-				ecs::SpellManagerSystem::initExternalScene(*it->second);
 		}
 		else
 		{
@@ -139,4 +151,58 @@ int				PlayerManager::getPredatorScore()
 			score += team->getKills();
 	}
 	return score;
+}
+
+void PlayerManager::loadNormalTeamTexture()
+{
+	for (auto& entity : m_entities)
+	{
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*entity.second)[ecs::AComponent::ComponentType::SCENE]);
+		ecs::Team*				team = dynamic_cast<ecs::Team*>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
+		if (scene != nullptr && team != nullptr)
+		{
+			ecs::Team::TeamType	teamType = team->getTeam();
+
+			switch (teamType)
+			{
+			case ecs::Team::TeamType::Team1:
+				scene->deleteTexture();
+				scene->setTexture("sydney_t1.bmp");
+				break;
+			case ecs::Team::TeamType::Team2:
+				scene->deleteTexture();
+				scene->setTexture("sydney_t2.bmp");
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
+
+void PlayerManager::loadInvertTeamTexture()
+{
+	for (auto& entity : m_entities)
+	{
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*entity.second)[ecs::AComponent::ComponentType::SCENE]);
+		ecs::Team*				team = dynamic_cast<ecs::Team*>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
+		if (scene != nullptr && team != nullptr)
+		{
+			ecs::Team::TeamType	teamType = team->getTeam();
+
+			switch (teamType)
+			{
+			case ecs::Team::TeamType::Team1:
+				scene->deleteTexture();
+				scene->setTexture("sydney_t2.bmp");
+				break;
+			case ecs::Team::TeamType::Team2:
+				scene->deleteTexture();
+				scene->setTexture("sydney_t1.bmp");
+				break;
+			default:
+				break;
+			}
+		}
+	}
 }

@@ -37,6 +37,7 @@ public:
 	void displayNotification(const std::string &, unsigned long = 3);
 	void refreshEventDisplay();
 	void setPowerVisible(int, bool);
+	void setAmoClip(unsigned int);
 
 private:
 	CEGUI::Window* m_hud;
@@ -68,7 +69,8 @@ private:
 	bool m_power3Activated;
 	bool m_power4Activated;
 	const int m_maxPowerNbr;
-
+	unsigned int m_bulletsNbr;
+	unsigned int m_amoClip;
 	class NotificationItemData
 	{
 	public:

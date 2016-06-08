@@ -64,6 +64,11 @@ namespace ecs
 		return m_material;
 	}
 
+	irr::scene::ITriangleSelector* AScene::getSelector() const
+	{
+		return m_selector;
+	}
+
 	void AScene::setNameTexture(const std::string& newNameTexture)
 	{
 		m_nameTexture = newNameTexture;

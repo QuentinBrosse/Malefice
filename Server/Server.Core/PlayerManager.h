@@ -14,9 +14,9 @@ public:
 	~PlayerManager()					= default;
 
 	virtual void	createEntity(ecs::ClientId owner);
-	virtual void	updateEntities();
 	virtual void	deleteEntity(ecs::ClientId owner);
 	virtual void	updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc);
+	virtual void	updateEntities();
 
 	bool			isNicknameAvailable(const std::string& nickname)	const;
 

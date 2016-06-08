@@ -20,12 +20,33 @@ namespace ecs
 			playerPosition = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
-
-			if (weapon.mustBeReloaded())
-				Audio::getInstance().play3D(weapon.getAudioReload(), *playerPosition);
-			else
-				Audio::getInstance().play3D(weapon.getAudioShot(), *playerPosition);
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
 		}
 	}
+
+	void WeaponSystem::triggerShootActions(Entity* entity, int status, RakNet::RPC3 * rpc)
+	{
+		WeaponManager*		weaponManager;
+		ecs::Position*		playerPosition;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		{
+			playerPosition = dynamic_cast<ecs::Position*>((*entity)[ecs::AComponent::ComponentType::POSITION]);
+			Weapon&	weapon = weaponManager->getCurrentWeapon();
+
+			switch (status)
+			{
+			case 0:
+				Audio::getInstance().play3D(weapon.getAudioShot(), *playerPosition);
+				break;
+			case 1:
+				Audio::getInstance().play3D(weapon.getAudioReload(), *playerPosition);
+				break;
+			default:
+				Audio::getInstance().play3D("empty.ogg", *playerPosition);
+				break;
+			}
+		}
+	}
+
 }

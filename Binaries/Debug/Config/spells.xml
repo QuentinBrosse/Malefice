@@ -4,11 +4,12 @@
 		<type>BLIND</type>
 		<cooldown>20</cooldown>
 		<duration>5</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -16,9 +17,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -48,13 +49,14 @@
 	<spell id = "2">
 		<name>Paranoia</name>
 		<type>PARANOIA</type>
-		<cooldown>5</cooldown>
-		<duration>5</duration>
+		<cooldown>20</cooldown>
+		<duration>20</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -62,9 +64,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -96,11 +98,12 @@
 		<type>CONFUSION</type>
 		<cooldown>20</cooldown>
 		<duration>10</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -108,9 +111,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -142,11 +145,12 @@
 		<type>DEAF</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -154,9 +158,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -186,13 +190,14 @@
 	<spell id = "5">
 		<name>Parkinson</name>
 		<type>PARKINSON</type>
-		<cooldown>5</cooldown>
-		<duration>5</duration>
+		<cooldown>20</cooldown>
+		<duration>10</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -200,9 +205,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -234,11 +239,12 @@
 		<type>SLOW</type>
 		<cooldown>5</cooldown>
 		<duration>5</duration>
+		<meshName>fire.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>0.0</x>
@@ -246,9 +252,9 @@
 				<z>0.0</z>
 			</rotation>
 			<scale>
-				<x>0.0</x>
-				<y>0.0</y>
-				<z>0.0</z>
+				<x>20.0</x>
+				<y>20.0</y>
+				<z>15.0</z>
 			</scale>
 			<offset>
 				<x>0.0</x>

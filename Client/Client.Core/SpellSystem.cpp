@@ -5,6 +5,7 @@
 #include "WeaponSystem.h"
 #include "Target.h"
 #include "Line3dWrapper.h"
+#include "Audio.h"
 
 namespace ecs
 {
@@ -43,15 +44,19 @@ namespace ecs
 					graphics.getBlindFx()->hide();
 					break;
 				case ecs::Spell::PARANOIA:
+					PlayerManager::getInstance().loadNormalTeamTexture();
 					break;
 				case ecs::Spell::CONFUSION:
-					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), true);
+					graphics.getFPSCamera()->loadDefaultKeys();
 					break;
 				case ecs::Spell::DEAF:
+					Audio::getInstance().setIsDeaf(false);
 					break;
 				case ecs::Spell::PARKINSON:
+					Target::getInstance().setIsTrembling(false);
 					break;
 				case ecs::Spell::SLOW:
+					graphics.getFPSCamera()->setSpeed(0.5f, 100.0f);
 					break;
 				default:
 					break;
@@ -65,15 +70,19 @@ namespace ecs
 					GraphicUtil::getInstance().getBlindFx()->display();
 					break;
 				case ecs::Spell::PARANOIA:
+					PlayerManager::getInstance().loadInvertTeamTexture();
 					break;
 				case ecs::Spell::CONFUSION:
-					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), false);
+					graphics.getFPSCamera()->loadInvertKeys();
 					break;
 				case ecs::Spell::DEAF:
+					Audio::getInstance().setIsDeaf(true);
 					break;
 				case ecs::Spell::PARKINSON:
+					Target::getInstance().setIsTrembling(true);
 					break;
 				case ecs::Spell::SLOW:
+					graphics.getFPSCamera()->setSpeed(0.1f, 50.0f);
 					break;
 				default:
 					break;

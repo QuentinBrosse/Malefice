@@ -2,6 +2,7 @@
 
 // Client Version
 
+#include <RPC3.h>
 #include "Entity.h"
 #include "WeaponManager.h"
 #include "Life.h"
@@ -15,5 +16,6 @@ namespace ecs
 		WeaponSystem() = delete;
 		~WeaponSystem() = delete;
 		static void						shoot(Entity& entity);
+		static void						triggerShootActions(Entity* entity, int status, RakNet::RPC3* rpc);
 	};
 }

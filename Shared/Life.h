@@ -30,6 +30,7 @@ namespace ecs
 		virtual AComponent&	affect(const AComponent& rhs);
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
+		int					getMaxLife() const;
 	protected:
 		int	m_currentLife;		
 		int	m_maxLife;

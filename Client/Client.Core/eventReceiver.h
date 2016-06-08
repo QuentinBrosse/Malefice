@@ -17,6 +17,7 @@ public:
 		PREC_WEAPON,
 		CHANGE_MANAGER,
 		ZOOM,
+		RELOAD,
 		GAME_EVENT_TYPE_COUNT,
 	};
 

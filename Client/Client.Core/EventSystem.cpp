@@ -52,6 +52,11 @@ namespace ecs
 				SpellManagerSystem::changeManager(predator);
 				break;
 
+			case EventReceiver::RELOAD:
+				if (spellManager->weaponsIsCurrent())
+					ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_RELOAD, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &predator);
+				break;
+
 			default:
 				break;
 			}
@@ -79,6 +84,8 @@ namespace ecs
 			case EventReceiver::ZOOM:
 				//TODO: Camera?
 				break;
+			case EventReceiver::RELOAD:
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_RELOAD, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &localPlayer);
 			default:
 				break;
 			}

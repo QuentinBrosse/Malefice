@@ -25,6 +25,10 @@ public:
 	void	play2D(const std::string& soundFile);
 	void	play3D(const std::string& soundFile, const ecs::Position& position);
 
+	void	setIsDeaf(const bool isDeaf);
+
+	bool	isDeaf()	const;
+
 protected:
 	Audio();
 	~Audio();
@@ -34,4 +38,5 @@ private:
 	irrklang::ISoundEngine*							m_engine;
 	std::map<const SoundType, const std::string>	m_sounds;
 
+	bool											m_isDeaf;
 };

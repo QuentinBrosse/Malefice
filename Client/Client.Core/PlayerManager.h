@@ -16,7 +16,7 @@ public:
 
 	void			initPlayersScene();
 
-	void initPlayersWeapons();
+	void			initPlayersWeapons();
 
 	ecs::Entity*	getCurrentPlayer()	const;
 	void			setCurrentPlayer(ecs::Entity* localPlayer);
@@ -26,6 +26,8 @@ public:
 	int				getTeam2Score();
 	int				getPredatorScore();
 
+	void			loadNormalTeamTexture();
+	void			loadInvertTeamTexture();
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;

@@ -7,6 +7,7 @@
 #include "NetworkModule.h"
 #include "EventReceiver.h"
 #include "PlayerManager.h"
+#include "SpawnerManager.h"
 #include "MasterList.h"
 #include "MasterListNetwork.h"
 #include "SceneMesh.h"
@@ -53,15 +54,16 @@ private:
 	GraphicUtil*			m_graphicModule;
 	Audio*					m_audioModule;
 	PlayerManager*			m_playerManager;
+	SpawnerManager*			m_spawnerManager;
 	MasterListNetwork*		m_masterList;
 	ecs::ClientId			m_clientId;
 	std::string				m_nickname;
 	bool					m_isActive;
 
 	// Local Test
-	ecs::Entity*				m_map;
-	ecs::Entity*				m_player;
-	ecs::Entity*				m_player_ia;
+	ecs::Entity*			m_map;
+	ecs::Entity*			m_player;
+	ecs::Entity*			m_player_ia;
 
 	std::chrono::high_resolution_clock::time_point m_lastTime = std::chrono::high_resolution_clock::now();
 };

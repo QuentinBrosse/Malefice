@@ -2,4 +2,5 @@
 <GUIScheme version="5" name="Circles">
     <Imageset filename="Circles.imageset" />
 	<Font filename="Terminator-12.font" />
+	<Font filename="Jura-30.font" />
 </GUIScheme>

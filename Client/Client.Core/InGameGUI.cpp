@@ -28,6 +28,8 @@ InGameGUI::InGameGUI() :
 	m_armorBar = dynamic_cast<CEGUI::ProgressBar *>(m_hud->getChild(642));
 	m_armors = m_hud->getChild(650);
 	m_eventNotifier = dynamic_cast<CEGUI::Listbox *>(m_hud->getChild(1000));
+	m_bulletsNbr = 0;
+	m_amoClip = 0;
 }
 
 void InGameGUI::display()
@@ -159,7 +161,14 @@ void InGameGUI::setPredatorScore(int nbr)
 
 void InGameGUI::setBulletsNbr(unsigned int nbr)
 {
-	m_bullets->setText(std::to_string(nbr));
+	m_bulletsNbr = nbr;
+	m_bullets->setText(std::to_string(m_bulletsNbr) + " / " + std::to_string(m_amoClip));
+}
+
+void InGameGUI::setAmoClip(unsigned int nbr)
+{
+	m_amoClip = nbr;
+	m_bullets->setText(std::to_string(m_bulletsNbr) + " / " + std::to_string(m_amoClip));
 }
 
 const bool InGameGUI::isActive() const
