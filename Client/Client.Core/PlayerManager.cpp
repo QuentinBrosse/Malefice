@@ -29,8 +29,10 @@ void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 {
 	EntityManager::updateEntity(owner, entity, rpc);
 
-	for (auto& pair : m_entities)		
+	for (auto& pair : m_entities)
+	{
 		ecs::PositionSystem::updateScenePosition(*pair.second);
+	}
 }
 
 void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)

@@ -23,6 +23,7 @@ void	EntityManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 	ecs::Entity&	localEntity = *m_entities[owner];
 
 	localEntity = (*entity);
+
 }
 
 void	EntityManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)

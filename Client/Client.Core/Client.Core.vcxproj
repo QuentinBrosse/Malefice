@@ -32,6 +32,7 @@
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="SpawnerManager.h" />
     <ClInclude Include="ressource.h" />
     <ClInclude Include="SpellManagerSystem.h" />
     <ClInclude Include="SpellSystem.h" />
@@ -65,6 +66,7 @@
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
+    <ClCompile Include="SpawnerManager.cpp" />
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
     <ClCompile Include="Target.cpp" />

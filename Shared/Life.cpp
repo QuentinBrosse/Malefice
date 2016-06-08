@@ -107,4 +107,8 @@ namespace ecs
 		const Life* life = dynamic_cast<const Life*>(rhs);
 		return new Life(*life);
 	}
+	int Life::getMaxLife() const
+	{
+		return m_maxLife;
+	}
 }

@@ -170,7 +170,7 @@
         </Window>
         <Window type="WindowsLook/Label" name="Label22" >
             <Property name="ID" value="600" />
-            <Property name="Area" value="{{0.222656,174},{0.0180556,636},{0.222656,225},{0.0180556,686}}" />
+            <Property name="Area" value="{{0.222656,154},{0.0180556,638},{0.222656,348},{0.0180556,688}}" />
             <Property name="Font" value="Terminator-12" />
             <Property name="Text" value="0" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />

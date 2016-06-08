@@ -6,26 +6,19 @@
 namespace ecs
 {
 
-	void WeaponManagerSystem::changeToNext(Entity& player)
+	void WeaponManagerSystem::changeToNext(Entity* playerClient, RakNet::RPC3* rpc)
 	{
 		WeaponManager*	weaponManager;
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
-		{
-			weaponManager->changeToNextWeapon();
-			//TODO: update?
-		}
+		*entity = *playerClient;
 	}
 
-	void WeaponManagerSystem::changeToPrec(Entity& player)
+	void WeaponManagerSystem::changeToPrec(Entity* playerClient, RakNet::RPC3* rpc)
 	{
 		WeaponManager*	weaponManager;
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
-		{
-			//TODO: update?
-			weaponManager->changeToPrecWeapon();
-		}
+		*entity = *playerClient;
 	}
-
 }
