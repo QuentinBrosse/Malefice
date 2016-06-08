@@ -27,12 +27,12 @@ namespace ecs
 	{
 	}
 
-	AComponent & SceneAnimatedMesh::affect(const AComponent & rhs)
+	AComponent& SceneAnimatedMesh::affect(const AComponent & rhs)
 	{
 		const SceneAnimatedMesh& scene = dynamic_cast<const SceneAnimatedMesh&>(rhs);
 
-		if (scene.m_nameTexture != m_nameTexture)
-			setTexture(scene.m_nameTexture);
+//		if (scene.m_nameTexture != m_nameTexture)
+	//		setTexture(scene.m_nameTexture);
 		m_nameMesh = scene.m_nameMesh;
 		m_nameTexture = scene.m_nameTexture;
 		m_type = scene.m_type;
@@ -93,11 +93,11 @@ namespace ecs
 
 	void SceneAnimatedMesh::setTexture(const std::string& nameTexture)
 	{
-		m_material->setTexture(m_level, m_driver->getTexture((m_mediaPath + nameTexture).c_str()));
+		m_nameTexture = nameTexture;
+		m_material->setTexture(m_level, m_driver->getTexture((m_mediaPath + m_nameTexture).c_str()));
 		m_material->NormalizeNormals = true;
 		m_material->Lighting = m_lighting;
 		m_node->getMaterial(0) = *m_material;
-		m_nameTexture = nameTexture;
 	}
 
 	irr::scene::IAnimatedMeshSceneNode * SceneAnimatedMesh::getScene() const
@@ -132,5 +132,12 @@ namespace ecs
 		const SceneAnimatedMesh* scene = dynamic_cast<const SceneAnimatedMesh*>(rhs);
 
 		return new SceneAnimatedMesh(*scene);
+	}
+
+	void SceneAnimatedMesh::deleteTexture()
+	{
+		if (m_material != nullptr
+			&& m_material->getTexture(0) != nullptr)
+			m_driver->removeTexture(m_material->getTexture(0));
 	}
 }

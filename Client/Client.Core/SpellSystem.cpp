@@ -44,6 +44,7 @@ namespace ecs
 					graphics.getBlindFx()->hide();
 					break;
 				case ecs::Spell::PARANOIA:
+					PlayerManager::getInstance().loadNormalTeamTexture();
 					break;
 				case ecs::Spell::CONFUSION:
 					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), true);
@@ -68,6 +69,7 @@ namespace ecs
 					GraphicUtil::getInstance().getBlindFx()->display();
 					break;
 				case ecs::Spell::PARANOIA:
+					PlayerManager::getInstance().loadInvertTeamTexture();
 					break;
 				case ecs::Spell::CONFUSION:
 					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), false);

@@ -48,8 +48,14 @@ namespace ecs
 						{
 							ecs::Life*	lifeTarget;
 							ecs::Armor*	armorTarget;
+							ecs::Team*	teamShooter;
+							ecs::Team*	teamTarget;
 
-							if ((armorTarget = dynamic_cast<ecs::Armor*>((*player.second)[ecs::AComponent::ComponentType::ARMOR])) != nullptr && (lifeTarget = dynamic_cast<ecs::Life*>((*player.second)[ecs::AComponent::ComponentType::LIFE])) != nullptr)
+							if ((teamShooter = dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])) != nullptr
+								&& (teamTarget = dynamic_cast<ecs::Team*>((*player.second)[ecs::AComponent::ComponentType::TEAM])) != nullptr
+								&& teamShooter->getTeam() != teamTarget->getTeam()
+								&& (armorTarget = dynamic_cast<ecs::Armor*>((*player.second)[ecs::AComponent::ComponentType::ARMOR])) != nullptr
+								&& (lifeTarget = dynamic_cast<ecs::Life*>((*player.second)[ecs::AComponent::ComponentType::LIFE])) != nullptr)
 							{
 								int rest = armorTarget->takeDamage(weapon.getDamage() * weapon.getAmmoPerShot());
 								if (rest > 0)

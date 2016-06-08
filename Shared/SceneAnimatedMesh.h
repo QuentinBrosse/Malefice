@@ -32,6 +32,7 @@ namespace ecs
 
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
+		void				deleteTexture();
 	private:
 		irr::scene::IAnimatedMeshSceneNode*	m_node;
 		bool							m_lighting;

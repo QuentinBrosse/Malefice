@@ -26,6 +26,8 @@ public:
 	int				getTeam2Score();
 	int				getPredatorScore();
 
+	void			loadNormalTeamTexture();
+	void			loadInvertTeamTexture();
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;
