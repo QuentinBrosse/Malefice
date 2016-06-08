@@ -138,6 +138,8 @@ void SpawnerManager::collisionDetection(ecs::Entity& entity)
 	irr::f32 inc = 0;
 	for (auto& spawn : m_entities)
 	{
+		if (!dynamic_cast<ecs::AScene*>((*spawn.second)[ecs::AComponent::ComponentType::SCENE])->getNode()->isVisible())
+			continue;
 		irr::core::line3df *line = &m_spawnLine[spawn.first];
 		irr::core::triangle3df triangle;
 		irr::core::vector3df outVect;
@@ -148,7 +150,6 @@ void SpawnerManager::collisionDetection(ecs::Entity& entity)
 			pickObject(spawn.second, &entity);
 		}
 	}
-	std::cout << dynamic_cast<ecs::WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])->getWeapons().size() << std::endl;
 }
 
 void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
@@ -160,39 +161,25 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 		{
 			dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE])->restore(dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
 			dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->set(0);
+			break;
 		}
 	case ecs::Entity::EntityType::ARMOR_SPAWNER:
 		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr && dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
 		{
 			dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR])->restore(dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
 			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
+			break;
 		}
 	case ecs::Entity::EntityType::WEAPON_SPAWNER:
 		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
 		{
 			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
+			break;
 		}
 		else
 			return;
 	}
 	ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), spawner, false);
-}
-
-void SpawnerManager::drawLine()
-{
-	irr::video::IVideoDriver* driver = GraphicUtil::getInstance().getDriver();
-
-	irr::video::SMaterial mat;
-	mat.Lighting = false;
-	driver->setMaterial(mat);
-	for (auto& spawn : m_entities)
-	{
-		irr::core::line3df *line = &m_spawnLine[spawn.first];
-		irr::video::SMaterial mat;
-		mat.Lighting = false;
-		driver->setMaterial(mat);
-		driver->draw3DLine(line->start, line->end, irr::video::SColor(255, 255, 0, 0));
-	}
 }
 
 std::map<ecs::ClientId, ecs::Entity*> SpawnerManager::getSpawners() const
