@@ -16,7 +16,7 @@ namespace utility
 		~StringUtility()	= delete;
 
 		static std::vector<std::string> explode(const std::string& s, const std::string& delim);
-
+		static std::string string_format(const std::string fmt, ...);
 		template<class T>
 		static std::string	pluralize(const std::string& word, const T& nb)
 		{
