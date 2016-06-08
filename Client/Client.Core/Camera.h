@@ -24,6 +24,7 @@ public:
 	void							setPosition(const ecs::Position& newPosition);
 
 	void							setSpeed(const irr::f32 speed);
+
 private:
 	irr::scene::ICameraSceneNode*				m_camera;
 	irr::scene::ISceneNodeAnimatorCameraFPS*	m_cameraAnimator;

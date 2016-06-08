@@ -79,7 +79,7 @@ ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const st
 	(*entity)[ecs::AComponent::ComponentType::TEAM] = new ecs::Team(ecs::Team::TeamType::Predator);
 
 	// SpellManager	
-	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(SpellCreator::getInstance().create(ecs::Spell::SpellType::PARANOIA), 20);
+	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager(SpellCreator::getInstance().create(ecs::Spell::SpellType::SLOW), 20);
 
 	//Movement
 	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(position));

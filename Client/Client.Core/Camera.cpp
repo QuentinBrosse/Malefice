@@ -10,8 +10,6 @@ Camera::Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneMa
 
 Camera::~Camera()
 {
-//	if (m_camera)
-	//	m_camera->remove();
 }
 
 ecs::Position Camera::getPosition() const
