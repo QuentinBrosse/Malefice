@@ -118,7 +118,7 @@ void	ClientCore::pulse()
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
 			if (weaponManager)
-				m_graphicModule->getHUD()->setAmoClip(weaponManager->getCurrentWeapon().getAmmunitions());
+				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitions());
 			if (weaponManager)
 				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
 			if (life != nullptr)
