@@ -3,9 +3,9 @@
 #include "MathUtility.h"
 
 Camera::Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneManager) :
-	m_camera(nullptr)
+	m_camera(nullptr), m_cameraAnimator(nullptr)
 {
-	loadKey(position, sceneManager, true);
+	init(position, sceneManager);
 }
 
 Camera::~Camera()
@@ -34,61 +34,68 @@ irr::scene::ICameraSceneNode * Camera::getNode() const
 	return m_camera;
 }
 
-void Camera::init()
+void Camera::init(const ecs::Position& position, irr::scene::ISceneManager* sceneManager)
 {
+	m_camera = sceneManager->addCameraSceneNodeFPS(0, 100.0f, .3f, nodePickable::NOT_PICKABLE, nullptr, 0, true, 3.f); 
+	m_cameraAnimator = (irr::scene::ISceneNodeAnimatorCameraFPS*)* m_camera->getAnimators().begin();
+	loadDefaultKeys();
+	m_camera->setPosition(irr::core::vector3df(position.getVectorPosition()));
+	m_camera->setTarget(irr::core::vector3df(position.getVectorRotation()));
 	m_camera->setFOV(utility::MathUtility::degreesToRadians(90.f));
 	m_camera->setNearValue(0.8f);
 }
 
-void Camera::loadKey(const ecs::Position& position, irr::scene::ISceneManager* sceneManager, bool normalKey)
+void Camera::loadInvertKeys()
 {
-	// DEBUG
-	//if (m_camera)
-		//m_camera->remove();
 	irr::SKeyMap	keyMap[5];
-	if (normalKey)
-	{
-		keyMap[0].Action = irr::EKA_MOVE_FORWARD;
-		keyMap[0].KeyCode = irr::KEY_KEY_Z;
 
-		keyMap[1].Action = irr::EKA_MOVE_BACKWARD;
-		keyMap[1].KeyCode = irr::KEY_KEY_S;
+	keyMap[0].Action = irr::EKA_MOVE_FORWARD;
+	keyMap[0].KeyCode = irr::KEY_KEY_S;
 
-		keyMap[2].Action = irr::EKA_STRAFE_LEFT;
-		keyMap[2].KeyCode = irr::KEY_KEY_Q;
+	keyMap[1].Action = irr::EKA_MOVE_BACKWARD;
+	keyMap[1].KeyCode = irr::KEY_KEY_Z;
 
-		keyMap[3].Action = irr::EKA_STRAFE_RIGHT;
-		keyMap[3].KeyCode = irr::KEY_KEY_D;
+	keyMap[2].Action = irr::EKA_STRAFE_LEFT;
+	keyMap[2].KeyCode = irr::KEY_KEY_D;
 
-		keyMap[4].Action = irr::EKA_JUMP_UP;
-		keyMap[4].KeyCode = irr::KEY_SPACE;
-	}
-	else
-	{
-		keyMap[0].Action = irr::EKA_MOVE_FORWARD;
-		keyMap[0].KeyCode = irr::KEY_KEY_S;
+	keyMap[3].Action = irr::EKA_STRAFE_RIGHT;
+	keyMap[3].KeyCode = irr::KEY_KEY_Q;
 
-		keyMap[1].Action = irr::EKA_MOVE_BACKWARD;
-		keyMap[1].KeyCode = irr::KEY_KEY_Z;
+	keyMap[4].Action = irr::EKA_JUMP_UP;
+	keyMap[4].KeyCode = irr::KEY_SPACE;
 
-		keyMap[2].Action = irr::EKA_STRAFE_LEFT;
-		keyMap[2].KeyCode = irr::KEY_KEY_D;
-
-		keyMap[3].Action = irr::EKA_STRAFE_RIGHT;
-		keyMap[3].KeyCode = irr::KEY_KEY_Q;
-
-		keyMap[4].Action = irr::EKA_JUMP_UP;
-		keyMap[4].KeyCode = irr::KEY_SPACE;
-	}
-	m_camera = sceneManager->addCameraSceneNodeFPS(0, 100.0f, .3f, nodePickable::NOT_PICKABLE, keyMap, 5, true, 3.f);
-	m_camera->setPosition(irr::core::vector3df(position.getVectorPosition()));
-	m_camera->setTarget(irr::core::vector3df(position.getVectorRotation()));
-	init();
+	m_cameraAnimator->setKeyMap(keyMap, 5);
 }
 
-void Camera::setPosition(const ecs::Position & newPosition)
+void	Camera::loadDefaultKeys()
+{
+	irr::SKeyMap	keyMap[5];
+	keyMap[0].Action = irr::EKA_MOVE_FORWARD;
+	keyMap[0].KeyCode = irr::KEY_KEY_Z;
+
+	keyMap[1].Action = irr::EKA_MOVE_BACKWARD;
+	keyMap[1].KeyCode = irr::KEY_KEY_S;
+
+	keyMap[2].Action = irr::EKA_STRAFE_LEFT;
+	keyMap[2].KeyCode = irr::KEY_KEY_Q;
+
+	keyMap[3].Action = irr::EKA_STRAFE_RIGHT;
+	keyMap[3].KeyCode = irr::KEY_KEY_D;
+
+	keyMap[4].Action = irr::EKA_JUMP_UP;
+	keyMap[4].KeyCode = irr::KEY_SPACE;
+
+	m_cameraAnimator->setKeyMap(keyMap, 5);
+}
+
+void	Camera::setPosition(const ecs::Position & newPosition)
 {
 	m_camera->setPosition(newPosition.getVectorPosition());
 	m_camera->setRotation(newPosition.getVectorRotation());
 	m_camera->setScale(newPosition.getVectorScale());
+}
+
+void Camera::setSpeed(const irr::f32 speed)
+{
+	m_cameraAnimator->setMoveSpeed(speed);
 }
