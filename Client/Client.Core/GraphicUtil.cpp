@@ -42,7 +42,6 @@ GraphicUtil::~GraphicUtil()
 {
 	if(m_FPSCamera)
 		delete (m_FPSCamera);
-	// Delete all?
 }
 
 void GraphicUtil::initGraphics()
@@ -111,6 +110,8 @@ void GraphicUtil::initGraphics()
 	m_hud = new InGameGUI();
 	m_masterList = new MasterList(*this);
 	m_blindFx = new Blind();
+	m_touchedFx = new TouchedFx();
+	m_deadGUI = new YourDead();
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -230,6 +231,16 @@ InGameGUI* GraphicUtil::getHUD()
 	return m_hud;
 }
 
+YourDead* GraphicUtil::getDeadGUI()
+{
+	return m_deadGUI;
+}
+
+TouchedFx* GraphicUtil::getTouchedFx()
+{
+	return m_touchedFx;
+}
+
 WaitingRoom* GraphicUtil::getWaitingRoom()
 {
 	return (m_salon);
@@ -252,7 +263,10 @@ void GraphicUtil::setGuiCamera()
 	irr::core::vector3df rotation = m_sceneManager->getActiveCamera()->getRotation();
 	irr::core::vector3df target =  m_sceneManager->getActiveCamera()->getTarget();
 	if (m_sceneManager->getActiveCamera())
+	{
+		m_sceneManager->getActiveCamera()->removeAnimators();
 		m_sceneManager->getActiveCamera()->remove();
+	}
 	m_sceneManager->addCameraSceneNode(0, position, rotation, -1);
 	m_sceneManager->getActiveCamera()->setTarget(target);
 	m_device->getCursorControl()->setVisible(true);
@@ -261,12 +275,13 @@ void GraphicUtil::setGuiCamera()
 void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
+	auto&			players = PlayerManager::getInstance().getEntities();
 
 	std::srand(std::time(nullptr));
 
 	ecs::Position cameraPosition(
-		irr::core::vector3df(50.0f + (std::rand() % 50) + 20, 50.0f, -60.0f),
-		irr::core::vector3df(-70.0f, 30.0f, -60.0f));
+		irr::core::vector3df(50.0f + (std::rand() % 100) + 20, 50.0f, -60.0f),
+		irr::core::vector3df(0.0f, 0.0f, 0.0f));
 
 	if (m_sceneManager->getActiveCamera())
 	{
@@ -276,15 +291,28 @@ void GraphicUtil::setFPSCamera()
 	}
 	m_device->getCursorControl()->setVisible(false);
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
-	m_FPSCamera->init();
 
 	ClientCore&		clientCore = ClientCore::getInstance();
 	ecs::Entity*	map;
 
+	//Collisions
 	if ((map = clientCore.getMap()) != nullptr)
 	{
-		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision();
+		dynamic_cast<ecs::SceneMesh*>((*map)[ecs::AComponent::ComponentType::SCENE])->setCollision(true);
 	}
+
+	for (auto it = players.begin(); it != players.end(); ++it)
+	{
+		if (it->second != localPlayer)
+		{
+			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+			if (scene != nullptr)
+			{
+				scene->setCollision(false);
+			}
+		}
+	}
+
 	m_isInFPSMode = true;
 	PlayerManager::getInstance().initPlayersWeapons();
 }

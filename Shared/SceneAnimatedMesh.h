@@ -25,6 +25,8 @@ namespace ecs
 
 		Position							getPosition()	const;
 
+		void								setCollision(bool gratity);
+
 		virtual	void	dump(std::ostream& os)	const;
 
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
@@ -33,8 +35,8 @@ namespace ecs
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
 
 	private:
-		irr::scene::IAnimatedMeshSceneNode*	m_node;
-		bool							m_lighting;
-		irr::u32						m_level;
+		irr::scene::IAnimatedMeshSceneNode*					m_node;
+		bool												m_lighting;
+		irr::u32											m_level;
 	};
 }

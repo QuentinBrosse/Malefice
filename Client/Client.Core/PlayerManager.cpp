@@ -63,8 +63,12 @@ void PlayerManager::initPlayersScene()
 		PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
 
-		ecs::SceneAnimatedMesh* parent = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
-		PlayerFactory::initNicknameNode(it->second, device, parent->getNode());
+		if (it->second != m_currentPlayer)
+		{
+			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+
+			PlayerFactory::initNicknameNode(it->second, device, scene->getNode());
+		}
 	}
 }
 

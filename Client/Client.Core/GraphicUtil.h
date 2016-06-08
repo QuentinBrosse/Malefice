@@ -12,6 +12,8 @@
 #include "InGameGUI.h"
 #include "MasterList.h"
 #include "Blind.h"
+#include "TouchedFx.h"
+#include "YourDead.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -37,7 +39,9 @@ public:
 	WaitingRoom*				getWaitingRoom();
 	InGameGUI*					getHUD();
 	Blind*						getBlindFx();
+	TouchedFx*					getTouchedFx();
 	MasterList*					getMasterList();
+	YourDead*					getDeadGUI();
 	bool						isInFPSMode()		const;
 
 private:
@@ -56,5 +60,7 @@ private:
 	InGameGUI*					m_hud;
 	MasterList*					m_masterList;
 	Blind*						m_blindFx;
+	TouchedFx*					m_touchedFx;
+	YourDead*					m_deadGUI;
 	bool						m_isInFPSMode;
 };
