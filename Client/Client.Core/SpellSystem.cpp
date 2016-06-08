@@ -46,7 +46,7 @@ namespace ecs
 				case ecs::Spell::PARANOIA:
 					break;
 				case ecs::Spell::CONFUSION:
-					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), true);
+					graphics.getFPSCamera()->loadDefaultKeys();
 					break;
 				case ecs::Spell::DEAF:
 					Audio::getInstance().setIsDeaf(false);
@@ -70,7 +70,7 @@ namespace ecs
 				case ecs::Spell::PARANOIA:
 					break;
 				case ecs::Spell::CONFUSION:
-					graphics.getFPSCamera()->loadKey(cameraPosition, graphics.getSceneManager(), false);
+					graphics.getFPSCamera()->loadInvertKeys();
 					break;
 				case ecs::Spell::DEAF:
 					Audio::getInstance().setIsDeaf(true);
