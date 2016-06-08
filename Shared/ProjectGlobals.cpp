@@ -28,4 +28,4 @@ const irr::core::vector3df	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS =
 const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND = irr::core::vector3df(0.f, -9.8f, 0.f);
 const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION = irr::core::vector3df(0.f, 50.f, 0.f);
 
-const long long				ProjectGlobals::SPAWNER_VISIBILITY_TIMER = 2;
+const long long				ProjectGlobals::SPAWNER_VISIBILITY_TIMER = 10;
