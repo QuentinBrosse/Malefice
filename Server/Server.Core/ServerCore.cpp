@@ -30,7 +30,7 @@ void	ServerCore::run()
 	LOG_INFO(GENERAL) << "Server started.";
 	if (this->init() == false)
 	{
-		LOG_CRITICAL(GENERAL) << "Server initialization failed. Aborting.";
+ 		LOG_CRITICAL(GENERAL) << "Server initialization failed. Abortring.";
 		return;
 	}
 	LOG_INFO(GENERAL) << "Server initialized.";
