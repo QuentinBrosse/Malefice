@@ -108,9 +108,9 @@ namespace ecs
 				{
 					(*it).second.createScene(graphics.getDevice(), sceneplayer->getScene(), false);
 					sceneWeapon = (*it).second.getScene();
-					std::cout << (*it).second.getExternalMetrics() << std::endl;
 					sceneWeapon->setPosition((*it).second.getExternalMetrics());
 				}
+				it->second.setActivity(false);
 			}
 
 			if (weaponManager->hasCurrentWeapon())

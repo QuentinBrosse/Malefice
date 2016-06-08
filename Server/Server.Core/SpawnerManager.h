@@ -14,14 +14,12 @@
 #include "Singleton.h"
 #include "MathUtility.h"
 #include "PhysicsUtil.h"
-//#include "Servercore.h"
 #include "PositionSystem.h"
 
 class ServerCore;
 
-class SpawnerManager : public EntityManager, public NetworkObject //, public Singleton<SpawnerManager>
+class SpawnerManager : public EntityManager, public NetworkObject
 {
-	//friend class Singleton<SpawnerManager>;
 public:
 	SpawnerManager();
 	SpawnerManager(const SpawnerManager&) = delete;
@@ -51,11 +49,14 @@ public:
 
 	void setSpawnerVisibility(ecs::Entity* spawner, const bool isVisible, RakNet::RPC3* rpc);
 
+	void checkTimer();
+
 private:
-	std::map<ecs::ClientId, irr::core::line3df> m_spawnLine;
-	std::list<ecs::Position>				m_spawnPositionsWeapon;
-	std::list<ecs::Position>				m_spawnPositionsLife;
-	std::list<ecs::Position>				m_spawnPositionsArmor;
+	std::map<ecs::ClientId, irr::core::line3df>		m_spawnLine;
+	std::map<ecs::ClientId, long long>				m_timer;
+	std::list<ecs::Position>						m_spawnPositionsWeapon;
+	std::list<ecs::Position>						m_spawnPositionsLife;
+	std::list<ecs::Position>						m_spawnPositionsArmor;
 
 	float	m_inc;
 };

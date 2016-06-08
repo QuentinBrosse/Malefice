@@ -32,6 +32,8 @@ public:
 	static const irr::core::vector3df 	COLLISION_ANIMATOR_GRAVITY_PER_SECOND;
 	static const irr::core::vector3df 	COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION;
 
+	static const long long				SPAWNER_VISIBILITY_TIMER;
+
 	ProjectGlobals()	= delete;
 	~ProjectGlobals()	= delete;
 };

@@ -4,6 +4,8 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "ServerCore.h"
+#include "TimeUtility.h"
+#include "ProjectGlobals.h"
 
 //Serveur side
 SpawnerManager::SpawnerManager() : EntityManager(), NetworkObject(NetworkRPC::ReservedNetworkIds::SpawnerManager)
@@ -58,7 +60,8 @@ void SpawnerManager::createEntity(ecs::ClientId owner)
 
 void SpawnerManager::updateEntities()
 {
-	for (auto entity : m_entities)
+	checkTimer();
+	for (auto& entity : m_entities)
 	{
 		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity.second->getOwner(), entity.second);
 	}
@@ -214,5 +217,21 @@ void SpawnerManager::dump() const
 
 void SpawnerManager::setSpawnerVisibility(ecs::Entity* spawner, const bool isVisible, RakNet::RPC3* rpc)
 {
+	if (!isVisible)
+		m_timer[spawner->getOwner()] = utility::TimeUtility::getMsTime() + (1000 * ProjectGlobals::SPAWNER_VISIBILITY_TIMER);
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, spawner, isVisible);
+}
+
+void SpawnerManager::checkTimer()
+{
+	long long currentTime = utility::TimeUtility::getMsTime();
+
+	for (auto& time : m_timer)
+	{
+		if (time.second <= currentTime && time.second != 0)
+		{
+			time.second = 0;
+			setSpawnerVisibility(m_entities[time.first], true, nullptr);
+		}
+	}
 }

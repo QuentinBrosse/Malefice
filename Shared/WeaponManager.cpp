@@ -45,7 +45,8 @@ namespace ecs
 	{
 		if (m_weapons.find(newWeapon.getWeaponType()) == m_weapons.end())
 			m_weapons[newWeapon.getWeaponType()].affect(newWeapon);
-
+		else
+			m_weapons[newWeapon.getWeaponType()].incAmmunition(newWeapon.getAmmunitions());
 		if (m_weapons.size() == 1)
 			m_currentWeapon = m_weapons.begin();
 	}
