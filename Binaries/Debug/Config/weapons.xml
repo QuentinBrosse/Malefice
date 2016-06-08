@@ -59,7 +59,7 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
 		<reloadTime>5</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>sniper_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -105,17 +105,17 @@
 
 	<weapon id="2">
 		<name>Rail­-Gun</name>
-		<meshName>shotgun.obj</meshName>
+		<meshName>flamethrower.obj</meshName>
 		<type>RAIL_GUN</type>
 		<distance>500.0</distance>
-		<precision>00.0</precision>
+		<precision>0.0</precision>
 		<ammunitionsTotal>220</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip>
+		<ammunitionsClip>100</ammunitionsClip>
 		<rateOfFire>100.0</rateOfFire>
-		<ammoPerShot>1</ammoPerShot>
+		<ammoPerShot>10</ammoPerShot>
 		<damage>6</damage>
 		<reloadTime overheating="true">2</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>Railgun_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -227,7 +227,7 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>13</damage>
 		<reloadTime>2</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>mitraillette_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -275,7 +275,7 @@
 		<name>Pistolet</name>
 		<meshName>pistol.obj</meshName>
 		<type>PISTOL</type>
-		<distance>500.0</distance>
+		<distance>750.0</distance>
 		<precision>0.0</precision>
 		<ammunitionsTotal>200</ammunitionsTotal>
 		<ammunitionsClip>4</ammunitionsClip> 
@@ -283,7 +283,7 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>7</damage>
 		<reloadTime>2</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>pistol_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -331,7 +331,7 @@
 		<name>Double Pistolet</name>
 		<meshName>pistolSilencer.obj</meshName>
 		<type>DOUBLE_PISTOL</type>
-		<distance>500.0</distance>
+		<distance>750.0</distance>
 		<precision>5.0</precision>
 		<ammunitionsTotal>400</ammunitionsTotal>
 		<ammunitionsClip>4</ammunitionsClip> 
@@ -339,7 +339,7 @@
 		<ammoPerShot>2</ammoPerShot>
 		<damage>14</damage>
 		<reloadTime>3</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>pistol_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -385,7 +385,7 @@
 
 	<weapon id="7">
 		<name>Sabre</name>
-		<meshName>shotgun.obj</meshName>
+		<meshName>knife_smooth.obj</meshName>
 		<type>SABRE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
@@ -395,7 +395,7 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>45</damage>
 		<reloadTime>0</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>sabre_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -441,7 +441,7 @@
 
 	<weapon id="8">
 		<name>Tronçonneuse</name>
-		<meshName>shotgun.obj</meshName>
+		<meshName>knifeRound_sharp.obj</meshName>
 		<type>CHAINSAW</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
@@ -451,7 +451,7 @@
 		<ammoPerShot>0.01</ammoPerShot>
 		<damage>70</damage>
 		<reloadTime>3</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>tronconeuse_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
@@ -497,7 +497,7 @@
 
 	<weapon id="9">
 		<name>Knife</name>
-		<meshName>shotgun.obj</meshName>
+		<meshName>knife_sharp.obj</meshName>
 		<type>NKIFE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
@@ -507,7 +507,7 @@
 		<ammoPerShot>1</ammoPerShot>
 		<damage>25</damage>
 		<reloadTime>0</reloadTime>
-		<audioShot>shotgun_shot.ogg</audioShot>
+		<audioShot>couteau_final.ogg</audioShot>
 		<audioReload>shotgun_reload.ogg</audioReload>
 		<FPSMetrics>
 			<position>
