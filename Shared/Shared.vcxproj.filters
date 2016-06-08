@@ -308,9 +308,6 @@
     <ClInclude Include="PlayerInfos.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
-    <ClInclude Include="SpawnerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SpawnerFactory.h">
       <Filter>Header Files\ECS\Factory</Filter>
     </ClInclude>

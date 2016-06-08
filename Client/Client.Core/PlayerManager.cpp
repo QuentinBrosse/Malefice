@@ -29,8 +29,10 @@ void	PlayerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNe
 {
 	EntityManager::updateEntity(owner, entity, rpc);
 
-	for (auto& pair : m_entities)		
+	for (auto& pair : m_entities)
+	{
 		ecs::PositionSystem::updateScenePosition(*pair.second);
+	}
 }
 
 void	PlayerManager::removeEntity(ecs::ClientId owner, RakNet::RPC3* rpc)
@@ -69,8 +71,12 @@ void PlayerManager::initPlayersScene()
 			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t2.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
 
-		ecs::SceneAnimatedMesh* parent = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
-		PlayerFactory::initNicknameNode(it->second, device, parent->getNode());
+		if (it->second != m_currentPlayer)
+		{
+			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
+
+			PlayerFactory::initNicknameNode(it->second, device, scene->getNode());
+		}
 	}
 }
 

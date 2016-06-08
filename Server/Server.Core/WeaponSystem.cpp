@@ -29,7 +29,7 @@ namespace ecs
 			irr::core::line3df ray = rayWrap->getLine();
 			if (weapon.shoot())
 			{
-				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity); 
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 0); 
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
@@ -73,8 +73,10 @@ namespace ecs
 					}
 				}
 			}
+			else if (weapon.getAmmunitionsClip() > 0)
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 1);
 			else
-				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, false, entity);
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 2);
 		}
 	}
 }

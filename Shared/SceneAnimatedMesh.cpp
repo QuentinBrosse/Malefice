@@ -1,5 +1,6 @@
 #include "SceneAnimatedMesh.h"
 #include "Logger.h"
+#include "ProjectGlobals.h"
 
 #include <iostream>
 
@@ -84,7 +85,6 @@ namespace ecs
 		m_node->setRotation(newPosition.getVectorRotation());
 		m_node->setScale(newPosition.getVectorScale());
 	}
-	
 
 	void SceneAnimatedMesh::setAnimation(irr::scene::EMD2_ANIMATION_TYPE newAnimationType)
 	{
@@ -110,6 +110,22 @@ namespace ecs
 		return Position(m_node->getPosition(), m_node->getRotation(), m_node->getScale());
 	}
 
+	void SceneAnimatedMesh::setCollision(bool gratity)
+	{
+		irr::core::vector3df g;
+
+		m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
+		m_node->setTriangleSelector(m_selector);
+		if (gratity)
+			g = ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND;
+		irr::scene::ISceneNodeAnimator*	animator = m_smgr->createCollisionResponseAnimator(m_selector,
+			m_smgr->getActiveCamera(),
+			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS,
+			g,
+			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION);
+		m_smgr->getActiveCamera()->addAnimator(animator);
+		animator->drop();
+	}
 
 	void	SceneAnimatedMesh::dump(std::ostream& os)	const
 	{
