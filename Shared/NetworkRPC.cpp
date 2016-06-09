@@ -39,3 +39,6 @@ const std::string	NetworkRPC::SPAWNER_MANAGER_COLLISION_DETECTION = "SpawnerMana
 const std::string	NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL	= "SpellSystem::launchSpell";
 
 const std::string	NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY = "SpawnerManager::setSpawnerVisibility";
+
+const std::string	NetworkRPC::LIFE_SYSTEM_RESTORE = "LifeSystem::restore";
+const std::string	NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR = "LifeSystem::restoreArmor";

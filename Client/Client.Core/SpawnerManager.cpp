@@ -157,17 +157,15 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 	switch (spawner->getEntityType())
 	{
 	case ecs::Entity::EntityType::LIFE_SPAWNER:
-		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr && dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
+		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
 		{
-			dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE])->restore(dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
-			dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->set(0);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
 			break;
 		}
 	case ecs::Entity::EntityType::ARMOR_SPAWNER:
-		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr && dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
+		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
 		{
-			dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR])->restore(dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
-			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
 			break;
 		}
 	case ecs::Entity::EntityType::WEAPON_SPAWNER:
