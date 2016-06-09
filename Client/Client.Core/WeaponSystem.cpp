@@ -49,4 +49,21 @@ namespace ecs
 		}
 	}
 
+	void WeaponSystem::zoom(Entity& entity)
+	{
+		WeaponManager*	weaponManager;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[AComponent::ComponentType::WEAPON_MANAGER])) != nullptr
+			&& weaponManager->hasCurrentWeapon()
+			&& weaponManager->getCurrentWeapon().getWeaponType() == Weapon::WeaponType::SNIPER_RIFLE)
+		{
+			Camera*	camera = GraphicUtil::getInstance().getFPSCamera();
+
+			if (camera->isInZoom())
+				camera->unZoom();
+			else
+				camera->zoom();
+		}
+	}
+
 }

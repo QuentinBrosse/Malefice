@@ -120,7 +120,7 @@ int				PlayerManager::getTeam1Score()
 
 	for (auto &entity : m_entities)
 	{
-		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		ecs::Team *team = dynamic_cast<ecs::Team *>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
 		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team1)
 			score += team->getKills();
 	}
@@ -133,7 +133,7 @@ int				PlayerManager::getTeam2Score()
 
 	for (auto &entity : m_entities)
 	{
-		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		ecs::Team *team = dynamic_cast<ecs::Team *>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
 		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Team2)
 			score += team->getKills();
 	}
