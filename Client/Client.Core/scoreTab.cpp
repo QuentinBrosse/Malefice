@@ -1,5 +1,6 @@
 #include "scoreTab.h"
 #include "GraphicUtil.h"
+#include "Audio.h"
 
 scoreTab::scoreTab(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicalUtil(gu)
 {
@@ -24,6 +25,8 @@ scoreTab::scoreTab(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), 
 void scoreTab::display()
 {
 	m_systemd.getDefaultGUIContext().setRootWindow(m_windows);
+	Audio::getInstance().stopGameSound();
+	Audio::getInstance().playGameEndSound();
 }
 
 void scoreTab::hide()
@@ -70,8 +73,10 @@ void scoreTab::resetLists()
 
 bool scoreTab::onMainMenuButtonClicked(const CEGUI::EventArgs& e)
 {
+	Audio::getInstance().stopGameEndSound();
 	this->hide();
 	m_graphicalUtil.getMainMenu()->display();
+	Audio::getInstance().playMenuSound();
 	return true;
 }
 

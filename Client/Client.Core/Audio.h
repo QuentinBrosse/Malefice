@@ -31,7 +31,10 @@ public:
 
 	void	playMenuSound();
 	void	stopMenuSound();
-
+	void	playGameSound();
+	void	stopGameSound();
+	void	playGameEndSound();
+	void	stopGameEndSound();
 protected:
 	Audio();
 	~Audio();
@@ -40,6 +43,8 @@ private:
 	const std::string								m_soundPath;
 	irrklang::ISoundEngine*							m_engine;
 	std::map<const SoundType, const std::string>	m_sounds;
-	irrklang::ISound*										m_menuSound;
+	irrklang::ISound*								m_menuSound;
+	irrklang::ISound*								m_gameSound;
+	irrklang::ISound*								m_gameEndSound;
 	bool											m_isDeaf;
 };

@@ -20,6 +20,7 @@ MainMenu::MainMenu(GraphicUtil &gu) :
 void MainMenu::display()
 {
 	m_systemd.getDefaultGUIContext().setRootWindow(m_windows);
+	Audio::getInstance().playMenuSound();
 }
 
 void MainMenu::hide()

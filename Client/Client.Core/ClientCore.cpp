@@ -49,7 +49,6 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
-		Audio::getInstance().playMenuSound();
 	}
 	else
 	{
@@ -258,6 +257,7 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
 	Audio::getInstance().stopMenuSound();
+	Audio::getInstance().playGameSound();
 	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();

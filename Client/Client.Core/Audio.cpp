@@ -73,3 +73,29 @@ void Audio::stopMenuSound()
 	else
 		LOG_DEBUG(GENERAL) << "Cannot complie, m_menuSound is nullptr";
 }
+
+void Audio::playGameSound()
+{
+	m_gameSound = m_engine->play2D((m_soundPath + "jeu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
+}
+
+void Audio::stopGameSound()
+{
+	if (m_gameSound)
+		m_gameSound->stop();
+	else
+		LOG_DEBUG(GENERAL) << "Cannot complie, m_menuSound is nullptr";
+}
+
+void Audio::playGameEndSound()
+{
+	m_gameEndSound = m_engine->play2D((m_soundPath + "end.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
+}
+
+void Audio::stopGameEndSound()
+{
+	if (m_gameEndSound)
+		m_gameEndSound->stop();
+	else
+		LOG_DEBUG(GENERAL) << "Cannot complie, m_menuSound is nullptr";
+}
