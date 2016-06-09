@@ -119,7 +119,7 @@
     </ClInclude>
     <ClInclude Include="SpawnerManager.h">
       <Filter>Header Files\Network</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Target.h">
       <Filter>Header Files\Graphic</Filter>
     </ClInclude>
@@ -136,6 +136,9 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="YourDead.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="scoreTab.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -231,6 +234,9 @@
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="YourDead.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="scoreTab.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
