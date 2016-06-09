@@ -2,12 +2,22 @@
 #include "SpellManager.h"
 #include "WeaponCreator.h"
 #include "TimeUtility.h"
+#include "SpellCreator.h"
 
 namespace ecs
 {
 	SpellManager::SpellManager() : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
-		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(0), m_cooldownEndTime(0)
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(20), m_cooldownEndTime(0)
 	{
+		SpellCreator& spellCreator = SpellCreator::getInstance();
+		m_spells.insert(std::make_pair(Spell::SpellType::BLIND, spellCreator.create(Spell::SpellType::BLIND)));
+		m_spells.insert(std::make_pair(Spell::SpellType::CONFUSION, spellCreator.create(Spell::SpellType::CONFUSION)));
+		m_spells.insert(std::make_pair(Spell::SpellType::DEAF, spellCreator.create(Spell::SpellType::DEAF)));
+		m_spells.insert(std::make_pair(Spell::SpellType::PARANOIA, spellCreator.create(Spell::SpellType::PARANOIA)));
+		m_spells.insert(std::make_pair(Spell::SpellType::PARKINSON, spellCreator.create(Spell::SpellType::PARKINSON)));
+		m_spells.insert(std::make_pair(Spell::SpellType::SLOW, spellCreator.create(Spell::SpellType::SLOW)));
+		m_currentSpell = m_spells.begin();
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
 	}
 
 	SpellManager::SpellManager(const SpellManager& cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
