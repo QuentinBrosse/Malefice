@@ -28,6 +28,8 @@ namespace ecs
 		virtual void	serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void	deserialize(RakNet::BitStream& in);
 
+		irr::scene::IBillboardSceneNode*	getScene()	const;
+
 	private:
 		irr::scene::IBillboardSceneNode*	m_node;
 		bool								m_lighting;
