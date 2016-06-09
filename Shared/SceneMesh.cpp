@@ -65,13 +65,11 @@ namespace ecs
 			m_node->setTriangleSelector(m_selector);
 			irr::scene::ISceneNodeAnimator*	animator = m_smgr->createCollisionResponseAnimator(m_selector,
 				m_smgr->getActiveCamera(),
-				ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS,
+				irr::core::vector3df(30.f, 50.f, 30.f),
 				ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND,
-				ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION);
+				irr::core::vector3df(0.f, 0.f, 0.f));
 			if (m_device->getVideoDriver()->getDriverType() != irr::video::EDT_NULL)
 				m_smgr->getActiveCamera()->addAnimator(animator);
-			else
-				; // TODO: do something?
 			animator->drop();
 		}
 	}

@@ -4,14 +4,15 @@
 #include "ProjectGlobals.h"
 #include "WeaponManagerSystem.h"
 #include "ressource.h"
+#include "NodePickable.h"
 
 #include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules\Irrlicht\Renderer.h>
 #include <Windows.h>
 
 GraphicUtil::GraphicUtil() :
-	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr), m_isInFPSMode(false)
+	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr), m_isInFPSMode(false), m_skyBox(nullptr)
 {
 	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
 
@@ -224,6 +225,23 @@ MasterList* GraphicUtil::getMasterList()
 bool GraphicUtil::isInFPSMode() const
 {
 	return m_isInFPSMode;
+}
+
+void GraphicUtil::initSky()
+{
+	m_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, false);
+	m_driver->setTextureCreationFlag(irr::video::ETCF_ALWAYS_32_BIT, true);
+
+	m_skyBox = m_sceneManager->addSkyBoxSceneNode(
+		m_driver->getTexture("Media/irrlicht2_up.jpg"),
+		m_driver->getTexture("Media/irrlicht2_dn.jpg"),
+		m_driver->getTexture("Media/irrlicht2_lf.jpg"),
+		m_driver->getTexture("Media/irrlicht2_rt.jpg"),
+		m_driver->getTexture("Media/irrlicht2_ft.jpg"),
+		m_driver->getTexture("Media/irrlicht2_bk.jpg"));
+	m_skyBox->setID(nodePickable::NOT_PICKABLE);
+
+	m_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 }
 
 InGameGUI* GraphicUtil::getHUD()

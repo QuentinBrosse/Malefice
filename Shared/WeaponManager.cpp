@@ -22,15 +22,15 @@ namespace ecs
 			m_currentWeapon = m_weapons.end();
 	}
 
-	WeaponManager::WeaponManager(Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER)
+	WeaponManager::WeaponManager(const Weapon& defaultWeapon) : AComponent("WeaponManager", ecs::AComponent::ComponentType::WEAPON_MANAGER)
 	{
 		this->init(defaultWeapon);
 	}
 
 
-	void	WeaponManager::init(Weapon& defaultWeapon)
+	void	WeaponManager::init(const Weapon& defaultWeapon)
 	{
-		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon&>(defaultWeapon.getWeaponType(), defaultWeapon));
+		m_weapons.insert(std::pair<Weapon::WeaponType, Weapon>(defaultWeapon.getWeaponType(), defaultWeapon));
 		m_currentWeapon = m_weapons.begin();
 	}
 

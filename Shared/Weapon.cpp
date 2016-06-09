@@ -227,7 +227,7 @@ namespace ecs
 	{
 		try
 		{
-			if (m_scene != nullptr)
+			if (m_scene != nullptr && m_scene->getScene())
 				m_scene->getScene()->setVisible(active);
 		}
 		catch (const std::exception& e)

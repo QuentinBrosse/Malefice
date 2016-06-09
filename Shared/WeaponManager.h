@@ -12,10 +12,10 @@ namespace ecs
 	public:
 		WeaponManager();
 		WeaponManager(const WeaponManager& cpy);
-		WeaponManager(Weapon& defaultWeapon);
+		WeaponManager(const Weapon& defaultWeapon);
 		~WeaponManager()	= default;
 
-		virtual void	init(Weapon& defaultWeapon);
+		virtual void	init(const Weapon& defaultWeapon);
 		void			reset();
 
 		void			addWeapon(const Weapon& newWeapon);
