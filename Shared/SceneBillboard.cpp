@@ -107,4 +107,9 @@ namespace ecs
 		AScene::deserialize(in);
 	}
 
+	irr::scene::IBillboardSceneNode * SceneBillboard::getScene() const
+	{
+		return m_node;
+	}
+
 }

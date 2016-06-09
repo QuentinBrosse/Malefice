@@ -6,6 +6,7 @@
 #include "Team.h"
 #include "ServerCore.h"
 #include "PlayerInfos.h"
+#include "Armor.h"
 
 void	ecs::LifeSystem::die(ecs::Entity* dead)
 {
@@ -17,10 +18,6 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	LOG_DEBUG(GENERAL) << dynamic_cast<ecs::PlayerInfos *>((*dead)[ecs::AComponent::ComponentType::PLAYER_INFOS])->getNickname() << " is dead modafoka !";
 
 	life->set(100);
-/*	position->setVectorPosition(irr::core::vector3df(0, 0, 0));
-	position->setVectorRotation(irr::core::vector3df(0, 0, 0));
-	position->setVectorScale(irr::core::vector3df(1.0F, 1.0F, 1.0F));*/
-
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::LIFE_SYSTEM_DIE,
 		static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem),
 		dead->getOwner(),
@@ -31,4 +28,25 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	team->addDeath();
 	// TODO: what about the scene?
 	// TODO: if predator, what about the spells?
+}
+
+
+void ecs::LifeSystem::restore(ecs::Entity* entity, const int hp, RakNet::RPC3 * rpc)
+{
+	ecs::Life*	life;
+	ecs::Entity* localEntity = ServerCore::getInstance().getPlayerManager().findEntity(entity->getOwner());
+
+	*localEntity = *entity;
+	if ((life = dynamic_cast<ecs::Life*>((*localEntity)[ecs::AComponent::ComponentType::LIFE]) )!= nullptr)
+		life->restore(hp);
+}
+
+void ecs::LifeSystem::restoreArmor(ecs::Entity* entity, const int hp, RakNet::RPC3 * rpc)
+{
+	ecs::Armor*	armor;
+	ecs::Entity* localEntity = ServerCore::getInstance().getPlayerManager().findEntity(entity->getOwner());
+
+	*localEntity = *entity;
+	if ((armor = dynamic_cast<ecs::Armor*>((*localEntity)[ecs::AComponent::ComponentType::ARMOR])) != nullptr)
+		armor->restore(hp);
 }

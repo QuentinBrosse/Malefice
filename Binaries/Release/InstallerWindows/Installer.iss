@@ -21,7 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename=Maléfice
+OutputBaseFilename=Malefice Setup
 Compression=lzma
 SolidCompression=yes
 
@@ -69,9 +69,9 @@ Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Irrlicht.d
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\ikpFlac.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\ikpMP3.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\irrKlang.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\datafiles\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Config\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Media\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\datafiles\*"; DestDir: "{app}\datafiles"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Config\*"; DestDir: "{app}\Config\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Media\*"; DestDir: "{app}\Media\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\settings.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\tinyxml2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\CEGUISILLYImageCodec.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -96,6 +96,6 @@ Source: "C:\Users\brossq_q\Documents\GitHub\Malefice\Binaries\Release\Client.Cor
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
-[Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+;[Run]
+;Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

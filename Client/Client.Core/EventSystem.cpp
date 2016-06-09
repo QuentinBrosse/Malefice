@@ -82,7 +82,7 @@ namespace ecs
 				break;
 
 			case EventReceiver::ZOOM:
-				//TODO: Camera?
+				WeaponSystem::zoom(localPlayer);
 				break;
 			case EventReceiver::RELOAD:
 				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_RELOAD, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &localPlayer);

@@ -64,14 +64,14 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{4dcd1891-ae1c-4e9b-bc09-cd61e70b12e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Network">
-      <UniqueIdentifier>{f1e902a1-f5cc-40ef-9844-b3e3bd19814b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Wrapper">
       <UniqueIdentifier>{2e1aae85-035b-4b9d-bcf4-044409933300}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Wrapper">
       <UniqueIdentifier>{8cbd35a2-10a2-4d41-bb54-55e791853956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{f1e902a1-f5cc-40ef-9844-b3e3bd19814b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +179,6 @@
     </ClCompile>
     <ClCompile Include="SpawnerFactory.cpp">
       <Filter>Source Files\ECS\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="SpawnerManager.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Line3dWrapper.cpp">
       <Filter>Source Files\Wrapper</Filter>
