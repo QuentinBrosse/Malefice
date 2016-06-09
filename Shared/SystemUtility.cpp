@@ -1,3 +1,4 @@
+#include <stdexcept>
 #ifdef _WIN32
 #include <tchar.h>
 #else
