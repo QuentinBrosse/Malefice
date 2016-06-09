@@ -144,11 +144,13 @@ namespace ecs
 
 		for (auto& spell : m_spells)
 		{
-			if (spell.second.getScene() != nullptr)
-				continue;
-			spell.second.createScene(device, parent, false);
-			scene = spell.second.getScene();
-			scene->setPosition(spell.second.getFPSMetrics());
+			if (spell.second.getScene() == nullptr)
+			{
+				spell.second.createScene(device, parent, false);
+				scene = spell.second.getScene();
+				scene->setPosition(spell.second.getFPSMetrics());
+			}
+			spell.second.setActivity(false);
 		}
 		if (m_currentSpell != m_spells.end() && !m_weaponsIsCurrent)
 			m_currentSpell->second.setActivity(true);
