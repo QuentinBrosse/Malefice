@@ -63,10 +63,13 @@ bool Audio::isDeaf() const
 
 void Audio::playMenuSound()
 {
-	m_menuSound = this->play2D("TheManWhoSoldTheWorld.ogg", true);
+	m_menuSound = m_engine->play2D((m_soundPath + "Two_Steps_from_Hell_-_Heart_of_Courage.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
 }
 
 void Audio::stopMenuSound()
 {
-	//m_menuSound->stop();
+	if (m_menuSound)
+		m_menuSound->stop();
+	else
+		LOG_DEBUG(GENERAL) << "Cannot complie, m_menuSound is nullptr";
 }
