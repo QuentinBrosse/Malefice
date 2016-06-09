@@ -13,7 +13,11 @@ namespace ecs
 		if ((weaponManager = dynamic_cast<WeaponManager*>(player[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && weaponManager->hasCurrentWeapon())
 		{
 			irr::scene::ISceneNode* parent = weaponManager->getCurrentWeapon().getScene()->getNode()->getParent();
-			irr::core::vector3df pos = weaponManager->getCurrentWeapon().getScene()->getNode()->getPosition();
+			irr::core::vector3df	pos = weaponManager->getCurrentWeapon().getScene()->getNode()->getPosition();
+			Camera*					camera = GraphicUtil::getInstance().getFPSCamera();
+
+			if (weaponManager->getCurrentWeapon().getWeaponType() == Weapon::WeaponType::SNIPER_RIFLE && camera->isInZoom())
+				camera->unZoom();
 
 			weaponManager->changeToNextWeapon();
 			if (!weaponManager->getCurrentWeapon().getScene())
@@ -39,6 +43,10 @@ namespace ecs
 		{
 			irr::scene::ISceneNode* parent = weaponManager->getCurrentWeapon().getScene()->getNode()->getParent();
 			irr::core::vector3df pos = weaponManager->getCurrentWeapon().getScene()->getNode()->getPosition();
+			Camera*					camera = GraphicUtil::getInstance().getFPSCamera();
+
+			if (weaponManager->getCurrentWeapon().getWeaponType() == Weapon::WeaponType::SNIPER_RIFLE && camera->isInZoom())
+				camera->unZoom();
 
 			weaponManager->changeToPrecWeapon();
 			if (!weaponManager->getCurrentWeapon().getScene())

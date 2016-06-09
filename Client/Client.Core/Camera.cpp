@@ -3,7 +3,7 @@
 #include "MathUtility.h"
 
 Camera::Camera(const ecs::Position& position, irr::scene::ISceneManager* sceneManager) :
-	m_camera(nullptr), m_cameraAnimator(nullptr)
+	m_camera(nullptr), m_cameraAnimator(nullptr), m_isInZoom(false)
 {
 	init(position, sceneManager);
 }
@@ -93,8 +93,31 @@ void	Camera::setPosition(const ecs::Position & newPosition)
 	m_camera->setScale(newPosition.getVectorScale());
 }
 
+void Camera::setFov(const irr::f32 fov)
+{
+	m_camera->setFOV(fov);
+}
+
 void Camera::setSpeed(const irr::f32 speedMove, const irr::f32 speedRotation)
 {
 	m_cameraAnimator->setMoveSpeed(speedMove);
 	m_cameraAnimator->setRotateSpeed(speedRotation);
+}
+
+void Camera::zoom()
+{
+	irr::f32 zoomFOV = 0.25f * utility::MathUtility::PI;
+	m_camera->setFOV(zoomFOV);
+	m_isInZoom = true;
+}
+
+void Camera::unZoom()
+{
+	m_camera->setFOV(utility::MathUtility::degreesToRadians(90.f));
+	m_isInZoom = false;
+}
+
+bool Camera::isInZoom() const
+{
+	return m_isInZoom;
 }

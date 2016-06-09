@@ -109,6 +109,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
 	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
 	m_rpc.RegisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str(), &ecs::WeaponSystem::triggerShootActions);
+
 }
 
 void	NetworkModule::unregisterRPCs()

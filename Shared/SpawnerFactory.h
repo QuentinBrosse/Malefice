@@ -13,6 +13,6 @@ public:
 
 	static ecs::Entity* createWeaponSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
 	static ecs::Entity* createLifeSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
-	static ecs::Entity* createSpellSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
+	static ecs::Entity* createArmorSpawner(irr::IrrlichtDevice* device, const ecs::Position position, const ecs::ClientId owner);
 	static void			initScene(irr::IrrlichtDevice* device, const std::string& newNameMesh, ecs::Entity& entity);
 };

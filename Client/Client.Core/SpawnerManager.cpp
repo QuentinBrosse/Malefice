@@ -76,10 +76,20 @@ void SpawnerManager::initSpawnersScene()
 		{
 			if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 20)
 				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart.obj")).c_str(), *it->second);
-			else if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 40)
+			else if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 50)
 				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
 			else
-				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart3.obj")).c_str(), *it->second);
+		}
+		else
+		{
+			if (dynamic_cast<ecs::Armor*>((*it->second)[ecs::AComponent::ComponentType::ARMOR])->getMaxLife() == 20)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor.obj")).c_str(), *it->second);
+			else if (dynamic_cast<ecs::Armor*>((*it->second)[ecs::AComponent::ComponentType::ARMOR])->getMaxLife() == 50)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor2.obj")).c_str(), *it->second);
+			else
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor3.obj")).c_str(), *it->second);
+
 		}
 		ecs::PositionSystem::updateScenePosition(*it->second);
 	}
@@ -157,17 +167,15 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 	switch (spawner->getEntityType())
 	{
 	case ecs::Entity::EntityType::LIFE_SPAWNER:
-		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr && dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
+		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
 		{
-			dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE])->restore(dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
-			dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->set(0);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
 			break;
 		}
 	case ecs::Entity::EntityType::ARMOR_SPAWNER:
-		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr && dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
+		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
 		{
-			dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR])->restore(dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
-			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
 			break;
 		}
 	case ecs::Entity::EntityType::WEAPON_SPAWNER:

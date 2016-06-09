@@ -112,6 +112,7 @@ void GraphicUtil::initGraphics()
 	m_blindFx = new Blind();
 	m_touchedFx = new TouchedFx();
 	m_deadGUI = new YourDead();
+	m_scoreTab = new scoreTab(*this);
 
 	if (!ProjectGlobals::NO_MENU)
 	{
@@ -254,6 +255,11 @@ irr::video::IVideoDriver* GraphicUtil::getDriver()
 Blind* GraphicUtil::getBlindFx()
 {
 	return m_blindFx;
+}
+
+scoreTab* GraphicUtil::getScoreTab()
+{
+	return m_scoreTab;
 }
 
 void GraphicUtil::setGuiCamera()

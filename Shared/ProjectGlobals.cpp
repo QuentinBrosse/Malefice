@@ -5,7 +5,7 @@ const std::string	ProjectGlobals::GAME_NAME	= "Malefice";
 const bool			ProjectGlobals::NO_MENU = false;
 
 const std::size_t	ProjectGlobals::NORMAL_TEAM_SIZE	= 1;
-const std::size_t	ProjectGlobals::NORMAL_TEAMS_NB		= 1;
+const std::size_t	ProjectGlobals::NORMAL_TEAMS_NB		= 2;
 
 const std::size_t	ProjectGlobals::PREDATOR_TEAM_SIZE	= 1;
 const std::size_t	ProjectGlobals::PREDATOR_TEAMS_NB	= 1;
