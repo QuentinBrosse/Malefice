@@ -50,15 +50,4 @@ namespace ecs
 			spellManager->createFPSScene(GraphicUtil::getInstance().getDevice(), GraphicUtil::getInstance().getSceneManager()->getActiveCamera());
 		}
 	}
-
-	void SpellManagerSystem::initExternalScene(Entity & predator)
-	{
-		SpellManager*	spellManager;
-
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-		{
-			spellManager->createExternalScene(GraphicUtil::getInstance().getDevice(), GraphicUtil::getInstance().getSceneManager()->getActiveCamera());
-		}
-	}
-
 }

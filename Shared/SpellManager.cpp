@@ -153,21 +153,6 @@ namespace ecs
 		//TODO: create spell's scenes
 	}
 
-	void SpellManager::createExternalScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent)
-	{
-		SceneAnimatedMesh*	scene;
-
-		for (auto& weapon : m_weaponManager.getWeapons())
-		{
-			weapon.second.createScene(device, parent, false);
-			scene = weapon.second.getScene();
-			if (scene == nullptr) //DEBUG
-				return;
-			scene->setPosition(weapon.second.getExternalMetrics());
-		}
-		//TODO: create spell's scenes
-	}
-
 
 	void	SpellManager::dump(std::ostream& os)	const
 	{

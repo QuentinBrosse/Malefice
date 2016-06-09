@@ -158,6 +158,7 @@
       <AdditionalDependencies>CEGUIBase-0.lib;CEGUICommonDialogs-0.lib;CEGUICoreWindowRendererSet.lib;CEGUIExpatParser.lib;CEGUIIrrlichtRenderer-0.lib;CEGUISILLYImageCodec.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>/ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <PostBuildEvent>
       <Command>

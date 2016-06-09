@@ -22,10 +22,16 @@ public:
 	void							loadDefaultKeys();
 	void							loadInvertKeys();
 	void							setPosition(const ecs::Position& newPosition);
+	void							setFov(const irr::f32 fov);
 
 	void							setSpeed(const irr::f32 speedMove, const irr::f32 speedRotation);
 
+	void							zoom();
+	void							unZoom();
+
+	bool							isInZoom()	const;
 private:
 	irr::scene::ICameraSceneNode*				m_camera;
 	irr::scene::ISceneNodeAnimatorCameraFPS*	m_cameraAnimator;
+	bool										m_isInZoom;
 };
