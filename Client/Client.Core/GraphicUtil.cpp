@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include "GraphicUtil.h"
 #include "ClientCore.h"
 #include "SceneMesh.h"
@@ -6,9 +9,12 @@
 #include "ressource.h"
 
 #include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
-#include <Windows.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Irrlicht/Renderer.h>
+
+#ifdef _WIN32
+  #include <Windows.h>
+#endif
 
 GraphicUtil::GraphicUtil() :
 	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr), m_isInFPSMode(false)
@@ -119,12 +125,13 @@ void GraphicUtil::initGraphics()
 		this->setGuiCamera();
 	}
 
+#ifdef _WIN32
 	HINSTANCE hInstance = (HINSTANCE)GetModuleHandle(NULL);
 	HICON hSmallIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(ID_ICON), IMAGE_ICON, 32, 32, LR_DEFAULTCOLOR);
 	irr::video::SExposedVideoData exposedData = m_driver->getExposedVideoData();
 	HWND hWnd = reinterpret_cast<HWND>(exposedData.D3D9.HWnd);
 	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (long)hSmallIcon);
-
+#endif
 }
 
 irr::IrrlichtDevice* GraphicUtil::getDevice()
@@ -185,7 +192,7 @@ void GraphicUtil::CEGUIEventInjector()
 			break;
 		}
 		else if (keyList[i] == EventReceiver::keyStatesENUM::DOWN && i == irr::KEY_BACK)
-			Sleep(70);
+		  std::this_thread::sleep_for(std::chrono::milliseconds(70));
 		else
 			lock = false;
 	}

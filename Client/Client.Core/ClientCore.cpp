@@ -1,13 +1,13 @@
 #include <chrono>
 #include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Irrlicht/Renderer.h>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
 #include "Logger.h"
 #include "NodePickable.h"
-#include "mapFactory.h"
+#include "MapFactory.h"
 #include "PlayerFactory.h"
 #include "SpawnerFactory.h"
 #include "Position.h"
