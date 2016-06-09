@@ -31,7 +31,6 @@ bool	NetworkModule::init()
 	{
 		return true;
 	}
-
 	else
 	{
 		return false;

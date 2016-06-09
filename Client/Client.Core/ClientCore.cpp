@@ -264,6 +264,7 @@ void	ClientCore::startGame(RakNet::RPC3* rpc)
 	m_playerManager->initPlayersScene();
 	m_spawnerManager->initSpawnersScene();
 	m_graphicModule->setFPSCamera();
+	m_graphicModule->initSky();
 	m_graphicModule->getHUD()->timerStart();
 	this->createEntities();
 	LOG_INFO(GENERAL) << "Starting game.";

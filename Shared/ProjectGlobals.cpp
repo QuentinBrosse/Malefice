@@ -25,8 +25,8 @@ const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= ProjectGlobals::L
 const std::string	ProjectGlobals::MASTERLIST_URL = "malefice.pinot.ovh";
 
 const irr::core::vector3df	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS = irr::core::vector3df(8.f, 1.f, 8.f);
-const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND = irr::core::vector3df(0.f, -9.8f, 0.f);
-const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION = irr::core::vector3df(0.f, 50.f, 0.f);
+const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND = irr::core::vector3df(0.f, -10.f, 0.f);
+const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION = irr::core::vector3df(0.f, 43.f, 0.f);
 
 const long long				ProjectGlobals::SPAWNER_VISIBILITY_TIMER = 10;
 const std::string	ProjectGlobals::MASTERLIST_URL_SERVER = ProjectGlobals::MASTERLIST_URL + "/api/v1/server?ordered=true";

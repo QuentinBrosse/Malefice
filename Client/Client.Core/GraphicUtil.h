@@ -45,6 +45,7 @@ public:
 	YourDead*					getDeadGUI();
 	scoreTab*					getScoreTab();
 	bool						isInFPSMode()		const;
+	void						initSky();
 
 private:
 	irr::IrrlichtDevice*		m_device;
@@ -66,4 +67,5 @@ private:
 	YourDead*					m_deadGUI;
 	scoreTab*					m_scoreTab;
 	bool						m_isInFPSMode;
+	irr::scene::ISceneNode*		m_skyBox;
 };
