@@ -43,7 +43,6 @@ namespace ecs
 
 		void	createFPSScene(irr::IrrlichtDevice* device, irr::scene::ISceneNode* parent);
 
-		void	createExternalScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent);
 		
 		virtual	AComponent&	affect(const AComponent& rhs);
 
