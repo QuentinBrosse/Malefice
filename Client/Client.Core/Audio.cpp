@@ -77,7 +77,7 @@ void Audio::stopMenuSound()
 
 void Audio::playGameSound()
 {
-	//m_gameSound = m_engine->play2D((m_soundPath + "jeu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
+	m_gameSound = m_engine->play2D((m_soundPath + "jeu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
 }
 
 void Audio::stopGameSound()
