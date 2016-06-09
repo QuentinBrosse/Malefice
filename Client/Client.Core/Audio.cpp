@@ -34,10 +34,10 @@ void	Audio::playGUISound(const Audio::SoundType soundType)
 	m_engine->play2D(m_sounds[soundType].c_str());
 }
 
-void	Audio::play2D(const std::string& soundFile)
+irrklang::ISound *	Audio::play2D(const std::string& soundFile, bool status)
 {
 	if (!m_isDeaf)
-		m_engine->play2D((m_soundPath + soundFile).c_str());
+		return (m_engine->play2D((m_soundPath + soundFile).c_str(), status));
 }
 
 void Audio::play3D(const std::string& soundFile, const ecs::Position& position)
@@ -59,4 +59,14 @@ void Audio::setIsDeaf(const bool isDeaf)
 bool Audio::isDeaf() const
 {
 	return m_isDeaf;
+}
+
+void Audio::playMenuSound()
+{
+	m_menuSound = this->play2D("TheManWhoSoldTheWorld.ogg", true);
+}
+
+void Audio::stopMenuSound()
+{
+	m_menuSound->stop();
 }

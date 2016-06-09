@@ -34,7 +34,7 @@
         </Window>
         <Window type="OgreTray/StaticText" name="StaticText22" >
             <Property name="ID" value="51" />
-            <Property name="Area" value="{{0,502},{0,119},{0,817},{0,187}}" />
+            <Property name="Area" value="{{0,502},{0,120},{0,817},{0,188}}" />
             <Property name="Font" value="Jura-18" />
             <Property name="Text" value="Equipe 2:" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />

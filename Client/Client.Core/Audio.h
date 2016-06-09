@@ -22,12 +22,15 @@ public:
 
 	void	refreshListenerPosition(const ecs::Position& position);
 	void	playGUISound(const SoundType);
-	void	play2D(const std::string& soundFile);
+	irrklang::ISound* play2D(const std::string& soundFile, bool = false);
 	void	play3D(const std::string& soundFile, const ecs::Position& position);
 
 	void	setIsDeaf(const bool isDeaf);
 
 	bool	isDeaf()	const;
+
+	void	playMenuSound();
+	void	stopMenuSound();
 
 protected:
 	Audio();
@@ -37,6 +40,6 @@ private:
 	const std::string								m_soundPath;
 	irrklang::ISoundEngine*							m_engine;
 	std::map<const SoundType, const std::string>	m_sounds;
-
+	irrklang::ISound*										m_menuSound;
 	bool											m_isDeaf;
 };
