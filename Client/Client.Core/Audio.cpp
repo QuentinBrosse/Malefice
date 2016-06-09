@@ -47,6 +47,7 @@ void Audio::play3D(const std::string& soundFile, const ecs::Position& position)
 		irrklang::vec3df irrPos(position.getVectorPosition().X,
 			position.getVectorPosition().Y,
 			position.getVectorPosition().Z);
+		m_engine->setDefault3DSoundMinDistance(irrklang::ik_f32(200.f));
 		m_engine->play3D((m_soundPath + soundFile).c_str(), irrPos);
 	}
 }
@@ -76,7 +77,7 @@ void Audio::stopMenuSound()
 
 void Audio::playGameSound()
 {
-	m_gameSound = m_engine->play2D((m_soundPath + "jeu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
+	//m_gameSound = m_engine->play2D((m_soundPath + "jeu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
 }
 
 void Audio::stopGameSound()
