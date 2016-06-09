@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 
+#include "MasterListNetwork.h"
+
 class GraphicUtil;
 
 class MasterList
@@ -14,6 +16,7 @@ class MasterList
 public:
 	MasterList(GraphicUtil &gu);
 	~MasterList() = default;
+	static void fetchNetwork(const std::vector<std::string>& servers);
 	void display();
 	void hide();
 	void addServer(const std::string& ip, const std::string& port, bool hasPassword = false, int players = -1);
@@ -34,6 +37,7 @@ private:
 	CEGUI::PushButton*	m_manualConnect;
 	CEGUI::PushButton*	m_autoConnect;
 	CEGUI::Listbox*		m_serverList;
+	MasterListNetwork*	m_masterListNework;
 	class Server
 	{
 	public:

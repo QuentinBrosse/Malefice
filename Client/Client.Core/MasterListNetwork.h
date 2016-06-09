@@ -5,18 +5,40 @@
 #include <RakString.h>
 #include <vector>
 #include <iostream>
+#include <thread>
+#include <atomic>
 
 #include "Singleton.h"
 #include "TimeUtility.h"
 
-class MasterListNetwork : public Singleton<MasterListNetwork>
+#include "HTTPClient.h"
+
+class MasterListNetwork
 {
-	friend class Singleton<MasterListNetwork>;
+	typedef void(*QueryHandler_t)(const std::vector<std::string>& servers);
+
+	enum RefreshState
+	{
+		RefreshState_Ready,
+		RefreshState_InProgress,
+		RefreshState_UpdateRequired
+	};
+
 public:
-	MasterListNetwork();
+	MasterListNetwork(QueryHandler_t handler);
 	~MasterListNetwork();
-	std::vector<std::string> fetch();
+
+	void	worker();
+
+	bool	refresh();
+
+	static bool	recieveHandle(const char *, unsigned int, void *);
+
 private:
-	RakNet::TCPInterface*	m_tcp;
-	long long				m_lastUpdateTime;
+
+	HTTPClient*					m_httpClient;
+	QueryHandler_t				m_queryHandler;
+	unsigned long				m_lastRefreshTime;
+	std::thread*				m_refreshThread;
+	std::atomic<RefreshState>   m_refreshState;
 };

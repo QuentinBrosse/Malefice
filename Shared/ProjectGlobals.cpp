@@ -29,3 +29,4 @@ const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECON
 const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION = irr::core::vector3df(0.f, 50.f, 0.f);
 
 const long long				ProjectGlobals::SPAWNER_VISIBILITY_TIMER = 10;
+const std::string	ProjectGlobals::MASTERLIST_URL_SERVER = ProjectGlobals::MASTERLIST_URL + "/api/v1/server?ordered=true";

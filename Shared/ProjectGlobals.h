@@ -34,6 +34,8 @@ public:
 
 	static const long long				SPAWNER_VISIBILITY_TIMER;
 
+	static const std::string	MASTERLIST_URL;
+	static const std::string	MASTERLIST_URL_SERVER;
 	ProjectGlobals()	= delete;
 	~ProjectGlobals()	= delete;
 };

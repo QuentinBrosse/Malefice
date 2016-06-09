@@ -1,56 +1,117 @@
+#include <string>
+#include <iostream>
+
+#ifdef _WIN32
+#include <WindowsIncludes.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#endif
+
 #include "MasterListNetwork.h"
 #include "ProjectGlobals.h"
 
 #include "StringUtility.h"
 
-#include <string>
-#include <iostream>
+#include "ProjectGlobals.h"
 
-MasterListNetwork::MasterListNetwork() : Singleton<MasterListNetwork>(),
-m_lastUpdateTime(0)
+#include "Logger.h"
+
+MasterListNetwork::MasterListNetwork(QueryHandler_t handler):
+	m_queryHandler(handler),
+	m_refreshState(RefreshState_Ready),
+	m_refreshThread(nullptr)
 {
-	m_tcp = RakNet::OP_NEW<RakNet::TCPInterface>(__FILE__, __LINE__);
-	m_tcp->Start(0, 64);
+	m_httpClient = new HTTPClient;
+	m_httpClient->setReceiveHandle(&MasterListNetwork::recieveHandle, this);
+	m_httpClient->setHost(ProjectGlobals::MASTERLIST_URL);
+
+	m_lastRefreshTime = utility::TimeUtility::getMsTime();
 }
 
 MasterListNetwork::~MasterListNetwork()
 {
-	if (m_tcp) {
-		if (m_tcp->WasStarted())
-			m_tcp->Stop();
-		delete(m_tcp);
+	if (m_refreshThread->joinable())
+		m_refreshThread->join();
+
+	if (m_httpClient)
+		delete(m_httpClient);
+}
+
+void	MasterListNetwork::worker()
+{
+	while (true)
+	{
+		if (m_httpClient->isBusy())
+		{
+			m_httpClient->process();
+			if (m_httpClient->gotData())
+			{
+				std::string* data = m_httpClient->getData();
+				if (!data->empty())
+				{
+					std::vector<std::string> servers = utility::StringUtility::explode(data->c_str(), "<br/>");
+
+					LOG_INFO(NETWORK) << "Discovered " << servers.size() << " servers";
+					if (m_queryHandler)
+						m_queryHandler(servers);
+				}
+				else
+				{
+					std::cout << "Failed" << std::endl;
+					std::this_thread::sleep_for(std::chrono::seconds(3));
+				}
+				m_refreshState = RefreshState_Ready;
+			}
+			else {
+				LOG_DEBUG(NETWORK) << "No data got";
+				std::cout << m_httpClient->getData() << std::endl;
+			}
+		}
+		else
+		{
+			if (m_refreshState == RefreshState_UpdateRequired)
+			{
+				std::string strPath = "/api/v1/server?ordered=true";
+
+				m_lastRefreshTime = utility::TimeUtility::getMsTime();
+				m_refreshState = RefreshState_InProgress;
+				m_httpClient->get(strPath);
+
+				if (m_httpClient->getLastError() != HTTP_ERROR_NONE)
+				{
+					std::cout << "Failed = " << m_httpClient->getLastError() << std::endl;
+					std::this_thread::sleep_for(std::chrono::seconds(3));
+				}
+			}
+		}
+		Sleep(50);
 	}
 }
 
-std::vector<std::string>	MasterListNetwork::fetch()
+
+
+bool	MasterListNetwork::refresh()
 {
-	RakNet::RakString			post;
-	RakNet::Packet*				packet;
-	std::vector<std::string>	retn;
+	if (m_refreshState != RefreshState_Ready)
+		return false;
 
-	if ((utility::TimeUtility::getMsTime() - m_lastUpdateTime) < 3000)
-		return retn;
+	m_httpClient->reset();
+	m_refreshState = RefreshState_UpdateRequired;
 
-	if (m_tcp->Connect(ProjectGlobals::MASTERLIST_URL.c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)
-		return retn;
+	if (m_refreshThread == nullptr)
+	{
+		m_refreshThread = new std::thread(&MasterListNetwork::worker, this);
+		m_refreshThread->detach();
+	}
+	return true;
+}
 
-	RakSleep(100);
-
-	post = RakNet::RakString::FormatForGET(std::string(ProjectGlobals::MASTERLIST_URL).append("/api/v1/server?ordered=true").c_str(), "User-Agent: Malefice/1.0");
-
-	m_tcp->Send(post.C_String(), post.GetLength(), m_tcp->HasCompletedConnectionAttempt(), false);
-
-	RakSleep(1000);
-
-	packet = m_tcp->Receive();
-	if (!packet)
-		return retn;
-
-	std::vector<std::string> strings = utility::StringUtility::explode(std::string((char *)packet->data), "\r\n");
-	std::cout << strings[15] << std::endl;
-
-	m_lastUpdateTime = utility::TimeUtility::getMsTime();
-	m_tcp->DeallocatePacket(packet);
-
-	return retn;
+bool MasterListNetwork::recieveHandle(const char *, unsigned int, void *)
+{
+	return true;
 }

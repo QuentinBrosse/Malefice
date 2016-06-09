@@ -189,6 +189,9 @@
     <ClCompile Include="RakNetUtility.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="HTTPClient.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProjectGlobals.h">
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="SceneBillboardText.h">
       <Filter>Header Files\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="HTTPClient.h">
+      <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
