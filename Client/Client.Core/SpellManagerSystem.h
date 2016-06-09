@@ -17,7 +17,6 @@ namespace ecs
 		static void	changeToPrec(Entity& predator);
 		static void changeManager(Entity& predator);
 		static void initFPSScene(Entity& predator);
-		static void initExternalScene(Entity & predator);
 	};
 
 }

@@ -27,6 +27,7 @@ public:
 	static const std::string			GAME_SERVER_LOG_FILEPATH;
 
 	static const std::string			MASTERLIST_URL;
+	static const std::string			MASTERLIST_URL_SERVER;
 
 	static const irr::core::vector3df	COLLISION_ANIMATOR_ELLIPSOID_RADIUS;
 	static const irr::core::vector3df 	COLLISION_ANIMATOR_GRAVITY_PER_SECOND;

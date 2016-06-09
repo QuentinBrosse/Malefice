@@ -49,6 +49,7 @@ void	ClientCore::run()
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
+		Audio::getInstance().playMenuSound();
 	}
 	else
 	{
@@ -77,9 +78,9 @@ bool	ClientCore::init()
 	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_spawnerManager = &SpawnerManager::getInstance();
-	m_masterList = &MasterListNetwork::getInstance();
+	//m_masterList = &MasterListNetwork::getInstance();
 
-	std::vector<std::string> datas = m_masterList->fetch();
+	/*std::vector<std::string> datas = m_masterList->refresh();
 	LOG_DEBUG(GENERAL) << "Server master list size: " + std::to_string(datas.size());
 	for (auto it : datas)
 	{
@@ -90,7 +91,7 @@ bool	ClientCore::init()
 		std::string players = it;
 
 		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
-	}
+	}*/
 }
 
 void	ClientCore::pulse()
@@ -256,6 +257,7 @@ void	ClientCore::notifyInvalidNickname(RakNet::RPC3* rpc)
 
 void	ClientCore::startGame(RakNet::RPC3* rpc)
 {
+	Audio::getInstance().stopMenuSound();
 	m_graphicModule->getMenuPause()->activate(true);
 	m_graphicModule->getMainMenu()->hide();
 	m_graphicModule->getHUD()->display();

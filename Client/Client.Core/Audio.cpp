@@ -34,10 +34,10 @@ void	Audio::playGUISound(const Audio::SoundType soundType)
 	m_engine->play2D(m_sounds[soundType].c_str());
 }
 
-void	Audio::play2D(const std::string& soundFile)
+irrklang::ISound *	Audio::play2D(const std::string& soundFile, bool status)
 {
 	if (!m_isDeaf)
-		m_engine->play2D((m_soundPath + soundFile).c_str());
+		return (m_engine->play2D((m_soundPath + soundFile).c_str(), status));
 }
 
 void Audio::play3D(const std::string& soundFile, const ecs::Position& position)
@@ -59,4 +59,17 @@ void Audio::setIsDeaf(const bool isDeaf)
 bool Audio::isDeaf() const
 {
 	return m_isDeaf;
+}
+
+void Audio::playMenuSound()
+{
+	m_menuSound = m_engine->play2D((m_soundPath + "mainMenu.ogg").c_str(), true, false, false, irrklang::ESM_AUTO_DETECT, true);
+}
+
+void Audio::stopMenuSound()
+{
+	if (m_menuSound)
+		m_menuSound->stop();
+	else
+		LOG_DEBUG(GENERAL) << "Cannot complie, m_menuSound is nullptr";
 }

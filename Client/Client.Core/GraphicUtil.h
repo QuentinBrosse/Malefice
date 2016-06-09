@@ -14,6 +14,7 @@
 #include "Blind.h"
 #include "TouchedFx.h"
 #include "YourDead.h"
+#include "scoreTab.h"
 
 class GraphicUtil : public Singleton<GraphicUtil>
 {
@@ -42,6 +43,7 @@ public:
 	TouchedFx*					getTouchedFx();
 	MasterList*					getMasterList();
 	YourDead*					getDeadGUI();
+	scoreTab*					getScoreTab();
 	bool						isInFPSMode()		const;
 	void						initSky();
 
@@ -63,6 +65,7 @@ private:
 	Blind*						m_blindFx;
 	TouchedFx*					m_touchedFx;
 	YourDead*					m_deadGUI;
+	scoreTab*					m_scoreTab;
 	bool						m_isInFPSMode;
 	irr::scene::ISceneNode*		m_skyBox;
 };

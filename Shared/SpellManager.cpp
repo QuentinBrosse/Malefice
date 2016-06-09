@@ -2,12 +2,22 @@
 #include "SpellManager.h"
 #include "WeaponCreator.h"
 #include "TimeUtility.h"
+#include "SpellCreator.h"
 
 namespace ecs
 {
 	SpellManager::SpellManager() : AComponent("SpellManager", ecs::AComponent::ComponentType::SPELL_MANAGER),
-		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(0), m_cooldownEndTime(0)
+		m_spells(), m_currentSpell(m_spells.end()), m_weaponManager(), m_weaponsIsCurrent(false), m_cooldown(20), m_cooldownEndTime(0)
 	{
+		SpellCreator& spellCreator = SpellCreator::getInstance();
+		m_spells.insert(std::make_pair(Spell::SpellType::BLIND, spellCreator.create(Spell::SpellType::BLIND)));
+		m_spells.insert(std::make_pair(Spell::SpellType::CONFUSION, spellCreator.create(Spell::SpellType::CONFUSION)));
+		m_spells.insert(std::make_pair(Spell::SpellType::DEAF, spellCreator.create(Spell::SpellType::DEAF)));
+		m_spells.insert(std::make_pair(Spell::SpellType::PARANOIA, spellCreator.create(Spell::SpellType::PARANOIA)));
+		m_spells.insert(std::make_pair(Spell::SpellType::PARKINSON, spellCreator.create(Spell::SpellType::PARKINSON)));
+		m_spells.insert(std::make_pair(Spell::SpellType::SLOW, spellCreator.create(Spell::SpellType::SLOW)));
+		m_currentSpell = m_spells.begin();
+		m_weaponManager.addWeapon(WeaponCreator::getInstance().create(ecs::Weapon::WeaponType::SHOT_GUN));
 	}
 
 	SpellManager::SpellManager(const SpellManager& cpy) : AComponent("SpellManager", ComponentType::SPELL_MANAGER),
@@ -134,11 +144,13 @@ namespace ecs
 
 		for (auto& spell : m_spells)
 		{
-			if (spell.second.getScene() != nullptr)
-				continue;
-			spell.second.createScene(device, parent, false);
-			scene = spell.second.getScene();
-			scene->setPosition(spell.second.getFPSMetrics());
+			if (spell.second.getScene() == nullptr)
+			{
+				spell.second.createScene(device, parent, false);
+				scene = spell.second.getScene();
+				scene->setPosition(spell.second.getFPSMetrics());
+			}
+			spell.second.setActivity(false);
 		}
 		if (m_currentSpell != m_spells.end() && !m_weaponsIsCurrent)
 			m_currentSpell->second.setActivity(true);
@@ -149,21 +161,6 @@ namespace ecs
 			weapon.second.createScene(device, parent, false);
 			scene = weapon.second.getScene();
 			scene->setPosition(weapon.second.getFPSMetrics());
-		}
-		//TODO: create spell's scenes
-	}
-
-	void SpellManager::createExternalScene(irr::IrrlichtDevice * device, irr::scene::ISceneNode * parent)
-	{
-		SceneAnimatedMesh*	scene;
-
-		for (auto& weapon : m_weaponManager.getWeapons())
-		{
-			weapon.second.createScene(device, parent, false);
-			scene = weapon.second.getScene();
-			if (scene == nullptr) //DEBUG
-				return;
-			scene->setPosition(weapon.second.getExternalMetrics());
 		}
 		//TODO: create spell's scenes
 	}

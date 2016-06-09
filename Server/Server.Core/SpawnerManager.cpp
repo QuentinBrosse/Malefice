@@ -17,6 +17,11 @@ SpawnerManager::SpawnerManager() : EntityManager(), NetworkObject(NetworkRPC::Re
 
 	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
 	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
+	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
+
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(120, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(100, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
 }
 
 void SpawnerManager::createEntity(ecs::ClientId owner)
@@ -43,6 +48,24 @@ void SpawnerManager::createEntity(ecs::ClientId owner)
 	for (std::list<ecs::Position>::iterator it = m_spawnPositionsLife.begin(); it != m_spawnPositionsLife.end(); ++it)
 	{
 		m_entities[owner] = SpawnerFactory::createLifeSpawner(ServerCore::getInstance().getPhysicsUtil().getDevice(), (*it), owner);
+		irr::core::line3df		line;
+		irr::core::vector3df	endPos;
+
+		line.start = (*it).getVectorPosition();
+
+		endPos = line.start;
+		endPos.X = line.start.X + 15;
+		endPos.Y = line.start.Y + 65;
+		line.end = endPos;
+		m_spawnLine.insert(std::pair<ecs::ClientId, irr::core::line3df>(owner, line));
+		ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), RakNet::UNASSIGNED_NETWORK_ID, true, owner, m_entities[owner]);
+		owner++;
+	}
+
+	//creating Armor spawner
+	for (std::list<ecs::Position>::iterator it = m_spawnPositionsArmor.begin(); it != m_spawnPositionsArmor.end(); ++it)
+	{
+		m_entities[owner] = SpawnerFactory::createArmorSpawner(ServerCore::getInstance().getPhysicsUtil().getDevice(), (*it), owner);
 		irr::core::line3df		line;
 		irr::core::vector3df	endPos;
 

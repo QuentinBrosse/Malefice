@@ -32,6 +32,7 @@
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
+    <ClInclude Include="scoreTab.h" />
     <ClInclude Include="SpawnerManager.h" />
     <ClInclude Include="ressource.h" />
     <ClInclude Include="SpellManagerSystem.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />
+    <ClCompile Include="scoreTab.cpp" />
     <ClCompile Include="SpawnerManager.cpp" />
     <ClCompile Include="SpellManagerSystem.cpp" />
     <ClCompile Include="SpellSystem.cpp" />
@@ -129,7 +131,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../Shared/;../../Dependencies/cegui/build/lib;C:\local\irrlicht-1.8.3\lib\Win32-visualstudio;../../Dependencies/RakNet/build/Lib/DLL/Debug;../../Dependencies/RakNet/build/DependentExtensions/RPC3/Debug;../../Binaries/Debug;C:\local\irrKlang-1.5.0\lib\Win32-visualStudio</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CEGUIBase-0_d.lib;CEGUICommonDialogs-0_d.lib;CEGUICoreWindowRendererSet_d.lib;CEGUIExpatParser_d.lib;CEGUIIrrlichtRenderer-0_d.lib;CEGUISILLYImageCodec_d.lib;Irrlicht.lib;RakNetDLL.lib;LibRPC3.lib;Shared.lib;irrKlang.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
