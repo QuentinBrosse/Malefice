@@ -39,7 +39,7 @@ namespace ecs
 						nodePickable::IS_PICKABLE,
 						0);
 
-				auto& entities = playerManager.getEntities();
+				const auto& entities = playerManager.getEntities();
 
 				if (selectedSceneNode != nullptr && (selectedSceneNode->getID() & nodePickable::IS_SHOOTABLE) == nodePickable::IS_SHOOTABLE)
 				{

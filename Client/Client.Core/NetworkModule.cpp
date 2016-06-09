@@ -1,3 +1,4 @@
+#include <RPC3.h>
 #include <MessageIdentifiers.h>
 #include "NetworkModule.h"
 #include "RakNetUtility.h"
@@ -70,7 +71,7 @@ void	NetworkModule::disconnect()
 
 void	NetworkModule::pulse()
 {
-  /*RakNet::Packet*	packet = nullptr;
+  RakNet::Packet*	packet = nullptr;
 
 	if (m_connectionState != RakNet::ConnectionState::IS_CONNECTED && m_connectionState != RakNet::ConnectionState::IS_CONNECTING)
 		return;
@@ -93,42 +94,45 @@ void	NetworkModule::pulse()
 			break;
 		}
 		m_rakPeer->DeallocatePacket(packet);
-		}*/
+		}
 }
 
 RakNet::ConnectionState	NetworkModule::getConnectionState()	const
 {
-  //return m_connectionState;
+  return m_connectionState;
 }
+
+
 
 void	NetworkModule::registerRPCs()
 {
-  /*m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
-	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str(), &ClientCore::notifyInvalidNickname);
-	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str(), &ClientCore::startGame);
-	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
-	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
-	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
-	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str(), &SpawnerManager::addEntity);
-	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str(), &SpawnerManager::updateEntity);
-	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str(), &SpawnerManager::removeEntity);
-	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
-	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
-	m_rpc.RegisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str(), &ecs::WeaponSystem::triggerShootActions);*/
+
+  m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
+  m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str(), &ClientCore::notifyInvalidNickname);
+  m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str(), &ClientCore::startGame);
+  m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
+  m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
+  m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
+  m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str(), &SpawnerManager::addEntity);
+  m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str(), &SpawnerManager::updateEntity);
+  m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str(), &SpawnerManager::removeEntity);
+  m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
+  m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str(), &LifeSystem::die);
+  m_rpc.RegisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str(), &ecs::WeaponSystem::triggerShootActions);
 }
 
 void	NetworkModule::unregisterRPCs()
 {
-  /*m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str());*/
+  m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_DIE.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::TRIGGER_SHOOT_ACTIONS.c_str());
 }

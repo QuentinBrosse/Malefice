@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include "QueryServer.h"
 
 #include "ServerCore.h"
@@ -67,7 +70,7 @@ void	QueryServer::init(unsigned short port)
 	unsigned long sockopt = 1;
 	ioctlsocket(m_socket, FIONBIO, &sockopt);
 #else
-	fcntl(m_socket, F_SETFL, fcntl(m_iSocket, F_GETFL) | O_NONBLOCK);
+	fcntl(m_socket, F_SETFL, fcntl(m_socket, F_GETFL) | O_NONBLOCK);
 #endif
 
 	if (bind(m_socket, (sockaddr *)&address, sizeof(sockaddr_in)) == -1)
@@ -121,7 +124,7 @@ void	QueryServer::worker()
 			}
 		}
 
-		Sleep(50);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 }
 

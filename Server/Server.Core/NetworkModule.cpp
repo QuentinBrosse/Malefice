@@ -10,6 +10,10 @@
 #include "ProjectGlobals.h"
 #include "Logger.h"
 
+#ifndef THREAD_PRIORITY_NORMAL
+# define THREAD_PRIORITY_NORMAL 0
+#endif
+
 const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 10000000;
 const RakNet::TimeMS	NetworkModule::SHUTDOWN_TIMEOUT_MS	= 500;
 
