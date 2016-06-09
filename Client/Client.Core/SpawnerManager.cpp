@@ -76,10 +76,20 @@ void SpawnerManager::initSpawnersScene()
 		{
 			if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 20)
 				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart.obj")).c_str(), *it->second);
-			else if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 40)
+			else if (dynamic_cast<ecs::Life*>((*it->second)[ecs::AComponent::ComponentType::LIFE])->getMaxLife() == 50)
 				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
 			else
-				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart2.obj")).c_str(), *it->second);
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("heart3.obj")).c_str(), *it->second);
+		}
+		else
+		{
+			if (dynamic_cast<ecs::Armor*>((*it->second)[ecs::AComponent::ComponentType::ARMOR])->getMaxLife() == 20)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor.obj")).c_str(), *it->second);
+			else if (dynamic_cast<ecs::Armor*>((*it->second)[ecs::AComponent::ComponentType::ARMOR])->getMaxLife() == 50)
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor2.obj")).c_str(), *it->second);
+			else
+				SpawnerFactory::initScene(GraphicUtil::getInstance().getDevice(), std::string(std::string("weapons/models/") + std::string("armor3.obj")).c_str(), *it->second);
+
 		}
 		ecs::PositionSystem::updateScenePosition(*it->second);
 	}
