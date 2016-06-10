@@ -5,12 +5,12 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 14:14:30 2016 Guillaume Truchot
-## Last update Thu Jun  9 23:09:33 2016 Guillaume Truchot
+## Last update Fri Jun 10 00:31:14 2016 Guillaume Truchot
 ##
 
 CXX		=	g++
 
-CXXFLAGS	=	-std=c++11
+CXXFLAGS	=	-std=c++11 -g
 CXXFLAGS	+=	-m32
 CXXFLAGS	+=	-fPIC
 CXXFLAGS	+=	-I /usr/local/include/irrlicht-1.8.3/
@@ -27,7 +27,7 @@ SRCS		=	$(wildcard *.cpp)
 
 OBJS		=	$(SRCS:.cpp=.o)
 
-NAME		=	libShared.so
+NAME		=	libShared.a
 
 RM		=	rm -f
 
@@ -35,7 +35,7 @@ RM		=	rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
+	ar rcs $(NAME) $(OBJS) #$(CXX) $(CXXFLAGS) -shared -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJS)

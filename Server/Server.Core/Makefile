@@ -5,12 +5,12 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 20:45:51 2016 Guillaume Truchot
-## Last update Thu Jun  9 23:08:55 2016 Guillaume Truchot
+## Last update Fri Jun 10 11:55:28 2016 Guillaume Truchot
 ##
 
 CXX		=	g++
 
-CXXFLAGS	=	-std=c++11
+CXXFLAGS	=	-std=c++11 -g
 CXXFLAGS	+=	-m32
 CXXFLAGS	+=	-I ../../Shared
 CXXFLAGS	+=	-I /usr/local/include/irrlicht-1.8.3/
@@ -26,7 +26,7 @@ LDFLAGS		=	-lGL -lX11 -lXxf86vm -ltinyxml2 -lLibRPC3 -lRakNetDLL -lIrrlicht -lSh
 
 SRCS		=	$(wildcard *.cpp)
 
-OBJS		=	$(notdir $(SRCS:.cpp=.o))
+OBJS		=	$(SRCS:.cpp=.o)
 
 NAME		=	server_core
 

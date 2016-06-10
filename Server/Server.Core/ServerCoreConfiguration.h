@@ -8,7 +8,7 @@
 class ServerCoreConfiguration : public AConfiguration
 {
 public:
-	static const std::string	DEFAULT_SETTINGS_FILENAME;
+  	static const std::string	DEFAULT_SETTINGS_FILENAME;
 	static const std::string	DEFAULT_SETTINGS_BACKUP_EXT;
 	static const std::string	DEFAULT_NAME;
 	static const std::string	DEFAULT_PASSWORD;

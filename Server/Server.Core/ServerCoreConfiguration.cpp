@@ -3,19 +3,20 @@
 #include "ProjectGlobals.h"
 #include "Logger.h"
 
-const std::string	ServerCoreConfiguration::DEFAULT_SETTINGS_FILENAME		= "settings.xml";
-const std::string	ServerCoreConfiguration::DEFAULT_SETTINGS_BACKUP_EXT	= ".bak";
-const std::string	ServerCoreConfiguration::DEFAULT_NAME					= ProjectGlobals::GAME_NAME + " Server";
+const std::string	ServerCoreConfiguration::DEFAULT_SETTINGS_FILENAME			= "settings.xml";
+const std::string	ServerCoreConfiguration::DEFAULT_SETTINGS_BACKUP_EXT			= ".bak";
+const std::string	ServerCoreConfiguration::DEFAULT_NAME					= "";
 const std::string	ServerCoreConfiguration::DEFAULT_PASSWORD				= "";
 const std::string	ServerCoreConfiguration::DEFAULT_ADDRESS				= "127.0.0.1";
-const short			ServerCoreConfiguration::DEFAULT_PORT					= 2504;
+const short		ServerCoreConfiguration::DEFAULT_PORT					= 2504;
 
 ServerCoreConfiguration::ServerCoreConfiguration() :
-	m_name(ServerCoreConfiguration::DEFAULT_NAME),
-	m_password(ServerCoreConfiguration::DEFAULT_PASSWORD),
-	m_address(ServerCoreConfiguration::DEFAULT_ADDRESS),
-	m_port(ServerCoreConfiguration::DEFAULT_PORT)
+  m_name(ServerCoreConfiguration::DEFAULT_NAME),
+  m_password(ServerCoreConfiguration::DEFAULT_PASSWORD),
+  m_address(ServerCoreConfiguration::DEFAULT_ADDRESS),
+  m_port(ServerCoreConfiguration::DEFAULT_PORT)
 {
+
 }
 
 
