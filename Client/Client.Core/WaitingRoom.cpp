@@ -110,7 +110,7 @@ void WaitingRoom::resetTeamDisplay()
 {
 	m_leftTeam->resetList();
 	m_rightTeam->resetList();
-	m_leftTeam->resetList();
+	m_predator->resetList();
 }
 
 void WaitingRoom::checkConnectedPlayers()
