@@ -11,6 +11,10 @@
 #include "ProjectGlobals.h"
 #include "Logger.h"
 
+#ifndef THREAD_PRIORITY_NORMAL
+# define THREAD_PRIORITY_NORMAL 0
+#endif
+
 const RakNet::TimeMS	NetworkModule::TIMEOUT_MS			= 10000000;
 const RakNet::TimeMS	NetworkModule::SHUTDOWN_TIMEOUT_MS	= 500;
 
@@ -35,9 +39,9 @@ bool	NetworkModule::init(const std::string& address, unsigned short port, const 
 {
 	RakNet::SocketDescriptor	descriptor(port, address.c_str());
 	
-	if (m_rakPeer->Startup(ProjectGlobals::MAX_PLAYERS_NB, &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
+	if (m_rakPeer->Startup(ProjectGlobals::getMaxPlayersNb(), &descriptor, 1, THREAD_PRIORITY_NORMAL) == RakNet::RAKNET_STARTED)
 	{
-		m_rakPeer->SetMaximumIncomingConnections(ProjectGlobals::MAX_PLAYERS_NB);
+		m_rakPeer->SetMaximumIncomingConnections(ProjectGlobals::getMaxPlayersNb());
 		m_rakPeer->SetTimeoutTime(NetworkModule::TIMEOUT_MS, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 		if (password.length() > 0)
 			m_rakPeer->SetIncomingPassword(password.c_str(), password.length());

@@ -1,13 +1,13 @@
 #include <chrono>
 #include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
-#include <CEGUI\RendererModules\Irrlicht\Renderer.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/Irrlicht/Renderer.h>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
 #include "Logger.h"
 #include "NodePickable.h"
-#include "mapFactory.h"
+#include "MapFactory.h"
 #include "PlayerFactory.h"
 #include "SpawnerFactory.h"
 #include "Position.h"
@@ -22,8 +22,6 @@
 #include "Target.h"
 #include "SpellSystem.h"
 #include "TouchedFx.h"
-
-ecs::Weapon*	ClientCore::buggedWeapon = nullptr;
 
 ClientCore::ClientCore() : Singleton<ClientCore>(), NetworkObject(NetworkRPC::ReservedNetworkIds::ClientCore),
 	m_networkModule(nullptr), m_graphicModule(nullptr), m_playerManager(nullptr), m_spawnerManager(nullptr), m_masterList(nullptr), m_clientId(), m_isActive(true), m_map(nullptr), m_player(nullptr), m_player_ia(nullptr)
@@ -45,7 +43,7 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	if (!ProjectGlobals::NO_MENU)
+	if (!ProjectGlobals::getNoMenu())
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
@@ -166,7 +164,7 @@ void ClientCore::createEntities()
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::updateScenePosition(*m_map);
-	if (ProjectGlobals::NO_MENU)
+	if (ProjectGlobals::getNoMenu())
 	{
 		//Weapon Spawner
 		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));

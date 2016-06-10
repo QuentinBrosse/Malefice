@@ -1,32 +1,104 @@
 #include "ProjectGlobals.h"
 
-const std::string	ProjectGlobals::GAME_NAME	= "Malefice";
 
-const bool			ProjectGlobals::NO_MENU = false;
+std::string	ProjectGlobals::getGameName()
+{
+	return "Malefice";
+}
 
-const std::size_t	ProjectGlobals::NORMAL_TEAM_SIZE	= 1;
-const std::size_t	ProjectGlobals::NORMAL_TEAMS_NB		= 2;
 
-const std::size_t	ProjectGlobals::PREDATOR_TEAM_SIZE	= 0;
-const std::size_t	ProjectGlobals::PREDATOR_TEAMS_NB	= 0;
+bool	ProjectGlobals::getNoMenu()
+{
+	return false;
+}
 
-const std::size_t	ProjectGlobals::MAX_PLAYERS_NB = (ProjectGlobals::NORMAL_TEAM_SIZE * ProjectGlobals::NORMAL_TEAMS_NB) + (ProjectGlobals::PREDATOR_TEAM_SIZE * ProjectGlobals::PREDATOR_TEAMS_NB);
 
-const std::string	ProjectGlobals::GAME_CLIENT_VERSION	= "0.1";
+std::size_t	ProjectGlobals::getNormalTeamSize()
+{
+	return 1;
+}
 
-const std::string	ProjectGlobals::GAME_SERVER_VERSION = "0.1";
+std::size_t	ProjectGlobals::getNormalTeamsNb()
+{
+	return 2;
+}
 
-const std::string	ProjectGlobals::LOGS_DIRECTORY	= "";
+std::size_t	ProjectGlobals::getPredatorTeamSize()
+{
+	return 0;
+}
 
-const std::string	ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH		= ProjectGlobals::LOGS_DIRECTORY + "Client.Core.log";
-const std::string	ProjectGlobals::GAME_CLIENT_LAUNCHER_LOG_FILEPATH	= ProjectGlobals::LOGS_DIRECTORY + "Client.Launcher.log";
-const std::string	ProjectGlobals::GAME_SERVER_LOG_FILEPATH			= ProjectGlobals::LOGS_DIRECTORY + "Server.Core.log";
+std::size_t	ProjectGlobals::getPredatorTeamsNb()
+{
+	return 0;
+}
 
-const std::string	ProjectGlobals::MASTERLIST_URL = "malefice.pinot.ovh";
+std::size_t	ProjectGlobals::getMaxPlayersNb()
+{
+	return (ProjectGlobals::getNormalTeamSize() * ProjectGlobals::getNormalTeamsNb()) + (ProjectGlobals::getPredatorTeamSize() * ProjectGlobals::getPredatorTeamsNb());
+}
 
-const irr::core::vector3df	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS = irr::core::vector3df(8.f, 1.f, 8.f);
-const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND = irr::core::vector3df(0.f, -10.f, 0.f);
-const irr::core::vector3df 	ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION = irr::core::vector3df(0.f, 43.f, 0.f);
 
-const long long				ProjectGlobals::SPAWNER_VISIBILITY_TIMER = 10;
-const std::string	ProjectGlobals::MASTERLIST_URL_SERVER = ProjectGlobals::MASTERLIST_URL + "/api/v1/server?ordered=true";
+std::string	ProjectGlobals::getGameClientVersion()
+{
+	return "0.1";
+}
+
+std::string	ProjectGlobals::getGameServerVersion()
+{
+	return "0.1";
+}
+
+
+std::string ProjectGlobals::getLogsDirectory()
+{
+	return "";
+}
+
+std::string	ProjectGlobals::getGameClientCoreLogFilepath()
+{
+	return ProjectGlobals::getLogsDirectory() +"Client.Core.log";
+}
+
+std::string	ProjectGlobals::getGameClientLauncherLogFilepath()
+{
+	return ProjectGlobals::getLogsDirectory() + "Client.Launcher.log";
+}
+
+std::string	ProjectGlobals::getGameServerLogFilepath()
+{
+	return ProjectGlobals::getLogsDirectory() + "Server.Core.log";
+}
+
+
+std::string	ProjectGlobals::getMasterlistUrl()
+{
+	return "malefice.pinot.ovh";
+}
+
+std::string	ProjectGlobals::getMasterlistUrlServer()
+{
+	return ProjectGlobals::getMasterlistUrl() + "/api/v1/server?ordered=true";
+}
+
+
+irr::core::vector3df	ProjectGlobals::getCollisionAnimatorEllipsoidRadius()
+{
+	return irr::core::vector3df(8.f, 1.f, 8.f);
+}
+
+irr::core::vector3df	ProjectGlobals::getCollisionAnimatorGravityPerSecond()
+{
+	return irr::core::vector3df(0.f, -10.f, 0.f);
+}
+
+irr::core::vector3df	ProjectGlobals::getCollisionAnimatorEllipsoidTranslation()
+{
+	return irr::core::vector3df(0.f, 43.f, 0.f);
+}
+
+
+long long ProjectGlobals::getSpawnerVisibilityTimer()
+{
+	return 10;
+}

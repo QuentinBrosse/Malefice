@@ -1,5 +1,7 @@
 // Client Version
 
+#include <thread>
+#include <chrono>
 #include "WeaponManagerSystem.h"
 #include "GraphicUtil.h"
 #include "SpellManager.h"
@@ -30,7 +32,7 @@ namespace ecs
 			{
 				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
-			Sleep(25);
+			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
 		}
 	}
@@ -61,7 +63,7 @@ namespace ecs
 			{
 				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
-			Sleep(25);
+			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
 		}
 	}

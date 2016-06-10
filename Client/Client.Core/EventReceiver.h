@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <irrlicht.h>
-#include <CEGUI\CEGUI.h>
+#include <CEGUI/CEGUI.h>
 #include <queue>
 
 class EventReceiver : public irr::IEventReceiver
@@ -38,7 +38,7 @@ public:
 	EventReceiver::keyStatesENUM getKeyState(irr::EKEY_CODE keyCode);
 	EventReceiver();
 	EventReceiver::keyStatesENUM* getKeyStateList();
-	static unsigned char EventReceiver::irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc);
+	static unsigned char irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc);
 
 	std::queue<GameEventType>	getEvents()	const;
 	GameEventType				getEvent();

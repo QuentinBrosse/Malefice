@@ -46,7 +46,7 @@ void	MasterList::pulse()
 		if ((utility::TimeUtility::getMsTime() - m_lastUpdateTime) < 3000)
 			continue;
 
-		if (m_tcp->Connect(ProjectGlobals::MASTERLIST_URL.c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)
+		if (m_tcp->Connect(ProjectGlobals::getMasterlistUrl().c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)
 			continue;
 
 		RakSleep(100);
@@ -54,7 +54,7 @@ void	MasterList::pulse()
 		if (m_state == masterListState::STATE_ADD)
 			m_token = utility::StringUtility::random_string(42);
 
-		post = RakNet::RakString::FormatForPOST(std::string(ProjectGlobals::MASTERLIST_URL).append("/api/v1/server/update").c_str(),
+		post = RakNet::RakString::FormatForPOST(std::string(ProjectGlobals::getMasterlistUrl()).append("/api/v1/server/update").c_str(),
 			"application/x-www-form-urlencoded",
 			RakNet::RakString("token=%s&ip=%s&port=%d&players=%d",
 				m_token.c_str(),

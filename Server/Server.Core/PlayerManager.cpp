@@ -19,9 +19,9 @@ void	PlayerManager::createEntity(ecs::ClientId owner)
 {
 	ecs::Team::TeamType	team = ecs::Team::TeamType::TEAM_COUNT;
 
-	if (m_entities.size() < ProjectGlobals::NORMAL_TEAM_SIZE)
+	if (m_entities.size() < ProjectGlobals::getNormalTeamSize())
 		team = ecs::Team::TeamType::Team1;
-	else if (m_entities.size() < ProjectGlobals::NORMAL_TEAMS_NB * ProjectGlobals::NORMAL_TEAM_SIZE)
+	else if (m_entities.size() < ProjectGlobals::getNormalTeamsNb() * ProjectGlobals::getNormalTeamSize())
 		team = ecs::Team::TeamType::Team2;
 	else
 		team = ecs::Team::TeamType::Predator;
@@ -114,7 +114,7 @@ void	PlayerManager::setPlayerNickname(RakNet::RakString nickname, RakNet::RPC3* 
 
 		LOG_DEBUG(ECS) << "Set nickname of client " << rpc->GetLastSenderAddress().systemIndex << " to \"" << playerInfos->getNickname() << "\"";
 	
-		if (m_entities.size() == ProjectGlobals::MAX_PLAYERS_NB)
+		if (m_entities.size() == ProjectGlobals::getMaxPlayersNb())
 			ServerCore::getInstance().startGame();
 	}
 	else
