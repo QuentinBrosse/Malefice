@@ -4,8 +4,8 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "ClientCore.h"
-//Client Side
 
+//Client Side
 SpawnerManager::SpawnerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::SpawnerManager)
 {
 	m_inc = 0.F;
@@ -21,17 +21,6 @@ void SpawnerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet:
 {
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
 	EntityManager::addEntity(owner, localEntity, rpc);
-
-	irr::core::line3df		line;
-	irr::core::vector3df	endPos;
-
-	line.start = dynamic_cast<ecs::Position *>((*localEntity)[ecs::AComponent::ComponentType::POSITION])->getVectorPosition();
-
-	endPos = line.start;
-	endPos.X = line.start.X + 15;
-	endPos.Y = line.start.Y + 65;
-	line.end = endPos;
-	m_spawnLine.insert(std::pair<ecs::ClientId, irr::core::line3df>(owner, line));
 }
 
 void	SpawnerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
