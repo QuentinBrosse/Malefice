@@ -27,7 +27,6 @@ public:
 
 public:
 	std::map<ecs::ClientId, ecs::Entity*> getSpawners() const;
-	virtual void	addEntity(ecs::ClientId owner, ecs::Entity* entity);
 	
 	virtual void	createEntity(ecs::ClientId owner);
 	virtual void	deleteEntity(ecs::ClientId owner);
@@ -48,7 +47,6 @@ public:
 	void checkTimer();
 
 private:
-	std::map<ecs::ClientId, irr::core::line3df>		m_spawnLine;
 	std::map<ecs::ClientId, long long>				m_timer;
 	std::list<ecs::Position>						m_spawnPositionsWeapon;
 	std::list<ecs::Position>						m_spawnPositionsLife;

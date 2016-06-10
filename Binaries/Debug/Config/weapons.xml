@@ -166,7 +166,7 @@
 		<distance>500.0</distance>
 		<precision>10.0</precision>
 		<ammunitionsTotal>60</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip>
+		<ammunitionsClip>6</ammunitionsClip>
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>60</damage>
@@ -222,7 +222,7 @@
 		<distance>750.0</distance>
 		<precision>5.0</precision>
 		<ammunitionsTotal>360</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip> 
+		<ammunitionsClip>36</ammunitionsClip> 
 		<rateOfFire>60.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>13</damage>
@@ -278,7 +278,7 @@
 		<distance>750.0</distance>
 		<precision>0.0</precision>
 		<ammunitionsTotal>200</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip> 
+		<ammunitionsClip>20</ammunitionsClip> 
 		<rateOfFire>60.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
 		<damage>7</damage>
@@ -334,7 +334,7 @@
 		<distance>750.0</distance>
 		<precision>5.0</precision>
 		<ammunitionsTotal>400</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip> 
+		<ammunitionsClip>40</ammunitionsClip> 
 		<rateOfFire>120.0</rateOfFire>
 		<ammoPerShot>2</ammoPerShot>
 		<damage>14</damage>
@@ -446,7 +446,7 @@
 		<distance>20.0</distance>
 		<precision>0.0</precision>
 		<ammunitionsTotal type="liter">2</ammunitionsTotal>
-		<ammunitionsClip>4</ammunitionsClip> 
+		<ammunitionsClip>1</ammunitionsClip> 
 		<rateOfFire>0.01</rateOfFire>
 		<ammoPerShot>0.01</ammoPerShot>
 		<damage>70</damage>
