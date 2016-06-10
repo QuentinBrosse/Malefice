@@ -20,6 +20,9 @@ MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton(
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonEnterArea, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonEnterArea, this));
 
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onRefreshButtonClicked, this));
+	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onRefreshButtonEnterArea, this));
+
 	m_masterListNework = new MasterListNetwork(&MasterList::fetchNetwork, *this);
 	m_masterListNework->refresh();
 
@@ -154,6 +157,19 @@ bool MasterList::onManualConnectButtonEnterArea(const CEGUI::EventArgs& e)
 }
 
 bool MasterList::onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e)
+{
+	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
+	return true;
+}
+
+bool MasterList::onRefreshButtonClicked(const CEGUI::EventArgs& e)
+{
+	this->resetList();
+	m_masterListNework->refresh();
+	return true;
+}
+
+bool MasterList::onRefreshButtonEnterArea(const CEGUI::EventArgs& e)
 {
 	Audio::getInstance().playGUISound(Audio::SoundType::GUI_BTN_HOVER);
 	return true;

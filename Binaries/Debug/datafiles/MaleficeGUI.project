@@ -14,8 +14,8 @@
         <Item path="layouts/masterList.layout" type="file" />
         <Item path="layouts/menuPause.layout" type="file" />
         <Item path="layouts/options.layout" type="file" />
+        <Item path="layouts/scoreTab.layout" type="file" />
         <Item path="imagesets/spells.imageset" type="file" />
         <Item path="layouts/touchedFx.layout" type="file" />
-        <Item path="layouts/scoreTab.layout" type="file" />
     </Items>
 </Project>

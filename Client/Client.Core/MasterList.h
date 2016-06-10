@@ -30,6 +30,9 @@ public:
 	bool onManualConnectButtonEnterArea(const CEGUI::EventArgs& e);
 	bool onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e);
 
+	bool onRefreshButtonClicked(const CEGUI::EventArgs& e);
+	bool onRefreshButtonEnterArea(const CEGUI::EventArgs& e);
+
 private:
 	CEGUI::System&		m_systemd;
 	GraphicUtil&		m_graphicUtils;
