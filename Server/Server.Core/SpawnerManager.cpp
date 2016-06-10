@@ -15,13 +15,13 @@ SpawnerManager::SpawnerManager() : EntityManager(), NetworkObject(NetworkRPC::Re
 	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -20), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
 	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -150), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
 
-	/*m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
+	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
 	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
-	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));*/
+	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
 
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, 0, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(15, 15, 15)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, 50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(15, 15, 15)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, 80, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(15, 15, 15)));
 }
 
 void SpawnerManager::createEntity(ecs::ClientId owner)
