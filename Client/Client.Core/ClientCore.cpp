@@ -75,20 +75,7 @@ bool	ClientCore::init()
 	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_spawnerManager = &SpawnerManager::getInstance();
-	//m_masterList = &MasterListNetwork::getInstance();
 
-	/*std::vector<std::string> datas = m_masterList->refresh();
-	LOG_DEBUG(GENERAL) << "Server master list size: " + std::to_string(datas.size());
-	for (auto it : datas)
-	{
-		std::string ip = it.substr(0, it.find(":"));
-		it = it.substr(it.find(":") + 1);
-		std::string port = it.substr(0, it.find(":"));
-		it = it.substr(it.find(":") + 1);
-		std::string players = it;
-
-		m_graphicModule->getMasterList()->addServer(ip, port, false, std::stoi(players));
-	}*/
 }
 
 void	ClientCore::pulse()
