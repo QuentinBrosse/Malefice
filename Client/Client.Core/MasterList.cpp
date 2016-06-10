@@ -20,16 +20,22 @@ MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton(
 	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onManualConnectButtonEnterArea, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onAutoConnectButtonEnterArea, this));
 
-	m_masterListNework = new MasterListNetwork(&MasterList::fetchNetwork);
+	m_masterListNework = new MasterListNetwork(&MasterList::fetchNetwork, *this);
 	m_masterListNework->refresh();
 
 }
 
-void MasterList::fetchNetwork(const std::vector<std::string>& servers)
+void MasterList::fetchNetwork(const std::vector<std::string>& servers, MasterList& master)
 {
 	for (auto server : servers)
 	{
 		LOG_DEBUG(NETWORK) << server;
+		std::string ip = server.substr(0, server.find(":"));
+		server = server.substr(server.find(":") + 1);
+		std::string port = server.substr(0, server.find(":"));
+		server = server.substr(server.find(":") + 1);
+		std::string players = server;
+		master.addServer(ip, port, false, std::stoi(players));
 	}
 }
 

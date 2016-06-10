@@ -72,8 +72,8 @@ private:
 	bool								Connect(void);
 	void								Disconnect(void);
 	bool								parseHeaders(std::string& strBuffer, int& iBufferSize);
-	bool								write(const std::string& szData, int iLen);
-	int									read(const std::string& szBuffer, int iLen);
+	bool								Write(const std::string& szData, int iLen);
+	int									Read(char *buffer, int iLen);
 
 public:
 

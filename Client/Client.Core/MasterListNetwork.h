@@ -13,9 +13,12 @@
 
 #include "HTTPClient.h"
 
+class MasterList;
+#include "MasterList.h"
+
 class MasterListNetwork
 {
-	typedef void(*QueryHandler_t)(const std::vector<std::string>& servers);
+	typedef void(*QueryHandler_t)(const std::vector<std::string>& servers, MasterList& master);
 
 	enum RefreshState
 	{
@@ -25,7 +28,7 @@ class MasterListNetwork
 	};
 
 public:
-	MasterListNetwork(QueryHandler_t handler);
+	MasterListNetwork(QueryHandler_t handler, MasterList& master);
 	~MasterListNetwork();
 
 	void	worker();
@@ -41,4 +44,6 @@ private:
 	unsigned long				m_lastRefreshTime;
 	std::thread*				m_refreshThread;
 	std::atomic<RefreshState>   m_refreshState;
+
+	MasterList&					m_master;
 };

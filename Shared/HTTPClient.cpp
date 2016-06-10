@@ -116,7 +116,7 @@ void HTTPClient::Disconnect()
 	m_connected = false;
 }
 
-bool HTTPClient::write(const std::string& szData, int iLen)
+bool HTTPClient::Write(const std::string& szData, int iLen)
 {
 	if (send(m_socket, szData.c_str(), iLen, 0) == SOCKET_ERROR)
 	{
@@ -127,9 +127,9 @@ bool HTTPClient::write(const std::string& szData, int iLen)
 	return true;
 }
 
-int HTTPClient::read(const std::string& szBuffer, int iLen)
+int HTTPClient::Read(char *buffer, int iLen)
 {
-	return recv(m_socket, const_cast<char *>(szBuffer.c_str()), iLen, 0);
+	return recv(m_socket,buffer, iLen, 0);
 }
 
 bool HTTPClient::get(const std::string& strPath)
@@ -149,7 +149,7 @@ bool HTTPClient::get(const std::string& strPath)
 		strPath.c_str(), m_host.c_str(), m_userAgent.c_str(),
 		m_referer.c_str());
 
-	if (!write(strGet.c_str(), strGet.length()))
+	if (!Write(strGet.c_str(), strGet.length()))
 		return false;
 
 	m_status = HTTP_STATUS_GET_DATA;
@@ -179,7 +179,7 @@ bool HTTPClient::post(bool hasResponse, std::string strPath, std::string strData
 		m_referer.c_str(), strContentType.c_str(), strData.length(),
 		strData.c_str());
 
-	if (!write(strPost.c_str(), strPost.length()))
+	if (!Write(strPost.c_str(), strPost.length()))
 		return false;
 
 	if (hasResponse)
@@ -243,14 +243,16 @@ bool HTTPClient::parseHeaders(std::string& strBuffer, int& iBufferSize)
 
 void HTTPClient::process()
 {
-	if (m_requestStart > 0 && (utility::TimeUtility::getMsTime() - m_requestStart) >= TIMEOUT)
+	/*if (m_requestStart > 0 && (utility::TimeUtility::getMsTime() - m_requestStart) >= TIMEOUT)
 	{
 		m_status = HTTP_STATUS_NONE;
 		m_lastError = HTTP_ERROR_REQUEST_TIMEOUT;
 		m_requestStart = 0;
 		Disconnect();
+		LOG_DEBUG(NETWORK) << "Worker timeout";
+		std::cout << "requestStart : " << m_requestStart << std::endl;
 		return;
-	}
+	}*/
 
 	if (m_status != HTTP_STATUS_NONE)
 	{
@@ -261,7 +263,7 @@ void HTTPClient::process()
 			char szBuffer[MAX_BUFFER];
 			memset(szBuffer, 0, sizeof(szBuffer));
 
-			int iBytesRead = read(szBuffer, sizeof(szBuffer));
+			int iBytesRead = Read(szBuffer, sizeof(szBuffer));
 			int iSkipBytes = 0;
 
 			if (iBytesRead > 0)
@@ -285,14 +287,12 @@ void HTTPClient::process()
 
 						return;
 					}
-
 					iSkipBytes -= iBytesRead;
 					if (iBytesRead == 0)
 						return;
 				}
 
 				char * szData = (iBytesRead ? (szBuffer + iSkipBytes) : NULL);
-
 				if (m_recieveHandler != NULL)
 				{
 					if (m_recieveHandler(szData, iBytesRead, m_recieveHandlerUserData))
