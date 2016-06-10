@@ -51,9 +51,6 @@
     <ClInclude Include="EventSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="MovementSystem.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="PositionSystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
@@ -111,9 +108,6 @@
       <Filter>Source Files\Network</Filter>
     </ClCompile>
     <ClCompile Include="EventSystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementSystem.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="PositionSystem.cpp">

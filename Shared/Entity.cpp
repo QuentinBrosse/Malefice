@@ -2,7 +2,6 @@
 #include "Entity.h"
 #include "Armor.h"
 #include "Life.h"
-#include "Movement.h"
 #include "PlayerInfos.h"
 #include "Position.h"
 #include "AScene.h"
@@ -177,9 +176,6 @@ RakNet::BitStream&	RakNet::operator>>(RakNet::BitStream& in, ecs::Entity& out)
 			break;
 		case ecs::AComponent::ComponentType::LIFE:
 			component = new ecs::Life(ecs::AComponent::ComponentType::LIFE);
-			break;
-		case ecs::AComponent::ComponentType::MOVEMENT:
-			component = new ecs::Movement();
 			break;
 		case ecs::AComponent::ComponentType::POSITION:
 			component = new ecs::Position();
