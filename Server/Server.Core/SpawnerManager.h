@@ -40,11 +40,7 @@ public:
 	void lifeRegeneration(ecs::Entity* spawner);
 	void armorRegeneration(ecs::Entity* spawner);
 	void weaponRegeneration(ecs::Entity* spawner);
-	void pickObject(ecs::Entity* spawner, ecs::Entity* player);
 	
-	void collisionDetection(PlayerManager& m_player);
-	
-	void drawLine();
 	void dump() const;
 
 	void setSpawnerVisibility(ecs::Entity* spawner, const bool isVisible, RakNet::RPC3* rpc);

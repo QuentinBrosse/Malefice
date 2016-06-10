@@ -15,13 +15,13 @@ SpawnerManager::SpawnerManager() : EntityManager(), NetworkObject(NetworkRPC::Re
 	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -20), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
 	m_spawnPositionsWeapon.push_back(ecs::Position(irr::core::vector3df(80, -50, -150), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(200.0, 200.0, 200.0)));
 
-	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
+	/*m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
 	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
-	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));
+	m_spawnPositionsLife.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.1, 0.1, 0.1)));*/
 
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(120, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(100, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
-	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(0.2, 0.2, 0.2)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 80), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 30), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
+	m_spawnPositionsArmor.push_back(ecs::Position(irr::core::vector3df(80, -50, 5), irr::core::vector3df(-90.0, 90.0, 0.0), irr::core::vector3df(25, 25, 25)));
 }
 
 void SpawnerManager::createEntity(ecs::ClientId owner)
@@ -178,54 +178,7 @@ ecs::Entity* SpawnerManager::seekSpawnerById(ecs::ClientId owner)
 {
 	if (m_entities[owner])
 		return (m_entities[owner]);
-	return(nullptr);
-}
-
-void SpawnerManager::collisionDetection(PlayerManager& playerManager)
-{
-	//VOIR SI LA DETECTION MARCHE, DRAW LES LIGNES !
-	
-	for (auto& player : playerManager.getEntities())
-	{
-		for (auto& spawn : m_entities)
-		{
-			irr::core::line3df *line = &m_spawnLine[spawn.first];
-			irr::core::triangle3df triangle;
-			irr::core::vector3df outVect;
-			irr::scene::ISceneNode* hitNode;
-
-			if (PhysicsUtil::getInstance().getSceneManager()->getSceneCollisionManager()->getCollisionPoint(
-				*line, dynamic_cast<ecs::AScene*>((*player.second)[ecs::AComponent::ComponentType::SCENE])->getSelector(), outVect, triangle, hitNode))
-			{
-				pickObject(spawn.second, player.second);
-			}
-		}
-	}
-}
-
-void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
-{
-	switch (spawner->getEntityType())
-	{
-	case ecs::Entity::EntityType::LIFE_SPAWNER:
-		if (dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr && dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE]) != nullptr)
-		{
-			dynamic_cast<ecs::Life*>((*player)[ecs::AComponent::ComponentType::LIFE])->restore(dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->get());
-			dynamic_cast<ecs::Life*>((*spawner)[ecs::AComponent::ComponentType::LIFE])->set(0);
-		}
-	case ecs::Entity::EntityType::ARMOR_SPAWNER:
-		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr && dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
-		{
-			dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR])->restore(dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
-			dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->set(0);
-		}
-	case ecs::Entity::EntityType::WEAPON_SPAWNER:
-		if (dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr && dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]) != nullptr)
-		{
-			dynamic_cast<ecs::WeaponManager*>((*player)[ecs::AComponent::ComponentType::WEAPON_MANAGER])->addWeapon(*dynamic_cast<ecs::Weapon*>((*spawner)[ecs::AComponent::ComponentType::WEAPON]));
-			(*spawner)[ecs::AComponent::ComponentType::WEAPON] = nullptr;
-		}
-	}
+	return nullptr;
 }
 
 std::map<ecs::ClientId, ecs::Entity*> SpawnerManager::getSpawners() const

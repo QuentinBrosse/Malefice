@@ -9,6 +9,7 @@
 SpawnerManager::SpawnerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::SpawnerManager)
 {
 	m_inc = 0.F;
+	first = true;
 }
 
 SpawnerManager::~SpawnerManager()
@@ -145,20 +146,21 @@ ecs::Entity* SpawnerManager::seekSpawnerById(ecs::ClientId owner)
 
 void SpawnerManager::collisionDetection(ecs::Entity& entity)
 {
-	irr::f32 inc = 0;
+	irr::core::aabbox3df boud = dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])->getNode()->getTransformedBoundingBox();
+	
 	for (auto& spawn : m_entities)
 	{
+		if (first)
+		{
+			first = false;
+			break;
+		}
 		if (!dynamic_cast<ecs::AScene*>((*spawn.second)[ecs::AComponent::ComponentType::SCENE])->getNode()->isVisible())
 			continue;
-		irr::core::line3df *line = &m_spawnLine[spawn.first];
-		irr::core::triangle3df triangle;
-		irr::core::vector3df outVect;
-		irr::scene::ISceneNode* hitNode;
-		if (GraphicUtil::getInstance().getSceneManager()->getSceneCollisionManager()->getCollisionPoint(
-			*line, dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])->getSelector(), outVect, triangle, hitNode))
-		{
+		irr::core::aabbox3df boudSpawn = dynamic_cast<ecs::AScene*>((*spawn.second)[ecs::AComponent::ComponentType::SCENE])->getNode()->getTransformedBoundingBox();
+
+		if (boudSpawn.intersectsWithBox(boud))
 			pickObject(spawn.second, &entity);
-		}
 	}
 }
 
