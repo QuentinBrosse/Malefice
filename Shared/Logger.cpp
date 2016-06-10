@@ -8,7 +8,7 @@
 #include "ProjectGlobals.h"
 #include "SystemUtility.h"
 
-const std::string	Logger::LOGGER_NAME		= ProjectGlobals::GAME_NAME + "Logger";
+const std::string	Logger::LOGGER_NAME		= ProjectGlobals::getGameName() + "Logger";
 const std::size_t	Logger::MAX_FILE_SIZE	= 1024 * 1024 * 10;
 const std::size_t	Logger::MAX_FILE_NB		= 10;
 

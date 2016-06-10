@@ -28,7 +28,7 @@ MasterListNetwork::MasterListNetwork(QueryHandler_t handler):
 {
 	m_httpClient = new HTTPClient;
 	m_httpClient->setReceiveHandle(&MasterListNetwork::recieveHandle, this);
-	m_httpClient->setHost(ProjectGlobals::MASTERLIST_URL);
+	m_httpClient->setHost(ProjectGlobals::getMasterlistUrl());
 
 	m_lastRefreshTime = utility::TimeUtility::getMsTime();
 }

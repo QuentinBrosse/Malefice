@@ -280,3 +280,10 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+
+
+# User
+
+client_core
+server_core

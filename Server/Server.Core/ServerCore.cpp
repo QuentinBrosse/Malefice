@@ -72,7 +72,7 @@ void	ServerCore::stop()
 
 void	ServerCore::displayHeader()	const
 {
-	std::string	title = ProjectGlobals::GAME_NAME + " v." + ProjectGlobals::GAME_SERVER_VERSION;
+	std::string	title = ProjectGlobals::getGameName() + " v." + ProjectGlobals::getGameServerVersion();
 
 #ifdef WIN32
 	SetConsoleTitle(title.c_str());
@@ -84,7 +84,7 @@ void	ServerCore::displayHeader()	const
 	std::cout << "=Server Name	: " << m_configuration.getName() << std::endl;
 	std::cout << "=Server bound to: " << m_configuration.getAddress() << std::endl;
 	std::cout << "=Server Port	: " << m_configuration.getPort() << std::endl;
-	std::cout << "=Max Players	: " << ProjectGlobals::MAX_PLAYERS_NB << std::endl;
+	std::cout << "=Max Players	: " << ProjectGlobals::getMaxPlayersNb() << std::endl;
 	if (m_configuration.getPassword().length() > 0)
 		std::cout << "=Password	: " << m_configuration.getPassword() << std::endl;
 	std::cout << "==============================================================" << std::endl;

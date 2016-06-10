@@ -117,12 +117,12 @@ namespace ecs
 		m_selector = m_smgr->createOctreeTriangleSelector(m_node->getMesh(), m_node, 128);
 		m_node->setTriangleSelector(m_selector);
 		if (gratity)
-			g = ProjectGlobals::COLLISION_ANIMATOR_GRAVITY_PER_SECOND;
+			g = ProjectGlobals::getCollisionAnimatorGravityPerSecond();
 		irr::scene::ISceneNodeAnimator*	animator = m_smgr->createCollisionResponseAnimator(m_selector,
 			m_smgr->getActiveCamera(),
-			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_RADIUS,
+			ProjectGlobals::getCollisionAnimatorEllipsoidRadius(),
 			g,
-			ProjectGlobals::COLLISION_ANIMATOR_ELLIPSOID_TRANSLATION);
+			ProjectGlobals::getCollisionAnimatorEllipsoidTranslation());
 		m_smgr->getActiveCamera()->addAnimator(animator);
 		animator->drop();
 	}

@@ -3,7 +3,6 @@
 #include "Team.h"
 #include "WeaponManager.h"
 #include "Weapon.h"
-#include "Movement.h"
 #include "PlayerInfos.h"
 #include "Position.h"
 #include "SpellManager.h"
@@ -35,9 +34,6 @@ ecs::Entity* PlayerFactory::createPlayer(irr::IrrlichtDevice* device, const std:
 	ecs::WeaponManager* weaponManager = new ecs::WeaponManager();
 	weaponManager->createWeapon(device, weaponCreator.create(ecs::Weapon::WeaponType::SHOT_GUN));
 	(*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER] = weaponManager;
-
-	//Movement
-	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(position));
 
 	//Spell
 	(*entity)[ecs::AComponent::ComponentType::SPELL] = new ecs::Spell();
@@ -80,9 +76,6 @@ ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const st
 
 	// SpellManager	
 	(*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER] = new ecs::SpellManager();
-
-	//Movement
-	(*entity)[ecs::AComponent::ComponentType::MOVEMENT] = new ecs::Movement(ecs::Position(position));
 
 	//Scene
 	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);

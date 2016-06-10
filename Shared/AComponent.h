@@ -15,7 +15,6 @@ namespace ecs
 			LIFE,
 			ARMOR,
 			POSITION,
-			MOVEMENT,
 			TEAM,
 			WEAPON,
 			WEAPON_MANAGER,

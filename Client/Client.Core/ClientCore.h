@@ -24,8 +24,6 @@ public:
 	void					createEntities();
 	void					run();
 
-	static ecs::Weapon*		buggedWeapon;
-
 	NetworkModule*			getNetworkModule()	const;
 	GraphicUtil*			getGraphicModule()	const;
 	PlayerManager*			getPlayerManager()	const;

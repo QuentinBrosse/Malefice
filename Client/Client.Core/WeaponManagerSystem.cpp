@@ -1,5 +1,7 @@
 // Client Version
 
+#include <thread>
+#include <chrono>
 #include "WeaponManagerSystem.h"
 #include "GraphicUtil.h"
 #include "SpellManager.h"
@@ -30,7 +32,7 @@ namespace ecs
 			{
 				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
-			Sleep(25);
+			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
 		}
 	}
@@ -61,7 +63,7 @@ namespace ecs
 			{
 				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
-			Sleep(25);
+			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
 		}
 	}
@@ -134,6 +136,25 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && weaponManager->hasCurrentWeapon())
 			weaponManager->getCurrentWeapon().setActivity(true);
+	}
+
+	void WeaponManagerSystem::removeScene(Entity & entity)
+	{
+
+		SceneAnimatedMesh*		scene;
+		WeaponManager*			weaponManager;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		{
+			// TODO: remove or update entity's position to others?
+			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
+
+			for (auto it = weapons.begin(); it != weapons.end(); ++it)
+			{
+				if (it->second.getScene() != nullptr)
+					(*it).second.deleteScene();
+			}
+		}
 	}
 
 	

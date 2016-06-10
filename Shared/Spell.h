@@ -63,6 +63,9 @@ namespace ecs
 
 		virtual	AComponent*		createCopy(const AComponent* rhs) const;
 
+
+		void					deleteScene();
+
 	private:
 		static const std::string	MEDIA_PATH;
 

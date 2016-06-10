@@ -17,10 +17,12 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
+		  Line3dWrapper	line3dWrapper{Target::getInstance().getRay()};
+
 			playerPosition = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &Line3dWrapper(Target::getInstance().getRay()));
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &line3dWrapper);
 		}
 	}
 

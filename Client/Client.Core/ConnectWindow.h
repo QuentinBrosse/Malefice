@@ -6,7 +6,7 @@
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/System.h>
 #include "NetworkModule.h"
-#include "waitingRoom.h"
+#include "WaitingRoom.h"
 
 class GraphicUtil;
 
