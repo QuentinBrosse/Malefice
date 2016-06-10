@@ -5,7 +5,7 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 16:55:59 2016 Guillaume Truchot
-## Last update Thu Jun  9 23:10:44 2016 Guillaume Truchot
+## Last update Fri Jun 10 15:06:48 2016 Guillaume Truchot
 ##
 
 CXX		=	g++
@@ -26,7 +26,9 @@ CXXFLAGS	+=	-L /usr/local/lib/irrlicht-1.8.3/
 CXXFLAGS	+=	-L /usr/local/lib/raknet/
 CXXFLAGS	+=	-L /usr/local/lib/tinyxml2/
 
-LDFLAGS		=	-lGL -lX11 -lXxf86vm -ltinyxml2 -lLibRPC3 -lRakNetDLL -lIrrlicht -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared
+LDFLAGS		=	-lGL -lX11 -lXxf86vm -lRakNetDLL -lLibRPC3 -lIrrlicht -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared -ltinyxml2
+
+RPATH           =       -Wl,-rpath='$$ORIGIN:/usr/local/lib/raknet:/usr/local/lib/tinyxml2:/usr/local/lib/irrlicht-1.8.3:/usr/local/lib/cegui-0.8.6:/usr/local/lib/irrKlang-1.5.0:../../Shared'
 
 SRCS		=	$(wildcard *.cpp)
 
@@ -40,7 +42,7 @@ RM		=	rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(RPATH) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean:
 	$(RM) $(OBJS)

@@ -323,6 +323,7 @@ std::string HTTPClient::getLastErrorString()
 {
 	std::string strError("Unknown");
 
+#ifdef _WIN32
 	switch (GetLastError())
 	{
 	case HTTP_ERROR_SOCKET_PREPARE_FAILED:
@@ -347,6 +348,7 @@ std::string HTTPClient::getLastErrorString()
 		strError = ("No header");
 		break;
 	}
+#endif
 
 	return strError;
 }

@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include <string>
 #include <iostream>
 
@@ -89,7 +92,7 @@ void	MasterListNetwork::worker()
 				}
 			}
 		}
-		Sleep(50);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 }
 
