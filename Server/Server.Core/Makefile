@@ -5,26 +5,29 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 20:45:51 2016 Guillaume Truchot
-## Last update Fri Jun 10 15:03:45 2016 Guillaume Truchot
+## Last update Fri Jun 10 17:14:51 2016 Guillaume Truchot
 ##
+
+INCLUDE_BASE	=	../../Dependencies/LINUX/include/
+LIB_BASE	=	../../Dependencies/LINUX/lib/
 
 CXX		=	g++
 
 CXXFLAGS	=	-std=c++11
 CXXFLAGS	+=	-m32
+CXXFLAGS	+=	-I $(INCLUDE_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)raknet/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)spdlog/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)tinyxml2/
 CXXFLAGS	+=	-I ../../Shared
-CXXFLAGS	+=	-I /usr/local/include/irrlicht-1.8.3/
-CXXFLAGS	+=	-I /usr/local/include/raknet/
-CXXFLAGS	+=	-I /usr/local/include/spdlog/
-CXXFLAGS	+=	-I /usr/local/include/tinyxml2/
+CXXFLAGS	+=	-L $(LIB_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-L $(LIB_BASE)raknet/
+CXXFLAGS	+=	-L $(LIB_BASE)tinyxml2/
 CXXFLAGS	+=	-L ../../Shared
-CXXFLAGS	+=	-L /usr/local/lib/irrlicht-1.8.3/
-CXXFLAGS	+=	-L /usr/local/lib/raknet/
-CXXFLAGS	+=	-L /usr/local/lib/tinyxml2/
 
-LDFLAGS		=	-ltinyxml2 -lRakNetDLL -lLibRPC3 -lIrrlicht -lShared
+LDFLAGS		=	-lIrrlicht -lRakNetDLL -lLibRPC3 -ltinyxml2 -lShared
 
-RPATH		=	-Wl,-rpath='$$ORIGIN:/usr/local/lib/raknet:/usr/local/lib/tinyxml2:/usr/local/lib/irrlicht-1.8.3:../../Shared'
+RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN'
 
 SRCS		=	$(wildcard *.cpp)
 

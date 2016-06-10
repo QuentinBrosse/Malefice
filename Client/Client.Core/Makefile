@@ -5,30 +5,33 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 16:55:59 2016 Guillaume Truchot
-## Last update Fri Jun 10 15:06:48 2016 Guillaume Truchot
+## Last update Fri Jun 10 17:22:44 2016 Guillaume Truchot
 ##
+
+INCLUDE_BASE	=	../../Dependencies/LINUX/include/
+LIB_BASE	=	../../Dependencies/LINUX/lib/
 
 CXX		=	g++
 
 CXXFLAGS	=	-std=c++11
 CXXFLAGS	+=	-m32
+CXXFLAGS	+=	-I $(INCLUDE_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)raknet/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)spdlog/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)tinyxml2/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)cegui-0.8.6/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)irrKlang-1.5.0/
 CXXFLAGS	+=	-I ../../Shared
-CXXFLAGS	+=	-I /usr/local/include/cegui-0.8.6/
-CXXFLAGS	+=	-I /usr/local/include/irrKlang-1.5.0/
-CXXFLAGS	+=	-I /usr/local/include/irrlicht-1.8.3/
-CXXFLAGS	+=	-I /usr/local/include/raknet/
-CXXFLAGS	+=	-I /usr/local/include/spdlog/
-CXXFLAGS	+=	-I /usr/local/include/tinyxml2/
+CXXFLAGS	+=	-L $(LIB_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-L $(LIB_BASE)raknet/
+CXXFLAGS	+=	-L $(LIB_BASE)tinyxml2/
+CXXFLAGS	+=	-L $(LIB_BASE)cegui-0.8.6/
+CXXFLAGS	+=	-L $(LIB_BASE)irrKlang-1.5.0/
 CXXFLAGS	+=	-L ../../Shared
-CXXFLAGS	+=	-L /usr/local/lib/cegui-0.8.6/
-CXXFLAGS	+=	-L /usr/local/lib/irrKlang-1.5.0/
-CXXFLAGS	+=	-L /usr/local/lib/irrlicht-1.8.3/
-CXXFLAGS	+=	-L /usr/local/lib/raknet/
-CXXFLAGS	+=	-L /usr/local/lib/tinyxml2/
 
-LDFLAGS		=	-lGL -lX11 -lXxf86vm -lRakNetDLL -lLibRPC3 -lIrrlicht -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared -ltinyxml2
+LDFLAGS		=	-lIrrlicht -lRakNetDLL -lLibRPC3 -ltinyxml2 -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared
 
-RPATH           =       -Wl,-rpath='$$ORIGIN:/usr/local/lib/raknet:/usr/local/lib/tinyxml2:/usr/local/lib/irrlicht-1.8.3:/usr/local/lib/cegui-0.8.6:/usr/local/lib/irrKlang-1.5.0:../../Shared'
+RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN/lib/cegui-0.8.6:$$ORIGIN/lib/irrKlang-1.5.0:$$ORIGIN'
 
 SRCS		=	$(wildcard *.cpp)
 

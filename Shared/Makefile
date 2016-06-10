@@ -5,21 +5,24 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 14:14:30 2016 Guillaume Truchot
-## Last update Fri Jun 10 14:34:54 2016 Guillaume Truchot
+## Last update Fri Jun 10 16:59:23 2016 Guillaume Truchot
 ##
+
+INCLUDE_BASE	=	../Dependencies/LINUX/include/
+LIB_BASE	=	../Dependencies/LINUX/lib/
 
 CXX		=	g++
 
 CXXFLAGS	=	-std=c++11
 CXXFLAGS	+=	-m32
 CXXFLAGS	+=	-fPIC
-CXXFLAGS	+=	-I /usr/local/include/irrlicht-1.8.3/
-CXXFLAGS	+=	-I /usr/local/include/raknet/
-CXXFLAGS	+=	-I /usr/local/include/spdlog/
-CXXFLAGS	+=	-I /usr/local/include/tinyxml2/
-CXXFLAGS	+=	-L /usr/local/lib/irrlicht-1.8.3/
-CXXFLAGS	+=	-L /usr/local/lib/raknet/
-CXXFLAGS	+=	-L /usr/local/lib/tinyxml2/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)raknet/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)spdlog/
+CXXFLAGS	+=	-I $(INCLUDE_BASE)tinyxml2/
+CXXFLAGS	+=	-L $(LIB_BASE)irrlicht-1.8.3/
+CXXFLAGS	+=	-L $(LIB_BASE)raknet/
+CXXFLAGS	+=	-L $(LIB_BASE)tinyxml2/
 
 #LDFLAGS		=	-ltinyxml2 -lLibRPC3 -lRakNetLibStatic -lIrrlicht
 LDFLAGS		=	
