@@ -227,7 +227,7 @@ namespace ecs
 	{
 		try
 		{
-			if (m_scene != nullptr && m_scene->getScene())
+			if (m_scene != nullptr)
 				m_scene->getScene()->setVisible(active);
 		}
 		catch (const std::exception& e)
@@ -332,6 +332,12 @@ namespace ecs
 		m_meshName = meshName.C_String();
 		m_externalMetrics.deserialize(in);
 		m_fpsMetrics.deserialize(in);
+	}
+
+	void Weapon::deleteScene()
+	{
+		delete m_scene;
+		m_scene = nullptr;
 	}
 
 };

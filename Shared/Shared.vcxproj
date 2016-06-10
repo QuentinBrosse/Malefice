@@ -162,7 +162,6 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MapFactory.cpp" />
     <ClCompile Include="MathUtility.cpp" />
-    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
     <ClCompile Include="NetworkObject.cpp" />
     <ClCompile Include="NetworkRPC.cpp" />
@@ -204,7 +203,6 @@
     <ClInclude Include="Logger.h" />
     <ClInclude Include="MapFactory.h" />
     <ClInclude Include="MathUtility.h" />
-    <ClInclude Include="Movement.h" />
     <ClInclude Include="NetworkManager.h" />
     <ClInclude Include="NetworkObject.h" />
     <ClInclude Include="NetworkRPC.h" />

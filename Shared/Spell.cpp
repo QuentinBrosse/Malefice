@@ -164,7 +164,7 @@ namespace ecs
 	{
 		try
 		{
-			if (m_scene != nullptr)
+			if (m_scene != nullptr && m_scene->getScene() != nullptr)
 				m_scene->getScene()->setVisible(active);
 		}
 		catch (const std::exception& e)
@@ -220,5 +220,11 @@ namespace ecs
 		const Spell*	spell = dynamic_cast<const Spell*>(rhs);
 
 		return new Spell(*spell);
+	}
+
+	void Spell::deleteScene()
+	{
+		delete m_scene;
+		m_scene = nullptr;
 	}
 }

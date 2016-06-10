@@ -15,7 +15,6 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="LifeSystem.h" />
     <ClInclude Include="MasterList.h" />
-    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="PhysicsUtil.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
@@ -35,7 +34,6 @@
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="LifeSystem.cpp" />
     <ClCompile Include="MasterList.cpp" />
-    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="PhysicsUtil.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />

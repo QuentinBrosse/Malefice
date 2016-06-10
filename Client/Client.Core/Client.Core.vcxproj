@@ -28,7 +28,6 @@
     <ClInclude Include="MasterListNetwork.h" />
     <ClInclude Include="MenuOptions.h" />
     <ClInclude Include="MenuPause.h" />
-    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="NetworkModule.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PositionSystem.h" />
@@ -63,7 +62,6 @@
     <ClCompile Include="MasterListNetwork.cpp" />
     <ClCompile Include="MenuOptions.cpp" />
     <ClCompile Include="MenuPause.cpp" />
-    <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="NetworkModule.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PositionSystem.cpp" />

@@ -77,6 +77,7 @@ namespace ecs
 		virtual void			serialize(RakNet::BitStream& out, bool serializeType = true)	const;
 		virtual void			deserialize(RakNet::BitStream& in);
 
+		void					deleteScene();
 
 	private:
 		static const std::string	MEDIA_PATH;

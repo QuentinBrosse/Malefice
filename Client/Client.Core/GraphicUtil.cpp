@@ -321,6 +321,8 @@ void GraphicUtil::setFPSCamera()
 		m_sceneManager->getActiveCamera()->remove();
 	}
 	m_device->getCursorControl()->setVisible(false);
+	PlayerManager::getInstance().removeWeaponScene();
+
 	m_FPSCamera = new Camera(cameraPosition, m_sceneManager);
 
 	ClientCore&		clientCore = ClientCore::getInstance();
