@@ -24,10 +24,11 @@
 
 #include "Logger.h"
 
-MasterListNetwork::MasterListNetwork(QueryHandler_t handler):
+MasterListNetwork::MasterListNetwork(QueryHandler_t handler, MasterList& master):
 	m_queryHandler(handler),
 	m_refreshState(RefreshState_Ready),
-	m_refreshThread(nullptr)
+	m_refreshThread(nullptr),
+	m_master(master)
 {
 	m_httpClient = new HTTPClient;
 	m_httpClient->setReceiveHandle(&MasterListNetwork::recieveHandle, this);
@@ -59,13 +60,12 @@ void	MasterListNetwork::worker()
 				{
 					std::vector<std::string> servers = utility::StringUtility::explode(data->c_str(), "<br/>");
 
-					LOG_INFO(NETWORK) << "Discovered " << servers.size() << " servers";
+					LOG_INFO(NETWORK) << "Discovered " << servers.size() << " server(s)";
 					if (m_queryHandler)
-						m_queryHandler(servers);
+						m_queryHandler(servers, m_master);
 				}
 				else
 				{
-					std::cout << "Failed" << std::endl;
 					std::this_thread::sleep_for(std::chrono::seconds(3));
 				}
 				m_refreshState = RefreshState_Ready;
@@ -100,8 +100,10 @@ void	MasterListNetwork::worker()
 
 bool	MasterListNetwork::refresh()
 {
-	if (m_refreshState != RefreshState_Ready)
+	if (m_refreshState != RefreshState_Ready) {
+		LOG_DEBUG(NETWORK) << "Worker is not ready";
 		return false;
+	}
 
 	m_httpClient->reset();
 	m_refreshState = RefreshState_UpdateRequired;
@@ -110,6 +112,8 @@ bool	MasterListNetwork::refresh()
 	{
 		m_refreshThread = new std::thread(&MasterListNetwork::worker, this);
 		m_refreshThread->detach();
+	} else {
+		LOG_DEBUG(NETWORK) << "refreshThread not dead";
 	}
 	return true;
 }

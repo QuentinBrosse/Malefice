@@ -37,7 +37,7 @@ void ecs::LifeSystem::restore(ecs::Entity* entity, const int hp, RakNet::RPC3 * 
 	ecs::Entity* localEntity = ServerCore::getInstance().getPlayerManager().findEntity(entity->getOwner());
 
 	*localEntity = *entity;
-	if ((life = dynamic_cast<ecs::Life*>((*localEntity)[ecs::AComponent::ComponentType::LIFE]) )!= nullptr)
+	if ((life = dynamic_cast<ecs::Life*>((*localEntity)[ecs::AComponent::ComponentType::LIFE])) != nullptr)
 		life->restore(hp);
 }
 

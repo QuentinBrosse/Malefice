@@ -50,4 +50,27 @@ namespace ecs
 			spellManager->createFPSScene(GraphicUtil::getInstance().getDevice(), GraphicUtil::getInstance().getSceneManager()->getActiveCamera());
 		}
 	}
+
+	void SpellManagerSystem::removeScene(Entity & entity)
+	{
+		SceneAnimatedMesh*		scene;
+		SpellManager*			spellManager;
+
+		if ((spellManager = dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			std::map<ecs::Spell::SpellType, Spell>&	spells = spellManager->getSpells();
+			std::map<ecs::Weapon::WeaponType, ecs::Weapon>& weapons = spellManager->getWeapons();
+
+			for (auto it = spells.begin(); it != spells.end(); ++it)
+			{
+				if (it->second.getScene() != nullptr)
+					(*it).second.deleteScene();
+			}
+			for (auto it = weapons.begin(); it != weapons.end(); ++it)
+			{
+				if (it->second.getScene() != nullptr)
+					(*it).second.deleteScene();
+			}
+		}
+	}
 }

@@ -84,9 +84,6 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\ECS\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="Movement.cpp">
-      <Filter>Source Files\ECS\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Life.cpp">
       <Filter>Source Files\ECS\Component</Filter>
     </ClCompile>
@@ -210,9 +207,6 @@
       <Filter>Header Files\ECS\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Life.h">
-      <Filter>Header Files\ECS\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Movement.h">
       <Filter>Header Files\ECS\Component</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFactory.h">

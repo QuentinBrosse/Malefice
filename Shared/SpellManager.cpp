@@ -264,4 +264,8 @@ namespace ecs
 
 		return new SpellManager(*spellManager);
 	}
+	std::map<Weapon::WeaponType, Weapon>& SpellManager::getWeapons()
+	{
+		return (m_weaponManager.getWeapons());
+	}
 }

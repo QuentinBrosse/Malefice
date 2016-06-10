@@ -4,11 +4,12 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "ClientCore.h"
-//Client Side
 
+//Client Side
 SpawnerManager::SpawnerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::SpawnerManager)
 {
 	m_inc = 0.F;
+	first = true;
 }
 
 SpawnerManager::~SpawnerManager()
@@ -20,17 +21,6 @@ void SpawnerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet:
 {
 	ecs::Entity*	localEntity = new ecs::Entity(*entity);
 	EntityManager::addEntity(owner, localEntity, rpc);
-
-	irr::core::line3df		line;
-	irr::core::vector3df	endPos;
-
-	line.start = dynamic_cast<ecs::Position *>((*localEntity)[ecs::AComponent::ComponentType::POSITION])->getVectorPosition();
-
-	endPos = line.start;
-	endPos.X = line.start.X + 15;
-	endPos.Y = line.start.Y + 65;
-	line.end = endPos;
-	m_spawnLine.insert(std::pair<ecs::ClientId, irr::core::line3df>(owner, line));
 }
 
 void	SpawnerManager::updateEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -146,20 +136,21 @@ ecs::Entity* SpawnerManager::seekSpawnerById(ecs::ClientId owner)
 
 void SpawnerManager::collisionDetection(ecs::Entity& entity)
 {
-	irr::f32 inc = 0;
+	irr::core::aabbox3df boud = dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])->getNode()->getTransformedBoundingBox();
+	
 	for (auto& spawn : m_entities)
 	{
+		if (first)
+		{
+			first = false;
+			break;
+		}
 		if (!dynamic_cast<ecs::AScene*>((*spawn.second)[ecs::AComponent::ComponentType::SCENE])->getNode()->isVisible())
 			continue;
-		irr::core::line3df *line = &m_spawnLine[spawn.first];
-		irr::core::triangle3df triangle;
-		irr::core::vector3df outVect;
-		irr::scene::ISceneNode* hitNode;
-		if (GraphicUtil::getInstance().getSceneManager()->getSceneCollisionManager()->getCollisionPoint(
-			*line, dynamic_cast<ecs::AScene*>(entity[ecs::AComponent::ComponentType::SCENE])->getSelector(), outVect, triangle, hitNode))
-		{
+		irr::core::aabbox3df boudSpawn = dynamic_cast<ecs::AScene*>((*spawn.second)[ecs::AComponent::ComponentType::SCENE])->getNode()->getTransformedBoundingBox();
+
+		if (boudSpawn.intersectsWithBox(boud))
 			pickObject(spawn.second, &entity);
-		}
 	}
 }
 

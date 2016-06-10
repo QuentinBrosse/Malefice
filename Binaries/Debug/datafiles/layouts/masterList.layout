@@ -27,5 +27,10 @@
             <Property name="ClippedByParent" value="false" />
             <Property name="WantsMultiClickEvents" value="false" />
         </Window>
+        <Window type="AlfiskoSkin/Button" name="Button22" >
+            <Property name="ID" value="3" />
+            <Property name="Area" value="{{0,622},{0,160},{0,804},{0,201}}" />
+            <Property name="Text" value="Rafraîchir" />
+        </Window>
     </Window>
 </GUILayout>
