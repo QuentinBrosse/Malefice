@@ -28,6 +28,8 @@ public:
 
 	void			loadNormalTeamTexture();
 	void			loadInvertTeamTexture();
+
+	void			removeWeaponScene();
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;

@@ -52,6 +52,7 @@ namespace ecs
 		virtual void	deserialize(RakNet::BitStream& in);
 
 		virtual AComponent*	createCopy(const AComponent* rhs) const;
+		std::map<Weapon::WeaponType, Weapon>&	getWeapons();
 
 	private:
 		std::map<Spell::SpellType, Spell>			m_spells;

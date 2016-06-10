@@ -206,3 +206,18 @@ void PlayerManager::loadInvertTeamTexture()
 		}
 	}
 }
+
+void PlayerManager::removeWeaponScene()
+{
+	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
+	{
+		if (dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM])->getTeam() == ecs::Team::TeamType::Predator)
+		{
+			ecs::SpellManagerSystem::removeScene(*it->second);
+		}
+		else
+		{
+			ecs::WeaponManagerSystem::removeScene(*it->second);
+		}
+	}
+}

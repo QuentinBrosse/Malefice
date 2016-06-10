@@ -138,5 +138,24 @@ namespace ecs
 			weaponManager->getCurrentWeapon().setActivity(true);
 	}
 
+	void WeaponManagerSystem::removeScene(Entity & entity)
+	{
+
+		SceneAnimatedMesh*		scene;
+		WeaponManager*			weaponManager;
+
+		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		{
+			// TODO: remove or update entity's position to others?
+			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
+
+			for (auto it = weapons.begin(); it != weapons.end(); ++it)
+			{
+				if (it->second.getScene() != nullptr)
+					(*it).second.deleteScene();
+			}
+		}
+	}
+
 	
 }
