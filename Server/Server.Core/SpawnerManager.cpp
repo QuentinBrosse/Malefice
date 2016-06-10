@@ -219,7 +219,7 @@ void SpawnerManager::dump() const
 void SpawnerManager::setSpawnerVisibility(ecs::Entity* spawner, const bool isVisible, RakNet::RPC3* rpc)
 {
 	if (!isVisible)
-		m_timer[spawner->getOwner()] = utility::TimeUtility::getMsTime() + (1000 * ProjectGlobals::SPAWNER_VISIBILITY_TIMER);
+		m_timer[spawner->getOwner()] = utility::TimeUtility::getMsTime() + (1000 * ProjectGlobals::getSpawnerVisibilityTimer());
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpawnerManager), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, spawner, isVisible);
 }
 

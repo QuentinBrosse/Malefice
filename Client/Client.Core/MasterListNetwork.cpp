@@ -31,12 +31,12 @@ std::vector<std::string>	MasterListNetwork::fetch()
 	if ((utility::TimeUtility::getMsTime() - m_lastUpdateTime) < 3000)
 		return retn;
 
-	if (m_tcp->Connect(ProjectGlobals::MASTERLIST_URL.c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)
+	if (m_tcp->Connect(ProjectGlobals::getMasterlistUrl().c_str(), 80, true) == RakNet::UNASSIGNED_SYSTEM_ADDRESS)
 		return retn;
 
 	RakSleep(100);
 
-	post = RakNet::RakString::FormatForGET(std::string(ProjectGlobals::MASTERLIST_URL).append("/api/v1/server?ordered=true").c_str(), "User-Agent: Malefice/1.0");
+	post = RakNet::RakString::FormatForGET(std::string(ProjectGlobals::getMasterlistUrl()).append("/api/v1/server?ordered=true").c_str(), "User-Agent: Malefice/1.0");
 
 	m_tcp->Send(post.C_String(), post.GetLength(), m_tcp->HasCompletedConnectionAttempt(), false);
 

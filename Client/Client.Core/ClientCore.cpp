@@ -45,7 +45,7 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	if (!ProjectGlobals::NO_MENU)
+	if (!ProjectGlobals::getNoMenu())
 	{
 		m_graphicModule->setGuiCamera();
 		m_graphicModule->getMainMenu()->display();
@@ -166,7 +166,7 @@ void ClientCore::createEntities()
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::updateScenePosition(*m_map);
-	if (ProjectGlobals::NO_MENU)
+	if (ProjectGlobals::getNoMenu())
 	{
 		//Weapon Spawner
 		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));

@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[])
 {
-	Logger::getInstance().setup(ProjectGlobals::GAME_CLIENT_CORE_LOG_FILEPATH);
+	Logger::getInstance().setup(ProjectGlobals::getGameClientCoreLogFilepath());
 	ClientCore::getInstance().run();
 	return EXIT_SUCCESS;
 }

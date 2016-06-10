@@ -119,7 +119,7 @@ void GraphicUtil::initGraphics()
 	m_touchedFx = new TouchedFx();
 	m_deadGUI = new YourDead();
 
-	if (!ProjectGlobals::NO_MENU)
+	if (!ProjectGlobals::getNoMenu())
 	{
 		this->setFPSCamera();
 		this->setGuiCamera();
