@@ -65,16 +65,17 @@ void	ClientCore::run()
 
 bool	ClientCore::init()
 {
-	m_networkModule = new NetworkModule();
+  m_networkModule = new NetworkModule();
 	if (m_networkModule->init() == false)
 	{
 		LOG_CRITICAL(NETWORK) << "Failed to start Network Module.";
 		return false;
-	}
+		}
 	m_graphicModule = &GraphicUtil::getInstance();
 	m_audioModule = &Audio::getInstance();
 	m_playerManager = &PlayerManager::getInstance();
 	m_spawnerManager = &SpawnerManager::getInstance();
+	return true;
 
 }
 
