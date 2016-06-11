@@ -5,7 +5,7 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 16:55:59 2016 Guillaume Truchot
-## Last update Sat Jun 11 16:26:37 2016 Guillaume Truchot
+## Last update Sat Jun 11 16:32:37 2016 Guillaume Truchot
 ##
 
 INCLUDE_BASE	=	../../Dependencies/LINUX/include/
@@ -32,7 +32,7 @@ CXXFLAGS	+=	-L ../../Shared
 
 LDFLAGS		=	-lIrrlicht -lRakNetDLL -lLibRPC3 -ltinyxml2 -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared -lfreetype -lGLEW -lGLU -lexpat -lpcre -lzlib -lSDL2_image-2.0
 
-RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN/lib/cegui-0.8.6:$$ORIGIN/lib/irrKlang-1.5.0:$$ORIGIN:$$ORIGIN/lib/dep'
+RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN/lib/cegui-0.8.6:$$ORIGIN/lib/irrKlang-1.5.0:$$ORIGIN'
 
 SRCS		=	$(wildcard *.cpp)
 
