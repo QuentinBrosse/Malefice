@@ -43,18 +43,8 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	if (!ProjectGlobals::getNoMenu())
-	{
-		m_graphicModule->setGuiCamera();
-		m_graphicModule->getMainMenu()->display();
-	}
-	else
-	{
-		m_graphicModule->getMenuPause()->activate(true);
-		m_graphicModule->setFPSCamera();
-		createEntities();
-		startGame(0);
-	}
+	m_graphicModule->setGuiCamera();
+	m_graphicModule->getMainMenu()->display();
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
 		this->pulse();
@@ -104,9 +94,10 @@ void	ClientCore::pulse()
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
 			if (weaponManager)
+			{
 				m_graphicModule->getHUD()->setAmoClip(weaponManager->getCurrentWeapon().getAmmunitions());
-			if (weaponManager)
 				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
+			}
 			if (life != nullptr)
 				m_graphicModule->getHUD()->setHealthPoint(life->get());
 			else
@@ -146,28 +137,11 @@ void	ClientCore::pulse()
 }
 
 
-// DEBUG !
 void ClientCore::createEntities()
 {
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::updateScenePosition(*m_map);
-	if (ProjectGlobals::getNoMenu())
-	{
-		//Weapon Spawner
-		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));
-		ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(GraphicUtil::getInstance().getDevice(), spawnPosition1, 18);
-		m_spawnerManager->addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1, nullptr);
-		//ecs::PositionSystem::initScenePosition(*spawnerWeapon1);
-
-		//Player 1
-		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1);
-		ecs::PositionSystem::updateScenePosition(*m_player);
-		m_playerManager->setCurrentPlayer(m_player);
-
-		m_playerManager->initPlayersWeapons();
-	}
 }
 
 bool	ClientCore::isActive()	const

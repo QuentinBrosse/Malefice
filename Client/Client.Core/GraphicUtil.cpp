@@ -8,6 +8,7 @@
 #include "WeaponManagerSystem.h"
 #include "ressource.h"
 #include "NodePickable.h"
+#include "Team.h"
 
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
@@ -20,11 +21,15 @@
 GraphicUtil::GraphicUtil() :
 	m_device(nullptr), m_sceneManager(nullptr), m_driver(nullptr), m_FPSCamera(nullptr), m_guiCamera(nullptr), m_receiver(), m_keyMap(nullptr), m_menu(nullptr), m_menuPause(nullptr), m_menuOptions(nullptr), m_connectWindow(nullptr), m_salon(nullptr), m_hud(nullptr), m_isInFPSMode(false), m_skyBox(nullptr)
 {
+	irr::video::E_DRIVER_TYPE driver;
+
 #ifdef _WIN32
-	m_device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
+	driver = irr::video::EDT_DIRECT3D9;
 #else
-	m_device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
+	driver = irr::video::EDT_OPENGL;
 #endif
+
+	m_device = irr::createDevice(driver, irr::core::dimension2d<irr::u32>(1280, 720), 16, false);
 	if (!m_device)
 	{
 		// TODO: Throw exception
@@ -122,7 +127,7 @@ void GraphicUtil::initGraphics()
 	m_blindFx = new Blind();
 	m_touchedFx = new TouchedFx();
 	m_deadGUI = new YourDead();
-	m_scoreTab = new scoreTab(*this);
+	//m_scoreTab = new scoreTab(*this);
 
 	if (!ProjectGlobals::getNoMenu())
 	{
@@ -309,19 +314,42 @@ void GraphicUtil::setGuiCamera()
 void GraphicUtil::setFPSCamera()
 {
 	ecs::Entity*	localPlayer = PlayerManager::getInstance().getCurrentPlayer();
+	ecs::Team*		team = nullptr;
 	auto&			players = PlayerManager::getInstance().getEntities();
 
 	std::srand(std::time(nullptr));
 
-	ecs::Position cameraPosition(
-		irr::core::vector3df(50.0f + (std::rand() % 100) + 20, 50.0f, -60.0f),
-		irr::core::vector3df(0.0f, 0.0f, 0.0f));
+	ecs::Position	cameraPosition(
+		irr::core::vector3df(50.F + (std::rand() % 100) + 20, 50.F, -60.F),
+		irr::core::vector3df(0.F, 0.F, 0.F));
 
 	if (m_sceneManager->getActiveCamera())
 	{
 		cameraPosition.setVectorPosition(m_sceneManager->getActiveCamera()->getAbsolutePosition());
 		cameraPosition.setVectorRotation(m_sceneManager->getActiveCamera()->getTarget());
 		m_sceneManager->getActiveCamera()->remove();
+	}
+	
+	if (localPlayer)
+	{
+		team = dynamic_cast<ecs::Team*>((*localPlayer)[ecs::AComponent::ComponentType::TEAM]);
+
+		switch (team->getTeam())
+		{
+			case ecs::Team::TeamType::Predator:
+				cameraPosition.setVectorPosition(irr::core::vector3df(147.5F, 112.F, 833.F));
+				break;
+			case ecs::Team::TeamType::Team1:
+				cameraPosition.setVectorRotation(irr::core::vector3df(-45.F, 0.F, 0.F));
+				cameraPosition.setVectorPosition(irr::core::vector3df(190.F + localPlayer->getOwner() * 30, 304.F, -62.F));
+				break;
+			case ecs::Team::TeamType::Team2:
+				cameraPosition.setVectorRotation(irr::core::vector3df(45.F, 0.F, 0.F));
+				cameraPosition.setVectorPosition(irr::core::vector3df(-65.F - localPlayer->getOwner() * 30, 304.F, -62.F));
+				break;
+			default:
+				break;
+		}
 	}
 	m_device->getCursorControl()->setVisible(false);
 	PlayerManager::getInstance().removeWeaponScene();
