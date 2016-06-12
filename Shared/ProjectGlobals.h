@@ -38,5 +38,6 @@ public:
 	static irr::core::vector3df	getCollisionAnimatorGravityPerSecond();
 	static irr::core::vector3df	getCollisionAnimatorEllipsoidTranslation();
 
-	static long long getSpawnerVisibilityTimer();
+	static long long	getSpawnerVisibilityTimer();
+	static long long	getGameDuration();
 };

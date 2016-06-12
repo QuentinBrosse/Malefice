@@ -74,7 +74,7 @@ void	ClientCore::pulse()
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
-	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
+	if (m_graphicModule->getDevice()->isWindowActive())
 	{
 		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 		m_graphicModule->getMenuPause()->checkPause();
@@ -129,8 +129,8 @@ void	ClientCore::pulse()
 			m_playerManager->initPlayersWeapons();
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
-		m_graphicModule->getSceneManager()->drawAll(); //draw scene
-		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
+		m_graphicModule->getSceneManager()->drawAll();
+		CEGUI::System::getSingleton().renderAllGUIContexts();
 		m_graphicModule->CEGUIEventInjector();
 		m_graphicModule->getDriver()->endScene();
 	}

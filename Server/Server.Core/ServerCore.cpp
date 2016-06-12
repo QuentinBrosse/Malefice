@@ -17,7 +17,7 @@
 const unsigned int	ServerCore::ENTITIES_UPDATES_TICKS = 64;
 
 ServerCore::ServerCore() :
-	m_startTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_queryServer(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
+	m_startTime(0), m_gameStartTime(0), m_gameEndTime(0), m_updateElapsedTime(0), m_isActive(false), m_gameStarted(false), m_configuration(), m_networkModule(), m_playerManager(), m_physicsUtil(PhysicsUtil::getInstance()), m_masterList(), m_queryServer(), m_inputQueue(), m_inputMutex(), m_readInput(), m_inputThread()
 {
 }
 
@@ -96,17 +96,16 @@ void	ServerCore::pulse(long long elapsedTime)
 {
 	m_updateElapsedTime += elapsedTime;
 	m_networkModule.pulse();
-	
 	if (m_gameStarted == true && m_updateElapsedTime >= 1000.0 / ServerCore::ENTITIES_UPDATES_TICKS)
 	{ 
 		m_playerManager.updateEntities();
 		m_spawnerManager.updateEntities();
 		m_updateElapsedTime = 0;
 	}
+	if (m_gameStarted == true && utility::TimeUtility::getMsTime() >= m_gameEndTime)
+		this->stopGame();
 	m_physicsUtil.getVideoDriver()->beginScene();
-
 	m_physicsUtil.getSceneManager()->drawAll();
-
 	m_physicsUtil.getVideoDriver()->endScene();
 }
 
@@ -178,6 +177,14 @@ void	ServerCore::startGame()
 	this->createEntities();
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::CLIENT_CORE_START_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	m_gameStarted = true;
+	m_gameStartTime = utility::TimeUtility::getMsTime();
+	m_gameEndTime = m_gameStartTime + utility::TimeUtility::msToSec(ProjectGlobals::getGameDuration());
+}
+
+void	ServerCore::stopGame()
+{	
+	m_gameStarted = false;
+	LOG_DEBUG(GENERAL) << "END OF THE GAME !";
 }
 
 bool	ServerCore::isActive() const
@@ -194,11 +201,6 @@ PlayerManager&	ServerCore::getPlayerManager()
 {
 	return m_playerManager;
 }
-
-//SpawnerManager& ServerCore::getSpawnerManager()
-//{
-//	return m_spawnerManager;
-//}
 
 ServerCoreConfiguration& ServerCore::getServerCoreConfiguration()
 {

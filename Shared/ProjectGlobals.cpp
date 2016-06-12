@@ -19,7 +19,7 @@ std::size_t	ProjectGlobals::getNormalTeamSize()
 
 std::size_t	ProjectGlobals::getNormalTeamsNb()
 {
-	return 2;
+	return 1;
 }
 
 std::size_t	ProjectGlobals::getPredatorTeamSize()
@@ -96,8 +96,12 @@ irr::core::vector3df	ProjectGlobals::getCollisionAnimatorEllipsoidTranslation()
 	return irr::core::vector3df(0.f, 43.f, 0.f);
 }
 
-
 long long ProjectGlobals::getSpawnerVisibilityTimer()
+{
+	return 10;
+}
+
+long long ProjectGlobals::getGameDuration()
 {
 	return 10;
 }

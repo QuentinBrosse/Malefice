@@ -21,15 +21,14 @@ class ServerCore : public Singleton<ServerCore>
 public:
 	void	run();
 	void	startGame();
+	void	stopGame();
 	bool	isActive() const;
 
 	NetworkModule&				getNetworkModule();
 	PlayerManager&				getPlayerManager();
-	//SpawnerManager&				getSpawnerManager();
 	ServerCoreConfiguration&	getServerCoreConfiguration();
 	MasterList&					getMasterList();
 	PhysicsUtil&				getPhysicsUtil();
-	QueryServer&				getQueryServer();
 
 protected:
 	ServerCore();
@@ -51,6 +50,8 @@ private:
 
 	long long	m_startTime;
 	long long	m_updateElapsedTime;
+	long long	m_gameStartTime;
+	long long	m_gameEndTime;
 	bool		m_isActive;
 	bool		m_gameStarted;
 

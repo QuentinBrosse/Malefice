@@ -13,5 +13,6 @@ namespace utility
 
 		static long long	getMsTime();
 		static std::string	getElapsedTimeSince(long long msTime);
+		static long long	msToSec(long long sec);
 	};
 }
