@@ -89,7 +89,7 @@ void	ClientCore::pulse()
 		m_graphicModule->getTouchedFx()->refresh();
 		m_graphicModule->getDeadGUI()->refresh();
 
-		if (m_graphicModule->getHUD()->isActive())
+		if (m_graphicModule->getHUD()->isActive() && m_playerManager->getCurrentPlayer() != nullptr)
 		{
 			ecs::WeaponManager*	weaponManager = dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER]);
 			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
@@ -240,8 +240,9 @@ void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::
 
 void ClientCore::stopGame(RakNet::RPC3 * rpc)
 {
+	m_playerManager->setCurrentPlayer(nullptr);
 	m_graphicModule->getMenuPause()->activate(false);
-	//m_graphicModule->setGuiCamera();
+	m_graphicModule->setGuiCamera();
 	//Ajouter le score ici
 
 	std::map<std::string, std::pair<int, ecs::Team::TeamType>> scores = m_playerManager->getPlayersScore();
