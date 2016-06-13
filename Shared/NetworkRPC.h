@@ -53,11 +53,9 @@ public:
 	static const std::string	WEAPON_SYSTEM_SHOOT;
 	static const std::string	WEAPON_SYSTEM_RELOAD;
 
-	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_NEXT;
-	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_PREC;
+	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_WEAPON;
 
-	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_NEXT;
-	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_PREC;
+	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_SPELL;
 
 	static const std::string	SPAWNER_MANAGER_COLLISION_DETECTION;
 	static const std::string	SPELL_SYSTEM_LAUNCH_SPELL;

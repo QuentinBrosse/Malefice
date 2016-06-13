@@ -19,7 +19,7 @@ namespace ecs
 			spellManager->changeToNextSpell();
 			if (spellManager->getSpells().size() > 1)
 			{
-				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
 			}
 		}
 	}
@@ -33,7 +33,7 @@ namespace ecs
 			spellManager->changeToPrecSpell();
 			if (spellManager->getSpells().size() > 1)
 			{
-				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
 			}
 		}
 	}
@@ -45,7 +45,7 @@ namespace ecs
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeCurrentManager();
-			// TODO : Send msg to server
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
 		}
 	}
 
