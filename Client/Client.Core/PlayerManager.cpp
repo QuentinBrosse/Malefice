@@ -11,6 +11,14 @@
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
+	m_predatorStades = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		std::stringstream ss;
+		ss << i;
+		m_predatorTextures.push_back(std::string("sydney" + ss.str() + std::string(".bmp")).c_str());
+		ss.clear();
+	}
 }
 
 void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -64,14 +72,14 @@ void PlayerManager::initPlayersScene()
 		if (!team)
 			continue;
 		if (team->getTeam() == ecs::Team::TeamType::Predator)
-			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
+			PlayerFactory::initPredatorScene(GraphicUtil::getInstance().getDevice(), m_predatorTextures.at(0), "sydney.md2", *it->second);
 		else if (team->getTeam() == ecs::Team::TeamType::Team1)
 			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t1.bmp", "sydney.md2", *it->second);
 		else
 			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t2.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
 
-		if (it->second != m_currentPlayer)
+		if (it->second != m_currentPlayer && dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM])->getTeam() != ecs::Team::TeamType::Predator)
 		{
 			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
 
@@ -222,7 +230,7 @@ void PlayerManager::removeWeaponScene()
 	}
 }
 
-std::map < std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPlayersScore()
+std::map <std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPlayersScore()
 {
 	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	playersScore;
 	int							playerScore;
@@ -240,4 +248,54 @@ std::map < std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getP
 		}
 	}
 	return playersScore;
+}
+
+void	PlayerManager::checkTexturePredator()
+{
+	irr::video::SMaterial	material;
+	material.Lighting = true;
+	material.NormalizeNormals = true;
+	if (m_predatorStades == 4)
+		m_predatorStades = 0;
+	switch (getPredatorScore())
+	{
+	case 3:
+		if (m_predatorStades != 0)
+			break;
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(1)).c_str()));
+		scene->getNode()->getMaterial(0) = material;
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 5:
+		if (m_predatorStades != 1)
+			break;
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(2)).c_str()));
+		scene->getNode()->getMaterial(0) = material;
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 8:
+		if (m_predatorStades != 2)
+			break;
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(3)).c_str()));
+		scene->getNode()->getMaterial(0) = material;
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 10:
+		if (m_predatorStades != 3)
+			break;
+		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(4)).c_str()));
+		scene->getNode()->getMaterial(0) = material;
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	default:
+		break;
+	}
 }

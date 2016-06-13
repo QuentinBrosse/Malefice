@@ -34,6 +34,8 @@ public:
 
 	void			removeWeaponScene();
 	
+	void			checkTexturePredator();
+
 	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	getPlayersScore();
 
 
@@ -44,7 +46,7 @@ protected:
 
 
 private:
-	std::vector<irr::video::ITexture*>				m_predatorTextures;
+	std::vector<std::string>						m_predatorTextures;
 	int												m_predatorStades;
 
 private:

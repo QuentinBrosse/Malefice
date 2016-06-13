@@ -129,6 +129,7 @@ void	ClientCore::pulse()
 			ecs::SpellSystem::affect(*m_playerManager->getCurrentPlayer());
 			m_spawnerManager->collisionDetection(*m_playerManager->getCurrentPlayer());
 			m_playerManager->initPlayersWeapons();
+			m_playerManager->checkTexturesPredator();
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
 		m_graphicModule->getSceneManager()->drawAll();
