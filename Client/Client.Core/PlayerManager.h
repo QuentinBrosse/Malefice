@@ -32,6 +32,8 @@ public:
 	void			loadNormalTeamTexture();
 	void			loadInvertTeamTexture();
 
+	ecs::Entity*			getPredator()	const;
+
 	void			removeWeaponScene();
 	
 	void			checkTexturesPredator();
