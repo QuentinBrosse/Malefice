@@ -109,6 +109,7 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str(), &ClientCore::setClientId);
 	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str(), &ClientCore::notifyInvalidNickname);
 	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str(), &ClientCore::startGame);
+	m_rpc.RegisterFunction(NetworkRPC::CLIENT_CORE_STOP_GAME.c_str(), &ClientCore::stopGame);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str(), &PlayerManager::addEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str(), &PlayerManager::removeEntity);
@@ -125,6 +126,7 @@ void	NetworkModule::unregisterRPCs()
   m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_SET_CLIENT_ID.c_str());
   m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_NOTIFY_INVALID_NICKNAME.c_str());
   m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_START_GAME.c_str());
+  m_rpc.UnregisterFunction(NetworkRPC::CLIENT_CORE_STOP_GAME.c_str());
   m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_ADD_ENTITY.c_str());
   m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_UPDATE_ENTITY.c_str());
   m_rpc.UnregisterFunction(NetworkRPC::PLAYER_MANAGER_REMOVE_ENTITY.c_str());

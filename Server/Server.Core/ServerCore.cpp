@@ -184,6 +184,7 @@ void	ServerCore::startGame()
 void	ServerCore::stopGame()
 {	
 	m_gameStarted = false;
+	m_networkModule.callRPC(NetworkRPC::CLIENT_CORE_STOP_GAME, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::ClientCore), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	LOG_DEBUG(GENERAL) << "END OF THE GAME !";
 }
 

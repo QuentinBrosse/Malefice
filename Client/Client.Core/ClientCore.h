@@ -40,6 +40,8 @@ public:
 	void					startGame(RakNet::RPC3* rpc);
 	void					onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::RPC3* rpc);
 
+	void					stopGame(RakNet::RPC3* rpc);
+
 protected:
 	ClientCore();
 	~ClientCore();

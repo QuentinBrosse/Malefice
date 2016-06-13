@@ -26,6 +26,7 @@ const std::string	NetworkRPC::LIFE_SYSTEM_DIE	= "LifeSystem::die";
 
 const std::string	NetworkRPC::TRIGGER_SHOOT_ACTIONS = "WeaponSystem::triggerShootActions";
 
+const std::string	NetworkRPC::CLIENT_CORE_STOP_GAME = "ClientCore::stopGame";
 
 // Server-Side executed
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";
