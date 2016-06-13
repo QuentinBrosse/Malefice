@@ -64,5 +64,4 @@ public:
 	static const std::string	SPAWNER_MANAGER_UPDATE_VISIBILITY;
 
 	static const std::string	LIFE_SYSTEM_RESTORE;
-	static const std::string	LIFE_SYSTEM_RESTORE_ARMOR;
 };

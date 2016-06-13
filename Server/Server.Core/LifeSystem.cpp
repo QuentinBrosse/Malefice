@@ -48,13 +48,3 @@ void ecs::LifeSystem::restore(ecs::Entity* entity, const int hp, RakNet::RPC3 * 
 	if ((life = dynamic_cast<ecs::Life*>((*localEntity)[ecs::AComponent::ComponentType::LIFE])) != nullptr)
 		life->restore(hp);
 }
-
-void ecs::LifeSystem::restoreArmor(ecs::Entity* entity, const int hp, RakNet::RPC3 * rpc)
-{
-	ecs::Armor*	armor;
-	ecs::Entity* localEntity = ServerCore::getInstance().getPlayerManager().findEntity(entity->getOwner());
-
-	*localEntity = *entity;
-	if ((armor = dynamic_cast<ecs::Armor*>((*localEntity)[ecs::AComponent::ComponentType::ARMOR])) != nullptr)
-		armor->restore(hp);
-}
