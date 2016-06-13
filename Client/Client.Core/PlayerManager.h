@@ -34,7 +34,7 @@ public:
 
 	void			removeWeaponScene();
 	
-	void			checkTexturePredator();
+	void			checkTexturesPredator();
 
 	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	getPlayersScore();
 

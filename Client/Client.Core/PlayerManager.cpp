@@ -250,20 +250,22 @@ std::map <std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPl
 	return playersScore;
 }
 
-void	PlayerManager::checkTexturePredator()
+void	PlayerManager::checkTexturesPredator()
 {
 	irr::video::SMaterial	material;
 	material.Lighting = true;
 	material.NormalizeNormals = true;
 	if (m_predatorStades == 4)
 		m_predatorStades = 0;
+	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
+	int i = getPredatorScore();
 	switch (getPredatorScore())
 	{
+
 	case 3:
 		if (m_predatorStades != 0)
 			break;
-		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
-		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(1)).c_str()));
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string("Media/predator/" + m_predatorTextures.at(1)).c_str()));
 		scene->getNode()->getMaterial(0) = material;
 		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		m_predatorStades++;
@@ -271,8 +273,7 @@ void	PlayerManager::checkTexturePredator()
 	case 5:
 		if (m_predatorStades != 1)
 			break;
-		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
-		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(2)).c_str()));
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string("Media/predator/" + m_predatorTextures.at(2)).c_str()));
 		scene->getNode()->getMaterial(0) = material;
 		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		m_predatorStades++;
@@ -280,8 +281,7 @@ void	PlayerManager::checkTexturePredator()
 	case 8:
 		if (m_predatorStades != 2)
 			break;
-		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
-		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(3)).c_str()));
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string("Media/predator/" + m_predatorTextures.at(3)).c_str()));
 		scene->getNode()->getMaterial(0) = material;
 		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		m_predatorStades++;
@@ -289,8 +289,7 @@ void	PlayerManager::checkTexturePredator()
 	case 10:
 		if (m_predatorStades != 3)
 			break;
-		ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*m_currentPlayer)[ecs::AComponent::ComponentType::SCENE]);
-		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string(m_predatorTextures.at(4)).c_str()));
+		material.setTexture(0, GraphicUtil::getInstance().getDriver()->getTexture(std::string("Media/predator/" + m_predatorTextures.at(4)).c_str()));
 		scene->getNode()->getMaterial(0) = material;
 		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 		m_predatorStades++;
