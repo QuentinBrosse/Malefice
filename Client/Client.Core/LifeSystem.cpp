@@ -16,5 +16,9 @@ void	LifeSystem::die(RakNet::RPC3* rpc)
 
 void LifeSystem::kill(RakNet::RakString killed, RakNet::RPC3* rpc)
 {
-	LOG_INFO(ECS) << "You killed " << killed.C_String();
+	std::string	killMsg = "You killed ";
+
+	killMsg += killed.C_String();
+	GraphicUtil::getInstance().getHUD()->displayNotification(killMsg.c_str(), 5);
+	LOG_INFO(ECS) << killMsg;
 }
