@@ -26,11 +26,13 @@ namespace ecs
 		}
 	}
 
-	void WeaponSystem::triggerShootActions(Entity* entity, int status, RakNet::RPC3 * rpc)
+	void WeaponSystem::triggerShootActions(Entity* entity, int status, RakNet::RPC3 * rpc, const ecs::ClientId clientId)
 	{
 		WeaponManager*		weaponManager;
 		ecs::Position*		playerPosition;
 
+		if (clientId == ClientCore::getInstance().getClientId())
+			GraphicUtil::getInstance().getTouchedFx()->display();
 		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			playerPosition = dynamic_cast<ecs::Position*>((*entity)[ecs::AComponent::ComponentType::POSITION]);

@@ -30,7 +30,6 @@ namespace ecs
 			irr::core::line3df ray = rayWrap->getLine();
 			if (weapon.shoot())
 			{
-				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 0); 
 				irr::core::vector3df intersection;
 				irr::core::triangle3df hitTriangle;
 				irr::scene::ISceneNode* selectedSceneNode =
@@ -58,6 +57,7 @@ namespace ecs
 								&& (armorTarget = dynamic_cast<ecs::Armor*>((*player.second)[ecs::AComponent::ComponentType::ARMOR])) != nullptr
 								&& (lifeTarget = dynamic_cast<ecs::Life*>((*player.second)[ecs::AComponent::ComponentType::LIFE])) != nullptr)
 							{
+								ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 0, player.second->getOwner());
 								int rest = armorTarget->takeDamage(weapon.getDamage() * weapon.getAmmoPerShot());
 								if (rest > 0)
 								{
@@ -75,9 +75,9 @@ namespace ecs
 				}
 			}
 			else if (weapon.getAmmunitionsClip() > 0)
-				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 1);
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 1, -1);
 			else
-				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 2);
+				ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::TRIGGER_SHOOT_ACTIONS, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), RakNet::UNASSIGNED_SYSTEM_ADDRESS, true, entity, 2 , -1);
 		}
 	}
 
