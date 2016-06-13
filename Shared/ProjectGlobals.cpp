@@ -19,7 +19,7 @@ std::size_t	ProjectGlobals::getNormalTeamSize()
 
 std::size_t	ProjectGlobals::getNormalTeamsNb()
 {
-	return 2;
+	return 1;
 }
 
 std::size_t	ProjectGlobals::getPredatorTeamSize()
@@ -29,7 +29,7 @@ std::size_t	ProjectGlobals::getPredatorTeamSize()
 
 std::size_t	ProjectGlobals::getPredatorTeamsNb()
 {
-	return 0;
+	return 1;
 }
 
 std::size_t	ProjectGlobals::getMaxPlayersNb()

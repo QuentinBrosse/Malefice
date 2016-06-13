@@ -57,6 +57,7 @@ void			PlayerFactory::initNicknameNode(ecs::Entity* entity, irr::IrrlichtDevice*
 
 	ecs::SceneBillboardText* nicknameNode = new ecs::SceneBillboardText(device, pseudoColor, playerInfos->getNickname(), pseudoPosition);
 
+	
 	playerInfos->setNicknameNode(nicknameNode);
 	playerInfos->getNicknameNode()->setParent(parent);
 }
@@ -81,7 +82,7 @@ ecs::Entity* PlayerFactory::createPredator(irr::IrrlichtDevice* device, const st
 	ecs::SceneAnimatedMesh* scene = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 	(*entity)[ecs::AComponent::ComponentType::SCENE] = scene;
-//	scene->getScene()->setVisible(false);
+
 	//Player Infos
 	(*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS] = new ecs::PlayerInfos();
 
@@ -96,10 +97,18 @@ void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & 
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 }
 
-void PlayerFactory::initPredatorScene(irr::IrrlichtDevice* device, const std::string& newNameMesh, ecs::Entity& entity)
+void PlayerFactory::initPredatorScene(irr::IrrlichtDevice* device, const std::string& newNameTexture, const std::string& newNameMesh, ecs::Entity& entity)
 {
+	irr::video::SMaterial			material;
 
-//	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, /*put new texture here*/, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
+	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, newNameTexture, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
+
+	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE]);
+	material.Lighting = true;
+	material.NormalizeNormals = true;
+	scene->getNode()->getMaterial(0) = material;
+	scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+	scene->setAnimation(irr::scene::EMAT_ATTACK);
 }
 
 

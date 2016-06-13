@@ -11,6 +11,14 @@
 
 PlayerManager::PlayerManager() : EntityManager(NetworkRPC::ReservedNetworkIds::PlayerManager)
 {
+	m_predatorStades = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		std::stringstream ss;
+		ss << i;
+		m_predatorTextures.push_back(std::string("sydney" + ss.str() + std::string(".bmp")).c_str());
+		ss.clear();
+	}
 }
 
 void	PlayerManager::addEntity(ecs::ClientId owner, ecs::Entity* entity, RakNet::RPC3* rpc)
@@ -64,14 +72,14 @@ void PlayerManager::initPlayersScene()
 		if (!team)
 			continue;
 		if (team->getTeam() == ecs::Team::TeamType::Predator)
-			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney.bmp", "sydney.md2", *it->second);
+			PlayerFactory::initPredatorScene(GraphicUtil::getInstance().getDevice(), m_predatorTextures.at(0), "sydney.md2", *it->second);
 		else if (team->getTeam() == ecs::Team::TeamType::Team1)
 			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t1.bmp", "sydney.md2", *it->second);
 		else
 			PlayerFactory::initScene(GraphicUtil::getInstance().getDevice(), "sydney_t2.bmp", "sydney.md2", *it->second);
 		ecs::PositionSystem::updateScenePosition(*it->second);
 
-		if (it->second != m_currentPlayer)
+		if (it->second != m_currentPlayer && dynamic_cast<ecs::Team*>((*it->second)[ecs::AComponent::ComponentType::TEAM])->getTeam() != ecs::Team::TeamType::Predator)
 		{
 			ecs::SceneAnimatedMesh* scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*it->second)[ecs::AComponent::ComponentType::SCENE]);
 
@@ -146,7 +154,7 @@ int				PlayerManager::getPredatorScore()
 
 	for (auto &entity : m_entities)
 	{
-		ecs::Team *team = dynamic_cast<ecs::Team *>(entity.second);
+		ecs::Team *team = dynamic_cast<ecs::Team *>((*entity.second)[ecs::AComponent::ComponentType::TEAM]);
 		if (team != nullptr && team->getTeam() == ecs::Team::TeamType::Predator)
 			score += team->getKills();
 	}
@@ -207,6 +215,18 @@ void PlayerManager::loadInvertTeamTexture()
 	}
 }
 
+ecs::Entity* PlayerManager::getPredator() const
+{
+	for (auto& entiy : m_entities)
+	{
+		ecs::Team*	team = dynamic_cast<ecs::Team*>((*entiy.second)[ecs::AComponent::ComponentType::TEAM]);
+		if (team->getTeam() == ecs::Team::TeamType::Predator)
+			return (entiy.second);
+	}
+
+	return nullptr;
+}
+
 void PlayerManager::removeWeaponScene()
 {
 	for (auto it = m_entities.begin(); it != m_entities.end(); ++it)
@@ -222,7 +242,7 @@ void PlayerManager::removeWeaponScene()
 	}
 }
 
-std::map < std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPlayersScore()
+std::map <std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPlayersScore()
 {
 	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	playersScore;
 	int							playerScore;
@@ -240,4 +260,49 @@ std::map < std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getP
 		}
 	}
 	return playersScore;
+}
+
+void	PlayerManager::checkTexturesPredator()
+{
+	irr::video::SMaterial	material;
+	material.Lighting = true;
+	material.NormalizeNormals = true;
+	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*getPredator())[ecs::AComponent::ComponentType::SCENE]);
+	switch (getPredatorScore())
+	{
+	case 3:
+		if (m_predatorStades != 0)
+			break;
+		scene->deleteTexture();
+		scene->setTexture("predator/" + m_predatorTextures.at(1));
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 5:
+		if (m_predatorStades != 1)
+			break;
+		scene->deleteTexture();
+		scene->setTexture("predator/" + m_predatorTextures.at(2));
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 8:
+		if (m_predatorStades != 2)
+			break;
+		scene->deleteTexture();
+		scene->setTexture("predator/" + m_predatorTextures.at(3));
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	case 10:
+		if (m_predatorStades != 3)
+			break;
+		scene->deleteTexture();
+		scene->setTexture("predator/" + m_predatorTextures.at(4));
+		scene->getNode()->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+		m_predatorStades++;
+		break;
+	default:
+		break;
+	}
 }
