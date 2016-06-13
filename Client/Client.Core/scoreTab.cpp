@@ -37,28 +37,34 @@ void scoreTab::hide()
 
 void scoreTab::addScoreRightTeam(const std::string &name, int score)
 {
+	if (static_cast<signed int>(score) < 0)
+		score = 0;
 	m_rightTeamScore += score;
 	m_teamRight->setText(std::string("Equipe 1: ") + std::to_string(m_rightTeamScore));
 	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
-	item->setText(name + ": " + std::to_string(score));
+	item->setText(name + ": " + std::to_string(static_cast<signed int>(score)));
 	m_rightTeam->addItem(item);
 }
 
 void scoreTab::addScoreLeftTeam(const std::string &name, int score)
 {
+	if (static_cast<signed int>(score) < 0)
+		score = 0;
 	m_leftTeamScore += score;
 	m_teamLeft->setText(std::string("Equipe 2: ") + std::to_string(m_leftTeamScore));
 	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
-	item->setText(name + ": " + std::to_string(score));
+	item->setText(name + ": " + std::to_string(static_cast<signed int>(score)));
 	m_leftTeam->addItem(item);
 }
 
 void scoreTab::addScorePredatorTeam(const std::string &name, int score)
 {
+	if (static_cast<signed int>(score) < 0)
+		score = 0;
 	m_predatorTeamScore += score;
 	m_teamPredator->setText(std::string("Predator : ") + std::to_string(m_predatorTeamScore));
 	CEGUI::ListboxTextItem *item = new CEGUI::ListboxTextItem("default");
-	item->setText(name + ": " + std::to_string(score));
+	item->setText(name + ": " + std::to_string(static_cast<signed int>(score)));
 	m_predator->addItem(item);
 }
 
