@@ -238,5 +238,13 @@ void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::
 
 void ClientCore::stopGame(RakNet::RPC3 * rpc)
 {
+	m_graphicModule->setGuiCamera();
+	m_graphicModule->getMenuPause()->activate(false);
+	//Ajouter le score ici
+	m_graphicModule->getScoreTab()->addScoreLeftTeam("", 0);
+	m_graphicModule->getScoreTab()->addScoreRightTeam("", 0);
+	m_graphicModule->getScoreTab()->addScorePredatorTeam("", 0);
+	//Pour chaques joueurs
+	m_graphicModule->getScoreTab()->display();
 
 }
