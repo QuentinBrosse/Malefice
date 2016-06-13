@@ -127,7 +127,7 @@ void GraphicUtil::initGraphics()
 	m_blindFx = new Blind();
 	m_touchedFx = new TouchedFx();
 	m_deadGUI = new YourDead();
-	//m_scoreTab = new scoreTab(*this);
+	m_scoreTab = new scoreTab(*this);
 
 	if (!ProjectGlobals::getNoMenu())
 	{
