@@ -167,7 +167,7 @@ void SpawnerManager::pickObject(ecs::Entity* spawner, ecs::Entity* player)
 	case ecs::Entity::EntityType::ARMOR_SPAWNER:
 		if (dynamic_cast<ecs::Armor*>((*player)[ecs::AComponent::ComponentType::ARMOR]) != nullptr)
 		{
-			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
+			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::LIFE_SYSTEM_RESTORE, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), player, dynamic_cast<ecs::Armor*>((*spawner)[ecs::AComponent::ComponentType::ARMOR])->get());
 			break;
 		}
 	case ecs::Entity::EntityType::WEAPON_SPAWNER:
