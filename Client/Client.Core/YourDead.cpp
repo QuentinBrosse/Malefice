@@ -3,6 +3,7 @@
 YourDead::YourDead() : m_systemd(CEGUI::System::getSingleton()), m_isDisplayed(false), m_time(0), m_delay(3000)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("dead.layout");
+	m_windows->setName("Your are dead");
 	m_isDisplayed = false;
 }
 

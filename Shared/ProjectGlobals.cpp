@@ -19,7 +19,7 @@ std::size_t	ProjectGlobals::getNormalTeamSize()
 
 std::size_t	ProjectGlobals::getNormalTeamsNb()
 {
-	return 1;
+	return 2;
 }
 
 std::size_t	ProjectGlobals::getPredatorTeamSize()
@@ -29,7 +29,7 @@ std::size_t	ProjectGlobals::getPredatorTeamSize()
 
 std::size_t	ProjectGlobals::getPredatorTeamsNb()
 {
-	return 1;
+	return 0;
 }
 
 std::size_t	ProjectGlobals::getMaxPlayersNb()
@@ -103,5 +103,5 @@ long long ProjectGlobals::getSpawnerVisibilityTimer()
 
 long long ProjectGlobals::getGameDuration()
 {
-	return 100;
+	return 2 * 60;
 }

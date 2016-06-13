@@ -67,6 +67,7 @@ namespace ecs
 									{
 										dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])->addKill();
 										LifeSystem::die(player.second);
+										LifeSystem::kill(entity, player.second);
 									}
 								}
 							}

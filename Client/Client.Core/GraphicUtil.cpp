@@ -107,6 +107,8 @@ void GraphicUtil::initGraphics()
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-12.font");
 	CEGUI::FontManager::getSingleton().createFromFile("DejaVuSans-14-NoScale.font");
 	CEGUI::FontManager::getSingleton().createFromFile("Jura-10.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-18.font");
+	CEGUI::FontManager::getSingleton().createFromFile("Jura-30.font");
 	CEGUI::SchemeManager::getSingleton().createFromFile("WindowsLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 	CEGUI::SchemeManager::getSingleton().createFromFile("AlfiskoSkin.scheme");

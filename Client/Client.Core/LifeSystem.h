@@ -10,4 +10,5 @@ public:
 	~LifeSystem()	= delete;
 
 	static void	die(RakNet::RPC3* rpc);
+	static void kill(RakNet::RakString killed, RakNet::RPC3* rpc);
 };

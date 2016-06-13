@@ -23,6 +23,7 @@ const std::string	NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY	= "SpawnerManager::r
 const std::string   NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY  = "SpawnerManager::setSpawnerVisibility";
 
 const std::string	NetworkRPC::LIFE_SYSTEM_DIE	= "LifeSystem::die";
+const std::string	NetworkRPC::LIFE_SYSTEM_KILL = "LifeSystem::kill";
 
 const std::string	NetworkRPC::TRIGGER_SHOOT_ACTIONS = "WeaponSystem::triggerShootActions";
 

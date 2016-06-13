@@ -30,6 +30,14 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	// TODO: if predator, what about the spells?
 }
 
+void ecs::LifeSystem::kill(ecs::Entity* shooter, ecs::Entity *killed)
+{
+	ecs::PlayerInfos *killedInfos = dynamic_cast<ecs::PlayerInfos*>((*killed)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
+	RakNet::RakString killedNickname = killedInfos->getNickname().c_str();
+	
+	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::LIFE_SYSTEM_KILL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem), shooter->getOwner(), false, killedNickname);
+}
+
 
 void ecs::LifeSystem::restore(ecs::Entity* entity, const int hp, RakNet::RPC3 * rpc)
 {
