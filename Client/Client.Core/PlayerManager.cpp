@@ -268,7 +268,6 @@ void	PlayerManager::checkTexturesPredator()
 	material.Lighting = true;
 	material.NormalizeNormals = true;
 	ecs::SceneAnimatedMesh*	scene = dynamic_cast<ecs::SceneAnimatedMesh*>((*getPredator())[ecs::AComponent::ComponentType::SCENE]);
-	int i = getPredatorScore();
 	switch (getPredatorScore())
 	{
 	case 3:
