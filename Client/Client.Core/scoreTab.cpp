@@ -34,7 +34,7 @@ void scoreTab::hide()
 	m_systemd.getDefaultGUIContext().setRootWindow(0);
 }
 
-void scoreTab::addScoreRightTeam(const std::string &name, unsigned int score)
+void scoreTab::addScoreRightTeam(const std::string &name, int score)
 {
 	m_rightTeamScore += score;
 	m_teamRight->setText(std::string("Equipe 1: ") + std::to_string(m_rightTeamScore));
@@ -43,7 +43,7 @@ void scoreTab::addScoreRightTeam(const std::string &name, unsigned int score)
 	m_rightTeam->addItem(item);
 }
 
-void scoreTab::addScoreLeftTeam(const std::string &name, unsigned int score)
+void scoreTab::addScoreLeftTeam(const std::string &name, int score)
 {
 	m_leftTeamScore += score;
 	m_teamLeft->setText(std::string("Equipe 2: ") + std::to_string(m_leftTeamScore));
@@ -52,7 +52,7 @@ void scoreTab::addScoreLeftTeam(const std::string &name, unsigned int score)
 	m_leftTeam->addItem(item);
 }
 
-void scoreTab::addScorePredatorTeam(const std::string &name, unsigned int score)
+void scoreTab::addScorePredatorTeam(const std::string &name, int score)
 {
 	m_predatorTeamScore += score;
 	m_teamPredator->setText(std::string("Predator : ") + std::to_string(m_predatorTeamScore));

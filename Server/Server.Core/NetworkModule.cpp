@@ -93,7 +93,6 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str(), &ecs::SpellSystem::launchSpell);
 	m_rpc.RegisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY.c_str(), &SpawnerManager::setSpawnerVisibility);
 	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_RESTORE.c_str(), &ecs::LifeSystem::restore);
-	m_rpc.RegisterFunction(NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR.c_str(), &ecs::LifeSystem::restoreArmor);
 
 }
 
@@ -108,7 +107,6 @@ void	NetworkModule::unregisterRPCs()
 	m_rpc.UnregisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::SPAWNER_MANAGER_UPDATE_VISIBILITY.c_str());
 	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_RESTORE.c_str());
-	m_rpc.UnregisterFunction(NetworkRPC::LIFE_SYSTEM_RESTORE_ARMOR.c_str());
 }
 
 
