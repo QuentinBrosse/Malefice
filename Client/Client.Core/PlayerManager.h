@@ -3,6 +3,9 @@
 #include "EntityManager.h"
 #include "Singleton.h"
 #include "Entity.h"
+#include <utility>
+#include <map>
+#include "Team.h"
 
 // TODO: do we really need a PlayerManager or is an EntityManager enough?
 class PlayerManager : public EntityManager, public Singleton<PlayerManager>
@@ -30,6 +33,10 @@ public:
 	void			loadInvertTeamTexture();
 
 	void			removeWeaponScene();
+	
+	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	getPlayersScore();
+
+
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;

@@ -15,10 +15,10 @@ scoreTab::scoreTab(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), 
 	m_leftTeamScore = 0;
 	m_predatorTeamScore = 0;
 
-	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&scoreTab::onMainMenuButtonClicked, this));
+	//m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&scoreTab::onMainMenuButtonClicked, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&scoreTab::onQuitButtonClicked, this));
 
-	m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&scoreTab::onMainMenuButtonEnterArea, this));
+	//m_windows->getChild(1)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&scoreTab::onMainMenuButtonEnterArea, this));
 	m_windows->getChild(2)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&scoreTab::onQuitButtonEnterArea, this));
 }
 

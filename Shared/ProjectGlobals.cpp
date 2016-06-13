@@ -29,7 +29,7 @@ std::size_t	ProjectGlobals::getPredatorTeamSize()
 
 std::size_t	ProjectGlobals::getPredatorTeamsNb()
 {
-	return 1;
+	return 0;
 }
 
 std::size_t	ProjectGlobals::getMaxPlayersNb()
@@ -56,7 +56,7 @@ std::string ProjectGlobals::getLogsDirectory()
 
 std::string	ProjectGlobals::getGameClientCoreLogFilepath()
 {
-	return ProjectGlobals::getLogsDirectory() +"Client.Core.log";
+	return ProjectGlobals::getLogsDirectory() + "Client.Core.log";
 }
 
 std::string	ProjectGlobals::getGameClientLauncherLogFilepath()
@@ -96,8 +96,12 @@ irr::core::vector3df	ProjectGlobals::getCollisionAnimatorEllipsoidTranslation()
 	return irr::core::vector3df(0.f, 43.f, 0.f);
 }
 
-
 long long ProjectGlobals::getSpawnerVisibilityTimer()
+{
+	return 10;
+}
+
+long long ProjectGlobals::getGameDuration()
 {
 	return 10;
 }

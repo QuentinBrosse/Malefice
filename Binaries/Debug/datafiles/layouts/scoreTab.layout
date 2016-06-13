@@ -85,14 +85,9 @@
                 </AutoWindow>
             </AutoWindow>
         </Window>
-        <Window type="AlfiskoSkin/Button" name="Button" >
-            <Property name="ID" value="1" />
-            <Property name="Area" value="{{0,136},{0,573},{0,377},{0,654}}" />
-            <Property name="Text" value="Retour au menu principal" />
-        </Window>
         <Window type="AlfiskoSkin/Button" name="Button2" >
             <Property name="ID" value="2" />
-            <Property name="Area" value="{{0,933},{0,572},{0,1174},{0,653}}" />
+            <Property name="Area" value="{{0,533},{0,565},{0,774},{0,646}}" />
             <Property name="Text" value="Quitter le jeu" />
             <Window type="AlfiskoSkin/Button" name="Button" >
                 <Property name="Area" value="{{0,119},{0,575},{0,360},{0,656}}" />

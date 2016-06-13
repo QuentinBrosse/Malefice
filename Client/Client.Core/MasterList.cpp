@@ -23,8 +23,8 @@ MasterList::MasterList(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton(
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&MasterList::onRefreshButtonClicked, this));
 	m_windows->getChild(3)->subscribeEvent(CEGUI::PushButton::EventMouseEntersArea, CEGUI::Event::Subscriber(&MasterList::onRefreshButtonEnterArea, this));
 
-	m_masterListNework = new MasterListNetwork(&MasterList::fetchNetwork, *this);
-	m_masterListNework->refresh();
+	//m_masterListNework = new MasterListNetwork(&MasterList::fetchNetwork, *this);
+	//m_masterListNework->refresh();
 
 }
 
@@ -164,8 +164,8 @@ bool MasterList::onAutoConnectButtonEnterArea(const CEGUI::EventArgs& e)
 
 bool MasterList::onRefreshButtonClicked(const CEGUI::EventArgs& e)
 {
-	this->resetList();
-	m_masterListNework->refresh();
+	//this->resetList();
+	//m_masterListNework->refresh();
 	return true;
 }
 

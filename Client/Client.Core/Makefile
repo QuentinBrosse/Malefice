@@ -5,7 +5,7 @@
 ## Login   <trucho_g@epitech.net>
 ## 
 ## Started on  Thu Jun  9 16:55:59 2016 Guillaume Truchot
-## Last update Sat Jun 11 15:05:27 2016 Brendan Bobis
+## Last update Sat Jun 11 22:39:41 2016 Guillaume Truchot
 ##
 
 INCLUDE_BASE	=	../../Dependencies/LINUX/include/
@@ -30,9 +30,9 @@ CXXFLAGS	+=	-L $(LIB_BASE)irrKlang-1.5.0/
 CXXFLAGS	+=	-L $(LIB_BASE)dep/
 CXXFLAGS	+=	-L ../../Shared
 
-LDFLAGS		=	-lIrrlicht -lRakNetDLL -lLibRPC3 -ltinyxml2 -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared -lfreetype -lGLEW -lGLU -lexpat -lpcre -lzlib '../../Dependencies/LINUX/lib/cegui-0.8.6/libSDL2_image-2.0.so.0'
+LDFLAGS		=	-lIrrlicht -lRakNetDLL -lLibRPC3 -ltinyxml2 -lCEGUIBase-0 -lCEGUICommonDialogs-0 -lCEGUICoreWindowRendererSet -lCEGUIExpatParser -lCEGUIIrrlichtRenderer-0 -lCEGUIOpenGLRenderer-0 -lCEGUISDL2ImageCodec -lIrrKlang -lShared -lfreetype -lGLEW -lGLU -lexpat -lpcre -lzlib -lpng -lSDL2 -lSDL2_image
 
-RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN/lib/cegui-0.8.6:$$ORIGIN/lib/irrKlang-1.5.0:$$ORIGIN:$$ORIGIN/lib/dep'
+RPATH		=	-Wl,-rpath='$$ORIGIN/lib/irrlicht-1.8.3:$$ORIGIN/../../Dependencies/LINUX/lib/irrlicht-1.8.3:$$ORIGIN/lib/raknet:$$ORIGIN/../../Dependencies/LINUX/lib/raknet:$$ORIGIN/lib/tinyxml2:$$ORIGIN/../../Dependencies/LINUX/lib/tinyxml2:$$ORIGIN/lib/cegui-0.8.6:$$ORIGIN/../../Dependencies/LINUX/lib/cegui-0.8.6:$$ORIGIN/lib/irrKlang-1.5.0:$$ORIGIN/../../Dependencies/LINUX/lib/irrKlang-1.5.0:$$ORIGIN'
 
 SRCS		=	$(wildcard *.cpp)
 

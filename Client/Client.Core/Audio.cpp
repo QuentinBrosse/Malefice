@@ -1,7 +1,6 @@
 #include "Audio.h"
 #include "Logger.h"
 
-
 Audio::Audio() :
 	m_soundPath("Media/Sounds/"), m_isDeaf(false)
 {
