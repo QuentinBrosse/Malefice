@@ -235,3 +235,4 @@ void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::
 	LOG_DEBUG(GENERAL) << "Message received";
 	m_graphicModule->getHUD()->displayNotification(str.C_String(), time);
 }
+
