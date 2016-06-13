@@ -124,7 +124,6 @@ namespace ecs
 		
 		for (auto& weapon : weaponManager.m_weapons)
 		{
-			//m_weapons.insert(std::make_pair(weapon.first, weapon.second));
 			m_weapons[weapon.first].affect(weapon.second);
 		}
 
