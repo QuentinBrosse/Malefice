@@ -8,7 +8,7 @@
 #include "PlayerInfos.h"
 #include "Armor.h"
 
-void	ecs::LifeSystem::die(ecs::Entity* dead)
+void	ecs::LifeSystem::die(RakNet::RakString shooterNickname, ecs::Entity* dead)
 {
 	ecs::Life*			life = dynamic_cast<ecs::Life*>((*dead)[ecs::AComponent::ComponentType::LIFE]);
 	ecs::Position*		position = dynamic_cast<ecs::Position*>((*dead)[ecs::AComponent::ComponentType::POSITION]);
@@ -21,7 +21,7 @@ void	ecs::LifeSystem::die(ecs::Entity* dead)
 	ServerCore::getInstance().getNetworkModule().callRPC(NetworkRPC::LIFE_SYSTEM_DIE,
 		static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::LifeSystem),
 		dead->getOwner(),
-		false);
+		false, shooterNickname);
 
 	if (weaponManager)
 		weaponManager->reset();

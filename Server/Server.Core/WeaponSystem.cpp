@@ -65,8 +65,9 @@ namespace ecs
 									rest = lifeTarget->takeDamage(rest);
 									if (rest >= 0)
 									{
+										ecs::PlayerInfos *playerInfos = dynamic_cast<ecs::PlayerInfos*>((*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
 										dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])->addKill();
-										LifeSystem::die(player.second);
+										LifeSystem::die(playerInfos->getNickname().c_str(), player.second);
 										LifeSystem::kill(entity, player.second);
 									}
 								}
@@ -125,8 +126,9 @@ namespace ecs
 									rest = lifeTarget->takeDamage(rest);
 									if (rest >= 0)
 									{
+										ecs::PlayerInfos *playerInfos = dynamic_cast<ecs::PlayerInfos*>((*entity)[ecs::AComponent::ComponentType::PLAYER_INFOS]);
 										dynamic_cast<ecs::Team*>((*entity)[ecs::AComponent::ComponentType::TEAM])->addKill();
-										LifeSystem::die(player.second);
+										LifeSystem::die(playerInfos->getNickname().c_str(), player.second);
 									}
 								}
 							}
