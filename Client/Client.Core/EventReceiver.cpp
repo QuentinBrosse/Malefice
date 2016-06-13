@@ -121,6 +121,11 @@ unsigned char EventReceiver::irrlichtKeyToCEGUIKey(irr::EKEY_CODE kc)
 {
 	unsigned char irr2ceCODE[irr::KEY_KEY_CODES_COUNT];
 
+	for (unsigned char &ok : irr2ceCODE)
+	{
+		ok = 0;
+	}
+
 	irr2ceCODE[irr::KEY_LBUTTON] = 0;  // Left mouse button
 	irr2ceCODE[irr::KEY_RBUTTON] = 0;  // Right mouse button
 	irr2ceCODE[irr::KEY_CANCEL] = 0;  // Control-break processing
