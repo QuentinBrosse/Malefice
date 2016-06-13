@@ -389,7 +389,7 @@
 		<type>SABRE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
-		<ammunitionsTotal type="none">-1</ammunitionsTotal>
+		<ammunitionsTotal type="none">0</ammunitionsTotal>
 		<ammunitionsClip>4</ammunitionsClip> 
 		<rateOfFire>10.0</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>
@@ -501,7 +501,7 @@
 		<type>NKIFE</type>
 		<distance>20.0</distance>
 		<precision>0.0</precision>
-		<ammunitionsTotal type="none">-1</ammunitionsTotal>
+		<ammunitionsTotal type="none">0</ammunitionsTotal>
 		<ammunitionsClip>4</ammunitionsClip> 
 		<rateOfFire>10</rateOfFire>
 		<ammoPerShot>1</ammoPerShot>

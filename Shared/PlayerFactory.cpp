@@ -96,4 +96,10 @@ void PlayerFactory::initScene(irr::IrrlichtDevice * device, const std::string & 
 	scene->setAnimation(irr::scene::EMAT_ATTACK);
 }
 
+void PlayerFactory::initPredatorScene(irr::IrrlichtDevice* device, const std::string& newNameMesh, ecs::Entity& entity)
+{
+
+//	entity[ecs::AComponent::ComponentType::SCENE] = new ecs::SceneAnimatedMesh(device, nullptr, /*put new texture here*/, newNameMesh, (nodePickable::IS_PICKABLE | nodePickable::IS_SHOOTABLE), true, false, 0);
+}
+
 

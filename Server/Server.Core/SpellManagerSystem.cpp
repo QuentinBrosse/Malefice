@@ -2,30 +2,23 @@
 
 #include "SpellManagerSystem.h"
 #include "SpellManager.h"
+#include "ServerCore.h"
 
 namespace ecs
 {
 
-	void SpellManagerSystem::changeToNext(Entity& predator)
+	void SpellManagerSystem::changeToNext(Entity* predator, RakNet::RPC3* rpc)
 	{
-		SpellManager*	spellManager;
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(predator->getOwner());
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-		{
-			spellManager->changeToNextSpell();
-			// TODO: update ?
-		}
+		*entity = *predator;
 	}
 
-	void SpellManagerSystem::changeToPrec(Entity & predator)
+	void SpellManagerSystem::changeToPrec(Entity* predator, RakNet::RPC3* rpc)
 	{
-		SpellManager*	spellManager;
+		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(predator->getOwner());
 
-		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
-		{
-			spellManager->changeToPrecSpell();
-			// TODO: update ?
-		}
+		*entity = *predator;
 	}
 
 }

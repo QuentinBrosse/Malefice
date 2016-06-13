@@ -8,7 +8,6 @@ namespace ecs
 
 	void WeaponManagerSystem::changeToNext(Entity* playerClient, RakNet::RPC3* rpc)
 	{
-		WeaponManager*	weaponManager;
 		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
 
 		*entity = *playerClient;
@@ -16,7 +15,6 @@ namespace ecs
 
 	void WeaponManagerSystem::changeToPrec(Entity* playerClient, RakNet::RPC3* rpc)
 	{
-		WeaponManager*	weaponManager;
 		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
 
 		*entity = *playerClient;
