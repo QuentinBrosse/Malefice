@@ -2,6 +2,8 @@
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Irrlicht/Renderer.h>
+#include <utility>
+#include <map>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
@@ -238,12 +240,22 @@ void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::
 
 void ClientCore::stopGame(RakNet::RPC3 * rpc)
 {
-	m_graphicModule->setGuiCamera();
 	m_graphicModule->getMenuPause()->activate(false);
+	//m_graphicModule->setGuiCamera();
 	//Ajouter le score ici
-	m_graphicModule->getScoreTab()->addScoreLeftTeam("", 0);
-	m_graphicModule->getScoreTab()->addScoreRightTeam("", 0);
-	m_graphicModule->getScoreTab()->addScorePredatorTeam("", 0);
+
+	std::map<std::string, std::pair<int, ecs::Team::TeamType>> scores = m_playerManager->getPlayersScore();
+
+	for (auto it : scores)
+	{
+		if (it.second.second == ecs::Team::TeamType::Team1)
+			m_graphicModule->getScoreTab()->addScoreRightTeam(it.first, it.second.first);
+		else if (it.second.second == ecs::Team::TeamType::Team2)
+			m_graphicModule->getScoreTab()->addScoreLeftTeam(it.first, it.second.first);
+		else
+			m_graphicModule->getScoreTab()->addScorePredatorTeam(it.first, it.second.first);
+	}
+
 	//Pour chaques joueurs
 	m_graphicModule->getScoreTab()->display();
 
