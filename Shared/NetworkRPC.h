@@ -43,6 +43,8 @@ public:
 
 	static const std::string	TRIGGER_SHOOT_ACTIONS;
 
+	static const std::string	CLIENT_CORE_STOP_GAME;
+
 	// Server-Side executed
 
 	static const std::string	PLAYER_MANAGER_SET_PLAYER_NICKNAME;

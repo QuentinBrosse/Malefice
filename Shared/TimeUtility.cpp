@@ -26,3 +26,8 @@ std::string	utility::TimeUtility::getElapsedTimeSince(long long msTime)
 		<< seconds << utility::StringUtility::pluralize(" second", seconds);
 	return oss.str();
 }
+
+long long utility::TimeUtility::msToSec(long long sec)
+{
+	return sec * 1000;
+}

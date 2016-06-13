@@ -2,6 +2,8 @@
 #include <irrlicht.h>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/Irrlicht/Renderer.h>
+#include <utility>
+#include <map>
 #include "ClientCore.h"
 #include "ProjectGlobals.h"
 #include "GraphicUtil.h"
@@ -43,18 +45,8 @@ void	ClientCore::run()
 		return;
 	}
 	LOG_INFO(GENERAL) << "Client initialized.";
-	if (!ProjectGlobals::getNoMenu())
-	{
-		m_graphicModule->setGuiCamera();
-		m_graphicModule->getMainMenu()->display();
-	}
-	else
-	{
-		m_graphicModule->getMenuPause()->activate(true);
-		m_graphicModule->setFPSCamera();
-		createEntities();
-		startGame(0);
-	}
+	m_graphicModule->setGuiCamera();
+	m_graphicModule->getMainMenu()->display();
 	while (this->isActive() && m_graphicModule->getDevice()->run())
 	{
 		this->pulse();
@@ -84,7 +76,7 @@ void	ClientCore::pulse()
 	if (m_networkModule != nullptr && (m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTED || m_networkModule->getConnectionState() == RakNet::ConnectionState::IS_CONNECTING))
 		m_networkModule->pulse();
 
-	if (m_graphicModule->getDevice()->isWindowActive()) //draw only if the window is active
+	if (m_graphicModule->getDevice()->isWindowActive())
 	{
 		m_graphicModule->getDevice()->setEventReceiver(&m_graphicModule->getCEGUIEventReceiver());
 		m_graphicModule->getMenuPause()->checkPause();
@@ -97,16 +89,17 @@ void	ClientCore::pulse()
 		m_graphicModule->getTouchedFx()->refresh();
 		m_graphicModule->getDeadGUI()->refresh();
 
-		if (m_graphicModule->getHUD()->isActive())
+		if (m_graphicModule->getHUD()->isActive() && m_playerManager->getCurrentPlayer() != nullptr)
 		{
 			ecs::WeaponManager*	weaponManager = dynamic_cast<ecs::WeaponManager*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::WEAPON_MANAGER]);
 			ecs::Life* life = dynamic_cast<ecs::Life*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::LIFE]);
 			ecs::Armor* armor = dynamic_cast<ecs::Armor*>((*m_playerManager->getCurrentPlayer())[ecs::AComponent::ComponentType::ARMOR]);
 
 			if (weaponManager)
+			{
 				m_graphicModule->getHUD()->setAmoClip(weaponManager->getCurrentWeapon().getAmmunitions());
-			if (weaponManager)
 				m_graphicModule->getHUD()->setBulletsNbr(weaponManager->getCurrentWeapon().getAmmunitionsClip());
+			}
 			if (life != nullptr)
 				m_graphicModule->getHUD()->setHealthPoint(life->get());
 			else
@@ -138,36 +131,19 @@ void	ClientCore::pulse()
 			m_playerManager->initPlayersWeapons();
 		}
 		m_graphicModule->getDriver()->beginScene(true, true, irr::video::SColor(255, 150, 150, 150));
-		m_graphicModule->getSceneManager()->drawAll(); //draw scene
-		CEGUI::System::getSingleton().renderAllGUIContexts(); // draw gui
+		m_graphicModule->getSceneManager()->drawAll();
+		CEGUI::System::getSingleton().renderAllGUIContexts();
 		m_graphicModule->CEGUIEventInjector();
 		m_graphicModule->getDriver()->endScene();
 	}
 }
 
 
-// DEBUG !
 void ClientCore::createEntities()
 {
 	ecs::Position mapPosition(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
 	m_map = MapFactory::createMap(m_graphicModule->getDevice(), mapPosition, 1, "20kdm2.bsp", "map-20kdm2.pk3");
 	ecs::PositionSystem::updateScenePosition(*m_map);
-	if (ProjectGlobals::getNoMenu())
-	{
-		//Weapon Spawner
-		ecs::Position spawnPosition1(irr::core::vector3df(-10, -50, -70), irr::core::vector3df(0.0, 0.0, 0.0), irr::core::vector3df(500.f, 400.f, 150.f));
-		ecs::Entity*	spawnerWeapon1 = SpawnerFactory::createWeaponSpawner(GraphicUtil::getInstance().getDevice(), spawnPosition1, 18);
-		m_spawnerManager->addEntity(spawnerWeapon1->getOwner(), spawnerWeapon1, nullptr);
-		//ecs::PositionSystem::initScenePosition(*spawnerWeapon1);
-
-		//Player 1
-		ecs::Position playerPosition1(irr::core::vector3df(-1350, -130, -1400), irr::core::vector3df(0.0, 0.0, 0.0));
-		m_player = PlayerFactory::createPlayer(m_graphicModule->getDevice(), "sydney.bmp", "sydney.md2", 2, playerPosition1, ecs::Team::TeamType::Team1);
-		ecs::PositionSystem::updateScenePosition(*m_player);
-		m_playerManager->setCurrentPlayer(m_player);
-
-		m_playerManager->initPlayersWeapons();
-	}
 }
 
 bool	ClientCore::isActive()	const
@@ -260,4 +236,28 @@ void ClientCore::onMessageRPC(RakNet::RakString str, unsigned int time, RakNet::
 {
 	LOG_DEBUG(GENERAL) << "Message received";
 	m_graphicModule->getHUD()->displayNotification(str.C_String(), time);
+}
+
+void ClientCore::stopGame(RakNet::RPC3 * rpc)
+{
+	m_playerManager->setCurrentPlayer(nullptr);
+	m_graphicModule->getMenuPause()->activate(false);
+	m_graphicModule->setGuiCamera();
+	//Ajouter le score ici
+
+	std::map<std::string, std::pair<int, ecs::Team::TeamType>> scores = m_playerManager->getPlayersScore();
+
+	for (auto it : scores)
+	{
+		if (it.second.second == ecs::Team::TeamType::Team1)
+			m_graphicModule->getScoreTab()->addScoreRightTeam(it.first, it.second.first);
+		else if (it.second.second == ecs::Team::TeamType::Team2)
+			m_graphicModule->getScoreTab()->addScoreLeftTeam(it.first, it.second.first);
+		else
+			m_graphicModule->getScoreTab()->addScorePredatorTeam(it.first, it.second.first);
+	}
+
+	//Pour chaques joueurs
+	m_graphicModule->getScoreTab()->display();
+
 }

@@ -221,3 +221,23 @@ void PlayerManager::removeWeaponScene()
 		}
 	}
 }
+
+std::map < std::string, std::pair<int, ecs::Team::TeamType>> PlayerManager::getPlayersScore()
+{
+	std::map<std::string, std::pair<int, ecs::Team::TeamType>>	playersScore;
+	int							playerScore;
+
+	for (auto& entity : m_entities)
+	{
+		playerScore = 0;
+		ecs::Team*			team;
+		ecs::PlayerInfos*	infos;
+		if ((team = dynamic_cast<ecs::Team*>((*entity.second)[ecs::AComponent::ComponentType::TEAM])) != nullptr
+			&& (infos = dynamic_cast<ecs::PlayerInfos*>((*entity.second)[ecs::AComponent::ComponentType::PLAYER_INFOS])) != nullptr)
+		{
+			playerScore = (team->getKills() - team->getDeaths());
+			playersScore.insert(std::make_pair(infos->getNickname(), std::make_pair(playerScore, team->getTeam())));
+		}
+	}
+	return playersScore;
+}

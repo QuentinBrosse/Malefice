@@ -16,7 +16,7 @@ namespace ecs
 		WeaponSystem()	= delete;
 		~WeaponSystem()	= delete;
 		static void		shoot(Entity& entity);
-		static void		triggerShootActions(Entity* entity, int status, RakNet::RPC3* rpc);
+		static void		triggerShootActions(Entity* entity, int status, RakNet::RPC3* rpc, const ecs::ClientId clientId);
 		static void		zoom(Entity& entity);
 	};
 }

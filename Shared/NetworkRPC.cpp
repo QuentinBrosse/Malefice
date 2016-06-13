@@ -21,11 +21,14 @@ const std::string	NetworkRPC::SPAWNER_MANAGER_ADD_ENTITY		= "SpawnerManager::add
 const std::string	NetworkRPC::SPAWNER_MANAGER_UPDATE_ENTITY	= "SpawnerManager::updateEntity";
 const std::string	NetworkRPC::SPAWNER_MANAGER_REMOVE_ENTITY	= "SpawnerManager::removeEntity";
 const std::string   NetworkRPC::SPAWNER_MANAGER_SET_VISIBILITY  = "SpawnerManager::setSpawnerVisibility";
+
 const std::string	NetworkRPC::LIFE_SYSTEM_DIE	= "LifeSystem::die";
 
 const std::string	NetworkRPC::TRIGGER_SHOOT_ACTIONS = "WeaponSystem::triggerShootActions";
-// Server-Side executed
 
+const std::string	NetworkRPC::CLIENT_CORE_STOP_GAME = "ClientCore::stopGame";
+
+// Server-Side executed
 const std::string	NetworkRPC::PLAYER_MANAGER_SET_PLAYER_NICKNAME	= "PlayerManager::setPlayerNickname";
 const std::string	NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY = "PlayerManager::updateEntity";
 
