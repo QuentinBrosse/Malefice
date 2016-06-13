@@ -5,7 +5,6 @@
 scoreTab::scoreTab(GraphicUtil &gu) : m_systemd(CEGUI::System::getSingleton()), m_graphicalUtil(gu)
 {
 	m_windows = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("scoreTab.layout");
-	m_windows->setName("PauseLol");
 	m_rightTeam = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(40));
 	m_leftTeam = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(41));
 	m_predator = dynamic_cast<CEGUI::Listbox *>(m_windows->getChild(42));
