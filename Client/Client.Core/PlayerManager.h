@@ -30,6 +30,10 @@ public:
 	void			loadInvertTeamTexture();
 
 	void			removeWeaponScene();
+	
+	std::map<std::string, int>	getPlayersScore();
+
+
 protected:
 	PlayerManager();
 	PlayerManager(const PlayerManager&) = delete;
