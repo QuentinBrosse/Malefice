@@ -19,10 +19,31 @@ namespace ecs
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 		  Line3dWrapper	line3dWrapper{Target::getInstance().getRay()};
+		  irr::core::line3df ray = line3dWrapper.getLine();
+		  irr::scene::ISceneNodeAnimator* anim = 0;
 
 		  Spell&	spellOfPredator = spellManager->getCurrentSpell();
+		 
 		  Target::getInstance().refresh();
 		  ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellSystem), &predator, &line3dWrapper);
+		 
+		  irr::f32 length = (irr::f32)(ray.end - ray.start).getLength();
+		  const irr::f32 speed = 0.1f;
+		  irr::u32 time = (irr::u32)((length / 1.5) / speed);
+
+		  irr::scene::IAnimatedMesh* mesh = GraphicUtil::getInstance().getSceneManager()->getMesh(std::string("Media/spells/models/" + spellOfPredator.getMeshName()).c_str());
+		  irr::scene::ISceneNode* node = GraphicUtil::getInstance().getSceneManager()->addMeshSceneNode(mesh, nullptr, 19, ray.start);
+		  node->setScale(spellOfPredator.getScene()->getNode()->getScale());
+		  node->setRotation(spellOfPredator.getScene()->getNode()->getRotation());
+		  node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+
+		  anim = GraphicUtil::getInstance().getSceneManager()->createFlyStraightAnimator(ray.start, ray.end, time, false, false);
+		  node->addAnimator(anim);	
+		  anim->drop();
+
+		  anim = GraphicUtil::getInstance().getSceneManager()->createDeleteAnimator(time);
+		  node->addAnimator(anim);
+		  anim->drop();
 		}
 	}
 

@@ -7,9 +7,9 @@
 		<meshName>blind.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -17,9 +17,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -54,9 +54,9 @@
 		<meshName>paranoia.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -64,9 +64,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -101,9 +101,9 @@
 		<meshName>confusion.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -111,9 +111,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -148,9 +148,9 @@
 		<meshName>deaf.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -158,9 +158,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -195,9 +195,9 @@
 		<meshName>parkinson.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -205,9 +205,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>
@@ -242,9 +242,9 @@
 		<meshName>slow.obj</meshName>
 		<FPSMetrics>
 			<position>
-				<x>0.8</x>
-				<y>-2.2</y>
-				<z>4.9</z>
+				<x>1.2</x>
+				<y>-0.8</y>
+				<z>1.5</z>
 			</position>
 			<rotation>
 				<x>1.0</x>
@@ -252,9 +252,9 @@
 				<z>1.0</z>
 			</rotation>
 			<scale>
-				<x>0.2</x>
-				<y>0.2</y>
-				<z>0.5</z>
+				<x>0.3</x>
+				<y>0.3</y>
+				<z>0.3</z>
 			</scale>
 			<offset>
 				<x>0.0</x>

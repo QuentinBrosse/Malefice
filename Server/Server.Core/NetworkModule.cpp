@@ -5,6 +5,7 @@
 #include "ServerCore.h"
 #include "WeaponSystem.h"
 #include "WeaponManagerSystem.h"
+#include "SpellManagerSystem.h"
 #include "SpellSystem.h"
 #include "RakNetUtility.h"
 #include "LifeSystem.h"
@@ -87,6 +88,8 @@ void	NetworkModule::registerRPCs()
 	m_rpc.RegisterFunction(NetworkRPC::PLAYER_MANAGER_SERVER_UPDATE_ENTITY.c_str(), &PlayerManager::updateEntity);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT.c_str(), &ecs::WeaponManagerSystem::changeToNext);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC.c_str(), &ecs::WeaponManagerSystem::changeToPrec);
+	m_rpc.RegisterFunction(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_NEXT.c_str(), &ecs::SpellManagerSystem::changeToNext);
+	m_rpc.RegisterFunction(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_PREC.c_str(), &ecs::SpellManagerSystem::changeToPrec);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_SYSTEM_SHOOT.c_str(), &ecs::WeaponSystem::shoot);
 	m_rpc.RegisterFunction(NetworkRPC::WEAPON_SYSTEM_RELOAD.c_str(), &ecs::WeaponSystem::reload);
 	m_rpc.RegisterFunction(NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL.c_str(), &ecs::SpellSystem::launchSpell);

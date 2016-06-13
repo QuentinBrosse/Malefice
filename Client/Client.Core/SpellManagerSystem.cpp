@@ -4,6 +4,8 @@
 #include "SpellManager.h"
 #include "GraphicUtil.h"
 #include "SceneAnimatedMesh.h"
+#include "ClientCore.h"
+#include "NetworkRPC.h"
 
 namespace ecs
 {
@@ -15,7 +17,10 @@ namespace ecs
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeToNextSpell();
-			// TODO : Send msg to server
+			if (spellManager->getSpells().size() > 1)
+			{
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
+			}
 		}
 	}
 
@@ -26,7 +31,10 @@ namespace ecs
 		if ((spellManager = dynamic_cast<SpellManager*>(predator[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManager->changeToPrecSpell();
-			// TODO : Send msg to server
+			if (spellManager->getSpells().size() > 1)
+			{
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::SpellManagerSystem), &predator);
+			}
 		}
 	}
 

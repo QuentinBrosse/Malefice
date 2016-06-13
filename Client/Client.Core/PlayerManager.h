@@ -44,5 +44,9 @@ protected:
 
 
 private:
-	ecs::Entity*	m_currentPlayer;
+	std::vector<irr::video::ITexture*>				m_predatorTextures;
+	int												m_predatorStades;
+
+private:
+	ecs::Entity*									m_currentPlayer;
 };

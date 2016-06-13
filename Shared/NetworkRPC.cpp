@@ -38,6 +38,9 @@ const std::string	NetworkRPC::WEAPON_SYSTEM_RELOAD = "WeaponSystem::reload";
 const std::string	NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT = "WeaponManagerSystem::changeToNext";
 const std::string	NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC = "WeaponManagerSystem::changeToPrec";
 
+const std::string	NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_NEXT = "SpellManager::changeToNext";
+const std::string	NetworkRPC::SPELL_MANAGER_SYSTEM_CHANGE_PREC = "SpellManager::changeToPrec";
+
 const std::string	NetworkRPC::SPAWNER_MANAGER_COLLISION_DETECTION = "SpawnerManager::collisionDetection";
 const std::string	NetworkRPC::SPELL_SYSTEM_LAUNCH_SPELL	= "SpellSystem::launchSpell";
 
