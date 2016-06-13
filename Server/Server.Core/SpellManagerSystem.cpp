@@ -17,6 +17,7 @@ namespace ecs
 			&& (spellManagerClient = dynamic_cast<ecs::SpellManager*>((*predator)[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
 		{
 			spellManagerLocal->affect(*spellManagerClient);
+			//std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
 	}
 }
