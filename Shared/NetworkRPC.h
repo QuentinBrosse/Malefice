@@ -39,7 +39,9 @@ public:
 	static const std::string	SPAWNER_MANAGER_UPDATE_ENTITY;
 	static const std::string	SPAWNER_MANAGER_REMOVE_ENTITY;
 	static const std::string	SPAWNER_MANAGER_SET_VISIBILITY;
+	
 	static const std::string	LIFE_SYSTEM_DIE;
+	static const std::string	LIFE_SYSTEM_KILL;
 
 	static const std::string	TRIGGER_SHOOT_ACTIONS;
 
