@@ -11,7 +11,7 @@ namespace ecs
 		LifeSystem()	= delete;
 		~LifeSystem()	= delete;
 
-		static void	die(ecs::Entity* dead);
+		static void	die(RakNet::RakString shooterNickname, ecs::Entity* dead);
 		static void kill(ecs::Entity* shooter, ecs::Entity *killed);
 		static void restore(ecs::Entity* entity, const int hp, RakNet::RPC3* rpc);
 	};
