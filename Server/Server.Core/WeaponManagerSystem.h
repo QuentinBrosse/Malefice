@@ -15,8 +15,7 @@ namespace ecs
 		WeaponManagerSystem() = delete;
 		~WeaponManagerSystem() = delete;
 
-		static void	changeToNext(Entity* player, RakNet::RPC3* rpc);
-		static void changeToPrec(Entity* player, RakNet::RPC3* rpc);
+		static void	changeWeapon(Entity* player, RakNet::RPC3* rpc);
 	};
 
 }

@@ -14,9 +14,9 @@ public:
 	~scoreTab() = default;
 	void display();
 	void hide();
-	void addScoreRightTeam(const std::string &, unsigned int);
-	void addScoreLeftTeam(const std::string &, unsigned int);
-	void addScorePredatorTeam(const std::string &, unsigned int);
+	void addScoreRightTeam(const std::string &, int);
+	void addScoreLeftTeam(const std::string &, int);
+	void addScorePredatorTeam(const std::string &, int);
 	void resetLists();
 	bool onMainMenuButtonClicked(const CEGUI::EventArgs& e);
 	bool onQuitButtonClicked(const CEGUI::EventArgs& e);

@@ -39,7 +39,9 @@ public:
 	static const std::string	SPAWNER_MANAGER_UPDATE_ENTITY;
 	static const std::string	SPAWNER_MANAGER_REMOVE_ENTITY;
 	static const std::string	SPAWNER_MANAGER_SET_VISIBILITY;
+	
 	static const std::string	LIFE_SYSTEM_DIE;
+	static const std::string	LIFE_SYSTEM_KILL;
 
 	static const std::string	TRIGGER_SHOOT_ACTIONS;
 
@@ -53,16 +55,13 @@ public:
 	static const std::string	WEAPON_SYSTEM_SHOOT;
 	static const std::string	WEAPON_SYSTEM_RELOAD;
 
-	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_NEXT;
-	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_PREC;
+	static const std::string	WEAPON_MANAGER_SYSTEM_CHANGE_WEAPON;
 
-	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_NEXT;
-	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_PREC;
+	static const std::string	SPELL_MANAGER_SYSTEM_CHANGE_SPELL;
 
 	static const std::string	SPAWNER_MANAGER_COLLISION_DETECTION;
 	static const std::string	SPELL_SYSTEM_LAUNCH_SPELL;
 	static const std::string	SPAWNER_MANAGER_UPDATE_VISIBILITY;
 
 	static const std::string	LIFE_SYSTEM_RESTORE;
-	static const std::string	LIFE_SYSTEM_RESTORE_ARMOR;
 };

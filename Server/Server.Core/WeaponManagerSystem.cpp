@@ -6,17 +6,17 @@
 namespace ecs
 {
 
-	void WeaponManagerSystem::changeToNext(Entity* playerClient, RakNet::RPC3* rpc)
+	void WeaponManagerSystem::changeWeapon(Entity* playerClient, RakNet::RPC3* rpc)
 	{
-		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
+		ecs::Entity*		entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
+		ecs::WeaponManager*	weaponManagerLocal;
+		ecs::WeaponManager*	weaponManagerClient;
 
-		*entity = *playerClient;
-	}
+		if ((weaponManagerLocal = dynamic_cast<ecs::WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr
+			&& (weaponManagerClient = dynamic_cast<ecs::WeaponManager*>((*playerClient)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		{
+			weaponManagerLocal->affect(*weaponManagerClient);
+		}
 
-	void WeaponManagerSystem::changeToPrec(Entity* playerClient, RakNet::RPC3* rpc)
-	{
-		ecs::Entity*	entity = ServerCore::getInstance().getPlayerManager().findEntity(playerClient->getOwner());
-
-		*entity = *playerClient;
 	}
 }

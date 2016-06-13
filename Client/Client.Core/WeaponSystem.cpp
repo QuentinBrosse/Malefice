@@ -7,20 +7,20 @@
 #include "Target.h"
 #include "Line3dWrapper.h"
 #include "Audio.h"
+#include "SpellManager.h"
 
 namespace ecs
 {
 	void	WeaponSystem::shoot(Entity& entity)
 	{
-		WeaponManager*		weaponManager;
 		ecs::Position*		playerPosition;
 
-		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
+		if (dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER]) != nullptr
+			|| dynamic_cast<SpellManager*>(entity[ecs::AComponent::ComponentType::SPELL_MANAGER]) != nullptr)
 		{
-		  Line3dWrapper	line3dWrapper{Target::getInstance().getRay()};
+			Line3dWrapper	line3dWrapper{Target::getInstance().getRay()};
 
 			playerPosition = dynamic_cast<ecs::Position*>(entity[ecs::AComponent::ComponentType::POSITION]);
-			Weapon&	weapon = weaponManager->getCurrentWeapon();
 			Target::getInstance().refresh();
 			ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_SYSTEM_SHOOT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponSystem), &entity, &line3dWrapper);
 		}
@@ -30,13 +30,32 @@ namespace ecs
 	{
 		WeaponManager*		weaponManager;
 		ecs::Position*		playerPosition;
-
+		SpellManager*		spellManager;
+	
 		if (clientId == ClientCore::getInstance().getClientId())
 			GraphicUtil::getInstance().getTouchedFx()->display();
 		if ((weaponManager = dynamic_cast<WeaponManager*>((*entity)[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
 			playerPosition = dynamic_cast<ecs::Position*>((*entity)[ecs::AComponent::ComponentType::POSITION]);
 			Weapon&	weapon = weaponManager->getCurrentWeapon();
+
+			switch (status)
+			{
+			case 0:
+				Audio::getInstance().play3D(weapon.getAudioShot(), *playerPosition);
+				break;
+			case 1:
+				Audio::getInstance().play3D(weapon.getAudioReload(), *playerPosition);
+				break;
+			default:
+				Audio::getInstance().play3D("empty.ogg", *playerPosition);
+				break;
+			}
+		}
+		else if ((spellManager = dynamic_cast<SpellManager*>((*entity)[ecs::AComponent::ComponentType::SPELL_MANAGER])) != nullptr)
+		{
+			playerPosition = dynamic_cast<ecs::Position*>((*entity)[ecs::AComponent::ComponentType::POSITION]);
+			Weapon&	weapon = spellManager->getCurrentWeapon();
 
 			switch (status)
 			{

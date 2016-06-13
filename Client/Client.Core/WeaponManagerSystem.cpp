@@ -30,7 +30,7 @@ namespace ecs
 			}
 			if (weaponManager->getWeapons().size() > 1)
 			{
-				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_NEXT, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_WEAPON, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
@@ -57,11 +57,10 @@ namespace ecs
 				weaponManager->getCurrentWeapon().getScene()->getNode()->setParent(parent);
 				weaponManager->getCurrentWeapon().getScene()->setPosition(weaponManager->getCurrentWeapon().getFPSMetrics());
 
-//				weaponManager->getCurrentWeapon().getScene()->setPosition(ecs::Position(pos, irr::core::vector3df(0, 0, 0), irr::core::vector3df(20.F, 20.F, 15.F)));
 			}
 			if (weaponManager->getWeapons().size() > 1)
 			{
-				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_PREC, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
+				ClientCore::getInstance().getNetworkModule()->callRPC(NetworkRPC::WEAPON_MANAGER_SYSTEM_CHANGE_WEAPON, static_cast<RakNet::NetworkID>(NetworkRPC::ReservedNetworkIds::WeaponManagerSystem), &player);
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(25));
 			PositionSystem::updateScenePosition(player);
@@ -107,7 +106,6 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr && (sceneplayer = dynamic_cast<SceneAnimatedMesh*>(entity[ecs::AComponent::ComponentType::SCENE])) != nullptr)
 		{
-			// TODO: remove or update entity's position to others?
 			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
 			GraphicUtil&			graphics = GraphicUtil::getInstance();
 
@@ -146,7 +144,6 @@ namespace ecs
 
 		if ((weaponManager = dynamic_cast<WeaponManager*>(entity[ecs::AComponent::ComponentType::WEAPON_MANAGER])) != nullptr)
 		{
-			// TODO: remove or update entity's position to others?
 			std::map<ecs::Weapon::WeaponType, Weapon>&	weapons = weaponManager->getWeapons();
 
 			for (auto it = weapons.begin(); it != weapons.end(); ++it)

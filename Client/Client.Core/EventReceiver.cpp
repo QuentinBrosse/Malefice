@@ -56,23 +56,6 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 	{
 		if (GraphicUtil::getInstance().isInFPSMode())
 		{
-			switch (event.KeyInput.Key)
-			{
-			case irr::KEY_KEY_1:
-				m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
-				break;
-
-			case irr::KEY_KEY_2:
-				m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
-				break;
-
-			case irr::KEY_KEY_R:
-				m_events.push(EventReceiver::GameEventType::RELOAD);
-				break;
-
-			default:
-				break;
-			}
 			if (event.KeyInput.PressedDown == true)
 			{
 				m_keyState[event.KeyInput.Key] = DOWN;
@@ -80,6 +63,23 @@ bool EventReceiver::OnEvent(const irr::SEvent& event)
 			else
 			{
 				m_keyState[event.KeyInput.Key] = UP;
+				switch (event.KeyInput.Key)
+				{
+				case irr::KEY_KEY_1:
+					m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+					break;
+
+				case irr::KEY_KEY_2:
+					m_events.push(EventReceiver::GameEventType::CHANGE_MANAGER);
+					break;
+
+				case irr::KEY_KEY_R:
+					m_events.push(EventReceiver::GameEventType::RELOAD);
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
 		else

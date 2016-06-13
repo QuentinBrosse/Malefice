@@ -156,13 +156,16 @@ namespace ecs
 			m_currentSpell->second.setActivity(true);
 		for (auto& weapon : m_weaponManager.getWeapons())
 		{
-			if (weapon.second.getScene() != nullptr)
-				continue;
-			weapon.second.createScene(device, parent, false);
-			scene = weapon.second.getScene();
-			scene->setPosition(weapon.second.getFPSMetrics());
+			if (weapon.second.getScene() == nullptr)
+			{
+				weapon.second.createScene(device, parent, false);
+				scene = weapon.second.getScene();
+				scene->setPosition(weapon.second.getFPSMetrics());
+			}
+			weapon.second.setActivity(false);
 		}
-		//TODO: create spell's scenes
+		if (m_weaponsIsCurrent && m_weaponManager.hasCurrentWeapon())
+			m_weaponManager.getCurrentWeapon().setActivity(true);
 	}
 
 

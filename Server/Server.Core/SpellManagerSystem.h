@@ -14,8 +14,7 @@ namespace ecs
 		SpellManagerSystem() = delete;
 		~SpellManagerSystem() = delete;
 
-		static void	changeToNext(Entity* predator, RakNet::RPC3* rpc);
-		static void	changeToPrec(Entity* predator, RakNet::RPC3* rpc);
+		static void	changeSpell(Entity* predator, RakNet::RPC3* rpc);
 	};
 
 }
