@@ -14,12 +14,12 @@ bool	ProjectGlobals::getNoMenu()
 
 std::size_t	ProjectGlobals::getNormalTeamSize()
 {
-	return 1;
+	return 2;
 }
 
 std::size_t	ProjectGlobals::getNormalTeamsNb()
 {
-	return 1;
+	return 2;
 }
 
 std::size_t	ProjectGlobals::getPredatorTeamSize()
